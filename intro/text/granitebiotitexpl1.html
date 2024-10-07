@@ -1,0 +1,74 @@
+please answer the following questions: <br>
+(field of view = 2.5mm)
+<p></p>
+<form>
+Habit (1)?<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Prismatic crystals have lenght longer than width.';" />Prismatic
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Acicular crystals have \'needle-like\' appearance.';" />Acicular
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Bladed crystals have the appearance of \'lathes\' packed on one another.';" />Bladed<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Tabular crystals have a width longer than their length.';" />Tabular
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'These crystals have a platy habit.';" />Platy
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Equant crystals have sides roughly similar in length';" />Equant
+</form>
+<form>
+Habit (2)?<br>
+<input type="radio" name="button" onclick="document.getElementById('shape').innerHTML=
+'Are all the crystal faces visible?';" />Euhedral
+<input type="radio" name="button" onclick="document.getElementById('shape').innerHTML=
+'These crystals are generally subhedral. Some faces are visible.';" />Subhedral
+<input type="radio" name="button" onclick="document.getElementById('shape').innerHTML=
+'Are any crystal faces visible?';" />Anhedral
+</form>
+<form>
+Cleavage?<br>
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'The mineral has one perfect cleavage.';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Does the mineral preferentially break along certain planes?';" />No
+</form>
+<form>
+Birefringence?<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Is the mineral dark at all angles?';" />Isotropic
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral look grey?';" />First<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'The mineral shows moderate birefringence with second order colours.';" />Second
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral show high order pastel colours?';" />Third order
+</form>
+<form>
+Twinning?<br>
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'Be careful not to confuse twinning with cleavage. Twinning occurs within one crystal.';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'This mineral is not twinned although cleavage planes can sometimes look quite similar.';" />No
+</form>
+<form>
+Extinction angle?<br>
+<input type="radio" name="button" onclick="document.getElementById('angle').innerHTML=
+'The extinction is parallel (N-S and E-W)';" />Parallel
+<input type="radio" name="button" onclick="document.getElementById('angle').innerHTML=
+'Have another look. At which angle does the mineral go in extinction?';" />Inclined
+</form>
+
+<button id='ppl' style="font-weight:normal" onclick="
+  location.href = 'javascript: window.parent.setImage(\'granitebiotiteppl.jpg\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' style="font-weight:bold" onclick="location.href='javascript: window.parent.setImage(\'granitebiotitexpl.jpg\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+
+<div id="habit"></div>
+<div id="shape"></div>
+<div id="cleavage"></div>
+<div id="birefringence"></div>
+<div id="twinning"></div>
+<div id="angle"></div>

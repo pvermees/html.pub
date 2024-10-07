@@ -1,0 +1,2054 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Errorchrons and anchored isochrons in IsoplotR</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body class="main">
+   <div class="maketitle">
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead">Errorchrons and anchored isochrons in IsoplotR</h2>
+      <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br /><span 
+class="cmr-12">Department of Earth Sciences</span>
+<br />  <span 
+class="cmr-12">University College London</span>
+<br />        <span 
+class="cmr-12">Gower Street</span>
+<br />     <span 
+class="cmr-12">London WC1E 6BT</span>
+<br />      <span 
+class="cmr-12">United Kingdom </span></div><br />
+   </div>
+   <div class="abstract" >
+   <h3 class="abstracttitle">
+<span 
+class="cmbx-9">Abstract</span>
+</h3>
+     <!--l. 20--><p class="noindent" ><span 
+class="cmr-9">Isochrons are usually fitted by &#8216;York regression&#8217;, which uses a weighted</span>
+     <span 
+class="cmr-9">least squares approach that accounts for correlated uncertainties in both</span>
+     <span 
+class="cmr-9">variables. Despite its tremendous popularity in modern geochronology, the</span>
+     <span 
+class="cmr-9">York algorithm has two important limitations that reduce its utility in</span>
+     <span 
+class="cmr-9">several applications. First, it does not provide a satisfactory mechanism</span>
+     <span 
+class="cmr-9">to deal with so-called &#8216;errorchrons&#8217;, i.e. datasets that are overdispersed</span>
+     <span 
+class="cmr-9">with respect to the analytical uncertainties. Second, York regression is not</span>
+     <span 
+class="cmr-9">readily amenable to anchoring, in which either the slope or the intercept</span>
+     <span 
+class="cmr-9">of the isochron is fixed based on some external information. Anchored</span>
+     <span 
+class="cmr-9">isochrons can be very useful in cases where the data are insufficiently</span>
+     <span 
+class="cmr-9">spread out to constrain both the radiogenic and non-radiogenic isotopic</span>
+     <span 
+class="cmr-9">composition.</span>
+     <!--l. 34--><p class="indent" >     <span 
+class="cmr-9">This paper addresses both of these issues by extending a maximum</span>
+     <span 
+class="cmr-9">likelihood algorithm that was first proposed by Titterington and Halliday</span>
+     <span 
+class="cmr-9">(1979,  Chemical  Geology  26.3-4:  183-195).  The  new  algorithm  offers</span>
+     <span 
+class="cmr-9">the  ability  to  attribute  any  excess  dispersion  to  either  the  inherited</span>
+     <span 
+class="cmr-9">component (&#8216;model</span><span 
+class="cmr-9">&#x00A0;3a&#8217;) or to diachronous closure of the isotopic system</span>
+     <span 
+class="cmr-9">(&#8216;model</span><span 
+class="cmr-9">&#x00A0;3b&#8217;). It provides an opportunity to anchor isochrons either to</span>
+     <span 
+class="cmr-9">a fixed nonradiogenic composition or a fixed age. Last but not least, it</span>
+                                                                  
+
+                                                                  
+     <span 
+class="cmr-9">allows the user to attach meaningful analytical uncertainty to the anchor.</span>
+     <span 
+class="cmr-9">The new method has been implemented in IsoplotR for immediate use in</span>
+     <span 
+class="cmr-9">Ar/Ar, Pb/Pb, U/Pb, Th/Pb, Rb/Sr, Sm/Nd, Lu/Hf, Re/Os, K/Ca and</span>
+     <span 
+class="cmr-9">U-Th-He geochronology.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 49--><p class="noindent" >Isochrons are mixing lines between radiogenic and inherited isotopic endmembers.
+They are an essential component of radiometric geochronology and exist in several
+forms. Sections&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>&#8211;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:anchorerr --></a> of this paper will deal with the simple case of &#8216;P/D-isochrons&#8217;,
+which apply to geochronometers that are based on the decay of a single radioactive
+parent nuclide (<span 
+class="cmmi-10">P</span>; e.g., <sup><span 
+class="cmr-7">87</span></sup>Rb, <sup><span 
+class="cmr-7">40</span></sup>K, <sup><span 
+class="cmr-7">147</span></sup>Sm) to a particular daughter nuclide (<span 
+class="cmmi-10">D</span>; e.g.,
+<sup><span 
+class="cmr-7">87</span></sup>Sr, <sup><span 
+class="cmr-7">40</span></sup>Ar, <sup><span 
+class="cmr-7">143</span></sup>Nd). Sections&#x00A0;<a 
+href="#x1-80008">8<!--tex4ht:ref: sec:PbPb --></a> and <a 
+href="#x1-90009">9<!--tex4ht:ref: sec:UPb --></a> will discuss Pb/Pb- and U/Pb-isochrons,
+respectively. These are based on the paired decay of two parents (<sup><span 
+class="cmr-7">238</span></sup>U and <sup><span 
+class="cmr-7">235</span></sup>U) to
+two daughters (<sup><span 
+class="cmr-7">206</span></sup>Pb and <sup><span 
+class="cmr-7">207</span></sup>Pb, respectively) and require linear regression in two or
+three dimensions.
+<!--l. 63--><p class="indent" >   P/D-isochrons come in two types. &#8216;Conventional&#8217; isochrons are straight line
+relationships of the following kind:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index0x.png" alt="[D ]   [ D ]   [P ] (     )
+ --  =   --  +  --  e&#x03BB;t - 1
+  d i    d  0   d  i
+" class="math-display" ><a 
+ id="x1-1001r1"></a></div>
+   </td><td class="equation-label">(1)</td></tr></table>
+<!--l. 70--><p class="nopar" >
+<!--l. 72--><p class="noindent" >where <span 
+class="cmmi-10">i </span>is the aliquot number (1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">n</span>), <span 
+class="cmmi-10">d </span>is a non-radiogenic sister isotope
+of <span 
+class="cmmi-10">D</span>, [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> is the inherited component, <span 
+class="cmmi-10">&#x03BB; </span>is the decay constant and <span 
+class="cmmi-10">t </span>is
+the time elapsed since isotopic closure. A full list of definitions is provided
+in Appendix&#x00A0;<a 
+href="#x1-13000A">A<!--tex4ht:ref: app:definitions --></a>. &#8216;Inverse&#8217; isochrons are obtained by permuting <span 
+class="cmmi-10">P</span>, <span 
+class="cmmi-10">D </span>and
+<span 
+class="cmmi-10">d</span>:
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index1x.png" alt="[ d]   [ d]  {   [ P] (      )}
+ --  =   --   1-   --  e&#x03BB;t - 1
+ D  i    D 0       D i
+" class="math-display" ><a 
+ id="x1-1002r2"></a></div>
+   </td><td class="equation-label">(2)</td></tr></table>
+<!--l. 85--><p class="nopar" >
+<!--l. 87--><p class="indent" >   The choice between conventional and inverse isochrons depends on the
+relative precision of the mass spectrometer measurements. Inverse isochrons
+are preferred if <span 
+class="cmmi-10">d </span><span 
+class="cmsy-10">&#x226A; </span><span 
+class="cmmi-10">D</span>. Otherwise, conventional isochrons are fine (<a 
+href="#Xli2021">Li and
+Vermeesch</a>,&#x00A0;<a 
+href="#Xli2021">2021</a>).
+<!--l. 92--><p class="indent" >   Equations&#x00A0;<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:conventionalPD --></a> and <a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:inversePD --></a> can be recast into a generic linear form:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index2x.png" alt="yi = a+ bxi
+" class="math-display" ><a 
+ id="x1-1003r3"></a></div>
+   </td><td class="equation-label">(3)</td></tr></table>
+<!--l. 97--><p class="nopar" >
+<!--l. 99--><p class="indent" >   Table&#x00A0;<a 
+href="#x1-130011">1<!--tex4ht:ref: tab:PDDD --></a> maps the parameters of this generic equation to the parameters of
+Equations&#x00A0;<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:conventionalPD --></a>, <a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:inversePD --></a> and subsequent variants thereof. Equation&#x00A0;<a 
+href="#x1-1003r3">3<!--tex4ht:ref: eq:yabx --></a> is usually solved by <a 
+href="#Xyork2004">York
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xyork2004">2004</a>) regression (hereafter simply referred to as &#8216;York regression&#8217;). York
+regression uses a least squares algorithm to estimate the intercept (<span 
+class="cmmi-10">a</span>) and slope (<span 
+class="cmmi-10">b</span>) of
+the isochron line from an <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&#x00D7; </span>5 table of paired isotopic ratio measurements, their
+standard errors and their error correlations.
+<!--l. 110--><p class="indent" >   Although this paper will use the York parameters <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>to fit the isochron, all
+results will be presented in terms of the geologically more meaningful inherited
+endmember ratio [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> and radiogenic endmember ratio [<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup><span 
+class="cmsy-10">&#x2261; </span><span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">&#x03BB;t</span></sup> <span 
+class="cmsy-10">- </span>1, where
+[<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> = <span 
+class="cmmi-10">a </span>and [<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup> = <span 
+class="cmmi-10">b </span>for conventional isochrons, and [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> = 1<span 
+class="cmmi-10">&#x2215;a </span>and
+[<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup> = <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">b&#x2215;a </span>for inverse isochrons (<a 
+href="#Xli2021">Li and Vermeesch</a>,&#x00A0;<a 
+href="#Xli2021">2021</a>).
+                                                                  
+
+                                                                  
+<!--l. 118--><p class="indent" >   The most accurate and precise results are obtained from samples that are evenly
+spread along the isochron line, spanning the entire range of values from the inherited
+to the radiogenic endmember. Unfortunately, this condition is not always fulfilled. It
+is not uncommon for most or all aliquots in a sample to cluster together at one point
+along the isochron, making it difficult to accurately estimate the endmember
+compositions. For example, no precise isochron ages can be obtained from samples
+whose radiogenic daughter component is dwarfed by the inherited daughter
+component. Conversely, the composition of the inherited component cannot be
+precisely estimated in extremely radiogenic samples. Finally, when the data cluster
+together in the middle, then neither endmember component can be reliably
+determined (Figure&#x00A0;<a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a>).
+<!--l. 133--><p class="indent" >   Sometimes, such poorly constrained isochrons can be fixed using external
+information. For example, if the composition of the inherited component is known
+through some independent means (e.g., by analysing a cogenetic mineral that is
+naturally poor in <span 
+class="cmmi-10">P </span>and rich in <span 
+class="cmmi-10">D </span>and <span 
+class="cmmi-10">d</span>), then this information can be used to
+anchor the isochron. Anchoring reduces the number of unknown parameters by one,
+benefitting numerical stability and precision. Conversely, if the age of the sample is
+known, then the inherited component can be estimated by anchoring to the
+radiogenic endmember.
+<!--l. 143--><p class="indent" >   There currently exists no formally documented way to anchor York regression. A
+commonly used &#8216;hack&#8217; is to add an extra data point with infinite precision
+representing either the inherited or radiogenic endmember component. However, this
+hack does not provide a satisfactory mechanism to assign uncertainty to the anchor.
+This paper solves that problem. Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:MLyork --></a> introduces a maximum likelihood
+formulation of York regression, which is amenable to anchoring with uncertainty.
+Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:overdispersion --></a> shows how this formulation can be used to model &#8216;errorchrons&#8217; that are
+overdispersed with respect to the analytical uncertainties.
+<!--l. 155--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:specific --></a> provides further details about the implementation of maximum
+likelihood regression, which can attribute overdispersion to either the intercept
+(&#8216;model&#x00A0;3a&#8217;) or slope (&#8216;model&#x00A0;3b&#8217;) of the linear fit. It turns out that model&#x00A0;3b is
+computationally more challenging than model&#x00A0;3a. Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:flipper --></a> shows how this issue can
+be avoided by inverting and flipping the isochron axes.
+<!--l. 163--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:anchor --></a> shows how anchored isochron regression represents a trivial
+special case of the maximum likelihood algorithm. Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:anchorerr --></a> attaches two
+different geological interpretations to the uncertainty of isochron anchors.
+These two interpretations lead to two different fit models (&#8216;model&#x00A0;1&#8217; and
+&#8216;model&#x00A0;3&#8217;, which are so named for historical reasons). Sections&#x00A0;<a 
+href="#x1-80008">8<!--tex4ht:ref: sec:PbPb --></a> and <a 
+href="#x1-90009">9<!--tex4ht:ref: sec:UPb --></a> apply the
+same logic to Pb/Pb and U/Pb isochrons, respectively. Finally, Section&#x00A0;<a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:IsoplotR --></a>
+shows how the new algorithms can be used within the <span 
+class="cmtt-10">IsoplotR </span>software
+package.
+<!--l. 174--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-10041"></a>
+                                                                  
+
+                                                                  
+<!--l. 175--><p class="noindent" > <a href="fig1-.png"><img src="fig1-.png" alt="PIC"  class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">P/D-isochron diagrams for a synthetic dataset generated using the
+procedures of Appendix&#x00A0;<a 
+href="#x1-14000B">B<!--tex4ht:ref: app:syntheticdata --></a>. The true slope and intercept are <span 
+class="cmmi-10">a </span>= 1 and <span 
+class="cmmi-10">b </span>= 1
+for the conventional isochrons (i&#8211;iii), and <span 
+class="cmmi-10">a </span>= 1 and <span 
+class="cmmi-10">b </span>= <span 
+class="cmsy-10">-</span>1 for the inverse
+isochrons (iv&#8211;vi). These parameter values correspond to [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> = [<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup> = 1.
+The true trends are shown as dashed lines and the estimated trends as solid
+lines, with 95% confidence envelopes shown in grey. The estimated parameter
+values are shown above the panels. Unconstrained isochron regression (i and iv)
+yields imprecise and inaccurate results. Fixing the inherited component (ii and
+v) or the radiogenic component (iii and vi) greatly improves both aspects of the
+fit.</span></div><!--tex4ht:label?: x1-10041 -->
+                                                                  
+
+                                                                  
+<!--l. 190--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Maximum likelihood formulation of York regression</h3>
+<!--l. 194--><p class="noindent" ><a 
+href="#Xyork2004">York et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xyork2004">2004</a>) use the method of least squares to fit the general problem of
+weighted regression with correlated uncertainties in both variables. <a 
+href="#Xtitterington1979">Titterington and
+Halliday</a>&#x00A0;(<a 
+href="#Xtitterington1979">1979</a>) obtained identical results using the method of maximum likelihood.
+The latter approach offers greater flexibility than least squares and will be used in
+the remainder of this paper.
+<!--l. 201--><p class="indent" >   The method of maximum likelihood is a standard statistical technique to estimate
+the parameters of a probability distribution from a set of measurements. In the case
+of two-dimensional isochron regression, the parameters are the intercept <span 
+class="cmmi-10">a</span>, the
+slope <span 
+class="cmmi-10">b </span>and the true (but unknown) <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>-values. The data are the <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> and
+<span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub>-measurements along with their assumed uncertainties and error correlations (see
+Appendix&#x00A0;<a 
+href="#x1-13000A">A<!--tex4ht:ref: app:definitions --></a> for a full list of definitions). For a dataset of <span 
+class="cmmi-10">n </span>aliquots, there are 2<span 
+class="cmmi-10">n</span>
+measurements (<span 
+class="cmmi-10">n X</span><sub><span 
+class="cmmi-7">i</span></sub>-values and <span 
+class="cmmi-10">n Y</span> <sub><span 
+class="cmmi-7">i</span></sub>-values) and <span 
+class="cmmi-10">n </span>+ 2 parameters (<span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b </span>and <span 
+class="cmmi-10">n</span>
+<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>-values). That leaves 2<span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span>2 = <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span>2 &#8216;degrees of freedom&#8217; to estimate the
+parameters.
+<!--l. 213--><p class="indent" >   This overconstrained problem can be solved by minimising the paired differences
+(&#8216;residuals&#8217;) between the true <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>- and <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>-values (where <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">a </span>+ <span 
+class="cmmi-10">bx</span><sub><span 
+class="cmmi-7">i</span></sub>) and the
+measured <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub>- and <span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub>-values:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index3x.png" alt="{
+  Xi = xi + &#x03F5;x,i
+  Yi = a+ bxi + &#x03F5;y,i
+" class="math-display" ><a 
+ id="x1-2001r4"></a></div>
+   </td><td class="equation-label">(4)</td></tr></table>
+<!--l. 222--><p class="nopar" >
+<!--l. 224--><p class="indent" >   To make the problem tractable, the vector of residuals <span 
+class="cmbx-10">&#x0394;</span><sub><span 
+class="cmmi-7">i</span></sub> is assumed to be drawn
+from a bivariate normal distribution with zero mean and covariance matrix
+<span 
+class="cmbx-10">&#x03A3;</span><sub><span 
+class="cmmi-7">i</span></sub>:
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index4x.png" alt="     [      ]   [   ]         [     2        ]
+&#x0394;i &#x2261;  Xi - xi =  &#x03F5;x,i  and &#x03A3;i &#x2261;  s[Xi ]  s[Xi,Y2i] .
+      Yi - yi     &#x03F5;y,i           s[Xi,Yi]  s[Yi]
+" class="math-display" ><a 
+ id="x1-2002r5"></a></div>
+   </td><td class="equation-label">(5)</td></tr></table>
+<!--l. 251--><p class="nopar" >
+<!--l. 253--><p class="indent" >   The product of the normal probabilities for all the aliquots (from 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">n</span>) is
+called the &#8216;likelihood&#8217; of the parameters given the data. Maximising this number
+produces the most accurate possible parameter estimates <span 
+class="cmmi-10">&acirc;</span>, <img 
+src="index5x.png" alt="&#x02C6;b"  class="circ" > and <img 
+src="index6x.png" alt="&#x02C6;x"  class="circ" ><sub><span 
+class="cmmi-7">i</span></sub>. Alternatively,
+and equivalently, the same estimates can be obtained by maximising the logarithm of
+the likelihood. This is the preferred approach as it improves numerical stability and
+facilitates the estimation of the parameter uncertainties. The log-likelihood function
+can be formally defined as:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index7x.png" alt="                      1&#x2211;n (              T  -1  )
+LL (parameters|data) = - 2   2&#x03C0; + ln |&#x03A3;i|+ &#x0394; i &#x03A3; i &#x0394;i
+                        i=1
+" class="math-display" ><a 
+ id="x1-2003r6"></a></div>
+   </td><td class="equation-label">(6)</td></tr></table>
+<!--l. 269--><p class="nopar" >
+<!--l. 271--><p class="indent" >   This formulation allows for correlated uncertainties between the variables
+(<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,Y</span> <sub><span 
+class="cmmi-7">i</span></sub>]<span 
+class="cmmi-10">&#x2260;</span>0 in Equation&#x00A0;<a 
+href="#x1-2002r5">5<!--tex4ht:ref: eq:model1DEi --></a>), but not between aliquots (<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,Y</span> <sub><span 
+class="cmmi-7">j</span></sub>] = 0 if <span 
+class="cmmi-10">i</span><span 
+class="cmmi-10">&#x2260;</span><span 
+class="cmmi-10">j</span>). <a 
+href="#Xdaeron2023">Da&euml;ron
+and Vermeesch</a>&#x00A0;(<a 
+href="#Xdaeron2023">2023</a>) discuss the generalised case of &#8216;omnivariant&#8217; regression, where
+this requirement has been relaxed and Equation&#x00A0;<a 
+href="#x1-2003r6">6<!--tex4ht:ref: eq:LL --></a> is replaced with a single matrix
+expression.
+<!--l. 278--><p class="noindent" >
+                                                                  
+
+                                                                  
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Dealing with overdispersion</h3>
+<!--l. 280--><p class="noindent" >The degree to which the residuals <span 
+class="cmbx-10">&#x0394;</span><sub><span 
+class="cmmi-7">i</span></sub> are consistent with the assumed analytical
+uncertainties <span 
+class="cmbx-10">&#x03A3;</span><sub><span 
+class="cmmi-7">i</span></sub> can be assessed using a Chi-square test and MSWD parameter.
+Readers who are not familiar with these concepts are referred to Appendix&#x00A0;<a 
+href="#x1-15000C">C<!--tex4ht:ref: app:X2 --></a> for
+details. Isochrons that exhibit significant overdispersion with respect to the
+analytical uncertainties are colloquially referred to as &#8216;errorchrons&#8217;. Whether
+it is right to use such a pejorative term for this common phenomenon is
+debatable (<a 
+href="#Xschaen2021">Schaen et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xschaen2021">2021</a>). Four approaches may be used to deal with
+errorchrons:
+<!--l. 290--><p class="indent" >
+     <dl class="description"><dt class="description">
+     <!--l. 291--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 291--><p class="noindent" ><span 
+class="cmbx-10">model</span><span 
+class="cmbx-10">&#x00A0;1</span>: Inflate the analytical uncertainties by a factor <img 
+src="index8x.png" alt="&#x221A; -------
+  MSWD"  class="sqrt" >.
+     </dd><dt class="description">
+     <!--l. 293--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 293--><p class="noindent" ><span 
+class="cmbx-10">model</span><span 
+class="cmbx-10">&#x00A0;2</span>: Ignore the analytical uncertainties and replace York regression
+     with orthogonal regression or a similar technique. This approach will not
+     be discussed further in this paper.
+     </dd><dt class="description">
+     <!--l. 297--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 297--><p class="noindent" ><span 
+class="cmbx-10">model</span><span 
+class="cmbx-10">&#x00A0;3</span>: Quantify the dispersion as an additional free parameter. There are
+     two options for doing so:
+         <dl class="description"><dt class="description">
+         <!--l. 300--><p class="noindent" >
+      </dt><dd 
+class="description">
+         <!--l. 300--><p class="noindent" ><span 
+class="cmbx-10">model</span><span 
+class="cmbx-10">&#x00A0;3a</span>:  Attribute  the  excess  dispersion  to  variability  of  the
+         inherited   component   and,   hence,   the   isochron   intercept.   For
+         conventional  isochrons,  this  means  that  the  true  isotopic  ratios
+         of  the  cogenetic  aliquots  do  not  belong  to  a  single  isochron
+         line,  but  to  a  family  of  parallel  isochron  lines  whose  intercepts
+         are  normally  distributed  (<a 
+href="#Xtitterington1979">Titterington  and  Halliday</a>,&#x00A0;<a 
+href="#Xtitterington1979">1979</a>).  The
+         standard deviation of this normal distribution (<span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">a</span></sub>) can be used to
+         quantify the dispersion of the data around the &#8216;central&#8217; isochron line.
+         </dd><dt class="description">
+         <!--l. 309--><p class="noindent" >
+      </dt><dd 
+class="description">
+                                                                  
+
+                                                                  
+         <!--l. 309--><p class="noindent" ><span 
+class="cmbx-10">model</span><span 
+class="cmbx-10">&#x00A0;3b</span>: Attribute the excess dispersion to diachronous closure
+         of  the  isotopic  system.  This  mechanism  produces  families  of
+         conventional isochrons that share a common intercept but differ in
+         their slopes. Again, the distribution of the slopes can be assumed to
+         follow a normal distribution, with mean <span 
+class="cmmi-10">b </span>and standard deviation <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">b</span></sub>.
+         The latter value can be used to quantify the dispersion of the data,
+         which in this case captures the degree of diachroneity.</dd></dl>
+     </dd></dl>
+<!--l. 320--><p class="indent" >   Model&#x00A0;3a isochron regression can be formalised by modifying Equation&#x00A0;<a 
+href="#x1-2001r4">4<!--tex4ht:ref: eq:model1 --></a> as
+follows:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index9x.png" alt="{
+  Xi = xi + &#x03F5;x,i
+  Yi = a+ bxi + &#x03F5;a + &#x03F5;y,i
+" class="math-display" ><a 
+ id="x1-3001r7"></a></div>
+   </td><td class="equation-label">(7)</td></tr></table>
+<!--l. 328--><p class="nopar" >
+<!--l. 330--><p class="indent" >   The dispersion parameter <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">a</span></sub> can be estimated (as <img 
+src="index10x.png" alt="&#x02C6;&#x03C3;"  class="circ" ><sub><span 
+class="cmmi-7">a</span></sub>) by incorporating it into the
+covariance matrices:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index11x.png" alt="      [     2          ]
+&#x03A3;a,i &#x2261;  s[Xi ]   s[Xi2,Yi]2 .
+       s[Xi,Yi] s[Yi]+ &#x03C3;a
+" class="math-display" ><a 
+ id="x1-3002r8"></a></div>
+   </td><td class="equation-label">(8)</td></tr></table>
+<!--l. 341--><p class="nopar" >
+<!--l. 343--><p class="indent" >   The equivalent expressions for model&#x00A0;3b regression are
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index12x.png" alt="{
+ Xi = xi + &#x03F5;x,i
+ Yi = a + (b + &#x03F5;b)xi + &#x03F5;y,i
+" class="math-display" ><a 
+ id="x1-3003r9"></a></div>
+   </td><td class="equation-label">(9)</td></tr></table>
+<!--l. 350--><p class="nopar" >
+<!--l. 352--><p class="indent" >   and
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index13x.png" alt="     [ s[Xi]2    s[Xi,Yi]   ]
+&#x03A3;b,i &#x2261; s[Xi,Yi] s[Yi]2 + (xi&#x03C3;b)2
+" class="math-display" ><a 
+ id="x1-3004r10"></a></div>
+   </td><td class="equation-label">(10)</td></tr></table>
+<!--l. 362--><p class="nopar" >
+<!--l. 364--><p class="noindent" >respectively.
+<!--l. 366--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Specific cases</h3>
+<!--l. 368--><p class="noindent" >Three specific cases of Equation&#x00A0;<a 
+href="#x1-2003r6">6<!--tex4ht:ref: eq:LL --></a> are of interest in the present discussion:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index14x.png" alt="model 1:   LL1 (a,b,x|X, Y, &#x03A3;) = constant- 1 n&#x2211; &#x0394;T &#x03A3; -1&#x0394;i
+                                        2i=1  in  i
+model 3a:  LL3a(a,b,&#x03C3;a,x |X, Y,&#x03A3; ) = constant - 1&#x2211; (ln |&#x03A3;a,i|+ &#x0394;Ti &#x03A3; -a1,i&#x0394;i )
+                                            2i=n1(                  )
+model 3b:  LL3b(a,b,&#x03C3;b,x|X,Y, &#x03A3;) = constant- 12 &#x2211;   ln|&#x03A3;b,i|+ &#x0394;Ti &#x03A3; -b,1i&#x0394;i
+                                             i=1
+" class="math-display" ><a 
+ id="x1-4001r11"></a></div>
+   </td><td class="equation-label">(11)</td></tr></table>
+<!--l. 388--><p class="nopar" >
+<!--l. 390--><p class="indent" >   Note that the (logged) determinant of the covariance matrices is not
+included in the constant for model&#x00A0;3 fits, because <span 
+class="cmbx-10">&#x03A3;</span><sub><span 
+class="cmmi-7">a,i</span></sub> and <span 
+class="cmbx-10">&#x03A3;</span><sub><span 
+class="cmmi-7">b,i</span></sub> are both
+functions of <span 
+class="cmbx-10">x</span>, whereas <span 
+class="cmbx-10">&#x03A3;</span><sub><span 
+class="cmmi-7">i</span></sub> is not. <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span> can be numerically maximised using an
+iterative two-step procedure. For model&#x00A0;1 regression, the first step maximises
+<span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmbx-10">x</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">a,b,</span><span 
+class="cmbx-10">X</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">Y</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">&#x03A3;</span>) to find <span 
+class="cmbx-10">x </span>for any pair of <span 
+class="cmmi-10">a</span>- and <span 
+class="cmmi-10">b</span>-values. The second step repeats
+the first step for different values of <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>until the overall optimum is
+reached.
+<!--l. 401--><p class="indent" >   This procedure can easily be adapted to model&#x00A0;3 regression, by adding <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">a</span></sub> or <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">b</span></sub>
+to the unknown parameters. It works well for model&#x00A0;3a, where the first step has a
+direct solution. However, it is slow for model&#x00A0;3b regression, in which finding <span 
+class="cmbx-10">x</span>
+requires an additional level of iteration. See Appendix&#x00A0;<a 
+href="#x1-16000D">D<!--tex4ht:ref: app:algorithm --></a> for further details.
+Fortunately, in practice model model&#x00A0;3b is rarely or never needed for geochronology,
+as explained next.
+<!--l. 409--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Flipped isochron regression</h3>
+<!--l. 411--><p class="noindent" >For inverse isochrons, model&#x00A0;3b regression does not actually provide any useful
+information. Unlike conventional isochrons, whose chronological information is
+contained in the slope, the chronological information of inverse isochrons is contained
+in their horizontal intercept. This information can be unlocked by flipping the axes
+of the isochron diagram around, inverting the isochron, and treating the
+D/P-ratio as the dependent variable. Applying model&#x00A0;3a regression to the flipped
+data yields a dispersion estimate <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">a</span></sub> that can be used to quantify the age
+dispersion.
+<!--l. 421--><p class="indent" >   The same trick can be used to estimate the slope uncertainty of a conventional
+isochron. A pragmatic way to avoid the slow convergence rate of model&#x00A0;3b regression
+is to carry out the numerical optimisation in inverse isochron space, flip the
+dependent and independent variables around, invert the isochron a second time and
+carry out a model&#x00A0;3a regression on the transformed data. The resulting <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">a</span></sub>-estimate
+can be converted to a <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">b</span></sub>-estimate:
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index15x.png" alt="                        &#x02C6;&#x03C3;
+&#x02C6;&#x03C3;b(conventional isochron ) &#x2248;-a2(flipped inverse isochron )
+                        &#x02C6;a
+" class="math-display" ><a 
+ id="x1-5001r12"></a></div>
+   </td><td class="equation-label">(12)</td></tr></table>
+<!--l. 432--><p class="nopar" >
+<!--l. 434--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-50022">2<!--tex4ht:ref: fig:ArAr --></a> applies model&#x00A0;3 regression to two synthetic Ar&#8211;Ar datasets with a
+non-radiogenic <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">36</span></sup>Ar-ratio of 400 and an age of 100 Ma. The dataset of
+Figure&#x00A0;<a 
+href="#x1-50022">2<!--tex4ht:ref: fig:ArAr --></a>.i exhibits overdispersion of the y-intercept ([<sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">36</span></sup>Ar]<sub><span 
+class="cmr-7">0</span></sub> = 400<span 
+class="cmmi-10">,&#x03C3;</span><sub><span 
+class="cmmi-7">a</span></sub> = 40),
+whereas the dataset of Figure&#x00A0;<a 
+href="#x1-50022">2<!--tex4ht:ref: fig:ArAr --></a>.ii is overdispersed in the x-intercept (<span 
+class="cmmi-10">t </span>= 100 Ma,
+<span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">t</span></sub> = 10 Ma). In both cases, the maximum likelihood algorithm has retrieved the
+correct solution from the noisy data.
+<!--l. 444--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-50022"></a>
+                                                                  
+
+                                                                  
+<!--l. 445--><p class="noindent" > <a href="fig2-.png"><img src="fig2-.png" alt="PIC"  class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Model-3 regression of two synthetic Ar&#8211;Ar datasets. (i) model&#x00A0;3a
+regression through 100 randomly drawn aliquots from an isochron with a true
+non-radiogenic  <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-ratio  of  400 <span 
+class="cmsy-10">&plusmn;</span> 40  (1<span 
+class="cmmi-10">&#x03C3;</span>)  and  a  true  age  of  100 Ma;
+(2) model&#x00A0;3b regression through 100 aliquots from an isochron with a true
+non-radiogenic <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-ratio of 400 and a true age of 100<span 
+class="cmsy-10">&plusmn;</span>10 Ma (1<span 
+class="cmmi-10">&#x03C3;</span>). Error
+bars on the y- and x-axis show the overdispersion at 95% confidence.</span></div><!--tex4ht:label?: x1-50022 -->
+                                                                  
+
+                                                                  
+<!--l. 455--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Anchored isochron regression</h3>
+<!--l. 459--><p class="noindent" >Anchored isochron regression requires just a trivial modification of the maximum
+likelihood algorithm. It suffices to treat the anchored parameter as data. For
+example, the slope and intercept of a model&#x00A0;1 isochron can be anchored by
+maximising <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">a,</span><span 
+class="cmbx-10">x</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">b,</span><span 
+class="cmbx-10">X</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">Y</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">&#x03A3;</span>) and <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">b,</span><span 
+class="cmbx-10">x</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">a,</span><span 
+class="cmbx-10">X</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">Y</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">&#x03A3;</span>), respectively. Note
+that these calculations assume that the anchor is known exactly. This is
+reflected in the zero uncertainties of the nonradiogenic component Figures&#x00A0;<a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a>.ii
+and <a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a>.v, and of the radiogenic components of Figures&#x00A0;<a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a>.iii and <a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a>.vi. Such
+absolute certainty is unrealistic in the noisy world of geology. Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:anchorerr --></a>
+introduces two ways to formally account for uncertainty in anchored isochron
+regression.
+<!--l. 475--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Accounting for anchor uncertainty</h3>
+<!--l. 477--><p class="noindent" >When assigning uncertainty to statistical parameters, it is important to clearly define
+the meaning of this uncertainty. In the case of anchored isochron regression, the
+uncertainty of the intercept or slope can carry two meanings. For example, when the
+intercept of an isochron is anchored at a value <span class="bar-css"><span 
+class="cmmi-10">a</span></span> <span 
+class="cmsy-10">&plusmn; </span><span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">a</span></span></sub>, this can either mean
+that:
+<!--l. 484--><p class="indent" >
+     <dl class="description"><dt class="description">
+     <!--l. 485--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 485--><p class="noindent" ><span 
+class="cmbx-10">model</span><span 
+class="cmbx-10">&#x00A0;1</span>: the data are underlain by a single isochron whose intercept is
+     only approximately known, with a most likely value of <span class="bar-css"><span 
+class="cmmi-10">a</span></span> and a precision
+     (standard error) of <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">a</span></span></sub>.
+     </dd><dt class="description">
+     <!--l. 489--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 489--><p class="noindent" ><span 
+class="cmbx-10">model</span><span 
+class="cmbx-10">&#x00A0;3</span>: the data were drawn from a family of isochron lines whose
+     intercepts  follow  a  normal  distribution  with  mean  <span class="bar-css"><span 
+class="cmmi-10">a</span></span>  and  standard
+     deviation <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">a</span></span></sub>.</dd></dl>
+<!--l. 494--><p class="indent" >   These two different approaches can be implemented by replacing the
+log-likelihood functions of Equation&#x00A0;<a 
+href="#x1-4001r11">11<!--tex4ht:ref: eq:specific --></a> with
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index16x.png" alt="                                                               1(a-¯a)2
+model 1:  LL1(a,b,x|¯a,&#x03C3;¯a,X,Y, &#x03A3; ) = constant+ LL1 (a,b,x|X,Y, &#x03A3;)- 2 -&#x03C3;¯a
+model 3:  LL3a(b,x|¯a,&#x03C3;¯a,X,Y, &#x03A3; )
+" class="math-display" ><a 
+ id="x1-7001r13"></a></div>
+   </td><td class="equation-label">(13)</td></tr></table>
+<!--l. 507--><p class="nopar" >
+<!--l. 509--><p class="indent" >   The equivalent expressions for anchored slopes with uncertainty are
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index17x.png" alt="                   ¯                                          1 (b-¯b)2
+model 1:  LL1(a,b,x|b,&#x03C3;¯b,X,Y, &#x03A3;) = constant+ LL1(a,b,x|X, Y,&#x03A3; )- 2  &#x03C3;¯b
+model 3:  LL3b(a,x|¯b,&#x03C3;¯b,X,Y, &#x03A3;)
+" class="math-display" ><a 
+ id="x1-7002r14"></a></div>
+   </td><td class="equation-label">(14)</td></tr></table>
+<!--l. 521--><p class="nopar" >
+<!--l. 523--><p class="indent" >   Note that model&#x00A0;1 treats the slope and intercept as unknowns, so their maximum
+likelihood estimates generally do <span 
+class="cmti-10">not </span>equal the anchored values <span class="bar-css"><span 
+class="cmmi-10">a</span></span> and <span class="bar-css"><span 
+class="cmmi-10">b</span></span>. However, the
+smaller <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">a</span></span></sub> and <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">b</span></span></sub> are relative to <span class="bar-css"><span 
+class="cmmi-10">a</span></span> and <span class="bar-css"><span 
+class="cmmi-10">b</span></span>, the closer that <span 
+class="cmmi-10">&acirc;</span> and <img 
+src="index18x.png" alt="&#x02C6;b"  class="circ" > are to <span class="bar-css"><span 
+class="cmmi-10">a</span></span> and <span class="bar-css"><span 
+class="cmmi-10">b</span></span>. In
+contrast, anchored model&#x00A0;3 regression fixes the dispersion of the anchored
+parameters, so that <img 
+src="index19x.png" alt="&#x02C6;&#x03C3;"  class="circ" ><sub><span 
+class="cmmi-7">a</span></sub> = <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">a</span></span></sub> for anchored intercepts, whereas <img 
+src="index20x.png" alt="&#x02C6;&#x03C3;"  class="circ" ><sub><span 
+class="cmmi-7">b</span></sub> = <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">b</span></span></sub> for anchored
+slopes.
+<!--l. 533--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-70033">3<!--tex4ht:ref: fig:anchored --></a> applies the two approaches to the synthetic dataset of Figure&#x00A0;<a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a>, using
+anchors of [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> = 1 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>05 and [<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup> = 1 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>05 (1<span 
+class="cmmi-10">&#x03C3;</span>). As expected, models&#x00A0;1 and
+3 produce slightly different outcomes, with model&#x00A0;1 resulting in [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub>- and
+[<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup>-estimates that are slightly different than the anchored values, whereas
+model&#x00A0;3 reproduces the anchors exactly. The model&#x00A0;3 fits produce more precise
+estimates for the unanchored quantities. This reflects the fact that some of the
+uncertainty in the isochron is captured by the dispersion parameter, which is absent
+from the model&#x00A0;1 fit.
+                                                                  
+
+                                                                  
+<!--l. 544--><p class="indent" >   Model&#x00A0;3 partitions the analytical and geological uncertainty between the
+standard errors of <span 
+class="cmmi-10">&acirc;</span> and <img 
+src="index21x.png" alt="&#x02C6;b"  class="circ" > on the one hand, and the dispersion parameter on the
+other hand. It is not easy to visualise this partitioned uncertainty. Figure&#x00A0;<a 
+href="#x1-70033">3<!--tex4ht:ref: fig:anchored --></a> uses a
+grey confidence envelope to show the analytical uncertainty, and black error bars to
+visualise the geological dispersion. Together these two items represent the total
+uncertainty budget.
+<!--l. 552--><p class="indent" >   It is, of course, also possible to treat the dispersion parameter as an unknown by
+maximising <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">a</span></sub>(<span 
+class="cmmi-10">b,&#x03C3;</span><sub><span 
+class="cmmi-7">a</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">x</span><span 
+class="cmsy-10">|</span><span class="bar-css"><span 
+class="cmmi-10">a</span></span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">X</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">Y</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">&#x03A3;</span>) or <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">b</span></sub>(<span 
+class="cmmi-10">a,&#x03C3;</span><sub><span 
+class="cmmi-7">b</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">x</span><span 
+class="cmsy-10">|</span><span class="bar-css"><span 
+class="cmmi-10">b</span></span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">X</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">Y</span><span 
+class="cmmi-10">,</span><span 
+class="cmbx-10">&#x03A3;</span>). Section&#x00A0;<a 
+href="#x1-90009">9<!--tex4ht:ref: sec:UPb --></a> will give
+an example of this in the context of U&#8211;Pb geochronology.
+<!--l. 560--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-70033"></a>
+                                                                  
+
+                                                                  
+<!--l. 561--><p class="noindent" > <a href="fig3-.png"><img src="fig3-.png" alt="PIC" class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3:  </span><span  
+class="content">Anchored  isochrons  for  the  data  of  Figure&#x00A0;<a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a>,  shown  on  inverse
+isochrons. Panels&#x00A0;i and ii anchor the non-radiogenic endmember composition
+to [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> = 1 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>05 (1<span 
+class="cmmi-10">&#x03C3;</span>). Panels&#x00A0;iii and iv anchor the radiogenic endmember
+composition to [<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup> = 1 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>05 (1<span 
+class="cmmi-10">&#x03C3;</span>). Panels&#x00A0;i and iii use model&#x00A0;1 isochron
+regression, whereas panels ii and iv use model&#x00A0;3. Note how the estimated values
+for [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> and [<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup> are exactly the same as the anchored values for model&#x00A0;3,
+but not for model&#x00A0;1. The vertical error bar in panel&#x00A0;ii and the horizontal error
+bar on panel&#x00A0;iv represent the fixed dispersion of the vertical and horizontal
+intercept, respectively.</span></div><!--tex4ht:label?: x1-70033 -->
+                                                                  
+
+                                                                  
+<!--l. 575--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>Pb/Pb isochrons</h3>
+<!--l. 579--><p class="noindent" >The <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">206</span></sup>Pb-method is based on the paired decay of two radioactive parents <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">1</span></sub>
+and <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">2</span></sub> (<sup><span 
+class="cmr-7">238</span></sup>U and <sup><span 
+class="cmr-7">235</span></sup>U) to two daughters <span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">2</span></sub> (<sup><span 
+class="cmr-7">206</span></sup>Pb and <sup><span 
+class="cmr-7">207</span></sup>Pb, respectively)
+in the presence of a non-radiogenic sister isotope <span 
+class="cmmi-10">d </span>(<sup><span 
+class="cmr-7">204</span></sup>Pb). This gives rise to the
+following implicit age equation:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index22x.png" alt="                  [  ]  &#x03BB;t
+[D2&#x2215;d]i --[D2&#x2215;d]0 = P2- e2---1-
+[D1&#x2215;d]i - [D1&#x2215;d]0   P1  e&#x03BB;1t - 1
+" class="math-display" ><a 
+ id="x1-8001r15"></a></div>
+   </td><td class="equation-label">(15)</td></tr></table>
+<!--l. 590--><p class="nopar" >
+<!--l. 592--><p class="noindent" >where <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">2</span></sub> are the decay constants of <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">2</span></sub>, respectively, and [<span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x2215;P</span><sub><span 
+class="cmr-7">1</span></sub>] is
+constant. Equation&#x00A0;<a 
+href="#x1-8001r15">15<!--tex4ht:ref: eq:tPbPb --></a> can be recast into the generic form of Equation&#x00A0;<a 
+href="#x1-1003r3">3<!--tex4ht:ref: eq:yabx --></a> to form a
+&#8216;D/D-isochron&#8217; using the mapping of Table&#x00A0;<a 
+href="#x1-130011">1<!--tex4ht:ref: tab:PDDD --></a>. This gives rise to conventional
+(<sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb vs. <sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb) and inverse (<sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">206</span></sup>Pb vs. <sup><span 
+class="cmr-7">204</span></sup>Pb/<sup><span 
+class="cmr-7">206</span></sup>Pb)
+isochrons.
+<!--l. 600--><p class="indent" >   Unlike inverse P/D-isochrons, which are characterised by negative slopes, inverse
+D/D-isochrons have positive slopes. There is a perfect symmetry between
+conventional and inverse D/D-isochrons in the sense that the intercept of a
+conventional isochron equals the slope of an inverse isochron and <span 
+class="cmti-10">vice versa</span>. This
+slightly changes and, in fact, simplifies the procedure for anchored isochron
+regression.
+<!--l. 608--><p class="indent" >   There is no need for flipped isochron regression of Pb/Pb data. Instead, all
+possible scenarios can be handled by straightforward model&#x00A0;1 and model&#x00A0;3a
+regression. Isochrons can be anchored to the nonradiogenic component in
+conventional isochron space, and to the radiogenic component in inverse isochron
+space.
+                                                                  
+
+                                                                  
+<!--l. 614--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
+ id="x1-90009"></a>U/Pb isochrons</h3>
+<!--l. 616--><p class="noindent" >The U/Pb method, like the Pb/Pb method, is based on the paired decay of <sup><span 
+class="cmr-7">238</span></sup>U to
+<sup><span 
+class="cmr-7">206</span></sup>Pb and of <sup><span 
+class="cmr-7">235</span></sup>U to <sup><span 
+class="cmr-7">207</span></sup>Pb. The two chronometers can be treated separately and
+plotted as P/D-isochrons. These two-dimensional isochrons can be anchored to the
+radiogenic and nonradiogenic composition using the methods described in
+Sections&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:MLyork --></a>&#8211;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:anchorerr --></a>.
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index23x.png" alt="( [     ]   [     ]   [    ]
+{  206Pb-  =  206Pb-  +  238U-- (e&#x03BB;238t - 1)
+  [220407Pb ]i  [220407Pb 0]   [20 243P5b]i(        )
+(  204PPbb- i = 204PPbb-0 +  204UPb-i e&#x03BB;235t - 1
+" class="math-display" ><a 
+ id="x1-9001r16"></a></div>
+   </td><td class="equation-label">(16)</td></tr></table>
+<!--l. 633--><p class="nopar" >
+<!--l. 635--><p class="indent" >   Alternatively, the two ingrowth equations can also be coupled, forming a three
+dimensional &#8216;total-Pb/U isochron&#8217;. This problem can be solved using the method of
+maximum likelihood (<a 
+href="#Xludwig1998">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig1998">1998</a>). There is just one important difference between
+this solution and the York-like algorithm of Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:MLyork --></a>. York regression is
+formulated in terms of a generic intercept (<span 
+class="cmmi-10">a</span>) and slope (<span 
+class="cmmi-10">b</span>). In contrast,
+the &#8216;Ludwig&#8217; algorithm is formulated in terms of the actual non-radiogenic
+<sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb (= <span 
+class="cmmi-10">&#x03B1;</span>) and <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb (=<span 
+class="cmmi-10">&#x03B2;</span>) ratio, as well as the age (<span 
+class="cmmi-10">t</span>) of the
+system.
+<!--l. 646--><p class="indent" >   It is relatively straightforward to generalise the concept of model&#x00A0;3 regression to
+total-Pb/U isochrons when the dispersion is attributed to the isochron age. However,
+it is not immediately clear how to do the same for the nonradiogenic composition,
+because this would require partitioning the dispersion between the <span 
+class="cmmi-10">&#x03B1;</span>- and
+<span 
+class="cmmi-10">&#x03B2;</span>-parameters. This paper will not attempt to answer this question. Instead, let us
+conclude the technical discussion by shifting to a far more common type of U/Pb
+data.
+<!--l. 655--><p class="indent" >   Most published U/Pb studies do not report <sup><span 
+class="cmr-7">204</span></sup>Pb because this nuclide is rare and
+difficult to measure. Instead, &#8216;semitotal-Pb/U&#8217; regression is done in Wetherill or
+Tera-Wasserburg concordia space, which are akin to conventional and inverse
+isochron space, respectively. In the absence of a nonradiogenic sister isotope of
+Pb, the isochron is then redefined as as a mixing line between an inherited
+<sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">206</span></sup>Pb-ratio and the radiogenic <sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">238</span></sup>U- and <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">235</span></sup>U-ratios.
+                                                                  
+
+                                                                  
+<!--l. 664--><p class="indent" >   The semitotal-Pb/U problem can be cast into a maximum likelihood format by
+replacing Equation&#x00A0;<a 
+href="#x1-2001r4">4<!--tex4ht:ref: eq:model1 --></a> with
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index24x.png" alt="{
+  Xi = xi + e&#x03BB;235t - 1 +&#x03F5;x,i
+  Y = a+ bx + &#x03F5;
+   i       i   y,i
+" class="math-display" ><a 
+ id="x1-9002r17"></a></div>
+   </td><td class="equation-label">(17)</td></tr></table>
+<!--l. 672--><p class="nopar" >
+<!--l. 674--><p class="noindent" >where <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub> are the measured <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">235</span></sup>U- and <sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">238</span></sup>U-ratios of the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup>
+aliquot, respectively; <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> is the true <sup><span 
+class="cmr-7">207</span></sup>Pb<sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">235</span></sup>U-ratio of the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> aliquot; <span 
+class="cmmi-10">a </span>= <span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">&#x03BB;</span><sub><span 
+class="cmr-5">238</span></sub><span 
+class="cmmi-7">t</span></sup> <span 
+class="cmsy-10">- </span>1
+and <span 
+class="cmmi-10">b </span>= [<sup><span 
+class="cmr-7">206</span></sup>Pb<span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">207</span></sup>Pb]<sub><span 
+class="cmr-7">0</span></sub>[<sup><span 
+class="cmr-7">235</span></sup>U<span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">238</span></sup>U]. Equation&#x00A0;<a 
+href="#x1-9002r17">17<!--tex4ht:ref: eq:UPb --></a> can be solved using the same recipe
+as the York reformulation of Sections&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:MLyork --></a>&#8211;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:anchorerr --></a>, with the caveat that the isochron
+terminates on the concordia line at the U/Pb composition corresponding to
+<span 
+class="cmmi-10">t</span>.
+<!--l. 685--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-90034">4<!--tex4ht:ref: fig:UPb --></a> shows a model&#x00A0;3a anchored semitotal-Pb/U isochron in Tera-Wasserburg
+space. The true age for this synthetic dataset is 1500&#x00A0;Ma. The unconstrained
+model&#x00A0;1 isochron produces an imprecise isochron age of 1491 <span 
+class="cmsy-10">&plusmn;</span> 100&#x00A0;Ma, which is
+improved to 1504 <span 
+class="cmsy-10">&plusmn;</span> 38&#x00A0;Ma by anchoring to [<sup><span 
+class="cmr-7">207</span></sup>Pb<span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">206</span></sup>Pb]<sub><span 
+class="cmr-7">0</span></sub> = 1<span 
+class="cmmi-10">.</span>1. Just like the
+P/D-isochrons of Figure&#x00A0;<a 
+href="#x1-70033">3<!--tex4ht:ref: fig:anchored --></a>, the uncertainty budget for the U/Pb-isochrons of
+Figure&#x00A0;<a 
+href="#x1-90034">4<!--tex4ht:ref: fig:UPb --></a> is partitioned between the analytical and geological dispersion, where the
+latter is treated as a free parameter with a maximum likelihood estimate of
+<img 
+src="index25x.png" alt="&#x02C6;&#x03C3;"  class="circ" ><sub><span 
+class="cmmi-7">a</span></sub> = 0<span 
+class="cmmi-10">.</span>053 <span 
+class="cmsy-10">&plusmn;</span> 0<span 
+class="cmmi-10">.</span>026.
+<!--l. 697--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-90034"></a>
+                                                                  
+
+                                                                  
+<!--l. 698--><p class="noindent" > <a href="fig4-.png"><img src="fig4-.png" alt="PIC" class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">Model&#x00A0;3a semitotal-Pb/U isochron for a synthetic dataset with a
+true age <span 
+class="cmmi-10">t </span>=  1500&#x00A0;Ma, anchored to <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">206</span></sup>Pb=  1<span 
+class="cmmi-10">.</span>10 with the dispersion
+parameter treated as a free parameter.</span></div><!--tex4ht:label?: x1-90034 -->
+                                                                  
+
+                                                                  
+<!--l. 704--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">10   </span> <a 
+ id="x1-1000010"></a>Implementation in <span 
+class="cmtt-10">IsoplotR</span></h3>
+<!--l. 708--><p class="noindent" >All the algorithms presented in this paper have been implemented in the free and
+open geochronological toolbox IsoplotR (<a 
+href="#Xvermeesch2018c">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2018c">2018</a>). The ability to fit
+isochrons with models&#x00A0;1, 2 and 3 dates back to IsoplotR&#8217;s first public release.
+Versions&#x00A0;2.1 and 5.2 added model&#x00A0;1 anchors to U/Pb ischrons without and with
+uncertainty, respectively. Anchored York regression and model&#x00A0;3 anchors with
+uncertainty were added to IsoplotR 6.0. These funtions can be accessed via the GUI
+or from the command line.
+<!--l. 717--><p class="indent" >   In the GUI, anchored regression is available from the &#8216;isochron&#8217; menu (so not from
+the &#8216;concordia&#8217; menu for U/Pb data). The relevant settings can be selected from the
+&#8216;Options&#8217; menu and should be self explanatory. Using a built-in <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-dataset to
+illustrate the command-line functionality, and starting with an unanchored inverse
+isochron fit using York regression:
+                                                                  
+
+                                                                  
+   <pre class="verbatim" id="verbatim-1">
+library(IsoplotR)
+attach(examples)
+isochron(ArAr)
+</pre>
+<!--l. 728--><p class="nopar" >
+<!--l. 730--><p class="indent" >   To carry out model&#x00A0;3a isochron regression anchored to a variable initial
+<sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">36</span></sup>Ar-ratio of 300 <span 
+class="cmsy-10">&plusmn; </span>5 (1<span 
+class="cmmi-10">&#x03C3;</span>):
+                                                                  
+
+                                                                  
+   <pre class="verbatim" id="verbatim-2">
+settings(&#8217;iratio&#8217;,&#8217;Ar40Ar36&#8217;,300,5)
+isochron(ArAr,anchor=1,model=3,taxis=TRUE)
+</pre>
+<!--l. 736--><p class="nopar" >
+<!--l. 738--><p class="noindent" >where <span 
+class="cmtt-10">settings(</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmtt-10">) </span>is used to change the atmospheric argon composition, <span 
+class="cmtt-10">anchor=1</span>
+fixes the isochron to the inherited component, <span 
+class="cmtt-10">model=3 </span>tells IsoplotR to assign the
+dispersion to the reported uncertainty of the atmospheric <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">36</span></sup>Ar-ratio, and
+<span 
+class="cmtt-10">taxis=TRUE </span>changes the x-axis to a time scale (as in Figure&#x00A0;<a 
+href="#x1-50022">2<!--tex4ht:ref: fig:ArAr --></a>).
+<!--l. 745--><p class="indent" >   Finally, to carry out model&#x00A0;3b isochron regression anchored to a radiogenic
+composition that was set at 62 <span 
+class="cmsy-10">&plusmn; </span>1<span 
+class="cmmi-10">&#x00A0;</span>Ma&#x00A0;(1<span 
+class="cmmi-10">&#x03C3;</span>):
+                                                                  
+
+                                                                  
+   <pre class="verbatim" id="verbatim-3">
+isochron(ArAr,anchor=c(2,62,1),model=3,taxis=TRUE)
+</pre>
+<!--l. 750--><p class="nopar" >
+<!--l. 752--><p class="indent" >   The dispersion can be changed to a free parameter by setting the third element of
+the <span 
+class="cmtt-10">anchor </span>argument to a non-positive value. Documentation for additional options
+and settings can be accessed from the console, using the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">help(isochron)</span></span></span> or
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">?isochron</span></span></span> commands.
+<!--l. 758--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">11   </span> <a 
+ id="x1-1100011"></a>Conclusions</h3>
+<!--l. 760--><p class="noindent" >This paper builds on previous work by <a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xmcintyre1966">1966</a>), <a 
+href="#Xtitterington1979">Titterington and
+Halliday</a>&#x00A0;(<a 
+href="#Xtitterington1979">1979</a>) and <a 
+href="#Xludwig2003">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig2003">2003</a>). <a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xmcintyre1966">1966</a>) introduced the concept
+of model&#x00A0;3 isochron regression, attributing the excess dispersion of errorchrons to
+variability of the inherited component. This approach is implemented in Isoplot
+(<a 
+href="#Xludwig2003">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003">2003</a>) and is referred to as model&#x00A0;3a regression in this paper. Note that
+<a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xmcintyre1966">1966</a>)&#8217;s definition of model&#x00A0;2 regression differs from that of
+<a 
+href="#Xludwig2003">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig2003">2003</a>). It is more akin (but not identical) to the <img 
+src="index26x.png" alt="&#x221A;MSWD----"  class="sqrt" > approach of
+Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:overdispersion --></a>.
+<!--l. 771--><p class="indent" >   <a 
+href="#Xtitterington1979">Titterington and Halliday</a>&#x00A0;(<a 
+href="#Xtitterington1979">1979</a>) recast the model&#x00A0;3 algorithm of <a 
+href="#Xmcintyre1966">McIntyre
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xmcintyre1966">1966</a>) in a maximum likelihood framework. This paper extends the maximum
+likelihood approach to a second type of geological scenario, in which excess dispersion
+of the data around the isochron is not attributed to the inherited component
+but to the radiogenic component. This approach is referred to as model&#x00A0;3b
+regression.
+<!--l. 779--><p class="indent" >   The maximum likelihood formulation of isochron regression can also be used to
+anchor isochrons to either the inherited or the radiogenic component, and to assign
+geologically meaningful uncertainty to the anchor. In reality it is possible that some
+samples are affected by both mechanisms, so that different aliquots of the same
+sample differ in their initial ratios as well as the timing of their isotopic closure.
+Unfortunately, it is not possible to simultaneously capture both types of dispersion
+using the algorithms of this paper.
+<!--l. 788--><p class="indent" >   The difference between model&#x00A0;1 and model&#x00A0;3 regression represents two
+contrasting views of geological reality. The model&#x00A0;1 approach assumes that the
+isotopic composition of minerals represents discrete components recorded at distinct
+events. In contrast, model&#x00A0;3 isochrons represent a &#8216;fuzzier&#8217; reality, in which the
+initial composition or timing of isotopic closure are allowed to vary within a
+rock. Under the latter model, the concept of an &#8216;errorchron&#8217; no longer makes
+sense.
+                                                                  
+
+                                                                  
+<!--l. 797--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-1200011"></a>Code availability</h3>
+<!--l. 799--><p class="noindent" >IsoplotR is available from CRAN (    <a 
+href="https://CRAN.R\-project.org/package=IsoplotR" class="url" ><span 
+class="cmtt-10">https://CRAN.R\-project.org/package=IsoplotR</span></a>)
+and GitHub (    <a 
+href="https://github.com/pvermees/IsoplotR" class="url" ><span 
+class="cmtt-10">https://github.com/pvermees/IsoplotR</span></a>)
+<!--l. 806--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">A   </span> <a 
+ id="x1-13000A"></a>Definitions</h3>
+<!--l. 808--><p class="noindent" >
+     <dl class="description"><dt class="description">
+     <!--l. 809--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 809--><p class="noindent" ><span 
+class="cmmi-10">P</span>: a radioactive parent (e.g., <sup><span 
+class="cmr-7">87</span></sup>Rb).
+     </dd><dt class="description">
+     <!--l. 810--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 810--><p class="noindent" ><span 
+class="cmmi-10">D</span>: the radiogenic daughter of <span 
+class="cmmi-10">P </span>(e.g., <sup><span 
+class="cmr-7">87</span></sup>Sr).
+     </dd><dt class="description">
+     <!--l. 811--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 811--><p class="noindent" ><span 
+class="cmmi-10">d</span>: a non-radiogenic sister isotope of <span 
+class="cmmi-10">D </span>(e.g., <sup><span 
+class="cmr-7">86</span></sup>Sr).
+     </dd><dt class="description">
+     <!--l. 812--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 812--><p class="noindent" ><span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b</span>, <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>: the true (but unknown) values of the intercept, slope and
+     isotopic ratio of the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> aliquot (out of <span 
+class="cmmi-10">n </span>aliquots) from a sample.
+     </dd><dt class="description">
+     <!--l. 815--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 815--><p class="noindent" ><span 
+class="cmmi-10">&acirc;</span>, <img 
+src="index27x.png" alt="&#x02C6;
+b"  class="circ" > , <img 
+src="index28x.png" alt="&#x02C6;x"  class="circ" ><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">&#x0177;</span><sub><span 
+class="cmmi-7">i</span></sub>: the estimated values of <span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b</span>, <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>, respectively.
+     </dd><dt class="description">
+     <!--l. 817--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 817--><p class="noindent" ><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub>: the measured values of <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>, respectively.
+                                                                  
+
+                                                                  
+     </dd><dt class="description">
+     <!--l. 819--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 819--><p class="noindent" ><span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub>], <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub>], <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,Y</span> <sub><span 
+class="cmmi-7">i</span></sub>]: the standard errors and covariance of <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub>.
+     </dd><dt class="description">
+     <!--l. 821--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 821--><p class="noindent" ><span 
+class="cmmi-10">&#x03F5;</span><sub><span 
+class="cmmi-7">x,i</span></sub> = <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">&#x03F5;</span><sub><span 
+class="cmmi-7">y,i</span></sub> = <span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>: the residuals of the data around the best fit
+     line.
+     </dd><dt class="description">
+     <!--l. 823--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 823--><p class="noindent" ><span 
+class="cmbx-10">&#x03A3;</span><sub><span 
+class="cmmi-7">i</span></sub>: the 2 <span 
+class="cmsy-10">&#x00D7; </span>2 covariance matrix of <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub>
+     </dd><dt class="description">
+     <!--l. 824--><p class="noindent" >
+ </dt><dd 
+class="description">
+     <!--l. 824--><p class="noindent" ><span 
+class="cmbx-10">x</span>, <span 
+class="cmbx-10">y</span>, <span 
+class="cmbx-10">X</span>, <span 
+class="cmbx-10">Y</span>, <span 
+class="cmbx-10">&#x03A3;</span>: arrays and sets containing all <span 
+class="cmmi-10">n x</span><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmbx-10">&#x03A3;</span><sub><span 
+class="cmmi-7">i</span></sub>-values.</dd></dl>
+<!--l. 829--><p class="noindent" >All uncertainties in this paper are reported as 95% confidence intervals except if
+noted otherwise.
+   <div class="table">
+                                                                  
+
+                                                                  
+<!--l. 832--><p class="indent" >   <a 
+ id="x1-130011"></a><hr class="float"><div class="float" 
+>
+                                                                  
+
+                                                                  
+ <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Assignment of the isotopic ratios for P/D- and D/D-isochrons to the
+generic parameters of Equation&#x00A0;<a 
+href="#x1-1003r3">3<!--tex4ht:ref: eq:yabx --></a>.</span></div><!--tex4ht:label?: x1-130011 -->
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+ 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">   &#x00A0;     </td><td colspan="2" style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">           <div class="multicolumn"  style="white-space:nowrap; text-align:center;">P/D</div>           </td><td colspan="2" style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">        <div class="multicolumn"  style="white-space:nowrap; text-align:center;">D/D</div>
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11">parameter</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11">conventional</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11">    inverse      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11">conventional</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11"> inverse  </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11">   <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11">   [<span 
+class="cmmi-10">P&#x2215;d</span>]<sub><span 
+class="cmmi-7">i</span></sub>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11">    [<span 
+class="cmmi-10">P&#x2215;D</span>]<sub><span 
+class="cmmi-7">i</span></sub>       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">  [<span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">&#x2215;d</span>]<sub><span 
+class="cmmi-7">i</span></sub>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11"> [<span 
+class="cmmi-10">d&#x2215;D</span><sub><span 
+class="cmr-7">1</span></sub>]<sub><span 
+class="cmmi-7">i</span></sub> </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-1"  
+class="td11">   <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-2"  
+class="td11">   [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmmi-7">i</span></sub>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-3"  
+class="td11">    [<span 
+class="cmmi-10">d&#x2215;D</span>]<sub><span 
+class="cmmi-7">i</span></sub>       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-4"  
+class="td11">  [<span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x2215;d</span>]<sub><span 
+class="cmmi-7">i</span></sub>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-5"  
+class="td11">[<span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x2215;D</span><sub><span 
+class="cmr-7">1</span></sub>]<sub><span 
+class="cmmi-7">i</span></sub></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-1"  
+class="td11">    <span 
+class="cmmi-10">a     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-2"  
+class="td11">  [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-3"  
+class="td11">    [<span 
+class="cmmi-10">d&#x2215;D</span>]<sub><span 
+class="cmr-7">0</span></sub>        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-4"  
+class="td11">  [<span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-5"  
+class="td11">[<span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x2215;D</span><sub><span 
+class="cmr-7">1</span></sub>]<sup><span 
+class="cmsy-7">*</span></sup></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-1"  
+class="td11">    <span 
+class="cmmi-10">b     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-2"  
+class="td11">  [<span 
+class="cmmi-10">D&#x2215;P</span>]<sup><span 
+class="cmsy-7">*</span></sup>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-3"  
+class="td11"><span 
+class="cmsy-10">-</span>[<span 
+class="cmmi-10">d&#x2215;D</span>]<sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">&#x2215;</span>[<span 
+class="cmmi-10">P&#x2215;D</span>]<sup><span 
+class="cmsy-7">*</span></sup></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-4"  
+class="td11"> [<span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x2215;D</span><sub><span 
+class="cmr-7">1</span></sub>]<sup><span 
+class="cmsy-7">*</span></sup> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-5"  
+class="td11"> [<span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x2215;d</span>]<sub><span 
+class="cmr-7">0</span></sub> </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-1"  
+class="td11">        </td></tr></table></div>
+                                                                  
+
+                                                                  
+   </div><hr class="endfloat" />
+   </div>
+   <h3 class="sectionHead"><span class="titlemark">B   </span> <a 
+ id="x1-14000B"></a>Data</h3>
+<!--l. 850--><p class="noindent" >The synthetic data of Figures&#x00A0;<a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a> and <a 
+href="#x1-70033">3<!--tex4ht:ref: fig:anchored --></a> were generated as follows:
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-14002x1">
+     <!--l. 853--><p class="noindent" >Generate  <span 
+class="cmbx-10">x  </span>by  drawing  ten  random  numbers  from  a  logit-normal
+     distribution where the mean and standard deviation of the logits are 0
+     and 1/5, respectively.
+     </li>
+<li 
+  class="enumerate" id="x1-14004x2">
+     <!--l. 856--><p class="noindent" >Generate <span 
+class="cmbx-10">y </span>by plugging <span 
+class="cmbx-10">x </span>into Equation&#x00A0;<a 
+href="#x1-1003r3">3<!--tex4ht:ref: eq:yabx --></a> with <span 
+class="cmmi-10">a </span>= <span 
+class="cmmi-10">b </span>= 1.
+     </li>
+<li 
+  class="enumerate" id="x1-14006x3">
+     <!--l. 858--><p class="noindent" >Turn   the   resulting   ten   pairs   of   <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmsy-10">}</span>-values   into   ten   trios   of
+     <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,D</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,d</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmsy-10">}</span>-values where <span 
+class="cmmi-10">d</span><sub><span 
+class="cmmi-7">i</span></sub> is a random number between 100 and 500.
+     </li>
+<li 
+  class="enumerate" id="x1-14008x4">
+     <!--l. 861--><p class="noindent" >Use  each  of  the  <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,D</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,d</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmsy-10">}</span>-values  obtained  in  the  previous  step  as
+     parameters for a Poisson experiment.
+     </li>
+<li 
+  class="enumerate" id="x1-14010x5">
+     <!--l. 863--><p class="noindent" >Use the Poisson values obtained in the previous step to form ten pairs of
+     <span 
+class="cmbx-10">X</span>- and <span 
+class="cmbx-10">Y</span>-measurements and their (correlated) uncertainties.
+     </li>
+<li 
+  class="enumerate" id="x1-14012x6">
+     <!--l. 866--><p class="noindent" >Add some excess dispersion by shrinking the uncertainties by 20%.</li></ol>
+<!--l. 870--><p class="indent" >   Note that this procedure fits the definition of a model&#x00A0;1 isochron, even though
+panels (ii) and (iv) of Figure&#x00A0;<a 
+href="#x1-70033">3<!--tex4ht:ref: fig:anchored --></a> use the resulting data to illustrate model&#x00A0;3
+regression. The synthetic data of Figures&#x00A0;<a 
+href="#x1-50022">2<!--tex4ht:ref: fig:ArAr --></a> and <a 
+href="#x1-90034">4<!--tex4ht:ref: fig:UPb --></a> are generated using a slightly
+                                                                  
+
+                                                                  
+different algorithm that simulates model&#x00A0;3a and 3b overdispersion. This modified
+procedure uses steps&#x00A0;<a 
+href="#x1-14002x1">1<!--tex4ht:ref: it:logit --></a> and <a 
+href="#x1-14006x3">3<!--tex4ht:ref: it:xy2PDd --></a>&#8211;<a 
+href="#x1-14010x5">5<!--tex4ht:ref: it:PoisXY --></a> of the procedure for Figure&#x00A0;<a 
+href="#x1-10041">1<!--tex4ht:ref: fig:cluster --></a> whilst replacing
+step&#x00A0;<a 
+href="#x1-14004x2">2<!--tex4ht:ref: it:xab2y --></a> with a random effects model, in which <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>are drawn from random
+normal distributions with standard deviations corresponding to the dispersion
+parameter <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">a</span></span></sub> (10% for Figure&#x00A0;<a 
+href="#x1-50022">2<!--tex4ht:ref: fig:ArAr --></a>.i and 5% for Figure&#x00A0;<a 
+href="#x1-90034">4<!--tex4ht:ref: fig:UPb --></a>) and <span 
+class="cmmi-10">&#x03C3;</span><sub><span class="bar-css"><span 
+class="cmmi-7">b</span></span></sub> (10% for
+Figure&#x00A0;<a 
+href="#x1-50022">2<!--tex4ht:ref: fig:ArAr --></a>.ii).
+<!--l. 884--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">C   </span> <a 
+ id="x1-15000C"></a>Testing overdispersion</h3>
+<!--l. 886--><p class="noindent" >Whether a dataset is overdispersed with respect to the analytical uncertainties can be
+formally assessed using the Chi-statistic and test. To this end, calculate the
+<span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup>-statistic using the sum of squares term of Equation&#x00A0;<a 
+href="#x1-2003r6">6<!--tex4ht:ref: eq:LL --></a>.
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index29x.png" alt="      n
+&#x03C7;2 = &#x2211;  &#x0394;T &#x03A3; -1&#x0394;
+     i=1  i  i  i
+" class="math-display" ><a 
+ id="x1-15001r18"></a></div>
+   </td><td class="equation-label">(18)</td></tr></table>
+<!--l. 893--><p class="nopar" >
+<!--l. 895--><p class="indent" >   If analytical uncertainty is the only source of dispersion in the dataset, then
+<span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup> is expected to follow a Chi-square distribution with <span 
+class="cmmi-10">df </span>= <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span>2 (or, for
+anchored regression, <span 
+class="cmmi-10">df </span>= <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span>1) degrees of freedom. This is called the &#8216;null
+distribution&#8217;. The probability of observing a value greater than <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup> under this
+distribution is called the p-value. A p-value cutoff of 0.05 is generally used
+to distinguish isochrons (<span 
+class="cmmi-10">p </span><span 
+class="cmsy-10">&#x2265;</span> 0<span 
+class="cmmi-10">.</span>05) from errorchrons (<span 
+class="cmmi-10">p &#x003C; </span>0<span 
+class="cmmi-10">.</span>05). Dividing
+Equation&#x00A0;<a 
+href="#x1-15001r18">18<!--tex4ht:ref: eq:X2 --></a> by the number of degrees of freedom (<span 
+class="cmmi-10">df</span>) produces a &#8216;reduced
+Chi-square statistic&#8217;, which is known to geologists as an MSWD (<a 
+href="#Xmcintyre1966">McIntyre
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcintyre1966">1966</a>):
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index30x.png" alt="         &#x03C7;2-
+MSWD   = df
+" class="math-display" ><a 
+ id="x1-15002r19"></a></div>
+   </td><td class="equation-label">(19)</td></tr></table>
+<!--l. 908--><p class="nopar" >
+<!--l. 910--><p class="indent" >   In the absence of overdispersion, and for sufficiently large samples (<span 
+class="cmmi-10">n &#x003E; </span>20), the
+expected null distribution of the MSWD is approximately normal with a mean of 1
+and a standard deviation <img 
+src="index31x.png" alt="&#x2218; ----
+  2&#x2215;df"  class="sqrt" > (<a 
+href="#Xwendt1991">Wendt and Carl</a>,&#x00A0;<a 
+href="#Xwendt1991">1991</a>). This information can be
+used as an alternative way to test the null hypothesis.
+<!--l. 916--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">D   </span> <a 
+ id="x1-16000D"></a>Further details about the maximum likelihood solution</h3>
+<!--l. 918--><p class="noindent" >Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:specific --></a> described how the log-likelihood functions of Equation&#x00A0;<a 
+href="#x1-4001r11">11<!--tex4ht:ref: eq:specific --></a> can be
+maximised in a two step process: (1) find the <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>-values that maximise <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span> for any pair
+of <span 
+class="cmmi-10">a</span>- and <span 
+class="cmmi-10">b</span>-values, and (2) search the space of <span 
+class="cmmi-10">a</span>- and <span 
+class="cmmi-10">b</span>- values until the overall
+maximum is found. For model&#x00A0;1 regression, the first step has a direct solution.
+Introducing some shorthand notation for the inverse of the covariance matrix
+&#x03A3;<sub><span 
+class="cmmi-7">i</span></sub>:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index32x.png" alt=" - 1  [&#x03A9;i1,1  &#x03A9;i1,2]
+&#x03A3;i  &#x2261;  &#x03A9;i2,1  &#x03A9;i2,2 ,
+" class="math-display" ><a 
+ id="x1-16001r20"></a></div>
+   </td><td class="equation-label">(20)</td></tr></table>
+<!--l. 934--><p class="nopar" >
+<!--l. 936--><p class="noindent" >where &#x03A9;<sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">2</span></sub> = &#x03A9;<sub><span 
+class="cmr-7">2</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">1</span></sub>. The fitted points <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> can be found by solving:
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index33x.png" alt="&#x2202;LL ||
+---1||  = 0
+&#x2202;xi  &#x02C6;xi
+" class="math-display" ><a 
+ id="x1-16002r21"></a></div>
+   </td><td class="equation-label">(21)</td></tr></table>
+<!--l. 940--><p class="nopar" >
+<!--l. 942--><p class="noindent" >which yields
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index34x.png" alt="    Xi-(&#x03A9;i1,1 +-b&#x03A9;i1,2)-+(Yi --a)(&#x03A9;i2,1-+-b&#x03A9;i2,2)
+&#x02C6;xi =    (&#x03A9;i1,1 + b&#x03A9;i1,2)+ b(&#x03A9;i2,1 + b&#x03A9;i2,2)   .
+" class="math-display" ><a 
+ id="x1-16003r22"></a></div>
+   </td><td class="equation-label">(22)</td></tr></table>
+<!--l. 948--><p class="nopar" >
+<!--l. 950--><p class="indent" >   The same approach can be used for model&#x00A0;3a regression (with <span 
+class="cmmi-10">&#x2202;</span><span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">a</span></sub><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x2215;&#x2202;</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> = 0).
+However, it does not work for model&#x00A0;3b isochrons because <span 
+class="cmmi-10">&#x2202;</span><sup><span 
+class="cmr-7">2</span></sup><span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">b</span></sub><span 
+class="cmmi-10">&#x2215;&#x2202;</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">&#x2202;</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">&#x2260;</span>0 when
+<span 
+class="cmmi-10">i</span><span 
+class="cmmi-10">&#x2260;</span><span 
+class="cmmi-10">j</span>. Therefore, the <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>s are interdependent and cannot be solved separately. Although
+it is possible to jointly optimise the entire <span 
+class="cmbx-10">x</span>-vector, this takes considerably
+longer than model&#x00A0;1 and model&#x00A0;3a regression. Fortunately, as explained in
+Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:flipper --></a>, model&#x00A0;3b regression can be reformulated in terms of the model&#x00A0;3a
+algorithm.
+<!--l. 967--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-17000D"></a>Author contribution</h3>
+<!--l. 969--><p class="noindent" >PV is sole author of this contribution
+                                                                  
+
+                                                                  
+<!--l. 971--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-18000D"></a>Competing interests</h3>
+<!--l. 973--><p class="noindent" >PV is an Associate Editor of this journal
+<!--l. 975--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-19000D"></a>Acknowledgements</h3>
+<!--l. 977--><p class="noindent" >The author would like to thank reviewers Donald Davis and John Rudge for
+suggesting to expand the discussion of model-3 regression, and for checking the
+equations. This work was completed during a sabbatical stay at the Institute of
+Geology and Geophysics, Chinese Academy of Sciences, which was supported by
+CAS&#8217; President&#8217;s International Fellowship Initiative (PIFI). The author would like to
+thank Xian-Hua Li of IGG-CAS and Yang Li of Peking University for hosting him at
+IGG-CAS. He would also like to thank IsoplotR users Guilhem Hoareau (CNRS,
+France), Shitou Wu (IGG-CAS, China) and Stijn Glorie (Adelaide, Australia) for
+discussing the utility of anchored isochrons, and moving this feature up the priority
+list for IsoplotR.
+<!--l. 992--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-20000D"></a>References</h3>
+<!--l. 992--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdaeron2023"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Da&euml;ron,  M.  and  Vermeesch,  P.:  Omnivariant  generalized  least  squares
+  regression: Theory, geochronological applications, and making the case for
+  reconciled &#x0394;<sub><span 
+class="cmr-7">47</span></sub> calibratibons, Chemical Geology, p. 121881, 2023.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xli2021"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Li, Y. and Vermeesch, P.: Inverse isochron regression for Re&#8211;Os, K&#8211;Ca and
+  other chronometers, Geochronology, 3, 415&#8211;420, 2021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig,  K.&#x00A0;R.:  On  the  treatment  of  concordant  uranium-lead  ages,
+  Geochimica et Cosmochimica Acta, 62, 665&#8211;676, https://doi.org/10.1016/
+  S0016-7037(98)00059-3, 1998.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R.: User&#8217;s manual for Isoplot 3.00: a geochronological toolkit
+  for Microsoft Excel, Berkeley Geochronology Center Special Publication, 4,
+  2003.
+                                                                  
+
+                                                                  
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcintyre1966"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McIntyre, G.&#x00A0;A., Brooks, C., Compston, W., and Turek, A.: The Statistical
+  Assessment  of  Rb-Sr  Isochrons,  Journal  of  Geophysical  Research,  71,
+  5459&#8211;5468, 1966.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xschaen2021"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Schaen, A.&#x00A0;J., Jicha, B.&#x00A0;R., Hodges, K.&#x00A0;V., Vermeesch, P., Stelten, M.&#x00A0;E.,
+  Mercer, C.&#x00A0;M., Phillips, D., Rivera, T.&#x00A0;A., Jourdan, F., Matchan, E.&#x00A0;L.,
+  et&#x00A0;al.: Interpreting and reporting <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar geochronologic data, Bulletin,
+  133, 461&#8211;487, 2021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtitterington1979"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Titterington, D.&#x00A0;M. and Halliday, A.&#x00A0;N.: On the fitting of parallel isochrons
+  and the method of maximum likelihood, Chemical Geology, 26, 183&#8211;195, 1979.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.:  <span 
+class="cmtt-10">IsoplotR</span>:  a  free  and  open  toolbox  for  geochronology,
+  Geoscience Frontiers, 9, 1479&#8211;1493, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwendt1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wendt, I. and Carl, C.: The statistical distribution of the mean squared
+  weighted  deviation,  Chemical  Geology:  Isotope  Geoscience  Section,  86,
+  275&#8211;285, 1991.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyork2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>York, D., Evensen, N.&#x00A0;M., Mart&iacute;nez, M.&#x00A0;L., and De&#x00A0;Basabe&#x00A0;Delgado, J.:
+  Unified equations for the slope, intercept, and standard errors of the best
+  straight line, American Journal of Physics, 72, 367&#8211;375, 2004.
+</p>
+  </div>
+    
+</body></html> 
+
+                                                                  
+
+

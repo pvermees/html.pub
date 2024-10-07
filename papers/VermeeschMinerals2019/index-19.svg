@@ -1,0 +1,13 @@
+ <div class="verbatim" id="verbatim-20">
+<span 
+class="cmtt-10x-x-109">tern</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;ternary(HM,x='gt',y='ep',z='zr')</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">plot(tern,pch=1,labels=NA)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">ternary.ellipse(tern,alpha=0.05)</span>
+</div>
+<!--l. 687--><p class="nopar" >                                                                               

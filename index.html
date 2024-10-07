@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pieter Vermeesch</title>
+  <link href="jquery-ui.css" rel="stylesheet" type="text/css"/> 
+  <link href="mystyle.css" rel="stylesheet" type="text/css"/> 
+  <script src="jquery.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <script>
+    var selected = 0;
+    $(document).ready(function() {
+      if (localStorage.getItem("selected_tab") !== null){
+        selected = localStorage.getItem("selected_tab");
+      }
+      $("#tabs").tabs({ selected: selected });
+      $('#tab-2').load('research.html');
+      $('#tab-3').load('teaching.html');
+      $('#tab-4').load('personal.html');
+      $('#tab-5').load('software.html');
+      $('#tab-6').load('CV.html');
+      $("#tabs").tabs({
+        select: function(event, ui){
+          if (ui.index<6){
+            localStorage.setItem("selected_tab",ui.index);
+          } else {
+            window.location = "http://www.london-geochron.com";
+          }
+        }
+      });
+    });
+  </script>
+</head>
+<body style="font-size:75%">
+<div id="tabs">
+    <ul>
+        <li><a href="#tab-1"><span>Home</span></a></li>
+        <li><a href="#tab-2"><span>Research</span></a></li>
+        <li><a href="#tab-3"><span>Teaching</span></a></li>
+        <li><a href="#tab-4"><span>Personal</span></a></li>
+        <li><a href="#tab-5"><span>Software</span></a></li>
+        <li><a href="#tab-6"><span>CV</span></a></li>
+        <li><a href="#tab-7"><span>LGC</span></a></li>
+    </ul>
+    <div id="tab-1" class="tab">
+    <a href="Atlas.jpg"><img width="512px" title="Atlas @ Kinder Scout" src="Atlas.jpg"></a>
+    </div>
+    <div id="tab-2" class="tab">
+    </div>
+    <div id="tab-3" class="tab">
+    </div>
+    <div id="tab-4" class="tab">
+    </div>
+    <div id="tab-5" class="tab">
+    </div>
+    <div id="tab-6" class="tab">
+    </div>
+    <div id="tab-7" class="tab">
+    </div>
+</div>
+Pieter Vermeesch, Department of Earth Sciences, University College London, Gower Street, London WC1E 6BT, United Kingdom, p.vermeesch [at] ucl.ac.uk<a href="https://www.pzp-psp.be/"></a>
+</div>
+</body>
+</html>

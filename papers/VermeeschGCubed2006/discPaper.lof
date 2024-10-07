@@ -1,0 +1,46 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Linear discriminant analysis}}{32}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces The difference between PCA and LDA}}{33}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces The consequences of the constant-sum constraint}}{34}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Spurious correlation of ratios}}{35}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces The dangers of using ``traditional'' statistics on the simplex}}{36}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Mapping compositional data from $\Delta _2$ to $\mathbb {R}^2$}}{37}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Linear discriminant analysis done the wrong way}}{38}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Linear discriminant analysis done the right way}}{39}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Results of the linear discriminant analysis mapped back to the simplex}}{40}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Geographical locations of the training data}}{41}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Linear discriminant analysis of the Ti-V system of Shervais (1982)}}{42}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Quadratic discriminant analysis of the Ti-V system}}{43}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Linear discriminant analysis of the Ti-Zr system of Pearce and Cann (1973)}}{44}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Quadratic discriminant analysis of the Ti-Zr system}}{45}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Linear discriminant analysis of the Ti-Zr-Y system of Pearce and Cann (1973)}}{46}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Quadratic discriminant analysis of the Ti-Zr-Y system}}{47}{figure.16}
+\contentsline {figure}{\numberline {17}{\ignorespaces Linear discriminant analysis of the Zr-Y-Nb system of Meschede (1986)}}{48}{figure.17}
+\contentsline {figure}{\numberline {18}{\ignorespaces Quadratic discriminant analysis of the Zr-Y-Nb system}}{49}{figure.18}
+\contentsline {figure}{\numberline {19}{\ignorespaces Linear discriminant analysis of the Th-Ta-Hf system of Wood (1980)}}{50}{figure.19}
+\contentsline {figure}{\numberline {20}{\ignorespaces Quadratic discriminant analysis of the Th-Ta-Hf system}}{51}{figure.20}
+\contentsline {figure}{\numberline {21}{\ignorespaces Linear discriminant analysis using Ti, Zr, Y and Sr}}{52}{figure.21}
+\contentsline {figure}{\numberline {22}{\ignorespaces Linear discriminant analysis using major element data}}{53}{figure.22}
+\contentsline {figure}{\numberline {23}{\ignorespaces Exhaustive exploration of all bivariate linear discriminant analyses using only major elements}}{54}{figure.23}
+\contentsline {figure}{\numberline {24}{\ignorespaces Same as Figure \ref {fig:major2lin}, but for quadratic discriminant analysis}}{55}{figure.24}
+\contentsline {figure}{\numberline {25}{\ignorespaces Matrices showing the performance of all possible bivariate discriminant analyses using combinations of 45 elements}}{56}{figure.25}
+\contentsline {figure}{\numberline {26}{\ignorespaces Same as Figure \ref {fig:trace2lin}, but for quadratic discriminant analysis}}{57}{figure.26}
+\contentsline {figure}{\numberline {27}{\ignorespaces Performance analysis of all possible ternary discriminant analyses using TiO$_2$ and other major element oxides}}{58}{figure.27}
+\contentsline {figure}{\numberline {28}{\ignorespaces Same as Figure \ref {fig:major3lin}, but using quadratic discriminant analysis}}{59}{figure.28}
+\contentsline {figure}{\numberline {29}{\ignorespaces Performance analysis of all possible ternary discriminant analyses using Ti and other elements}}{60}{figure.29}
+\contentsline {figure}{\numberline {30}{\ignorespaces Same as Figure \ref {fig:trace3lin}, but using quadratic discriminant analysis}}{61}{figure.30}
+\contentsline {figure}{\numberline {31}{\ignorespaces Best ternary linear discriminant analysis (using Si, Ti, and Sr)}}{62}{figure.31}
+\contentsline {figure}{\numberline {32}{\ignorespaces Linear discriminant analysis using Eu, Lu, and Sr}}{63}{figure.32}
+\contentsline {figure}{\numberline {33}{\ignorespaces Linear discriminant analysis using Ti, V and Sc}}{64}{figure.33}
+\contentsline {figure}{\numberline {34}{\ignorespaces Quadratic discriminant analysis using Na, Nb and Sr}}{65}{figure.34}
+\contentsline {figure}{\numberline {35}{\ignorespaces Quadratic discriminant analysis using Ti, V and Sm}}{66}{figure.35}
+\contentsline {figure}{\numberline {36}{\ignorespaces Illustration of the bias-variance tradeoff in a regression context}}{67}{figure.36}
+\contentsline {figure}{\numberline {37}{\ignorespaces The test data plotted on various versions of the Ti-V diagram}}{68}{figure.37}
+\contentsline {figure}{\numberline {38}{\ignorespaces The test data plotted on the Ti-Zr diagram}}{69}{figure.38}
+\contentsline {figure}{\numberline {39}{\ignorespaces The test data plotted on the Ti-Zr-Y diagram}}{70}{figure.39}
+\contentsline {figure}{\numberline {40}{\ignorespaces The test data plotted on the Nb-Zr-Y diagram}}{71}{figure.40}
+\contentsline {figure}{\numberline {41}{\ignorespaces The test data plotted on the Th-Ta-Hf diagram}}{72}{figure.41}
+\contentsline {figure}{\numberline {42}{\ignorespaces The test data plotted on the Si-Ti-Sr diagram}}{73}{figure.42}
+\contentsline {figure}{\numberline {43}{\ignorespaces The test data plotted on the Eu-Lu-Sr diagram}}{74}{figure.43}
+\contentsline {figure}{\numberline {44}{\ignorespaces The test data plotted on the Ti-V-Sc diagram}}{75}{figure.44}
+\contentsline {figure}{\numberline {45}{\ignorespaces The test data plotted on the Na-Nb-Sr diagram}}{76}{figure.45}
+\contentsline {figure}{\numberline {46}{\ignorespaces The test data plotted on the Ti-V-Sm diagram}}{77}{figure.46}

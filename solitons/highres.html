@@ -1,0 +1,71 @@
+<HTML>
+<HEAD> 
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="mystyle.css" />
+
+<SCRIPT LANGUAGE="JavaScript">
+
+var pictures = new Array("s2.gif","s3.gif","s7.gif","s8.gif","s12.gif",
+"o1.gif","o2.gif","o3.gif","o10.gif","o11.gif");
+
+var latlons = new Array(
+"Latitude: N16&deg;54&#8217;17&#8221; Longitude: E17&deg;2&#8217;58&#8221;",
+"Latitude: N16&deg;54&#8217;17&#8221; Longitude: E17&deg;2&#8217;58&#8221;",
+"Latitude: N16&deg;44&#8217;57&#8221; Longitude: E18&deg;5&#8217;44&#8221;",
+"Latitude: N16&deg;49&#8217;6&#8221; Longitude: E18&deg;11&#8217;6&#8221;",
+"Latitude: N16&deg;59&#8217;33&#8221; Longitude: E18&deg;3&#8217;33&#8221;",
+"Latitude: N16&deg;54&#8217;32&#8221; Longitude: E17&deg;4&#8217;56&#8221;",
+"Latitude: N17&deg;2&#8217;33&#8221; Longitude: E18&deg;34&#8217;10&#8221;",
+"Latitude: N16&deg;55&#8217;33&#8221; Longitude: E18&deg;29&#8217;30&#8221;",
+"Latitude: N16&deg;48&#8217;27&#8221; Longitude: E17&deg;18&#8217;41&#8221;",
+"Latitude: N16&deg;41&#8217;30&#8221; Longitude: E17&deg;22&#8217;47&#8221;"
+);
+
+var currimg = "z"; // current image
+
+function loadGIF(i,evt){
+  var srcElement = evt.srcElement ? evt.srcElement : evt.target;
+  document.animation.src = pictures[i];
+  document.getElementById(currimg).border = 0;
+  currimg = srcElement.id;
+  document.getElementById(currimg).border = 2;
+  document.getElementById("latlon").innerHTML = latlons[i];
+}
+
+</SCRIPT>
+
+<TITLE> 
+Barchan dune collisions in the Bodele Depression (Chad)
+</TITLE>
+
+</HEAD> 
+<BODY BGCOLOR="white" ALIGN="center"> 
+
+<TABLE ALIGN="center" BORDER=0>
+
+<TR HEIGHT=125><TD CLASS="full" COLSPAN=3>
+<IMG ID="a" CLASS="thumbnail" SRC="s2-thumb.gif" ONCLICK='loadGIF(0,event);'>
+<IMG ID="b" CLASS="thumbnail" SRC="s3-thumb.gif" ONCLICK='loadGIF(1,event);'>
+<IMG ID="c" CLASS="thumbnail" SRC="s7-thumb.gif" ONCLICK='loadGIF(2,event);'>
+<IMG ID="d" CLASS="thumbnail" SRC="s8-thumb.gif" ONCLICK='loadGIF(3,event);'>
+<IMG ID="e" CLASS="thumbnail" SRC="s12-thumb.gif" ONCLICK='loadGIF(4,event);'>
+</TD></TR>
+
+<TR><TD CLASS="full" COLSPAN=3>
+<IMG HEIGHT=400 id="z" NAME="animation" SRC="intro.gif">
+</TD></TR>
+
+<TR><TD CLASS="full" COLSPAN=3>
+<IMG ID="f" CLASS="thumbnail" SRC="o1-thumb.gif" ONCLICK='loadGIF(5,event);'>
+<IMG ID="g" CLASS="thumbnail" SRC="o2-thumb.gif" ONCLICK='loadGIF(6,event);'>
+<IMG ID="h" CLASS="thumbnail" SRC="o3-thumb.gif" ONCLICK='loadGIF(7,event);'>
+<IMG ID="i" CLASS="thumbnail" SRC="o10-thumb.gif" ONCLICK='loadGIF(8,event);'>
+<IMG ID="j" CLASS="thumbnail" SRC="o11-thumb.gif" ONCLICK='loadGIF(9,event);'>
+</TD></TR>
+
+<TR><TD ID="latlon" CLASS="full" COLSPAN=3></TD></TR>
+
+</TABLE>
+
+</BODY> 
+</HTML>

@@ -1,0 +1,3155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Exploratory analysis of provenance data
+using R and the provenance package</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+<link href="../../css/prettify.css" rel="stylesheet" type="text/css"/> 
+<script src="../../js/prettify.js"></script>
+<script src="../../js/lang-r.js"></script>
+</head><body class="main">
+<div class="maketitle">
+                                                                                            
+<h2 class="titleHead">Exploratory analysis of provenance data<br />
+using R and the provenance package</h2>
+        <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br />    <span 
+class="cmr-12">University College London</span>
+<br /><span 
+class="cmr-12">Gower Street, London WC1E 6BT</span>
+<br />         <span 
+class="cmr-12">United Kingdom</span>
+<br />    <span 
+class="cmtt-12">p.vermeesch [at] ucl.ac.uk </span></div><br />
+<div class="date" ></div>
+</div>
+<div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 43--><p class="noindent" >
+<!--l. 43--><p class="noindent" ><span 
+class="cmbx-10">Abstract</span></div>
+     <!--l. 44--><p class="indent" >    <span 
+class="cmr-10">The  provenance  of  siliclastic  sediment  may  be  traced  using  a  wide  variety  of  chemical,</span>
+     <span 
+class="cmr-10">mineralogical and isotopic proxies. These define three distinct data types: (1) compositional data</span>
+     <span 
+class="cmr-10">such  as  chemical  concentrations;  (2)  point-counting  data  such  as  heavy  mineral  compositions;</span>
+     <span 
+class="cmr-10">and  (3)  distributional  data  such  as  zircon  U-Pb  age  spectra.  Each  of  these  three  data  types</span>
+     <span 
+class="cmr-10">requires separate statistical treatment. Central to any such treatment is the ability to quantify</span>
+     <span 
+class="cmr-10">the &#8216;dissimilarity&#8217; between two samples. For compositional data, this is best done using a logratio</span>
+     <span 
+class="cmr-10">distance. Point-counting data may be compared using the chi-square distance, which deals better</span>
+     <span 
+class="cmr-10">with missing components (zero values) than the logratio distance does. Finally, distributional data</span>
+     <span 
+class="cmr-10">can be compared using the Kolmogorov-Smirnov and related statistics.</span><br 
+class="newline" />
+     <!--l. 58--><p class="indent" >    <span 
+class="cmr-10">For small datasets using a single provenance proxy, data interpretation can sometimes be done</span>
+     <span 
+class="cmr-10">by visual inspection of ternary diagrams or age spectra. But this no longer works for larger and</span>
+     <span 
+class="cmr-10">more complex datasets. This paper reviews a number of multivariate ordination techniques to</span>
+     <span 
+class="cmr-10">aid the interpretation of such studies. Multidimensional Scaling (MDS) is a generally applicable</span>
+     <span 
+class="cmr-10">method  that  displays  the  salient  dissimilarities  and  differences  between  multiple  samples  as  a</span>
+     <span 
+class="cmr-10">configuration of points in which similar samples plot close together and dissimilar samples plot far</span>
+     <span 
+class="cmr-10">apart. For compositional data, classical MDS analysis of logratio data is shown to be equivalent to</span>
+     <span 
+class="cmr-10">Principal Component Analysis (PCA). The resulting MDS configurations can be augmented with</span>
+     <span 
+class="cmr-10">compositional information as biplots. For point-counting data, classical MDS analysis of chi-square</span>
+     <span 
+class="cmr-10">distances is shown to be equivalent to Correspondence Analysis (CA). This technique also produces</span>
+     <span 
+class="cmr-10">biplots.</span><br 
+class="newline" />
+     <!--l. 75--><p class="indent" >    <span 
+class="cmr-10">Thus, MDS provides a common platform to visualise and interpret all types of provenance</span>
+     <span 
+class="cmr-10">data. Generalising the method to three-way dissimilarity tables provides an opportunity to combine</span>
+     <span 
+class="cmr-10">several multi-method datasets together and thereby facilitate the interpretation of &#8216;Big Data&#8217;. This</span>
+     <span 
+class="cmr-10">paper presents a set of tutorials using the statistical programming language </span><span 
+class="cmtt-10">R</span><span 
+class="cmr-10">. It illustrates the</span>
+     <span 
+class="cmr-10">theoretical underpinnings of compositional data analysis, PCA, MDS and other concepts using toy</span>
+     <span 
+class="cmr-10">examples, before applying these methods to real datasets with the </span><span 
+class="cmtt-10">provenance </span><span 
+class="cmr-10">package.</span>
+</div>
+                                                                                            
+                                                                                            
+<h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 89--><p class="noindent" >At its most basic level, sedimentary provenance analysis identifies the mineralogical, chemical or isotopic
+composition of individual grains, or assemblages of multiple grains in siliclastic sediment. These properties
+can then be used to group samples of similar affinity, and thereby trace the flow of sediment through
+a sediment routing system (e.g.,&#x00A0;<a 
+href="#Xmorton1991">Morton</a>,&#x00A0;<a 
+href="#Xmorton1991">1991</a>;&#x00A0;<a 
+href="#Xweltje2004">Weltje and von Eynatten</a>,&#x00A0;<a 
+href="#Xweltje2004">2004</a>;&#x00A0;<a 
+href="#Xgerdes2006">Gerdes and
+Zeh</a>,&#x00A0;<a 
+href="#Xgerdes2006">2006</a>;&#x00A0;<a 
+href="#Xrittner2016">Rittner et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xrittner2016">2016</a>;&#x00A0;<a 
+href="#Xmazumder2017">Mazumder</a>,&#x00A0;<a 
+href="#Xmazumder2017">2017</a>). Different levels of statistical complexity arise when
+multiple samples are compared to each other, or when multiple provenance proxies are applied to multiple
+samples.<br 
+class="newline" />
+<!--l. 100--><p class="noindent" >Using a number of short tutorials, this paper will introduce several simple but effective exploratory data
+analysis techniques that can help to make geological sense of &#8216;Big Data&#8217; in a sedimentary provenance context.
+The term &#8216;exploratory&#8217; means that these techniques allow the user to explore the data independent of any
+prior knowledge about the geological setting (<a 
+href="#Xtukey1977">Tukey</a>,&#x00A0;<a 
+href="#Xtukey1977">1977</a>;&#x00A0;<a 
+href="#Xdutoit1986">DuToit et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xdutoit1986">1986</a>;&#x00A0;<a 
+href="#Xkenkel2006">Kenkel</a>,&#x00A0;<a 
+href="#Xkenkel2006">2006</a>;&#x00A0;<a 
+href="#Xmartinez2017">Martinez
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmartinez2017">2017</a>). It groups a number of graphical methods to visualise the data and reveal patterns of similarity
+and differences between samples and variables. This paper will not introduce methods such as discriminant
+analysis that formally assign samples to pre-defined provenance areas or petrotectonic settings
+(<a 
+href="#Xbhatia1983">Bhatia</a>,&#x00A0;<a 
+href="#Xbhatia1983">1983</a>;&#x00A0;<a 
+href="#Xbhatia1986">Bhatia and Crook</a>,&#x00A0;<a 
+href="#Xbhatia1986">1986</a>).<br 
+class="newline" />
+<!--l. 113--><p class="noindent" >These notes do by no means pretend to give a comprehensive overview of exploratory data analysis. The
+selection of methods presented herein is heavily biased towards techniques that are implemented in a software
+package for (sedimentary) geology that was created by <a 
+href="#Xvermeesch2016a">Vermeesch et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xvermeesch2016a">2016</a>).<br 
+class="newline" />
+<!--l. 119--><p class="noindent" ><span 
+class="cmtt-10x-x-109">provenance </span>is available free of charge at the Comprehensive R Archive Network (CRAN, <span 
+class="cmtt-10x-x-109">http://cran.</span>
+<span 
+class="cmtt-10x-x-109">r-project.org/web/packages</span>), on GitHub (<span 
+class="cmtt-10x-x-109">http://github.com/pvermees/provenance</span>), or via
+<span 
+class="cmtt-10x-x-109">http://provenance.london-geochron.com</span>. The package is written in the statistical programming language
+<span 
+class="cmtt-10x-x-109">R</span>, which is available for Windows, Mac OS-X and Linux/Unix. The easiest way to install the latest stable
+version of the package is to first install <span 
+class="cmtt-10x-x-109">R </span>from <span 
+class="cmtt-10x-x-109">http://r-project.org </span>and then type the following code at
+the command prompt (i.e. the &#8216;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&#x003E;</span></span></span>&#8217;):
+                                                                                            
+                                                                                            
+<pre class="prettyprint lang-r" id="verbatim-1">
+&gt;&#x00A0;install.packages('provenance')
+</pre>
+<!--l. 136--><p class="nopar" >
+<!--l. 139--><p class="noindent" >Once installed, the package can be loaded by typing:
+                                                                                                                                                                                        
+<pre class="prettyprint lang-r" id="verbatim-2">
+&gt;&#x00A0;library(provenance)
+</pre>
+<!--l. 144--><p class="nopar" >
+<!--l. 147--><p class="noindent" >There are two ways to use <span 
+class="cmtt-10x-x-109">provenance</span>. The first of these is through a query-based user interface. To access
+this interface, type:
+                                                                                            
+                                                                                            
+<pre class="prettyprint lang-r" id="verbatim-3">
+&gt;&#x00A0;provenance()
+</pre>
+<!--l. 153--><p class="nopar" >
+<!--l. 156--><p class="noindent" >The main advantage of the query-based user interface is that it does not require any knowledge of <span 
+class="cmtt-10x-x-109">R</span>. Its main
+disadvantage is the relative lack of flexibility and the difficulty to automate complex and/or repetitive tasks.
+The second way to use <span 
+class="cmtt-10x-x-109">provenance </span>is via the <span 
+class="cmtt-10x-x-109">R </span>language itself. This is the quicker and more flexible option,
+whose only downside is a steeper learning curve compared to the query-based interface. This tutorial will help
+the reader to climb this learning curve whilst explaining the theoretical underpinnings of the methods that
+are implemented in the package.<br 
+class="newline" />
+<!--l. 166--><p class="noindent" >This text assumes that the reader has a basic understanding of the <span 
+class="cmtt-10x-x-109">R </span>programming language, although a
+short tutorial is provided in the Appendix for readers who lack such prior knowledge. The paper also assumes
+that the reader has some basic statistical knowledge. More specifically (s)he is expected to be familiar with
+the normal distribution, and understand the meaning of the arithmetic mean, standard deviation and
+confidence intervals. The normal distribution underpins much of &#8216;conventional&#8217; statistics, but we will see
+that it rarely applies to provenance data. This, in fact, is the main take-home message of this
+paper.<br 
+class="newline" />
+<!--l. 177--><p class="noindent" >There exist three fundamental types of provenance data:
+<!--l. 179--><p class="noindent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1002x1">Chemical data such as major and trace element concentrations are known as <span 
+class="cmti-10x-x-109">compositional </span>data.
+     Sections&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ratios --></a> and <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositional --></a> show that the statistical analysis of this class of data is fraught with difficulties.
+     Fortunately these are easily overcome by means of &#8216;Aitchison&#8217;s logratio transformation&#8217;. This
+     transformation is a prerequisite to further statistical treatment, including Principal Component
+     Analysis and compositional biplots of multi-sample datasets (Sections&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ratios --></a> and <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositional --></a>).
+     </li>
+     <li 
+  class="enumerate" id="x1-1004x2">Categorical  data  such  as  bulk  petrography  and  heavy  mineral  compositions  are  known  as
+     <span 
+class="cmti-10x-x-109">point-counting  </span>data.  These  are  closely  related  to,  but  are  fundamentally  different  from,
+     compositional data. Compositional data consist of strictly positive real numbers that are subject
+     to a constant-sum constraint and whose analytical precision can generally be ignored. In contrast,
+     point-counting data contain integer values that may be greater than or equal to zero, and whose
+     multinomial  uncertainty  is  significant  compared  to  the  underlying  compositional  dispersion.
+     Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:counts --></a> shows that both of these differences can be captured by a combination of logistic
+     normal and multinomial statistics.
+     </li>
+     <li 
+  class="enumerate" id="x1-1006x3">Detrital age spectra form a third class of data that will be referred to as <span 
+class="cmti-10x-x-109">distributional </span>data.
+     Sections&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:distributional --></a> and <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:MDS --></a> introduce kernel density estimation, the Kolmogorov-Smirnov statistic, and
+     multidimensional scaling as ways to visualise, compare, and interpret distributional data.
+     </li></ol>
+<!--l. 213--><p class="noindent" >Finally, Section&#x00A0;<a 
+href="#x1-1100011">11<!--tex4ht:ref: sec:bigdata --></a> will consider the case where multiple compositional, point-counting and/or distributional
+datasets are combined. Procrustes analysis and 3-way multidimensional scaling are statistical
+techniques that aim to extract geologically meaningful trends from such &#8216;Big Data&#8217; (<a 
+href="#Xvermeesch2015">Vermeesch and
+Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>).
+                                                                                            
+                                                                                            
+<!--l. 219--><p class="noindent" >
+<h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Ratio data</h3>
+<!--l. 229--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">This tutorial investigates the ratios of two sets of random numbers. It shows that the arithmetic</span>
+<span 
+class="cmti-10x-x-109">mean and confidence intervals of these synthetic data yield nonsensical results. These problems are solved by</span>
+<span 
+class="cmti-10x-x-109">a logarithmic transformation. This simple example has important implications because ratio data are common</span>
+<span 
+class="cmti-10x-x-109">in sedimentary provenance analysis, and are closely related to compositional data, which are introduced in</span>
+<span 
+class="cmti-10x-x-109">Section</span><span 
+class="cmti-10x-x-109">&#x00A0;</span><a 
+href="#x1-30003"><span 
+class="cmti-10x-x-109">3</span><!--tex4ht:ref: sec:compositional --></a><span 
+class="cmti-10x-x-109">.</span><br 
+class="newline" />
+<!--l. 231--><p class="noindent" >Many statistical operations assume normality. This includes averaging, the construction of confidence
+intervals, regression, etc. Although Gaussian distributions are common, it would be unwise to assume
+normality for all datasets. This paper makes the point that, more often than not, the normality assumption is
+invalid in the context of sedimentary provenance analysis. Ignoring this non-normality can lead to
+counter-intuitive and plainly wrong results.<br 
+class="newline" />
+<!--l. 239--><p class="noindent" >To illustrate this point, we will now consider the simple case of <span 
+class="cmti-10x-x-109">ratio data</span>, which are quite common in the
+Earth Sciences. Take, for example, the ratio of apatite to tourmaline in heavy mineral analysis, which has
+been used to indicate the duration of transport and storage prior to deposition (<a 
+href="#Xmorton1999">Morton and
+Hallsworth</a>,&#x00A0;<a 
+href="#Xmorton1999">1999</a>). In this part of the tutorial, we will investigate the statistics of ratio data using a synthetic
+example.
+<!--l. 247--><p class="noindent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-2002x1">Create two vectors <span 
+class="cmmi-10x-x-109">A </span>and <span 
+class="cmmi-10x-x-109">B</span>, each containing 100 random numbers between 0 and 1:
+                                                                                            
+                                                                                            
+<pre class="prettyprint lang-r" id="verbatim-4">
+  ns &lt;- 100 <br />
+  A &lt;- runif(ns) <br />
+  B &lt;- runif(ns)
+</pre>
+     <!--l. 257--><p class="nopar" >
+     <!--l. 260--><p class="noindent" >Intuitively, given that <span 
+class="cmmi-10x-x-109">A&#x2215;B </span>= 1<span 
+class="cmmi-10x-x-109">&#x2215;</span>(<span 
+class="cmmi-10x-x-109">B&#x2215;A</span>) and <span 
+class="cmmi-10x-x-109">B&#x2215;A </span>= 1<span 
+class="cmmi-10x-x-109">&#x2215;</span>(<span 
+class="cmmi-10x-x-109">A&#x2215;B</span>), we would expect the same to be true for
+     their means <span class="overline">(<span 
+class="cmmi-10x-x-109">A&#x2215;B</span>)</span> and <span class="overline">(<span 
+class="cmmi-10x-x-109">B&#x2215;A</span>)</span>. However, when we define two new variables for the (inverse) of the
+     (reciprocal) mean ratios:
+                                                                                            
+                                                                                            
+<pre class="prettyprint lang-r" id="verbatim-5">
+  AB.mean &lt;- mean(A/B)<br />
+  inv.BA.mean &lt;- 1/mean(B/A)
+</pre>
+     <!--l. 269--><p class="nopar" >
+     <!--l. 272--><p class="noindent" >then we find that <span 
+class="cmtt-10x-x-109">AB.mean</span><span 
+class="cmmi-10x-x-109">&#x2260;</span><span 
+class="cmtt-10x-x-109">inv.BA.mean</span>. So <span class="overline">(<span 
+class="cmmi-10x-x-109">A&#x2215;B</span>)</span><span 
+class="cmmi-10x-x-109">&#x2260;</span>1<span 
+class="cmmi-10x-x-109">&#x2215;</span><span class="overline">(<span 
+class="cmmi-10x-x-109">B&#x2215;A</span>)</span> and <span class="overline">(<span 
+class="cmmi-10x-x-109">B&#x2215;A</span>)</span><span 
+class="cmmi-10x-x-109">&#x2260;</span>1<span 
+class="cmmi-10x-x-109">&#x2215;</span><span class="overline">(<span 
+class="cmmi-10x-x-109">A&#x2215;B</span>)</span>! This is a
+     counterintuitive and clearly wrong result.
+     </li>
+     <li 
+  class="enumerate" id="x1-2004x2">Calculate the standard deviation of <span 
+class="cmmi-10x-x-109">A&#x2215;B </span>and multiply this by two to obtain a &#8216;2-sigma&#8217; confidence
+     interval for the data:
+                                                                                            
+                                                                                            
+<pre class="prettyprint lang-r" id="verbatim-6">
+  AB.sd &lt;- sd(A/B)<br />
+  LL &lt;- AB.mean - 2*AB.sd <br />
+  UL &lt;- AB.mean + 2*AB.sd
+</pre>
+     <!--l. 285--><p class="nopar" >
+     <!--l. 288--><p class="noindent" >then we find that <span 
+class="cmmi-10x-x-109">LL &lt; </span>0, which is nonsensical since <span 
+class="cmmi-10x-x-109">A </span>and <span 
+class="cmmi-10x-x-109">B </span>are both strictly positive numbers and
+     their ratio is therefore not allowed to take negative values either. Herein lies the root of the problem.
+     The sampling distribution of A/B is positively skewed, whereas the normal distribution is symmetric
+     with tails ranging from <span 
+class="cmsy-10x-x-109">-&#x221E; </span>to +<span 
+class="cmsy-10x-x-109">&#x221E;</span>. Geologists frequently encounter strictly positive numbers. <span 
+class="cmti-10x-x-109">Time</span>,
+     for example, is a strictly positive quantity, expressed by geochronologists as &#8216;years before present&#8217;,
+     where &#8216;present&#8217; is equivalent to zero.
+     </li>
+     <li 
+  class="enumerate" id="x1-2006x3">The problems caused by applying normal theory to strictly positive data can often be solved by simply
+     taking logarithms (<a 
+href="#Xaitchison1957">Aitchison and Brown</a>, <a 
+href="#Xaitchison1957">1957</a>). The transformed data are then free to take on any
+     value, including negative values, and this often allows normal theory to be applied with no problems.
+     For example, when we calculate the (geometric) mean after taking the logarithm of the ratio
+     data:
+                                                                                            
+                        
+<pre class="prettyprint lang-r" id="verbatim-7">
+logAB &lt;- log(A/B)
+  <br />logBA &lt;- log(B/A)
+  <br />AB.gmean &lt;- exp(mean(logAB))
+  <br />inv.BA.gmean &lt;- 1/exp(mean(logBA))
+</pre>
+ <!--l. 312--><p class="nopar" >
+ <!--l. 315--><p class="noindent" >then we find that <span 
+class="cmtt-10x-x-109">AB.gmean</span> = <span 
+class="cmtt-10x-x-109">inv.BA.gmean</span>, which is a far more sensible result.
+ </li>
+ <li 
+  class="enumerate" id="x1-2008x4">Calculating the 2-sigma interval for the log-transformed data:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-8">
+LL &lt;- exp( mean(logAB) - 2*sd(logAB) )
+  <br />UL &lt;- exp( mean(logAB) + 2*sd(logAB) )
+</pre>
+ <!--l. 324--><p class="nopar" >
+ <!--l. 327--><p class="noindent" >also produces strictly positive values, as expected.
+ </li></ol>
+<!--l. 331--><p class="noindent" >
+<h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Compositional data</h3>
+<!--l. 341--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">Compositional data such as chemical concentrations suffer from the same problems as the</span>
+<span 
+class="cmti-10x-x-109">ratio data of Section</span><span 
+class="cmti-10x-x-109"> </span><a 
+href="#x1-20002"><span 
+class="cmti-10x-x-109">2</span><!--tex4ht:ref: sec:ratios --></a><span 
+class="cmti-10x-x-109">. The tutorial uses a geochemical dataset of Al</span><sub class="textsubscript"><span 
+class="cmti-10">2</span></sub><span 
+class="cmti-10x-x-109">O</span><sub class="textsubscript"><span 
+class="cmti-10">3</span></sub> <span 
+class="cmti-10x-x-109">&#8211; (CaO+Na</span><sub class="textsubscript"><span 
+class="cmti-10">2</span></sub><span 
+class="cmti-10x-x-109">O) &#8211;</span>
+<span 
+class="cmti-10x-x-109">K</span><sub class="textsubscript"><span 
+class="cmti-10">2</span></sub><span 
+class="cmti-10x-x-109">O data to demonstrate that the &#8216;conventional&#8217; arithmetic mean and confidence intervals are</span>
+<span 
+class="cmti-10x-x-109">inappropriate for data that can be constrained to a constant sum. A logratio transformation solves these</span>
+<span 
+class="cmti-10x-x-109">problems.</span><br 
+class="newline" />
+<!--l. 343--><p class="noindent" >Like the ratios of the previous Section, the chemical compositions of rocks and minerals are also expressed as
+strictly positive numbers. They, however, do not span the entire range of positive values, but are
+restricted to a narrow subset of that space, ranging from 0 to 1 (if fractions are used) or from 0 to
+100% (using percentage notation). The compositions are further restricted by a constant sum
+constraint:
+<center class="par-math-display" >
+<img 
+src="index0x.png" alt="&#x2211;n
+    Ci = 1
+i=1
+" class="par-math-display" ></center>
+<!--l. 353--><p class="nopar" >
+<!--l. 355--><p class="noindent" >for an <span 
+class="cmmi-10x-x-109">n</span>-component system. Consider, for example, a three-component system <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">x,y,z</span><span 
+class="cmsy-10x-x-109">}</span>, where
+<span 
+class="cmmi-10x-x-109">x </span>+ <span 
+class="cmmi-10x-x-109">y </span>+ <span 
+class="cmmi-10x-x-109">z</span><span 
+class="cmmi-10x-x-109">  </span>= <span 
+class="cmmi-10x-x-109"> </span>1. Such compositions can be plotted on ternary diagrams, which are very popular in geology.
+Well-known examples are the Q-F-L diagram of sedimentary petrography (<a 
+href="#Xgarzanti2019">Garzanti</a>, <a 
+href="#Xgarzanti2019">2019</a>), the A-CN-K
+diagram in weathering studies (<a 
+href="#Xnesbitt1989">Nesbitt and Young</a>, <a 
+href="#Xnesbitt1989">1989</a>), and the A-F-M, Q-A-P and Q-P-F diagrams of
+igneous petrology (<a 
+href="#Xlemaitre2002">Le Maitre et al.</a>, <a 
+href="#Xlemaitre2002">2002</a>). The very fact that it is possible to plot a ternary
+diagram on a two-dimensional sheet of paper already tells us that it really displays only two
+and not three dimensions worth of information. Treating the ternary data space as a regular
+Euclidean space with Gaussian statistics leads to wrong results, as illustrated by the following
+example.
+<!--l. 368--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-3002x1">Read a compositional dataset containing the major element composition of a number of synthetic
+ samples:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-9">
+ACNK &lt;- read.csv('ACNK.csv',row.names=1,header=TRUE,check.names=FALSE)
+</pre>
+ <!--l. 376--><p class="nopar" >
+ <!--l. 379--><p class="noindent" >where <span 
+class="cmtt-10x-x-109">row.names=1 </span>indicates that the sample names are contained in the first column; and the
+ <span 
+class="cmtt-10x-x-109">header=TRUE </span>and <span 
+class="cmtt-10x-x-109">check.names </span>arguments indicate that the first column of the input table contains the
+ column headers, one of which contains a special character (&#8216;<span 
+class="cmtt-10x-x-109">+</span>&#8217;).
+ </li>
+ <li 
+  class="enumerate" id="x1-3004x2">Calculate the arithmetic mean composition and 95% confidence limits for each column of the
+ dataset:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-10">
+mu &lt;- colMeans(ACNK)
+  <br />sig &lt;- apply(ACNK,MARGIN=2,FUN='sd')
+</pre>
+ <!--l. 392--><p class="nopar" >
+ <!--l. 395--><p class="noindent" >and construct the 2-sigma confidence confidence bounds:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-11">
+LL &lt;- mu - 2*sig
+  <br />UL &lt;- mu + 2*sig
+</pre>
+ <!--l. 401--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-3006x3">In order to plot the compositional data on a ternary diagram, we will need to first load the <span 
+class="cmtt-10x-x-109">provenance</span>
+ package into memory:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-12">
+library(provenance)
+</pre>
+ <!--l. 410--><p class="nopar" >
+ <!--l. 413--><p class="noindent" >Now plot the Al<sub class="textsubscript"><span 
+class="cmr-10">2</span></sub>O<sub class="textsubscript"><span 
+class="cmr-10">3</span></sub>, (CaO + Na<sub class="textsubscript"><span 
+class="cmr-10">2</span></sub>O) and K<sub class="textsubscript"><span 
+class="cmr-10">2</span></sub>O compositions on a ternary diagram alongside the
+ arithmetic mean composition:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-13">
+plot(ternary(ACNK),pch=20,labels=NA)
+  <br />points(ternary(mu),pch=22,bg='blue')
+</pre>
+ <!--l. 421--><p class="nopar" >
+ <!--l. 424--><p class="noindent" >where <span 
+class="cmtt-10x-x-109">ternary(x) </span>creates a ternary data &#8216;object&#8217; from a variable <span 
+class="cmtt-10x-x-109">x</span>, and <span 
+class="cmtt-10x-x-109">pch=20 </span>and <span 
+class="cmtt-10x-x-109">pch=22 </span>produce
+ filled circles and squares, respectively. Notice how the arithmetic mean plots outside the data cloud,
+ and therefore fails to represent the compositional dataset (Figure <a 
+href="#x1-30151">1<!--tex4ht:ref: fig:ACNK --></a>).
+ </li>
+ <li 
+  class="enumerate" id="x1-3008x4"><a 
+ id="x1-30074"></a> Add a 2-sigma confidence polygon to this figure using the <span 
+class="cmtt-10x-x-109">ternary.polygon() </span>function
+ that is provided in the auxiliary <span 
+class="cmtt-10x-x-109"><a href="helper.R">helper.R</a></span> script that is provided in the <a href='supplement.zip'>Supplementary
+ Information</a>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-14">
+source('helper.R')
+  <br />ternary.polygon(LL,UL,col='blue')
+</pre>
+ <!--l. 439--><p class="nopar" >
+ <!--l. 442--><p class="noindent" >Note that the polygon partly plots outside the ternary diagram, into physically impossible
+ negative data space. This nonsensical result is diagnostic of the dangers of applying &#8216;normal&#8217;
+ statistics to compositional data. It is similar to the negative limits for the ratio data in
+ Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ratios --></a>.</li></ol>
+<!--l. 449--><p class="noindent" >A comprehensive solution to the compositional data conundrum was only found in the 1980s, by Scottish
+statistician John <a 
+href="#Xaitchison1986">Aitchison</a> (<a 
+href="#Xaitchison1986">1986</a>). It is closely related to the solution of the ratio averaging
+problem discussed in the previous section. The trick is to map the n-dimensional composition to an
+(n-1)-dimensional Euclidean space by means of a logratio transformation. For example, in the ternary
+case, we can map the compositional variables <span 
+class="cmmi-10x-x-109">x</span>, <span 
+class="cmmi-10x-x-109">y </span>and <span 
+class="cmmi-10x-x-109">z </span>to two transformed variables <span 
+class="cmmi-10x-x-109">v </span>and
+<span 
+class="cmmi-10x-x-109">w</span>:
+<table 
+class="equation"><tr><td><a 
+ id="x1-3009r1"></a>
+<center class="math-display" >
+<img 
+src="index1x.png" alt="  (  )    (  )
+v = ln  x- , w = ln  y-
+   z   z
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 462--><p class="nopar" >
+<!--l. 464--><p class="noindent" >After performing the statistical analysis of interest (e.g., calculating the mean or constructing a 95%
+confidence region) on the transformed data, the results can then be mapped back to compositional space with
+the inverse logratio transformation. For the ternary case:
+<table 
+class="equation"><tr><td><a 
+ id="x1-3010r2"></a>
+<center class="math-display" >
+<img 
+src="index2x.png" alt="    ev      ew      1
+x = -v---w----, y = -v---w----, z = -v---w-----
+    e + e  + 1  e + e  + 1  e + e  + 1
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 472--><p class="nopar" >
+<!--l. 474--><p class="noindent" >This transformation is implemented in the <span 
+class="cmtt-10x-x-109">provenance </span>package. Let us use this feature to revisit the K-CN-A
+dataset, and add the logratio mean and 95% confidence region to the ternary diagram for comparison with
+the arithmetic mean and confidence polygon obtained before.
+<!--l. 480--><p class="noindent" >
+                    
+                    
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-3012x5">Compute the logratio mean composition and add it to the existing ternary diagram as a red
+ square:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-15">
+mug &lt;- exp(colMeans(log(ACNK)))
+  <br />points(ternary(mug),pch=22,bg='red')
+</pre>
+ <!--l. 489--><p class="nopar" >
+ <!--l. 492--><p class="noindent" >This red square falls right inside the data cloud, an altogether more satisfying result than the
+ arithmetic mean shown in blue (Figure <a 
+href="#x1-30151">1<!--tex4ht:ref: fig:ACNK --></a>).
+ </li>
+ <li 
+  class="enumerate" id="x1-3014x6"><a 
+ id="x1-30136"></a> To add a compositional confidence contour, we must re-read <span 
+class="cmtt-10x-x-109">ACNK.csv </span>into memory using the
+ <span 
+class="cmtt-10x-x-109">read.compositional() </span>function. This will tell the <span 
+class="cmtt-10x-x-109">provenance </span>package to treat the resulting variable
+ as compositional data in subsequent operations:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-16">
+ACNK2 &lt;- read.compositional('ACNK.csv',check.names=FALSE)
+</pre>
+ <!--l. 505--><p class="nopar" >
+ <!--l. 508--><p class="noindent" >Adding the 95% confidence contour using <span 
+class="cmtt-10x-x-109">provenance</span>&#8217;s <span 
+class="cmtt-10x-x-109">ternary.ellipse </span>function:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-17">
+ternary.ellipse(ACNK,alpha=0.05)
+</pre>
+ <!--l. 514--><p class="nopar" >
+ <!--l. 517--><p class="noindent" >creates a 95% confidence ellipse in logratio space, and maps this back to the ternary diagram. This
+ results in a &#8216;boomerang&#8217;-shaped contour that tightly hugs the compositional data whilst staying inside
+ the boundaries of the ternary diagram (Figure <a 
+href="#x1-30151">1<!--tex4ht:ref: fig:ACNK --></a>).
+ </li></ol>
+<!--l. 524--><p class="noindent" >This Section (and Section <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:compositionalPCA --></a>) only touch the bare essentials of compositional data analysis. Further
+information about this active field of research can be found in <a 
+href="#Xpawlowsky2015">Pawlowsky-Glahn et al.</a> (<a 
+href="#Xpawlowsky2015">2015</a>). For additional
+<span 
+class="cmtt-10x-x-109">R</span>-recipes for compositional data analysis using the <span 
+class="cmtt-10x-x-109">compositions </span>package, the reader is referred to <a 
+href="#Xvandenboogaart2013">Van den
+Boogaart and Tolosana-Delgado</a> (<a 
+href="#Xvandenboogaart2013">2013</a>).
+<!--l. 531--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                    
+                    
+<a 
+ id="x1-30151"></a>
+                    
+                    
+<div class="minipage"><!--l. 533--><p class="noindent" >
+<center><a href="ACNK.png"><img src="ACNK.png" alt="PIC" class="snapshot"></a></center>
+</div>       <div class="minipage"> <div class="caption"><span class="id">Figure 1: </span><span  
+class="content">Graphical output of Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositional --></a>. Black
+circles mark 20 synthetic Al<sub class="textsubscript"><span 
+class="cmr-10">2</span></sub>O<sub class="textsubscript"><span 
+class="cmr-10">3</span></sub>, (CaO + Na<sub class="textsubscript"><span 
+class="cmr-10">2</span></sub>O)
+and  K<sub class="textsubscript"><span 
+class="cmr-10">2</span></sub>O  compositions,  drawn  from  a  logistic
+normal   distribution.   The   blue   square   marks
+the  arithmetic  mean,  which  falls  outside  the
+data  cloud.  The  blue  polygon  marks  a  2-<span 
+class="cmmi-10x-x-109">&#x03C3;</span>
+confidence   polygon,   which   plots   outside   the
+ternary diagram, in physically impossible negative
+space.  The  red  square  represents  the  logratio
+mean, which firmly plots inside the data cloud.
+The   red   confidence   envelope   marks   a   95%
+confidence  region  calculated  using  Aitchison&#8217;s
+logratio approach. This confidence envelop neatly
+fits inside the ternary diagram and tightly hugs
+the data.</span></div><!--tex4ht:label?: x1-30151 --></div>
+                    
+                    
+<!--l. 551--><p class="noindent" ></div><hr class="endfigure">
+<h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Point-counting data</h3>
+<!--l. 562--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">Point-counting data such as heavy mineral counts are underlain by compositional distributions.</span>
+<span 
+class="cmti-10x-x-109">But they are not amenable to the logratio transformations introduced in Section</span><span 
+class="cmti-10x-x-109"> </span><a 
+href="#x1-30003"><span 
+class="cmti-10x-x-109">3</span><!--tex4ht:ref: sec:compositional --></a> <span 
+class="cmti-10x-x-109">because they commonly</span>
+<span 
+class="cmti-10x-x-109">contain zero values. Averages and confidence intervals for this type of data require hybrid statistical models</span>
+<span 
+class="cmti-10x-x-109">combining compositional and multinomial aspects.</span><br 
+class="newline" />
+<!--l. 564--><p class="noindent" >The mineralogical composition of silicilastic sediment can be determined by tallying the occurrence of various
+minerals in a representative sample of (200-400, say) grains (<a 
+href="#Xvanderplas1965">Van der Plas and Tobi</a>, <a 
+href="#Xvanderplas1965">1965</a>; <a 
+href="#Xweltje2002">Weltje</a>, <a 
+href="#Xweltje2002">2002</a>).
+Such <span 
+class="cmti-10x-x-109">point-counting </span>data are closely related to the compositional data that were discussed in the
+previous section. However, there are some crucial differences between these two data classes
+(<a 
+href="#Xvermeesch2018d">Vermeesch</a>, <a 
+href="#Xvermeesch2018d">2018b</a>).<br 
+class="newline" />
+<!--l. 572--><p class="noindent" >Point-counting data are associated with significant (counting) uncertainties, which are ignored by classical
+compositional data analysis. As a consequence, point-counting data often contain zero values, which are
+incompatible with the log-ratio transformation defined in Equation <a 
+href="#x1-3009r1">1<!--tex4ht:ref: eq:alr --></a>. Although &#8216;rounding zeros&#8217; also occur
+in compositional data, where they can be removed by &#8216;imputation&#8217; methods (<a 
+href="#Xmartin2003">Mart&iacute;n-Fern&aacute;ndez
+et al.</a>, <a 
+href="#Xmartin2003">2003</a>; <a 
+href="#Xbloemsma2015">Bloemsma and Weltje</a>, <a 
+href="#Xbloemsma2015">2015</a>), these methods are ill-suited for point-counting datasets in which
+zeros are the rule rather than the exception.
+<!--l. 582--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-4002x1">Download the auxiliary data file <span 
+class="cmtt-10x-x-109">HM.csv </span>from the <a href='supplement.zip'>Online Supplement</a>. This file contains a heavy
+ mineral dataset from the Namib Sand Sea (<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>, <a 
+href="#Xvermeesch2015">2015</a>). It consists of 16
+ rows (one for each sample) and 15 columns (one for each mineral). Read these data into memory
+ and tell <span 
+class="cmtt-10x-x-109">provenance </span>to treat it as point-counting data in all future operations:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-18">
+HM &lt;- read.counts('HM.csv')
+</pre>
+ <!--l. 594--><p class="nopar" >
+ <!--l. 597--><p class="noindent" ><a 
+href="#Xgalbraith1988">Galbraith</a> (<a 
+href="#Xgalbraith1988">1988</a>)&#8217;s <span 
+class="cmti-10x-x-109">radial plot </span>is an effective way to visually assess the degree to which the random
+ counting uncertainties account for the observed scatter of binary point-counting data. Applying this to
+ the epidote/garnet-ratio of the heavy mineral data (Figure <a 
+href="#x1-40092">2<!--tex4ht:ref: fig:radial --></a>):
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-19">
+radialplot(HM,num='ep',den='gt')
+</pre>
+ <!--l. 606--><p class="nopar" >
+ <!--l. 609--><p class="noindent" >Each circle on the resulting scatter plot represents a single sample in the <span 
+class="cmtt-10x-x-109">HM </span>dataset. Its
+ epidote/garnet-ratio can be obtained by projecting the circle onto the circular scale. Thus, low and high
+ ratios are found at negative and positive angles to the origin, respectively. The horizontal distance of
+ each point from the origin is proportional to the total number of counts in each sample and, hence, to
+ its precision. An (asymmetric) 95% confidence interval for the ep/gt-ratio of each sample
+ can be obtained by projecting both ends of a 2-sigma confidence bar onto the circular
+ scale.</li></ol>
+<!--l. 620--><p class="noindent" >Suppose that the data are underlain by a single true population and random counting uncertainties are the
+sole source of scatter. Let <span 
+class="cmmi-10x-x-109">&#x03B8; </span>be the true but unknown proportion of the binary subpopulation that consists of
+the first mineral (epidote, say). Then (1 <span 
+class="cmsy-10x-x-109">- </span><span 
+class="cmmi-10x-x-109">&#x03B8;</span>) is the fraction of grains that belong to the second mineral
+(garnet). Further suppose that we have counted a representative sample of <span 
+class="cmmi-10x-x-109">N </span>grains from this population.
+Then the probability that this sample contains <span 
+class="cmmi-10x-x-109">n </span>grains of the first mineral and <span 
+class="cmmi-10x-x-109">m </span>= <span 
+class="cmmi-10x-x-109">N </span><span 
+class="cmsy-10x-x-109">- </span><span 
+class="cmmi-10x-x-109">n </span>grains of the
+second mineral follows a binomial distribution:
+<table 
+class="equation"><tr><td><a 
+ id="x1-4003r3"></a>
+<center class="math-display" >
+<img 
+src="index3x.png" alt="   (  )
+    n + m    n  m
+p(n) = n    &#x03B8; (1- &#x03B8;)
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 634--><p class="nopar" >
+<!--l. 636--><p class="noindent" >If multiple samples in a dataset are indeed underlain by the same fraction <span 
+class="cmmi-10x-x-109">&#x03B8;</span>, then approximately 95% of the
+samples should fit within a horizontal band of two standard errors drawn on either side of the origin. In this
+case, <span 
+class="cmmi-10x-x-109">&#x03B8; </span>can be estimated by <span 
+class="cmti-10x-x-109">pooling </span>all the counts together and computing the proportion of the first mineral
+as a fraction of the total number of grains counted (<a 
+href="#Xvermeesch2018d">Vermeesch</a>, <a 
+href="#Xvermeesch2018d">2018b</a>).<br 
+class="newline" />
+<!--l. 644--><p class="noindent" >However, the ep/gt-ratios in <span 
+class="cmtt-10x-x-109">HM </span>scatter significantly beyond the 2-sigma band (Figure <a 
+href="#x1-40092">2<!--tex4ht:ref: fig:radial --></a>.i). The data are
+therefore said to be <span 
+class="cmti-10x-x-109">overdispersed </span>with respect to the counting uncertainties. This indicates the presence of
+true geological dispersion in the compositions that underly the point-counting data. The dispersion can be
+estimated by a <span 
+class="cmti-10x-x-109">random effects model </span>with two parameters:
+<table 
+class="equation"><tr><td><a 
+ id="x1-4004r4"></a>
+<center class="math-display" >
+<img 
+src="index4x.png" alt="   (  &#x03B8;  )
+&#x03B2; &#x2261; ln  -----  &#x2248; N (&#x03BC;,&#x03C3;2 )
+    1 - &#x03B8;
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 656--><p class="nopar" >
+<!--l. 658--><p class="noindent" >where <span 
+class="cmmi-10x-x-109">&#x03B2; </span>is a new variable that follows a normal distribution with mean <span 
+class="cmmi-10x-x-109">&#x03BC; </span>and standard deviation <span 
+class="cmmi-10x-x-109">&#x03C3;</span>, both of
+which have geological significance.<br 
+class="newline" />
+<!--l. 662--><p class="noindent" >The &#8216;central ratio&#8217; is given by exp[<img 
+src="index5x.png" alt="&#x02C6;&#x03BC;"  class="circ" >] where <img 
+src="index6x.png" alt="&#x02C6;&#x03BC;"  class="circ" > is the maximum likelihood estimate for <span 
+class="cmmi-10x-x-109">&#x03BC;</span>. This estimates the
+geometric mean (<span 
+class="cmtt-10x-x-109">ep/gt</span>-) ratio of the true underlying composition. The &#8216;dispersion&#8217; (<img 
+src="index7x.png" alt="&#x02C6;&#x03C3;"  class="circ" >) estimates the
+geological scatter (<a 
+href="#Xgalbraith1990a">Galbraith</a>, <a 
+href="#Xgalbraith1990a">1990</a>; <a 
+href="#Xvermeesch2018d">Vermeesch</a>, <a 
+href="#Xvermeesch2018d">2018b</a>). In the case of our heavy mineral dataset, the
+epidote-garnet subcomposition is 75% dispersed. This means that the coefficient of variation
+(standard deviation divided by geometric mean) of the true epidote/garnet-ratios is approximately
+0.75.
+<!--l. 672--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-4006x2">The continuous mixtures from the previous section can be generalised from two to three or
+ more dimensions. The following code snippet uses it to construct a 95% confidence contour for
+ the ternary subcomposition of garnet, epidote and zircon (Figure <a 
+href="#x1-40092">2<!--tex4ht:ref: fig:radial --></a>.ii). Note that this dataset
+ contains four zero values, which would have rendered the logratio approach of Figure <a 
+href="#x1-30151">1<!--tex4ht:ref: fig:ACNK --></a> unusable.
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-20">
+tern &lt;- ternary(HM,x='gt',y='ep',z='zr')
+  <br />plot(tern,pch=1,labels=NA)
+  <br />ternary.ellipse(tern,alpha=0.05)
+</pre>
+ <!--l. 687--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-4008x3">For datasets comprising more than three variables, the central composition can be simply obtained as
+ follows:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-21">
+&gt; central(HM)
+</pre>
+ <!--l. 696--><p class="nopar" >
+ <!--l. 699--><p class="noindent" >This produces a matrix with the proportions of each component; its standard error; the dispersion of
+ the binary subcomposition formed by the component and the amalgamation of all remaining
+ components; and the outcome of a chi-square test for homogeneity.
+ </li></ol>
+<!--l. 706--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                    
+                    
+<a 
+ id="x1-40092"></a>
+                    
+                    
+<!--l. 708--><p class="noindent" ><center><a href="pointcounts.png"><img src="pointcounts.png" alt="PIC" class="snapshot"></a></center>
+<br /> <div class="caption"><span class="id">Figure 2: </span><span  
+class="content">i. Radial plot of the epidote/garnet-ratios of 16 samples of Namibian desert sand. These
+data are overdispersed with respect to the point-counting uncertainties, indicating 75% of geological
+scatter in the underlying compositional data. ii. Ternary diagram of garnet, epidote and zircon, with a
+95% confidence envelope for the underlying population, using a ternary generalisation of the random
+effects model. Note that four of the samples contain zero zircon counts. But this does not pose a
+problem for the random effects model, unlike the logratio-procedure used for Figure <a 
+href="#x1-30151">1<!--tex4ht:ref: fig:ACNK --></a>.</span></div><!--tex4ht:label?: x1-40092 -->
+                    
+                    
+<!--l. 720--><p class="noindent" ></div><hr class="endfigure">
+<h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Distributional data</h3>
+<!--l. 730--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">This Section investigates a 16-sample, 1547-grain dataset of detrital zircon U-Pb ages from</span>
+<span 
+class="cmti-10x-x-109">Namibia. It uses Kernel Density Estimation and Cumulative Age Distributions to visualise this dataset, and</span>
+<span 
+class="cmti-10x-x-109">introduces the Kolmogorov-Smirnov statistic as a means of quantifying the dissimilarity between</span>
+<span 
+class="cmti-10x-x-109">samples.</span><br 
+class="newline" />
+<!--l. 732--><p class="noindent" >Compositional data such as the chemical concentrations of Sections <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositional --></a> and <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:compositionalPCA --></a> are characterised by the
+relative proportions of a number of <span 
+class="cmti-10x-x-109">discrete categories</span>. A second class of provenance proxies
+are based on the sampling distribution of <span 
+class="cmti-10x-x-109">continuous </span>variables such as zircon U-Pb ages (<a 
+href="#Xfedo2003">Fedo
+et al.</a>, <a 
+href="#Xfedo2003">2003</a>; <a 
+href="#Xgehrels2011">Gehrels</a>, <a 
+href="#Xgehrels2011">2011</a>). These <span 
+class="cmti-10x-x-109">distributional </span>data do not fit in the statistical framework of the (logistic)
+normal distribution.
+<!--l. 741--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-5002x1">Download auxiliary data file <span 
+class="cmtt-10x-x-109">DZ.csv </span>from the <a href='supplement.zip'>Online Supplement</a>. This file contains a detrital
+ zircon  U-Pb  dataset  from  Namibia.  It  consists  of  16  columns  &#8211;one  for  each  sample&#8211;  each
+ containing the single grain U-Pb ages of their respective sample. Let us load this file into memory
+ using <span 
+class="cmtt-10x-x-109">provenance</span>&#8217;s <span 
+class="cmtt-10x-x-109">read.distributional </span>function:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-22">
+DZ &lt;- read.distributional("DZ.csv")
+</pre>
+ <!--l. 753--><p class="nopar" >
+ <!--l. 756--><p class="noindent" ><span 
+class="cmtt-10x-x-109">DZ </span>now contains an object of class <span 
+class="cmtt-10x-x-109">distributional </span>containing the zircon U-Pb ages of 16 Namibian
+ sand samples. To view the names of these samples:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-23">
+&gt; names(DZ)
+</pre>
+ <!--l. 763--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-5004x2">One way to visualise the U-Pb age distributions is as Kernel Density Estimates. A KDE is defined
+ as:
+ <table 
+class="equation"><tr><td><a 
+ id="x1-5005r5"></a>
+ <center class="math-display" >
+ <img 
+src="index8x.png" alt="    1&#x2211;n
+KDEx  (t) =--    K(t|xi,bw )
+   n i=1
+ " class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+ <!--l. 772--><p class="nopar" >
+ <!--l. 774--><p class="noindent" >where <span 
+class="cmsy-10x-x-109"><img 
+src="cmsy10-4b.png" alt="K" class="10-109x-x-4b" /> </span>is the &#8216;kernel&#8217; and <span 
+class="cmmi-10x-x-109">bw </span>is the &#8216;bandwidth&#8217; (<a 
+href="#Xsilverman1986">Silverman</a>, <a 
+href="#Xsilverman1986">1986</a>; <a 
+href="#Xvermeesch2012b">Vermeesch</a>, <a 
+href="#Xvermeesch2012b">2012</a>). The kernel can
+ be any unimodal and symmetric shape (such as a box or a triangle), but is most often taken to be
+ Gaussian (where <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmmi-8">i</span></sub> is the mean and <span 
+class="cmmi-10x-x-109">bw </span>the standard deviation). The bandwidth can either be set
+ manually, or selected automatically based on the number of data points and the distance between them.
+ <span 
+class="cmtt-10x-x-109">provenance </span>implements the automatic bandwidth selection algorithm of <a 
+href="#Xbotev2010">Botev et al.</a> (<a 
+href="#Xbotev2010">2010</a>) but a
+ plethora of alternatives are available in the statistics literature. To plot all the samples as
+ KDEs:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-24">
+kdes &lt;- KDEs(DZ)
+  <br />plot(kdes,ncol=2)
+</pre>
+ <!--l. 789--><p class="nopar" >
+ <!--l. 792--><p class="noindent" >where <span 
+class="cmtt-10x-x-109">ncol </span>specifies the number of columns over which the KDEs are divided.
+ </li>
+ <li 
+  class="enumerate" id="x1-5007x3">Alternatively, the Cumulative Age Distribution (CAD) is a second way to show the data
+ (<a 
+href="#Xvermeesch2007a">Vermeesch</a>, <a 
+href="#Xvermeesch2007a">2007</a>). A CAD is a step function that sets out the rank order of the dates against their
+ numerical value:
+ <table 
+class="equation"><tr><td><a 
+ id="x1-5008r6"></a>
+ <center class="math-display" >
+ <img 
+src="index9x.png" alt="     &#x2211;n
+CAD (t) =    1(t &lt; ti)&#x2215;n
+  i=1
+ " class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+ <!--l. 803--><p class="nopar" >
+ <!--l. 805--><p class="noindent" >where 1(<span 
+class="cmsy-10x-x-109">*</span>) = 1 if <span 
+class="cmsy-10x-x-109">* </span>is true and 1(<span 
+class="cmsy-10x-x-109">*</span>) = 0 if <span 
+class="cmsy-10x-x-109">* </span>is false. The main advantages of CADs over KDEs is that
+ (i) they do not require any smoothing (i.e., there is no &#8216;bandwidth&#8217; to choose), and (ii) they can
+ superimpose multiple samples on the same plot. Plotting samples N1, N2 and N4 of the Namib
+ dataset:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-25">
+plot(DZ,snames=c('N1','N2','N4'))
+</pre>
+ <!--l. 814--><p class="nopar" >
+ <!--l. 817--><p class="noindent" >we can see that (1) the CADs of samples N1 and N2 plot close together with steepest sections at
+ 500 Ma and 1000 Ma, reflecting the prominence of those age components; (2) sample N4 is quite
+ different from N1 and N2.
+ </li>
+ <li 
+  class="enumerate" id="x1-5010x4"><a 
+ id="x1-50094"></a> We can quantify this difference using the <span 
+class="cmti-10x-x-109">Kolmogorov-Smirnov </span>(KS) statistic (<a 
+href="#Xfeller1948">Feller</a>, <a 
+href="#Xfeller1948">1948</a>; <a 
+href="#Xdegraaff2003">DeGraaff-Surpless
+ et al.</a>, <a 
+href="#Xdegraaff2003">2003</a>; <a 
+href="#Xvermeesch2018b">Vermeesch</a>, <a 
+href="#Xvermeesch2018b">2018a</a>), which represents the maximum vertical difference between two
+ CADs:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-26">
+&gt; N124 &lt;- subset(DZ,select=c('N1','N2','N4'))
+  <br />&gt; diss(N124)
+</pre>
+ <!--l. 831--><p class="nopar" >
+ <!--l. 834--><p class="noindent" >This shows that the KS-statistic between N1 and N2 is KS(N1,N2) = 0.18, whereas KS(N1,N4) = 0.44,
+ and KS(N2,N4) = 0.35 (Figure <a 
+href="#x1-50113">3<!--tex4ht:ref: fig:CADs --></a>). The KS statistic is a <span 
+class="cmti-10x-x-109">non-negative </span>value that takes on values
+ between zero (perfect overlap between two distributions) and one (no overlap between two
+ distributions). It is <span 
+class="cmti-10x-x-109">symmetric </span>because the KS statistic between any sample <span 
+class="cmmi-10x-x-109">x </span>and another sample <span 
+class="cmmi-10x-x-109">y</span>
+ equals that between <span 
+class="cmmi-10x-x-109">y </span>and <span 
+class="cmmi-10x-x-109">x</span>. For example, KS(N1,N2) = 0.18 = KS(N2,N1). And finally, the
+ KS-statistic obeys the <span 
+class="cmti-10x-x-109">triangle equality</span>, which means that the dissimilarity between any two
+ samples is always smaller than or equal to the sum of the dissimilarities between those
+ two samples and a third. For example, KS(N1,N2) = 0.18 <span 
+class="cmmi-10x-x-109">&lt; </span>KS(N1,N4) + KS(N2,N4)
+ = 0.44 + 0.35 = 0.79. These three characteristics qualify the KS statistics as a <span 
+class="cmti-10x-x-109">metric</span>,
+ which makes it particularly suitable for Multidimensional Scaling (MDS) analysis (see
+ Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:MDS --></a>). The KS statistic is just one of many dissimilarity measures for distributional
+ data. However, not all these alternatives to the KS statistic fulfil the triangle inequality
+ (<a 
+href="#Xvermeesch2018b">Vermeesch</a>, <a 
+href="#Xvermeesch2018b">2018a</a>).
+ </li></ol>
+<!--l. 855--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                    
+                    
+<a 
+ id="x1-50113"></a>
+                    
+                    
+<div class="minipage"><!--l. 857--><p class="noindent" > <center><a href="CADs.png"><img src="CADs.png" alt="PIC" class="snapshot"></a></center>
+</div>        <div class="minipage"><div class="caption"><span class="id">Figure 3:  </span><span  
+class="content">Cumulative
+Age  Distributions  (CADs)  of
+Namib  desert  sand  samples
+N1, N2 and N4 with indication
+of   the   Kolmogorov-Smirnov
+distances between them. </span></div><!--tex4ht:label?: x1-50113 --></div>
+                    
+                    
+<!--l. 866--><p class="noindent" ></div><hr class="endfigure">
+<h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Principal Component Analysis (PCA)</h3>
+<!--l. 880--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">Principal Component Analysis is an exploratory data analysis method that takes a high</span>
+<span 
+class="cmti-10x-x-109">dimensional dataset as input and produces a lower (typically two-) dimensional &#8216;projection&#8217; as output. PCA is</span>
+<span 
+class="cmti-10x-x-109">closely related to Multidimensional Scaling (MDS), compositional PCA, and Correspondence</span>
+<span 
+class="cmti-10x-x-109">Analysis (CA), which are introduced in Sections</span><span 
+class="cmti-10x-x-109"> </span><a 
+href="#x1-70007"><span 
+class="cmti-10x-x-109">7</span><!--tex4ht:ref: sec:MDS --></a><span 
+class="cmti-10x-x-109">&#8211;</span><a 
+href="#x1-90009"><span 
+class="cmti-10x-x-109">9</span><!--tex4ht:ref: sec:CA --></a><span 
+class="cmti-10x-x-109">. This tutorial introduces PCA using the</span>
+<span 
+class="cmti-10x-x-109">simplest working example of three two-dimensional points. Nearly identical examples will be used in</span>
+<span 
+class="cmti-10x-x-109">Sections</span><span 
+class="cmti-10x-x-109"> </span><a 
+href="#x1-70007"><span 
+class="cmti-10x-x-109">7</span><!--tex4ht:ref: sec:MDS --></a><span 
+class="cmti-10x-x-109">&#8211;</span><a 
+href="#x1-90009"><span 
+class="cmti-10x-x-109">9</span><!--tex4ht:ref: sec:CA --></a><span 
+class="cmti-10x-x-109">.</span>
+<!--l. 882--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-6002x1">Consider the following bivariate (<span 
+class="cmmi-10x-x-109">a </span>and <span 
+class="cmmi-10x-x-109">b</span>) dataset of three (1, 2 and 3) samples:
+ <table 
+class="equation"><tr><td><a 
+ id="x1-6003r7"></a>
+ <center class="math-display" >
+ <img 
+src="index10x.png" alt="  &#x230A; a   b&#x230B;
+ 1 - 1  7
+X =  2&#x2308; 3   2&#x2309;
+ 3  4   3
+ " class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+ <!--l. 894--><p class="nopar" >
+ <!--l. 896--><p class="noindent" >Generating and plotting <span 
+class="cmmi-10x-x-109">X </span>in <span 
+class="cmtt-10x-x-109">R</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-27">
+X &lt;- matrix(c(-1,3,4,7,2,3),nrow=3,ncol=2)
+  <br />colnames(X) &lt;- c('a','b')
+  <br />plot(X)
+</pre>
+ <!--l. 903--><p class="nopar" >
+ <!--l. 906--><p class="noindent" >yields a diagram in which two of the three data points plot close together while the third one plots
+ further away.
+ </li>
+ <li 
+  class="enumerate" id="x1-6005x2">Imagine that you live in a one-dimensional world and cannot see the spatial distribution of the three
+ points represented by <span 
+class="cmmi-10x-x-109">X</span>. Principal Component Analysis (PCA) is a statistical technique
+ (invented by Karl <a 
+href="#Xpearson1901">Pearson</a>, <a 
+href="#Xpearson1901">1901</a>) to represent multi- (e.g., two-) dimensional data in a
+ lower- (e.g., one-) dimensional space whilst preserving the maximum amount of information
+ (i.e., variance). This can be achieved by decomposing <span 
+class="cmmi-10x-x-109">X </span>into four matrices (<span 
+class="cmmi-10x-x-109">C</span>, <span 
+class="cmmi-10x-x-109">S</span>, <span 
+class="cmmi-10x-x-109">V </span>and
+ <span 
+class="cmmi-10x-x-109">D</span>):
+ <table 
+class="equation"><tr><td><a 
+ id="x1-6006r8"></a>
+ <center class="math-display" >
+ <img 
+src="index11x.png" alt="      &#x230A;    &#x230B;   &#x230A;    &#x230B;
+     1  [  ] - 1.15   0    [ 3.67    0  ][ 0.71  - 0.71 ]
+X =  13,1 C + S V D = &#x2308;  1 &#x2309;  2  4   + &#x2308;  0.58   - 1 &#x2309;    0   0.71    0.71   0.71
+     1    0.58    1
+ " class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+ <!--l. 953--><p class="nopar" >
+ <!--l. 955--><p class="noindent" >where <span 
+class="cmmi-10x-x-109">C </span>is the centre (arithmetic mean) of the two data columns; <span 
+class="cmmi-10x-x-109">S </span>are the <span 
+class="cmti-10x-x-109">normalised scores</span>; the
+ diagonals of <span 
+class="cmmi-10x-x-109">V </span>correspond to the standard deviations of the two principal components; and <span 
+class="cmmi-10x-x-109">D </span>is a
+ rotation matrix (the <span 
+class="cmti-10x-x-109">principal directions</span>). <span 
+class="cmmi-10x-x-109">S</span>, <span 
+class="cmmi-10x-x-109">V </span>and <span 
+class="cmmi-10x-x-109">D </span>can be recombined to define two more
+ matrices:
+ <table 
+class="equation"><tr><td><a 
+ id="x1-6007r9"></a>
+ <center class="math-display" >
+ <img 
+src="index12x.png" alt="  &#x230A;   &#x230B;
+     - 4.24   0
+P = S V = &#x2308;   2.12   - 0.71 &#x2309; , and
+      2.12    0.71
+ " class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+                    
+                    
+ <!--l. 970--><p class="nopar" >
+ <br 
+class="newline" />
+ <table 
+class="equation"><tr><td><a 
+ id="x1-6008r10"></a>
+ <center class="math-display" >
+ <img 
+src="index13x.png" alt="   [   ]
+     2.6  - 2.6
+L = V  D =   0.5   0.5
+ " class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+ <!--l. 980--><p class="nopar" >
+ <!--l. 982--><p class="noindent" >where <span 
+class="cmmi-10x-x-109">P </span>is a matrix of transformed coordinates (the <span 
+class="cmti-10x-x-109">principal components </span>or <span 
+class="cmti-10x-x-109">scores</span>) and <span 
+class="cmmi-10x-x-109">L </span>are
+ the scaled eigenvectors or <span 
+class="cmti-10x-x-109">loadings</span>. Figure <a 
+href="#x1-60114">4<!--tex4ht:ref: fig:PCA --></a>.i shows <span 
+class="cmmi-10x-x-109">X </span>as numbers on a scatterplot, <span 
+class="cmmi-10x-x-109">C</span>
+ as a yellow square, and 1<sub><span 
+class="cmr-8">2</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">C </span><span 
+class="cmsy-10x-x-109">&plusmn; </span><span 
+class="cmmi-10x-x-109">L </span>as a cross. Thus, the first principal direction (running
+ from the upper left to the lower right) has been stretched by a factor of (3<span 
+class="cmmi-10x-x-109">.</span>67<span 
+class="cmmi-10x-x-109">&#x2215;</span>0<span 
+class="cmmi-10x-x-109">.</span>71) = 5<span 
+class="cmmi-10x-x-109">.</span>2
+ w.r.t the second principal component, which runs perpendicular to it. The two principal
+ components are shown separately as Figure <a 
+href="#x1-60114">4<!--tex4ht:ref: fig:PCA --></a>.ii, and their relative contribution to the
+ total variance of the data as Figure <a 
+href="#x1-60114">4<!--tex4ht:ref: fig:PCA --></a>.iv. Figure <a 
+href="#x1-60114">4<!--tex4ht:ref: fig:PCA --></a> can be reproduced with the following
+ <span 
+class="cmtt-10x-x-109">R</span>-code:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-28">
+source('helper.R')
+  <br />PCA2D(X)
+</pre>
+ <!--l. 999--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-6010x3">Although the two-dimensional example is useful for illustrative purposes, the true value of PCA
+ obviously lies in higher dimensional situations. As a second example, let us consider one of <span 
+class="cmtt-10x-x-109">R</span>&#8217;s
+ built-in datasets. <span 
+class="cmtt-10x-x-109">USArrests </span>contains statistics (in arrests per 100,000 residents) for assault,
+ murder, and rape in each of the 50 US states in 1973. Also given is the percentage of the
+ population living in urban areas. Thus, <span 
+class="cmtt-10x-x-109">USArrests </span>is a four-column table that cannot readily be
+ visualised on a two-dimensional surface. Applying PCA yields four principal components,
+ the first two of which represent 62% and 25% of the total variance, respectively. Because
+ the four columns of the input data are expressed in different units (arrests per 100,000 or
+ percentage), it is necessary to scale the data to have unit variance before the analysis takes
+ place:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-29">
+pc &lt;- prcomp(USArrests, scale=TRUE)
+  <br />biplot(pc)
+</pre>
+ <!--l. 1021--><p class="nopar" >
+ <!--l. 1024--><p class="noindent" >You will see that the loading vectors for <span 
+class="cmtt-10x-x-109">Murder</span>, <span 
+class="cmtt-10x-x-109">Assault </span>and <span 
+class="cmtt-10x-x-109">Rape </span>are all pointing in approximately
+ the same direction (dominating the first principal component), perpendicular to <span 
+class="cmtt-10x-x-109">UrbanPop </span>(which
+ dominates the second principal component). This tells us that crime and degree of urbanisation are not
+ correlated in the United States.
+ </li></ol>
+<!--l. 1033--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                    
+                    
+<a 
+ id="x1-60114"></a>
+                    
+                    
+<!--l. 1035--><p class="noindent" ><center><a href="PCA.png"><img src="PCA.png" alt="PIC" class="snapshot"></a></center>
+<br /> <div class="caption" 
+><span class="id">Figure 4: </span><span  
+class="content">i &#8211; Three samples (1, 2 and 3) of bivariate (<span 
+class="cmmi-10x-x-109">a </span>and <span 
+class="cmmi-10x-x-109">b</span>) data (<span 
+class="cmmi-10x-x-109">X </span>in Equation <a 
+href="#x1-6003r7">7<!--tex4ht:ref: eq:X --></a>). The yellow
+square marks the arithmetic mean (<span 
+class="cmmi-10x-x-109">C </span>in Equation <a 
+href="#x1-6006r8">8<!--tex4ht:ref: eq:PCA --></a>), the cross marks the two principal directions (<span 
+class="cmmi-10x-x-109">D</span>
+in Equation <a 
+href="#x1-6006r8">8<!--tex4ht:ref: eq:PCA --></a>) stretched by the diagonal elements (i.e. the standard deviations) of <span 
+class="cmmi-10x-x-109">V </span>(Equation <a 
+href="#x1-6006r8">8<!--tex4ht:ref: eq:PCA --></a>);
+ii &#8211; The projection of the data points on these two directions yields two principal components (<span 
+class="cmmi-10x-x-109">P </span>in
+Equation <a 
+href="#x1-6007r9">9<!--tex4ht:ref: eq:P --></a>), representing a one dimensional representation of the two-dimensional data; iii &#8211; A biplot
+of both principal components along with the loadings of the two variables shown as arrows; iv &#8211; The
+squared diagonal values of <span 
+class="cmmi-10x-x-109">V </span>(Equation <a 
+href="#x1-6006r8">8<!--tex4ht:ref: eq:PCA --></a>) indicate the relative amounts of variance encoded by the
+two principal components.</span></div><!--tex4ht:label?: x1-60114 -->
+                    
+                    
+<!--l. 1050--><p class="noindent" ></div><hr class="endfigure">
+<h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Multidimensional Scaling</h3>
+<!--l. 1060--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">Multidimensional Scaling (MDS) is a less restrictive superset of PCA. This tutorial uses a</span>
+<span 
+class="cmti-10x-x-109">geographical example to demonstrate how MDS re-creates a map of Europe from a table of pairwise distances</span>
+<span 
+class="cmti-10x-x-109">between European cities. Applying the same algorithm to the synthetic toy-example of Section</span><span 
+class="cmti-10x-x-109"> </span><a 
+href="#x1-60006"><span 
+class="cmti-10x-x-109">6</span><!--tex4ht:ref: sec:PCA --></a> <span 
+class="cmti-10x-x-109">yields exactly</span>
+<span 
+class="cmti-10x-x-109">the same output as PCA.</span>
+<!--l. 1062--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-7002x1">Multidimensional
+ Scaling (MDS, <a 
+href="#Xyoung1938">Young and Householder</a>, <a 
+href="#Xyoung1938">1938</a>; <a 
+href="#Xtorgerson1952">Torgerson</a>, <a 
+href="#Xtorgerson1952">1952</a>; <a 
+href="#Xshepard1962">Shepard</a>, <a 
+href="#Xshepard1962">1962</a>; <a 
+href="#Xkruskal1978">Kruskal and
+ Wish</a>, <a 
+href="#Xkruskal1978">1978</a>) is a dimension-reducing technique that aims to extract two (or higher) dimensional
+ &#8216;maps&#8217; from tables of pairwise distances between objects. This method is most easily illustrated
+ with a geographical example. Consider, for example, the <span 
+class="cmtt-10x-x-109">eurodist </span>dataset that is built into
+ <span 
+class="cmtt-10x-x-109">R</span>, and which gives the road distances (in km) between 21 cities in Europe (see <span 
+class="cmtt-10x-x-109">?eurodist </span>for
+ further details):
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-30">
+&gt; eurodist
+</pre>
+ <!--l. 1076--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-7004x2">To MDS configuration can be obtained by <span 
+class="cmtt-10x-x-109">R</span>&#8217;s built-in <span 
+class="cmtt-10x-x-109">cmdscale </span>function
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-31">
+conf &lt;- cmdscale(eurodist)
+</pre>
+ <!--l. 1085--><p class="nopar" >
+ <!--l. 1088--><p class="noindent" >Set up an empty plot with a 1:1 aspect ratio, and then label the MDS configuration with the city
+ names:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-32">
+plot(conf,type='n',asp=1)
+  <br />text(conf,labels=labels(eurodist))
+</pre>
+ <!--l. 1095--><p class="nopar" >
+ <!--l. 1098--><p class="noindent" >Note that the map may be turned &#8216;upside down&#8217;. This reflects the rotation invariance of MDS
+ configurations.
+ </li>
+ <li 
+  class="enumerate" id="x1-7006x3"><span 
+class="cmtt-10x-x-109">R</span>&#8217;s <span 
+class="cmtt-10x-x-109">cmdscale </span>function implements so-called &#8216;classical&#8217; MDS, which aims to fit the actual distances
+ (<a 
+href="#Xyoung1938">Young and Householder</a>, <a 
+href="#Xyoung1938">1938</a>; <a 
+href="#Xtorgerson1952">Torgerson</a>, <a 
+href="#Xtorgerson1952">1952</a>). If these distances are Euclidean, then it can be
+ shown that MDS is equivalent to PCA (<a 
+href="#Xaitchison1983">Aitchison</a>, <a 
+href="#Xaitchison1983">1983</a>; <a 
+href="#Xkenkel1986">Kenkel and Orl&oacute;ci</a>, <a 
+href="#Xkenkel1986">1986</a>; <a 
+href="#Xcox2000">Cox and
+ Cox</a>, <a 
+href="#Xcox2000">2000</a>). To demonstrate this equivalence, let us apply MDS to the data in Equation <a 
+href="#x1-6003r7">7<!--tex4ht:ref: eq:X --></a>.
+ First run the first two lines of code from Section <a 
+href="#x1-60006">6<!--tex4ht:ref: sec:PCA --></a>. Calculating the Euclidean distances
+ between the three samples produces a dissimilarity matrix <span 
+class="cmmi-10x-x-109">d</span>. For example, the distance
+ between points 1 and 2 is <img 
+src="index14x.png" alt="&#x2218; (- 1---3)2 +-(7--2)2"  class="sqrt" > = 6<span 
+class="cmmi-10x-x-109">.</span>4. This value is stored in <span 
+class="cmtt-10x-x-109">d[1,1]</span>. In
+ <span 
+class="cmtt-10x-x-109">R</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-33">
+d &lt;- dist(X)
+</pre>
+ <!--l. 1116--><p class="nopar" >
+ <!--l. 1119--><p class="noindent" >which produces:
+ <table 
+class="equation"><tr><td><a 
+ id="x1-7007r11"></a>
+ <center class="math-display" >
+ <img 
+src="index15x.png" alt=" &#x230A;  1   2    3 &#x230B;
+    1   0   6.4  6.4
+d = 2&#x2308; 6.4   0   1.4&#x2309;
+    3  6.4   1.4   0
+ " class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+ <!--l. 1129--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-7009x4">Next, calculate the MDS configuration:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-34">
+conf2 &lt;- cmdscale(d)
+</pre>
+ <!--l. 1136--><p class="nopar" >
+ <!--l. 1139--><p class="noindent" >Finally, plot the MDS configuration as a scatterplot of text labels:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-35">
+plot(conf2,type='n')
+  <br />text(conf2,labels=1:3)
+</pre>
+ <!--l. 1145--><p class="nopar" >
+ <!--l. 1148--><p class="noindent" >Which is identical to the PCA configuration of Figure <a 
+href="#x1-60114">4<!--tex4ht:ref: fig:PCA --></a>.iii apart from an arbitrary rotation or
+ reflection.
+ </li>
+ <li 
+  class="enumerate" id="x1-7011x5"><a 
+ id="x1-70105"></a> An alternative implementation of MDS loosens the Euclidean distance assumption by fitting the
+ <span 
+class="cmti-10x-x-109">relative </span>distances between objects (<a 
+href="#Xshepard1962">Shepard</a>, <a 
+href="#Xshepard1962">1962</a>; <a 
+href="#Xkruskal1978">Kruskal and Wish</a>, <a 
+href="#Xkruskal1978">1978</a>). Let us apply this to the
+ dataset of European city distances using the <span 
+class="cmtt-10x-x-109">isoMDS </span>function of the &#8216;Modern Applied Statistics with S&#8217;
+ (<span 
+class="cmtt-10x-x-109">MASS</span>) package (<a 
+href="#Xripley2002">Ripley</a>, <a 
+href="#Xripley2002">2002</a>):
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-36">
+library(MASS)
+</pre>
+ <!--l. 1162--><p class="nopar" >
+ <!--l. 1165--><p class="noindent" >To compute and plot the non-metric MDS configuration:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-37">
+conf3 &lt;- isoMDS(eurodist)$points
+  <br />plot(conf3,type='n',asp=1)
+  <br />text(conf3,labels=labels(eurodist))
+</pre>
+ <!--l. 1172--><p class="nopar" >
+ <!--l. 1175--><p class="noindent" >where <span 
+class="cmtt-10x-x-109">conf3 </span>is a list with two items: <span 
+class="cmtt-10x-x-109">stress</span>, which expresses the goodness-of-fit of the MDS
+ configuration; and <span 
+class="cmtt-10x-x-109">points</span>, which contains the configuration. The &#8216;<span 
+class="tctt-1095">$</span>&#8217; operator is used to access any of
+ these items.<br 
+class="newline" />
+ <!--l. 1180--><p class="noindent" >Non-metric MDS is a less-restrictive superset of classical MDS and, hence, PCA, which opens this
+ methodology up to non-Euclidean dissimilarity measures, such as the KS-distance introduced in
+ Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:distributional --></a> (<a 
+href="#Xvermeesch2013">Vermeesch</a>, <a 
+href="#Xvermeesch2013">2013</a>).
+ </li></ol>
+
+<!--l. 1188--><p class="noindent" >
+<h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>PCA of compositional data</h3>
+<!--l. 1199--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">PCA can be applied to compositional data after logratio transformation. This tutorial first applies</span>
+<span 
+class="cmti-10x-x-109">such compositional PCA to a three sample, three variable dataset that is mathematically equivalent to the</span>
+<span 
+class="cmti-10x-x-109">three sample two variable toy example of Section</span><span 
+class="cmti-10x-x-109">&#x00A0;</span><a 
+href="#x1-60006"><span 
+class="cmti-10x-x-109">6</span><!--tex4ht:ref: sec:PCA --></a><span 
+class="cmti-10x-x-109">. Then, it applies the same method to a real dataset of</span>
+<span 
+class="cmti-10x-x-109">major element compositions from Namibia. This is first done using basic </span><span 
+class="cmtt-10x-x-109">R </span><span 
+class="cmti-10x-x-109">and then again (and more</span>
+<span 
+class="cmti-10x-x-109">succinctly) using the </span><span 
+class="cmtt-10x-x-109">provenance </span><span 
+class="cmti-10x-x-109">package.</span><br 
+class="newline" />
+<!--l. 1201--><p class="noindent" >Consider the following trivariate (<span 
+class="cmmi-10x-x-109">a</span>, <span 
+class="cmmi-10x-x-109">b </span>and <span 
+class="cmmi-10x-x-109">c</span>) dataset of three (1, 2 and 3) compositions that are constrained
+to a constant sum (<span 
+class="cmmi-10x-x-109">a</span><sub><span 
+class="cmmi-8">i</span></sub> + <span 
+class="cmmi-10x-x-109">b</span><sub><span 
+class="cmmi-8">i</span></sub> + <span 
+class="cmmi-10x-x-109">c</span><sub><span 
+class="cmmi-8">i</span></sub> = 100% for 1 <span 
+class="cmsy-10x-x-109">&#x2264; </span><span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">&#x2264; </span>3, Figure&#x00A0;<a 
+href="#x1-8006r5">5<!--tex4ht:ref: fig:compositionalPCA --></a>):
+<table 
+class="equation"><tr><td><a 
+ id="x1-8001r12"></a>
+<center class="math-display" >
+<img 
+src="revision56x.png" alt="      &#x230A;   a      b      c &#x230B;
+     1  0.034  99.88   0.091
+X  = 2&#x2308; 69.45  25.55   5.01&#x2309;
+     3  72.44  26.65   0.92
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 1213--><p class="nopar" >
+<!--l. 1215--><p class="noindent" >It would be wrong to apply conventional PCA to this dataset, because this would ignore the
+constant sum constraint. As was discussed in Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:PCA --></a>, PCA begins by &#8216;centering&#8217; the data via the
+arithmetic mean. Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositional --></a> showed that this yields incorrect results for compositional data. Although
+the <span 
+class="cmti-10x-x-109">additive logratio transformation </span>(alr) of Equation&#x00A0;<a 
+href="#x1-3009r1">1<!--tex4ht:ref: eq:alr --></a> solves the closure problem, it is not
+suitable for PCA because the axes of alr-coordinate spaces are not orthogonal to each other. For
+example, the distance between the alr-coordinates of samples&#x00A0;2 and 3 is 1.74 if <span 
+class="cmmi-10x-x-109">b </span>is used as a
+common denominator (i.e., <span 
+class="cmmi-10x-x-109">d</span>[2<span 
+class="cmmi-10x-x-109">,</span>3]<sub><span 
+class="cmmi-8">b</span></sub> = 1<span 
+class="cmmi-10x-x-109">.</span>74), but 2.46 when <span 
+class="cmmi-10x-x-109">c </span>is used as a common denominator
+(<span 
+class="cmmi-10x-x-109">d</span>[2<span 
+class="cmmi-10x-x-109">,</span>3]<sub><span 
+class="cmmi-8">c</span></sub> = 2<span 
+class="cmmi-10x-x-109">.</span>46).
+<!--l. 1228--><p class="noindent" >The fact that distances are not unequivocally defined in alr-space spells trouble for PCA. Recall the
+equivalence of PCA and classical MDS, which was discussed in Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:MDS --></a>. MDS is based on
+dissimilarity matrices, so if distances are not well defined then neither are the MDS configuration and,
+hence, the principal components. This issue can be solved by <span 
+class="cmti-10x-x-109">centred logratio transformation</span>
+(clr):
+<table 
+class="equation"><tr><td><a 
+ id="x1-8002r13"></a>
+<center class="math-display" >
+<img 
+src="revision57x.png" alt="       [xi]         [yi]             [ zi]
+ui = ln  -g  , vi = ln g-  , and wi = ln g-
+          i           i                 i
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 1240--><p class="nopar" >
+<!--l. 1242--><p class="noindent" >where <span 
+class="cmmi-10x-x-109">g</span><sub><span 
+class="cmmi-8">i</span></sub> is the geometric mean of the <span 
+class="cmmi-10x-x-109">i</span><sup class="textsuperscript"><span 
+class="cmr-10">th</span></sup> sample:
+<table 
+class="equation-star"><tr><td>
+                               <span 
+class="cmmi-10x-x-109">g</span><sub><span 
+class="cmmi-8">i</span></sub> = exp<img 
+src="revision58x.png" alt="[                   ]
+ ln[xi]+-ln[yi]+-ln[zi]
+          3"  class="left" align="middle">
+</td></tr></table>
+<!--l. 1246--><p class="nopar" >
+                                                                                            
+                                                                                            
+<!--l. 1248--><p class="noindent" >Unlike alr-coordinate axes, clr-coordinate axes are orthogonal and unequivocally define a set of well behaved
+distances. Applying the clr-transformation to the data of Equation&#x00A0;<a 
+href="#x1-8001r12">12<!--tex4ht:ref: eq:Xcomp --></a> yields a new trivariate
+dataset:
+<table 
+class="equation"><tr><td><a 
+ id="x1-8003r14"></a>
+<center class="math-display" >
+<img 
+src="revision59x.png" alt="         ln (a&#x2215;g ) ln(b&#x2215;g)  ln (c&#x2215;g)
+       &#x230A;                        &#x230B;
+      1    - 3      5       - 2
+Xc =  2&#x2308;  1.21     0.21    - 1.42&#x2309;
+      3   1.79     0.79    - 2.58
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 1260--><p class="nopar" >
+<!--l. 1262--><p class="noindent" >where <span 
+class="cmmi-10x-x-109">g </span>stands for the geometric mean of each row. Note that each of the rows of <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">c</span></sub> adds up to zero. Thanks
+to the symmetry of the clr-coordinates, the distances between the rows (which are also known as <span 
+class="cmti-10x-x-109">Aitchison</span>
+<span 
+class="cmti-10x-x-109">distances</span>) are well defined. Subjecting Equation&#x00A0;<a 
+href="#x1-8003r14">14<!--tex4ht:ref: eq:Xc --></a> to the same matrix decompositions as Equation&#x00A0;<a 
+href="#x1-6006r8">8<!--tex4ht:ref: eq:PCA --></a>
+yields:
+<table 
+class="equation"><tr><td><a 
+ id="x1-8004r15"></a>
+<center class="math-display" >
+<img 
+src="revision60x.png" alt="     &#x230A;  1 &#x230B;               &#x230A; - 1.15   0  0 &#x230B; &#x230A; 3.67   0    0 &#x230B;&#x230A;  0.71   - 0.71    0   &#x230B;
+     &#x2308;    &#x2309;[           ]  &#x2308;               &#x2309; &#x2308;               &#x2309;&#x2308;                      &#x2309;
+Xc =    1    0  2  - 2  +    0.58   - 1 0       0   0.71  0     0.71    0.71   - 0.82
+        1                    0.58    1  0       0    0    0     - 0.58 - 0.58  - 0.58
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+<!--l. 1304--><p class="nopar" >
+<!--l. 1306--><p class="noindent" >so that
+<table 
+class="equation"><tr><td><a 
+ id="x1-8005r16"></a>
+<center class="math-display" >
+<img 
+src="revision61x.png" alt="    &#x230A;                  &#x230B;         &#x230A;                     &#x230B;
+      - 4.24    0    0              2.59  - 2.59    0
+P = &#x2308;  2.12  - 0.71  0 &#x2309; and L = &#x2308;  0.29   0.29   - 0.58 &#x2309;
+       2.12   0.71   0               0      0      0
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+                                                                                            
+                                                                                            
+<!--l. 1325--><p class="nopar" >
+<!--l. 1327--><p class="noindent" >Note that, even though this yields three principal components instead two, the variance of the
+third component in matrix <span 
+class="cmmi-10x-x-109">V </span>is zero. Therefore, all the information is contained in the first two
+components. Also note that the first two principal components of the compositional dataset
+are identical to those of the PCA example shown in Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:PCA --></a> (Equation&#x00A0;<a 
+href="#x1-6007r9">9<!--tex4ht:ref: eq:P --></a>). This is, of course,
+intentional.
+
+<!--l. 1335--><p class="noindent" ><hr class="figure"><div class="figure">
+                                                                                            
+<a id="x1-8006r5"></a>                                                                                         
+                                                                                            
+<!--l. 1337--><p class="noindent" ><center><a href="compositionalPCArevised-.png"><img src="compositionalPCArevised-.png" alt="PIC" class="snapshot"></a></center>
+<a id="x1-8007"></a><br /> <div class="caption"><span class="id">Figure&#x00A0;5: </span><span  
+class="content">i &#8211; the compositional dataset of Equation&#x00A0;<a 
+href="#x1-8003r14">14<!--tex4ht:ref: eq:Xc --></a> shown on a ternary diagram; ii &#8211; principal
+component biplot of the same data after centred logratio (clr) transformation.</span></div><!--tex4ht:label?: x1-8006r8 -->
+                                                                                            
+                                                                                            
+<!--l. 1342--><p class="noindent" ></div><hr class="endfigure">
+
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-8008x1">The following script applies compositional PCA to a dataset of major element compositions from
+ Namibia (see <a href='supplement.zip'>Online Supplement</a>) using base <span 
+class="cmtt-10x-x-109">R</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-38">
+# load the major element composition of Namib sand:
+  <br />Major &lt;- read.csv(file="Major.csv", header=TRUE,row.names=1)
+  <br /># apply the centred logratio transformation:
+  <br />cMajor &lt;- log(Major) - rowMeans(log(Major)) %*% matrix(1,1,ncol(Major))
+  <br /># perform PCA of the logratio transformed data:
+  <br />pc &lt;- prcomp(cMajor)
+  <br /># plot the results of the PCA analysis:
+  <br />biplot(pc)
+</pre>
+ <!--l. 1350--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-8010x2">Alternatively, we can also do this more easily in <span 
+class="cmtt-10x-x-109">provenance</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-39">
+library(provenance)
+  <br /># tell R that Major.csv contains compositional data:
+  <br />Major.comp &lt;- read.compositional('Major.csv')
+  <br /># perform the principal component analysis:
+  <br />pc.comp &lt;- PCA(Major.comp)
+  <br /># create the biplot:
+  <br />plot(pc.comp)
+</pre>
+ <!--l. 1365--><p class="nopar" >
+ <!--l. 1368--><p class="noindent" >where the <span 
+class="cmtt-10x-x-109">read.compositional </span>function reads the <span 
+class="cmtt-10x-x-109">.csv </span>file into an object of class <span 
+class="cmtt-10x-x-109">compositional</span>,
+ thus ensuring that logratio statistics are used in all <span 
+class="cmtt-10x-x-109">provenance </span>functions (such as <span 
+class="cmtt-10x-x-109">PCA</span>) that
+ accept compositional data as input. Also note that the <span 
+class="cmtt-10x-x-109">provenance </span>package <span 
+class="cmti-10x-x-109">overloads </span>the
+ <span 
+class="cmtt-10x-x-109">plot </span>function to generate a compositional biplot when applied to the output of the <span 
+class="cmtt-10x-x-109">PCA</span>
+ function.
+ </li></ol>
+<h3 class="sectionHead"><span class="titlemark">9   </span> <a 
+ id="x1-90009"></a>Correspondence Analysis</h3>
+<!--l. 1388--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">Point-counting data can be analysed by MDS using the Chi-square distance. Correspondence</span>
+<span 
+class="cmti-10x-x-109">Analysis (CA) yields identical results whilst producing biplots akin to those obtained by PCA. This</span>
+<span 
+class="cmti-10x-x-109">tutorial first uses a simple three sample, three variable toy example that is (almost) identical to</span>
+<span 
+class="cmti-10x-x-109">those used in Sections</span><span 
+class="cmti-10x-x-109"> </span><a 
+href="#x1-60006"><span 
+class="cmti-10x-x-109">6</span><!--tex4ht:ref: sec:PCA --></a><span 
+class="cmti-10x-x-109">-</span><a 
+href="#x1-80008"><span 
+class="cmti-10x-x-109">8</span><!--tex4ht:ref: sec:compositionalPCA --></a><span 
+class="cmti-10x-x-109">, before applying CA to a real dataset of heavy mineral counts from</span>
+<span 
+class="cmti-10x-x-109">Namibia.</span><br 
+class="newline" />
+<!--l. 1390--><p class="noindent" >Consider the following three sets of trivariate point-counting data:
+<table 
+class="equation"><tr><td><a 
+ id="x1-9001r17"></a>
+<center class="math-display" >
+<img 
+src="index21x.png" alt="  &#x230A; a b   c&#x230B;
+ 1  0    100  0
+X =  2&#x2308; 38   13   1&#x2309;
+ 3 108   38   0
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 1396--><p class="nopar" >
+<!--l. 1398--><p class="noindent" >This dataset intentionally looks similar on a ternary diagram to the compositional dataset of Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositional --></a>. The
+only difference is the presence of zeros, which preclude the use of logratio statistics. This problem can be
+solved by replacing the zero values with small numbers, but this only works when their number is small
+(<a 
+href="#Xmartin2003">Mart&iacute;n-Fern&aacute;ndez et al.</a>, <a 
+href="#Xmartin2003">2003</a>; <a 
+href="#Xbloemsma2015">Bloemsma and Weltje</a>, <a 
+href="#Xbloemsma2015">2015</a>). Correspondence Analysis (CA) is an
+alternative approach that does not require such &#8216;imputation&#8217;.<br 
+class="newline" />
+                    
+                    
+<!--l. 1406--><p class="noindent" >CA is a dimension reduction technique that is similar in many ways to PCA (<a 
+href="#Xgreenacre1984">Greenacre</a>, <a 
+href="#Xgreenacre1984">1984</a>; <a 
+href="#Xvermeesch2018d">Vermeesch</a>, <a 
+href="#Xvermeesch2018d">2018b</a>).
+CA, like PCA, is a special case of MDS. Whereas ordinary PCA uses the Euclidean distance, and
+compositional data can be compared using the Aitchison distance, point-counting data can be compared by
+means of a chi-square distance:
+<table 
+class="equation"><tr><td><a 
+ id="x1-9002r18"></a>
+<center class="math-display" >
+<img 
+src="index22x.png" alt="  &#x250C;&#x2502; ----------------------
+  &#x2502;&#x2218; &#x2211;K  X&#x22C5;&#x22C5;( Xik   Xjk )2
+dij =  X---  X---- X---
+    k=1  &#x22C5;k    i&#x22C5; j&#x22C5;
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 1420--><p class="nopar" >
+<!--l. 1422--><p class="noindent" >where <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmsy-8">&#x22C5;</span><span 
+class="cmmi-8">k</span></sub> = <span 
+class="cmex-10x-x-109">&#x2211;</span>
+  <sub><span 
+class="cmmi-8">i</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">m</span></sup><span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">ik</span></sub>, <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">i</span><span 
+class="cmsy-8">&#x22C5;</span></sub> = <span 
+class="cmex-10x-x-109">&#x2211;</span>
+<sub><span 
+class="cmmi-8">k</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">K</span></sup><span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">ik</span></sub> and <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmsy-8">&#x22C5;&#x22C5;</span></sub> = <span 
+class="cmex-10x-x-109">&#x2211;</span>
+<sub><span 
+class="cmmi-8">i</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">m</span></sup> <span 
+class="cmex-10x-x-109">&#x2211;</span>
+  <sub><span 
+class="cmmi-8">k</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">K</span></sup><span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">ik</span></sub>. Applying this formula to the data
+of Equation <a 
+href="#x1-9001r17">17<!--tex4ht:ref: eq:Xcounts --></a> produces the following dissimilarity matrix:
+<table 
+class="equation"><tr><td><a 
+ id="x1-9003r19"></a>
+<center class="math-display" >
+<img 
+src="index23x.png" alt="   1 2 3
+1&#x230A; 0    1.5   1.5 &#x230B;
+2&#x2308; 1.5    0   0.33&#x2309;
+
+3  1.5  0.33    0
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 1435--><p class="nopar" >
+<!--l. 1437--><p class="noindent" >Note that, although these values are different than those in Equation <a 
+href="#x1-7007r11">11<!--tex4ht:ref: eq:d --></a>, the ratios between them are
+(approximately) the same. Specifically, <span 
+class="cmmi-10x-x-109">d</span><sub><span 
+class="cmr-8">1</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">&#x2215;d</span><sub><span 
+class="cmr-8">1</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">3</span></sub> = 1<span 
+class="cmmi-10x-x-109">.</span>5<span 
+class="cmmi-10x-x-109">&#x2215;</span>1<span 
+class="cmmi-10x-x-109">.</span>5 = 1 for Equation <a 
+href="#x1-9003r19">19<!--tex4ht:ref: eq:dcounts --></a> and <span 
+class="cmmi-10x-x-109">d</span><sub><span 
+class="cmr-8">1</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">&#x2215;d</span><sub><span 
+class="cmr-8">1</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">3</span></sub> = 6<span 
+class="cmmi-10x-x-109">.</span>4<span 
+class="cmmi-10x-x-109">&#x2215;</span>6<span 
+class="cmmi-10x-x-109">.</span>4 = 1
+for Equation <a 
+href="#x1-7007r11">11<!--tex4ht:ref: eq:d --></a>; or <span 
+class="cmmi-10x-x-109">d</span><sub><span 
+class="cmr-8">1</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">&#x2215;d</span><sub><span 
+class="cmr-8">2</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">3</span></sub> = 1<span 
+class="cmmi-10x-x-109">.</span>5<span 
+class="cmmi-10x-x-109">&#x2215;</span>0<span 
+class="cmmi-10x-x-109">.</span>33 = 4<span 
+class="cmmi-10x-x-109">.</span>5 for Equation <a 
+href="#x1-9003r19">19<!--tex4ht:ref: eq:dcounts --></a> and <span 
+class="cmmi-10x-x-109">d</span><sub><span 
+class="cmr-8">1</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">&#x2215;d</span><sub><span 
+class="cmr-8">2</span><span 
+class="cmmi-8">,</span><span 
+class="cmr-8">3</span></sub> = 6<span 
+class="cmmi-10x-x-109">.</span>4<span 
+class="cmmi-10x-x-109">&#x2215;</span>1<span 
+class="cmmi-10x-x-109">.</span>4 = 4<span 
+class="cmmi-10x-x-109">.</span>5 for
+Equation <a 
+href="#x1-7007r11">11<!--tex4ht:ref: eq:d --></a>. Therefore, when we subject our point-counting data to an MDS analysis using
+the chi-square distance, the resulting configuration appears nearly identical to the example of
+Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:MDS --></a>.<br 
+class="newline" />
+<!--l. 1448--><p class="noindent" >The following script applies CA to the heavy mineral composition of Namib desert sand. It loads a table
+called <span 
+class="cmtt-10x-x-109">HM.csv </span>that contains point counts for 16 samples and 15 minerals. To reduce the dominance of the
+least abundant components, the code extracts the most abundant minerals (epidote, garnet, amphibole and
+clinopyroxene) from the datasets and amalgamates the ultra-stable minerals (zircon, tourmaline and ru- tile),
+which have similar petrological significance.
+                    
+                    <pre class="prettyprint lang-r" id="verbatim-40">
+library(provenance)
+ <br /># tell R that HM.csv contains point-counting data:
+ <br />dat &lt;- read.counts('HM.csv')
+ <br /># select and amalgamate the components of interest:
+ <br />HM &lt;- amalgamate(dat,ztr=c('zr','tm','rt'),ep='ep', gt='gt',amp='amp',cpx='cpx')
+ <br /># perform the correspondence analysis:
+ <br />config &lt;- CA(HM)
+ <br /># plot the results as a biplot:
+ <br />plot(config)
+</pre>
+<!--l. 1469--><p class="nopar" >
+<!--l. 1472--><p class="noindent" >
+<h3 class="sectionHead"><span class="titlemark">10   </span> <a 
+ id="x1-1000010"></a>MDS analysis of distributional data</h3>
+<!--l. 1477--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">This brief tutorial applies MDS to the detrital zircon U-Pb dataset from Namibia, using the</span>
+<span 
+class="cmti-10x-x-109">Kolmogorov-Smirnov statistic as a dissimilarity measure.</span><br 
+class="newline" />
+<!--l. 1479--><p class="noindent" >Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:MDS --></a>.<a 
+href="#x1-70105">5<!--tex4ht:ref: it:nonmetricMDS --></a> introduced non-metric MDS as a less-restrictive superset of classical MDS and, hence, PCA. This
+opens this methodology up to non-Euclidean dissimilarity measures, such as the KS-distance introduced in
+Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:distributional --></a>.<a 
+href="#x1-50094">4<!--tex4ht:ref: it:KS --></a> (<a 
+href="#Xvermeesch2013">Vermeesch</a>, <a 
+href="#Xvermeesch2013">2013</a>, <a 
+href="#Xvermeesch2018b">2018a</a>).
+                    
+                    <pre class="prettyprint lang-r" id="verbatim-41">
+library(provenance)
+ <br /># read the detrital zircon dataset:
+ <br />DZ &lt;- read.distributional("DZ.csv")
+ <br /># calculate and plot the (non-metric)
+ <br /># MDS configuration using the KS distance:
+ <br />DZ.X &lt;- MDS(DZ)
+ <br />plot(DZ.X)
+</pre>
+<!--l. 1495--><p class="nopar" >
+<!--l. 1498--><p class="noindent" >In this case, the overloaded <span 
+class="cmtt-10x-x-109">plot </span>function produces not one but two graphics windows. The first of these
+shows the MDS configuration, whereas the second shows the <span 
+class="cmti-10x-x-109">Shepard plot </span>(<a 
+href="#Xshepard1962">Shepard</a>, <a 
+href="#Xshepard1962">1962</a>; <a 
+href="#Xkruskal1978">Kruskal and
+Wish</a>, <a 
+href="#Xkruskal1978">1978</a>). This is a scatterplot that sets out the Euclidean distances between the samples measured on
+the MDS configuration against the <span 
+class="cmti-10x-x-109">disparities</span>, which are defined as:
+<table 
+class="equation"><tr><td><a 
+ id="x1-10001r20"></a>
+<center class="math-display" >
+<img 
+src="index24x.png" alt="&#x03B4;[i,j] = f(KS [i,j])
+" class="math-display" ></center></td><td class="equation-label">(20)</td></tr></table>
+<!--l. 1507--><p class="nopar" >
+<!--l. 1509--><p class="noindent" >where <span 
+class="cmmi-10x-x-109">KS</span>[<span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-10x-x-109">,x</span><sub><span 
+class="cmmi-8">j</span></sub>] is the KS-distance between the <span 
+class="cmmi-10x-x-109">i</span><sup class="textsuperscript"><span 
+class="cmr-10">th</span></sup> and <span 
+class="cmmi-10x-x-109">j</span><sup class="textsuperscript"><span 
+class="cmr-10">th</span></sup> sample and <span 
+class="cmmi-10x-x-109">f </span>is a monotonic transformation,
+which is shown as a step-function. The Shepard plot allows the user to visually assess the goodness-of-fit of
+the MDS configuration. This can be further quantified using the &#8216;stress&#8217; parameter:
+<table 
+class="equation"><tr><td><a 
+ id="x1-10002r21"></a>
+<center class="math-display" >
+<img 
+src="index25x.png" alt="    &#x2211;  &#x2211;      &#x2211;   &#x2211;
+S =   (d[i,j]- &#x03B4;[i,j])2/   (d[i,j])2
+ i  j       i  j
+" class="math-display" ></center></td><td class="equation-label">(21)</td></tr></table>
+<!--l. 1518--><p class="nopar" >
+<!--l. 1520--><p class="noindent" >The lower the stress, the better the fit. For moderately sized datasets, stress values should be less than 10%
+(<a 
+href="#Xkruskal1978">Kruskal and Wish</a>, <a 
+href="#Xkruskal1978">1978</a>). For larger datasets, a higher dimensional solution may be necessary, using the
+optional parameter <span 
+class="cmtt-10x-x-109">k </span>of <span 
+class="cmtt-10x-x-109">provenance</span>&#8217;s <span 
+class="cmtt-10x-x-109">MDS </span>function (<a 
+href="#Xstephan2018">Stephan et al.</a>, <a 
+href="#Xstephan2018">2018</a>).
+                    
+                    
+<!--l. 1526--><p class="noindent" >
+<h3 class="sectionHead"><span class="titlemark">11   </span> <a 
+ id="x1-1100011"></a>&#8216;Big&#8217; data</h3>
+<!--l. 1535--><p class="noindent" ><span 
+class="cmbxti-10x-x-109">Summary: </span><span 
+class="cmti-10x-x-109">The tutorial jointly analyses 16 Namibian samples using five different provenance proxies,</span>
+<span 
+class="cmti-10x-x-109">including all three data classes introduced in Sections</span><span 
+class="cmti-10x-x-109"> </span><a 
+href="#x1-30003"><span 
+class="cmti-10x-x-109">3</span><!--tex4ht:ref: sec:compositional --></a><span 
+class="cmti-10x-x-109">-</span><a 
+href="#x1-50005"><span 
+class="cmti-10x-x-109">5</span><!--tex4ht:ref: sec:distributional --></a><span 
+class="cmti-10x-x-109">. It introduces Procrustes Analysis and 3-way MDS</span>
+<span 
+class="cmti-10x-x-109">as two alternative ways to extract geologically meaningful information from these multivariate &#8216;big&#8217;</span>
+<span 
+class="cmti-10x-x-109">dataset.</span><br 
+class="newline" />
+<!--l. 1537--><p class="noindent" >It is increasingly common for provenance studies to combine compositional, point-counting or
+distributional datasets together (<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>, <a 
+href="#Xvermeesch2015">2015</a>; <a 
+href="#Xrittner2016">Rittner et al.</a>, <a 
+href="#Xrittner2016">2016</a>). Linking together
+bulk sediment data, heavy mineral data and single mineral data requires not only a sensible
+statistical approach, but also a full appraisal of the impact of mineral fertility and heavy mineral
+concentration in eroded bedrock and derived clast sediment (<a 
+href="#Xgarzanti2007">Garzanti and And&ograve;</a>, <a 
+href="#Xgarzanti2007">2007</a>; <a 
+href="#Xmalusa2016">Malus&agrave;
+et al.</a>, <a 
+href="#Xmalusa2016">2016</a>; <a 
+href="#Xmalusa2019b">Malus&agrave; and Garzanti</a>, <a 
+href="#Xmalusa2019b">2019</a>). Assuming that this appraisal has been made, this Section
+introduces some exploratory data analysis tools that can reveal meaningful structure in complex
+datasets.
+<!--l. 1548--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-11002x1">The full Namib Sand Sea study that we have used as a test case for this tutorial comprises no
+ fewer than five datasets (see <a href='supplement.zip'>Online Supplement</a>):
+ <!--l. 1554--><p class="noindent" >
+  <ol  class="enumerate2" >
+  <li 
+  class="enumerate" id="x1-11004x1">Major element concentrations (<span 
+class="cmtt-10x-x-109">Major.csv</span>, compositional data)
+  </li>
+  <li 
+  class="enumerate" id="x1-11006x2">Trace element concentrations (<span 
+class="cmtt-10x-x-109">Trace.csv</span>, compositional data)
+  </li>
+  <li 
+  class="enumerate" id="x1-11008x3">Bulk petrography (<span 
+class="cmtt-10x-x-109">PT.csv</span>, point-counting data)
+  </li>
+  <li 
+  class="enumerate" id="x1-11010x4">Heavy mineral compositions (<span 
+class="cmtt-10x-x-109">HM.csv</span>, point-counting data)
+  </li>
+  <li 
+  class="enumerate" id="x1-11012x5">Detrital zircon U-Pb data (<span 
+class="cmtt-10x-x-109">DZ.csv</span>, distributional data)</li></ol>
+ <!--l. 1562--><p class="noindent" >All these datasets can be visualised together in a single summary plot:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-42">
+library(provenance)
+  <br /># major elements:
+  <br />Major &lt;- read.compositional('Major.csv')
+  <br /># trace elements:
+  <br />Trace &lt;- read.compositional('Trace.csv')
+  <br /># petrography:
+  <br />QFL &lt;- read.counts('PT.csv',colmap=cm.colors)
+  <br /># heavy minerals:
+  <br />HM &lt;- read.counts('HM.csv',colmap=cm.colors)
+  <br /># zircon U-Pb dates:
+  <br />DZ &lt;- read.distributional('DZ.csv')
+  <br /># generate the plot:
+  <br />summaryplot(Major,Trace,QFL,HM,KDEs(DZ),ncol=2)
+</pre>
+ <!--l. 1580--><p class="nopar" >
+ <!--l. 1583--><p class="noindent" >where <span 
+class="cmtt-10x-x-109">Major</span>, <span 
+class="cmtt-10x-x-109">Trace</span>, <span 
+class="cmtt-10x-x-109">QFL </span>and <span 
+class="cmtt-10x-x-109">HM </span>are shown as pie charts (the latter two with a different colour map
+ than the former), and <span 
+class="cmtt-10x-x-109">DZ </span>as KDEs. Adding <span 
+class="cmtt-10x-x-109">DZ </span>instead of <span 
+class="cmtt-10x-x-109">KDEs(DZ) </span>would plot the U-Pb age
+ distributions as histograms.
+ </li>
+ <li 
+  class="enumerate" id="x1-11014x2">The entire Namib dataset comprises 16,125 measurements spanning five dimensions worth of
+ compositional, distributional and point-counting information. This complex dataset, which
+ may be rightfully described by the internet-era term of &#8216;Big Data&#8217;, is extremely difficult
+ to interpret by mere visual inspection of the pie charts and KDEs. Applying MDS/PCA
+ to each of the five individual datasets helps but presents the analyst with a multi-plot
+ comparison problem. <span 
+class="cmtt-10x-x-109">provenance </span>implements two methods to address this issue (<a 
+href="#Xvermeesch2015">Vermeesch and
+ Garzanti</a>, <a 
+href="#Xvermeesch2015">2015</a>). The first of these is called &#8216;Procrustes Analysis&#8217; (<a 
+href="#Xgower1975">Gower</a>, <a 
+href="#Xgower1975">1975</a>). Given a number of
+ MDS configurations, this technique uses a combination of transformations (translation,
+ rotation, scaling and reflection) to extract a &#8216;consensus view&#8217; for all the data considered
+ together:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-43">
+proc &lt;- procrustes(Major,Trace,QFL,HM,DZ)
+  <br />plot(proc)
+</pre>
+ <!--l. 1607--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-11016x3">Alternatively, &#8216;3-way MDS&#8217; is an extension of &#8216;ordinary&#8217; (2-way) MDS that accepts 3-dimensional
+ dissimilarity matrices as input. <span 
+class="cmtt-10x-x-109">provenance </span>includes the most common implementation of this class of
+ algorithms, which is known as &#8216;INdividual Difference SCALing&#8217; or INDSCAL (<a 
+href="#Xcarroll1970">Carroll and
+ Chang</a>, <a 
+href="#Xcarroll1970">1970</a>; <a 
+href="#Xdeleeuw2009">de Leeuw and Mair</a>, <a 
+href="#Xdeleeuw2009">2009</a>):
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-44">
+scal &lt;- indscal(Major,Trace,QFL,HM,DZ)
+  <br />plot(scal)
+</pre>
+ <!--l. 1620--><p class="nopar" >
+ <!--l. 1623--><p class="noindent" >This code produces two pieces of graphical output (Figure <a 
+href="#x1-110176">6<!--tex4ht:ref: fig:INDSCAL --></a>). The &#8216;group configuration&#8217; represents the
+ consensus view of all provenance proxies considered together. This looks very similar to
+ the Procrustes configuration created by the previous code snippet. The second piece of
+ graphical information displays not the samples but the provenance proxies. It shows the
+ weights that each of the proxies attach to the horizontal and vertical axis of the group
+ configuration.<br 
+class="newline" />
+ <!--l. 1632--><p class="noindent" >For example, the heavy mineral compositions of the Namib desert sands can be (approximately)
+ described by stretching the group configuration vertically by a factor of 1.9, whilst shrinking it
+ horizontally by a factor of 0.4. In contrast, the configurations of the major and trace element
+ compositions for the same samples are obtained by shrinking the group configuration vertically by a
+ factor 0.8, and stretching it horizontally by a factor of 1.3. Thus, by combining these weights with
+ the group configuration yields five &#8216;private spaces&#8217; that aim to fit each of the individual
+ datasets.<br 
+class="newline" />
+ <!--l. 1642--><p class="noindent" >INDSCAL group configurations are not rotation-invariant, in contrast with the 2-way MDS
+ configurations of Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:MDS --></a>. This gives geological meaning to the horizontal and vertical axes of the
+ plot. For example, samples N1 and N10 plot along a vertical line on the group configuration, indicating
+ that they have different heavy mineral compositions, but similar major and trace element
+ compositions. On the other hand, samples N4 and N8 plot along a horizontal line, indicating that
+ they have similar major and trace element compositions but contrasting heavy mineral
+ compositions.<br 
+class="newline" />
+ <!--l. 1652--><p class="noindent" >Closer inspection of the weights reveals that the datasets obtained from fractions of specific densities
+ (<span 
+class="cmtt-10x-x-109">HM</span>, <span 
+class="cmtt-10x-x-109">PT </span>and <span 
+class="cmtt-10x-x-109">DZ</span>) attach stronger weights to the vertical axis, whereas those that are determined on bulk
+ sediment (<span 
+class="cmtt-10x-x-109">Major </span>and <span 
+class="cmtt-10x-x-109">Trace</span>) dominate the horizontal direction. Provenance proxies that use bulk
+ sediment are more sensitive to winnowing effects than those that are based on density separates. This
+ leads to the interpretation that the horizontal axis separates samples that have been affected by
+ different degrees of hydraulic sorting, whereas the vertical direction separates samples that have
+ different provenance.
+ </li></ol>
+<!--l. 1665--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                    
+                    
+<a 
+ id="x1-110176"></a>
+                    
+                    
+<!--l. 1666--><p class="noindent" ><center><a href="indscal.png"><img src="indscal.png" alt="PIC" class="snapshot"></a></center>
+<br /> <div class="caption" 
+><span class="id">Figure 6: </span><span  
+class="content">Output of the 3-way MDS analysis of Namib desert sand. Left: the group configurations
+shows the salient similarities and differences between samples as a &#8216;map&#8217; in which similar samples
+plot close together and dissimilar samples plot far apart. Right: the weights for each of the five data
+sources show that provenance proxies that are performed on the bulk sediment (e.g. the major and
+trace element compositions) attach a stronger weight to the X- than the y-axis. In contrast, proxies
+that are determined on specific density fractions (e.g. zircons, heavy minerals, or quartz &#8211; feldspar
+&#8211; lithics), attach stronger weight to the Y-axis. One geological interpretation of these dimensions is
+that samples that horizontally separated from each other on the group configuration (e.g., N4 and N8)
+have experienced hydraulic sorting, whereas samples that are vertically separated (e.g., N1 and N10)
+have a different provenance.</span></div><!--tex4ht:label?: x1-110176 -->
+                    
+                    
+<!--l. 1683--><p class="noindent" ></div><hr class="endfigure">
+<h3 class="sectionHead"><span class="titlemark">12   </span> <a 
+ id="x1-1200012"></a>Summary, conclusions and outlook</h3>
+<!--l. 1688--><p class="noindent" >The statistical toolbox implemented by the <span 
+class="cmtt-10x-x-109">provenance </span>package is neither comprehensive nor at the cutting
+edge of exploratory data analysis. PCA, MDS, CA, and KDEs are tried and tested methods that have been
+around for many decades. Nothing new is presented here and that is intentional. This paper makes the point
+that even the most basic statistical parameters such as the arithmetic mean and standard deviation cannot
+be blindly applied to geological data (<a 
+href="#Xchayes1949">Chayes</a>, <a 
+href="#Xchayes1949">1949</a>, <a 
+href="#Xchayes1960">1960</a>; <a 
+href="#Xweltje2002">Weltje</a>, <a 
+href="#Xweltje2002">2002</a>). Great care must be taken when
+applying established techniques to sedimentary provenance data such as chemical compositions, point-counts
+or U-Pb age distributions. Given the difficulty of using even the simplest of methods correctly, geologists
+may want to think twice before exploring more complicated methods, or inventing entirely new
+ones.<br 
+class="newline" />
+<!--l. 1702--><p class="noindent" >The set of tutorials presented in this paper did not cover all aspects of statistical provenance
+analysis. Doing so would fill a book rather than a paper. Some additional topics for such a book
+could include (1) supervised and unsupervised learning algorithms such as cluster analysis and
+discriminant analysis, which can group samples into formal groups (<a 
+href="#Xbhatia1983">Bhatia</a>, <a 
+href="#Xbhatia1983">1983</a>; <a 
+href="#Xbhatia1986">Bhatia and
+Crook</a>, <a 
+href="#Xbhatia1986">1986</a>; <a 
+href="#Xarmstrong2005">Armstrong-Altrin and Verma</a>, <a 
+href="#Xarmstrong2005">2005</a>; <a 
+href="#Xtolosana2018">Tolosana-Delgado et al.</a>, <a 
+href="#Xtolosana2018">2018</a>); (2) the physical and
+chemical processes that affect the composition of sediment from &#8216;source to sink&#8217; (<a 
+href="#Xallen2008">Allen</a>, <a 
+href="#Xallen2008">2008</a>; <a 
+href="#Xweltje2004">Weltje and von
+Eynatten</a>, <a 
+href="#Xweltje2004">2004</a>; <a 
+href="#Xweltje2012">Weltje</a>, <a 
+href="#Xweltje2012">2012</a>; <a 
+href="#Xgarzanti2018a">Garzanti et al.</a>, <a 
+href="#Xgarzanti2018a">2018</a>); and (3) quality checks and corrections that must be
+made to ensure that the data reveal meaningful provenance trends rather than sampling effects (<a 
+href="#Xgarzanti2007">Garzanti and
+And&ograve;</a>, <a 
+href="#Xgarzanti2007">2007</a>; <a 
+href="#Xgarzanti2009">Garzanti et al.</a>, <a 
+href="#Xgarzanti2009">2009</a>; <a 
+href="#Xresentini2013">Resentini et al.</a>, <a 
+href="#Xresentini2013">2013</a>; <a 
+href="#Xmalusa2013">Malus&agrave; et al.</a>, <a 
+href="#Xmalusa2013">2013</a>; <a 
+href="#Xmalusa2019b">Malus&agrave; and
+Garzanti</a>, <a 
+href="#Xmalusa2019b">2019</a>).<br 
+class="newline" />
+<!--l. 1716--><p class="noindent" >The paper introduced three distinct classes of provenance data. Compositional, point-counting and
+distributional data each require different statistical treatment. Multi-sample collections of these data can be
+visualised by Multidimensional Scaling, using different dissimilarity measures (Table <a 
+href="#x1-120011">1<!--tex4ht:ref: tab:3types --></a>). Distributional data
+can be compared using the Kolmogorov-Smirnov statistic or related dissimilarity measures, and plugged
+straight into an MDS algorithm for further inspection. Compositional data such as chemical concentrations
+can be visualised by conventional &#8216;normal&#8217; statistics after logratio transformation. The Euclidean distance in
+logratio space is called the Aitchison distance in compositional data space. Classical MDS using this distance
+is equivalent to Principal Component Analysis. Finally, point-counting data combine aspects of compositional
+data analysis with multinomial sampling statistics. The Chi-square distance is the natural way to
+quantify the dissimilarity between multiple point-counting samples. MDS analysis using the
+Chi-square distance is equivalent to Correspondence Analysis, which is akin to PCA for categorical
+data.<br 
+class="newline" />
+<!--l. 1735--><p class="noindent" >However, there are some provenance proxies that do not easily fit into these three categories. <span 
+class="cmti-10x-x-109">Varietal studies</span>
+using the chemical composition of single grains of heavy minerals combine aspects of compositional and
+distributional data (<a 
+href="#Xmorton1991">Morton</a>, <a 
+href="#Xmorton1991">1991</a>; <a 
+href="#Xtolosana2018">Tolosana-Delgado et al.</a>, <a 
+href="#Xtolosana2018">2018</a>). Similarly, paired U-Pb ages and
+Hf-isotope compositions in zircon (<a 
+href="#Xgerdes2006">Gerdes and Zeh</a>, <a 
+href="#Xgerdes2006">2006</a>) do not easily fit inside the distributional data class
+described above. Using the tools provided by the <span 
+class="cmtt-10x-x-109">provenance </span>package, such data can be processed by
+procustes analysis or 3-way MDS (Section <a 
+href="#x1-1100011">11<!--tex4ht:ref: sec:bigdata --></a>). Thus, U-Pb and <span 
+class="cmmi-10x-x-109">&#x03F5;</span>(Hf)-distributions, say, could be entered
+into the <span 
+class="cmtt-10x-x-109">indscal </span>function as separate entities. However by doing so the single-grain link between the two
+datasets would be lost. Alternative approaches may be pursued to address this issue, and new
+dissimilarity measures could be developed for this hybrid data type. Matrix decomposition may be a
+way forward in this direction (<a 
+href="#Xpaatero1994">Paatero and Tapper</a>, <a 
+href="#Xpaatero1994">1994</a>; <a 
+href="#Xbloemsma2012">Bloemsma et al.</a>, <a 
+href="#Xbloemsma2012">2012</a>; <a 
+href="#Xmartinez2017">Martinez
+et al.</a>, <a 
+href="#Xmartinez2017">2017</a>).
+<div class="table">
+                    
+                    
+<!--l. 1752--><p class="noindent" ><a 
+ id="x1-120011"></a><hr class="float"><div class="float" 
+>
+                    
+                    
+ <div class="caption" 
+><span class="id">Table 1: </span><span  
+class="content">A summary of the three types of provenance data introduced in this paper along with a
+suitable dissimilarity measure and its corresponding ordination technique.</span></div><!--tex4ht:label?: x1-120011 -->
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-1"  
+class="td11">data type </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-2"  
+class="td11">dissimilarity measure</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-3"  
+class="td11">ordination technique     </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-1"  
+class="td11">compositional </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-2"  
+class="td11">Aitchison   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-3"  
+class="td11">Principal Component Analysis</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-1"  
+class="td11">point-counting</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-2"  
+class="td11">Chi-square      </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-3"  
+class="td11">Correspondence Analysis   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-1"  
+class="td11">distributional </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-2"  
+class="td11">Kolmogorov-Smirnov</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-3"  
+class="td11">Multidimensional Scaling   </td></tr></table></div>
+                    
+                    
+</div><hr class="endfloat" />
+</div>
+<h3 class="likesectionHead"><a 
+ id="x1-1300012"></a>Appendix: an introduction to <span 
+class="cmtt-10x-x-109">R</span></h3>
+<!--l. 1770--><p class="noindent" ><span 
+class="cmtt-10x-x-109">R </span>is an increasingly popular programming language for scientific data processing. It is similar in scope and
+purpose to <span 
+class="cmtt-10x-x-109">Matlab </span>but is available free of charge on any operating system at <span 
+class="cmtt-10x-x-109">http://r-project.org</span>. A
+number of different graphical user interfaces (GUIs) are available for <span 
+class="cmtt-10x-x-109">R</span>, the most popular of which are <span 
+class="cmtt-10x-x-109">RGui</span>,
+<span 
+class="cmtt-10x-x-109">RStudio</span>, <span 
+class="cmtt-10x-x-109">RCommander </span>and <span 
+class="cmtt-10x-x-109">Tinn-R</span>. For this tutorial, however, the simple command line console
+suffices.
+<!--l. 1779--><p class="noindent" >
+ <ol  class="enumerate1" >
+ <li 
+  class="enumerate" id="x1-13002x1">First, do some arithmetic:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-45">
+&gt; 1 + 1
+  <br />&gt; sqrt(2)
+  <br />&gt; exp(log(10))
+  <br />&gt; 13%%5
+</pre>
+ <!--l. 1788--><p class="nopar" >
+ <!--l. 1791--><p class="noindent" >where the &#8216;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&gt;</span></span></span>&#8217; symbol marks the command prompt.
+ </li>
+ <li 
+  class="enumerate" id="x1-13004x2">You can use the arrow to assign a value to a variable. Note that the arrow can point both
+ ways:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-46">
+&gt; foo &lt;- 2
+  <br />&gt; 4 -&gt; bar
+  <br />&gt; foo &lt;- foo*bar
+</pre>
+ <!--l. 1801--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13006x3">Create a sequence of values:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-47">
+&gt; myvec &lt;- c(2,4,6,8)
+  <br />&gt; myvec*2
+</pre>
+ <!--l. 1810--><p class="nopar" >
+ <!--l. 1813--><p class="noindent" >Query the third value of the vector:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-48">
+&gt; myvec[3]
+</pre>
+ <!--l. 1818--><p class="nopar" >
+ <!--l. 1821--><p class="noindent" >Change the third value of the vector:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-49">
+&gt; myvec[3] &lt;- 100
+</pre>
+ <!--l. 1826--><p class="nopar" >
+ <!--l. 1829--><p class="noindent" >Change the second and the third value of the vector:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-50">
+&gt; myvec[c(2,3)] &lt;- c(100,101)
+</pre>
+ <!--l. 1834--><p class="nopar" >
+ <!--l. 1837--><p class="noindent" >Create a vector of 1, 2, 3, ..., 10:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-51">
+&gt; seq(from=1,to=10,by=1)
+</pre>
+ <!--l. 1842--><p class="nopar" >
+ <!--l. 1845--><p class="noindent" >Equivalently:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-52">
+&gt; seq(1,10,1)
+  <br />&gt; seq(1,10)
+  <br />&gt; seq(to=10,by=1,from=1)
+  <br />&gt; seq(to=10)
+  <br />&gt; 1:10
+</pre>
+ <!--l. 1854--><p class="nopar" >
+ <!--l. 1857--><p class="noindent" >Create a 10-element vector of twos:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-53">
+&gt; rep(2,10)
+</pre>
+ <!--l. 1862--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13008x4">Create a 2 <span 
+class="cmsy-10x-x-109">&#x00D7; </span>4 matrix of ones:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-54">
+&gt; mymat &lt;- matrix(1,nrow=2,ncol=4)
+</pre>
+ <!--l. 1870--><p class="nopar" >
+ <!--l. 1873--><p class="noindent" >Change the third value in the first column of <span 
+class="cmtt-10x-x-109">mymat </span>to 3:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-55">
+&gt; mymat[1,3] &lt;- 3
+</pre>
+ <!--l. 1878--><p class="nopar" >
+ <!--l. 1881--><p class="noindent" >Change the entire second column of <span 
+class="cmtt-10x-x-109">mymat </span>to 2:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-56">
+&gt; mymat[,2] &lt;- 2
+</pre>
+ <!--l. 1886--><p class="nopar" >
+ <!--l. 1889--><p class="noindent" >The transpose of <span 
+class="cmtt-10x-x-109">mymat</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-57">
+&gt; t(mymat)
+</pre>
+ <!--l. 1894--><p class="nopar" >
+ <!--l. 1897--><p class="noindent" >Element-wise multiplication (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">*</span></span></span>) vs. matrix multiplication (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">%*%</span></span></span>):
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-58">
+&gt; mymat * mymat
+  <br />&gt; mymat %*% t(mymat)
+</pre>
+ <!--l. 1904--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13010x5">Lists are used to store more complex data objects:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-59">
+&gt; mylist &lt;- list(v=myvec, m=mymat, nine=9)
+  <br />&gt; mylist$v
+</pre>
+ <!--l. 1913--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13012x6">Plot the first against the second row of <span 
+class="cmtt-10x-x-109">mymat</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-60">
+&gt; plot(mymat[1,],mymat[2,],type='p')
+</pre>
+ <!--l. 1921--><p class="nopar" >
+ <!--l. 1924--><p class="noindent" >Draw lines between the points shown on the existing plot:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-61">
+&gt; lines(mymat[1,],mymat[2,])
+</pre>
+ <!--l. 1929--><p class="nopar" >
+ <!--l. 1932--><p class="noindent" >Create a new plot with red lines but no points:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-62">
+&gt; plot(mymat[1,],mymat[2,],type='l',col='red')
+</pre>
+ <!--l. 1937--><p class="nopar" >
+ <!--l. 1940--><p class="noindent" >Use a 1:1 aspect ratio for the X- and Y-axis:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-63">
+&gt; plot(mymat[1,],mymat[2,],type='l',col='red',asp=1)
+</pre>
+ <!--l. 1945--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13014x7">Save the currently active plot as a vector-editable <span 
+class="cmtt-10x-x-109">.pdf </span>file:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-64">
+&gt; dev.copy2pdf(file="trigonometry.pdf")
+</pre>
+ <!--l. 1954--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13016x8">To learn more about a function, type &#8216;<span 
+class="cmtt-10x-x-109">help</span>&#8217; or &#8216;<span 
+class="cmtt-10x-x-109">?</span>&#8217;:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-65">
+&gt; help(c)
+  <br />&gt; ?plot
+</pre>
+ <!--l. 1964--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13018x9">It is also possible to define one&#8217;s own functions:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-66">
+&gt; cube &lt;- function(n){
+  <br />&gt; return(n^3)
+  <br />&gt; }
+</pre>
+ <!--l. 1974--><p class="nopar" >
+ <!--l. 1977--><p class="noindent" >Using the newly created function:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-67">
+&gt; cube(2)
+  <br />&gt; result &lt;- cube(3)
+</pre>
+ <!--l. 1983--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13020x10">Create some random (uniform) numbers:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-68">
+&gt; rand.num &lt;- runif(100)
+  <br />&gt; hist(rand.num)
+</pre>
+ <!--l. 1992--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13022x11">List all the variables in the current workspace:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-69">
+&gt; ls()
+</pre>
+ <!--l. 2000--><p class="nopar" >
+ <!--l. 2003--><p class="noindent" >Remove all the variables in the current workspace:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-70">
+&gt; rm(list=ls())
+</pre>
+ <!--l. 2008--><p class="nopar" >
+ <!--l. 2011--><p class="noindent" >To get and set the working directory:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-71">
+&gt; getwd()
+  <br />&gt; setwd("/path/to/a/valid/directory")
+</pre>
+ <!--l. 2017--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13024x12">Collect the following commands in a file called &#8216;<span 
+class="cmtt-10x-x-109">myscript.R</span>&#8217;. Note that this text does not contain
+ any &#8216;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&gt;</span></span></span>&#8217;-symbols because it is not entered at the command prompt but in a separate text
+ editor:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-72">
+# the 'print' function is needed to show intermediate
+  <br /># results when running commands from an .R file
+  <br />print(pi)
+</pre>
+ <!--l. 2030--><p class="nopar" >
+ <!--l. 2033--><p class="noindent" >This code can be run by going back to the command prompt (hence the &#8216;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">&gt;</span></span></span>&#8217; in the next box) and
+ typing:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-73">
+&gt; source("myscript.R")
+</pre>
+ <!--l. 2039--><p class="nopar" >
+ <!--l. 2042--><p class="noindent" >This should result in the number <span 
+class="cmmi-10x-x-109">&#x03C0; </span>being printed to the console. Note that everything that follows the
+ &#8216;<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10x-x-109">#</span></span></span>&#8217;-symbol was ignored by <span 
+class="cmtt-10x-x-109">R</span>.
+ </li>
+ <li 
+  class="enumerate" id="x1-13026x13">Conditional statements. Add the following function to <span 
+class="cmtt-10x-x-109">myscript.R</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-74">
+toss &lt;- function(){
+  <br />    if (runif(1)&gt;0.5){
+  <br />    print("head")
+  <br />    } else {
+  <br />    print("tail")
+  <br />    }
+  <br />}
+</pre>
+ <!--l. 2058--><p class="nopar" >
+ <!--l. 2061--><p class="noindent" >Save and run at the command prompt:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-75">
+&gt; source('myscript.R')
+  <br />&gt; toss()
+</pre>
+ <!--l. 2067--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13028x14">Loops. Add the following function to <span 
+class="cmtt-10x-x-109">myscript.R</span>:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-76">
+fibonnaci &lt;- function(n){
+  <br />    if (n &lt; 3) { stop('n must be at least 3') }
+  <br />    # seed the output vector with 0 and 1:
+  <br />    s &lt;- c(0,1)
+  <br />    # loop through all numbers from 3 to n:
+  <br />    for (i in 3:n){
+  <br />    s[i] &lt;- s[i-1] + s[i-2]
+  <br />    }
+  <br />    return(s)
+  <br />}
+</pre>
+ <!--l. 2084--><p class="nopar" >
+ <!--l. 2087--><p class="noindent" >Save and run at the command prompt to calculate the first 20 numbers in the Fibonnaci
+ series:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-77">
+&gt; source('myscript.R')
+  <br />&gt; fibonnaci(20)
+</pre>
+ <!--l. 2094--><p class="nopar" >
+ </li>
+ <li 
+  class="enumerate" id="x1-13030x15">Arguably the greatest power of <span 
+class="cmtt-10x-x-109">R </span>is the availability of 10,000 <span 
+class="cmti-10x-x-109">packages </span>that provide additional
+ functionality. For example the <span 
+class="cmtt-10x-x-109">compositions </span>package implements a number of statistical tools for
+ compositional data analysis (<a 
+href="#Xvandenboogaart2008">Van den Boogaart and Tolosana-Delgado</a>, <a 
+href="#Xvandenboogaart2008">2008</a>, <a 
+href="#Xvandenboogaart2013">2013</a>). To install this
+ package:
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-78">
+&gt; install.packages('compositions')
+</pre>
+ <!--l. 2107--><p class="nopar" >
+ <!--l. 2110--><p class="noindent" >Use the newly installed package to plot the built-in <span 
+class="cmtt-10x-x-109">SkyeAFM </span>dataset, which contains the Al<sub class="textsubscript"><span 
+class="cmr-10">2</span></sub>O<sub class="textsubscript"><span 
+class="cmr-10">3</span></sub> &#8211; FeO &#8211;
+ MgO compositions of 23 aphyric lavas from the isle of Skye.
+                    
+                    
+<pre class="prettyprint lang-r" id="verbatim-79">
+library(compositions) # load the package into memory
+  <br />dat &lt;- data(SkyeAFM)  # load the Skye lava dataset
+  <br />AFMcomp &lt;- acomp(dat) # enforce the constant sum constraint
+  <br />plot(AFMcomp)     # plot as a ternary diagram
+</pre>
+ <!--l. 2120--><p class="nopar" >
+ <!--l. 2123--><p class="noindent" >Note that the <span 
+class="cmtt-10x-x-109">plot() </span>function has been <span 
+class="cmti-10x-x-109">overloaded </span>for compositional data.
+ </li></ol>
+<!--l. 2128--><p class="noindent" >
+<h3 class="likesectionHead"><a 
+ id="x1-1400012"></a>Acknowledgments</h3>
+<!--l. 2130--><p class="noindent" >This paper evolved from a set of lecture notes for an iCRAG workshop in sedimentary provenance analysis at
+NUI Galway. The author would like to thank Sergio And&ograve; for inviting him to contribute to this Special Issue.
+The manuscript greatly benefited from three critical but constructive reviews.
+<!--l. 2139--><p class="noindent" >
+<h3 class="likesectionHead"><a 
+ id="x1-1500012"></a>References</h3>
+<!--l. 2139--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1983"></a><span class="bibsp">   </span></span>Aitchison, J. Principal component analysis of compositional data. <span 
+class="cmti-10x-x-109">Biometrika</span>, 70(1):57&#8211;65, 1983.
+  doi: 10.1093/biomet/70.1.57.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">   </span></span>Aitchison, J. <span 
+class="cmti-10x-x-109">The statistical analysis of compositional data</span>. London, Chapman and Hall, 1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1957"></a><span class="bibsp">   </span></span>Aitchison, J. and Brown, J. A.  <span 
+class="cmti-10x-x-109">The lognormal distribution</span>.  Cambridge Univ. Press, 1957.  ISBN
+  0521040116.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xallen2008"></a><span class="bibsp">   </span></span>Allen, P. A. From landscapes into geological history. <span 
+class="cmti-10x-x-109">Nature</span>, 451(7176):274, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xarmstrong2005"></a><span class="bibsp">   </span></span>Armstrong-Altrin, J. and Verma, S. P.  Critical evaluation of six tectonic setting discrimination
+  diagrams using geochemical data of Neogene sediments from known tectonic settings. <span 
+class="cmti-10x-x-109">Sedimentary</span>
+  <span 
+class="cmti-10x-x-109">Geology</span>, 177(1-2):115&#8211;129, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbhatia1983"></a><span class="bibsp">   </span></span>Bhatia, M. R. Plate tectonics and geochemical composition of sandstones. <span 
+class="cmti-10x-x-109">The Journal of Geology</span>,
+  91(6):611&#8211;627, 1983.
+                    
+                    
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbhatia1986"></a><span class="bibsp">   </span></span>Bhatia, M. R. and Crook, K. A. Trace element characteristics of graywackes and tectonic setting
+  discrimination of sedimentary basins.  <span 
+class="cmti-10x-x-109">Contributions to mineralogy and petrology</span>, 92(2):181&#8211;193,
+  1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbloemsma2015"></a><span class="bibsp">   </span></span>Bloemsma,  M. R.  and  Weltje,  G. J.    Reduced-rank  approximations  to  spectroscopic  and
+  compositional   data:   A   universal   framework   based   on   log-ratios   and   counting   statistics.
+  <span 
+class="cmti-10x-x-109">Chemometrics and Intelligent Laboratory Systems</span>, 142:206&#8211;218, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbloemsma2012"></a><span class="bibsp">   </span></span>Bloemsma, M., Zabel, M., Stuut, J., Tjallingii, R., Collins, J., and Weltje, G. J.  Modelling the
+  joint variability of grain size and chemical composition in sediments.  <span 
+class="cmti-10x-x-109">Sedimentary Geology</span>, 280:
+  135&#8211;148, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbotev2010"></a><span class="bibsp">   </span></span>Botev, Z. I., Grotowski, J. F., and Kroese, D. P. Kernel density estimation via diffusion. <span 
+class="cmti-10x-x-109">Annals</span>
+  <span 
+class="cmti-10x-x-109">of Statistics</span>, 38:2916&#8211;2957, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcarroll1970"></a><span class="bibsp">   </span></span>Carroll, J. D. and Chang, J.-J. Analysis of individual differences in multidimensional scaling via
+  an N-way generalization of &#8216;Eckart-Young&#8217; decomposition. <span 
+class="cmti-10x-x-109">Psychometrika</span>, 35(3):283&#8211;319, 1970.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchayes1949"></a><span class="bibsp">   </span></span>Chayes, F. On ratio correlation in petrography. <span 
+class="cmti-10x-x-109">The Journal of Geology</span>, 57(3):239&#8211;254, 1949.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchayes1960"></a><span class="bibsp">   </span></span>Chayes, F. On correlation between variables of constant sum. <span 
+class="cmti-10x-x-109">Journal of Geophysical research</span>, 65
+  (12):4185&#8211;4193, 1960.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcox2000"></a><span class="bibsp">   </span></span>Cox, T. F. and Cox, M. A. <span 
+class="cmti-10x-x-109">Multidimensional scaling</span>. CRC Press, 2000.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdeleeuw2009"></a><span class="bibsp">   </span></span>de Leeuw, J. and Mair, P.  Multidimensional scaling using majorization: The R package smacof.
+  <span 
+class="cmti-10x-x-109">Journal of Statistical Software</span>, 31(3):1&#8211;30, 2009. URL <span 
+class="cmtt-10x-x-109">http://www.jstatsoft.org/v31/i03/</span>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdegraaff2003"></a><span class="bibsp">   </span></span>DeGraaff-Surpless,  K.,  Mahoney,  J.,  Wooden,  J.,  and  McWilliams,  M.   Lithofacies  control  in
+  detrital zircon provenance studies: Insights from the Cretaceous Methow basin, southern Canadian
+  Cordillera. <span 
+class="cmti-10x-x-109">Geological Society of America Bulletin</span>, 115:899&#8211;915, 2003. doi: 10.1130/B25267.1.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdutoit1986"></a><span class="bibsp">   </span></span>DuToit, S. H., Steyn, A. G. W., and Stumpf, R. H. <span 
+class="cmti-10x-x-109">Graphical exploratory data analysis</span>. Springer
+  Science &amp; Business Media, 1986.
+                    
+                    
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfedo2003"></a><span class="bibsp">   </span></span>Fedo, C., Sircombe, K., and Rainbird, R.   Detrital zircon analysis of the sedimentary record.
+  <span 
+class="cmti-10x-x-109">Reviews in mineralogy and geochemistry</span>, 53:277&#8211;303, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfeller1948"></a><span class="bibsp">   </span></span>Feller, W. On the Kolmogorov-Smirnov limit theorems for empirical distributions. <span 
+class="cmti-10x-x-109">The Annals of</span>
+  <span 
+class="cmti-10x-x-109">Mathematical Statistics</span>, 19:177&#8211;189, 1948.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990a"></a><span class="bibsp">   </span></span>Galbraith, R. F.  The radial plot: graphical assessment of spread in ages.  <span 
+class="cmti-10x-x-109">Nuclear Tracks and</span>
+  <span 
+class="cmti-10x-x-109">Radiation Measurements</span>, 17:207&#8211;214, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1988"></a><span class="bibsp">   </span></span>Galbraith, R. Graphical display of estimates having differing standard errors. <span 
+class="cmti-10x-x-109">Technometrics</span>, 30
+  (3):271&#8211;281, 1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2007"></a><span class="bibsp">   </span></span>Garzanti,  E.  and  And&ograve;,  S.   Heavy-mineral  concentration  in  modern  sands:  implications  for
+  provenance  interpretation.    In  Mange,  M.  and  Wright,  D.,  editors,  <span 
+class="cmti-10x-x-109">Heavy  Minerals  in  Use,</span>
+  <span 
+class="cmti-10x-x-109">Developments in Sedimentology Series 58</span>, pages 517&#8211;545. Elsevier, Amsterdam, 2007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2009"></a><span class="bibsp">   </span></span>Garzanti,  E.,  And&ograve;,  S.,  and  Vezzoli,  G.   Grain-size  dependence  of  sediment  composition  and
+  environmental bias in provenance studies. <span 
+class="cmti-10x-x-109">Earth and Planetary Science Letters</span>, 277:422&#8211;432, 2009.
+  doi: 10.1016/j.epsl.2008.11.007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2019"></a><span class="bibsp">   </span></span>Garzanti, E. Petrographic classification of sand and sandstone. <span 
+class="cmti-10x-x-109">Earth-Science Reviews</span>, 2019. doi:
+  10.1016/j.earscirev.2018.12.014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2018a"></a><span class="bibsp">   </span></span>Garzanti, E., Dinis, P., Vermeesch, P., And&ograve;, S., Hahn, A., Huvi, J., Limonta, M., Padoan, M.,
+  Resentini, A., Rittner, M., and Vezzoli, G.  Sedimentary processes controlling ultralong cells of
+  littoral transport: Placer formation and termination of the Orange sand highway in southern Angola.
+  <span 
+class="cmti-10x-x-109">Sedimentology</span>, 65(2):431&#8211;460, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgehrels2011"></a><span class="bibsp">   </span></span>Gehrels, G.  Detrital zircon U-Pb geochronology: Current methods and new opportunities.  In
+  Busby, C. and Azor, A., editors, <span 
+class="cmti-10x-x-109">Tectonics of sedimentary basins: Recent advances</span>, chapter 2, pages
+  45&#8211;62. Wiley Online Library, 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgerdes2006"></a><span class="bibsp">   </span></span>Gerdes, A. and Zeh, A.  Combined U&#8211;Pb and Hf isotope LA-(MC-) ICP-MS analyses of detrital
+  zircons: comparison with SHRIMP and new constraints for the provenance and age of an Armorican
+  metasediment in Central Germany. <span 
+class="cmti-10x-x-109">Earth and Planetary Science Letters</span>, 249(1-2):47&#8211;61, 2006.
+                    
+                    
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgower1975"></a><span class="bibsp">   </span></span>Gower, J. C. Generalized procrustes analysis. <span 
+class="cmti-10x-x-109">Psychometrika</span>, 40(1):33&#8211;51, 1975.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreenacre1984"></a><span class="bibsp">   </span></span>Greenacre, M. J. <span 
+class="cmti-10x-x-109">Theory and applications of correspondence analysis</span>. Academic Press, 1984.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkenkel2006"></a><span class="bibsp">   </span></span>Kenkel, N. On selecting an appropriate multivariate analysis. <span 
+class="cmti-10x-x-109">Canadian Journal of Plant Science</span>,
+  86(3):663&#8211;676, 2006.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkenkel1986"></a><span class="bibsp">   </span></span>Kenkel, N. C. and Orl&oacute;ci, L. Applying metric and nonmetric multidimensional scaling to ecological
+  studies: some new results. <span 
+class="cmti-10x-x-109">Ecology</span>, pages 919&#8211;928, 1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1978"></a><span class="bibsp">   </span></span>Kruskal, J. B. and Wish, M.  <span 
+class="cmti-10x-x-109">Multidimensional scaling</span>, volume 07-011 of <span 
+class="cmti-10x-x-109">Sage University Paper</span>
+  <span 
+class="cmti-10x-x-109">series on Quantitative Application in the Social Sciences</span>.   Sage Publications, Beverly Hills and
+  London, 1978.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlemaitre2002"></a><span class="bibsp">   </span></span>Le Maitre, R. W., Streckeisen, A., Zanettin, B., Le Bas, M., Bonin, B., and Bateman, P. <span 
+class="cmti-10x-x-109">Igneous</span>
+  <span 
+class="cmti-10x-x-109">rocks:  a  classification  and  glossary  of  terms:  recommendations  of  the  International  Union  of</span>
+  <span 
+class="cmti-10x-x-109">Geological Sciences Subcommission on the Systematics of Igneous Rocks</span>.  Cambridge University
+  Press, 2002. ISBN 9780511535581.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmalusa2019b"></a><span class="bibsp">   </span></span>Malus&agrave;, M. G. and Garzanti, E. The sedimentology of detrital thermochronology. In <span 
+class="cmti-10x-x-109">Fission-Track</span>
+  <span 
+class="cmti-10x-x-109">Thermochronology and its Application to Geology</span>, pages 123&#8211;143. Springer, 2019.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmalusa2013"></a><span class="bibsp">   </span></span>Malus&agrave;, M. G., Carter, A., Limoncelli, M., Villa, I. M., and Garzanti, E.  Bias in detrital zircon
+  geochronology and thermochronometry. <span 
+class="cmti-10x-x-109">Chemical Geology</span>, 359:90&#8211;107, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmalusa2016"></a><span class="bibsp">   </span></span>Malus&agrave;, M. G., Resentini, A., and Garzanti, E.  Hydraulic sorting and mineral fertility bias in
+  detrital geochronology. <span 
+class="cmti-10x-x-109">Gondwana Research</span>, 31:1&#8211;19, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmartin2003"></a><span class="bibsp">   </span></span>Mart&iacute;n-Fern&aacute;ndez, J. A., Barcel&oacute;-Vidal, C., and Pawlowsky-Glahn, V.  Dealing with zeros and
+  missing values in compositional data sets using nonparametric imputation. <span 
+class="cmti-10x-x-109">Mathematical Geology</span>,
+  35(3):253&#8211;278, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmartinez2017"></a><span class="bibsp">   </span></span>Martinez,  W. L.,  Martinez,  A. R.,  and  Solka,  J.   <span 
+class="cmti-10x-x-109">Exploratory  data  analysis  with  MATLAB</span>.
+  Chapman and Hall/CRC, 2017. ISBN 9781498776066.
+                    
+                    
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmazumder2017"></a><span class="bibsp">   </span></span>Mazumder, R.  Sediment provenance.  In Mazumder, R., editor, <span 
+class="cmti-10x-x-109">Sediment Provenance: Influence</span>
+  <span 
+class="cmti-10x-x-109">on Compositional Change From Source to Sink</span>, pages 1&#8211;4. Elsevier, 2017.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmorton1991"></a><span class="bibsp">   </span></span>Morton, A. C. Geochemical studies of detrital heavy minerals and their application to provenance
+  research. In Morton, A., Todd, S., and Haughton, P. D. W., editors, <span 
+class="cmti-10x-x-109">Developments in Sedimentary</span>
+  <span 
+class="cmti-10x-x-109">Provenance Studies</span>, volume 57, pages 31&#8211;45. Geological Society of London, 1991.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmorton1999"></a><span class="bibsp">   </span></span>Morton, A. C. and Hallsworth, C. R.  Processes controlling the composition of heavy mineral
+  assemblages in sandstones. <span 
+class="cmti-10x-x-109">Sedimentary Geology</span>, 124(1-4):3&#8211;29, 1999.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnesbitt1989"></a><span class="bibsp">   </span></span>Nesbitt, H. and Young, G. M.  Formation and diagenesis of weathering profiles.  <span 
+class="cmti-10x-x-109">The Journal of</span>
+  <span 
+class="cmti-10x-x-109">Geology</span>, 97(2):129&#8211;147, 1989.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpaatero1994"></a><span class="bibsp">   </span></span>Paatero, P. and Tapper, U. Positive matrix factorization: A non-negative factor model with optimal
+  utilization of error estimates of data values. <span 
+class="cmti-10x-x-109">Environmetrics</span>, 5(2):111&#8211;126, 1994.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpawlowsky2015"></a><span class="bibsp">   </span></span>Pawlowsky-Glahn,  V.,  Egozcue,  J. J.,  and  Tolosana-Delgado,  R.    <span 
+class="cmti-10x-x-109">Modeling  and  analysis  of</span>
+  <span 
+class="cmti-10x-x-109">compositional data</span>. John Wiley &amp; Sons, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpearson1901"></a><span class="bibsp">   </span></span>Pearson, K. On lines and planes of closest fit to systems of points in space. <span 
+class="cmti-10x-x-109">The London, Edinburgh,</span>
+  <span 
+class="cmti-10x-x-109">and Dublin Philosophical Magazine and Journal of Science</span>, 2(11):559&#8211;572, 1901.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xresentini2013"></a><span class="bibsp">   </span></span>Resentini,  A.,  Malus&agrave;,  M. G.,  and  Garzanti,  E.   MinSORTING:  An  Excel&#174; worksheet  for
+  modelling mineral grain-size distribution in sediments, with application to detrital geochronology
+  and provenance studies. <span 
+class="cmti-10x-x-109">Computers &amp; Geosciences</span>, 59:90&#8211;97, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xripley2002"></a><span class="bibsp">   </span></span>Ripley, B.  Modern applied statistics with S.  <span 
+class="cmti-10x-x-109">Statistics and Computing, fourth ed. Springer, New</span>
+  <span 
+class="cmti-10x-x-109">York</span>, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrittner2016"></a><span class="bibsp">   </span></span>Rittner, M., Vermeesch, P., Carter, A., Bird, A., Stevens, T., Garzanti, E., And&ograve;, S., Vezzoli, G.,
+  Dutt, R., Xu, Z., and Lu, H.  The provenance of Taklamakan desert sand.  <span 
+class="cmti-10x-x-109">Earth and Planetary</span>
+  <span 
+class="cmti-10x-x-109">Science Letters</span>, 437:127 &#8211; 137, 2016. ISSN 0012-821X.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshepard1962"></a><span class="bibsp">   </span></span>Shepard, R. N.  The analysis of proximities: multidimensional scaling with an unknown distance
+  function. i. <span 
+class="cmti-10x-x-109">Psychometrika</span>, 27(2):125&#8211;140, 1962.
+                    
+                    
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsilverman1986"></a><span class="bibsp">   </span></span>Silverman, B. <span 
+class="cmti-10x-x-109">Density Estimation for Statistics and Data Analysis</span>. Chapman and Hall, London,
+  1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstephan2018"></a><span class="bibsp">   </span></span>Stephan,  T.,  Kroner,  U.,  and  Romer,  R. L.   The  pre-orogenic  detrital  zircon  record  of  the
+  peri-gondwanan crust. <span 
+class="cmti-10x-x-109">Geological Magazine</span>, pages 1&#8211;27, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtolosana2018"></a><span class="bibsp">   </span></span>Tolosana-Delgado,  R.,  von  Eynatten,  H.,  Krippner,  A.,  and  Meinhold,  G.    A  multivariate
+  discrimination  scheme  of  detrital  garnet  chemistry  for  use  in  sedimentary  provenance  analysis.
+  <span 
+class="cmti-10x-x-109">Sedimentary Geology</span>, 375:14&#8211;26, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtorgerson1952"></a><span class="bibsp">   </span></span>Torgerson, W. S. Multidimensional scaling: I. Theory and method. <span 
+class="cmti-10x-x-109">Psychometrika</span>, 17(4):401&#8211;419,
+  1952.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtukey1977"></a><span class="bibsp">   </span></span>Tukey,   J. W.  <span 
+class="cmti-10x-x-109">Exploratory  data  analysis</span>,   volume 2.  Addison-Wesley,   1977.  ISBN
+  978-0-201-07616-5.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvandenboogaart2008"></a><span class="bibsp">   </span></span>Van den Boogaart, K. G. and Tolosana-Delgado, R.   &#8220;Compositions&#8221;: a unified R package to
+  analyze compositional data. <span 
+class="cmti-10x-x-109">Computers &amp; Geosciences</span>, 34(4):320&#8211;338, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvandenboogaart2013"></a><span class="bibsp">   </span></span>Van den Boogaart, K. G. and Tolosana-Delgado, R. <span 
+class="cmti-10x-x-109">Analyzing compositional data with R</span>, volume
+  122 of <span 
+class="cmti-10x-x-109">UseR!  </span>Springer, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvanderplas1965"></a><span class="bibsp">   </span></span>Van der Plas, L. and Tobi, A. A chart for judging the reliability of point counting results. <span 
+class="cmti-10x-x-109">American</span>
+  <span 
+class="cmti-10x-x-109">Journal of Science</span>, 263(1):87&#8211;90, 1965.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007a"></a><span class="bibsp">   </span></span>Vermeesch, P.  Quantitative geomorphology of the White Mountains (California) using detrital
+  apatite fission track thermochronology. <span 
+class="cmti-10x-x-109">Journal of Geophysical Research (Earth Surface)</span>, 112(F11):
+  3004, 2007. doi: 10.1029/2006JF000671.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">   </span></span>Vermeesch, P.   On the visualisation of detrital age distributions.   <span 
+class="cmti-10x-x-109">Chemical Geology</span>, 312-313:
+  190&#8211;194, 2012. doi: 10.1016/j.chemgeo.2012.04.021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2013"></a><span class="bibsp">   </span></span>Vermeesch, P.   Multi-sample comparison of detrital age distributions.   <span 
+class="cmti-10x-x-109">Chemical Geology</span>, 341:
+  140&#8211;146, 2013.
+                    
+                    
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018b"></a><span class="bibsp">   </span></span>Vermeesch, P.   Dissimilarity measures in detrital geochronology.   <span 
+class="cmti-10x-x-109">Earth-Science Reviews</span>, 178:
+  310&#8211;321, 2018a. doi: 10.1016/j.earscirev.2017.11.027.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018d"></a><span class="bibsp">   </span></span>Vermeesch, P.  Statistical models for point-counting data.  <span 
+class="cmti-10x-x-109">Earth and Planetary Science Letters</span>,
+  501:1&#8211;7, 2018b.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015"></a><span class="bibsp">   </span></span>Vermeesch, P. and Garzanti, E. Making geological sense of &#8216;Big Data&#8217; in sedimentary provenance
+  analysis. <span 
+class="cmti-10x-x-109">Chemical Geology</span>, 409:20&#8211;27, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2016a"></a><span class="bibsp">   </span></span>Vermeesch, P., Resentini, A., and Garzanti, E.  An R package for statistical provenance analysis.
+  <span 
+class="cmti-10x-x-109">Sedimentary Geology</span>, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xweltje2012"></a><span class="bibsp">   </span></span>Weltje, G. J.  Quantitative models of sediment generation and provenance: state of the art and
+  future developments. <span 
+class="cmti-10x-x-109">Sedimentary Geology</span>, 280:4&#8211;20, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xweltje2004"></a><span class="bibsp">   </span></span>Weltje, G. J. and von Eynatten, H.  Quantitative provenance analysis of sediments: review and
+  outlook. <span 
+class="cmti-10x-x-109">Sedimentary Geology</span>, 171(1-4):1&#8211;11, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xweltje2002"></a><span class="bibsp">   </span></span>Weltje, G.   Quantitative analysis of detrital modes: statistically rigorous confidence regions in
+  ternary diagrams and their use in sedimentary petrology. <span 
+class="cmti-10x-x-109">Earth-Science Reviews</span>, 57(3-4):211 &#8211; 253,
+  2002. ISSN 0012-8252. doi: DOI: 10.1016/S0012-8252(01)00076-9.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyoung1938"></a><span class="bibsp">   </span></span>Young, G. and Householder, A. S. Discussion of a set of points in terms of their mutual distances.
+  <span 
+class="cmti-10x-x-109">Psychometrika</span>, 3(1):19&#8211;22, 1938.
+</p>
+  </div>
+</body></html> 

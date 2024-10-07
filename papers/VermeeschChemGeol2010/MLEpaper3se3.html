@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Overdispersed compositions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,3 --> 
+<meta name="src" content="MLEpaper3.tex"> 
+<meta name="date" content="2010-01-08 16:32:00"> 
+<link rel="stylesheet" type="text/css" href="MLEpaper3.css"> 
+</head><body 
+>
+   <!--l. 164--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se4.html" >next</a>] [<a 
+href="MLEpaper3se2.html" >prev</a>] [<a 
+href="MLEpaper3se2.html#tailMLEpaper3se2.html" >prev-tail</a>] [<a 
+href="#tailMLEpaper3se3.html">tail</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se3.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x4-30003"></a>Overdispersed compositions</h3>
+<!--l. 167--><p class="noindent" >U, Th and He form a ternary system, can be plotted on a ternary diagram, and are subject to the peculiar
+mathematics of the ternary dataspace. The &#8216;central age&#8217; is calculated from the geometric mean composition of a
+U-Th-(Sm)-He dataset and is a more accurate estimator of the true age than the arithmetic mean
+(<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>). This concept can be easily generalised to four dimensions and this section will, therefore, discuss
+the case of (U-Th-Sm)/He dating. Given n single grain measurements [U<sup><span 
+class="cmmi-7">i</span></sup>, Th<sup><span 
+class="cmmi-7">i</span></sup>, Sm<sup><span 
+class="cmmi-7">i</span></sup>, He<sup><span 
+class="cmmi-7">i</span></sup>] (1<span 
+class="cmsy-10">&#x2264;</span>i<span 
+class="cmsy-10">&#x2264;</span>n), the calculation
+of a central age involves a bijection from the four-dimensional &#8216;simplex&#8217; to a three-dimensional Euclidean
+logratio-space (<a 
+href="MLEpaper3li2.html#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xaitchison1986">1986</a>;&#x00A0;<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3001r8"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper318x.png" alt="      (   i )         (    i)         (    i)
+vi = ln -[U-]  , wi = ln -[Th-]  , xi = ln [Sm-]
+       [Hei]           [Hei]           [Hei]
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 184--><p class="nopar" >
+<!--l. 186--><p class="indent" >   The central age is obtained by calculating the average logratio composition (<span class="overline"><span 
+class="cmmi-10">v</span></span>, <span class="overline"><span 
+class="cmmi-10">w</span></span>, <span class="overline"><span 
+class="cmmi-10">x</span></span>) and converting it to a
+geometric mean composition using the inverse logratio transformation:
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3002r9"></a>
+   <center class="math-display" >
+
+<img 
+src="MLEpaper319x.png" alt="--         ev        ---        ew-
+U =  v----w---x---, Th = -v---w----x---
+     e + e + ex + 1       e + e  + e + 1
+Sm- = ------e-------, He = ------1-------
+      ev + ew + ex + 1      ev + ew + ex + 1
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 199--><p class="nopar" >
+<!--l. 201--><p class="indent" >   This result is then plugged into the U-Th-(Sm)-He age equation. <br 
+class="newline" />
+<!--l. 204--><p class="indent" >   The problem of averaging the compositions is very similar to the problem of averaging the ages
+discussed in the previous section. Given n logratio measurements X<sup><span 
+class="cmmi-7">i</span></sup> and their (co)variances <span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> (1 <span 
+class="cmsy-10">&#x2264; </span>i <span 
+class="cmsy-10">&#x2264;</span>
+n):
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3003r10"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper320x.png" alt="       vi             &#x03C3;2vi    covvi,wi  covvi,xi
+Xi &#x2261; [wi ] and Ei &#x2261; [covvi,wi  &#x03C3;2wi   covwi,xi]
+       xi            covvi,xi  covwi,xi    &#x03C3;2xi
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 228--><p class="nopar" >
+<!--l. 230--><p class="noindent" >our aim is to develop an algorithm to calculate the weighted mean M and its covariance matrix &#x03A3;:
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3004r11"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper321x.png" alt="      v             &#x03C3;2v    covv,w-  covv,x
+M &#x2261; [ w-] and &#x03A3; &#x2261; [covv,w   &#x03C3;2w-   covw,x ]
+      x-           covv,x  covw,x   &#x03C3;2x
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 252--><p class="nopar" >
+<!--l. 254--><p class="indent" >   In principle, the logratio covariances (E<sup><span 
+class="cmmi-7">i</span></sup>) could be directly determined from the raw mass spectrometer
+measurements. In practice, however, they are calculated from the individual concentrations by linear
+approximation, using Equation 21 of <a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>), which assumes that the errors on the individual
+
+concentrations are Normal and independently distributed. Rather than propagating the internal and
+external uncertainties separately, as done by <a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>), this section introduces a weighted
+mean algorithm that considers both factors simultaneously, using a multivariate generalisation of the
+one-dimensional maximum likelihood algorithm developed in Section <a 
+href="MLEpaper3se2.html#x3-20002">2<!--tex4ht:ref: sec:ages --></a>. First, redefine the MSWD in matrix
+form:
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3005r12"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper322x.png" alt="             n
+M SW D  = 1-&#x2211;  (Xi - M )&#x2032;[Ei]-1(Xi - M )
+          df i=1
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 271--><p class="nopar" >
+<!--l. 273--><p class="noindent" >where df = d <span 
+class="cmsy-10">&#x00D7; </span>(n - 1) is the number of degrees of freedom of the problem, with d = 2 for (U-Th)/He and d = 3 for
+(U-Th-Sm)/He dating. Note that, because the variability of Sm does not contribute as much to the age dispersion as
+that of U and Th, it is better to use only the latter two elements for the MSWD calculation. If MSWD <span 
+class="cmsy-10">&#x226B; </span>1, the
+data are overdispersed and, in analogy with Equation <a 
+href="MLEpaper3se2.html#x3-2001r2">2<!--tex4ht:ref: eq:norm1 --></a>, we will assume that the observations come from a
+multivariate normal distribution of the form
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3006r13"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper323x.png" alt="Xi ~ N (M,Ei + &#x039E;)
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 285--><p class="nopar" >
+<!--l. 287--><p class="noindent" >where M denotes the mean and &#x039E; is the overdispersion. The log-likelihood is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3007r14"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper324x.png" alt="        n (                                               )
+L = - 1&#x2211;    (Xi - M&#x02C6;)&#x2032;[Ei + &#x039E;&#x02C6;]-1(Xi - &#x02C6;M )+ ln |Ei + &#x02C6;&#x039E;|+ 3 ln(2&#x03C0;)
+      2 i=1
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 297--><p class="nopar" >
+<!--l. 299--><p class="noindent" ><img 
+src="MLEpaper325x.png" alt="M&#x02C6;"  class="circ" > and <img 
+src="MLEpaper326x.png" alt="&#x02C6;&#x039E;"  class="circ" > can be found by solving the following system of non-linear equations:
+<!--l. 302--><p class="indent" >
+<table 
+class="align">
+               <tr><td 
+class="align-odd"></td>               <td 
+class="align-even"><img 
+src="MLEpaper327x.png" alt="&#x2202;L--
+&#x2202;M&#x02C6;"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup>[(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper328x.png" alt=" &#x02C6;
+&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>(<span 
+class="cmmi-10">X</span><sup><span 
+class="cmmi-7">i</span></sup> <span 
+class="cmsy-10">-</span><img 
+src="MLEpaper329x.png" alt=" &#x02C6;
+M"  class="circ" >)] = 0</td>                                                           <td 
+class="align-label"><a 
+ id="x4-3008r15"></a>(15)
+               </td></tr><tr><td 
+class="align-odd"></td>               <td 
+class="align-even"><img 
+src="MLEpaper330x.png" alt="&#x2202;L
+&#x2202;&#x02C6;&#x039E;-"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup>[(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper331x.png" alt="&#x02C6;&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>(<span 
+class="cmmi-10">X</span><sup><span 
+class="cmmi-7">i</span></sup> <span 
+class="cmsy-10">-</span><img 
+src="MLEpaper332x.png" alt="M&#x02C6;"  class="circ" >)(<span 
+class="cmmi-10">X</span><sup><span 
+class="cmmi-7">i</span></sup> <span 
+class="cmsy-10">-</span><img 
+src="MLEpaper333x.png" alt="M&#x02C6;"  class="circ" >)<span 
+class="cmsy-10">&#x2032;</span>(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper334x.png" alt="&#x02C6;&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup> <span 
+class="cmsy-10">- </span>(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper335x.png" alt="&#x02C6;&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>] = 0</td>                              <td 
+class="align-label"><a 
+ id="x4-3009r16"></a>(16)               </td></tr></table>
+<!--l. 312--><p class="indent" >   The covariance matrix <img 
+src="MLEpaper336x.png" alt="&#x02C6;
+&#x03A3;"  class="circ" > of the weighted mean <img 
+src="MLEpaper337x.png" alt=" &#x02C6;
+M"  class="circ" > is obtained by inverting the Fisher Information
+matrix, i.e. the matrix of the negative expected values of the second derivatives of the log-likelihood
+function:
+   <table 
+class="equation"><tr><td><a 
+ id="x4-3010r17"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper338x.png" alt="    &#x2211;n
+&#x02C6;&#x03A3; = [  (Ei +&#x039E;&#x02C6;)- 1]-1
+     i=1
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 324--><p class="nopar" >
+   <!--l. 326--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se4.html" >next</a>] [<a 
+href="MLEpaper3se2.html" >prev</a>] [<a 
+href="MLEpaper3se2.html#tailMLEpaper3se2.html" >prev-tail</a>] [<a 
+href="MLEpaper3se3.html" >front</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se3.html" >up</a>] </p></div>
+<!--l. 326--><p class="indent" >   <a 
+ id="tailMLEpaper3se3.html"></a>  
+</body></html> 

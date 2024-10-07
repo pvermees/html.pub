@@ -1,0 +1,13 @@
+ <div class="verbatim" id="verbatim-37">
+<span 
+class="cmtt-10x-x-109">conf3</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;isoMDS(eurodist)$points</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">plot(conf3,type='n',asp=1)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">text(conf3,labels=labels(eurodist))</span>
+</div>
+<!--l. 1172--><p class="nopar" >                                                                               

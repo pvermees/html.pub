@@ -1,0 +1,20 @@
+ <div class="verbatim" id="verbatim-66">
+<span 
+class="cmtt-10x-x-109">&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;cube</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;function(n){</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;return(n^3)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">&#x003E;</span><span 
+class="cmtt-10x-x-109">&#x00A0;}</span>
+</div>
+<!--l. 1976--><p class="nopar" >                                                                               

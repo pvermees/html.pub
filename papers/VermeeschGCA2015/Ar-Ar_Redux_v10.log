@@ -1,0 +1,754 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2014.11.26)  2 OCT 2015 16:28
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx"\HCode\def\HCo
+de"##1"{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.
+{\g@addto@macro\@documentclasshook{\RequirePackage[#1,html]{tex4ht}}\let\HCode\
+documentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname
+ tex4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{
+\HCode}{\documentstyle[tex4ht]}}}\makeatother\HCode .a.b.c.\input  Ar-Ar_Redux_
+v10.tex
+(./Ar-Ar_Redux_v10.tex
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/generic/tex4ht/tex4ht.sty
+version 2008-10-27-17:23
+Package: tex4ht 
+--------------------------------------
+--- Note --- for _ at preamble, use the command line option `early_'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ at preamble, use the command line option `early^'
+--------------------------------------
+\tmp:toks=\toks14
+)
+(/usr/share/texmf/tex/generic/tex4ht/usepackage.4ht
+version 2009-05-21-09:32
+)
+(/usr/share/texlive/texmf-dist/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip43
+)
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip44
+\bibsep=\skip45
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count87
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip46
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks15
+\ex@=\dimen103
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count88
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count89
+\leftroot@=\count90
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count91
+\DOTSCASE@=\count92
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count93
+\c@MaxMatrixCols=\count94
+\dotsspace@=\muskip10
+\c@parentequation=\count95
+\dspbrk@lvl=\count96
+\tag@help=\toks16
+\row@=\count97
+\column@=\count98
+\maxfields@=\count99
+\andhelp@=\toks17
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks18
+\multlinegap=\skip47
+\multlinetaggap=\skip48
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen112
+\Gin@req@width=\dimen113
+)
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count100
+\output=\toks21
+\linenoprevgraf=\count101
+\linenumbersep=\dimen114
+\linenumberwidth=\dimen115
+\c@linenumber=\count102
+\c@pagewiselinenumber=\count103
+\c@LN@truepage=\count104
+\c@internallinenumber=\count105
+\c@internallinenumbers=\count106
+\quotelinenumbersep=\dimen116
+\bframerule=\dimen117
+\bframesep=\dimen118
+\bframebox=\box28
+LaTeX Info: Redefining \\ on input line 3056.
+)
+(/usr/share/texmf/tex/generic/tex4ht/tex4ht.4ht
+version 2009-01-07-07:11
+--------------------------------------
+--- Note --- for additional information, use the command line option `info'
+--------------------------------------
+
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (/usr/share/texmf/tex/generic/tex4ht/tex4ht.sty
+version 2008-10-27-17:23
+
+--- needs --- tex4ht Ar-Ar_Redux_v10 ---
+\tmp:cnt=\count107
+\openout15 = `Ar-Ar_Redux_v10.tmp'.
+
+(./Ar-Ar_Redux_v10.tmp)
+\tmp:dim=\skip49
+--------------------------------------
+--- Note --- for XML code, use the command line option `xml' or `xhtml'
+--------------------------------------
+ (./Ar-Ar_Redux_v10.xref)
+\:refout=\write3
+\openout3 = `Ar-Ar_Redux_v10.xref'.
+
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- to remove the <?xml version=...?> processing instruction use the c
+ommand line option `no-VERSION'
+--------------------------------------
+--------------------------------------
+--- Note --- to remove the DOCTYPE declaration use the command line option `no-
+DOCTYPE'
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+--------------------------------------
+--- Note --- for marking of the base font, use the command line option `fonts+'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for non active _, use the command line option `no_'
+--------------------------------------
+--------------------------------------
+--- Note --- for _ of catcode 13, use the command line option `_13'
+--------------------------------------
+--------------------------------------
+--- Note --- for non active ^, use the command line option `no^'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ of catcode 13, use the command line option `^13'
+--------------------------------------
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for alternative charset, use the command line option `charset=...'
+
+--------------------------------------
+--------------------------------------
+--- Note --- to ignore CSS font decoration, use the `NoFonts' command line opti
+on
+--------------------------------------
+--------------------------------------
+--- Note --- for jpg bitmaps of pictures, use the `jpg' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for gif bitmaps of pictures, use the `gif' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for content and toc in 2 frames, use the command line option `fram
+es'
+--------------------------------------
+--------------------------------------
+--- Note --- for content, toc, and footnotes in 3 frames, use the command line 
+option `frames-fn'
+--------------------------------------
+--------------------------------------
+--- Note --- for file extension name xht, use the command line option `xht'
+--------------------------------------
+TeX4ht package options: html
+--------------------------------------
+--- Note --- to ignore CSS code, use the command line option `-css
+--------------------------------------
+--------------------------------------
+--- Note --- for inline CSS code, use the command line option `css-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for pop ups on mouse over, use the command line option `mouseover'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for addressing images in a subdirectory, use the command line opti
+on `imgdir:.../'
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+\:tokwrite=\toks22
+\:tokpage=\toks23
+--------------------------------------
+--- Note --- for back links to toc, use the command line option `sections+'
+--------------------------------------
+--------------------------------------
+--- Note --- for linear crosslinks of pages, use the command line option `next'
+
+--------------------------------------
+\openout15 = `Ar-Ar_Redux_v10.4ct'.
+
+\:tocout=\write4
+\openout4 = `Ar-Ar_Redux_v10.4tc'.
+
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/latex.4ht
+version 2009-05-21-09:32
+--------------------------------------
+--- Note --- for links into captions, instead of float heads, use the command l
+ine option `refcaption'
+--------------------------------------
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- For mini tocs immediately aftter the header use the command line o
+ption `minitoc<'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements with valued data, use the command lin
+e option `enumerate+'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements li's with value attributes, use the c
+ommand line option `enumerate-'
+--------------------------------------
+--------------------------------------
+--- Note --- for CSS2 code, use the command line option `css2'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial tabular, use the command line option `pic-tabular'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap fbox'es, use the command line option `pic-fbox'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap framebox'es, use the command line option `pic-framebox'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for inline footnotes use command line option `fn-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for tracing of latex font commands, use the command line option `f
+onts'
+--------------------------------------
+--------------------------------------
+--- Note --- for width specifications of tabular p entries, use the `p-width' c
+ommand line option or a configuration similar to \Configure{HColWidth}{\HCode{ 
+style="width:\HColWidth"}}
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for pictorial eqnarray, use the command line option `pic-eqnarray'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ environments, use the command line option `pic
+-m' (not recommended!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ and $$...$$ environments with latex alt, use t
+he command line option `pic-m+' (not safe!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+))
+(/usr/share/texmf/tex/generic/tex4ht/fontmath.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/article.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for automatic sectioning pagination, use the command line option `
+1', `2', `3', '4', '5', '6', or '7'
+--------------------------------------
+--------------------------------------
+--- Note --- for files named derived from section titles, use the command line 
+option `sec-filename'
+--------------------------------------
+--------------------------------------
+--- Note --- for i-columns index, use the command line option `index=i' (e.g., 
+index=2)
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/natbib.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsmath.4ht
+version 2009-05-21-09:32
+\tmp:muskip=\muskip11
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amstext.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsbsy.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsopn.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amssymb.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsfonts.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/graphicx.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/graphics.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- if included graphics are of degraded quality, try the command line
+ options `graphics-num' or `graphics-'. The `num' should provide the density of
+ pixels in the bitmaps (e.g., 110). 
+--------------------------------------
+--------------------------------------
+--- Note --- for key dimensions try the option `Gin-dim'; for key dimensions wh
+en bounding box is unavailable try `Gin-dim+'; neither is recommended
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/dvips.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/lineno.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+
+l.36925 --- TeX4ht warning --- The line numbers are commented out. To reintrodu
+ce them, use the \Configure{lineno}{...}{...} command ---
+) (/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)) (./Ar-Ar_Redux_v10.aux)
+\openout1 = `Ar-Ar_Redux_v10.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+--- file Ar-Ar_Redux_v10.css ---
+LaTeX Font Info:    Try loading font information for U+msa on input line 10.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 10.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+] [2]
+l. 54 Writing Ar-Ar_Redux_v10.idv[1] (Ar-Ar_Redux_v100x.png)
+ [3]
+l. 62 Writing Ar-Ar_Redux_v10.idv[2] (Ar-Ar_Redux_v101x.png)
+l. 74 Writing Ar-Ar_Redux_v10.idv[3] (Ar-Ar_Redux_v102x.png)
+ [4]
+l. 86 Writing Ar-Ar_Redux_v10.idv[4] (Ar-Ar_Redux_v103x.png)
+l. 141 Writing Ar-Ar_Redux_v10.idv[5] (Ar-Ar_Redux_v104x.png)
+
+[5]
+l. 161 Writing Ar-Ar_Redux_v10.idv[6] (Ar-Ar_Redux_v105x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[7] (Ar-Ar_Redux_v106x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[8] (Ar-Ar_Redux_v107x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[9] (Ar-Ar_Redux_v108x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[10] (Ar-Ar_Redux_v109x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[11] (Ar-Ar_Redux_v1010x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[12] (Ar-Ar_Redux_v1011x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[13] (Ar-Ar_Redux_v1012x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[14] (Ar-Ar_Redux_v1013x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[15] (Ar-Ar_Redux_v1014x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[16] (Ar-Ar_Redux_v1015x.png)
+l. 161 Writing Ar-Ar_Redux_v10.idv[17] (Ar-Ar_Redux_v1016x.png)
+ [6]
+l. 203 Writing Ar-Ar_Redux_v10.idv[18] (Ar-Ar_Redux_v1017x.png)
+File: ternary.eps Graphic file (type eps)
+ <ternary.eps>
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 225.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 225.
+
+[7]
+l. 227 Writing Ar-Ar_Redux_v10.idv[19] (Ar-Ar_Redux_v1018x.png)
+l. 254 Writing Ar-Ar_Redux_v10.idv[20] (Ar-Ar_Redux_v1019x.png)
+l. 272 Writing Ar-Ar_Redux_v10.idv[21] (Ar-Ar_Redux_v1020x.png)
+ [8]
+l. 284 Writing Ar-Ar_Redux_v10.idv[22] (Ar-Ar_Redux_v1021x.png)
+l. 313 Writing Ar-Ar_Redux_v10.idv[23] (Ar-Ar_Redux_v1022x.png)
+ [9]
+l. 330 Writing Ar-Ar_Redux_v10.idv[24] (Ar-Ar_Redux_v1023x.png)
+l. 339 Writing Ar-Ar_Redux_v10.idv[25] (Ar-Ar_Redux_v1024x.png)
+ [10]
+l. 377 Writing Ar-Ar_Redux_v10.idv[26] (Ar-Ar_Redux_v1025x.png)
+l. 396 Writing Ar-Ar_Redux_v10.idv[27] (Ar-Ar_Redux_v1026x.png)
+l. 413 Writing Ar-Ar_Redux_v10.idv[28] (Ar-Ar_Redux_v1027x.png)
+ [11]
+l. 422 Writing Ar-Ar_Redux_v10.idv[29] (Ar-Ar_Redux_v1028x.png)
+l. 429 Writing Ar-Ar_Redux_v10.idv[30] (Ar-Ar_Redux_v1029x.png)
+l. 445 Writing Ar-Ar_Redux_v10.idv[31] (Ar-Ar_Redux_v1030x.png)
+ [12]
+l. 452 Writing Ar-Ar_Redux_v10.idv[32] (Ar-Ar_Redux_v1031x.png)
+l. 468 Writing Ar-Ar_Redux_v10.idv[33] (Ar-Ar_Redux_v1032x.png)
+l. 475 Writing Ar-Ar_Redux_v10.idv[34] (Ar-Ar_Redux_v1033x.png)
+ [13]
+l. 483 Writing Ar-Ar_Redux_v10.idv[35] (Ar-Ar_Redux_v1034x.png)
+l. 535 Writing Ar-Ar_Redux_v10.idv[36] (Ar-Ar_Redux_v1035x.png)
+ [14]
+l. 542 Writing Ar-Ar_Redux_v10.idv[37] (Ar-Ar_Redux_v1036x.png)
+l. 564 Writing Ar-Ar_Redux_v10.idv[38] (Ar-Ar_Redux_v1037x.png)
+l. 571 Writing Ar-Ar_Redux_v10.idv[39] (Ar-Ar_Redux_v1038x.png)
+ [15]
+l. 579 Writing Ar-Ar_Redux_v10.idv[40] (Ar-Ar_Redux_v1039x.png)
+l. 595 Writing Ar-Ar_Redux_v10.idv[41] (Ar-Ar_Redux_v1040x.png)
+ [16]
+l. 632 Writing Ar-Ar_Redux_v10.idv[42] (Ar-Ar_Redux_v1041x.png)
+l. 640 Writing Ar-Ar_Redux_v10.idv[43] (Ar-Ar_Redux_v1042x.png)
+l. 642 Writing Ar-Ar_Redux_v10.idv[44] (Ar-Ar_Redux_v1043x.png)
+l. 647 Writing Ar-Ar_Redux_v10.idv[45] (Ar-Ar_Redux_v1044x.png)
+ [17]
+l. 655 Writing Ar-Ar_Redux_v10.idv[46] (Ar-Ar_Redux_v1045x.png)
+l. 675 Writing Ar-Ar_Redux_v10.idv[47] (Ar-Ar_Redux_v1046x.png)
+l. 682 Writing Ar-Ar_Redux_v10.idv[48] (Ar-Ar_Redux_v1047x.png)
+ [18]
+l. 690 Writing Ar-Ar_Redux_v10.idv[49] (Ar-Ar_Redux_v1048x.png)
+l. 706 Writing Ar-Ar_Redux_v10.idv[50] (Ar-Ar_Redux_v1049x.png)
+l. 728 Writing Ar-Ar_Redux_v10.idv[51] (Ar-Ar_Redux_v1050x.png)
+ [19]
+l. 740 Writing Ar-Ar_Redux_v10.idv[52] (Ar-Ar_Redux_v1051x.png)
+l. 756 Writing Ar-Ar_Redux_v10.idv[53] (Ar-Ar_Redux_v1052x.png)
+l. 757 Writing Ar-Ar_Redux_v10.idv[54] (Ar-Ar_Redux_v1053x.png)
+l. 758 Writing Ar-Ar_Redux_v10.idv[55] (Ar-Ar_Redux_v1054x.png)
+l. 766 Writing Ar-Ar_Redux_v10.idv[56] (Ar-Ar_Redux_v1055x.png)
+ [20]
+l. 775 Writing Ar-Ar_Redux_v10.idv[57] (Ar-Ar_Redux_v1056x.png)
+l. 783 Writing Ar-Ar_Redux_v10.idv[58] (Ar-Ar_Redux_v1057x.png)
+l. 797 Writing Ar-Ar_Redux_v10.idv[59] (Ar-Ar_Redux_v1058x.png)
+ [21]
+l. 821 Writing Ar-Ar_Redux_v10.idv[60] (Ar-Ar_Redux_v1059x.png)
+l. 828 Writing Ar-Ar_Redux_v10.idv[61] (Ar-Ar_Redux_v1060x.png)
+l. 842 Writing Ar-Ar_Redux_v10.idv[62] (Ar-Ar_Redux_v1061x.png)
+
+[22]
+l. 849 Writing Ar-Ar_Redux_v10.idv[63] (Ar-Ar_Redux_v1062x.png)
+l. 857 Writing Ar-Ar_Redux_v10.idv[64] (Ar-Ar_Redux_v1063x.png)
+l. 864 Writing Ar-Ar_Redux_v10.idv[65] (Ar-Ar_Redux_v1064x.png)
+ [23]
+l. 879 Writing Ar-Ar_Redux_v10.idv[66] (Ar-Ar_Redux_v1065x.png)
+l. 919 Writing Ar-Ar_Redux_v10.idv[67] (Ar-Ar_Redux_v1066x.png)
+l. 919 Writing Ar-Ar_Redux_v10.idv[68] (Ar-Ar_Redux_v1067x.png)
+ [24]
+l. 933 Writing Ar-Ar_Redux_v10.idv[69] (Ar-Ar_Redux_v1068x.png)
+l. 944 Writing Ar-Ar_Redux_v10.idv[70] (Ar-Ar_Redux_v1069x.png)
+ [25]
+l. 973 Writing Ar-Ar_Redux_v10.idv[71] (Ar-Ar_Redux_v1070x.png)
+l. 977 Writing Ar-Ar_Redux_v10.idv[72] (Ar-Ar_Redux_v1071x.png)
+l. 985 Writing Ar-Ar_Redux_v10.idv[73] (Ar-Ar_Redux_v1072x.png)
+l. 999 Writing Ar-Ar_Redux_v10.idv[74] (Ar-Ar_Redux_v1073x.png)
+ [26]
+l. 1006 Writing Ar-Ar_Redux_v10.idv[75] (Ar-Ar_Redux_v1074x.png)
+l. 1019 Writing Ar-Ar_Redux_v10.idv[76] (Ar-Ar_Redux_v1075x.png)
+l. 1036 Writing Ar-Ar_Redux_v10.idv[77] (Ar-Ar_Redux_v1076x.png)
+ [27]
+l. 1060 Writing Ar-Ar_Redux_v10.idv[78] (Ar-Ar_Redux_v1077x.png)
+l. 1067 Writing Ar-Ar_Redux_v10.idv[79] (Ar-Ar_Redux_v1078x.png)
+ [28]
+l. 1082 Writing Ar-Ar_Redux_v10.idv[80] (Ar-Ar_Redux_v1079x.png)
+l. 1089 Writing Ar-Ar_Redux_v10.idv[81] (Ar-Ar_Redux_v1080x.png)
+l. 1110 Writing Ar-Ar_Redux_v10.idv[82] (Ar-Ar_Redux_v1081x.png)
+ [29]
+l. 1117 Writing Ar-Ar_Redux_v10.idv[83] (Ar-Ar_Redux_v1082x.png)
+l. 1127 Writing Ar-Ar_Redux_v10.idv[84] (Ar-Ar_Redux_v1083x.png)
+l. 1134 Writing Ar-Ar_Redux_v10.idv[85] (Ar-Ar_Redux_v1084x.png)
+ [30]
+l. 1150 Writing Ar-Ar_Redux_v10.idv[86] (Ar-Ar_Redux_v1085x.png)
+l. 1173 Writing Ar-Ar_Redux_v10.idv[87] (Ar-Ar_Redux_v1086x.png)
+l. 1180 Writing Ar-Ar_Redux_v10.idv[88] (Ar-Ar_Redux_v1087x.png)
+ [31]
+l. 1196 Writing Ar-Ar_Redux_v10.idv[89] (Ar-Ar_Redux_v1088x.png)
+l. 1220 Writing Ar-Ar_Redux_v10.idv[90] (Ar-Ar_Redux_v1089x.png)
+l. 1227 Writing Ar-Ar_Redux_v10.idv[91] (Ar-Ar_Redux_v1090x.png)
+ [32]
+l. 1235 Writing Ar-Ar_Redux_v10.idv[92] (Ar-Ar_Redux_v1091x.png)
+l. 1250 Writing Ar-Ar_Redux_v10.idv[93] (Ar-Ar_Redux_v1092x.png)
+ [33]
+l. 1269 Writing Ar-Ar_Redux_v10.idv[94] (Ar-Ar_Redux_v1093x.png)
+l. 1280 Writing Ar-Ar_Redux_v10.idv[95] (Ar-Ar_Redux_v1094x.png)
+l. 1287 Writing Ar-Ar_Redux_v10.idv[96] (Ar-Ar_Redux_v1095x.png)
+ [34]
+l. 1299 Writing Ar-Ar_Redux_v10.idv[97] (Ar-Ar_Redux_v1096x.png)
+l. 1315 Writing Ar-Ar_Redux_v10.idv[98] (Ar-Ar_Redux_v1097x.png)
+l. 1322 Writing Ar-Ar_Redux_v10.idv[99] (Ar-Ar_Redux_v1098x.png)
+ [35]
+l. 1336 Writing Ar-Ar_Redux_v10.idv[100] (Ar-Ar_Redux_v1099x.png)
+l. 1365 Writing Ar-Ar_Redux_v10.idv[101] (Ar-Ar_Redux_v10100x.png)
+ [36]
+l. 1372 Writing Ar-Ar_Redux_v10.idv[102] (Ar-Ar_Redux_v10101x.png)
+l. 1379 Writing Ar-Ar_Redux_v10.idv[103] (Ar-Ar_Redux_v10102x.png)
+l. 1400 Writing Ar-Ar_Redux_v10.idv[104] (Ar-Ar_Redux_v10103x.png)
+
+[37]
+l. 1407 Writing Ar-Ar_Redux_v10.idv[105] (Ar-Ar_Redux_v10104x.png)
+l. 1415 Writing Ar-Ar_Redux_v10.idv[106] (Ar-Ar_Redux_v10105x.png)
+l. 1422 Writing Ar-Ar_Redux_v10.idv[107] (Ar-Ar_Redux_v10106x.png)
+ [38]
+l. 1433 Writing Ar-Ar_Redux_v10.idv[108] (Ar-Ar_Redux_v10107x.png)
+l. 1445 Writing Ar-Ar_Redux_v10.idv[109] (Ar-Ar_Redux_v10108x.png)
+ [39] [40]
+l. 1569 Writing Ar-Ar_Redux_v10.idv[110] (Ar-Ar_Redux_v10109x.png)
+File: errorellipse.eps Graphic file (type eps)
+ <errorellipse.eps> [41]
+l. 1617 Writing Ar-Ar_Redux_v10.idv[111] (Ar-Ar_Redux_v10110x.png)
+l. 1637 Writing Ar-Ar_Redux_v10.idv[112] (Ar-Ar_Redux_v10111x.png)
+ [42]
+l. 1644 Writing Ar-Ar_Redux_v10.idv[113] (Ar-Ar_Redux_v10112x.png)
+l. 1667 Writing Ar-Ar_Redux_v10.idv[114] (Ar-Ar_Redux_v10113x.png)
+l. 1683 Writing Ar-Ar_Redux_v10.idv[115] (Ar-Ar_Redux_v10114x.png)
+ [43]
+l. 1690 Writing Ar-Ar_Redux_v10.idv[116] (Ar-Ar_Redux_v10115x.png)
+l. 1705 Writing Ar-Ar_Redux_v10.idv[117] (Ar-Ar_Redux_v10116x.png)
+l. 1712 Writing Ar-Ar_Redux_v10.idv[118] (Ar-Ar_Redux_v10117x.png)
+ [44]
+l. 1720 Writing Ar-Ar_Redux_v10.idv[119] (Ar-Ar_Redux_v10118x.png)
+l. 1743 Writing Ar-Ar_Redux_v10.idv[120] (Ar-Ar_Redux_v10119x.png)
+ [45]
+l. 1754 Writing Ar-Ar_Redux_v10.idv[121] (Ar-Ar_Redux_v10120x.png)
+l. 1771 Writing Ar-Ar_Redux_v10.idv[122] (Ar-Ar_Redux_v10121x.png)
+l. 1778 Writing Ar-Ar_Redux_v10.idv[123] (Ar-Ar_Redux_v10122x.png)
+ [46]
+l. 1795 Writing Ar-Ar_Redux_v10.idv[124] (Ar-Ar_Redux_v10123x.png)
+l. 1800 Writing Ar-Ar_Redux_v10.idv[125] (Ar-Ar_Redux_v10124x.png)
+l. 1808 Writing Ar-Ar_Redux_v10.idv[126] (Ar-Ar_Redux_v10125x.png)
+l. 1815 Writing Ar-Ar_Redux_v10.idv[127] (Ar-Ar_Redux_v10126x.png)
+ [47]
+l. 1833 Writing Ar-Ar_Redux_v10.idv[128] (Ar-Ar_Redux_v10127x.png)
+
+[48]
+l. 1864 Writing Ar-Ar_Redux_v10.idv[129] (Ar-Ar_Redux_v10128x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[130] (Ar-Ar_Redux_v10129x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[131] (Ar-Ar_Redux_v10130x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[132] (Ar-Ar_Redux_v10131x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[133] (Ar-Ar_Redux_v10132x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[134] (Ar-Ar_Redux_v10133x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[135] (Ar-Ar_Redux_v10134x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[136] (Ar-Ar_Redux_v10135x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[137] (Ar-Ar_Redux_v10136x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[138] (Ar-Ar_Redux_v10137x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[139] (Ar-Ar_Redux_v10138x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[140] (Ar-Ar_Redux_v10139x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[141] (Ar-Ar_Redux_v10140x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[142] (Ar-Ar_Redux_v10141x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[143] (Ar-Ar_Redux_v10142x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[144] (Ar-Ar_Redux_v10143x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[145] (Ar-Ar_Redux_v10144x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[146] (Ar-Ar_Redux_v10145x.png)
+l. 1892 Writing Ar-Ar_Redux_v10.idv[147] (Ar-Ar_Redux_v10146x.png)
+l. 1896 Writing Ar-Ar_Redux_v10.idv[148] (Ar-Ar_Redux_v10147x.png)
+ [49] [50] [51] [52] [53] [54] [55] [56] (./Ar-Ar_Redux_v10.bbl [57]
+[58]) [59] (./Ar-Ar_Redux_v10.aux) ) 
+Here is how much of TeX's memory you used:
+ 6357 strings out of 493305
+ 74764 string characters out of 6139896
+ 267918 words of memory out of 5000000
+ 9685 multiletter control sequences out of 15000+600000
+ 14928 words of font info for 59 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 30i,14n,32p,1054b,517s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Ar-Ar_Redux_v10.dvi (59 pages, 232236 bytes).

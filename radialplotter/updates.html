@@ -1,0 +1,270 @@
+<html>
+<head>
+<title>Update history</title>
+<style type="text/css">
+body {
+font-family: Verdana,Arial,Helvetica,sans-serif;
+font-size: 12px;
+line-height: 14px;
+}
+
+txt {
+font-size: 16px;
+line-height: 20px;
+}
+
+h1 {
+ font-size: 160%;
+ font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+ margin: 10px 0;
+ line-height: 130%;
+}
+</style> 
+</head>
+<body>
+<div style="width: 70%; margin: 0 auto;">
+<table><td  height=30></table>
+<txt>
+<a href="http://sites.google.com/site/pvermees/radialplotter/RadialPlotter.1.0.jar">Version 1.0</a> (Jul 2009)
+<p></p>
+<a href="http://sites.google.com/site/pvermees/radialplotter/RadialPlotter.1.1.jar">Version 1.1</a> (Jan 2010)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Added option for 2&sigma; confidence lines<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Bug fix: It is no longer necessary to save and
+open newly entered data before they can be plotted.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(update based on feedback by Glenn Berger and &Ccedil;a&#287;in 
+G&uuml;ne&#351;)
+<p></p>
+<p></p>
+<a href="http://sites.google.com/site/pvermees/radialplotter/RadialPlotter.1.2.jar">Version 1.2</a> (Feb 2010)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Further improvements to the confidence lines.
+<p></p>
+<p></p>
+<a href="http://sites.google.com/site/pvermees/radialplotter/RadialPlotter.1.3.jar">Version 1.3</a> (Mar 2010)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Important bug fix in the OSL central age algorithm!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- More intelligent placement of decimal points on the radial scale for small values.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Introduction of a maximum likelihood estimator for 'other' data, using a different algorithm than, but yielding the same results as the OSL method.
+<p></p>
+<p></p>
+<a href="http://sites.google.com/site/pvermees/radialplotter/RadialPlotter.1.4.jar">Version 1.4</a> (Jul 2010)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fission track  &chi;<sup>2</sup> p-values are now properly formatted with 2 significant digits.
+<p></p>
+<p></p>
+<a href="http://sites.google.com/site/pvermees/radialplotter/RadialPlotter.2.0.jar">Version 2.0</a> (Sep 2010)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Major overhaul of the program. The 'Luminescence' option has been removed ('Other' option should be
+used instead). Normal mixture models have been added, including an option to automatically choose the number of age components.
+<p></p>
+<p></p>
+Version 2.1 (Apr 2011)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Bug fix: it is now possible to plot negative values using the "Linear" option of the "Transformation" menu.<br> 
+(update based on feedback from Tom Stevens).
+<p></p>
+<p></p>
+Version 2.2 (Jun 2011)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Bug fix: Fission track mixture models now work with 
+zero counts, and zero dispersion samples are cut off to three digits in the
+radial plot legend.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(updates based on feedback from Christoph von Hagke and Linda Kirstein).
+<p></p>
+<p></p>
+Version 2.3 (Oct 2011)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Bug fix: an error made during the upgrade from version 2.1 to 2.2 caused 
+erroneous zero dispersions, and dispersion values for 'other' data were erroneously normalised
+to the mean in previous versions of RadialPlotter!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(update based on feedback from Andy Carter).
+<p></p>
+<p></p>
+Version 3.0 (Feb 2012)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Major upgrade. RadialPlotter now offers the option to plot
+data as Kernel Density Estimates, Probability Density Plots, and Histograms. To take
+advantage of this option, select the <tt>Options</tt> &#8594; <tt>Output</tt> menu.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- The Mixture Modelling functionality has been modified to be more robust, and
+now also produces uncertainty estimates for the peak locations and mixing proportions.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- The input table has been fixed, so that changes are immediately transferred to
+output window when the Plot button is clicked.
+<p></p>
+<p></p>
+Version 3.1 (Mar 2012)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Improved robustness to input errors and negative values.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Improved scaling of the density plots. Clicking on the plot rescales the y-axis.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(update based on feedback by Tom Stevens and Nikolas Michael)
+<p></p>
+Version 3.2 (May 2012)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Added an option in the 'Attributes' menu to specify a custom KDE bandwidth.
+<p></p>
+Version 3.3 (Jun 2012)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- It is now possible to save various settings (data transformation, colours etc.)
+in a preferences file. This option can be selected in the <tt>Options -> Settings</tt> form.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- The input table was extended to 1000 rows and the PDP option has been turned off 
+in the density plot by default.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed a bug causing anomalously high P(&#967;<sup>2</sup>) values in all previous
+versions of the program!
+<p></p>
+Version 3.4 (Sep 2012)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Some changes to the density plots as discussed on the <tt>DensityPlotter</tt> website.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- The sample size is now reported in the legend of radial plots as well as density plots.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- The program used to 'forget' the number of peaks in the mixture models if other options
+were changed. This problem has been fixed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(update based on feedback by Peter Clift and Andy Carter)
+<p></p>
+Version 3.5 (Dec 2012)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Added a three parameter minimum age model to the <tt>Mixture Models</tt>
+function.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(feature requested by Jakob Wallinga)
+<p></p>
+Version 4.0 (Jan 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Modified the scaling of the histogram bins. The setting are now according to bin
+width instead of number of bins.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fission track labels in the density plots were made consistent with the radial plots
+(i.e. using 'ka' and 'Ma' instead of '10<sup>3</sup>' and '10<sup>6</sup>').<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Bug fix: the minimum age model no longer hangs with zero tracks.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- The PDF output now embeds the fonts, rather than converting them to paths. This
+makes editing the vector graphics much easier. PDF is now also the default format, with PNG still offered
+as an alternative option.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Improved fonts (special symbols for &chi;<sup>2</sup>, &sigma; and &plusmn).
+Additionally, the font size of the text now scales with the size of the graphics window.
+Tip: the best ('smoothest') PDFs are generated by maximising the graphics windows before saving your plot.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(updates thanks in part to feedback from Alejandro Bande and Andy Carter)
+<p></p>
+Version 4.1 (Mar 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Copy & paste from MS Excel now also works on Macs (Cmd-c, Ctrl-v).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Clicking on the KDEs now shows the age of the point on which you clicked.
+To zoom and rescale the Y axis, Ctrl-click.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Tick marks on the X axis of radial plots have been adjusted to accommodate
+high precision data such as U-Pb ages.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(updates based on feedback from Chris Spencer and Matt Horstwood)
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.4.2.jar?raw=true">Version 4.2</a> (Apr 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Addition of command line options enabling <a href="Batch.html">
+batch processing</a>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Prettier tick marks on the density plots.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(updates based on feedback from Martin Rittner)
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.4.3.jar?raw=true">Version 4.3</a> (Jun 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Higher resolution graphics<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Ability to visualise the location and error distribution of the input data 
+on the density plots as individual bell curves or ticks whose height is proportional to the analytical precision<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- More intelligent placement of X-axis ticks and labels on the density estimates, in log-space <br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.4.4.jar?raw=true">Version 4.4</a> (Jul 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed a bug caused by one of the Java libraries, which had hitherto made it 
+impossible to save the graphical output as <tt>.png</tt> on Linux and OS-X. Replacing this library by a native one
+has reduced the size of the program by 10%.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Added a text box in the <tt>Settings</tt> form allowing the user to modify the height
+of the (option) Gaussian bell curves and ticks.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Minor fix to the tick labels, removing overlapping labels on some log-scales.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Update (July 31, August 5): fixed bugs caused by the upgrade, affecting the <tt>Save Plot</tt>
+function on, first, the command line and, next, the GUI (thanks to Christian Seiler and Sean Sanguinito for reporting these bugs)
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.4.5.jar?raw=true">Version 4.5</a> (Sep 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Further fixes to minor bugs caused by the previous upgrade.
+<p></p>
+<a href="https://dl.dropboxusercontent.com/u/44748667/archive/RadialPlotter.4.6.jar">Version 4.6</a> (Oct 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Re-established the ability to set custom axes, band- and binwidths. Hopefully
+all the bugs arising from the upgrade from 4.3 to 4.4 should be fixed now!<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (thanks to Kirsten Sauer for reporting the bug)
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.4.7.jar?raw=true">Version 4.7</a> (Nov 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- No longer changes the kernel bandwidth when rescaling the x-axis.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Alt-S and Ctrl-W keyboard shortcuts now also work when the plot window is in focus.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (update based on feedback from Ian Miller and Luigi Solari)
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.5.0.jar?raw=true">Version 5.0</a> (Dec 2013)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Important update for OSL users. The program now allows zero and negative doses to be plotted
+on a log scale. This is achieved by a log(D + a) transformation (Galbraith, <i>Ancient TL</i> vol 1, 2010). <br>
+&nbsp;&nbsp;&nbsp;&nbsp; (feature requested by Jasper Van Nieuland, Christina Neudorf and Tom Stevens)
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.5.1.jar?raw=true">Version 5.1</a> (Jan 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed a minor bug in the central age calculation algorithm, which failed to converge for
+certain high precision datasets. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; (bug reported by Yuntao Tian)
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.5.2.jar?raw=true">Version 5.2</a> (Jan 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Implements <i>adaptive</i> kernel density estimation according to Abramson  
+(1982, Annals of Statistics).<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.5.3.jar?raw=true">Version 5.3</a> (Feb 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Adds an option to use Epanechnikov kernels instead of the default Gaussians.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.5.4.jar?raw=true">Version 5.4</a> (Mar 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Adds the ability to normalise the area under the density estimates
+to a common value for one or several samples.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.5.5.jar?raw=true">Version 5.5</a> (Mar 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Automatically checks for updates.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.5.6.jar?raw=true">Version 5.6</a> (Apr 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed bug in adaptive kernel density estimates which produced a narrower bandwidth when zooming into the time scale.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Sample size (n) in the density plot legend now counts only the samples falling within the range of the time axis.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- For clarity, the <tt>area</tt> textbox in the density plot <tt>Settings</tt> menu is no longer 
+editable when the <tt>normalise</tt> checkbox is unticked.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.6.0.jar?raw=true">Version 6.0</a> (Apr 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Added option to save radial plots (and KDEs) as <tt>.csv</tt> files for use in MS Excel etc.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (feature requested by Moritz Kirsch)<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.6.1.jar?raw=true">Version 6.1</a> (Sept 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Updated the x-axis label of the radial plots for negative values from '&sigma;/t' to '&sigma;/(t + offset)'.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Made the adaptive bandwidth selector invariant to rescaling of the time axis.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (updates based on feedback by Micha Dietze, Chris Lewis and David Barbeau)<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.7.0.jar?raw=true">Version 7.0</a> (Oct 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Added functionality to add KDEs to radial plots ('abanico plots').<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Old preferences files are automatically cleared following a software upgrade.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (second part of the update based on feedback from Kurt Hollocher).<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.7.1.jar?raw=true">Version 7.1</a> (Nov 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed minor bugs caused by the previous update.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.7.2.jar?raw=true">Version 7.2</a> (Dec 2014)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Smarter tick mark placement in density plots.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- The <tt>Settings</tt> menu now reports bandwidths and binwidths in raw (linear, log or arcsine) units.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Uses a better way to clean up old preferences files.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (update partly based on feedback from Chris Spencer)<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/9b37626d4c9e92b93d0eb5f83f2aadcc835ab7eb/dist/DensityPlotter.7.3.jar?raw=true">Version 7.3</a> (May 2015)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Minimum age model now also works for negative data, allowing the function to be used to calculate maximum ages.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/4a29d0700f0a49deb9a7468d846419fc509ba110/dist/RadialPlotter.jar?raw=true">Version 7.4</a> (Sep 2015)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- External age information can be indicated as radial markers, to be specified in the <tt>Settings</tt> menu.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (feature requested by Stijn Glorie).<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/c6e40c779dbdc3a0c2b5a3a0ea70b091d66df511/dist/RadialPlotter.jar?raw=true">Version 8.0</a> (Mar 2016)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Restores the ability to specify custom colour label.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Source code is now available through <a href="https://github.com/pvermees/radialplotter">github</a>.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/965797f5ff3d9484cfa4310ec6bb07acec6c2a3b/dist/RadialPlotter.jar?raw=true">Version 8.1</a> (Aug 2016)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Adds &chi;<sup>2</sup> test for age homogeneity in 'Other' data.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/1c91ffada0ad8f29c9aaee5085c36f107125a9d1/dist/RadialPlotter.jar?raw=true">Version 8.2</a> (Nov 2016)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixes errors of fission track mixture models. Adds FAQs to Help files.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/71c4cd90cfc8fb978f2e76da76ba7685b4e05c95/dist/RadialPlotter.jar?raw=true">Version 8.3</a> (Jan 2017)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Undoes peak fitting mistake introduced in the previous update.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (thanks to Geoffrey Ruiz for feedback)<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/cff8b02f184c2b55db8b0054353e33d953cfc7de/dist/RadialPlotter.jar?raw=true">Version 9.0</a> (Feb 2018)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Added square root transformation.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Simplified mixing models, which no longer depend on the data transformation used.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (thanks to Andy Gleadow for feedback)<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/a31c6a7f54584a2091a95c9b17e8a6dc32417fca/dist/RadialPlotter.jar?raw=true">Version 9.1</a> (Mar 2018)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed zero dispersion error in 'other' data caused by previous update.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (thanks to S&eacute;bastien Ternois for feedback).<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/7a829198beed63173b3a2478899dfa93b680f0fd/dist/RadialPlotter.jar?raw=true">Version 9.2</a> (May 2018)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Increased number of iterations of mixture modelling algorithm to ensure convergence.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (thanks to Dale Issler for feedback).<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/c0c97c43b28f6e3ef384cac7567835a0a48fc761/dist/RadialPlotter.jar?raw=true">Version 9.3</a> (October 2018)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixes pop-up label for square root transformed KDEs.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (thanks to S&eacute;bastien Ternois for feedback).<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/3b10adfc1abc3899c5a39d52455990dd38c4683b/dist/RadialPlotter.jar?raw=true">Version 9.4</a> (November 2018)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed type error (int to double) in adaptive KDE algorithm. Now yields results that are perfectly consistent with the version implemented in <tt>IsoplotR</tt>.<br>
+<p></p>
+<a href="https://github.com/pvermees/radialplotter/blob/master/dist/radialplotter-9.5.jar?raw=true">Version 9.5</a> (May 2019)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Fixed bug in standard error calculation for the central age. Results are now consistent with <tt>IsoplotR</tt> (thanks to Stuart Thomson for reporting the bug).<br>
+</txt>
+</div>
+</body>
+</html>

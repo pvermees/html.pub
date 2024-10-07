@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Overdispersed ages</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,3 --> 
+<meta name="src" content="MLEpaper3.tex"> 
+<meta name="date" content="2010-01-08 16:32:00"> 
+<link rel="stylesheet" type="text/css" href="MLEpaper3.css"> 
+</head><body 
+>
+   <!--l. 101--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se3.html" >next</a>] [<a 
+href="MLEpaper3se1.html" >prev</a>] [<a 
+href="MLEpaper3se1.html#tailMLEpaper3se1.html" >prev-tail</a>] [<a 
+href="#tailMLEpaper3se2.html">tail</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se2.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x3-20002"></a>Overdispersed ages</h3>
+<!--l. 103--><p class="noindent" >Assume that the ages (or the logarithm of the ages) come from a normal distribution of the form
+   <table 
+class="equation"><tr><td><a 
+ id="x3-2001r2"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper31x.png" alt="         2    2
+ti ~ N (&#x03BC;,&#x03C3;i + &#x03BE;)
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 109--><p class="nopar" >
+<!--l. 111--><p class="indent" >   where <span 
+class="cmmi-10">&#x03BC; </span>denotes the mean and <span 
+class="cmmi-10">&#x03BE;</span><sup><span 
+class="cmr-7">2</span></sup> is the amount of <span 
+class="cmti-10">overdispersion</span>, i.e. the excess scatter that cannot be explained
+by the analytical uncertainty alone. Unbiased estimates <img 
+src="MLEpaper32x.png" alt="&#x02C6;&#x03BC;"  class="circ" > and <img 
+src="MLEpaper33x.png" alt="&#x02C6;&#x03BE;"  class="circ" > <sup><span 
+class="cmr-7">2</span></sup> for these two parameters can be obtained by
+maximising the likelihood l:
+   <table 
+class="equation"><tr><td><a 
+ id="x3-2002r3"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper34x.png" alt="          (        )
+             (ti- &#x02C6;&#x03BC;)2
+   &#x220F;n exp----2(&#x03C3;2i+&#x02C6;&#x03BE;2i)--
+l &#x2261;     &#x2218; ----2--&#x02C6;2-
+   i=1    2&#x03C0;(&#x03C3; i + &#x03BE; )
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+
+<!--l. 123--><p class="nopar" >
+<!--l. 125--><p class="noindent" >or, more conveniently, the log-likelihood L <span 
+class="cmsy-10">&#x2261; </span>log(l):
+   <table 
+class="equation"><tr><td><a 
+ id="x3-2003r4"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper35x.png" alt="        n [                           ]
+L = - 1 &#x2211;  (ti --&#x02C6;&#x03BC;)2+ ln(&#x03C3;2+ &#x02C6;&#x03BE;2)+ ln(2&#x03C0;)
+     2 i=1  &#x03C3;2i + &#x02C6;&#x03BE;2      i
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 134--><p class="nopar" >
+<!--l. 136--><p class="noindent" >Calculating the derivatives of L with respect to <img 
+src="MLEpaper36x.png" alt="&#x03BC;&#x02C6;"  class="circ" > and <img 
+src="MLEpaper37x.png" alt="&#x02C6;&#x03BE;"  class="circ" > <sup><span 
+class="cmr-7">2</span></sup> and setting them to zero to find the maximum
+likelihood:
+<!--l. 139--><p class="indent" >
+<table 
+class="align">
+                            <tr><td 
+class="align-odd"></td>                            <td 
+class="align-even"><img 
+src="MLEpaper38x.png" alt="&#x2202;L-
+ &#x2202;&#x02C6;&#x03BC;"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><img 
+src="MLEpaper39x.png" alt="ti --&#x02C6;&#x03BC;-
+&#x03C3;2+ &#x02C6;&#x03BE;2
+ i"  class="frac" align="middle"> = 0</td>                                                                       <td 
+class="align-label"><a 
+ id="x3-2004r5"></a>(5)
+                            </td></tr><tr><td 
+class="align-odd"></td>                            <td 
+class="align-even"><img 
+src="MLEpaper310x.png" alt="-&#x2202;L
+&#x2202; &#x02C6;&#x03BE;2"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><img 
+src="MLEpaper311x.png" alt="[                  ]
+ -(ti --&#x02C6;&#x03BC;)2 - --1----
+ (&#x03C3;2i + &#x02C6;&#x03BE;2)2   &#x03C3;2i + &#x02C6;&#x03BE;2"  class="left" align="middle"> = 0</td>                                                        <td 
+class="align-label"><a 
+ id="x3-2005r6"></a>(6)                            </td></tr></table>
+<!--l. 149--><p class="indent" >   which can be solved iteratively for <img 
+src="MLEpaper312x.png" alt="&#x02C6;&#x03BC;"  class="circ" > and <img 
+src="MLEpaper313x.png" alt="&#x02C6;
+&#x03BE;"  class="circ" > <sup><span 
+class="cmr-7">2</span></sup>. The variance <img 
+src="MLEpaper314x.png" alt="&#x02C6;&#x03C3;"  class="circ" ><sub><span 
+class="cmmi-7">&#x03BC;</span></sub><sup><span 
+class="cmr-7">2</span></sup> of the weighted mean <img 
+src="MLEpaper315x.png" alt="&#x02C6;&#x03BC;"  class="circ" > is given by the inverse of
+the Fisher Information, i.e. the negative expected value of the second derivative of the log-likelihood function with
+respect to <img 
+src="MLEpaper316x.png" alt="&#x02C6;&#x03BC;"  class="circ" >:
+   <table 
+class="equation"><tr><td><a 
+ id="x3-2006r7"></a>
+
+   <center class="math-display" >
+<img 
+src="MLEpaper317x.png" alt=" 2   ------1--------
+&#x02C6;&#x03C3;&#x03BC; = &#x2211;ni=1 1&#x2215;(&#x03C3;2i + &#x02C6;&#x03BE;2)
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 162--><p class="nopar" >
+   <!--l. 164--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se3.html" >next</a>] [<a 
+href="MLEpaper3se1.html" >prev</a>] [<a 
+href="MLEpaper3se1.html#tailMLEpaper3se1.html" >prev-tail</a>] [<a 
+href="MLEpaper3se2.html" >front</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se2.html" >up</a>] </p></div>
+<!--l. 164--><p class="indent" >   <a 
+ id="tailMLEpaper3se2.html"></a>  
+</body></html> 

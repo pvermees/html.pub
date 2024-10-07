@@ -1,0 +1,2194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>CosmoCalc: an Excel Add-In for cosmogenic nuclide calculations
+manuscript submitted to G-Cubed</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="CosmoPaper.tex"> 
+<meta name="date" content="2012-11-06 17:08:00"> 
+<link rel="stylesheet" type="text/css" href="CosmoPaper.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body>
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">CosmoCalc: an Excel Add-In for cosmogenic
+nuclide calculations</h2>
+<div class="author" ><span 
+class="cmr-12">Pieter Vermeesch  </span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">*</span></a></span></div><br />
+   <div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10">*</span></span>Institute of Isotope Geology and Mineral Resources, ETH-Z&uuml;rich,
+cosmocalc@gmail.com, http://cosmocalc.googlepages.com</div></div><div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 12--><p class="noindent" >
+<!--l. 12--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 13--><p class="indent" >    <span 
+class="cmr-9">As  dating  methods  using  Terrestrial  Cosmogenic  Nuclides  (TCN)</span>
+     <span 
+class="cmr-9">become  more  popular,  the  need  arises  for  a  general-purpose  and</span>
+     <span 
+class="cmr-9">easy-to-use  data  reduction  software.  The  CosmoCalc  Excel  add-in</span>
+     <span 
+class="cmr-9">calculates TCN production rate scaling factors (using Lal, Stone, Dunai</span>
+     <span 
+class="cmr-9">and  Desilets  methods);  topographic,  snow  and  self-shielding  factors;</span>
+     <span 
+class="cmr-9">exposure ages, erosion rates and burial ages; and visualizes the results</span>
+     <span 
+class="cmr-9">on banana-style plots. It uses an internally consistent TCN production</span>
+     <span 
+class="cmr-9">equation that is based on the quadruple exponential approach of [Granger</span>
+     <span 
+class="cmr-9">and Smith, 2000, NIM-B (172) pp. 824-828]. CosmoCalc was designed to</span>
+     <span 
+class="cmr-9">be as user-friendly as possible. Although the user-interface is extremely</span>
+     <span 
+class="cmr-9">simple, the program is also very flexible, and nearly all default parameter</span>
+     <span 
+class="cmr-9">values can be changed. To facilitate the comparison of different scaling</span>
+     <span 
+class="cmr-9">factors,  a  set  of  converter  tools  is  provided,  allowing  the  user  to</span>
+     <span 
+class="cmr-9">easily  convert  cut-off  rigidities  to  magnetic  inclinations,  elevations  to</span>
+     <span 
+class="cmr-9">atmospheric  depths  and  so  forth.  Because  it  is  important  to  use  a</span>
+     <span 
+class="cmr-9">consistent set of scaling factors for the sample measurements and the</span>
+     <span 
+class="cmr-9">production rate calibration sites, CosmoCalc defines the production rates</span>
+     <span 
+class="cmr-9">implicitly,  as  a  function  of  the  original  TCN  concentrations  of  the</span>
+     <span 
+class="cmr-9">calibration  site.  The  program  is  best  suited  for</span>  <sup><span 
+class="cmr-6">10</span></sup><span 
+class="cmr-9">Be,</span>  <sup><span 
+class="cmr-6">26</span></sup><span 
+class="cmr-9">Al,</span>  <sup><span 
+class="cmr-6">3</span></sup><span 
+class="cmr-9">He  and</span>
+     <sup><span 
+class="cmr-6">21</span></sup><span 
+class="cmr-9">Ne calculations, although basic functionality for</span> <sup><span 
+class="cmr-6">36</span></sup><span 
+class="cmr-9">Cl and</span> <sup><span 
+class="cmr-6">14</span></sup><span 
+class="cmr-9">C is also</span>
+     <span 
+class="cmr-9">provided. CosmoCalc can be downloaded along with a set of test data</span>
+     <span 
+class="cmr-9">from </span><span 
+class="cmtt-9">http://cosmocalc.googlepages.com</span>
+
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 40--><p class="noindent" >The first applications of Terrestrial Cosmogenic Nuclide (TCN) geochronology
+appeared about 20 years ago (Kurz, 1986; Nishiizumi et al., 1986; Phillips et
+al., 1986). The method has rapidly developed since those early days, truely
+revolutionizing geomorphology and related fields in the process. TCN dating is no
+longer a specialized tool used by a small group of experienced users, but has found an
+ever growing base of users who are not necessarily familiar with all the details of the
+method. Today we are facing a paradoxal situation. On the one hand, a better
+understanding of cosmogenic nuclide production systematics has improved the
+accuracy of TCN dating. But on the other hand, many users of the method may be
+less familiar with its intricacies than was the case in the pioneering days. An
+important example of this situation is that of the production rate scaling
+factors. In a landmark paper, Lal (1991) presented a method to calculate
+cosmogenic nuclide production rates as a function of latitude and elevation. Lal&#8217;s
+scaling factors are elegant and easy to use, but overestimate the importance of
+muons and are only valid for standard atmosphere. Later authors introduced
+several improvements, incorporating atmospheric effects and improved muon
+production systematics. The scaling factors of Stone (2000), Dunai (2000),
+and Desilets et al. (2003, 2006) more accurately represent the scaling of
+cosmogenic nuclide production rates with latitude and elevation, but the
+increased sophistication of these methods is an obstacle to their widespread use.
+<br 
+class="newline" />
+<!--l. 66--><p class="indent" >   CosmoCalc is an add-in to MS-Excel developed with the intention to alleviate this
+problem. The CosmoCalc interface was designed to be as user friendly and
+easy-to-use as possible. Default parameters are set so that beginning users
+only have to make a minimal number of decisions. At the same time, all the
+default parameters can be changed so that CosmoCalc is highly customizable
+and also experienced users should find it useful. The program as well as a
+spreadsheet with test data can be downloaded from the CosmoCalc website
+(<span 
+class="cmtt-10">http://cosmocalc.googlepages.com</span>), which also provides detailed installation
+instructions. The add-in requires MS-Excel 2000 or higher. Because of small
+differences between the MS-Windows and Apple OS-X implementations of Excel, two
+versions of CosmoCalc are provided. The functionality of both programs is the
+same, but the Macintosh version is significantly slower than the PC-version.
+<br 
+class="newline" />
+<!--l. 82--><p class="indent" >   After installing the CosmoCalc add-in, a toolbar menu appears (Figure <a 
+href="#x1-10011">1<!--tex4ht:ref: fig:CosmoMenu --></a>) that
+guides the user through the data reduction and closely follows the outline of this
+paper:
+
+     <ul class="itemize1">
+     <li class="itemize">Production rate scaling factors (Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:scaling --></a>)
+         <ul class="itemize2">
+         <li class="itemize">Lal (1991)
+         </li>
+         <li class="itemize">Stone (2000)
+         </li>
+         <li class="itemize">Dunai (2000)
+         </li>
+         <li class="itemize">Desilets and Zreda (2003)
+         </li>
+         <li class="itemize">Desilets et al. (2006)</li></ul>
+     </li>
+     <li class="itemize">Shielding corrections (Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:shielding --></a>)
+         <ul class="itemize2">
+         <li class="itemize">Topographic shielding
+         </li>
+         <li class="itemize">Self shielding
+         </li>
+         <li class="itemize">Snow shielding</li></ul>
+     </li>
+     <li class="itemize">Banana plots (Section <a 
+href="#x1-70004">4<!--tex4ht:ref: sec:banana --></a>)
+         <ul class="itemize2">
+         <li class="itemize"><sup><span 
+class="cmr-7">26</span></sup>Al-<sup><span 
+class="cmr-7">10</span></sup>Be
+         </li>
+         <li class="itemize"><sup><span 
+class="cmr-7">21</span></sup>Ne-<sup><span 
+class="cmr-7">10</span></sup>Be</li></ul>
+     </li>
+     <li class="itemize">Age/erosion rate calculations (Section <a 
+href="#x1-80005">5<!--tex4ht:ref: sec:age --></a>)
+         <ul class="itemize2">
+         <li class="itemize">Single nuclide: exposure age and erosion rate calculations for <sup><span 
+class="cmr-7">26</span></sup>Al,
+         <sup><span 
+class="cmr-7">10</span></sup>Be, <sup><span 
+class="cmr-7">21</span></sup>Ne, <sup><span 
+class="cmr-7">3</span></sup>He, <sup><span 
+class="cmr-7">36</span></sup>Cl and <sup><span 
+class="cmr-7">14</span></sup>C
+         </li>
+         <li class="itemize">Two nuclides: simultaneous calculation of (burial or exposure) age
+         and erosion rate.</li></ul>
+     </li>
+     <li class="itemize">Converters (Section <a 
+href="#x1-170006">6<!--tex4ht:ref: sec:converter --></a>)
+
+         <ul class="itemize2">
+         <li class="itemize">Convert elevation to atmospheric pressure or -depth and back, under
+         standard and Antarctic atmosphere.
+         </li>
+         <li class="itemize">Convert geomagnetic latitude to -inclination or cutoff rigidity and
+         back.</li></ul>
+     </li>
+     <li class="itemize">Settings: customizing CosmoCalc (Section <a 
+href="#x1-200007">7<!--tex4ht:ref: sec:settings --></a>)
+         <ul class="itemize2">
+         <li class="itemize">Specify TCN production rate calibration sites
+         </li>
+         <li class="itemize">Specify the relative importance of various production pathways</li></ul>
+     </li></ul>
+<!--l. 127--><p class="indent" >   The following sections will provide more details about these calculations. Thus,
+the present paper serves as an abridged review of TCN calculations, with an
+emphasis on the numerical methods that are needed to solve the equations. More
+details about the physics of TCN production are given in the review article of Gosse
+and Philips (2001). CosmoCalc is not the first computational tool for TCN
+calculations. Useful alternatives are CHLOE, an Excel spreadsheet for cosmogenic
+<sup><span 
+class="cmr-7">36</span></sup>Cl calculations (Phillips and Plummer, 1996) and the CRONUS-Earth
+web-calculator (Balco and Stone, 2007; <span 
+class="cmtt-10">http://hess.ess.washington.edu/math</span>).
+CosmoCalc was developed independently from these other tools, except for its
+topographic shielding correction function, which was translated into VBA
+from the Matlab code of Balco and Stone (2007). The reader is strongly
+encouraged to try these other programs. CosmoCalc is optimized for <sup><span 
+class="cmr-7">26</span></sup>Al, <sup><span 
+class="cmr-7">10</span></sup>Be,
+<sup><span 
+class="cmr-7">21</span></sup>Ne and <sup><span 
+class="cmr-7">3</span></sup>He dating. Because geomagnetic field fluctuations and thermal
+neutron reactions are ignored, results for <sup><span 
+class="cmr-7">36</span></sup>Cl and <sup><span 
+class="cmr-7">14</span></sup>C may be inaccurate.
+CosmoCalc can be used as an exploratory tool for these nuclides, but for
+more accurate results, CHLOE or the spreadsheet of Lifton et al. (2005) are
+recommended.
+<!--l. 148--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10011"></a>
+
+<!--l. 148--><p class="noindent" ><img 
+src="2006GC001530-f01_orig.jpg" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">CosmoCalc&#8217;s main menu guides the user through the data reduction
+and follows the outline of this paper.</span></div><!--tex4ht:label?: x1-10011 -->
+
+<!--l. 154--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Production rate scaling factors</h3>
+<!--l. 158--><p class="noindent" >In the simplest case (no shielding or burial), only three pieces of information are
+needed to calculate an exposure age or erosion rate: TCN concentration, half-life and
+production rate. Production rates are the &#8220;achilles heel&#8221; of the TCN method.
+There exist only a few calibration sites where TCN production rates are
+accurately known thanks to the availability of independent age constraints
+(e.g., Nishiizumi et al., 1989; Niedermann et al., 1994; Kubik et al., 1998).
+These production rates are only valid for the specific conditions (latitude,
+elevation, age) of each particular calibration site. To apply the TCN method
+to other field settings, the production rates must be scaled to a common
+reference at sea level and high latitude (SLHL). Up to 20% uncertainty is
+associated with this scaling, constituting the bulk of TCN age uncertainty.
+<br 
+class="newline" />
+<!--l. 173--><p class="indent" >   Although several efforts have been made to directly measure TCN production
+rate scaling with latitude and elevation using artificial H<sub><span 
+class="cmr-7">2</span></sub>O and SiO<sub><span 
+class="cmr-7">2</span></sub> targets
+(Nishiizumi et al., 1996; Brown et al., 2000; Graham et al., 2007), all currently used
+scaling models are based on neutron monitor surveys. The oldest and still most
+widely used scaling model is that of Lal (1991). This model is a simple set
+of polynomial equations giving the (spallogenic + muogenic) production
+rate relative to SLHL as a function of geographic latitude and elevation. In
+CosmoCalc, Lal&#8217;s scaling factors can be calculated by simply selecting two columns
+of latitude (in degrees) and elevation (in meters) data and clicking &#8220;OK&#8221;.
+<br 
+class="newline" />
+<!--l. 186--><p class="indent" >   Lal&#8217;s scaling factors use elevation as a proxy for atmospheric depth, assuming a
+standard atmosphere approximation. Stone (2000) noted that this approximation is
+not valid in certain areas, such as Antarctica and Iceland. To avoid the systematic
+errors caused by the standard atmosphere model, Stone (2000) recast the polynomial
+equations of Lal (1991) in terms of air pressure instead of elevation. A second
+improvement of the Stone (2000) model is the independent scaling of TCN
+production by slow (negative) muons (Heisinger et al., 2002). In spite of this
+added complexity, the CosmoCalc interface for Stone (2000) scaling factors is
+identical to that for Lal (1991) scaling: the user simply needs to provide two
+columns of data, one with latitude and one with air pressure (in mbar).
+The scaling factors of Stone (2000) can be different for different nuclides,
+because the importance of muons depends on the nuclide of interest. Because
+most TCN production rate calibration sites are <span 
+class="cmti-10">not </span>located at SLHL, it is
+crucially important to scale the production rates using the same method as the
+unknown sample. This is exactly what CosmoCalc does when the user selects a
+nuclide from the scroll-down menu of the scaling-form. Thus, the program
+&#8220;forces&#8221; the user to be consistent. The program comes with a set of default
+
+calibration sites, but these can be changed. Also the relative importance of the
+production pathways (neutrons, slow and fast muons) can be changed (Section <a 
+href="#x1-200007">7<!--tex4ht:ref: sec:settings --></a>).
+<br 
+class="newline" />
+<!--l. 211--><p class="indent" >   Behind the scaling models of both Lal (1991) and Stone (2000) lies an extensive
+database of neutron monitor measurements, ordered according to geomagnetic
+latitude. This ordering implies that Earth&#8217;s magnetic field can be accurately
+approximated by a simple dipole. To avoid this approximation, Dunai (2000) ordered
+the neutron monitor data according to geomagnetic inclination, which also represents
+the non-dipole field. Just like Stone (2000), also Dunai (2000) incorporates
+separate muon scaling and atmospheric effects. However, atmospheric depth
+(g/cm<sup><span 
+class="cmr-7">2</span></sup>) is used instead of air pressure. Using CosmoCalc it is very easy to
+convert air pressure to elevation or atmospheric depth and back (Section <a 
+href="#x1-170006">6<!--tex4ht:ref: sec:converter --></a>).
+<br 
+class="newline" />
+<!--l. 224--><p class="indent" >   Ultimately, both geomagnetic latitude and inclination are merely proxies for a
+more fundamental physical quantity: the geomagnetic cutoff rigidity (R<sub><span 
+class="cmmi-7">c</span></sub>), which is
+the minimum momentum per unit charge (in GV), required for a primary cosmic ray
+to reach the atmosphere. Ordering the neutron monitor data according to this
+parameter results in yet another set of scaling factors. Unfortunately, at least three
+different methods for calculating R<sub><span 
+class="cmmi-7">c</span></sub> exist in the literature. Dunai (2001) used a
+database of horizontal magnetic field intensities and inclinations to estimate the
+cutoff-rigidity of an equivalent axial dipole field, for which an approximate analytical
+solution exists. Desilets and Zreda (2003) used a model based on trajectory tracing of
+an axial dipole field, which is done by numerically testing the feasibility of vertically
+incident anti-protons to travel from the top of the atmosphere back into space.
+Finally, Lifton et al. (2005) fit a cosine function to a database of geomagnetic
+latitudes versus trajectory traced cutoff rigidities for the 1955 magnetic
+field. These authors consider the scatter around their fit to be a realistic
+estimator of the natural variability of R<sub><span 
+class="cmmi-7">c</span></sub> at any given geomagnetic latitude.
+<br 
+class="newline" />
+<!--l. 245--><p class="indent" >   In order to avoid confusion, CosmoCalc currently only implements one of these
+three methods, namely that of Desilets and Zreda (2003). The scaling model of
+Desilets and Zreda (2003) makes a distinction between slow and fast muons, each of
+which scales differently. In an update of their model, Desilets et al. (2006) did a
+neutron monitor survey at low latitudes, which were undersampled by previous
+surveys. This resulted in a slightly different set of attenuation length polynomials for
+spallogenic reactions. The method of Desilets et al. (2003, 2006) is probably the most
+accurate of all the scaling models implemented in CosmoCalc. It is also the most
+complex model, but this did not change the user interface. Using the scaling
+models of Desilets et al. (2003, 2006) is just as easy as that of Lal (1991) in
+CosmoCalc. Default values for the relative SLHL production rate contributions of
+neutrons, slow and fast muons can be changed in the Settings menu (Section <a 
+href="#x1-200007">7<!--tex4ht:ref: sec:settings --></a>).
+<br 
+class="newline" />
+
+<!--l. 262--><p class="indent" >   The scaling models of Dunai (2001), Desilets et al. (2003, 2006), Pigati and Lifton
+(2004), and Lifton et al. (2005) are a sensitive function of magnetic field intensity and
+solar activity, both of which are poorly constrained over geologic time. On the one
+hand, this temporal variability is the biggest downside to R<sub><span 
+class="cmmi-7">c</span></sub>-based models for long
+exposures (<span 
+class="cmmi-10">&#x003E; </span>20 ka; Dunai, 2001). On the other hand, such models also offer the
+possibility to correct for secular variation of TCN production rates for short
+exposures. Instructions for doing so are given by Dunai (2001) and Desilets et
+al. (2003), provided a <span 
+class="cmti-10">local </span>record of paleomagnetic intensity is available.
+Compiling such a record is something for advanced users and falls beyond the
+scope of CosmoCalc. The scaling models of Pigati and Lifton (2004) and
+Lifton (2005) are accompanied by <span 
+class="cmti-10">global </span>datasets of magnetic field intensity,
+polar wander and solar activity and in principle, it would be possible to
+incorporate these datasets into CosmoCalc. However, because they are very large
+(4 and 7Mb, respectively) in comparison with CosmoCalc (<span 
+class="cmsy-10">~ </span>500kb), the
+cost of including these scaling models was considered too high. Therefore,
+researchers working with <sup><span 
+class="cmr-7">14</span></sup>C, where secular variation of the magnetic field is
+really crucial, should use CosmoCalc only as an exploratory tool, and use the
+spreadsheets of Pigati and Lifton (2004) and Lifton et al. (2005) for final
+calculations.
+<!--l. 285--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Shielding corrections</h3>
+<!--l. 287--><p class="noindent" >The scaling factors discussed in the previous section allow the calculation of TCN
+production rates at any location on the Earth&#8217;s surface, assuming that the sample is
+a slab of zero thickness taken from a horizontal planar surface. If these assumption
+are not fulfilled, the SLHL production rates must be multiplied by a second set of
+correction factors, quantifying the extent to which the cosmic rays were blocked.
+CosmoCalc implements three such correction factors: topographic shielding, self
+shielding and snow cover.
+<!--l. 296--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-40003.1"></a>Topographic shielding</h4>
+<!--l. 298--><p class="noindent" >Two kinds of topographic shielding corrections can be distinguished for (a) samples
+taken from a tilted rather than horizontal surface, and (b) samples that are located
+in the vicinity of topographic irregularities. CosmoCalc follows the approach of Balco
+and Stone (2007) (their Matlab function <span 
+class="cmtt-10">skyline.m</span>) and treats these two effects
+together using the following equation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r1"></a>
+
+   <center class="math-display" >
+<img 
+src="CosmoPaper0x.png" alt="       &#x222B; 2&#x03C0; sin(h(&#x03B8;))3.5
+St = 1- 0      2&#x03C0;     d&#x03B8;
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 308--><p class="nopar" >
+<!--l. 310--><p class="indent" >   With h(<span 
+class="cmmi-10">&#x03B8;</span>) the &#8220;horizon&#8221; in the azimuthal direction <span 
+class="cmmi-10">&#x03B8;</span>, i.e. either the elevation (in
+radians) of the topography or the sloping sample surface, whichever is greatest.
+Sometimes, an exponent of 2.3 is used instead of 3.5 in Equation <a 
+href="#x1-4001r1">1<!--tex4ht:ref: eq:topo --></a> (Staudacher
+and All&egrave;gre, 1993). CosmoCalc treats this exponent as a variable, which
+can be changed in the Settings form (Section <a 
+href="#x1-200007">7<!--tex4ht:ref: sec:settings --></a>). In practice, the integral
+of Equation <a 
+href="#x1-4001r1">1<!--tex4ht:ref: eq:topo --></a> is solved by linear interpolation between a finite number of
+azimuth/elevation measurements. The input needed by CosmoCalc is two
+mandatory columns of strike and dip (in degrees, where the strike is 90
+degrees less than the direction of the dip), followed by an optional series of
+topographic azimuth/elevation measurements (in degrees). There is no restriction
+on the total number of measurements, provided they come in multiples of
+two.
+<!--l. 325--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-50003.2"></a>Self-shielding</h4>
+<!--l. 327--><p class="noindent" >Cosmic rays are rapidly attenuated as they travel through matter, causing TCN
+production rates to vary greatly with depth below the rock/air contact. They must
+be integrated over the actual sample thickness and scaled to the surface production
+rates before an exposure age can be calculated. Different reaction mechanisms are
+associated with different attenuation lengths. Gosse and Philips (2001) consider four
+kinds of thickness corrections, for spallogenic, thermal and epithermal neutrons, and
+muons. Because self-shielding corrections are generally small, CosmoCalc considers
+only the spallogenic neutron reactions:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5001r2"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper1x.png" alt="     &#x039B;0(     - &#x03C1;z)
+Ss = &#x03C1;z- 1- e &#x039B;0
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+
+<!--l. 341--><p class="nopar" >
+<!--l. 343--><p class="indent" >   with &#x039B;<sub><span 
+class="cmr-7">0</span></sub> the spallogenic neutron attenuation length (default value 160 g/cm<sup><span 
+class="cmr-7">2</span></sup>), <span 
+class="cmmi-10">&#x03C1;</span>
+the rock density (default value 2.65 g/cm<sup><span 
+class="cmr-7">3</span></sup>) and z the sample thickness (in cm).
+Neglecting the remaining pathways makes little difference, with the possible
+exception of <sup><span 
+class="cmr-7">36</span></sup>Cl, because the latter can be strongly affected by thermal neutron
+fluxes, which are currently ignored by CosmoCalc.
+<!--l. 350--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-60003.3"></a>Snow cover</h4>
+<!--l. 352--><p class="noindent" >Perhaps the most popular and powerful application of TCN techniques is the dating
+of glacial moraines (e.g., Gosse et al., 1995; Sch&auml;fer et al., 1999). These features are
+generally located at high latitudes or elevations, where snow cover poses a potential
+problem. The snow correction is similar to the self-shielding correction with the
+important difference that the former is highly variable with time. Given
+n (e.g., 12 for monthly or 4 for seasonal) measurements of average snow
+thickness z and density <span 
+class="cmmi-10">&#x03C1;</span>, CosmoCalc computes the snow correction factor S<sub><span 
+class="cmmi-7">c</span></sub> as
+follows:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6001r3"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper2x.png" alt="     1 &#x2211;n   &#x03C1;(i)z(i)
+Sc = --   e-  &#x039B;0
+     n i=1
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 365--><p class="nopar" >
+<!--l. 367--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-70004"></a>Banana plots</h3>
+<!--l. 369--><p class="noindent" >Before calculating an exposure age or erosion rate, it is a good idea to check if the
+TCN measurements are consistent with a simple or complex exposure history. This
+can be done with two nuclides (including at least one radionuclide) using a &#8220;banana
+plot&#8221; (Lal, 1991). CosmoCalc accomodates two types of banana plot: <sup><span 
+class="cmr-7">26</span></sup>Al-<sup><span 
+class="cmr-7">10</span></sup>Be and
+<sup><span 
+class="cmr-7">21</span></sup>Ne-<sup><span 
+class="cmr-7">10</span></sup>Be. Depending on whether or not a sample plots above, below or inside the
+so-called &#8220;steady-state erosion island&#8221; (Lal, 1991), one can decide whether or not to
+
+pursue the calculation of an exposure age, erosion rate or burial age. For the
+construction of the banana plots and the age/erosion calculations of Section <a 
+href="#x1-80005">5<!--tex4ht:ref: sec:age --></a>,
+CosmoCalc implements a modified version of the ingrowth equation of Granger and
+Muzikar (2001):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7001r4"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper3x.png" alt="       -&#x03BB;&#x03C4;&#x2211;3    Fi    (    -(&#x03BB;+&#x03F5;&#x03C1;&#x2215;&#x039B; )t)
+N = P e      &#x03BB;-+-&#x03F5;&#x03C1;&#x2215;&#x039B;-- 1- e       i
+          i=0        i
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 388--><p class="nopar" >
+<!--l. 390--><p class="indent" >   With N the nuclide concentration (atoms/g), P the total surface production rate
+(in atoms/g/yr) at SLHL, <span 
+class="cmmi-10">&#x03C4; </span>the burial age, <span 
+class="cmmi-10">&#x03F5; </span>the erosion rate, t the exposure age and
+<span 
+class="cmmi-10">&#x03BB; </span>the radioactive half-life of the nuclide. Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a> models TCN production by
+neutrons, slow and fast muons by a series of exponential approximations. The first
+term of the summation models TCN production by spallogenic neutron reactions, the
+second and third terms model slow muons and the last term approximates TCN
+production by fast muons. Thus, <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">,...,F</span><sub><span 
+class="cmr-7">3</span></sub> are dimensionless numbers between zero
+and one, and &#x039B;<sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">,...,</span>&#x039B;<sub><span 
+class="cmr-7">3</span></sub> are attenuation lengths (g/cm<sup><span 
+class="cmr-7">2</span></sup>). The approach of Granger et
+al. (2000, 2001) was chosen because of its flexibility. For instance, neglecting muon
+production can be easily implemented by setting <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,F</span><sub><span 
+class="cmr-7">2</span></sub> and <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">3</span></sub> equal to zero in
+Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a>. CosmoCalc uses Granger et al.&#8217;s (2000, 2001) recommended
+values of <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">,...,F</span><sub><span 
+class="cmr-7">3</span></sub> for <sup><span 
+class="cmr-7">10</span></sup>Be and <sup><span 
+class="cmr-7">26</span></sup>Al, but also offers an alternative choice
+of pre-set values approximating either the alternative parameterization of
+Schaller et al. (2001), neglecting the contribution of muons, or only using three
+exponentials (for more details, see Section <a 
+href="#x1-200007">7<!--tex4ht:ref: sec:settings --></a>). Banana plots with non-zero
+muon contributions feature a characteristic cross-over of the steady-state and
+zero erosion lines which is absent when muons are neglected (Figure <a 
+href="#x1-70042">2<!--tex4ht:ref: fig:compareBananas --></a>).
+<br 
+class="newline" />
+<!--l. 414--><p class="indent" >   CosmoCalc&#8217;s banana plots are normalized to SLHL, meaning that the
+TCN concentrations of each sample are divided by the cumulative effect
+of all their correction factors, represented by the &#8220;effective scaling factor&#8221;
+S<sub><span 
+class="cmmi-7">e</span></sub>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7002r5"></a>
+
+   <center class="math-display" >
+<img 
+src="CosmoPaper4x.png" alt="Se = St &#x00D7; f(S)
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 422--><p class="nopar" >
+<!--l. 424--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7003r6"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper5x.png" alt="S = S  &#x00D7; S &#x00D7; S
+     p    s   c
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 429--><p class="nopar" >
+<!--l. 431--><p class="indent" >   where S<sub><span 
+class="cmmi-7">p</span></sub> is one of the production rate scaling factors of Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:scaling --></a> and S<sub><span 
+class="cmmi-7">t</span></sub>, S<sub><span 
+class="cmmi-7">s</span></sub> and
+S<sub><span 
+class="cmmi-7">c</span></sub> are defined in Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:shielding --></a>. If muon production is neglected, then S<sub><span 
+class="cmmi-7">e</span></sub> = S<sub><span 
+class="cmmi-7">t</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">p</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">s</span></sub>
+<span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">c</span></sub>. However, in the presence of muons, the effective scaling factor S<sub><span 
+class="cmmi-7">e</span></sub> may deviate
+from this value because the relative importance of the different production
+mechanisms changes as a function of age, erosion rate, elevation, latitude, sample
+thickness and snow cover. The exact form of the function f(S) will be defined in
+Section <a 
+href="#x1-160005.2.4">5.2.4<!--tex4ht:ref: sec:Se --></a>. Note that the topographic shielding correction S<sub><span 
+class="cmmi-7">t</span></sub> does not
+&#8220;fractionate&#8221; (i.e., change the fractions F<sub><span 
+class="cmr-7">0</span></sub>,...,F<sub><span 
+class="cmr-7">3</span></sub> of) the different production
+mechanisms and is placed outside the scaling function f(S). This means that, strictly
+speaking, the TCN concentrations should be multiplied by S<sub><span 
+class="cmmi-7">t</span></sub> <span 
+class="cmti-10">prior </span>to generating a
+banana plot. The input required by CosmoCalc&#8217;s &#8220;Banana&#8221; function are (1)
+the composite scaling factor S for the first nuclide (<sup><span 
+class="cmr-7">26</span></sup>Al or <sup><span 
+class="cmr-7">21</span></sup>Ne), (2) the
+concentration and 1<span 
+class="cmmi-10">&#x03C3; </span>measurement uncertainty of the first nuclide (<sup><span 
+class="cmr-7">26</span></sup>Al or
+<sup><span 
+class="cmr-7">21</span></sup>Ne), both multiplied by S<sub><span 
+class="cmmi-7">t</span></sub>, (3) S for the second nuclide (<sup><span 
+class="cmr-7">10</span></sup>Be) and (4)
+the concentration and 1<span 
+class="cmmi-10">&#x03C3; </span>measurement uncertainty of the second nuclide
+(<sup><span 
+class="cmr-7">10</span></sup>Be), also multiplied by S<sub><span 
+class="cmmi-7">t</span></sub>. Because topographic shielding corrections are
+generally small, the systematic error caused by lumping S<sub><span 
+class="cmmi-7">t</span></sub> together with
+the other correction factors is very small. Therefore, if S<sub><span 
+class="cmmi-7">t</span></sub> <span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmsy-10">~ </span>0.95, say, it
+is safe to approximate Equation <a 
+href="#x1-7002r5">5<!--tex4ht:ref: eq:Se --></a> by S<sub><span 
+class="cmmi-7">e</span></sub> = f(S<sub><span 
+class="cmmi-7">t</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">p</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">s</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">c</span></sub>). In this
+
+case, the nuclide concentrations do not need to be pre-multiplied by S<sub><span 
+class="cmmi-7">t</span></sub>.
+<br 
+class="newline" />
+<!--l. 460--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-70042"></a>
+
+<!--l. 462--><p class="noindent" >a.<a href="CosmoPaper6x.jpg""><img 
+src="CosmoPaper6x.jpg" alt="PIC" class="graphics" height="250pt" ></a><!--tex4ht:graphics  
+name="CosmoPaper6x.jpg" src="2006GC001530-f02a_orig.eps"  
+-->
+b.<a href="CosmoPaper7x.jpg""><img 
+src="CosmoPaper7x.jpg" alt="PIC" class="graphics" height="250pt" ></a><!--tex4ht:graphics  
+name="CosmoPaper7x.jpg" src="2006GC001530-f02b_orig.eps"  
+--><br />
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">By using the TCN production equation of Granger et al. (2000,
+2001; Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a>), CosmoCalc&#8217;s banana-plots are very flexible. Two examples
+of <sup><span 
+class="cmr-7">21</span></sup>Ne/<sup><span 
+class="cmr-7">10</span></sup>Be-banana plots illustrate this flexibility: a. with default parameters
+as  given  by  Granger  and  Smith  (2000)  and  in  Table  <a 
+href="#x1-220011">1<!--tex4ht:ref: tab:defaults --></a>;  b.  using  only
+spallation  by  neutrons,  i.e.  no  muons.  TCN  production  by  muons  causes  a
+characteristic cross-over of the zero-erosion and infinite exposure lines at low
+<sup><span 
+class="cmr-7">10</span></sup>Be concentrations. The ellipses mark the 2<span 
+class="cmmi-10">&#x03C3; </span>uncertainties of three samples
+(labeled a, b and c).</span></div><!--tex4ht:label?: x1-70042 -->
+
+<!--l. 476--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 479--><p class="indent" >   The graphical output of CosmoCalc can easily be copied and pasted for editing in
+vector graphics software such as Adobe Illustrator or CorelDraw. The y-axis of the
+<sup><span 
+class="cmr-7">26</span></sup>Al-<sup><span 
+class="cmr-7">10</span></sup>Be plot is logarithmic by default whereas the y-axis of the <sup><span 
+class="cmr-7">21</span></sup>Ne-<sup><span 
+class="cmr-7">10</span></sup>Be plot is
+linear. These defaults can be changed in the &#8220;Banana Options&#8221; userform. Note that
+MS-Excel (versions 2000 and 2003) only allows logarithmic tickmarks to have values
+in multiples of ten. To get around this limitation, CosmoCalc uses a &#8220;pseudo y-axis&#8221;,
+which cannot be edited by the usual right mousebutton-click. Hopefully, this
+limitation will not be necessary in later versions of Excel. CosmoCalc only propagates
+the analytical uncertainty of the measured TCN concentrations. No uncertainty
+is assigned to the production rate scaling factors, radioactive half-lives or
+other potentially ill-constrained quantities. On the banana plots, the user is
+offered the choice between error bars or -ellipses with the latter being the
+default. Banana plots are graphs of the type <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>/<span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">2</span></sub> vs. <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">2</span></sub> which are always
+associated with some degree of &#8220;spurious correlation&#8221; (Chayes, 1949). This
+causes the error ellipses to be rotated according to the following correlation
+coefficient:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7005r7"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper8x.png" alt="           --
+      -----N1&#x03C3;N2------
+&#x03C1;c = - &#x2218;-2-2-----2-2--
+        N2&#x03C3;N1 + N1&#x03C3;N2
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 503--><p class="nopar" >
+<!--l. 505--><p class="indent" >   If <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub> stands for <sup><span 
+class="cmr-7">26</span></sup>Al or <sup><span 
+class="cmr-7">21</span></sup>Ne and <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">2</span></sub> for <sup><span 
+class="cmr-7">10</span></sup>Be, then <span class="overline"><span 
+class="cmmi-10">N</span></span><sub><span 
+class="cmr-7">1</span></sub> and <span class="overline"><span 
+class="cmmi-10">N</span></span><sub><span 
+class="cmr-7">2</span></sub> are the measured
+concentrations of these respective nuclides while <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">N</span><sub><span 
+class="cmr-5">1</span></sub></sub> and <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">N</span><sub><span 
+class="cmr-5">2</span></sub></sub> are the corresponding
+measurement uncertainties.
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-80005"></a>Age/erosion rate calculations</h3>
+<!--l. 512--><p class="noindent" >Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a> has three unknowns: t (exposure age), <span 
+class="cmmi-10">&#x03F5; </span>(erosion rate) and <span 
+class="cmmi-10">&#x03C4; </span>(burial age).
+If only one nuclide was measured, we must assume values for two of these quantities
+in order to solve for the third. If two nuclides were analysed (of which at least one is
+radioactive), only one assumption is needed. CosmoCalc is capable of both
+approaches. In this section, we will first discuss how to solve for <span 
+class="cmmi-10">&#x03F5; </span>(assuming infinite
+exposure age and zero burial) and t (assuming zero erosion and burial) using a
+
+single nuclide (Section <a 
+href="#x1-90005.1">5.1<!--tex4ht:ref: sec:oneN --></a>). Then, numerical methods will be presented to
+simultaneously solve for t and <span 
+class="cmmi-10">&#x03F5; </span>(assuming zero burial), t and <span 
+class="cmmi-10">&#x03C4; </span>(assuming zero
+erosion) or <span 
+class="cmmi-10">&#x03F5; </span>and <span 
+class="cmmi-10">&#x03C4; </span>(assuming infinite exposure age), using two nuclides
+(Section <a 
+href="#x1-100005.2">5.2<!--tex4ht:ref: sec:twoN --></a>). Note that in the case of two nuclides (<sup><span 
+class="cmr-7">26</span></sup>Al or <sup><span 
+class="cmr-7">21</span></sup>Ne combined
+with <sup><span 
+class="cmr-7">10</span></sup>Be), the assumption of zero burial can be verified on the banana
+plot.
+<!--l. 528--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">5.1   </span> <a 
+ id="x1-90005.1"></a>Calculations using a single nuclide</h4>
+<!--l. 530--><p class="noindent" >CosmoCalc requires three pieces of information to calculate an exposure age or
+erosion rate: the TCN concentration (corrected for topography), its analytical
+uncertainty and a composite correction factor for production rate scaling with
+latitude/elevation and shielding (Equation <a 
+href="#x1-7003r6">6<!--tex4ht:ref: eq:S --></a>). We somehow need to incorporate this
+scaling factor into the ingrowth equation (Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a>). This poses a problem because
+the scaling factor is a single number whereas Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a> explicitly makes
+the distinction between neutrons, slow and fast muons. Granger and Smith
+(2000) avoid this problem by separately scaling the different production
+mechanisms:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r8"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper9x.png" alt="                &#x2211;3          (             )
+N (t,&#x03F5;,&#x03C4;) = P e- &#x03BB;&#x03C4;  --SiFi--- 1- e-(&#x03BB;+&#x03F5;&#x03C1;&#x2215;&#x039B;i)t
+                i=0 &#x03BB; + &#x03F5;&#x03C1;&#x2215;&#x039B;i
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 548--><p class="nopar" >
+<!--l. 550--><p class="indent" >   Instead of one scaling factor, Equation <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:Nage --></a> has four, one for neutrons (S<sub><span 
+class="cmr-7">0</span></sub>), two for
+slow muons (S<sub><span 
+class="cmr-7">1</span></sub> and S<sub><span 
+class="cmr-7">2</span></sub>) and one for fast muons (S<sub><span 
+class="cmr-7">3</span></sub>). Granger et al. (2001)
+separately calculate each of these four scaling factors. Thus, the original
+method of Granger and Smith (2000) is incompatible with the common
+practice of lumping all production mechanisms into a single latitude/elevation
+scaling factor (Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:scaling --></a>). To ensure optimal flexibility and user-friendliness,
+CosmoCalc uses a slightly different approach. <span 
+class="cmmi-10">S</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">,...,S</span><sub><span 
+class="cmr-7">3</span></sub> are calculated from the
+composite correction factor S, by approximating the total scaling by a single
+attenuation factor caused by a virtual layer of matter of thickness x (in
+g/cm<sup><span 
+class="cmr-7">2</span></sup>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r9"></a>
+
+   <center class="math-display" >
+<img 
+src="CosmoPaper10x.png" alt="      -x&#x2215;&#x039B;i
+Si = e        for i = 0,...,3
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 565--><p class="nopar" >
+<!--l. 567--><p class="indent" >   so that
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9003r10"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper11x.png" alt="&#x2211;3
+   SiFi = S
+ i=0
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 572--><p class="nopar" >
+<!--l. 574--><p class="indent" >   with F<sub><span 
+class="cmmi-7">i</span></sub> and &#x039B;<sub><span 
+class="cmmi-7">i</span></sub> as in Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a> and S as defined in Equation <a 
+href="#x1-7003r6">6<!--tex4ht:ref: eq:S --></a>. CosmoCalc
+solves Equation <a 
+href="#x1-9003r10">10<!--tex4ht:ref: eq:solveSx --></a> iteratively using Newton&#8217;s method. <br 
+class="newline" />
+<!--l. 579--><p class="indent" >   As said before, some assumptions are needed to solve Equation <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:Nage --></a>. An
+exposure age (t) can be calculated under the assumption of zero erosion
+and burial (<span 
+class="cmmi-10">&#x03F5; </span>= 0, <span 
+class="cmmi-10">&#x03C4; </span>= 0). For a radionuclide with decay constant <span 
+class="cmmi-10">&#x03BB;</span>, this
+yields:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9004r11"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper12x.png" alt="         (       )
+     1-       N-&#x03BB;
+t = -&#x03BB; ln  1- P S
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 587--><p class="nopar" >
+<!--l. 589--><p class="indent" >   whereas for stable nuclides (<sup><span 
+class="cmr-7">3</span></sup>He and <sup><span 
+class="cmr-7">21</span></sup>Ne):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9005r12"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper13x.png" alt="t = N--
+    PS
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 594--><p class="nopar" >
+<!--l. 596--><p class="indent" >   Alternatively, the erosion rate (<span 
+class="cmmi-10">&#x03F5;</span>) can be calculated under the assumption of
+steady state and zero burial (t = <span 
+class="cmsy-10">&#x221E;</span>, <span 
+class="cmmi-10">&#x03C4;</span>=0):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9006r13"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper14x.png" alt="        &#x2211;3    SiFi
+N(&#x03F5;) = P   &#x03BB;-+-&#x03F5;&#x03C1;&#x2215;&#x039B;i-
+        i=0
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 603--><p class="nopar" >
+<!--l. 605--><p class="indent" >   CosmoCalc solves this equation iteratively using Newton&#8217;s method. Statistical
+uncertainties are estimated by standard error propagation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9007r14"></a>
+
+   <center class="math-display" >
+<img 
+src="CosmoPaper15x.png" alt="        &#x03C3;N
+&#x03C3;t = PS---N-&#x03BB;
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 611--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9008r15"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper16x.png" alt="&#x03C3; =  ---------&#x03C3;N----------
+ &#x03F5;   P &#x2211;3i=0-----SiFi----2
+           ((&#x039B;i&#x2215;&#x03C1;)(&#x03BB;+&#x03F5;&#x03C1;&#x2215;&#x039B;i))
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+<!--l. 618--><p class="nopar" >
+<!--l. 620--><p class="indent" >   These error estimates do not include any uncertainties in production rates and
+scaling factors, which are difficult to quantify, but can be evaluated by using a range
+of input parameters.
+<!--l. 624--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">5.2   </span> <a 
+ id="x1-100005.2"></a>Calculations with two nuclides</h4>
+<!--l. 626--><p class="noindent" >Equation <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:Nage --></a> has three unknowns (t, <span 
+class="cmmi-10">&#x03F5; </span>and <span 
+class="cmmi-10">&#x03C4;</span>). If two nuclides have been measured
+(with concentrations N<sub><span 
+class="cmr-7">1</span></sub> and N<sub><span 
+class="cmr-7">2</span></sub>, say), only one value must be assumed in order to
+solve for the remaining two. By assuming zero erosion (<span 
+class="cmmi-10">&#x03F5; </span>= 0), CosmoCalc
+simultaneously calculates the exposure age and burial age (Section <a 
+href="#x1-110005.2.1">5.2.1<!--tex4ht:ref: sec:burial --></a>); by
+assuming steady-state erosion (t = <span 
+class="cmsy-10">&#x221E;</span>), the erosion rate and burial age are calculated;
+and by assuming zero-burial (<span 
+class="cmmi-10">&#x03C4; </span>= 0), the erosion rate and exposure age can be
+computed (Section <a 
+href="#x1-140005.2.2">5.2.2<!--tex4ht:ref: sec:age-erosion --></a>).
+
+<!--l. 636--><p class="noindent" >
+   <h5 class="subsubsectionHead"><span class="titlemark">5.2.1   </span> <a 
+ id="x1-110005.2.1"></a>Burial dating</h5>
+<!--l. 638--><p class="noindent" >If a rock surface gets buried by sediments or covered by ice, it is shielded from cosmic
+rays and the concentration of cosmogenic radionuclides decays with time. Such
+samples plot outside the steady-state erosion island of the banana plot, in the
+so-called field of &#8220;complex exposure history&#8221;, a feature which is considered
+undesirable by most studies. Other studies, however, intentionally target complex
+exposure histories, using radionuclides to date pre-exposure and burial (e.g., Bierman
+et al., 1999; Fabel et al., 2002; Partridge et al., 2003). CosmoCalc calculates
+burial ages, either by assuming negligible erosion or steady state erosion (<span 
+class="cmmi-10">&#x03F5;</span>
+= 0 or t = <span 
+class="cmsy-10">&#x221E;</span>, respectively). It does not handle post-depositional nuclide
+production.
+<!--l. 651--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-120005.2.1"></a><span 
+class="cmbx-10">Burial - Exposure dating</span><br 
+class="newline" /></span>
+   If <span 
+class="cmmi-10">&#x03F5; </span>= 0, Equation <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:Nage --></a> reduces to:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12001r16"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper17x.png" alt="      -&#x03BB;&#x03C4;SP-(    -&#x03BB;t)
+N  = e    &#x03BB;  1- e
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 658--><p class="nopar" >
+<!--l. 660--><p class="indent" >   The easiest case of two-nuclide dating is that of simultaneously calculating
+exposure age (t) and burial age (<span 
+class="cmmi-10">&#x03C4;</span>) with one radionuclide and one stable nuclide.
+Because the stable nuclide is not affected by burial, it can be used to calculate the
+pre-exposure age, using Equation <a 
+href="#x1-9005r12">12<!--tex4ht:ref: eq:stableAge --></a>. This age can then be used to calculate the
+burial age:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12002r17"></a>
+   <center class="math-display" >
+
+<img 
+src="CosmoPaper18x.png" alt="        (             )
+    1-    SP-(    - &#x03BB;t)
+&#x03C4; = &#x03BB; ln  N &#x03BB; 1 - e
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 670--><p class="nopar" >
+<!--l. 672--><p class="indent" >   In the case of two radionuclides, CosmoCalc finds t by iteratively solving the
+following equation using Newton&#8217;s method:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12003r18"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper19x.png" alt="     (               )        (               )
+      (SP-)1(    -&#x03BB;1t)          (SP-)2(    -&#x03BB;2t)
+&#x03BB;2 ln   N1&#x03BB;1  1- e      - &#x03BB;1 ln   N2&#x03BB;2  1- e      = 0
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 679--><p class="nopar" >
+<!--l. 681--><p class="indent" >   With <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">1</span></sub> <span 
+class="cmmi-10">&#x003E; &#x03BB;</span><sub><span 
+class="cmr-7">2</span></sub>. The solution is then plugged into Equation <a 
+href="#x1-12002r17">17<!--tex4ht:ref: eq:burialAge --></a>, using nuclide
+1.
+<!--l. 684--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-130005.2.1"></a><span 
+class="cmbx-10">Burial - Erosion dating</span><br 
+class="newline" /></span>
+   Setting t = <span 
+class="cmsy-10">&#x221E; </span>in Equation <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:Nage --></a> yields the following system of non-linear equations
+for TCN concentrations N<sub><span 
+class="cmr-7">1</span></sub> and N<sub><span 
+class="cmr-7">2</span></sub>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13001r19"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper20x.png" alt="{  f1(&#x03F5;,&#x03C4;) : N1 = P1e- &#x03BB;1&#x03C4; &#x2211;3 -Si,1Fi,1--
+                  - &#x03BB;2&#x03C4; &#x2211;3 i=0 &#x03BB;1+S&#x03F5;i,&#x03C1;2F&#x2215;i&#x039B;,2i,1
+   f2(&#x03F5;,&#x03C4;) : N2 = P2e     i=0 &#x03BB;2+&#x03F5;&#x03C1;&#x2215;&#x039B;i,2
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+
+<!--l. 698--><p class="nopar" >
+<!--l. 700--><p class="indent" >   These equations are easy to solve since the variables <span 
+class="cmmi-10">&#x03C4; </span>and <span 
+class="cmmi-10">&#x03F5; </span>are separated. If
+nuclide 1 has the shortest half-life (largest decay constant <span 
+class="cmmi-10">&#x03BB;</span>), the burial age is
+written as a function of the erosion rate <span 
+class="cmmi-10">&#x03F5;</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13002r20"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper21x.png" alt="         (                 )
+     1     P1 &#x2211;3   Si,1Fi,1
+&#x03C4; = &#x03BB;- ln  N--   &#x03BB;-+-&#x03F5;&#x03C1;&#x2215;&#x039B;---
+     1      1 i=0  1      i,1
+" class="math-display" ></center></td><td class="equation-label">(20)</td></tr></table>
+<!--l. 709--><p class="nopar" >
+<!--l. 711--><p class="indent" >   The erosion rate is given implicitly by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13003r21"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper22x.png" alt="     (    &#x2211;3           )        (   &#x2211;3            )
+&#x03BB;2 ln   P1-   --Si,1Fi,1--- - &#x03BB;1 ln  -P2    --Si,2Fi,2--- = 0
+       N1 i=0 &#x03BB;1 + &#x03F5;&#x03C1;&#x2215;&#x039B;i,1         N2  i=0 &#x03BB;2 + &#x03F5;&#x03C1;&#x2215;&#x039B;i,2
+" class="math-display" ></center></td><td class="equation-label">(21)</td></tr></table>
+<!--l. 719--><p class="nopar" >
+<!--l. 721--><p class="indent" >   CosmoCalc solves Equation <a 
+href="#x1-13003r21">21<!--tex4ht:ref: eq:eBurial --></a> for <span 
+class="cmmi-10">&#x03F5; </span>using Newton&#8217;s method and then plugs this
+value into Equation <a 
+href="#x1-13002r20">20<!--tex4ht:ref: eq:tau --></a>. If <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">2</span></sub> <span 
+class="cmmi-10">&#x003C; &#x03BB;</span><sub><span 
+class="cmr-7">1</span></sub>, then N<sub><span 
+class="cmr-7">2</span></sub> is used instead of N<sub><span 
+class="cmr-7">1</span></sub> in Equation
+<a 
+href="#x1-13002r20">20<!--tex4ht:ref: eq:tau --></a>.
+
+<!--l. 726--><p class="noindent" >
+   <h5 class="subsubsectionHead"><span class="titlemark">5.2.2   </span> <a 
+ id="x1-140005.2.2"></a>Age-erosion rate calculations</h5>
+<!--l. 728--><p class="noindent" >Assuming zero burial (<span 
+class="cmmi-10">&#x03C4; </span>= 0) yields the following system of equations f<sub><span 
+class="cmr-7">1</span></sub> and
+f<sub><span 
+class="cmr-7">2</span></sub>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-14001r22"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper23x.png" alt="{                              (               )
+   f1(&#x03F5;,t) : N1 = P1&#x2211;3i=0 &#x03BB;S+i,&#x03F5;1F&#x03C1;i&#x2215;,1&#x039B; 1- e-(&#x03BB;1+ &#x03F5;&#x03C1;&#x2215;&#x039B;i,1)t
+   f (&#x03F5;,t) : N = P &#x2211;3   1Si,2Fi,2i,1(1- e-(&#x03BB;2+ &#x03F5;&#x03C1;&#x2215;&#x039B;i,2)t)
+    2       2   2  i=0 &#x03BB;2+&#x03F5;&#x03C1;&#x2215;&#x039B;i,2
+" class="math-display" ></center></td><td class="equation-label">(22)</td></tr></table>
+<!--l. 740--><p class="nopar" >
+<!--l. 742--><p class="indent" >   It is impossible to solve these equations for exposure age (t) and erosion rate (<span 
+class="cmmi-10">&#x03F5;</span>)
+separately. Instead, CosmoCalc implements the two-dimensional version of the
+Newton-Raphson algorithm:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-14002r23"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper24x.png" alt="[   ]   [  ]  &#x230A;    (   )      (   ) &#x230B; -1[       ]
+ &#x03F5;k+1     &#x03F5;k   &#x2308;a = (&#x2202;f&#x2202;1&#x03F5;)k  b = ( &#x2202;&#x2202;f1t)k&#x2309;   f1(&#x03F5;k,tk)
+ tk+1  =  tk -  c =  &#x2202;f2    d =  &#x2202;f2-      f2(&#x03F5;k,tk)
+                     &#x2202;&#x03F5;  k       &#x2202;t k
+" class="math-display" ></center></td><td class="equation-label">(23)</td></tr></table>
+<!--l. 768--><p class="nopar" >
+<!--l. 770--><p class="indent" >   With <span 
+class="cmmi-10">J</span>(<span 
+class="cmmi-10">&#x03F5;,t</span>) = <img 
+src="CosmoPaper25x.png" alt="[    ]
+ a  b
+ c  d"  class="left" align="middle"> the Jacobian matrix, which is also used for error
+propagation.
+
+<!--l. 773--><p class="noindent" >
+   <h5 class="subsubsectionHead"><span class="titlemark">5.2.3   </span> <a 
+ id="x1-150005.2.3"></a>Error propagation</h5>
+<!--l. 775--><p class="noindent" >Error propagation is less straightforward in the two-dimensional case than in the
+single nuclide case (Section <a 
+href="#x1-90005.1">5.1<!--tex4ht:ref: sec:oneN --></a>). The bijection from (N<sub><span 
+class="cmr-7">1</span></sub>,N<sub><span 
+class="cmr-7">2</span></sub>)-space to (<span 
+class="cmmi-10">&#x03F5;</span>,t)-space is
+not orthogonal, particularly in the case of age-erosion dating (Section <a 
+href="#x1-140005.2.2">5.2.2<!--tex4ht:ref: sec:age-erosion --></a>). For this
+reason, it is only possible to analytically compute upper bounds for <span 
+class="cmmi-10">&#x03C3;</span>(<span 
+class="cmmi-10">&#x03F5;</span>), <span 
+class="cmmi-10">&#x03C3;</span>(<span 
+class="cmmi-10">&#x03C4;</span>) and
+<span 
+class="cmmi-10">&#x03C3;</span>(t):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-15001r24"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper26x.png" alt="[    ]            [     ]
+ &#x03C3;(x)   &#x2225;&#x2225;      -1&#x2225;&#x2225; &#x03C3;(N1 )
+ &#x03C3;(y) &#x2264;  J(x,y)    &#x03C3;(N2 )
+" class="math-display" ></center></td><td class="equation-label">(24)</td></tr></table>
+<!--l. 797--><p class="nopar" >
+<!--l. 799--><p class="indent" >   with x and y placeholders for <span 
+class="cmmi-10">&#x03F5; </span>and t or <span 
+class="cmmi-10">&#x03C4;</span>, respectively, and <span 
+class="cmsy-10">&#x2225;&#x22C5;&#x2225; </span>the absolute
+values of the matrix <img 
+src="CosmoPaper27x.png" alt="[&#x22C5;]"  class="left" align="middle">. In the case of age-erosion dating, the confidence intervals for
+t and <span 
+class="cmmi-10">&#x03F5; </span>are very wide, often too wide to be useful. Therefore, it can be more
+productive to solve each quantity separately instead of simultaneously. Thus, using
+equations <a 
+href="#x1-9004r11">11<!--tex4ht:ref: eq:age --></a> and <a 
+href="#x1-9006r13">13<!--tex4ht:ref: eq:erosion --></a>, it is possible to estimate minimum exposure ages and
+maximum erosion rates (e.g., Nishiizumi et al., 1991). However, for burial
+dating there is no choice and we must simultaneously solve for <span 
+class="cmmi-10">&#x03C4; </span>and <span 
+class="cmmi-10">&#x03F5; </span>or t.
+<br 
+class="newline" />
+<!--l. 811--><p class="indent" >   In addition to Newton&#8217;s method, CosmoCalc offers a second way of solving
+equations <a 
+href="#x1-13001r19">19<!--tex4ht:ref: eq:burialSystem --></a> and <a 
+href="#x1-14001r22">22<!--tex4ht:ref: eq:ageErosionSystem --></a> by means of Monte Carlo simulation, implementing the
+Metropolis-Hastings algorithm (Metropolis et al., 1953; Tarantola, 2004). The
+Metropolis-Hastings algorithm is a so-called Bayesian MCMC (Markov Chain Monte
+Carlo) method. It not only finds the best solution to the system of non-linear
+equations, but actually explores the entire solution space. If the &#8220;Metropolis&#8221; option
+of the Age-Erosion function is selected, CosmoCalc generates 1000 &#8220;acceptable&#8221;
+solutions to Equation <a 
+href="#x1-13001r19">19<!--tex4ht:ref: eq:burialSystem --></a> or <a 
+href="#x1-14001r22">22<!--tex4ht:ref: eq:ageErosionSystem --></a>, where &#8220;acceptable&#8221; is defined by the bivariate normal
+likelihood of the forward-modeled TCN concentrations (Figure <a 
+href="#x1-150023">3<!--tex4ht:ref: fig:metropolisBanana --></a>). The last 900 of
+these solutions are then ranked according to their likelihood. For a 95%
+confidence interval, those solutions with the lowest 5% likelihoods of the 900
+results are discarded, leaving 855 values for <span 
+class="cmmi-10">&#x03F5;</span>, t or <span 
+class="cmmi-10">&#x03C4;</span>. The minimum and
+maximum values of these 855 numbers are the lower and upper bounds,
+respectively, of the simultaneous 95% confidence intervals. In contrast with the
+
+symmetric confidence intervals given by equation <a 
+href="#x1-15001r24">24<!--tex4ht:ref: eq:2dError --></a>, the MCMC confidence limits
+are always greater than or equal to zero. However, as said before, the 95%
+confidence intervals can be very wide especially in the case of age-erosion
+dating.
+<!--l. 835--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-150023"></a>
+
+<!--l. 837--><p class="noindent" ><a href="CosmoPaper28x.jpg"><img 
+src="CosmoPaper28x.jpg" alt="PIC" class="graphics" width="400pt" ></a><!--tex4ht:graphics  
+name="CosmoPaper28x.jpg" src="2006GC001530-f03_orig.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Starting with a random guess (white star) for the erosion rate (<span 
+class="cmmi-10">&#x03F5;</span>)
+and burial age (<span 
+class="cmmi-10">&#x03C4;</span>), the Metropolis-Hastings algorithm quickly finds the optimal
+solution. It then continues to randomly sample the solution space defined by
+the measurement uncertainties. The white ellipse is the 2<span 
+class="cmmi-10">&#x03C3; </span>confidence region,
+which corresponds to <span 
+class="cmsy-10">~</span>90% of the bivariate (<span 
+class="cmmi-10">&#x03F5;</span>,<span 
+class="cmmi-10">&#x03C4;</span>) solution-space. The black area
+contains the last 90% of the 1000 accepted values generated by the algorithm.
+95%  of  these  900  values  are  used  to  calculate  the  simultaneous  confidence
+intervals for <span 
+class="cmmi-10">&#x03F5;</span>&#x00A0;and&#x00A0;<span 
+class="cmmi-10">&#x03C4;</span>.</span></div><!--tex4ht:label?: x1-150023 -->
+
+<!--l. 850--><p class="indent" >   </div><hr class="endfigure">
+   <h5 class="subsubsectionHead"><span class="titlemark">5.2.4   </span> <a 
+ id="x1-160005.2.4"></a>An <span 
+class="cmti-10">a posteriori </span>modification of the banana plots</h5>
+<!--l. 854--><p class="noindent" >Section <a 
+href="#x1-70004">4<!--tex4ht:ref: sec:banana --></a> discussed the construction of <sup><span 
+class="cmr-7">26</span></sup>Al-<sup><span 
+class="cmr-7">10</span></sup>Be and <sup><span 
+class="cmr-7">21</span></sup>Ne-<sup><span 
+class="cmr-7">10</span></sup>Be banana plots. To
+plot samples from different field locations (with different latitude, elevation and
+shielding conditions) together on the same banana plot, it is necessary to scale the
+TCN concentrations to SLHL. In other words, each TCN concentration must be
+divided by an appropriate scaling factor, the so-called &#8220;effective scaling factor&#8221; S<sub><span 
+class="cmmi-7">e</span></sub>
+(Equation <a 
+href="#x1-7002r5">5<!--tex4ht:ref: eq:Se --></a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-16001r25"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper29x.png" alt="     Nmeas--
+Se = NSLHL
+" class="math-display" ></center></td><td class="equation-label">(25)</td></tr></table>
+<!--l. 866--><p class="nopar" >
+<!--l. 868--><p class="indent" >   With N<sub><span 
+class="cmmi-7">meas</span></sub> the measured TCN concentration, and N<sub><span 
+class="cmmi-7">SLHL</span></sub> the equivalent TCN
+concentration which would be measured had the sample been collected from SLHL.
+In the case of zero erosion, N<sub><span 
+class="cmmi-7">SLHL</span></sub> = N<sub><span 
+class="cmmi-7">meas</span></sub> / (S<sub><span 
+class="cmmi-7">p</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">t</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">s</span></sub> <span 
+class="cmsy-10">&#x00D7; </span>S<sub><span 
+class="cmmi-7">c</span></sub>). This is no longer
+true when <span 
+class="cmmi-10">&#x03F5; &#x003E; </span>0, because the relative contributions of neutron spallation, slow and
+fast muons change below the surface. This is the &#8220;fractionation&#8221; effect that was
+discussed in Section <a 
+href="#x1-70004">4<!--tex4ht:ref: sec:banana --></a> and quantified by Equation <a 
+href="#x1-9003r10">10<!--tex4ht:ref: eq:solveSx --></a>. For example, consider
+the case of two high latitude, high elevation samples, one with negligible
+erosion (<span 
+class="cmmi-10">&#x03F5;</span>=0) and one with non-zero erosion (<span 
+class="cmmi-10">&#x03F5;&#x003E;</span>0). Because the relative
+importance of neutron spallation increases with decreasing erosion rate, and
+neutrons are more important (relative to muons) at higher elevations, S<sub><span 
+class="cmmi-7">e</span></sub> will be
+greater for the zero-erosion than for the non-zero erosion case. CosmoCalc
+first solves Equation <a 
+href="#x1-13001r19">19<!--tex4ht:ref: eq:burialSystem --></a> or <a 
+href="#x1-14001r22">22<!--tex4ht:ref: eq:ageErosionSystem --></a> for <span 
+class="cmmi-10">&#x03F5; </span>and <span 
+class="cmmi-10">&#x03C4; </span>or t, whichever fits the measured
+TCN concentrations best. Plugging these solutions into Equation <a 
+href="#x1-7001r4">4<!--tex4ht:ref: eq:Nbanana --></a> yields
+the equivalent TCN concentration at SLHL. S<sub><span 
+class="cmmi-7">e</span></sub> is then given by Equation
+<a 
+href="#x1-16001r25">25<!--tex4ht:ref: eq:ScalingN --></a>.
+<!--l. 889--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-170006"></a>Converters</h3>
+
+<!--l. 891--><p class="noindent" >Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:scaling --></a> discussed four different models to scale TCN production rates from SLHL
+to any other location on Earth. All these models have in common that they require
+two columns of data in CosmoCalc: &#8220;latitude&#8221; and &#8220;elevation&#8221;. They differ in
+how they quantify these two pieces of information. The scaling factors of
+Lal (1991) are the only ones that use the actual geographical latitude (in
+degrees) and elevation (in meters). Stone (2000) also uses the geographical
+latitude for estimating the latitude effect, but uses atmospheric pressure (in
+mbar) for modeling the elevation effect. Dunai (2000) uses the geomagnetic
+inclination (in degrees) instead of latitude, and atmospheric depth (in g/cm<sup><span 
+class="cmr-7">2</span></sup>)
+instead of elevation. Finally, Desilets et al. (2003, 2006) use cut-off rigidity (in
+GV) for the latitude effect and atmospheric depth for the elevation effect.
+<br 
+class="newline" />
+<!--l. 906--><p class="indent" >   All these different measures of &#8220;latitude&#8221; and &#8220;elevation&#8221; are related to each
+other and can be converted into each other. To facilitate the comparison of the
+different methods and, for example, reinterpret published literature data, CosmoCalc
+provides a series of easy-to-use conversion tools.
+<!--l. 912--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.1   </span> <a 
+ id="x1-180006.1"></a>Converting different measures of &#8220;elevation&#8221;</h4>
+<!--l. 914--><p class="noindent" >To convert elevation (z, in m) to atmospheric pressure (p, in mbar) (Iribane and
+Godson, 1992):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18001r26"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper30x.png" alt="      (       )Rg0&#x03B2;0
+p = p0 1 - &#x03B2;0z  d
+           T0
+" class="math-display" ></center></td><td class="equation-label">(26)</td></tr></table>
+<!--l. 920--><p class="nopar" >
+<!--l. 922--><p class="indent" >   With p<sub><span 
+class="cmr-7">0</span></sub> the pressure at sea level, <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">0</span></sub> the adiabatic lapse rate, T<sub><span 
+class="cmr-7">0</span></sub> the temperature
+at sea level, g<sub><span 
+class="cmr-7">0</span></sub> the gravitational constant and R<sub><span 
+class="cmmi-7">d</span></sub> the universal gas constant. In the
+standard atmospheric model, <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">0</span></sub> = 6.5 K/km, g<sub><span 
+class="cmr-7">0</span></sub> = 9.80665 m/s<sup><span 
+class="cmr-7">2</span></sup>, p<sub><span 
+class="cmr-7">0</span></sub> = 1013.25 mbar
+and T<sub><span 
+class="cmr-7">0</span></sub> = 288.15 K. However, these values are not valid for Antarctica, where p<sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">&#x2248;</span>
+989.1 mbar and T<sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">&#x2248; </span>250 K. The modified Equation <a 
+href="#x1-18001r26">26<!--tex4ht:ref: eq:z2p --></a> can be rewritten as (Stone,
+2000):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18002r27"></a>
+
+   <center class="math-display" >
+<img 
+src="CosmoPaper31x.png" alt="           --z-
+pant = 989.1e 7588
+" class="math-display" ></center></td><td class="equation-label">(27)</td></tr></table>
+<!--l. 934--><p class="nopar" >
+<!--l. 936--><p class="indent" >   Atmospheric pressure is converted to atmospheric depth (g/cm<sup><span 
+class="cmr-7">2</span></sup>) by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18003r28"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper32x.png" alt="d = 10-p
+     g0
+" class="math-display" ></center></td><td class="equation-label">(28)</td></tr></table>
+<!--l. 941--><p class="nopar" >
+<!--l. 943--><p class="indent" >   The reverse conversions are trivial inversions of these equations.
+<!--l. 945--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.2   </span> <a 
+ id="x1-190006.2"></a>Converting different measures of &#8220;latitude&#8221;</h4>
+<!--l. 947--><p class="noindent" >Converting latitude (L, in degrees) to geomagnetic inclination (I, in degrees) and
+back:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-19001r29"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper33x.png" alt="tan I = 2 tan L
+
+" class="math-display" ></center></td><td class="equation-label">(29)</td></tr></table>
+<!--l. 953--><p class="nopar" >
+<!--l. 955--><p class="indent" >   Converting latitude to geomagnetic cut-off rigidity (in GV) for a geomagnetic
+field strength M, compared to the 1945 reference value (M<sub><span 
+class="cmr-7">0</span></sub> = 8.085<span 
+class="cmsy-10">&#x00D7;</span>10<sup><span 
+class="cmr-7">2</span></sup> A
+m<sup><span 
+class="cmr-7">2</span></sup>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-19002r30"></a>
+   <center class="math-display" >
+<img 
+src="CosmoPaper34x.png" alt="     &#x2211;6 (      ( M  ))  i
+Rc =      ei +fi  M--   L
+     i=1           0
+" class="math-display" ></center></td><td class="equation-label">(30)</td></tr></table>
+<!--l. 962--><p class="nopar" >
+<!--l. 964--><p class="indent" >   The default value for M/M<sub><span 
+class="cmr-7">0</span></sub> = 1, but can be changed by clicking the &#8220;Option&#8221;
+button of the CosmoCalc conversion form. e<sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,</span>e<sub><span 
+class="cmr-7">6</span></sub> and f<sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,</span>f<sub><span 
+class="cmr-7">6</span></sub> are defined in
+Table 8 of Desilets and Zreda (2003). The reverse operation of Equation <a 
+href="#x1-19002r30">30<!--tex4ht:ref: eq:L2Rc --></a>
+does not have an analytical solution and is solved iteratively with Newton&#8217;s
+method.
+<!--l. 970--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-200007"></a>Customizing CosmoCalc</h3>
+<!--l. 972--><p class="noindent" >The interface of CosmoCalc is very simple because default values are set for most of
+the parameters that occur in the various equations discussed in this paper (Table <a 
+href="#x1-220011">1<!--tex4ht:ref: tab:defaults --></a>).
+This greatly reduces the chance that novice users make mistakes when reducing their
+TCN data. For more advanced users, the program allows nearly all the parameters to
+be changed.
+<!--l. 979--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">7.1   </span> <a 
+ id="x1-210007.1"></a>Specifying the production rate calibration sites</h4>
+<!--l. 982--><p class="noindent" >As mentioned in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:scaling --></a>, it is very important to use a consistent set of scaling
+factors for the unknown sample and the production rate calibration site. Failing to do
+so can cause significant systematic errors. To avoid this, CosmoCalc defines the
+SLHL production rates <span 
+class="cmti-10">implicitly</span>, by specifying a set of calibration sites and
+their measured TCN concentrations. Using the &#8220;Calibration sites&#8221; form
+
+of the &#8220;Settings&#8221; menu, these concentrations are scaled to SLHL and an
+average production rate is calculated using one of the five scaling models
+of Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:scaling --></a>. CosmoCalc comes with a default set of published production
+rate calibrations, some of which (<sup><span 
+class="cmr-7">10</span></sup>Be and <sup><span 
+class="cmr-7">26</span></sup>Al) were borrowed from Balco
+and Stone (2007; <span 
+class="cmtt-10">http://hess.ess.washington.edu/math</span>). The published
+data come from a variety of latitudes and elevations, yielding a presumably
+reliable estimate of the globally averaged production rates. This, however,
+is not always the best approach. For example, if a TCN study is carried
+out in the vicinity of one particular calibration site, then it makes more
+sense to use only this site to estimate the local production rate. Therefore,
+CosmoCalc offers the user the flexibility to delete or add calibration sites at
+will.
+<!--l. 1003--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">7.2   </span> <a 
+ id="x1-220007.2"></a>Changing the relative contributions of different production pathways</h4>
+<!--l. 1005--><p class="noindent" >Being based on the equation of Granger and Smith (2000), the TCN production
+equation consists of four exponentials: one for neutrons, two for slow neutrons, and
+one for fast neutrons (see Equation <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:Nage --></a> and Section <a 
+href="#x1-80005">5<!--tex4ht:ref: sec:age --></a>). These exponentials are governed
+by two sets of parameters: the fractions F<sub><span 
+class="cmmi-7">i</span></sub> and the attenuation lengths &#x039B;<sub><span 
+class="cmmi-7">i</span></sub> (for
+i=0,...,3). Default values for &#x039B;<sub><span 
+class="cmmi-7">i</span></sub>, F<sub><span 
+class="cmmi-7">i</span></sub>(<sup><span 
+class="cmr-7">10</span></sup>Be) and F<sub><span 
+class="cmmi-7">i</span></sub>(<sup><span 
+class="cmr-7">26</span></sup>Al) were taken from Granger and
+Smith (2000) (Table <a 
+href="#x1-220011">1<!--tex4ht:ref: tab:defaults --></a>), but these values can be changed in the &#8220;Settings&#8221; form.
+<br 
+class="newline" />
+   <div class="table">
+
+<!--l. 1016--><p class="indent" >   <a 
+ id="x1-220011"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-1"  
+class="td11">parameter                                          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-2"  
+class="td11">symbol  </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-3"  
+class="td11">default value</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-4"  
+class="td11">units  </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-1"  
+class="td11">rock density                                        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-2"  
+class="td11"><span 
+class="cmmi-10">&#x03C1;         </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-3"  
+class="td11">       2.65</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-4"  
+class="td11">g/cm<sup><span 
+class="cmr-7">3</span></sup></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-1"  
+class="td11">decay constant (<sup><span 
+class="cmr-7">10</span></sup>Be)                            </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-2"  
+class="td11"><span 
+class="cmmi-10">&#x03BB;</span>(<sup><span 
+class="cmr-7">10</span></sup>Be)  </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-3"  
+class="td11">   4.560E-07</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-4"  
+class="td11">yr<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-1"  
+class="td11">decay constant (<sup><span 
+class="cmr-7">26</span></sup>Al)                            </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-2"  
+class="td11"><span 
+class="cmmi-10">&#x03BB;</span>(<sup><span 
+class="cmr-7">26</span></sup>Al)  </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-3"  
+class="td11">   9.800E-07</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-4"  
+class="td11">yr<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-1"  
+class="td11">decay constant (<sup><span 
+class="cmr-7">36</span></sup>Cl)                            </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-2"  
+class="td11"><span 
+class="cmmi-10">&#x03BB;</span>(<sup><span 
+class="cmr-7">36</span></sup>Cl)  </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-3"  
+class="td11">   2.300E-06</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-4"  
+class="td11">yr<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-1"  
+class="td11">decay constant (<sup><span 
+class="cmr-7">14</span></sup>C)                             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-2"  
+class="td11"><span 
+class="cmmi-10">&#x03BB;</span>(<sup><span 
+class="cmr-7">14</span></sup>C)   </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-3"  
+class="td11">   1.213E-04</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-4"  
+class="td11">yr<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-1"  
+class="td11">attenuation length (neutrons)                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-2"  
+class="td11">&#x039B;<sub><span 
+class="cmr-7">0</span></sub>          </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-3"  
+class="td11">        160</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-4"  
+class="td11">g/cm<sup><span 
+class="cmr-7">2</span></sup></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-1"  
+class="td11">attenuation length (slow muons)              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-2"  
+class="td11">&#x039B;<sub><span 
+class="cmr-7">1</span></sub>          </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-3"  
+class="td11">        738</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-4"  
+class="td11">g/cm<sup><span 
+class="cmr-7">2</span></sup></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-1"  
+class="td11">attenuation length (slow muons)              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-2"  
+class="td11">&#x039B;<sub><span 
+class="cmr-7">2</span></sub>          </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-3"  
+class="td11">       2688</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-4"  
+class="td11">g/cm<sup><span 
+class="cmr-7">2</span></sup></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-1"  
+class="td11">attenuation length (fast muons)              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-2"  
+class="td11">&#x039B;<sub><span 
+class="cmr-7">3</span></sub>          </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-3"  
+class="td11">       4360</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-4"  
+class="td11">g/cm<sup><span 
+class="cmr-7">2</span></sup></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-1"  
+class="td11">relative production by neutrons (<sup><span 
+class="cmr-7">10</span></sup>Be)     </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-2"  
+class="td11">F<sub><span 
+class="cmr-7">0</span></sub>(<sup><span 
+class="cmr-7">10</span></sup>Be)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-3"  
+class="td11">     0.9724</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-1"  
+class="td11">relative production by neutrons (<sup><span 
+class="cmr-7">26</span></sup>Al)      </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-2"  
+class="td11">F<sub><span 
+class="cmr-7">0</span></sub>(<sup><span 
+class="cmr-7">26</span></sup>Al)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-3"  
+class="td11">     0.9655</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-13-1"  
+class="td11">relative production by neutrons (<sup><span 
+class="cmr-7">14</span></sup>C)       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-13-2"  
+class="td11">F<sub><span 
+class="cmr-7">0</span></sub>(<sup><span 
+class="cmr-7">14</span></sup>C) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-3"  
+class="td11">       0.83</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-13-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-14-1"  
+class="td11">relative production by neutrons (<sup><span 
+class="cmr-7">36</span></sup>Cl)      </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-14-2"  
+class="td11">F<sub><span 
+class="cmr-7">0</span></sub>(<sup><span 
+class="cmr-7">36</span></sup>Cl) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-3"  
+class="td11">      0.903</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-14-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-15-1"  
+class="td11">relative production by neutrons (<sup><span 
+class="cmr-7">3</span></sup>He)       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-15-2"  
+class="td11">F<sub><span 
+class="cmr-7">0</span></sub>(<sup><span 
+class="cmr-7">3</span></sup>He) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-3"  
+class="td11">          1</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-15-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-16-1"  
+class="td11">relative production by neutrons (<sup><span 
+class="cmr-7">21</span></sup>Ne)     </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-16-2"  
+class="td11">F<sub><span 
+class="cmr-7">0</span></sub>(<sup><span 
+class="cmr-7">21</span></sup>Ne)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-3"  
+class="td11">          1</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-16-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-17-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">10</span></sup>Be)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-17-2"  
+class="td11">F<sub><span 
+class="cmr-7">1</span></sub>(<sup><span 
+class="cmr-7">10</span></sup>Be)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-3"  
+class="td11">     0.0186</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-17-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-18-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">26</span></sup>Al)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-18-2"  
+class="td11">F<sub><span 
+class="cmr-7">1</span></sub>(<sup><span 
+class="cmr-7">26</span></sup>Al)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-3"  
+class="td11">     0.0233</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-18-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-19-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">14</span></sup>C)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-19-2"  
+class="td11">F<sub><span 
+class="cmr-7">1</span></sub>(<sup><span 
+class="cmr-7">14</span></sup>C) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-3"  
+class="td11">     0.0691</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-19-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-20-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">36</span></sup>Cl)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-20-2"  
+class="td11">F<sub><span 
+class="cmr-7">1</span></sub>(<sup><span 
+class="cmr-7">36</span></sup>Cl) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-3"  
+class="td11">     0.0447</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-20-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-21-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">3</span></sup>He)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-21-2"  
+class="td11">F<sub><span 
+class="cmr-7">1</span></sub>(<sup><span 
+class="cmr-7">3</span></sup>He) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-3"  
+class="td11">          0</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-21-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-22-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-22-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">21</span></sup>Ne)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-22-2"  
+class="td11">F<sub><span 
+class="cmr-7">1</span></sub>(<sup><span 
+class="cmr-7">21</span></sup>Ne)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-3"  
+class="td11">          0</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-22-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-23-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-23-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">10</span></sup>Be)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-23-2"  
+class="td11">F<sub><span 
+class="cmr-7">2</span></sub>(<sup><span 
+class="cmr-7">10</span></sup>Be)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-3"  
+class="td11">      0.004</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-23-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-24-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-24-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">26</span></sup>Al)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-24-2"  
+class="td11">F<sub><span 
+class="cmr-7">2</span></sub>(<sup><span 
+class="cmr-7">26</span></sup>Al)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-3"  
+class="td11">      0.005</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-24-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-25-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-25-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">14</span></sup>C)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-25-2"  
+class="td11">F<sub><span 
+class="cmr-7">2</span></sub>(<sup><span 
+class="cmr-7">14</span></sup>C) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-3"  
+class="td11">     0.0809</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-25-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-26-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-26-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">36</span></sup>Cl)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-26-2"  
+class="td11">F<sub><span 
+class="cmr-7">2</span></sub>(<sup><span 
+class="cmr-7">36</span></sup>Cl) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-3"  
+class="td11">     0.0523</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-26-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-27-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-27-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">3</span></sup>He)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-27-2"  
+class="td11">F<sub><span 
+class="cmr-7">2</span></sub>(<sup><span 
+class="cmr-7">3</span></sup>He) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-27-3"  
+class="td11">          0</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-27-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-28-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-28-1"  
+class="td11">relative production by slow muons (<sup><span 
+class="cmr-7">21</span></sup>Ne)  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-28-2"  
+class="td11">F<sub><span 
+class="cmr-7">2</span></sub>(<sup><span 
+class="cmr-7">21</span></sup>Ne)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-28-3"  
+class="td11">          0</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-28-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-29-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-29-1"  
+class="td11">relative production by fast muons (<sup><span 
+class="cmr-7">10</span></sup>Be)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-29-2"  
+class="td11">F<sub><span 
+class="cmr-7">3</span></sub>(<sup><span 
+class="cmr-7">10</span></sup>Be)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-29-3"  
+class="td11">      0.005</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-29-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-30-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-30-1"  
+class="td11">relative production by fast muons (<sup><span 
+class="cmr-7">26</span></sup>Al)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-30-2"  
+class="td11">F<sub><span 
+class="cmr-7">3</span></sub>(<sup><span 
+class="cmr-7">26</span></sup>Al)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-30-3"  
+class="td11">     0.0062</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-30-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-31-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-31-1"  
+class="td11">relative production by fast muons (<sup><span 
+class="cmr-7">14</span></sup>C)    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-31-2"  
+class="td11">F<sub><span 
+class="cmr-7">3</span></sub>(<sup><span 
+class="cmr-7">14</span></sup>C) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-31-3"  
+class="td11">       0.02</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-31-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-32-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-32-1"  
+class="td11">relative production by fast muons (<sup><span 
+class="cmr-7">36</span></sup>Cl)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-32-2"  
+class="td11">F<sub><span 
+class="cmr-7">3</span></sub>(<sup><span 
+class="cmr-7">36</span></sup>Cl) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-32-3"  
+class="td11">          0</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-32-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-33-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-33-1"  
+class="td11">relative production by fast muons (<sup><span 
+class="cmr-7">3</span></sup>He)    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-33-2"  
+class="td11">F<sub><span 
+class="cmr-7">3</span></sub>(<sup><span 
+class="cmr-7">3</span></sup>He) </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-33-3"  
+class="td11">          0</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-33-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-34-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-34-1"  
+class="td11">relative production by fast muons (<sup><span 
+class="cmr-7">21</span></sup>Ne)   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-34-2"  
+class="td11">F<sub><span 
+class="cmr-7">3</span></sub>(<sup><span 
+class="cmr-7">21</span></sup>Ne)</td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-34-3"  
+class="td11">          0</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-34-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-35-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-35-1"  
+class="td11">sea level temperature                            </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-35-2"  
+class="td11">T<sub><span 
+class="cmr-7">0</span></sub>          </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-35-3"  
+class="td11">     288.15</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-35-4"  
+class="td11">K      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-36-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-36-1"  
+class="td11">adiabatic lapse rate                               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-36-2"  
+class="td11"><span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">0</span></sub>           </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-36-3"  
+class="td11">        6.5</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-36-4"  
+class="td11">K/km</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-37-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-37-1"  
+class="td11">air pressure at sea level                          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-37-2"  
+class="td11">P<sub><span 
+class="cmr-7">0</span></sub>          </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-37-3"  
+class="td11">    1013.25</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-37-4"  
+class="td11">mbar </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-38-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-38-1"  
+class="td11">geomagnetic field intensity relative to 1945</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-38-2"  
+class="td11">M/M<sub><span 
+class="cmr-7">0</span></sub>    </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-38-3"  
+class="td11">          1</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-38-4"  
+class="td11">&#8211;       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-39-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-39-1"  
+class="td11">                                    </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Default values of CosmoCalc parameters</span></div><!--tex4ht:label?: x1-220011 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 1064--><p class="indent" >   In addition to Equation <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:Nage --></a>, several alternative, but similar looking TCN ingrowth
+equations exist in the literature. Schaller et al. (2001, 2002) use not four but eight
+exponentials (two for neutrons, and three for each slow and fast muons), whereas
+others use three (one for each production mechanism) (e.g., Braucher et al., 2003;
+Miller et al., 2006) or only one exponential (neglecting muon production). CosmoCalc
+provides a separate set of default parameters for each of these alternatives. For
+example, the ingrowth equation of Schaller et al. (2002) was recast in the
+parameterization of Granger and Smith (2000) by a least squares fit of a virtual
+depth profile (Figure <a 
+href="#x1-220024">4<!--tex4ht:ref: fig:granger2schaller --></a>).
+<!--l. 1076--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-220024"></a>
+
+<!--l. 1077--><p class="noindent" ><a href="CosmoPaper35x.jpg"><img 
+src="CosmoPaper35x.jpg" alt="PIC" class="graphics" height="250pt" ></a><!--tex4ht:graphics  
+name="CosmoPaper35x.jpg" src="2006GC001530-f04_orig.eps"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">To implement the TCN ingrowth equation of Schaller et al. (2001,
+2002), CosmoCalc uses a least squares fit of the TCN ingrowth equation of
+Granger and Smith (2000) to a &#8220;virtual&#8221; depth profile defined by this alternative
+ingrowth equation.</span></div><!--tex4ht:label?: x1-220024 -->
+
+<!--l. 1084--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-230008"></a>How to report data reduced with CosmoCalc</h3>
+<!--l. 1088--><p class="noindent" >CosmoCalc was designed to be a user-friendly program for both novice and advanced
+users of TCN methods. Nearly every function comes with a set of options which allow
+the user to change the default values of various parameters (Section <a 
+href="#x1-200007">7<!--tex4ht:ref: sec:settings --></a>). Although
+CosmoCalc&#8217;s flexibility should be considered a positive feature, a danger exists that
+his may lead to confusion. Therefore, it is important that the data-reduction
+method is well documented when reporting results. Here is an example:
+<br 
+class="newline" />
+<!--l. 1098--><p class="indent" >   &#8220;<span 
+class="cmti-10">Ages were calculated with CosmoCalc 1.0 (Vermeesch, 2007), using Dunai</span>
+<span 
+class="cmti-10">(2000) scaling factors and default values for all parameters with the following</span>
+<span 
+class="cmti-10">exceptions: </span><span 
+class="cmmi-10">&#x03C1; </span><span 
+class="cmti-10">= 3.5 g/cm</span><sup><span 
+class="cmr-7">3</span></sup> <span 
+class="cmti-10">and </span><span 
+class="cmmi-10">&#x03BB;</span><span 
+class="cmti-10">(</span><sup><span 
+class="cmr-7">10</span></sup><span 
+class="cmti-10">Be) = 5.17</span><span 
+class="cmsy-10">&#x00D7;</span><span 
+class="cmti-10">10</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">7</span></sup><span 
+class="cmti-10">yr</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup><span 
+class="cmti-10">.</span>&#8221; <br 
+class="newline" />
+<!--l. 1104--><p class="indent" >   Clearly indicating the version number is important because CosmoCalc
+will be updated in the future to keep track of new developments in TCN
+geochronology. Older versions will always be available from the CosmoCalc website
+(<span 
+class="cmtt-10">http://cosmocalc.googlepages.com</span>). Users with useful suggestions for improvements
+should feel free contact the author by emailing to <span 
+class="cmtt-10">cosmocalc@gmail.com</span>.
+<br 
+class="newline" />
+<!--l. 1112--><p class="indent" >   <span 
+class="cmti-10">Acknowledgments. </span>The author is financially supported by a Marie Curie
+Fellowship of the European Union (CRONUS-EU network, RTN project reference
+511927). Many thanks to Dr. Naki Ak&ccedil;ar for testing beta-versions of CosmoCalc and
+making useful suggestions which simplified the user interface and made the
+program more user-friendly, and to two anonymous reviewers for constructive
+comments.
+
+   <h3 class="likesectionHead"><a 
+ id="x1-240008"></a>References</h3>
+<!--l. 1123--><p class="noindent" >
+     <dl class="description"><dt class="description">
+ </dt><dd 
+class="description">Balco,  G.,  and  J.O.H.  Stone,  A  simple,  internally  consistent,  and  easily
+     accessible means of calculating surface exposure ages or erosion rates from
+     <sup><span 
+class="cmr-7">10</span></sup>Be and <sup><span 
+class="cmr-7">26</span></sup>Al measurements, <span 
+class="cmti-10">Quaternary Geochronology</span>, (in preparation).
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Bierman,  P.R.,  K.A.  Marsella,  C.  Patterson,  P.T.  Davis,  and  M.  Caffee,
+     Mid-Pleistocene  cosmogenic  minimum-age  limits  for  pre-Wisconsian
+     glacial surfaces in southwestern Minnesota and southern Baffin island: a
+     multiple nuclide approach, <span 
+class="cmti-10">Geomorphology, 27 </span>(1-2), 25-39, 1999.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Braucher, R., E.T. Brown, D.L. Bourles, and F. Colin, In situ produced <sup><span 
+class="cmr-7">10</span></sup>Be
+     measurements at great depths: implications for production rates by fast
+     muons, <span 
+class="cmti-10">Earth and Planetary Science Letters, 211</span>, 251-258, 2003.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Brown, E.T., T.W. Trull, P. Jean-Baptiste, G. Raisbeck, D. Bourles, F. Yiou,
+     and B. Marty, Determination of cosmogenic production rates of <sup><span 
+class="cmr-7">10</span></sup>Be, <sup><span 
+class="cmr-7">3</span></sup>He
+     and <sup><span 
+class="cmr-7">3</span></sup>H in water, <span 
+class="cmti-10">Nuclear Instruments and Methods in Physics Research</span>
+     <span 
+class="cmti-10">B, 172</span>, 802-805, 2000.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Chayes, F., On ratio correlation in petrography, <span 
+class="cmti-10">Journal of Geology, 57 </span>(3),
+     239-254, 1949.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Desilets, D., and M. Zreda, Spatial and temporal distribution of secondary
+     cosmic-ray  nucleon  intensities  and  applications  to  in  situ  cosmogenic
+     dating, <span 
+class="cmti-10">Earth and Planetary Science Letters, 206</span>, 21-42, 2003.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Desilets, D., M. Zreda, and T. Prabu, Extended scaling factors for in situ
+     cosmogenic  nuclides:  New  measurements  at  low  latitude,  <span 
+class="cmti-10">Earth  and</span>
+     <span 
+class="cmti-10">Planetary Science Letters, 246</span>, 265-276, 2006.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Dunai, T.J., Scaling factors for production rates of in situ produced cosmogenic
+     nuclides: a critical reevaluation, <span 
+class="cmti-10">Earth and Planetary Science Letters, 176</span>,
+     157-169, 2000.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Dunai,  T.J.,  Influence  of  secular  variation  of  the  geomagnetic  field  on
+     production  rates  of  in  situ  produced  cosmogenic  nuclides,  <span 
+class="cmti-10">Earth  and</span>
+     <span 
+class="cmti-10">Planetary Science Letters, 193</span>, 197-212, 2001.
+
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Dunai, T.J., and Wijbrans J.R., Long-term <sup><span 
+class="cmr-7">3</span></sup>He production rates (152 ka -
+     1.35 Ma) from 40Ar/39Ar dated basalt flows at 29<sup><span 
+class="cmmi-7">o</span></sup> latitude, <span 
+class="cmti-10">Earth and</span>
+     <span 
+class="cmti-10">Planetary Science Letters, 176</span>, 147-156, 2000.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Fabel,  D.,  A.P.  Stroeven,  J.  Harbor,  J.  Kleman,  D.  Elmore,  and  D.  Fink,
+     Landscape preservation under Fennoscandian ice sheets determined from
+     in situ produced <sup><span 
+class="cmr-7">10</span></sup>Be and <sup><span 
+class="cmr-7">26</span></sup>Al, <span 
+class="cmti-10">Earth and Planetary Science Letters, 201</span>,
+     397-406, 2002.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Graham, I.J., Barry, B.J., Ditchburn, R.G., Whitehead, N.E., Zondervan, A.,
+     Direct measurement of cosmogenic production of 7Be and <sup><span 
+class="cmr-7">10</span></sup>Be in water
+     targets in the southern hemisphere, <span 
+class="cmti-10">Earth and Planetary Science Letters</span>
+     (in preparation)
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Granger, D.E., and A.L. Smith, Dating buried sediments using radioactive
+     decay and muogenic production of <sup><span 
+class="cmr-7">26</span></sup>Al and <sup><span 
+class="cmr-7">10</span></sup>Be, <span 
+class="cmti-10">Nuclear Instruments</span>
+     <span 
+class="cmti-10">and Methods in Physics Research B, 172</span>, 822-826, 2000.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Granger, D.E., C.S. Riebe, J.W. Kirchner, and R.C. Finkel, Modulation of
+     erosion  on  steep  granitic  slopes  by  boulder  armoring,  as  revealed  by
+     cosmogenic  <sup><span 
+class="cmr-7">26</span></sup>Al  and  <sup><span 
+class="cmr-7">10</span></sup>Be,  <span 
+class="cmti-10">Earth and Planetary Science Letters, 186</span>,
+     269-281, 2001.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Granger, D.E., and P.F. Muzikar, Dating sediment burial with in situ-produced
+     cosmogenic  nuclides:  theory,  techniques,  and  limitations,  <span 
+class="cmti-10">Earth  and</span>
+     <span 
+class="cmti-10">Planetary Science Letters, 188</span>, 269-281, 2001.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Gosse,  J.C.,  E.B.  Evenson,  J.  Klein,  B.  Lawn,  and  R.  Middleton,  Precise
+     cosmogenic <sup><span 
+class="cmr-7">10</span></sup>Be measurements in western North America: Support for a
+     global Younger Dryas cooling event, <span 
+class="cmti-10">Geology, 23</span>, 877-880, 1995.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Gosse, J.C., and F.M. Phillips, Terrestrial in situ cosmogenic nuclides: theory
+     and application, <span 
+class="cmti-10">Quaternary Science Reviews, 20</span>, 1475-1560, 2001.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Heisinger, B., D. Lal, A.J. Jull, S. Ivy-Ochs, S. Neumaier, K. Knie, V. Lazarev,
+     and E. Nolte, Production of selected cosmogenic radionuclides by muons:
+     1. Fast Muons, <span 
+class="cmti-10">Earth and Planetary Science Letters, 200</span>, 345-355, 2002.
+
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Heisinger, B., D. Lal, A.J. Jull, P.W. Kubik, S. Ivy-Ochs, K. Knie, and E. Nolte,
+     Production of selected cosmogenic radionuclides by muons: 2. Capture of
+     negative muons, <span 
+class="cmti-10">Earth and Planetary Science Letters, 200</span>, 357-369, 2002.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Iribane, J.V., and W.L. Godson, Atmospheric Thermodynamics, 259 pp., D.
+     Reidel, Dordrecht, 1992.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Kubik, P.W., S. Ivy-Ochs, J. Masarik, M. Frank, and C. Schl&uuml;chter, <sup><span 
+class="cmr-7">10</span></sup>Be and
+     <sup><span 
+class="cmr-7">26</span></sup>Al production rates deduced from an instantaneous event within the
+     dendro-calibration curve, the landslide of K&ouml;fels, &OUML;tz Valley Austria, <span 
+class="cmti-10">Earth</span>
+     <span 
+class="cmti-10">and Planetary Science Letters, 161</span>, 231-241, 1998.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Kurz,  M.D.,  Cosmogenic  helium  in  terrestrial  igneous  rock,  <span 
+class="cmti-10">Nature,  320</span>,
+     435-439, 1986.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Lifton, N.A., J.W. Bieber, J.M. Clem, M.L. Dulding, P. Evenson, J.E. Humble,
+     and R. Pyle, Addressing solar modulation and long-term uncertainties in
+     scaling secondary cosmic rays for in situ cosmogenic nuclide applications,
+     <span 
+class="cmti-10">Earth and Planetary Science Letters, 239</span>, 140-161, 2005.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Lal, D., Cosmic ray labeling of erosion surfaces: in situ nuclide production rates
+     and erosion models, <span 
+class="cmti-10">Earth and Planetary Science Letters, 104</span>, 424-439,
+     1991.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Metropolis, N., A.W. Rosenbluth, M.N. Rosenbluth, A.H. Teller, and E. Teller,
+     Equations of state calculations by fast computing machines, <span 
+class="cmti-10">Journal of</span>
+     <span 
+class="cmti-10">Chemical Physics, 21</span>, 1087-192, 1953.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Miller,  G.H.,  J.P.  Briner,  N.A.  Lifton,  and  R.C.  Finkel,  Limited  ice-sheet
+     erosion and complex exposure histories derived from in situ cosmogenic
+     <sup><span 
+class="cmr-7">10</span></sup>Be,  <sup><span 
+class="cmr-7">26</span></sup>Al,  and  14C  on  Baffin  Island,  Arctic  Canada,  <span 
+class="cmti-10">Quaternary</span>
+     <span 
+class="cmti-10">Geochronology, 1</span>, 74-85, 2006.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Niedermann, S., T. Graf, J.S. Kim, C.P. Kohl, K. Marti, and K. Nishiizumi,
+     Cosmic-ray produced <sup><span 
+class="cmr-7">21</span></sup>Ne in terrestrial quartz: the neon inventory of
+     Sierra Nevada quartz separates, <span 
+class="cmti-10">Earth and Planetary Science Letters, 125</span>,
+     341-355, 1994.
+
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Nishiizumi, K., D. Lal, J. Klein, R. Middleton, and J.R. Arnold, Production of
+     <sup><span 
+class="cmr-7">10</span></sup>Be and <sup><span 
+class="cmr-7">26</span></sup>Al by cosmic rays in terrestrial quartz in situ and implications
+     for erosion rates, <span 
+class="cmti-10">Nature, 319</span>, 134-135, 1986.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Nishiizumi, K., E. L. Winterer, et al. Cosmic ray production rates of <sup><span 
+class="cmr-7">10</span></sup>Be
+     and <sup><span 
+class="cmr-7">26</span></sup>Al in quartz from glacially polished rocks. <span 
+class="cmti-10">Journal of Geophysical</span>
+     <span 
+class="cmti-10">Research, 94</span>, 17907-17915, 1989.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Nishiizumi, K., C.P. Kohl, J.R. Arnold, J. Klein, D. Fink, and R. Middleton,
+     Cosmic ray produced <sup><span 
+class="cmr-7">10</span></sup>Be and <sup><span 
+class="cmr-7">26</span></sup>Al in Antarctic rocks: exposure and
+     erosion history, <span 
+class="cmti-10">Earth and Planetary Science Letters, 104</span>, 440-454, 1991.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Nishiizumi, K., R.C. Finkel, J. Klein, and C.P. Kohl, Cosmogenic production
+     of <sup><span 
+class="cmr-7">7</span></sup>Be and <sup><span 
+class="cmr-7">10</span></sup>Be in water targets, <span 
+class="cmti-10">Journal of Geophysical Research., 101</span>,
+     22225-22232, 1996.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Partridge, T.C., D.E. Granger, M.W. Caffee, and R.J. Clarke, Lower Pliocene
+     hominid remains from Sterkfontein, <span 
+class="cmti-10">Science, 300</span>, 607-612, 2003.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Phillips, F.M., B.D. Leavy, N.O. Jannik, D. Elmore, and P.W. Kubik, The
+     accumulation  of  cosmogenic  Chlorine  in  rocks:  a  method  for  surface
+     exposure dating, <span 
+class="cmti-10">Science, 231</span>, 41-43, 1986.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Phillips, F.M., and M.A. Plummer, CHLOE: A program for interpreting in situ
+     cosmogenic nuclide data for surface exposure dating and erosion studies,
+     <span 
+class="cmti-10">Radiocarbon, 38</span>, 98, 1996.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Pigati,  J.S.,  and  N.A.  Lifton,  Geomagnetic  effects  on  time-integrated
+     cosmogenic nuclide production with emphasis on in situ 14C and <sup><span 
+class="cmr-7">10</span></sup>Be,
+     <span 
+class="cmti-10">Earth and Planetary Science Letters, 226</span>, 193-205, 2004.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Sch&auml;fer, J.M., S. Ivy-Ochs, R. Wieler, I. Leya, H. Baur, G.H. Denton, and C.
+     Schl&uuml;chter, Cosmogenic noble gas studies in the oldest landscape on earth:
+     surface exposure ages of the Dry Valleys, Antarctica, <span 
+class="cmti-10">Earth and Planetary</span>
+     <span 
+class="cmti-10">Science Letters, 167</span>, 215-226, 1999.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Schaller, M., F. von Blanckenburg, N. Hovius, and P.W. Kubik, Large-scale
+     erosion rates from in situ-produced cosmogenic nuclides in European river
+     sediments, <span 
+class="cmti-10">Earth and Planetary Science Letters, 188</span>, 441-458, 2001.
+
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Schaller, M., F. von Blanckenburg, A. Veldkamp, L.A. Tebbens, N. Hovius, and
+     P.W. Kubik, A 30000yr record of erosion rates from cosmogenic <sup><span 
+class="cmr-7">10</span></sup>Be in
+     Middle Europe river terraces, <span 
+class="cmti-10">Earth and Planetary Science Letters, 204</span>,
+     307-320, 2002.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Staudacher, T., and C.J. All&egrave;gre, Ages of the second caldera of Piton de la
+     Fournaise volcano (R&eacute;union) determined by cosmic ray produced <sup><span 
+class="cmr-7">3</span></sup>He and
+     <sup><span 
+class="cmr-7">21</span></sup>Ne, <span 
+class="cmti-10">Earth and Planetary Science Letters, 119</span>, 395-404, 1993.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Stone,  J.O.,  G.L.  Allan,  L.K.  Fifield,  and  R.G.  Cresswell,  Cosmogenic
+     chlorine-36 from calcium spallation, <span 
+class="cmti-10">Geochimica et Cosmochimica Acta,</span>
+     <span 
+class="cmti-10">60</span>, 555-561, 1996.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Stone,  J.,  Air  pressure  and  cosmogenic  isotope  production,  <span 
+class="cmti-10">Journal  of</span>
+     <span 
+class="cmti-10">Geophysical Research, 105</span>, 23753-23759, 2000.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Tarantola,  A.,  <span 
+class="cmti-10">Inverse  problem  theory</span>,  342  pp.,  Society  for  Industrial  and
+     Applied Mathematics, 2004.
+     </dd></dl>
+
+</td></table>    
+</body></html> 

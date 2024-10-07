@@ -1,0 +1,805 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Solitary wave behavior in sand dunes observed from space</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="solitons.tex"> 
+<meta name="date" content="2012-08-21 16:23:00"> 
+<style>
+/* start css.sty */
+.cmr-7{font-size:70%;}
+.cmmi-7{font-size:70%;font-style: italic;}
+.cmmi-10{font-style: italic;}
+.cmsy-7{font-size:70%;}
+.cmr-17{font-size:170%;}
+.cmr-12{font-size:120%;}
+.cmsy-10x-x-120{font-size:120%;}
+.cmr-9{font-size:90%;}
+.cmbx-9{font-size:90%; font-weight: bold;}
+.cmti-10{ font-style: italic;}
+.cmtt-10{font-family: monospace;}
+p.noindent { text-indent: 0em }
+td p.noindent { text-indent: 0em; margin-top:0em; }
+p.nopar { text-indent: 0em; }
+p.indent{ text-indent: 1.5em }
+@media print {div.crosslinks {visibility:hidden;}}
+a img { border-top: 0; border-left: 0; border-right: 0; }
+center { margin-top:1em; margin-bottom:1em; }
+td center { margin-top:0em; margin-bottom:0em; }
+.Canvas { position:relative; }
+img.math{vertical-align:middle;}
+li p.indent { text-indent: 0em }
+li p:first-child{ margin-top:0em; }
+li p:last-child, li div:last-child { margin-bottom:0.5em; }
+li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+.enumerate1 {list-style-type:decimal;}
+.enumerate2 {list-style-type:lower-alpha;}
+.enumerate3 {list-style-type:lower-roman;}
+.enumerate4 {list-style-type:upper-alpha;}
+div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+.obeylines-h,.obeylines-v {white-space: nowrap; }
+div.obeylines-v p { margin-top:0; margin-bottom:0; }
+.overline{ text-decoration:overline; }
+.overline img{ border-top: 1px solid black; }
+td.displaylines {text-align:center; white-space:nowrap;}
+.centerline {text-align:center;}
+.rightline {text-align:right;}
+div.verbatim {font-family: monospace; white-space: nowrap; text-align:left; clear:both; }
+.fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.fbox {display:table}
+div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.minipage{width:100%;}
+div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+div.center div {text-align: left;}
+div.flushright, div.flushright div.flushright {text-align: right;}
+div.flushright div {text-align: left;}
+div.flushleft {text-align: left;}
+.underline{ text-decoration:underline; }
+.underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+.framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+.framebox-c {text-align:center;}
+.framebox-l {text-align:left;}
+.framebox-r {text-align:right;}
+span.thank-mark{ vertical-align: super }
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+table.tabular td p{margin-top:0em;}
+table.tabular {margin-left: auto; margin-right: auto;}
+td p:first-child{ margin-top:0em; }
+td p:last-child{ margin-bottom:0em; }
+div.td00{ margin-left:0pt; margin-right:0pt; }
+div.td01{ margin-left:0pt; margin-right:5pt; }
+div.td10{ margin-left:5pt; margin-right:0pt; }
+div.td11{ margin-left:5pt; margin-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+td.td00{ padding-left:0pt; padding-right:0pt; }
+td.td01{ padding-left:0pt; padding-right:5pt; }
+td.td10{ padding-left:5pt; padding-right:0pt; }
+td.td11{ padding-left:5pt; padding-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+.hline hr, .cline hr{ height : 1px; margin:0px; }
+.tabbing-right {text-align:right;}
+span.TEX {letter-spacing: -0.125em; }
+span.TEX span.E{ position:relative;top:0.5ex;left:-0.0417em;}
+a span.TEX span.E {text-decoration: none; }
+span.LATEX span.A{ position:relative; top:-0.5ex; left:-0.4em; font-size:85%;}
+span.LATEX span.TEX{ position:relative; left: -0.4em; }
+div.float, div.figure {margin-left: auto; margin-right: auto;}
+div.float img {text-align:center;}
+div.figure img {text-align:center;}
+.marginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+.marginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+table.equation {width:100%;}
+.equation td{text-align:center; }
+td.equation { margin-top:1em; margin-bottom:1em; } 
+td.equation-label { width:5%; text-align:center; }
+td.eqnarray4 { width:5%; white-space: normal; }
+td.eqnarray2 { width:5%; }
+table.eqnarray-star, table.eqnarray {width:100%;}
+div.eqnarray{text-align:center;}
+div.array {text-align:center;}
+div.pmatrix {text-align:center;}
+table.pmatrix {width:100%;}
+span.pmatrix img{vertical-align:middle;}
+div.pmatrix {text-align:center;}
+table.pmatrix {width:100%;}
+span.bar-css {text-decoration:overline;}
+img.cdots{vertical-align:middle;}
+.partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+.index-item, .index-subitem, .index-subsubitem {display:block}
+div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+div.caption span.id{font-weight: bold; white-space: nowrap; }
+h1.partHead{text-align: center}
+p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+.paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+.subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+.quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
+.verse{white-space:nowrap; margin-left:2em}
+div.maketitle {text-align:center;}
+h2.titleHead{text-align:center;}
+div.maketitle{ margin-bottom: 2em; }
+div.author, div.date {text-align:center;}
+div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+div.author{white-space: nowrap;}
+.quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+.abstract p {margin-left:5%; margin-right:5%;}
+div.abstract {width:100%;}
+.figure img.graphics {margin-left:10%;}
+/* end css.sty */
+</style>
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body >
+<table class="main" width="800"><tr><td>
+   <div class="maketitle">
+
+<h2 class="titleHead">Solitary wave behavior in sand dunes observed
+from space</h2>
+<div class="author">
+<span 
+class="cmr-12">Pieter Vermeesch </span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">*</span></a></span></div><br />
+   <div class="thanks"><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10">*</span></span>
+Department of Earth and Planetary Sciences; 
+Birkbeck, University of London; 
+Malet Street, London WC1E 7HX, United Kingdom (p.vermeesch [at] ucl.ac.uk)
+</div>
+</div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 17--><p class="noindent" >
+<!--l. 17--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 18--><p class="indent" >    <span 
+class="cmr-9">Although  the  dynamics  of  individual  barchan  dunes  are  well</span>
+     <span 
+class="cmr-9">understood, their interactions are the subject of ongoing scientific interest</span>
+     <span 
+class="cmr-9">and debate. Numerical and analog model predictions of shape-preserving</span>
+     <span 
+class="cmr-9">binary dune collisions have been hard to test due to the long timescales</span>
+     <span 
+class="cmr-9">over  which  such  processes  typically  occur.  This  paper  documents  ten</span>
+     <span 
+class="cmr-9">binary dune collisions in a 45-year time sequence of satellite images from</span>
+     <span 
+class="cmr-9">the Bod</span><span 
+class="cmr-9">&eacute;l</span><span 
+class="cmr-9">&eacute; Depression in Chad. The observations confirm that when two</span>
+     <span 
+class="cmr-9">barchan dunes collide, a transfer of mass occurs so that one dune appears</span>
+     <span 
+class="cmr-9">to travel through the other unscathed, like a solitary wave.</span>
+</div>
+<!--l. 30--><p class="indent" >   The world&#8217;s deserts contain a number of dune types, depending on the availability
+of sand and the dominant wind regime (<a 
+href="#Xreffet2010"><span 
+class="cmti-10">Reffet et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xreffet2010">2010</a>). Of these different types,
+the barchan or crescentic dune is perhaps the best understood. Barchans are found in
+areas with a relatively limited sand supply and a unimodal wind regime
+(<a 
+href="#Xbagnold1941"><span 
+class="cmti-10">Bagnold</span></a>,&#x00A0;<a 
+href="#Xbagnold1941">1941</a>). Under these conditions, they can be easily simulated in wind
+tunnels and computer models (<a 
+href="#Xwippermann1986"><span 
+class="cmti-10">Wippermann and Gross</span></a>,&#x00A0;<a 
+href="#Xwippermann1986">1986</a>). Nevertheless,
+considerable controversy exists regarding an intriguing prediction of these
+models, namely that barchan interactions are characterized by solitary wave
+behavior (<a 
+href="#Xschwammle2003"><span 
+class="cmti-10">Schw</span><span 
+class="cmti-10">&auml;mmle and Herrmann</span></a>,&#x00A0;<a 
+href="#Xschwammle2003">2003</a>;&#x00A0;<a 
+href="#Xendo2004"><span 
+class="cmti-10">Endo et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xendo2004">2004</a>;&#x00A0;<a 
+href="#Xkatsuki2005"><span 
+class="cmti-10">Katsuki</span>
+
+<span 
+class="cmti-10">et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xkatsuki2005">2005</a>;&#x00A0;<a 
+href="#Xduran2005"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xduran2005">2005</a>;&#x00A0;<a 
+href="#Xduran2011"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xduran2011">2011</a>). The proposed mechanism is as
+follows. Because the velocity of barchan dunes is inversely proportional to their
+size, small dunes eventually catch up with large ones. Computer models
+indicate that when this happens, the upwind dune captures the sediment of the
+downwind dune and starves it of sand. As a result, the upwind dune grows and
+slows down, while the downwind dune shrinks and speeds up again. Seen
+from a distance, the small dune appears to traverse right through the large
+dune.<br 
+class="newline" />
+<!--l. 49--><p class="indent" >   Although the occurrence of small barchans at the down-wind side of big ones is
+seen by some as evidence that barchan dunes could behave like solitions
+(<a 
+href="#Xbesler2001"><span 
+class="cmti-10">Besler</span></a>,&#x00A0;<a 
+href="#Xbesler2001">2002</a>), such &#8216;snap shot&#8217; views are equivocal, and could also be interpreted as
+barchans calved from the dune horns (<a 
+href="#Xelbelrhiti2005"><span 
+class="cmti-10">Elbelrhiti et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xelbelrhiti2005">2005</a>) and blown sideways by
+short term cross-winds (<a 
+href="#Xlivingstone2005"><span 
+class="cmti-10">Livingstone et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xlivingstone2005">2005</a>). The only way to settle the debate
+is continuous monitoring of the collision process from start to finish (<a 
+href="#Xewing2010"><span 
+class="cmti-10">Ewing and</span>
+<span 
+class="cmti-10">Kocurek</span></a>,&#x00A0;<a 
+href="#Xewing2010">2010</a>). Unfortunately, this is usually very difficult, because most barchan
+dunes on Earth move too slowly to see dune interactions occurring on time scales of
+less than a few decades. One notable exception to this is the Bod&eacute;l&eacute; Depression
+in northern Chad, which contains some of the world&#8217;s largest and fastest
+moving barchan dunes (<a 
+href="#Xvermeesch2008b"><span 
+class="cmti-10">Vermeesch and Drake</span></a>,&#x00A0;<a 
+href="#Xvermeesch2008b">2008</a>). This is due to a unique
+combination of extremely strong winds and the fact that Bod&eacute;l&eacute; dunes are largely
+made of low density diatomite flakes, which easily break down to form the
+world&#8217;s most important source of eolian dust (<a 
+href="#Xgiles2005"><span 
+class="cmti-10">Giles</span></a>,&#x00A0;<a 
+href="#Xgiles2005">2005</a>). The Bod&eacute;l&eacute; thus
+forms a unique natural laboratory where eolian processes are magnified and
+accelerated. Various Earth observation satellites have monitored northern
+Chad from space since the mid-1960s. A time series of co-registered Landsat,
+SPOT, and ASTER scenes, combined with declassified American spy satellite
+images yields a 45 year record of dune migration in the Bod&eacute;l&eacute;, revealing
+several clear examples of solitary wave behavior (Figure <a 
+href="#x1-21">1<!--tex4ht:ref: fig:head-on --></a> and Table <a 
+href="#x1-41">1<!--tex4ht:ref: tab:latlon --></a>). Five
+of these solitons are shown as animations in the online supplement and at
+<span 
+class="cmtt-10">http://ucl.ac.uk/</span><span 
+class="cmsy-10">~</span><span 
+class="cmtt-10">ucfbpve/solitons</span>.<br 
+class="newline" />
+<!--l. 78--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-21"></a>
+
+
+<!--l. 79--><p class="noindent" >
+
+<a href="2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="2.jpg" height="320" width="137" /></a>
+<!--tex4ht:graphics  name="solitons0x.png" src="2.pdf"  -->
+
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Sequence of six high resolution satellite images (left) and interpretive
+sketches  (right)  of  a  &#8216;head-on&#8217;  collision  between  two  barchan  dunes  in  the
+Bod&eacute;l&eacute; Depression (N16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>54&#8217;17&#8221;, E17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>2&#8217;58&#8221;) exhibiting solitary wave behavior.
+An animated version of this and nine other time series can be viewed in the
+online supplement.</span></div><!--tex4ht:label?: x1-21 -->
+
+<!--l. 87--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 90--><p class="indent" >   Much of the confusion and controversy regarding so-called solitary wave behavior
+in dunes stems from the fact that there is no physical mechanism by which one mass
+of sand could pass through another (<a 
+href="#Xlivingstone2005"><span 
+class="cmti-10">Livingstone et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xlivingstone2005">2005</a>), and neither is it
+possible for one dune to climb across another, as it would be destroyed by the slip
+face of the latter (<a 
+href="#Xduran2005"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xduran2005">2005</a>). It is important to reiterate that colliding
+dunes are not &#8216;real&#8217; solitons, but only <span 
+class="cmti-10">appear </span>to behave like solitons, whose shape is
+preserved not by a transfer of momentum, but by a transfer of mass (<a 
+href="#Xhersen2005"><span 
+class="cmti-10">Hersen and</span>
+<span 
+class="cmti-10">Douady</span></a>,&#x00A0;<a 
+href="#Xhersen2005">2005</a>). Numerical models indicate that solitary wave behavior only occurs
+when the initial volume ratio (r<sub><span 
+class="cmmi-7">i</span></sub>) of the two interacting dunes is greater than <span 
+class="cmsy-10">~</span>0.25
+(<a 
+href="#Xduran2005"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xduran2005">2005</a>). Smaller ratios lead to either complete absorption of the small
+dune, or &#8216;breeding&#8217; of several little dunes (<a 
+href="#Xduran2005"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xduran2005">2005</a>;&#x00A0;<a 
+href="#Xduran2011"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xduran2011">2011</a>).
+Unfortunately, visual inspection of the two-dimensional satellite imagery used in the
+time series analysis did not permit direct measurements of the relative dune
+volumes. However, using the dune widths raised to the third power as a
+substitute for volume, as advocated by <a 
+href="#Xduran2011"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>&#x00A0;(<a 
+href="#Xduran2011">2011</a>), yields approximate
+volume ratios of 0.13-0.54, consistent with the model prediction within the
+(admittedly large) analytical uncertainties (Table <a 
+href="#x1-41">1<!--tex4ht:ref: tab:latlon --></a>). A more rigorous and precise
+quantitative validation of the soliton model would require high resolution digital
+elevation models. The author is in the process of acquiring these for future
+research.<br 
+class="newline" />
+<!--l. 114--><p class="indent" >   &#8216;head-on&#8217; collision (a.k.a. &#8216;bedform repulsion&#8217;, sensu&#x00A0;<a 
+href="#Xkocurek2010"><span 
+class="cmti-10">Kocurek et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xkocurek2010">2010</a>) is just
+one of the ways in which dunes can interact. When the initial lateral offset
+(<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub>;&#x00A0;<a 
+href="#Xduran2011"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xduran2011">2011</a>) between two colliding dunes is less than 0.5 a different type
+of dune interaction arises. The time series of satellite images reveals a number
+of these &#8216;off-center&#8217; collisions (Figure <a 
+href="#x1-32">2<!--tex4ht:ref: fig:off-center --></a> and Table <a 
+href="#x1-41">1<!--tex4ht:ref: tab:latlon --></a>). Analog models and
+analytical calculations have indicated that such dune interactions may be
+instrumental in maintaining the long-term stability of barchan dune fields (<a 
+href="#Xhersen2004a"><span 
+class="cmti-10">Hersen</span>
+<span 
+class="cmti-10">et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xhersen2004a">2004</a>;&#x00A0;<a 
+href="#Xhersen2005"><span 
+class="cmti-10">Hersen and Douady</span></a>,&#x00A0;<a 
+href="#Xhersen2005">2005</a>;&#x00A0;<a 
+href="#Xkocurek2010"><span 
+class="cmti-10">Kocurek et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xkocurek2010">2010</a>). Laboratory
+experiments in flume tanks show that, when a small and fast barchan collides with
+one of the horns of a larger and slower downwind dune, it literally &#8216;pushes&#8217; away
+that horn (<a 
+href="#Xhersen2005"><span 
+class="cmti-10">Hersen and Douady</span></a>,&#x00A0;<a 
+href="#Xhersen2005">2005</a>). This results in the creation of a new
+barchan and an exchange of mass between the two dunes, similar to that which
+occurs as a result of the &#8216;head-on&#8217; collisions discussed before. Exactly the
+same kind of behavior is observed in the Bod&eacute;l&eacute; Depression (Figure <a 
+href="#x1-32">2<!--tex4ht:ref: fig:off-center --></a>), five
+further examples of which are shown as animations in the supplementary
+information.<br 
+class="newline" />
+<!--l. 135--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-32"></a>
+
+<!--l. 136--><p class="noindent" >
+<a href="10.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="10.jpg" height="320" width="136" /></a>
+<!--tex4ht:graphics  name="solitons1x.png" src="10.pdf"  -->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Sequence of six high resolution satellite images (left) and interpretive
+sketches (right) of an off-center collision between two barchan dunes in the
+Bod&eacute;l&eacute; Depression (N16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>48&#8217;27&#8221;, E17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>18&#8217;41&#8221;). An animated version of this and
+nine other time series can be viewed in the online supplement.</span></div><!--tex4ht:label?: x1-32 -->
+
+<!--l. 144--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 146--><p class="indent" >   Over the past two decades or so, a series of increasingly sophisticated numerical
+models have been developed in order to explain dune morphology and formation
+(e.g.,&#x00A0;<a 
+href="#Xwippermann1986"><span 
+class="cmti-10">Wippermann and Gross</span></a>,&#x00A0;<a 
+href="#Xwippermann1986">1986</a>;&#x00A0;<a 
+href="#Xzhang2010"><span 
+class="cmti-10">Zhang et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xzhang2010">2010</a>). Great strides have been
+made in our ability to model the saltation of sand and turbulent flow of air
+(<a 
+href="#Xlivingstone2007"><span 
+class="cmti-10">Livingstone et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xlivingstone2007">2007</a>). The strength of scientific models, however, lies not in the
+description of the natural environment, but in their ability to make testable
+predictions. The observation of shape-preserving binary dune collisions in the
+real world confirms the validity of the numerical and analog models that
+predicted them, lending credibility to other predictions that such models might
+make.<br 
+class="newline" />
+   <div class="table">
+
+<!--l. 159--><p class="indent" >   <a 
+ id="x1-41"></a><hr class="float"><div class="float" 
+>
+
+ <div class="caption" 
+><span class="id">Table&#x00A0;1:  </span><span  
+class="content">List  of  binary  dune  collisions  documented  as  animations  in  the
+supplementary information.</span></div><!--tex4ht:label?: x1-41 -->
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">#</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11"> latitude </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">longitude</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">   r<sub><span 
+class="cmmi-7">i</span></sub>      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11">   <span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub>     </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11">s1</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>54&#8217;17&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11">17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>02&#8217;58&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11">0.29<span 
+class="cmsy-10">&plusmn;</span>0.10</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11">0.25<span 
+class="cmsy-10">&plusmn;</span>0.13</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11">s2</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>53&#8217;46&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11">17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>01&#8217;35&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11">0.34<span 
+class="cmsy-10">&plusmn;</span>0.19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11">0.24<span 
+class="cmsy-10">&plusmn;</span>0.21</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11">s3</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>44&#8217;57&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11">18<sup><span 
+class="cmsy-7">&#x2218;</span></sup>05&#8217;44&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">0.54<span 
+class="cmsy-10">&plusmn;</span>0.56</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11">0.37<span 
+class="cmsy-10">&plusmn;</span>0.45</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-1"  
+class="td11">s4</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>49&#8217;06&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-3"  
+class="td11">18<sup><span 
+class="cmsy-7">&#x2218;</span></sup>11&#8217;06&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-4"  
+class="td11">0.52<span 
+class="cmsy-10">&plusmn;</span>0.30</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-5"  
+class="td11">0.09<span 
+class="cmsy-10">&plusmn;</span>0.24</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-1"  
+class="td11">s5</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>59&#8217;33&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-3"  
+class="td11">18<sup><span 
+class="cmsy-7">&#x2218;</span></sup>03&#8217;33&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-4"  
+class="td11">0.13<span 
+class="cmsy-10">&plusmn;</span>0.11</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-5"  
+class="td11">0.12<span 
+class="cmsy-10">&plusmn;</span>0.25</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-1"  
+class="td11">o1</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>48&#8217;27&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-3"  
+class="td11">17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>18&#8217;41&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-4"  
+class="td11">0.16<span 
+class="cmsy-10">&plusmn;</span>0.07</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-5"  
+class="td11">0.67<span 
+class="cmsy-10">&plusmn;</span>0.15</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-1"  
+class="td11">o2</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>54&#8217;32&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-3"  
+class="td11">17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>04&#8217;56&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-4"  
+class="td11">0.59<span 
+class="cmsy-10">&plusmn;</span>0.29</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-5"  
+class="td11">0.52<span 
+class="cmsy-10">&plusmn;</span>0.22</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-1"  
+class="td11">o3</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-2"  
+class="td11">17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>02&#8217;33&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-3"  
+class="td11">18<sup><span 
+class="cmsy-7">&#x2218;</span></sup>34&#8217;10&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-4"  
+class="td11">0.45<span 
+class="cmsy-10">&plusmn;</span>0.13</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-5"  
+class="td11">0.52<span 
+class="cmsy-10">&plusmn;</span>0.12</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-1"  
+class="td11">o4</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>55&#8217;33&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-3"  
+class="td11">18<sup><span 
+class="cmsy-7">&#x2218;</span></sup>29&#8217;30&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-4"  
+class="td11">0.70<span 
+class="cmsy-10">&plusmn;</span>0.16</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-5"  
+class="td11">0.96<span 
+class="cmsy-10">&plusmn;</span>0.11</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-1"  
+class="td11">o5</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-2"  
+class="td11">16<sup><span 
+class="cmsy-7">&#x2218;</span></sup>41&#8217;30&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-3"  
+class="td11">17<sup><span 
+class="cmsy-7">&#x2218;</span></sup>22&#8217;47&#8221;</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-4"  
+class="td11">0.55<span 
+class="cmsy-10">&plusmn;</span>0.28</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-5"  
+class="td11">3.25<span 
+class="cmsy-10">&plusmn;</span>0.42</td></tr></table>
+</div> Labels with pre-fix &#8216;s&#8217; refer to soliton collisions, those beginning with &#8216;o&#8217; are
+off-center collisions. Geographical coordinates refer to the location of the actual
+collisions. <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">i</span></sub> is the initial volume ratio of the two dunes estimated from the ratio of
+their respective widths (<span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">&#x2261; </span>(<span 
+class="cmmi-10">w</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">&#x2215;w</span><sub><span 
+class="cmr-7">2</span></sub>)<sup><span 
+class="cmr-7">3</span></sup>; <a 
+href="#Xduran2011"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>&#x00A0;(<a 
+href="#Xduran2011">2011</a>)). <span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub> is the initial lateral
+offset between the dune crests (<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">&#x2261; </span>2(<span 
+class="cmmi-10">y</span><sub><span 
+class="cmr-7">1</span></sub> <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">y</span><sub><span 
+class="cmr-7">2</span></sub>)<span 
+class="cmmi-10">&#x2215;w</span><sub><span 
+class="cmr-7">2</span></sub>; <a 
+href="#Xduran2011"><span 
+class="cmti-10">Dur</span><span 
+class="cmti-10">&aacute;n et</span><span 
+class="cmti-10">&#x00A0;al.</span></a>&#x00A0;(<a 
+href="#Xduran2011">2011</a>). Uncertainty
+estimates for <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub> assume a 3 pixel uncertainty in the manual selection of dune
+horn and crest locations. Dunes s1 and o1 are shown in Figures <a 
+href="#x1-21">1<!--tex4ht:ref: fig:head-on --></a> and <a 
+href="#x1-32">2<!--tex4ht:ref: fig:off-center --></a>.
+
+   </div><hr class="endfloat" />
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Acknowledgments</h3>
+<!--l. 192--><p class="noindent" >Charlie Bristow provided useful feedback on early drafts of the paper. This research
+was partially funded by University of London Central Research Fund grant
+AR/CRF/B.
+<!--l. 196--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-2000"></a>References</h3>
+<!--l. 196--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbagnold1941"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bagnold, R.&#x00A0;A., <span 
+class="cmti-10">The physics of blown sand and desert dunes</span>, Methuen,
+  London, 1941.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbesler2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Besler, H., Complex barchans in the libyan desert: dune traps or overtaking
+  solitons?, <span 
+class="cmti-10">Zeitschrift f</span><span 
+class="cmti-10">&uuml;r Geomorphologie N.F.</span>, <span 
+class="cmti-10">126</span>, 59&#8211;74, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xduran2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dur&aacute;n, O., V.&#x00A0;Schw&auml;mmle, and H.&#x00A0;Herrmann, Breeding and solitary wave
+  behavior of dunes, <span 
+class="cmti-10">Physical Review E</span>, <span 
+class="cmti-10">72</span>, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xduran2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dur&aacute;n, O., V.&#x00A0;Schw&auml;mmle, P.&#x00A0;Lind, and H.&#x00A0;Herrmann, Size distribution
+  and structure of barchan dune elds, <span 
+class="cmti-10">Nonlinear Processes in Geophysics</span>, <span 
+class="cmti-10">18</span>,
+  455&#8211;467, 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xelbelrhiti2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Elbelrhiti,   H.,   P.&#x00A0;Claudin,   and   B.&#x00A0;Andreotti,   Field   evidence   for
+  surface-wave-induced instability of sand dunes, <span 
+class="cmti-10">Nature</span>, <span 
+class="cmti-10">437</span>, 720&#8211;723, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xendo2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Endo, N., K.&#x00A0;Taniguchi, and A.&#x00A0;Katsuki, Observation of the whole process
+  of interaction between barchans by flume experiments, <span 
+class="cmti-10">Geophysical Research</span>
+  <span 
+class="cmti-10">Letters</span>, <span 
+class="cmti-10">31</span>, L12,503, 2004.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xewing2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ewing,  R.,  and  G.&#x00A0;Kocurek,  Aeolian  dune  interactions  and  dune-field
+  pattern formation: White sands dune field, new mexico, <span 
+class="cmti-10">Sedimentology</span>, <span 
+class="cmti-10">57</span>,
+  1199&#8211;1219, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgiles2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Giles, J., The dustiest place on earth, <span 
+class="cmti-10">Nature</span>, <span 
+class="cmti-10">434</span>, 816&#8211;819, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhersen2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hersen, P., and S.&#x00A0;Douady, Collision of barchan dunes as a mechanism of
+  size regulation, <span 
+class="cmti-10">Geophysical Research Letters</span>, <span 
+class="cmti-10">32</span>, L21,403, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhersen2004a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hersen, P., K.&#x00A0;H. Andersen, H.&#x00A0;Elbelrhiti, B.&#x00A0;Andreotti, P.&#x00A0;Claudin, and
+  S.&#x00A0;Douady, Corridors of barchan dunes: Stability and size selection, <span 
+class="cmti-10">Physical</span>
+  <span 
+class="cmti-10">Review E</span>, <span 
+class="cmti-10">69</span>, 011,304&#8211;+, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkatsuki2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Katsuki, A., H.&#x00A0;Nishimori, N.&#x00A0;Endo, and K.&#x00A0;Taniguchi, Collision dynamics
+  of two barchan dunes simulated using a simple model, <span 
+class="cmti-10">Journal of the Physical</span>
+  <span 
+class="cmti-10">Society of Japan</span>, <span 
+class="cmti-10">74</span>, 538&#8211;541, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkocurek2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kocurek, G., R.&#x00A0;C. Ewing, and D.&#x00A0;Mohrig, How do bedform patterns arise?
+  New  views  on  the  role  of  bedform  interactions  within  a  set  of  boundary
+  conditions, <span 
+class="cmti-10">Earth Surface Processes and Landforms</span>, <span 
+class="cmti-10">35</span>, 51&#8211;63, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlivingstone2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Livingstone, I., G.&#x00A0;F.&#x00A0;S. Wiggs, and M.&#x00A0;Baddock, Barchan dunes: why they
+  cannot be treated as &#8216;solitons&#8217; or &#8216;solitary waves&#8217;, <span 
+class="cmti-10">Earth Surface Processes</span>
+  <span 
+class="cmti-10">and Landforms</span>, <span 
+class="cmti-10">30</span>, 255&#8211;257, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlivingstone2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Livingstone,  I.,  G.&#x00A0;F.&#x00A0;S.  Wiggs,  and  C.&#x00A0;M.  Weaver,  Geomorphology  of
+  desert sand dunes: A review of recent progress, <span 
+class="cmti-10">Earth-Science Reviews</span>, <span 
+class="cmti-10">80</span>,
+  239&#8211;257, 2007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xreffet2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Reffet,  E.,  C.&#x00A0;du&#x00A0;Pont&#x00A0;S.,  P.&#x00A0;Hersen,  and  S.&#x00A0;Douady,  Formation  and
+  stability of transverse and longitudinal sand dunes, <span 
+class="cmti-10">Geology</span>, <span 
+class="cmti-10">38</span>, 491&#8211;494,
+  2010.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xschwammle2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Schw&auml;mmle,  V.,  and  H.&#x00A0;J.  Herrmann,  Geomorphology:  Solitary  wave
+  behaviour of sand dunes, <span 
+class="cmti-10">Nature</span>, <span 
+class="cmti-10">426</span>, 619&#8211;620, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2008b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., and N.&#x00A0;Drake, Remotely sensed dune celerity and sand flux
+  measurements of the world&#8217;s fastest barchans (Bod&eacute;l&eacute;, Chad), <span 
+class="cmti-10">Geophysical</span>
+  <span 
+class="cmti-10">Research Letters</span>, <span 
+class="cmti-10">35</span>, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwippermann1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wippermann,  F.&#x00A0;K.,  and  G.&#x00A0;Gross,  The  wind-induced  shaping  and
+  migration  of  an  isolated  dune:  A  numerical  experiment,  <span 
+class="cmti-10">Boundary-Layer</span>
+  <span 
+class="cmti-10">Meteorology</span>, <span 
+class="cmti-10">36</span>, 319&#8211;334, 1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xzhang2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Zhang, D., C.&#x00A0;Narteau, and O.&#x00A0;Rozier, Morphodynamics of barchan and
+  transverse dunes using a cellular automaton model, <span 
+class="cmti-10">Journal of Geophysical</span>
+  <span 
+class="cmti-10">Research</span>, <span 
+class="cmti-10">115</span>, 2010.</p></div>
+</td></table>    
+</body></html> 
+
+
+

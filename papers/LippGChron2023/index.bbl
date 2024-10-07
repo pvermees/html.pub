@@ -1,0 +1,208 @@
+\begin{thebibliography}{32}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{\tt #1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{https://doi.org/\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{https://doi.org/\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Amidon et~al.(2005)Amidon, Burbank, and
+  Gehrels}]{amidon_construction_2005}
+Amidon, W.~H., Burbank, D.~W., and Gehrels, G.~E.: Construction of detrital
+  mineral populations: insights from mixing of {U}–{Pb} zircon ages in
+  {Himalayan} rivers, Basin Research, 17, 463--485,
+  \doi{10.1111/j.1365-2117.2005.00279.x}, 2005.
+
+\bibitem[{Benamou et~al.(2015)Benamou, Carlier, Cuturi, Nenna, and
+  Peyré}]{benamou_iterative_2015}
+Benamou, J.-D., Carlier, G., Cuturi, M., Nenna, L., and Peyré, G.: Iterative
+  {Bregman} {Projections} for {Regularized} {Transportation} {Problems}, SIAM
+  Journal on Scientific Computing, 2, A1111--A1138, \doi{10.1137/141000439},
+  publisher: Society for Industrial and Applied Mathematics, 2015.
+
+\bibitem[{Berry et~al.(2001)Berry, Jenner, Meffre, and
+  Tubrett}]{berry_north_2001}
+Berry, R.~F., Jenner, G.~A., Meffre, S., and Tubrett, M.~N.: A {North}
+  {American} provenance for {Neoproterozoic} to {Cambrian} sandstones in
+  {Tasmania}?, Earth and Planetary Science Letters, 192, 207--222,
+  \doi{10.1016/S0012-821X(01)00436-8}, 2001.
+
+\bibitem[{Cawood et~al.(2012)Cawood, Hawkesworth, and
+  Dhuime}]{cawood_detrital_2012}
+Cawood, P., Hawkesworth, C., and Dhuime, B.: Detrital zircon record and
+  tectonic setting, Geology, 40, 875--878, \doi{10.1130/G32945.1}, 2012.
+
+\bibitem[{Condie et~al.(2009)Condie, Belousova, Griffin, and
+  Sircombe}]{condie_granitoid_2009}
+Condie, K.~C., Belousova, E., Griffin, W.~L., and Sircombe, K.~N.: Granitoid
+  events in space and time: {Constraints} from igneous and detrital zircon age
+  spectra, Gondwana Research, 15, 228--242, \doi{10.1016/j.gr.2008.06.001},
+  2009.
+
+\bibitem[{De~Doncker et~al.(2020)De~Doncker, Herman, and
+  Fox}]{de_doncker_inversion_2020}
+De~Doncker, F., Herman, F., and Fox, M.: Inversion of provenance data and
+  sediment load into spatially varying erosion rates, Earth Surface Processes
+  and Landforms, 45, 3879--3901, \doi{https://doi.org/10.1002/esp.5008}, 2020.
+
+\bibitem[{DeGraaff-Surpless et~al.(2002)DeGraaff-Surpless, Graham, Wooden, and
+  McWilliams}]{degraaff-surpless_detrital_2002}
+DeGraaff-Surpless, K., Graham, S.~A., Wooden, J.~L., and McWilliams, M.~O.:
+  Detrital zircon provenance analysis of the {Great} {Valley} {Group},
+  {California}: {Evolution} of an arc-forearc system, GSA Bulletin, 114,
+  1564--1580, \doi{10.1130/0016-7606(2002)114<1564:DZPAOT>2.0.CO;2}, 2002.
+
+\bibitem[{Dietze and Dietze(2019)}]{dietze_grain-size_2019}
+Dietze, E. and Dietze, M.: Grain-size distribution unmixing using the {R}
+  package {EMMAgeo}, E\&G Quaternary Science Journal, 68, 29--46,
+  \doi{10.5194/egqsj-68-29-2019}, 2019.
+
+\bibitem[{Engquist and Froese(2014)}]{engquist_application_2014}
+Engquist, B. and Froese, B.~D.: Application of the {Wasserstein} metric to
+  seismic signals, Communications in Mathematical Sciences, 12, 979--988,
+  \doi{10.4310/CMS.2014.v12.n5.a7}, 2014.
+
+\bibitem[{Flamary et~al.(2021)Flamary, Courty, Gramfort, Alaya, Boisbunon,
+  Chambon, Chapel, Corenflos, Fatras, Fournier, Gautheron, Gayraud, Janati,
+  Rakotomamonjy, Redko, Rolet, Schutz, Seguy, Sutherland, Tavenard, Tong, and
+  Vayer}]{flamary_pot_2021}
+Flamary, R., Courty, N., Gramfort, A., Alaya, M.~Z., Boisbunon, A., Chambon,
+  S., Chapel, L., Corenflos, A., Fatras, K., Fournier, N., Gautheron, L.,
+  Gayraud, N. T.~H., Janati, H., Rakotomamonjy, A., Redko, I., Rolet, A.,
+  Schutz, A., Seguy, V., Sutherland, D.~J., Tavenard, R., Tong, A., and Vayer,
+  T.: {POT}: {Python} {Optimal} {Transport}, Journal of Machine Learning
+  Research, 22, 1--8, 2021.
+
+\bibitem[{Irpino and Romano(2007)}]{irpino_optimal_2007}
+Irpino, A. and Romano, E.: Optimal histogram representation of large data sets:
+  {Fisher} vs piecewise linear approximation, in: Actes des cinquièmes
+  journées {Extraction} et {Gestion} des {Connaissances}, vol. E-9, pp.
+  99--110, Namur, Belgium, 2007.
+
+\bibitem[{Košler et~al.(2013)Košler, Sláma, Belousova, Corfu, Gehrels,
+  Gerdes, Horstwood, Sircombe, Sylvester, Tiepolo, Whitehouse, and
+  Woodhead}]{kosler_u-pb_2013}
+Košler, J., Sláma, J., Belousova, E., Corfu, F., Gehrels, G.~E., Gerdes, A.,
+  Horstwood, M. S.~A., Sircombe, K.~N., Sylvester, P.~J., Tiepolo, M.,
+  Whitehouse, M.~J., and Woodhead, J.~D.: U-{Pb} {Detrital} {Zircon} {Analysis}
+  – {Results} of an {Inter}-laboratory {Comparison}, Geostandards and
+  Geoanalytical Research, 37, 243--259, \doi{10.1111/j.1751-908X.2013.00245.x},
+  2013.
+
+\bibitem[{Magyar and Sambridge(2023)}]{magyar_hydrological_2023}
+Magyar, J.~C. and Sambridge, M.: Hydrological objective functions and ensemble
+  averaging with the {Wasserstein} distance, Hydrology and Earth System
+  Sciences, 27, 991--1010, \doi{10.5194/hess-27-991-2023}, 2023.
+
+\bibitem[{Morton et~al.(2008)Morton, Fanning, and
+  Milner}]{morton_provenance_2008}
+Morton, A., Fanning, M., and Milner, P.: Provenance characteristics of
+  {Scandinavian} basement terrains: {Constraints} from detrital zircon ages in
+  modern river sediments, Sedimentary Geology, 210, 61--85,
+  \doi{10.1016/j.sedgeo.2008.07.001}, 2008.
+
+\bibitem[{Métivier et~al.(2016)Métivier, Brossier, Mérigot, Oudet, and
+  Virieux}]{metivier_optimal_2016}
+Métivier, L., Brossier, R., Mérigot, Q., Oudet, E., and Virieux, J.: An
+  optimal transport approach for seismic tomography: application to {3D} full
+  waveform inversion, Inverse Problems, 32, 115\,008,
+  \doi{10.1088/0266-5611/32/11/115008}, 2016.
+
+\bibitem[{Peyré and Cuturi(2019)}]{peyre_computational_2019}
+Peyré, G. and Cuturi, M.: Computational {Optimal} {Transport}, Foundations and
+  Trends in Machine Learning, 11, 355--607, 2019.
+
+\bibitem[{Reimink et~al.(2021)Reimink, Davies, and Ielpi}]{reimink_global_2021}
+Reimink, J.~R., Davies, J. H. F.~L., and Ielpi, A.: Global zircon analysis
+  records a gradual rise of continental crust throughout the {Neoarchean},
+  Earth and Planetary Science Letters, 554, 116\,654,
+  \doi{10.1016/j.epsl.2020.116654}, 2021.
+
+\bibitem[{Sambridge et~al.(2022)Sambridge, Jackson, and
+  Valentine}]{sambridge_geophysical_2022}
+Sambridge, M., Jackson, A., and Valentine, A.~P.: Geophysical inversion and
+  optimal transport, Geophysical Journal International, 231, 172--198,
+  \doi{10.1093/gji/ggac151}, 2022.
+
+\bibitem[{Satkoski et~al.(2013)Satkoski, Wilkinson, Hietpas, and
+  Samson}]{satkoski_likeness_2013}
+Satkoski, A.~M., Wilkinson, B.~H., Hietpas, J., and Samson, S.~D.: Likeness
+  among detrital zircon populations—{An} approach to the comparison of age
+  frequency data in time and space, GSA Bulletin, 125, 1783--1799,
+  \doi{10.1130/B30888.1}, 2013.
+
+\bibitem[{Saylor et~al.(2012)Saylor, Stockli, Horton, Nie, and
+  Mora}]{saylor_discriminating_2012}
+Saylor, J., Stockli, D., Horton, B., Nie, J., and Mora, A.: Discriminating
+  rapid exhumation from syndepositional volcanism using detrital zircon double
+  dating: {Implications} for the tectonic history of the {Eastern}
+  {Cordillera}, {Colombia}, Bulletin of the Geological Society of America, 124,
+  762--779, \doi{10.1130/B30534.1}, 2012.
+
+\bibitem[{Saylor and Sundell(2016)}]{saylor_quantifying_2016}
+Saylor, J.~E. and Sundell, K.~E.: Quantifying comparison of large detrital
+  geochronology data sets, Geosphere, 12, 203--220, \doi{10.1130/GES01237.1},
+  2016.
+
+\bibitem[{Schuhmacher et~al.(2022)Schuhmacher, Bähre, Gottschlich, Hartmann,
+  Heinemann, and Schmitzer}]{schuhmacher_transport_2022}
+Schuhmacher, D., Bähre, B., Gottschlich, C., Hartmann, V., Heinemann, F., and
+  Schmitzer, B.: transport: {Computation} of {Optimal} {Transport} {Plans} and
+  {Wasserstein} {Distances},
+  \urlprefix\url{https://cran.r-project.org/package=transport}, 2022.
+
+\bibitem[{Sharman and Johnstone(2017)}]{sharman_sediment_2017}
+Sharman, G.~R. and Johnstone, S.~A.: Sediment unmixing using detrital
+  geochronology, Earth and Planetary Science Letters, 477, 183--194,
+  \doi{10.1016/j.epsl.2017.07.044}, 2017.
+
+\bibitem[{Sharman et~al.(2018)Sharman, Sharman, and
+  Sylvester}]{sharman_detritalpy_2018}
+Sharman, G.~R., Sharman, J.~P., and Sylvester, Z.: {detritalPy}: {A}
+  {Python}-based toolset for visualizing and analysing detrital
+  geo-thermochronologic data, The Depositional Record, 4, 202--215,
+  \doi{10.1002/dep2.45}, 2018.
+
+\bibitem[{Sundell and Saylor(2021)}]{sundell_two-dimensional_2021}
+Sundell, K.~E. and Saylor, J.~E.: Two-{Dimensional} {Quantitative} {Comparison}
+  of {Density} {Distributions} in {Detrital} {Geochronology} and
+  {Geochemistry}, Geochemistry, Geophysics, Geosystems, 22, e2020GC009\,559,
+  \doi{10.1029/2020GC009559}, 2021.
+
+\bibitem[{Vermeesch(2013)}]{vermeesch_multi-sample_2013}
+Vermeesch, P.: Multi-sample comparison of detrital age distributions, Chemical
+  Geology, 341, 140--146, \doi{10.1016/j.chemgeo.2013.01.010}, 2013.
+
+\bibitem[{Vermeesch(2018{\natexlab{a}})}]{vermeesch_dissimilarity_2018}
+Vermeesch, P.: Dissimilarity measures in detrital geochronology, Earth-Science
+  Reviews, 178, 310--321, \doi{10.1016/j.earscirev.2017.11.027},
+  2018{\natexlab{a}}.
+
+\bibitem[{Vermeesch(2018{\natexlab{b}})}]{vermeesch_isoplotr_2018}
+Vermeesch, P.: {IsoplotR}: {A} free and open toolbox for geochronology,
+  Geoscience Frontiers, 9, 1479--1493, \doi{10.1016/j.gsf.2018.04.001},
+  2018{\natexlab{b}}.
+
+\bibitem[{Vermeesch et~al.(2023)Vermeesch, Lipp, Hatzenbühler, Caracciolo, and
+  Chew}]{vermeesch_multidimensional_2023}
+Vermeesch, P., Lipp, A.~G., Hatzenbühler, D., Caracciolo, L., and Chew, D.:
+  Multidimensional scaling of varietal data in sedimentary provenance analysis,
+  Journal of Geophysical Research: Earth Surface, p. e2022JF006992,
+  \doi{10.1029/2022JF006992}, 2023.
+
+\bibitem[{Villani(2003)}]{villani_topics_2003}
+Villani, C.: Topics in {Optimal} {Transportation}, no.~58 in Graduate studies
+  in mathematics, American Mathematical Soc., 2003.
+
+\bibitem[{Weltje(1997)}]{weltje_end-member_1997}
+Weltje, G.~J.: End-member modeling of compositional data:
+  {Numerical}-statistical algorithms for solving the explicit mixing problem,
+  Mathematical Geology, 29, 503--549, \doi{10.1007/BF02775085}, 1997.
+
+\bibitem[{Wobus et~al.(2003)Wobus, Hodges, and Whipple}]{wobus_has_2003}
+Wobus, C.~W., Hodges, K.~V., and Whipple, K.~X.: Has focused denudation
+  sustained active thrusting at the {Himalayan} topographic front?, Geology,
+  31, 861--864, \doi{10.1130/G19730.1}, 2003.
+
+\end{thebibliography}

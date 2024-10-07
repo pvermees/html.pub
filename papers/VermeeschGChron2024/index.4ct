@@ -1,0 +1,27 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{4}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-10041}{}{\ignorespaces P/D-isochron diagrams for a synthetic dataset generated using the procedures of Appendix\nobreakspace  {}\o:ref {app:syntheticdata}. The true slope and intercept are $a=1$ and $b=1$ for the conventional isochrons (i--iii), and $a=1$ and $b=-1$ for the inverse isochrons (iv--vi). These parameter values correspond to $[D/d]_0=[D/P]^{\ast }=1$. The true trends are shown as dashed lines and the estimated trends as solid lines, with 95\% confidence envelopes shown in grey. The estimated parameter values are shown above the panels. Unconstrained isochron regression (i and iv) yields imprecise and inaccurate results. Fixing the inherited component (ii and v) or the radiogenic component (iii and vi) greatly improves both aspects of the fit.}}{figure}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-3}{Maximum likelihood formulation of York regression}}{9}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-4}{Dealing with overdispersion}}{11}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-40004}{QQ2-1-5}{Specific cases}}{13}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-50005}{QQ2-1-6}{Flipped isochron regression}}{14}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-50022}{}{\ignorespaces Model-3 regression of two synthetic Ar--Ar datasets. (i) model\nobreakspace  {}3a regression through 100 randomly drawn aliquots from an isochron with a true non-radiogenic ${}^{40}$Ar/${}^{39}$Ar-ratio of $400\pm {40}$ ($1\sigma $) and a true age of $100$\,Ma; (2) model\nobreakspace  {}3b regression through 100 aliquots from an isochron with a true non-radiogenic ${}^{40}$Ar/${}^{39}$Ar-ratio of $400$ and a true age of $100\pm {10}$\,Ma ($1\sigma $). Error bars on the y- and x-axis show the overdispersion at 95\% confidence.}}{figure}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-60006}{QQ2-1-8}{Anchored isochron regression}}{18}\relax 
+\doTocEntry\tocsection{7}{\csname a:TocLink\endcsname{1}{x1-70007}{QQ2-1-9}{Accounting for anchor uncertainty}}{18}\relax 
+\doTocEntry\toclof{3}{\csname a:TocLink\endcsname{1}{x1-70033}{}{\ignorespaces Anchored isochrons for the data of Figure\nobreakspace  {}\o:ref {fig:cluster}, shown on inverse isochrons. Panels\nobreakspace  {}i and ii anchor the non-radiogenic endmember composition to $[D/d]_0 = 1 \pm 0.05$ (1$\sigma $). Panels\nobreakspace  {}iii and iv anchor the radiogenic endmember composition to $[D/P]^\ast = 1 \pm 0.05$ (1$\sigma $). Panels\nobreakspace  {}i and iii use model\nobreakspace  {}1 isochron regression, whereas panels ii and iv use model\nobreakspace  {}3. Note how the estimated values for $[D/d]_0$ and $[D/P]^\ast $ are exactly the same as the anchored values for model\nobreakspace  {}3, but not for model\nobreakspace  {}1. The vertical error bar in panel\nobreakspace  {}ii and the horizontal error bar on panel\nobreakspace  {}iv represent the fixed dispersion of the vertical and horizontal intercept, respectively.}}{figure}\relax 
+\doTocEntry\tocsection{8}{\csname a:TocLink\endcsname{1}{x1-80008}{QQ2-1-11}{Pb/Pb isochrons}}{23}\relax 
+\doTocEntry\tocsection{9}{\csname a:TocLink\endcsname{1}{x1-90009}{QQ2-1-12}{U/Pb isochrons}}{24}\relax 
+\doTocEntry\toclof{4}{\csname a:TocLink\endcsname{1}{x1-90034}{}{\ignorespaces Model\nobreakspace  {}3a semitotal-Pb/U isochron for a synthetic dataset with a true age $t=1500$\nobreakspace  {}Ma, anchored to $^{207}$Pb/$^{206}$Pb$= 1.10$ with the dispersion parameter treated as a free parameter.}}{figure}\relax 
+\doTocEntry\tocsection{10}{\csname a:TocLink\endcsname{1}{x1-1000010}{QQ2-1-14}{Implementation in \texttt  {IsoplotR}}}{28}\relax 
+\doTocEntry\tocsection{11}{\csname a:TocLink\endcsname{1}{x1-1100011}{QQ2-1-15}{Conclusions}}{31}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1200011}{QQ2-1-16}{Code availability}}{32}\relax 
+\doTocEntry\tocsection{A}{\csname a:TocLink\endcsname{1}{x1-13000A}{QQ2-1-17}{Definitions}}{32}\relax 
+\doTocEntry\toclot{1}{\csname a:TocLink\endcsname{1}{x1-130011}{}{\ignorespaces Assignment of the isotopic ratios for P/D- and D/D-isochrons to the generic parameters of Equation\nobreakspace  {}\o:ref {eq:yabx}.}}{table}\relax 
+\doTocEntry\tocsection{B}{\csname a:TocLink\endcsname{1}{x1-14000B}{QQ2-1-19}{Data}}{36}\relax 
+\doTocEntry\tocsection{C}{\csname a:TocLink\endcsname{1}{x1-15000C}{QQ2-1-20}{Testing overdispersion}}{37}\relax 
+\doTocEntry\tocsection{D}{\csname a:TocLink\endcsname{1}{x1-16000D}{QQ2-1-21}{Further details about the maximum likelihood solution}}{38}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-17000D}{QQ2-1-22}{Author contribution}}{39}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-18000D}{QQ2-1-23}{Competing interests}}{40}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-19000D}{QQ2-1-24}{Acknowledgements}}{40}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-20000D}{QQ2-1-25}{References}}{40}\relax 
+\par 

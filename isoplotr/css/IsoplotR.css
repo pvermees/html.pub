@@ -1,0 +1,335 @@
+body {
+    font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
+}
+
+td {
+    vertical-align: top;
+}
+
+u {
+    text-decoration: underline;
+}
+
+.alignright {
+    float: right;
+}
+
+a {
+    border: 0;
+    color: black;
+}
+a:hover {
+    color:red;
+}
+
+#loader {
+    position:absolute;
+    left: 10%;
+    right: 10%;
+    top: 40%;
+    bottom: 40%;
+    padding: 20px;
+    z-index: 4;
+}
+
+#myplot {
+    position: absolute;
+    top: 0;
+    bottom: 15px;
+    right: 0;
+    left: 0;
+}
+
+.centerme {
+    text-align: center;
+}
+
+.ulcorner {
+    position: absolute;
+    float: left;
+    left: 0;
+}
+.lrcorner {
+    position: absolute;
+    float: right;
+    right: 0;
+}
+
+.translatelink {
+    font-family: sans-serif;
+    font-size: xx-small;
+    color: blue;
+}
+
+tit {
+    cursor: pointer;
+    position: absolute;
+    float: right;
+    top:0;
+    right: 10px;
+    color:black;
+    font-family: Courier, monospace;
+    font-weight: bold;
+    font-size: 24px;
+}
+tit:hover {
+    color:red;
+}
+
+header {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    line-height:50px;
+    background-color:lightblue;
+    vertical-align:middle;
+    text-align:center;
+    padding:0;
+    z-index:4;
+}
+
+footer {
+    position:fixed;
+    bottom:0;
+    left:0;
+    line-height:50px;
+    width:100%;
+    background-color:lightblue;
+    text-align:center;
+    padding:0;
+    z-index:1;
+}
+
+left {
+    overflow:hidden;
+    position:fixed;
+    left:0;
+    right:50%;
+    top:50px; 
+    bottom:50px; 
+    padding:0;
+    z-index:2;
+}
+
+right {
+    overflow:auto;
+    position:fixed;
+    left:50%;
+    width:50%;
+    top:50px; 
+    bottom:50px; 
+    padding:0;
+    z-index:2;
+}
+
+.result {
+    position:relative;
+    display:inline-block;
+    left:0;
+    width:100%;
+    top:0; 
+    bottom:0;
+    padding:0;
+    z-index:3;
+}
+
+.handsontable table th {
+    background: white;
+    color: black;
+}
+
+#OPEN, help {
+    cursor: pointer;
+}
+
+.middle {
+    position: relative;
+    width: 800;
+    margin: 0 auto;
+}
+
+.thumbnail {
+    max-width:100%;
+    width:600px;
+    border:2px solid;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+cn {
+    display: none;
+}
+
+.ploterror {
+    color: red;
+    font-size: large;
+}
+
+.hidden {
+    display:none;
+}
+
+.background_rainbow {
+    background: linear-gradient(to right, #F00, #F80, #FF0, #0F0, #0FF, #00F, #F0F);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rainbow_reversed {
+    background: linear-gradient(to right, #F0F, #00F, #0FF, #0F0, #FF0, #F80, #F00);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rainbow_plus {
+    background: linear-gradient(to right, #000, #F00, #F80, #FF0, #0F0, #0FF, #00F, #F0F);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rainbow_plus_reversed {
+    background: linear-gradient(to right, #F0F, #00F, #0FF, #0F0, #FF0, #F80, #F00, #000);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_iridesce {
+    background: linear-gradient(to right, #000, #450045, #8B008B, #00008B, #00555D, #00AA2E, #00FF00, #FFFF00);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_iridesce_reversed {
+    background: linear-gradient(to right, #FFFF00, #00FF00, #00AA2E, #00555D, #00008B, #8B008B, #450045, #000);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_red_blue_black {
+    background: linear-gradient(to right, #FF0000, #FF0055, #FF00AA, #FF00FF, #0000FF, #0000AA, #000055, #000);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_red_blue_black_reversed {
+    background: linear-gradient(to right, #000, #000055, #0000AA, #0000FF, #FF00FF, #FF00AA, #FF0055, #FF0000);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_salmon {
+    background: linear-gradient(to right, #000000, #550000, #AA0000, #FF0000, #FF3033, #FF6065, #FF9098, #FFC0C9);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_salmon_reversed {
+    background: linear-gradient(to right, #FFC0C9, #FF9098, #FF6065, #FF3033, #FF0000, #AA0000, #550000, #000000);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_heat {
+    background: linear-gradient(to right, #800, #F00, #F80, #FF0, #FF8, #FFF);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_heat_reversed {
+    background: linear-gradient(to right, #FFF, #FF8, #FF0, #F80, #F00, #800);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_viridis {
+    background: linear-gradient(to right, #440154, #46337E, #365C8D, #277F8E, #1FA187, #4AC16D, #9FDA3A, #FDE725);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_viridis_reversed {
+    background: linear-gradient(to right, #FDE725, #9FDA3A, #4AC16D, #1FA187, #277F8E, #365C8D, #46337E, #440154);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rocket {
+    background: linear-gradient(to right, #03051A, #36193E, #701F57, #AE1759, #E13342, #F37651, #F6B48E, #FAEBDD);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rocket_reversed {
+    background: linear-gradient(to right, #FAEBDD, #F6B48E, #F37651, #E13342, #AE1759, #701F57, #36193E, #03051A);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_cm {
+    background: linear-gradient(to right, #80FFFF, #FFFFFF, #FF80FF);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_cm_reversed {
+    background: linear-gradient(to right, #FF80FF, #FFFFFF, #80FFFF);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_topo {
+    background: linear-gradient(to right, #4C00FF, #004CFF, #00E5FF, #00FF4D, #4DFF00, #E6FF00, #FFFF00, #FFDE59, #FFE0B3);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_topo_reversed {
+    background: linear-gradient(to right, #FFE0B3, #FFDE59, #FFFF00, #E6FF00, #4DFF00, #00FF4D, #00E5FF, #004CFF, #4C00FF);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_terrain {
+    background: linear-gradient(to right, #00A600, #E6E600, #EAB64E, #EEB99F, #F2F2F2);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_terrain_reversed {
+    background: linear-gradient(to right, #F2F2F2, #EEB99F, #EAB64E, #E6E600, #00A600);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="text"]{
+    width: 100px;
+}

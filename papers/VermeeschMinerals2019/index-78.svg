@@ -1,0 +1,51 @@
+ <div class="verbatim" id="verbatim-79">
+<span 
+class="cmtt-10x-x-109">library(compositions)</span><span 
+class="cmtt-10x-x-109">&#x00A0;#</span><span 
+class="cmtt-10x-x-109">&#x00A0;load</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;package</span><span 
+class="cmtt-10x-x-109">&#x00A0;into</span><span 
+class="cmtt-10x-x-109">&#x00A0;memory</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">dat</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;data(SkyeAFM)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;#</span><span 
+class="cmtt-10x-x-109">&#x00A0;load</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;Skye</span><span 
+class="cmtt-10x-x-109">&#x00A0;lava</span><span 
+class="cmtt-10x-x-109">&#x00A0;dataset</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">AFMcomp</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;acomp(dat)</span><span 
+class="cmtt-10x-x-109">&#x00A0;#</span><span 
+class="cmtt-10x-x-109">&#x00A0;enforce</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;constant</span><span 
+class="cmtt-10x-x-109">&#x00A0;sum</span><span 
+class="cmtt-10x-x-109">&#x00A0;constraint</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">plot(AFMcomp)</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;</span><span 
+class="cmtt-10x-x-109">&#x00A0;#</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot</span><span 
+class="cmtt-10x-x-109">&#x00A0;as</span><span 
+class="cmtt-10x-x-109">&#x00A0;a</span><span 
+class="cmtt-10x-x-109">&#x00A0;ternary</span><span 
+class="cmtt-10x-x-109">&#x00A0;diagram</span>
+</div>
+<!--l. 2122--><p class="nopar" >                                                                               

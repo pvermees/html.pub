@@ -1,0 +1,2026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<meta name="date" content="2012-11-07 11:26:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body >
+<table class="main"><tr><td>
+<div class="center" 
+>
+<!--l. 14--><p class="noindent" >
+<!--l. 17--><p class="noindent" ><span 
+class="cmr-12x-x-120">THE STATISTICAL UNCERTAINTY ASSOCIATED WITH</span>
+<span 
+class="cmr-12x-x-120">HISTOGRAMS IN THE EARTH SCIENCES.</span>
+<!--l. 25--><p class="noindent" >Pieter Vermeesch<br />
+Department of Geological and Environmental Sciences, Stanford University<br />
+Braun Hall, room 320-305, 450 Serra Mall<br />
+Stanford, CA 94305-2115, United States<br />
+pvermees@pangea.stanford.edu
+<div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 36--><p class="noindent" >
+<!--l. 36--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 37--><p class="indent" >    <span 
+class="cmr-9">Two types of quantitative information can be distinguished in the Earth Sciences: categorical data</span>
+     <span 
+class="cmr-9">(e.g., mineral type, fossil name, ...) and continuous data (e.g., apparent age, strike, dip, ...). Many branches</span>
+     <span 
+class="cmr-9">of the Earth Sciences study populations of such data, by collecting a random sample and binning it into</span>
+     <span 
+class="cmr-9">a histogram. Histograms of categorical data follow multinomial distributions. All possible outcomes of a</span>
+     <span 
+class="cmr-9">multinomial distribution with M categories must plot on a (M-1) simplex &#x0394;</span><sub><span 
+class="cmmi-6">M</span><span 
+class="cmsy-6">-</span><span 
+class="cmr-6">1</span></sub><span 
+class="cmr-9">, because they are subject</span>
+     <span 
+class="cmr-9">to a constant-sum constraint. Confidence regions for such multinomial distributions can be computed</span>
+     <span 
+class="cmr-9">using Bayesian statistics. The conjugate prior/posterior to the multinomial distribution is the Dirichlet</span>
+     <span 
+class="cmr-9">distribution. A 100(1-</span><span 
+class="cmmi-9">&#x03B1;</span><span 
+class="cmr-9">)% confidence interval for the unknown multinomial population given an observed</span>
+     <span 
+class="cmr-9">sample histogram is a polygon on &#x0394;</span><sub><span 
+class="cmmi-6">M</span><span 
+class="cmsy-6">-</span><span 
+class="cmr-6">1</span></sub> <span 
+class="cmr-9">containing 100(1-</span><span 
+class="cmmi-9">&#x03B1;</span><span 
+class="cmr-9">)% of its Dirichlet posterior. The projection</span>
+     <span 
+class="cmr-9">of this polygon onto the sides of the simplex yields M confidence intervals for the M bin counts. These</span>
+     <span 
+class="cmr-9">confidence intervals are &#8220;simultaneous&#8221; in the sense that they form a band completely containing the</span>
+     <span 
+class="cmr-9">100(1-</span><span 
+class="cmmi-9">&#x03B1;</span><span 
+class="cmr-9">)% most likely multinomial populations. As opposed to categorical variables, adjacent bins of</span>
+     <span 
+class="cmr-9">histograms containing continuous variables are not mutually independent. If this &#8220;smoothness&#8221; of the</span>
+     <span 
+class="cmr-9">unknown population is not taken into account, the Bayesian confidence bands described above will be</span>
+     <span 
+class="cmr-9">overly conservative. This problem can be solved by introducing an </span><span 
+class="cmti-9">ad hoc </span><span 
+class="cmr-9">prior of &#8220;smoothing weights&#8221;</span>
+     <span 
+class="cmr-9">w=</span><span 
+class="cmmi-9">e</span><sup><span 
+class="cmsy-6">-</span><span 
+class="cmmi-6">sr</span></sup><span 
+class="cmr-9">, where r is the second derivative of the histogram and s is a &#8220;smoothing parameter&#8221;.</span><br />
+
+</div>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 74--><p class="noindent" >Consider a jar filled with infinitely many balls of M different colors. Suppose that we want to estimate the
+proportions of the colors in the jar by drawing a sample of N balls from it and counting the number of times each of
+the colors occurs in this sample: <span 
+class="cmbx-10">n </span>= <span 
+class="cmsy-10">{</span>n<sub><span 
+class="cmr-7">1</span></sub>,n<sub><span 
+class="cmr-7">2</span></sub>,...n<sub><span 
+class="cmmi-7">M</span></sub> <span 
+class="cmsy-10">|</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup>n<sub><span 
+class="cmmi-7">j</span></sub> = N<span 
+class="cmsy-10">}</span>. Then our best guess (the so-called &#8220;maximum
+likelihood estimate&#8221;) for the M proportions is <span 
+class="cmbx-10">p </span>= <span 
+class="cmsy-10">{</span>p<sub><span 
+class="cmr-7">1</span></sub>=n<sub><span 
+class="cmr-7">1</span></sub>/N, p<sub><span 
+class="cmr-7">2</span></sub>=n<sub><span 
+class="cmr-7">2</span></sub>/N, ..., p<sub><span 
+class="cmmi-7">M</span></sub>=n<sub><span 
+class="cmmi-7">M</span></sub>/N <span 
+class="cmsy-10">|</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup>p<sub><span 
+class="cmmi-7">j</span></sub> = 1<span 
+class="cmsy-10">}</span>. Now we
+ask ourselves the question: how confident are we about <span 
+class="cmbx-10">p</span>? In other words: are there any other sets of proportions <span 
+class="cmbx-10">p</span><sup><span 
+class="cmsy-7">&#x2032;</span></sup>
+= <span 
+class="cmsy-10">{</span>p<sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>, p<sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup>, ..., p<sub><span 
+class="cmmi-7">M</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup> <span 
+class="cmsy-10">|</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup>p<sub><span 
+class="cmmi-7">j</span></sub><sup><span 
+class="cmsy-7">&#x2032;</span></sup> = 1<span 
+class="cmsy-10">} </span>that could have yielded the observations <span 
+class="cmbx-10">n </span>with reasonable
+probability?<br 
+class="newline" />
+<!--l. 88--><p class="indent" >   This simple statistical problem frequently occurs in geological applications. Of course, geologists are not counting
+&#8220;balls&#8221;, but things like sediment grains or faults. Neither are they interested in &#8220;color&#8221; (although sometimes
+they do), but in mineral type, age or angle. In such studies, the information that is interpreted is
+not represented by the measurements themselves, but by estimates of their probability distribution,
+which are most often represented by some sort of histogram. When reporting analytical data, it is
+considered good scientific practice to provide an estimate of the associated statistical uncertainties.
+This paper presents a method to extend this practice to the kind of point-counting studies described
+above. In Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:setTheStage --></a>, we will introduce a number of examples of histograms in the Earth Sciences,
+as a further motivation of the present study. We will distinguish between two types of histograms.
+A first type is used to represent categorical variables, such as color or mineral type. Here, we will
+also discuss the ternary diagram, which is a different way of visualizing histograms with only three
+bins, that is quite popular in sedimentary petrography. A second type of histogram which we will
+discuss contains continuous, or time series data. The prime examples of this kind of histograms are
+detrital thermochronological grain-age histograms, which tally the number of times a range of apparent
+grain-ages occur in a detrital sample. However, continous histograms need not necessarily contain
+age-data and we will see an alternative example for which they do not. The fundamental difference
+between the aforementioned two types of histograms is that the bins of categorical histograms are
+mutually independent, while adjacent bins of continous histograms are correlated to some degree.
+As a consequence, the method for constructing their respective confidence bands will be somewhat
+different.<br 
+class="newline" />
+<!--l. 119--><p class="indent" >   After Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:setTheStage --></a> has set the stage, we can begin developing the statistics of the actual method itself. The
+simultaneous confidence bands discussed in this paper will be derived according to the so-called &#8220;Bayesian&#8221;
+pradigm, as opposed to the more traditional &#8220;frequentist&#8221; paradigm. In Section <a 
+href="#x1-50003">3<!--tex4ht:ref: sec:independentCI --></a>, these terms will be explained
+using a simple binomial example, which is a degenerate case of the problem this paper addresses. So by the end of
+Section <a 
+href="#x1-50003">3<!--tex4ht:ref: sec:independentCI --></a>, we should be in a good shape to compute simultaneous confidence bands for multinomial
+proportions, which is the subject of Section <a 
+href="#x1-80004">4<!--tex4ht:ref: sec:simultaneousCI --></a>. Section <a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: sec:frequentist3D --></a> will explain why frequentist confidence intervals do
+not easily generalize to histograms with more than three bins. As an alternative, a Bayesian method
+
+to construct confidence bands for categorical histograms will be developed in Section <a 
+href="#x1-100004.2">4.2<!--tex4ht:ref: sec:bayes3D --></a>. Finally,
+Section <a 
+href="#x1-110004.3">4.3<!--tex4ht:ref: sec:bayesSmooth --></a> gives an <span 
+class="cmti-10">ad hoc </span>way to modify the method of the preceding section so that it takes into
+account the autocorrelation of continous histograms. Section <a 
+href="#x1-120005">5<!--tex4ht:ref: sec:examplesRevisited --></a> revisits the examples of Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:setTheStage --></a> and
+answers the questions that were raised in it. Section <a 
+href="#x1-150006">6<!--tex4ht:ref: sec:conclusions --></a> wraps up the paper with some summarizing
+conclusions.
+<!--l. 142--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Setting the stage: Examples of histograms in the Earth Sciences</h3>
+<!--l. 144--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a>Categorical histograms</h4>
+<!--l. 146--><p class="noindent" >The framework composition of sandstones contains useful information about their provenance, transport history and
+post-depositional evolution, and is used to reconstruct the plate-tectonic setting of sedimentary basins (e.g.
+Dickinson <span 
+class="cmti-10">et al.</span>, 1983; Dickinson, 1985). Framework compositions are measured by petrographic point-counting of
+thin sections. The results are often plotted on ternary diagrams, the most popular of which is the QFL diagram,
+which depicts quartz, feldspar, and lithic fragments (Figure <a 
+href="#x1-30011">1<!--tex4ht:ref: fig:QFLa --></a>). As discussed in Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:introduction --></a>, one of the
+questions this paper will answer is how to estimate the statistical uncertainties for such point-counting
+measurements. Van der Plas and Tobi (1965) discuss the construction of confidence intervals for individual
+point-counting proportions, for example the percentage of quartz in a thin section. However, we are rarely
+interested in just a single proportion. This paper develops a Bayesian method to compute <span 
+class="cmti-10">simultaneous</span>
+confidence bands for categorical histograms. This method will allow an estimation of the likelihood that a
+specific sample falls into one particular field of tectonic affinity on the QFL plot (Figure <a 
+href="#x1-30011">1<!--tex4ht:ref: fig:QFLa --></a>). To avoid
+confusion, we should remark that while this paper will discuss the statistical uncertainties of individual
+point-counting measurements (one sample), it will <span 
+class="cmti-10">not </span>talk about the uncertainties on populations of several
+measurements. Whereas the former follows a multinomial distribution, the latter can take many forms, such as
+the logistic normal distribution. Many interesting issues are associated with ternary populations, but
+the reader is referred to Weltje (2002) for a discussion of them. Figure <a 
+href="#x1-30011">1<!--tex4ht:ref: fig:QFLa --></a> shows a petrographic QFL
+diagram with tectonic discrimination fields by Dickinson <span 
+class="cmti-10">et al. </span>(1983). The &#8221;cloud&#8221; of points and the
+associated hand-drawn contour mark a detrital population. For the discussion of how to compute
+this contour in a statistically more rigorous way, we again refer to Weltje (2002). The present paper
+will address the following questions: (1) How different are samples A and B? (2) Is it possible that
+samples A and B belong to the contoured population? (3) How certain are we that sample C falls into
+the &#8220;transitional arc&#8221; field? Could it be that it actually belongs to one of the neighboring fields? (4)
+How does the number of grains affect the precision of our point-counting results? Since the ternary
+diagram plots ratios, we lose information on the actual number of grains counted. For example, sample A
+represents 200 counts, while sample B represents 400 and there is no way to tell this from Figure
+<a 
+href="#x1-30011">1<!--tex4ht:ref: fig:QFLa --></a>.
+<!--l. 188--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30011"></a>
+
+<!--l. 190--><p class="noindent" ><img 
+src="1.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index0x.png" src="QFLa.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Petrographic QFL diagram with tectonic discrimination fields by Dickinson <span 
+class="cmti-10">et al. </span>(1983). All
+samples except A represent 400 synthetic point-counts. Sample A is based on only 200 counts.</span></div><!--tex4ht:label?: x1-30011 -->
+
+<!--l. 195--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 197--><p class="indent" >   The ternary diagram is very popular in sedimentary petrography, but when more than three components need to
+be plotted, we must use another device: the histogram. This is the case in heavy mineral analysis (e.g. Faupl <span 
+class="cmti-10">et al.</span>,
+2002), and in clast-counting, which is a scaled-up version of petrographic point-counting (e.g. Yue <span 
+class="cmti-10">et al.</span>, 2001).
+Figure <a 
+href="#x1-30022">2<!--tex4ht:ref: fig:heavyminerals1 --></a> shows two heavy mineral analyses by Faupl <span 
+class="cmti-10">et al. </span>(2002). For each sample, 200 grains were
+counted. The basic questions that arise when doing this sort of analysis are the same as for the ternary
+example: (1) What is the precision of the estimated mineral fractions? (2) How would the precision be
+affected by increasing N, the total number of grains counted? (3) Are samples ga-229/1 and io-234/1
+compatible with each other? Regarding the last question, it is useful to remark that when a very large
+number of grains are counted, it is almost certain that a statistically significant difference between two
+samples of the same rock will be found. No two samples collected on the field have an exactly identical
+composition. As the number of counts increases, our power to resolve even the smallest differences will
+increase. It is when this point is reached that the petrographic composition of the sample has been
+properly characterized and we can begin to study populations of samples. As a comforting note, we can
+already tell here that the guidelines of Van der Plas and Tobi (1965) fulfill this requirement most of the
+time.
+<!--l. 221--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30022"></a>
+
+<!--l. 223--><p class="noindent" ><img 
+src="2.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index1x.png" src="heavyMinerals1.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Heavy mineral analysis of two samples from the Peloponnese (Greece) by Faupl <span 
+class="cmti-10">et al. </span>(2002). Zr -
+zircon, Tr - Tourmaline, Rt - Rutile, Ap - Apatite, Gt - Garnet, St - Staurolite, Cl - Chloritoid, Cs - Chrome
+spinel.</span></div><!--tex4ht:label?: x1-30022 -->
+
+<!--l. 230--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a>Continuous histograms (time series)</h4>
+<!--l. 234--><p class="noindent" >Alternatively, histograms can also be used for continuous data. Detrital thermochronology tries to
+find the provenance area of sedimentary rocks and unravel its geologic history, by dating individual
+mineral grains in the sample (e.g. Avigad <span 
+class="cmti-10">et al.</span>, 2003; DeGraaff-Surpless <span 
+class="cmti-10">et al.</span>, 2003). Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:Surpless --></a> shows
+three detrital zircon U-Pb grain-age distributions from the Methow Basin, in the southern Canadian
+cordillera (DeGraaff-Surpless <span 
+class="cmti-10">et al.</span>, 2003). For each sample, Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:Surpless --></a> not only shows the grain-age
+histogram, but also the continous &#8220;kernel density estimate&#8221;. Unlike categorical point-counting data, the
+grain-ages that are used in detrital thermochronology can have significant analytical uncertainties. This is a
+second source of error (the first one being counting statistics) that is not taken into account by the
+histogram. The kernel density estimator is an alternative estimator of probability density that does take
+into account measurement uncertainties. However, it is not easy to estimate the effect of counting
+statistics on kernel density estimates. In this paper, we will ignore measurement uncertainties, and just
+focus on the effect of counting statistics. We will later see that in order to get a better idea of the
+importance of both factors, it is good practice to use histograms in conjuction with kernel density estimates.
+The reader is referred to Silverman (1986) and Sircombe and Hazelton (2004) for a discussion of the
+kernel density estimator and some issues that are associated with it. The questions this paper will
+answer concerning detrital grain-age histograms are: (1) What is the uncertainty on the bin counts? (2)
+How certain are we that empty bins actually correspond to missing age fractions? (3) Are grain-age
+histograms such as the three shown in Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:Surpless --></a> compatible with or significantly different from each
+other?<br 
+class="newline" />
+<!--l. 265--><p class="indent" >   It is easy to see that detrital grain-age histograms represent time series. However, continuous histograms
+are not restricted to the time dimension. Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:CollettiniHist --></a> shows a histogram of dip estimates for 33 reverse
+faults reported by Collettini and Sibson (2001). Although the units of this histogram are not time, but
+angle (in degrees), it still represents a continous function, or &#8220;time series&#8221;. One of the observations
+made by Collettini and Sibson about this histogram is that it is bimodal, with one peak at 30<sup><span 
+class="cmmi-7">o</span></sup> and a
+second at 50<sup><span 
+class="cmmi-7">o</span></sup>. The simultaneous Bayesian confidence intervals described in this paper will tell us if this
+bimodality is statistically significant on for example a 95% confidence level. Whereas categorical data
+follow multinomial distributions, where the bins are mutually independent apart from the fact that
+they must sum to a fixed number (the sample size), time series are auto-correlated to some degree,
+and this must be taken into account when computing confidence intervals. This paper will assess the
+importance of this problem and propose a Bayesian solution to it in the form of an <span 
+class="cmti-10">ad hoc </span>smoothing
+prior.
+<!--l. 284--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40013"></a>
+
+<!--l. 286--><p class="noindent" ><img 
+src="3.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index2x.png" src="SurplessMethowSamples.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Three U-Pb grain-age histograms and corresponding kernel density estimates for samples of
+detrital zircon from the Cretaceous Methow basin (DeGraaff-Surpless <span 
+class="cmti-10">et al.</span>, 2003).</span></div><!--tex4ht:label?: x1-40013 -->
+
+<!--l. 291--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 293--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40024"></a>
+
+<!--l. 295--><p class="noindent" ><img 
+src="4.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index3x.png" src="CollettiniHist.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">A histogram of 33 reverse fault dip estimates. Although the measurements are in degrees, the
+histogram can still be considered a &#8220;time series&#8221;, because it is expected to fit a more or less smooth,
+autocorrelated function.</span></div><!--tex4ht:label?: x1-40024 -->
+
+<!--l. 301--><p class="indent" >   </div><hr class="endfigure">
+
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-50003"></a>The definition of a confidence interval</h3>
+<!--l. 307--><p class="noindent" >In this section, we will introduce some fundamental statistical principles and nomenclature wich will be needed in
+the next section. Surprisingly enough, there is no general agreement in the statistics community on the definition of
+a confidence interval. There are two points of view: the frequentist and the Bayesian point of view. To explain the
+difference between these two paradigms, we will consider a degenerate case of the problem at hand. Revisiting the
+metaphor from Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:introduction --></a>, we now consider a jar with balls of only two colors, say black and white. Drawing N balls
+from this jar as before, we count the number n of black balls. For this binomial experiment, the maximum likelihood
+estimate for the proportion of black balls in the jar is p = n/N. How do we construct a 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)%
+confidence interval for this estimate? An approximate solution to this problem is given by Van der Plas
+and Tobi (1965), but both the frequentist and the Bayesian methods which will be discussed now are
+exact.
+<!--l. 324--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-60003.1"></a>The frequentist approach</h4>
+<!--l. 326--><p class="noindent" >According to the &#8220;frequentist&#8221;, a confidence interval for a parameter <span 
+class="cmmi-10">&#x03B8; </span><span 
+class="cmti-10">&#8220;consists precisely of all those values of </span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmti-10">for</span>
+<span 
+class="cmti-10">which the null hypothesis H</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmti-10">: </span><span 
+class="cmmi-10">&#x03B8;</span><span 
+class="cmti-10">=</span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmti-10">is accepted&#8221; </span>(Rice, 1995). For example, we saw earlier that histograms represent
+the outcome of a multinomial experiment. The probability distribution of each of the bin counts of a histogram is
+the marginal of a multinomial distribution, which is the binomial distribution. Consider a bin containing n out of N
+measurements. The maximum likelihood estimate for the binomial parameter p then is <img 
+src="index4x.png" alt="&#x02C6;p"  class="circ" > <sub><span 
+class="cmmi-7">mle</span></sub> = <span 
+class="cmmi-10">n&#x2215;N</span>. Now consider
+the null hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> : <span 
+class="cmmi-10">p </span>= <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">o</span></sub> versus the alternative <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">a</span></sub> : <span 
+class="cmmi-10">p</span><span 
+class="cmmi-10">&#x2260;</span><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">o</span></sub>. <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is accepted on a 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% confidence level
+iff:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6001r1"></a>
+   <center class="math-display" >
+<img 
+src="index5x.png" alt="N  (  )              n (  )
+&#x2211;   N  pipN- i&#x003C; &#x03B1;-&#x003C; &#x2211;   N   pipN -i
+i=n   i  o o     2   i=0  i  o o
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 343--><p class="nopar" >
+Now, according to the definition, a two-sided confidence interval contains all those values for <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">o</span></sub> which pass the test
+given by Equation <a 
+href="#x1-6001r1">1<!--tex4ht:ref: eq:hypothesis --></a>. The solution can be found by numerical iteration and/or interpolation (Clopper and Pearson,
+1934). An example for N=50, n=20 and <span 
+class="cmmi-10">&#x03B1;</span>=0.1 is given in Figure&#x00A0;<a 
+href="#x1-60025">5<!--tex4ht:ref: fig:frequentist2D --></a>.
+<!--l. 351--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-60025"></a>
+
+<!--l. 353--><p class="noindent" ><img 
+src="5.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index6x.png" src="2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5:  </span><span  
+class="content">90%  frequentist  confidence  bounds  on  p  for  n=20,N=50.  The  step-functions  represent  the
+cumulative binomial distribution with parameters (N,<img 
+src="index7x.png" alt="p
+¯"  class="b" >) and (N,<span class="bar-css"><span 
+class="cmmi-10">p</span></span>), respectively. <img 
+src="index8x.png" alt="p
+¯"  class="b" > is the largest value for p
+for which 20 out of 50 counts would occur more than 5% of the time. Likewise, <span class="bar-css"><span 
+class="cmmi-10">p</span></span> is the lowest value for p
+that would yield the observed ratio of 20/50 with more than 5% probability.</span></div><!--tex4ht:label?: x1-60025 -->
+
+<!--l. 362--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 364--><p class="indent" >   It can be shown (e.g. Blyth, 1986), that Equation <a 
+href="#x1-6001r1">1<!--tex4ht:ref: eq:hypothesis --></a> is mathematically equivalent to:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6003r2"></a>
+   <center class="math-display" >
+<img 
+src="index9x.png" alt="          &#x03B1;-                    &#x03B1;-
+p¯ = B(1 - 2,n +1,N - n) &#x003C; p &#x003C; B (2,n,N - n + 1) = ¯p
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 370--><p class="nopar" >
+Where <span 
+class="cmmi-10">B</span>(<span 
+class="cmmi-10">&#x03B1;,a,b</span>) is the 100<span 
+class="cmmi-10">&#x03B1; </span>percentile of the <span 
+class="cmmi-10">&#x03B2; </span>distribution with parameters a and b:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6004r3"></a>
+   <center class="math-display" >
+<img 
+src="index10x.png" alt="        &#x0393; (a+-b)-a-1     b- 1
+&#x03B2;(a,b) = &#x0393; (a)&#x0393; (b)p  (1- p)
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 376--><p class="nopar" >
+where &#x0393;(x) is the gamma function, which can be considered the continuous version of the factorial operator. For
+example, if x is an integer, then &#x0393;(x+1)=x!. Likewise, the <span 
+class="cmmi-10">&#x03B2; </span>distribution can be thought of as being a continuous
+version of the binomial distribution. Notice that for n=0 and n=N, Equation <a 
+href="#x1-6003r2">2<!--tex4ht:ref: eq:blythe --></a> breaks down. Instead, the following
+expressions should be used: <div class="eqnarray">
+   <center class="math-display" >
+<img 
+src="index11x.png" alt="p =   0 &#x003C; p &#x003C; 1- &#x03B1;1&#x2215;N = ¯p  if n=0, or                        (4)
+¯p =  (1- &#x03B1;)1&#x2215;N &#x003C; p &#x003C; 1 = p¯ if n=N                            (5)
+¯
+" class="math-display" ><a 
+ id="x1-6005r4"></a></center>
+</div>
+   <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-70003.2"></a>The Bayesian approach</h4>
+<!--l. 391--><p class="noindent" >For a &#8220;Bayesian&#8221;, a 100(1 - <span 
+class="cmmi-10">&#x03B1;</span>)% confidence (or <span 
+class="cmti-10">credibility</span>) interval for a parameter <span 
+class="cmmi-10">&#x03B8; </span>given some data <span 
+class="cmbx-10">x </span>is an
+interval for <span 
+class="cmmi-10">&#x03B8; </span>that covers 100(1 - <span 
+class="cmmi-10">&#x03B1;</span>)% of its <span 
+class="cmti-10">posterior distribution </span>P(<span 
+class="cmmi-10">&#x03B8;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">x</span>), where the latter is given
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7001r6"></a>
+   <center class="math-display" >
+<img 
+src="index12x.png" alt="P(&#x03B8;|x ) &#x221D; P(x|&#x03B8;)P (&#x03B8;)
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 399--><p class="nopar" >
+with P(<span 
+class="cmmi-10">&#x03B8;</span>) a <span 
+class="cmti-10">prior distribution </span>on <span 
+class="cmmi-10">&#x03B8; </span>and P(<span 
+class="cmbx-10">x</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x03B8;</span>) the <span 
+class="cmti-10">likelihood function </span>of the data given the parameter. The
+subjectivity of the Bayesian approach lies in the choice of the prior distribution. A uniform distribution (&#8220;flat
+prior&#8221;) is often taken if no prior information exists as to what the value of <span 
+class="cmmi-10">&#x03B8; </span>should be. However, whether or not this
+is a good <span 
+class="cmti-10">non-informative </span>prior has been challenged. The uniform distribution does not yield posterior distributions
+that are invariant under reparameterization (Jeffreys, 1946). We will soon see an example of an alternative prior
+distribution that does have this invariance.<br 
+class="newline" />
+<!--l. 412--><p class="indent" >   We now return to the problem of independent credibility intervals for multinomial proportions. Again, we
+consider a bin with n counts out of N and want to construct a 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% credibility interval for p=n/N. The
+likelihood function is binomial: <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">n</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">p</span>) = <img 
+src="index13x.png" alt="(N)
+ n" ><span 
+class="cmmi-10">p</span><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">p</span><sup><span 
+class="cmmi-7">N</span><span 
+class="cmsy-7">-</span><span 
+class="cmmi-7">n</span></sup>. If we take a flat prior for P(p), then the posterior is a
+<span 
+class="cmmi-10">&#x03B2;</span>(<span 
+class="cmmi-10">n </span>+ 1<span 
+class="cmmi-10">,N </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">n </span>+ 1) distribution (Bayes, 1763):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7002r7"></a>
+
+   <center class="math-display" >
+<img 
+src="index14x.png" alt="                                  &#x222B;
+                -----&#x0393; (N-+-2)----- r n      N -n
+P (q &#x003C; p &#x003C; r|n) = &#x0393; (n+ 1)&#x0393; (N - n+ 1) q p (1 - p) dp
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 422--><p class="nopar" >
+Therefore:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7003r8"></a>
+   <center class="math-display" >
+<img 
+src="index15x.png" alt="         &#x03B1;-                        &#x03B1;-
+p¯ = B(1-  2,n+ 1,N - n +1) &#x003C; p &#x003C; B (2,n + 1,N - n + 1) = ¯p
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 427--><p class="nopar" >
+Notice the similarities between Equations <a 
+href="#x1-6003r2">2<!--tex4ht:ref: eq:blythe --></a> and <a 
+href="#x1-7003r8">8<!--tex4ht:ref: eq:bayes2D --></a>. However, as opposed to the frequentist Equation <a 
+href="#x1-6003r2">2<!--tex4ht:ref: eq:blythe --></a>, the Bayesian
+Equation <a 
+href="#x1-7002r7">7<!--tex4ht:ref: eq:betabayes --></a> does not require a special case for n=0 and n=N. The <span 
+class="cmmi-10">&#x03B2; </span>distribution is an example of a <span 
+class="cmti-10">conjugate prior</span>.
+This means that if we take a <span 
+class="cmmi-10">&#x03B2;</span>-distributed prior, and a binomial sampling distribution, then the posterior will also
+have a <span 
+class="cmmi-10">&#x03B2; </span>distribution. The uniform distribution is a special case of the <span 
+class="cmmi-10">&#x03B2; </span>distribution for a=b=1 (i.e. <span 
+class="cmmi-10">&#x03B2;</span>(1<span 
+class="cmmi-10">,</span>1)). <span 
+class="cmmi-10">&#x03B2;</span>(<img 
+src="index16x.png" alt="1
+2"  class="frac" align="middle">,<img 
+src="index17x.png" alt="1
+2"  class="frac" align="middle">)
+is a noninformative prior (<span 
+class="cmti-10">Jeffreys&#8217; prior</span>) for the binomial distribution that is invariant under reparameterization
+(e.g. Gill, 2002, p.124). The posterior distribution then becomes <span 
+class="cmmi-10">&#x03B2;</span>(n+<img 
+src="index18x.png" alt="1
+2"  class="frac" align="middle">,N-n+<img 
+src="index19x.png" alt="1
+2"  class="frac" align="middle">). Taking the same example as for
+Section <a 
+href="#x1-60003.1">3.1<!--tex4ht:ref: sec:frequentist2D --></a> (i.e. n=20, N=50, <span 
+class="cmmi-10">&#x03B1;</span>=0.1), Figure <a 
+href="#x1-70046">6<!--tex4ht:ref: fig:Bayesian2D --></a> shows a two-sided Bayesian credibility interval for p.
+<hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-70046"></a>
+
+<!--l. 446--><p class="noindent" ><img 
+src="6.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index20x.png" src="3.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6: </span><span  
+class="content">90% Bayesian credibility bounds on p for n=20,N=50. The curve represents the cumulative <span 
+class="cmmi-10">&#x03B2;</span>
+distribution function with parameters n+1 and N-n+1, using a flat prior. The credibility interval [ <img 
+src="index21x.png" alt="p¯"  class="b" > <span 
+class="cmmi-10">&#x003C; </span>p
+<span 
+class="cmmi-10">&#x003C;</span> <span class="bar-css"><span 
+class="cmmi-10">p</span></span> ] is a (symmetric) interval for p that covers 90% of the area under this posterior distribution.</span></div><!--tex4ht:label?: x1-70046 -->
+
+<!--l. 453--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-80004"></a>Simultaneous confidence intervals for multinomial proportions</h3>
+<!--l. 458--><p class="noindent" >As was shown in Section <a 
+href="#x1-50003">3<!--tex4ht:ref: sec:independentCI --></a>, it is relatively easy to construct <span 
+class="cmti-10">independent </span>confidence intervals for each of the M bin
+counts <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">m</span></sub> (1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">M</span>) that make up a histogram, both under the frequentist and the Bayesian paradigm.
+However, we need to be more ambitious than that. In order to be able to compare two samples and test if they are
+significantly different, we would like to construct <span 
+class="cmti-10">simultaneous </span>confidence intervals for all of the M histogram bins.
+Like we did for the binomial case in the previous section, we will again discuss first the frequentist and then the
+Bayesian solution to this problem. It will soon become clear why the Bayesian method is more appropriate for our
+purpose.
+<!--l. 470--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-90004.1"></a>Frequentist Confidence Regions</h4>
+<!--l. 472--><p class="noindent" >As discussed before, histograms are representations of multinomial distributions. Suppose we have N numbers
+(&#8220;balls&#8221;), distributed over M bins (&#8220;colors&#8221;), corresponding to M multinomial proportions. The bin counts
+(<span 
+class="cmmi-10">n</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,n</span><sub><span 
+class="cmmi-7">M</span></sub>) must fulfill the condition <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">m</span></sub>=N. Therefore, all possible multinomial distributions must fall on
+an <span 
+class="cmti-10">M-simplex </span>&#x0394;<sub><span 
+class="cmmi-7">M</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>. An example of a 3-simplex (which just is another word for &#8220;ternary diagram&#8221;) is shown on
+Figure <a 
+href="#x1-100004.2">4.2<!--tex4ht:ref: fig:simplex --></a>. Consider a histogram with M bins, representing a sample of N numbers: <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">N</span></sub> = <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,x</span><sub><span 
+class="cmmi-7">N</span></sub><span 
+class="cmsy-10">}</span>.
+This histogram corresponds to one point on &#x0394;<sub><span 
+class="cmmi-7">M</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>, the <span 
+class="cmti-10">maximum likelihood estimate </span>(mle) of the bin
+counts. Under the frequentist paradigm, outlined in Section <a 
+href="#x1-60003.1">3.1<!--tex4ht:ref: sec:frequentist2D --></a>, a 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% confidence region on
+&#x0394;<sub><span 
+class="cmmi-7">M</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub> consists of all those probability vectors <span 
+class="cmbx-10">p </span>= (<span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,p</span><sub><span 
+class="cmmi-7">M</span></sub><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">m</span></sub> = 1) which are capable of
+yielding observations as extreme as <span 
+class="cmbx-10">n </span>= (<span 
+class="cmmi-10">n</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,n</span><sub><span 
+class="cmmi-7">M</span></sub><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">m</span></sub> = <span 
+class="cmmi-10">N</span>) with at least 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)%
+probability.<br 
+class="newline" />
+<!--l. 490--><p class="indent" >   In order to find this region, a grid of possible <span 
+class="cmbx-10">p</span><sup><span 
+class="cmmi-7">kl</span></sup> = (<span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">kl</span></sup><span 
+class="cmmi-10">,...,p</span><sub><span 
+class="cmmi-7">M</span></sub><sup><span 
+class="cmmi-7">kl</span></sup><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">m</span></sub><sup><span 
+class="cmmi-7">kl</span></sup> = 1) is evaluated. For each
+of these &#8220;test-populations&#8221; (for example the black dot on Figure <a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: fig:convHull --></a>) a large number of synthetic
+&#8220;samples&#8221; (the white dots on Figure <a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: fig:ternFreqBoot --></a>) of N numbers were generated, following an algorithm given in
+Appendix A. Next, we construct the 100<span 
+class="cmmi-10">&#x03B1;</span>% <span 
+class="cmti-10">convex hull </span>of these synthetic samples. This is a polygon
+containing 100<span 
+class="cmmi-10">&#x03B1;</span>% (the so-called &#8220;hull percentile&#8221;) of them. We test to see if <span 
+class="cmbx-10">p</span><sup><span 
+class="cmmi-7">mle</span></sup> (the black square on
+Figure <a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: fig:convHull --></a>) falls within the convex hull of <span 
+class="cmbx-10">p</span><sup><span 
+class="cmmi-7">kl</span></sup>. If this is not the case, then <span 
+class="cmbx-10">p</span><sup><span 
+class="cmmi-7">kl</span></sup> falls outside the 100<span 
+class="cmmi-10">&#x03B1;</span>%
+confidence region of <span 
+class="cmbx-10">p</span><sup><span 
+class="cmmi-7">mle</span></sup>. This procedure is repeated for the entire grid (k=1...K , l=1...L). On Figure
+<a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: fig:ternFreqBoot --></a>, the contour line contains all those grid points for which the mle falls within their 95 percentile
+hull.<br 
+class="newline" />
+<!--l. 507--><p class="indent" >   Figures <a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: fig:convHull --></a> and <a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: fig:ternFreqBoot --></a> just serve as an illustration of the frequentist paradigm on &#x0394;<sub><span 
+class="cmr-7">2</span></sub>. A more efficient way to
+compute approximate frequentist confidence regions on the ternary diagram is described by Weltje (2002, p.246).
+Projecting the frequentist confidence region onto the axes of the simplex would not represent that region, but the
+smallest polygon circumscribing it. Therefore, it is not possible to accurately &#8220;translate&#8221; a frequentist contour plot
+to error bars on a histogram, which makes it impossible to easily visualize the frequentist uncertainties
+
+of histograms with more than three bins. The Bayesian credibility regions discussed next solve this
+problem.
+<!--l. 519--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-90017"></a>
+
+<!--l. 522--><p class="noindent" ><img 
+src="7.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index22x.png" src="4.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7: </span><span  
+class="content">To test if the trinomial distribution marked by the black dot (p<sub><span 
+class="cmr-7">1</span></sub>=1/2,p<sub><span 
+class="cmr-7">2</span></sub>=1/6,p<sub><span 
+class="cmr-7">3</span></sub>=1/3) belongs
+to the 95% confidence region of the trinomial experiment marked by the black square (n<sub><span 
+class="cmr-7">1</span></sub>=5,n<sub><span 
+class="cmr-7">2</span></sub>=10,n<sub><span 
+class="cmr-7">3</span></sub>=15),
+a large number (1000) of trinomial samples of N=30 numbers was generated from this distribution. They
+are represented by the open circles. The black contour line represents the 95% convex hull. Since the black
+square does not fall within this hull, the black dot falls outside the 95% confidence region of the trinomial
+experiment.</span></div><!--tex4ht:label?: x1-90017 -->
+
+<!--l. 533--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 535--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-90028"></a>
+
+<!--l. 538--><p class="noindent" ><img 
+src="8.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index23x.png" src="5.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8: </span><span  
+class="content">The black dots represent the maximum likelihood estimates (mle) for two trinomial experiments
+(<span 
+class="cmsy-10">{</span>n<sub><span 
+class="cmr-7">1</span></sub>=5,n<sub><span 
+class="cmr-7">2</span></sub>=10,n<sub><span 
+class="cmr-7">3</span></sub>=15<span 
+class="cmsy-10">} </span>and <span 
+class="cmsy-10">{</span>n<sub><span 
+class="cmr-7">1</span></sub>=15,n<sub><span 
+class="cmr-7">2</span></sub>=15,n<sub><span 
+class="cmr-7">3</span></sub>=0<span 
+class="cmsy-10">}</span>). The black contours represent the frequentist confidence
+regions, obtained by repeating the experiment shown in Figure <a 
+href="#x1-90004.1">4.1<!--tex4ht:ref: fig:convHull --></a> on a 1250 point grid. For each of the
+grid points, B=200 trinomial samples were generated. The gray lines outline the Bayesian credibility regions
+(using a flat prior). The agreement between the two methods is surprisingly good.</span></div><!--tex4ht:label?: x1-90028 -->
+
+<!--l. 548--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-100004.2"></a>Bayesian Credibility Regions</h4>
+<!--l. 555--><p class="noindent" >It is relatively easy to generalize the methodology outlined in Section <a 
+href="#x1-70003.2">3.2<!--tex4ht:ref: sec:bayes2D --></a> from a binomial to a multinomial
+situation. Recall that the conjugate prior to a binomial distribution is the <span 
+class="cmmi-10">&#x03B2;</span>-distribution. The conjugate prior to a
+multinomial distribution is the <span 
+class="cmti-10">Dirichlet distribution</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10001r9"></a>
+   <center class="math-display" >
+<img 
+src="index24x.png" alt="                &#x2211;i=M     i=M
+Da(p1,...,pM ) = &#x0393;&#x220F;(-i=1-ai)&#x220F;  pai-1
+                ii==M1 &#x0393; (ai)i=1 i
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 566--><p class="nopar" >
+<!--l. 568--><p class="indent" >   The multinomial uniform distribution is a special case of the Dirichlet distribution with all a<sub><span 
+class="cmmi-7">i</span></sub>=1. If <span 
+class="cmbx-10">n </span>is a vector
+of M bin counts, then the posterior distribution under such a flat prior is D<sub><span 
+class="cmmi-7">n</span><span 
+class="cmr-7">+1</span></sub>(<span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub>,...,<span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">M</span></sub>). The choice of a prior that
+is truely non-informative and invariant under reparameterization is more controversial for the Dirichlet than it was
+for the <span 
+class="cmmi-10">&#x03B2; </span>distribution. Jeffreys suggested taking a<sub><span 
+class="cmmi-7">i</span></sub>=1/2, while Perks recommended using a<sub><span 
+class="cmmi-7">i</span></sub>=1/M (<span 
+class="cmsy-10">&#x2200; </span>i=1...M)
+(Good, 1965). Similar to the binomial case (Section <a 
+href="#x1-70003.2">3.2<!--tex4ht:ref: sec:bayes2D --></a>), simultaneous Bayesian credibility bands for the
+multinomial distribution are intervals that cover 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% of the area under the posterior distribution. A few
+examples of Dirichlet posteriors are shown on Figure <a 
+href="#x1-1000310">10<!--tex4ht:ref: ternAnDir --></a>. As opposed to the <span 
+class="cmmi-10">&#x03B2; </span>distribution, there are no tables
+of the percentiles of the Dirichlet distribution. In order to integrate this multi-dimensional function
+ourselves, we have to numerically sample from it, as described by Devroye (1986) and in Appendix
+B.<br 
+class="newline" />
+<!--l. 586--><p class="indent" >   Thus, a collection of B &#8220;sample histograms&#8221; can be constructed, representing B samples from the posterior
+Dirichlet distribution (Figure <a 
+href="#x1-1000411">11<!--tex4ht:ref: terNumDir --></a>). All these histograms correspond to points on &#x0394;<sub><span 
+class="cmmi-7">M</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>. Asymptotically, <span 
+class="cmti-10">independent</span>
+100(<span 
+class="cmmi-10">&#x03B1;&#x2215;</span>2) and 100(1 <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B1;&#x2215;</span>2) percentiles for the replicates of each of the histogram bin counts will converge to the
+independent credibility intervals of Equation <a 
+href="#x1-7003r8">8<!--tex4ht:ref: eq:bayes2D --></a>. However, it is also possible to obtain <span 
+class="cmti-10">simultaneous </span>credibility bands.
+The Bayesian way of doing this is to find M credibility intervals that define a polygon on &#x0394;<sub><span 
+class="cmmi-7">M</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub> containing
+100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% of the posterior distribution (Figures <a 
+href="#x1-100004.2">4.2<!--tex4ht:ref: fig:simplex --></a> and <a 
+href="#x1-1000411">11<!--tex4ht:ref: terNumDir --></a>). The algorithm for finding this polygon is given in
+Appendix B. Figures <a 
+href="#x1-100004.2">4.2<!--tex4ht:ref: fig:compPriors --></a> and <a 
+href="#x1-1000613">13<!--tex4ht:ref: fig:dirHist --></a> show the effect of different priors on the posterior distribution and its corresponding
+credibility polygon.<br 
+class="newline" />
+
+<!--l. 602--><p class="indent" >   This Bayesian method yields non-zero credibility intervals, even for empty bins. It works for histograms but not
+for kernel density estimates, which are continuous functions that cannot be easily represented on a
+simplex. As histograms traditionally do not take into account measurement uncertainties, the Bayesian
+credibility bands only reflect the uncertainties induced by the counting statistics, and not those caused by
+analytical imprecision. A final remark to be made is that, strictly speaking, the way we have defined
+simultaneous Bayesian credibility regions is only exact for <span 
+class="cmti-10">categorical </span>histograms, such as those obtained by
+point-counting mineral assemblages. However, if the histogram represents a time series, which is the case in
+detrital thermochronology, it will have some <span 
+class="cmti-10">smoothness </span>to it. This effect will not be captured by
+the Bayesian credibility regions discussed before. The categorical Bayesian credibility bands can be
+overly conservative if applied to such <span 
+class="cmti-10">autocorrelated </span>data. The next section of the paper discusses this
+issue.
+<!--l. 620--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-100029"></a>
+
+<!--l. 623--><p class="noindent" ><img 
+src="9.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index25x.png" src="6.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;9: </span><span  
+class="content">All possible outcomes of a trinomial experiment, for example a 3-bin histogram of N measurements
+x<sub><span 
+class="cmmi-7">i</span></sub>  plot  on  a  3-simplex.  The  maximum  likelihood  estimate  for  the  multinomial  proportions  is  given  by
+p<sub><span 
+class="cmmi-7">m</span></sub><sup><span 
+class="cmmi-7">mle</span></sup>=(#<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>s in m<sup><span 
+class="cmmi-7">th</span></sup>bin)/N (m=1,2 and 3). The maximum likelihood etimate (mle) is represented by a black
+dot. The posterior distribution of the unknown parameters p<sub><span 
+class="cmr-7">1</span></sub>, p<sub><span 
+class="cmr-7">2</span></sub> and p<sub><span 
+class="cmr-7">3</span></sub> is given by a Dirichlet distribution.
+To find simultaneous 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% confidence bounds for these parameters, we need to find a polygon on the
+simplex that contains 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% of the posterior distribution.</span></div><!--tex4ht:label?: x1-100029 -->
+
+<!--l. 635--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 637--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1000310"></a>
+
+<!--l. 639--><p class="noindent" ><img 
+src="10a.jpg" alt="PIC" class="graphics" width="175pt" ><!--tex4ht:graphics  
+name="index26x.png" src="7a.pdf"  
+--> <img 
+src="10b.jpg" alt="PIC" class="graphics" width="175pt" ><!--tex4ht:graphics  
+name="index27x.png" src="7b.pdf"  
+-->
+<img 
+src="10c.jpg" alt="PIC" class="graphics" width="175pt" ><!--tex4ht:graphics  
+name="index28x.png" src="7c.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;10: </span><span  
+class="content">Analytical contours for different posterior Dirichlet distributions. The parameters are, from
+left to right: (1,2,3), (5,10,15) and (0,0,5). Comparison of the leftmost two figures shows how the posterior
+Dirichlet distribution is more tightly constrained when more data are used. The rightmost plot shows how,
+even when two bins are empty, meaningful confidence intervals can be computed.</span></div><!--tex4ht:label?: x1-1000310 -->
+
+<!--l. 650--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 652--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1000411"></a>
+
+<!--l. 654--><p class="noindent" ><img 
+src="11.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index29x.png" src="8.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;11: </span><span  
+class="content">The area under posterior distributions such as those in Figure <a 
+href="#x1-1000310">10<!--tex4ht:ref: ternAnDir --></a> can be numerically integrated.
+The white dot shows the maximum likelihood trinomial distribution for a particular sample (n<sub><span 
+class="cmr-7">1</span></sub>=5, n<sub><span 
+class="cmr-7">2</span></sub>=10,
+n<sub><span 
+class="cmr-7">3</span></sub>=15). The black dots represent 1000 random samples from the Dirichlet posterior distribution D<sub><span 
+class="cmr-7">6</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">11</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">16</span></sub>
+on the 3-simplex. The polygon contains 95% of these points. The projection of this polygon onto the three
+parameter axes yields the simultaneous Bayesian credibility intervals.</span></div><!--tex4ht:label?: x1-1000411 -->
+
+<!--l. 665--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 667--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1000512"></a>
+
+<!--l. 670--><p class="noindent" ><img 
+src="12.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index30x.png" src="9.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;12: </span><span  
+class="content">The black dots on this 3-simplex represent sample bin counts (5,10,15) and (15,15,0). The solid
+black polygons represent their respective simultaneous 95% Bayesian credibility polygons with uniform prior
+D<sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">1</span></sub>, while for the dashed polygons, Perks&#8217; prior D<sub><img 
+src="index31x.png" alt="13"  class="frac" align="middle"><span 
+class="cmmi-7">,</span><img 
+src="index32x.png" alt="13"  class="frac" align="middle"><span 
+class="cmmi-7">,</span><img 
+src="index33x.png" alt=" 13"  class="frac" align="middle"></sub> was used.</span></div><!--tex4ht:label?: x1-1000512 -->
+
+<!--l. 677--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 679--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1000613"></a>
+
+<!--l. 681--><p class="noindent" ><img 
+src="13.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index34x.png" src="syntheticHist.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;13:  </span><span  
+class="content">The  white  histograms  represent  a  synthetic  population  of  categorical  variables,  the  black
+histogram a sample of 50 items from it. Note that the sample completely missed the 5<sup><span 
+class="cmmi-7">th</span></sup> population bin. The
+gray band covers 95% of the posterior distribution for (a) a flat (uniform) prior, and (b) Perks&#8217; prior. Both
+credibility bands correctly contain the original population.</span></div><!--tex4ht:label?: x1-1000613 -->
+
+<!--l. 690--><p class="indent" >   </div><hr class="endfigure">
+
+   <h4 class="subsectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x1-110004.3"></a>Bayesian credibility bands for smooth histograms</h4>
+<!--l. 697--><p class="noindent" >Strictly speaking, Bayesian credibility bands are only applicable to non-smooth or categorical data (Section <a 
+href="#x1-100004.2">4.2<!--tex4ht:ref: sec:bayes3D --></a>). In
+this section, we will discuss the importance of this problem and a way to solve it. We can express the <span 
+class="cmti-10">roughness </span>r of
+a time series g(t) as a function <span 
+class="cmti-10">f </span>of its second derivative:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11001r10"></a>
+   <center class="math-display" >
+<img 
+src="index35x.png" alt="         (&#x222B;  (      )   )
+              d2g(t) 2
+r(g(t)) = f      dt2    dt
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 707--><p class="nopar" >
+For example, for the discrete case of a histogram with three bins <span 
+class="cmbx-10">n</span>=(n<sub><span 
+class="cmr-7">1</span></sub>,n<sub><span 
+class="cmr-7">2</span></sub>,n<sub><span 
+class="cmr-7">3</span></sub>), we could write:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11002r11"></a>
+   <center class="math-display" >
+<img 
+src="index36x.png" alt="                   2
+r(n) = (n1 - 2n2 + n3)
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 713--><p class="nopar" >
+We now define the <span 
+class="cmti-10">smoothness weight </span>w as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11003r12"></a>
+   <center class="math-display" >
+<img 
+src="index37x.png" alt="w = e-sr
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 718--><p class="nopar" >
+where s is the <span 
+class="cmti-10">smoothing parameter</span>. Figure <a 
+href="#x1-1100414">14<!--tex4ht:ref: fig:ternDirWeights --></a> shows the trinomial smoothing weights for different values of s (for
+fixed N=n<sub><span 
+class="cmr-7">1</span></sub>+n<sub><span 
+class="cmr-7">2</span></sub>+n<sub><span 
+class="cmr-7">3</span></sub>). The distribution of the weights can be used to <span 
+class="cmti-10">filter </span>the posterior distribution, thereby in effect
+serving as a <span 
+class="cmti-10">prior distribution </span>(a &#8220;smoothing prior&#8221;). The algorithmic details for this procedure are given in
+Appendix C.
+<!--l. 727--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1100414"></a>
+
+<!--l. 729--><p class="noindent" ><img 
+src="14a.jpg" alt="PIC" class="graphics" width="175pt" ><!--tex4ht:graphics  
+name="index38x.png" src="11c.pdf"  
+--> <img 
+src="14b.jpg" alt="PIC" class="graphics" width="175pt" ><!--tex4ht:graphics  
+name="index39x.png" src="11b.pdf"  
+-->
+<img 
+src="14c.jpg" alt="PIC" class="graphics" width=175pt" ><!--tex4ht:graphics  
+name="index40x.png" src="11a.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;14: </span><span  
+class="content">Contoured smoothing priors for different smoothing parameters, with N=n<sub><span 
+class="cmr-7">1</span></sub>+n<sub><span 
+class="cmr-7">2</span></sub>+n<sub><span 
+class="cmr-7">3</span></sub>=10. From
+left to right: s=0 (no smoothing) , s=0.1 (weak smoothing), and s=1 (strong smoothing). The strongest
+weights are located along the p<sub><span 
+class="cmr-7">2</span></sub>=n<sub><span 
+class="cmr-7">2</span></sub>/N=1/3 line, which connects all possible histograms with zero second
+derivative.</span></div><!--tex4ht:label?: x1-1100414 -->
+
+<!--l. 739--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 741--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1100515"></a>
+
+<!--l. 743--><p class="noindent" ><img 
+src="15.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index41x.png" src="12.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;15: </span><span  
+class="content">Smoothed version of Figure <a 
+href="#x1-1000411">11<!--tex4ht:ref: terNumDir --></a>, using s=0.1 </span></div><!--tex4ht:label?: x1-1100515 -->
+
+<!--l. 747--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 749--><p class="indent" >   Figure <a 
+href="#x1-1100515">15<!--tex4ht:ref: fig:smoothTernDir --></a> shows the results of this kind of posterior filtering for a trinomial distribution on &#x0394;<sub><span 
+class="cmr-7">2</span></sub>. A logical
+extension of this method from three to M bins would be to replace Equation <a 
+href="#x1-11002r11">11<!--tex4ht:ref: eq:discSmoothness --></a> by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11006r13"></a>
+   <center class="math-display" >
+<img 
+src="index42x.png" alt="      M&#x2211;- 1
+r(n ) =    (nm -1 - 2nm + nm+1 )2
+      m=2
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 757--><p class="nopar" >
+<!--l. 759--><p class="indent" >   By generating samples from the posterior distribution, and accepting or rejecting them based on the smoothing
+weights given by Equations <a 
+href="#x1-11003r12">12<!--tex4ht:ref: eq:smoothness --></a> and <a 
+href="#x1-11006r13">13<!--tex4ht:ref: eq:discSmoothnessMgt3 --></a>, B samples from the smoothed posterior could be obtained. However, the
+amount of computation time that would be required for this process increases exponentially with M. The &#8220;sliding
+window&#8221; approach explained next does a similar job in linear time. The roughness penalty embodied by
+Equation <a 
+href="#x1-11003r12">12<!--tex4ht:ref: eq:smoothness --></a> depends on the second derivative only. This means that we only consider the influence of
+immediately adjacent bins on each other. For example, the m<sup><span 
+class="cmmi-7">th</span></sup> bin is directly correlated with the (m-1)<sup><span 
+class="cmmi-7">th</span></sup>
+bin and the (m+1)<sup><span 
+class="cmmi-7">th</span></sup> bin, but not with the (m-2)<sup><span 
+class="cmmi-7">th</span></sup> bin and the (m+2)<sup><span 
+class="cmmi-7">th</span></sup> bin. This warrants the use
+of a three bin wide &#8220;sliding window&#8221;, that recursively smooths the posterior distribution from the
+left to the right (or vice versa) one bin at a time. The details of this method are given in Appendix
+C.<br 
+class="newline" />
+<!--l. 776--><p class="indent" >   Figures <a 
+href="#x1-1100716">16<!--tex4ht:ref: fig:sineSmooth --></a> and <a 
+href="#x1-1100817">17<!--tex4ht:ref: fig:triangleseries --></a> illustrate the results of the sliding window procedure on a synthetic dataset. These figures
+demonstrate how using a smoothing prior filters out the roughest &#8220;spikes&#8221; from the posterior sample set. It is such
+often small minority of outliers that makes the unsmoothed, categorical confidence bands of Section <a 
+href="#x1-110004.3">4.3<!--tex4ht:ref: sec:bayesSmooth --></a> too wide,
+meaning too conservative, for continuous histograms. An example of the sliding window approach on real data is
+deferred to Section <a 
+href="#x1-140005.2">5.2<!--tex4ht:ref: sec:continuousRevisited --></a>, where we will also discuss which values for the smoothing parameter s to choose, and why
+the rather <span 
+class="cmti-10">ad hoc </span>nature of the smoothing method discussed in this section is probably not a big issue after
+all.
+<!--l. 789--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1100716"></a>
+
+<!--l. 790--><p class="noindent" ><img 
+src="16.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index43x.png" src="14.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;16: </span><span  
+class="content">The dashed white lines show the histograms &#8211;or rather <span 
+class="cmti-10">frequency polygons </span>(Scott, 1992)&#8211; of
+a smooth population (sine function). The solid white lines show the frequency polygons of a sample of
+57 numbers that were randomly drawn from this population. The gray areas mark the simultaneous 95%
+credibility bands, obtained by the Bayesian method and based on 500 samples from the posterior distribution.
+10 of these samples are shown in black to illustrate the effect of the smoothing prior. The non-smoothed
+Bayesian credibility band (a) is about twice as wide as the smoothed credibility band (b).</span></div><!--tex4ht:label?: x1-1100716 -->
+
+<!--l. 802--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 804--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1100817"></a>
+
+<!--l. 806--><p class="noindent" ><img 
+src="17.jpg" alt="PIC" class="graphics" width="700pt" ><!--tex4ht:graphics  
+name="index44x.png" src="14a+b.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;17: </span><span  
+class="content">Trinomial &#8220;slices&#8221; through the unsmoothed (top) and smoothed (bottom) posteriors of Figure
+<a 
+href="#x1-1100716">16<!--tex4ht:ref: fig:sineSmooth --></a>. </span></div><!--tex4ht:label?: x1-1100817 -->
+
+<!--l. 811--><p class="indent" >   </div><hr class="endfigure">
+
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-120005"></a>Case studies</h3>
+<!--l. 817--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">5.1   </span> <a 
+ id="x1-130005.1"></a>Categorical histograms</h4>
+<!--l. 819--><p class="noindent" >We first return to the example previously discussed in Section <a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:categorical --></a> and illustrated by Figure <a 
+href="#x1-30011">1<!--tex4ht:ref: fig:QFLa --></a>. Figure <a 
+href="#x1-1300118">18<!--tex4ht:ref: fig:QFLb --></a> shows the
+simultaneous 95% Bayesian credibility regions for samples A-D on the ternary QFL diagram in their now familiar
+polygonal form. The difference between the credibility regions of samples A and B clearly stands out. Recall that
+400 points were counted for sample B, as opposed to only 200 for sample A. As a result, the uncertainty polygon of
+A is substantially larger than that of B. It is quite possible that A and B were sampled from the same distribution.
+Whereas it very unlikely that sample B could have been derived from the population outlined by the contour,
+this conclusion cannot be made for sample A. A similar situation exists for sample C. This sample
+plots into the &#8220;transitional arc&#8221; field of the QFL diagram, but its 95% uncertainty region partly falls
+inside the &#8220;undissected arc&#8221; and &#8220;recycled orogen&#8221; fields. Although we have not done so, it would even
+be possible to compute the respective probabilities for the three fields, by counting the number of
+numerical Bayesian replicates that fall into them. Finally, sample D contains only one percent (4/400)
+of quartz. Its uncertainty hexagon is highly asymmetric but falls entirely inside the simplex, as it
+should.<br 
+class="newline" />
+<!--l. 841--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1300118"></a>
+
+<!--l. 843--><p class="noindent" ><img 
+src="18.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index45x.png" src="QFLb.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;18: </span><span  
+class="content">The QFL diagram of Figure <a 
+href="#x1-30011">1<!--tex4ht:ref: fig:QFLa --></a>, with 95% credibility regions for samples A-D. The hexagon of
+sample A (200 point-counts) is markedly larger than that of sample B (400 point-counts). Sample C most
+likely falls inside the &#8220;transitional arc&#8221; field, but there is more than 5% likelihood that it belongs to either
+the &#8220;undissected arc&#8221; or &#8220;recycled orogen&#8221; field.</span></div><!--tex4ht:label?: x1-1300118 -->
+
+<!--l. 851--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 853--><p class="indent" >   We now proceed to the multinomial example of heavy mineral analyses by Faupl <span 
+class="cmti-10">et al. </span>(2002). Figure <a 
+href="#x1-1300219">19<!--tex4ht:ref: fig:heavyminerals2 --></a>
+shows the 95% credibility intervals for the eight heavy mineral proportions, using Jeffreys&#8217; prior. When
+200 grains are counted, the percentage-error is between 2 (staurolite in ga-229/1) and 20% (garnet
+in io-234/1) (Figure <a 
+href="#x1-1300219">19<!--tex4ht:ref: fig:heavyminerals2 --></a>.a). There is less than 5% probability that the heavy mineral distribution of
+sample io-234/1 is compatible with that of sample ga-229/1 because the observed apatite and garnet
+fractions of io-234/1 fall outside the simultaneous 95% credibility band of ga-229/1. Likewise, it is
+less than 5% likely that sample ga-229/1 is compatible with io-234/1 because the apatite and garnet
+fractions of the former fall outside the confidence bands of the latter. The statement that ga-229/1 and
+io-234/1 are mutually compatible is true with less than 2.5%, and not 5% probability, because it involves
+two simultaneous tests. This is a consequence of the so-called Bonferroni inequality (Rice, 1995). The
+Bonferroni rule is on the conservative side, especially considering the fact that the two tests are not entirely
+independent from each other. Figure <a 
+href="#x1-1300219">19<!--tex4ht:ref: fig:heavyminerals2 --></a>.b shows that if the percentages reported by Faupl <span 
+class="cmti-10">et al. </span>had been the
+result of counting 1000 instead of 200 grains, the percentage-errors would have been between 0.5 and
+9%.
+<!--l. 876--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1300219"></a>
+
+<!--l. 878--><p class="noindent" ><img 
+src="19a.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index46x.png" src="heavyMinerals2a.pdf"  
+--> <img 
+src="19b.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index47x.png" src="heavyMinerals2b.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;19: </span><span  
+class="content">The heavy mineral analyses of Figure <a 
+href="#x1-30022">2<!--tex4ht:ref: fig:heavyminerals1 --></a>, with their 95% credibility intervals, using Jeffreys&#8217; prior,
+(a) for the 200 counts of Faupl <span 
+class="cmti-10">et al. </span>(2002), and (b) if the same proportions had been obtained by counting
+1000 grains. See Figure <a 
+href="#x1-30022">2<!--tex4ht:ref: fig:heavyminerals1 --></a> for the key to the mineral abbreviations.</span></div><!--tex4ht:label?: x1-1300219 -->
+
+<!--l. 886--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">5.2   </span> <a 
+ id="x1-140005.2"></a>Continuous histograms</h4>
+<!--l. 890--><p class="noindent" >We first consider a dataset of 157 concordant U-Pb SHRIMP ages on detrital zircon from the Cambrian Nubian
+Sandstone of southern Israel (Avigad <span 
+class="cmti-10">et al.</span>, 2003). The vast majority of these grains are of Pan-African age
+(900-540Ma), and likely derived from the Arabian-Nubian shield but there are some older grains as
+well, which could have come from as far as Central Africa (Avigad <span 
+class="cmti-10">et al.</span>, 2003). Figure <a 
+href="#x1-140005.2">5.2<!--tex4ht:ref: fig:avigad --></a> shows
+the kernel density plot of this dataset and its grain-age histogram with 95% credibility band. This
+plot contains an optimal amount of information: the kernel density estimate shows the sample taking
+into account measurement uncertainties, while the histogram represents the estimated population and
+the uncertainties caused by counting statistics. The credibility band also allows a better assessment
+of the likelihood that empty bins actually correspond to missing age-fractions, and of the statistical
+significance of some of the minor pre Pan-African peaks. The Nubian Sandstone example does not
+follow a very smooth distribution. Therefore, it might not be necessary to apply any smoothing to it at
+all.<br 
+class="newline" />
+<!--l. 909--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1400120"></a>
+
+<!--l. 912--><p class="noindent" ><img 
+src="20.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index48x.png" src="17_2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;20: </span><span  
+class="content">Detrital grain-age histogram and kernel density function for 157 SHRIMP U-Pb zircon ages from
+the Cambrian Nubian Sandstone of southern Israel from Avigad <span 
+class="cmti-10">et al. </span>(2003). The 95% credibility band for
+the histogram was calculated using Jeffreys&#8217; prior. We are more than 95% certain that each of the empty
+histogram bins contains less than roughly 5% of the population. </span></div><!--tex4ht:label?: x1-1400120 -->
+
+<!--l. 919--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 921--><p class="indent" >   This is certainly not the case for another dataset, containing the ages of 155 lunar spherules, dated with the
+<sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method, and published by Culler <span 
+class="cmti-10">et al. </span>(2000). Figure <a 
+href="#x1-1400221">21<!--tex4ht:ref: fig:culler --></a>.a shows the simultaneous 95% credibility band
+of this age-histogram without smoothing (s=0), whereas for Figure <a 
+href="#x1-1400221">21<!--tex4ht:ref: fig:culler --></a>.b, a smoothing prior with s=0.25
+was used. The resulting credibility band is significantly narrower. To study the effect of the smooting
+parameter s on the credibility band, the experiment of Figure <a 
+href="#x1-1400221">21<!--tex4ht:ref: fig:culler --></a> was repeated for a range of s-values and
+the average width of the credibility band was calculated for each of them. Figure <a 
+href="#x1-140005.2">5.2<!--tex4ht:ref: fig:CBwidthvsS --></a> shows how a
+moderate amount of smoothing can reduce the width of the credibility band by a factor of two, but that
+smoothing even more does not have much effect. This is because the exaggerated width of the unsmoothed
+credibility bands is mostly caused by just a few anomalous spikes (see Figure <a 
+href="#x1-1100716">16<!--tex4ht:ref: fig:sineSmooth --></a>.a). The sharpest of these
+excursions have the greatest effect on the width of the credibility bands, and will be filtered out the easiest.
+Smoothing out posterior samples that are less rough takes a lot more effort while having a much smaller
+effect. The fact that the magnitude of the smoothing parameter is not all that important reassures us
+that the rather arbitrary nature of the smooting prior as defined by Equations <a 
+href="#x1-11001r10">10<!--tex4ht:ref: eq:contRoughness --></a> and <a 
+href="#x1-11003r12">12<!--tex4ht:ref: eq:smoothness --></a> is not a
+problem.<br 
+class="newline" />
+<!--l. 945--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1400221"></a>
+
+<!--l. 947--><p class="noindent" ><img 
+src="21a.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index49x.png" src="17b_s=0.pdf"  
+-->
+<img 
+src="21b.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index50x.png" src="17b_s=25.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;21: </span><span  
+class="content">These histograms show the ages of 155 lunar spherules &#8211; droplets of molten rock that result from
+meteorite impacts &#8211; measured with the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method (Culler <span 
+class="cmti-10">et al.</span>, 2000). These spherules record a
+time series of impact activity on the Moon&#8217;s surface, which should be a more or less smooth function. The
+95% credibility band of histogram (a) was calculated without a smoothing prior (s=0). For histogram (b), a
+moderately strong smoothing prior (s=0.25) was used, resulting in a much narrower credibility band.</span></div><!--tex4ht:label?: x1-1400221 -->
+
+<!--l. 958--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 960--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1400322"></a>
+
+<!--l. 963--><p class="noindent" ><img 
+src="22.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index51x.png" src="19.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;22: </span><span  
+class="content">The exercise shown in Figure <a 
+href="#x1-1400221">21<!--tex4ht:ref: fig:culler --></a> was repeated for a range of s-values. This graph shows the
+evolution of the average credibility band width with s, suggesting that it is not necessary to use very strong
+smoothing.</span></div><!--tex4ht:label?: x1-1400322 -->
+
+<!--l. 968--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 970--><p class="indent" >   DeGraaff-Surpless <span 
+class="cmti-10">et al. </span>(2003) presented a statistical analysis of the detrital U-Pb zircon age datasets shown in
+Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:Surpless --></a>. Using the Kolmogorov-Smirnov (K-S) test, they compared the different samples to see if they could have
+been derived from the same population. The conclusion was that samples KD3 and KD7 were compatible with each
+other on the 95% confidence level, but that sample KD26 was not. The same test can be done using Bayesian
+credibility bands, as shown on Figure <a 
+href="#x1-1400423">23<!--tex4ht:ref: fig:KDcrossplot --></a>. No smoothing prior was used for the construction of Figure <a 
+href="#x1-1400423">23<!--tex4ht:ref: fig:KDcrossplot --></a> because it
+is not our goal to constrain the distribution of the underlying population, but only to see if the different
+observations are compatible with each other. As soon as any part of one histogram falls outside the 95%
+credibility band of the other, the former is not compatible with the latter. However, as discussed in
+the previous section, in order to test if two samples are mutually compatible, we must construct two
+97.5% credibility bands. If each of the two histograms completely falls inside the 97.5% credibility band
+of the other, there is at least 5% chance that they are compatible with each other. In addition to
+the K-S test and the Bayesian credibility bands, the <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup>-test is a third statistical method that was
+used to test the compatibility of the three samples. Its results are also shown on Figure <a 
+href="#x1-1400423">23<!--tex4ht:ref: fig:KDcrossplot --></a>. The three
+methods yield the same conclusions: samples KD3 and KD7 are compatible with each other, while
+KD26 is not. As a word of caution, we should repeat the remark made in Section <a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:categorical --></a>. Provided the
+number of measurements is large enough, eventually any test will fail, no matter how small the difference
+between the distributions. Instead of blindly looking whether or not a test has failed, it is better to
+consider the relative variation of the p-values, ensuring that samples of roughly the same size are
+compared, or to use a different measure of &#8220;distance&#8221; between distributions (e.g. Sircombe and Hazelton,
+2004).<br 
+class="newline" />
+<!--l. 1003--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1400423"></a>
+
+<!--l. 1005--><p class="noindent" ><img 
+src="23.jpg" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="index52x.png" src="KDcrossplot.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;23: </span><span  
+class="content">Three samples of DeGraaff-Surpless <span 
+class="cmti-10">et al. </span>(2003) are compared with each other. Since the
+histograms of samples KD3 and KD7 fall completely within each other&#8217;s 97.5% credibility bands (using
+Jeffreys&#8217; prior), the two histograms are statistically &#8220;compatible&#8221; on the 95% confidence level. Parts of
+sample KD26 fall outside the 97.5% credibility bands of samples KD3 and KD7, and vice versa. Therefore,
+a statistically significant difference exists between sample KD26 and the other two samples. The same
+conclusions were reached by doing a Kolmogorov-Smirnov test (DeGraaff-Surpless <span 
+class="cmti-10">et al.</span>, 2003) and a <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup>-test.
+The p-values of the latter are also shown on the figure.</span></div><!--tex4ht:label?: x1-1400423 -->
+
+<!--l. 1019--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 1021--><p class="indent" >   Finally, we return to the histogram of dip angles of 33 reverse faults from Collettini and Sibson (2001). Figure
+<a 
+href="#x1-1400524">24<!--tex4ht:ref: fig:bimodal --></a> shows the simultaneous 95% credibility band for this histogram. For Figure <a 
+href="#x1-1400524">24<!--tex4ht:ref: fig:bimodal --></a>.a, no smoothing
+prior was used (s=0), while for Figure <a 
+href="#x1-1400524">24<!--tex4ht:ref: fig:bimodal --></a>.b, the smooting parameter was s=1. In either case, it is easy
+to find a monomodal histogram that integrates to 33, while completely fitting within the credibility
+band. This means that the apparent bimodality is not statistically significant on a 95% confidence
+level. Since the author is not a structural geologist, he cannot assess if such bimodality is an expected
+feature. If so, a bimodal prior distribution could be used instead of a uniform one. In that case, it is
+possible that the bimodality is statistically significant. However, without such prior information, it is
+not.
+<!--l. 1036--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1400524"></a>
+
+<!--l. 1038--><p class="noindent" ><img 
+src="24.jpg" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="index53x.png" src="CollettiniFig.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;24: </span><span  
+class="content">The dashed gray line shows the dataset of Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:CollettiniHist --></a>, the gray shaded area simultaneous 95%
+credibility bands computed (a) without smooting, and (b) using a smooting prior with smooting parameter
+s=1. In either case, the apparent bimodality observed in Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:CollettiniHist --></a> turns out not to be statistically significant
+because it is easy to fit a monomodal histogram (black line) inside the credibility band. Prior information
+or more data are needed to prove bimodality.</span></div><!--tex4ht:label?: x1-1400524 -->
+
+<!--l. 1049--><p class="indent" >   </div><hr class="endfigure">
+
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-150006"></a>Conclusions</h3>
+<!--l. 1055--><p class="noindent" >In the Earth Sciences, it is often not the data itself, but an estimate of its probability distribution (density) that is
+interpreted. This paper addressed the problem of how to quantify the statistical uncertainty on such interpretations.
+The histogram is one of the most convenient ways to represent data like petrographic point-counts. We showed how
+to construct simultaneous Bayesian credibility bands for such categorical histograms. When only three categorical
+variables are studied, the ternary diagram is an alternative method of visualization, to which the method developed
+in this paper is equally applicable. Credibility bands allow an assessment of the precision of point-counting results
+and a way to intercompare multiple samples. Histograms can also be used to estimate probability densities of
+continous variables, such as radiometric ages in detrital thermochronology. The main alternative to the histogram
+for this purpose is the kernel density estimator. The advantages of the latter to the former are that (1) kernel
+density estimates yield continuous, rather than stepwise functions and (2) they explicitly take into
+account measurement uncertainties, whereas histograms do not. On the other hand, histograms have the
+substantial advantage that it is possible to compute confidence bands for them, as described in this paper.
+This is far less obvious for kernel density estimates. When analytical uncertainties exist, it is good
+practice to use kernel density estimates in conjunction with histograms, including their credibility
+bands.<br 
+class="newline" />
+<!--l. 1080--><p class="indent" >   Credibility bands provide a measure of the influence of counting statistics on density estimates. They also allow a
+better judgement of the possible similarities between different populations. If measurement uncertainties are
+small, the histogram is a good estimator of probability density, for which exact Bayesian credibility
+bands can be calculated. These have non-zero width even over intervals that were not sampled. This is
+important in disciplines such as detrital thermochronology, where not just the presence, but also the
+<span 
+class="cmti-10">absence </span>of certain (age) components is important. The degree of confidence that certain age intervals
+are absent in a detrital population can be calculated analytically (Vermeesch, 2004). For example, if
+100 sediment grains are counted, there is up to 11% chance that at least one fraction <span 
+class="cmsy-10">&#x2265; </span>0.05 of the
+population was missed by that sample. (Bayesian) credibility bands such as those on Figure <a 
+href="#x1-140005.2">5.2<!--tex4ht:ref: fig:avigad --></a> are an
+alternative way to express this kind of uncertainty. Continuous histograms often represent time series,
+which are autocorrelated to some degree. In such cases, adjacent bins are not independent from each
+other, as was the case for categorical histograms. The Bayesian way to deal with this problem is to
+use an <span 
+class="cmti-10">ad hoc </span>smoothing prior, which can be completely determined by a single smooting parameter.
+Smoothing helps to better constrain the probability distribution that underlies the data. Smooting is
+not necessary if we merely want to see which other experimental outcomes are compatible with the
+observations.<br 
+class="newline" />
+<!--l. 1105--><p class="indent" >   This paper comes with a computer program named EPDU (an <span class="underline">E</span>stimator of <span class="underline">P</span>robability <span class="underline">D</span>ensity and its
+<span class="underline">U</span>ncertainties) that runs on both PC and Macintosh computers. This program is available online at
+<span 
+class="cmtt-10">http://pangea.stanford.edu/research/noble/epdu</span>.
+
+   <h3 class="likesectionHead"><a 
+ id="x1-160006"></a>Appendix A</h3>
+<!--l. 1115--><p class="noindent" >To generate a large number B of synthetic samples from a multinomial distribution <span 
+class="cmbx-10">p </span>= (<span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,p</span><sub><span 
+class="cmmi-7">M</span></sub><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">m</span></sub> = 1),
+we use a &#8220;bars and stars&#8221; procedure:
+<!--l. 1119--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-16002x1">Generate the following vector of M+1 numbers: <span 
+class="cmsy-10"><img 
+src="cmsy10-41.png" alt="A" class="10x-x-41" /> </span>= <img 
+src="index54x.png" alt="(                 &#x2211;M          )
+ 0,(p1),(p1 + p2),...,(  m=1 pm = 1)"  class="left" align="middle">. This
+     represents  the  edges  (&#8220;bars&#8221;)  of  a  histogram.  The  gaps  between  subsequent  entries  in  this  array
+     represent the multinomial probabilities (<span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub>,...,<span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">M</span></sub>).
+     </li>
+     <li 
+  class="enumerate" id="x1-16004x2">Create  a  matrix  <span 
+class="cmsy-10"><img 
+src="cmsy10-42.png" alt="B" class="10x-x-42" /> </span>of  size  B<span 
+class="cmsy-10">&#x00D7;</span>N  with  random  numbers  between  0  and  1,  drawn  from  a  uniform
+     distribution. This represents B synthetic <span 
+class="cmti-10">samples </span>of N values (&#8220;stars&#8221;).
+     </li>
+     <li 
+  class="enumerate" id="x1-16006x3">For each row of <span 
+class="cmsy-10"><img 
+src="cmsy10-42.png" alt="B" class="10x-x-42" /></span>, count the number of &#8220;stars&#8221; that fall in between the &#8220;bars&#8221; of <span 
+class="cmsy-10"><img 
+src="cmsy10-41.png" alt="A" class="10x-x-41" /></span>. This procedure
+     yields a matrix <span 
+class="cmsy-10"><img 
+src="cmsy10-48.png" alt="H" class="10x-x-48" /> </span>of size B<span 
+class="cmsy-10">&#x00D7;</span>M with multinomial replications of <span 
+class="cmbx-10">p</span>.</li></ol>
+<!--l. 1134--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-170006"></a>Appendix B</h3>
+<!--l. 1136--><p class="noindent" >The following procedure produces a random sample from a Dirichlet distribution D<sub><span 
+class="cmmi-7">a</span></sub>: generate a vector <span 
+class="cmbx-10">x </span>=
+(x<sub><span 
+class="cmr-7">1</span></sub>,...,x<sub><span 
+class="cmmi-7">m</span></sub>,...,x<sub><span 
+class="cmmi-7">M</span></sub>) by drawing each of the x<sub><span 
+class="cmmi-7">m</span></sub>s from a gamma distribution with shape parameter a<sub><span 
+class="cmmi-7">m</span></sub>. Then &#x0398; =
+(<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">1</span></sub>,...,<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">m</span></sub>,...,<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">M</span></sub>) with <span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">m</span></sub>=x<sub><span 
+class="cmmi-7">m</span></sub>/<span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">m</span></sub> has the desired Dirichlet distribution (Devroye, 1986). Alternatively, it is
+also possible to obtain a sample of the posterior distribution using a procedure named the <span 
+class="cmti-10">Bayesian bootstrap</span>
+(Rubin, 1981).<br 
+class="newline" />
+<!--l. 1146--><p class="indent" >   To numerically integrate the Dirichlet distribution, we use either the &#8220;traditional method&#8221; of Devroye (1986), or
+the Bayesian bootstrap. Both methods give the same results. Thus, we generate a B<span 
+class="cmsy-10">&#x00D7;</span>M matrix <span 
+class="cmsy-10"><img 
+src="cmsy10-48.png" alt="H" class="10x-x-48" /></span>
+containing B random samples from the Dirichlet posterior of interest, each representing a histogram of
+M bins. The following procedure finds a polygon on &#x0394;<sub><span 
+class="cmmi-7">M</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>, containing 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% of the posterior
+distribution:
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-17002x1">construct a two-sided 100(1-<span 
+class="cmmi-10">&#x03B3;</span>)% credibility interval for each of the columns (&#8220;bins&#8221;) of this matrix.
+     This can be done either analytically with Equation <a 
+href="#x1-7003r8">8<!--tex4ht:ref: eq:bayes2D --></a>, or numerically by computing the 100(<span 
+class="cmmi-10">&#x03B1;</span>/2) and
+     100(1-<span 
+class="cmmi-10">&#x03B1;</span>/2) percentiles. This yields M independent credibility intervals.
+     </li>
+     <li 
+  class="enumerate" id="x1-17004x2">For each column, accept those values (rows) that fall within its respective credibility interval and reject
+     those rows that fall outside of it. Divide the number of rejected rows by B (the total number of rows),
+     and call this fraction <span 
+class="cmmi-10">&#x03C1;</span>. If <span 
+class="cmmi-10">&#x03B4; </span>= <span 
+class="cmmi-10">&#x03C1;</span><span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03B1; &#x003E; </span>0, repeat step #1 for a larger <span 
+class="cmmi-10">&#x03B3;</span>. If <span 
+class="cmmi-10">&#x03B4; &#x003C; </span>0, repeat it for a smaller
+     <span 
+class="cmmi-10">&#x03B3;</span>.
+
+     </li>
+     <li 
+  class="enumerate" id="x1-17006x3">Stop the iteration if <span 
+class="cmmi-10">&#x03B4; </span>is small enough (e.g., <span 
+class="cmmi-10">&#x003C;</span>0.001). The independent 100(1-<span 
+class="cmmi-10">&#x03B3;</span>)% credibility intervals for
+     each of the bins then correspond to simultaneous 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)% credibility bands for the entire histogram.</li></ol>
+<!--l. 1171--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-180006"></a>Appendix C</h3>
+<!--l. 1173--><p class="noindent" >First, we will explain how to smooth a Dirichlet posterior on &#x0394;<sub><span 
+class="cmr-7">2</span></sub>:
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-18002x1">Generate a random Bayesian replicate <span 
+class="cmbx-10">n</span><sup><span 
+class="cmmi-7">b</span></sup>=(n<sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,n<sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,n<sub><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmmi-7">b</span></sup>) from the unsmoothed Dirichlet posterior as in
+     <span 
+class="cmti-10">Devroye </span>[1986] or Appendix B.
+     </li>
+     <li 
+  class="enumerate" id="x1-18004x2">Calculate the roughness r of this sample with Equation <a 
+href="#x1-11002r11">11<!--tex4ht:ref: eq:discSmoothness --></a> and the smoothness weight w with Equation
+     <a 
+href="#x1-11003r12">12<!--tex4ht:ref: eq:smoothness --></a>. The latter is a number between zero (infinite roughness) and one (zero roughness).
+     </li>
+     <li 
+  class="enumerate" id="x1-18006x3">Generate a random number between zero and one. If this number is greater than w, reject <span 
+class="cmbx-10">n</span><sup><span 
+class="cmmi-7">b</span></sup>. If it is
+     less than w, accept <span 
+class="cmbx-10">n</span><sup><span 
+class="cmmi-7">b</span></sup>.
+     </li>
+     <li 
+  class="enumerate" id="x1-18008x4">Repeat steps 1-3 for b=1...B until a large number B (e.g., 500) of samples from the posterior distribution
+     have been accepted.<br 
+class="newline" /></li></ol>
+<!--l. 1190--><p class="indent" >   Next, we describe the method for extending this method to histograms of more than three bins, using a &#8220;sliding
+window&#8221; approach. Figure <a 
+href="#x1-1800925">25<!--tex4ht:ref: slidingwindow --></a>.a shows B Bayesian replicates from an unsmoothed posterior distribution. On this
+figure, the dashed line shows the observed bin counts <span 
+class="cmbx-10">n </span>= (n<sub><span 
+class="cmr-7">1</span></sub>,...,n<sub><span 
+class="cmmi-7">M</span></sub>) in the form of a <span 
+class="cmti-10">frequency polygon </span>(Scott,
+1992). The solid lines show B multinomial replicates from the Dirichlet posterior: <span 
+class="cmbx-10">n</span><sup><span 
+class="cmmi-7">b</span></sup> = (n<sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,...,n<sub><span 
+class="cmmi-7">M</span></sub><sup><span 
+class="cmmi-7">b</span></sup>), with 1<span 
+class="cmsy-10">&#x2264;</span>b<span 
+class="cmsy-10">&#x2264;</span>B.
+In this example B=7, but in real applications a more typical value would be B<span 
+class="cmmi-10">&#x003E;</span>500. Assume that the first m-1
+bins have already been smoothed (Figure <a 
+href="#x1-1800925">25<!--tex4ht:ref: slidingwindow --></a>.b). Figures <a 
+href="#x1-1800925">25<!--tex4ht:ref: slidingwindow --></a>.c and d then show how to find the b<sup><span 
+class="cmmi-7">th</span></sup>
+replicate for the next bin. We generate an array <span 
+class="cmbx-10">n</span><sup><span 
+class="cmmi-7">b</span></sup> = (n<sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,...,n<sub><span 
+class="cmmi-7">M</span></sub><sup><span 
+class="cmmi-7">b</span></sup>), where (n<sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,...,n<sub><span 
+class="cmmi-7">m</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">b</span></sup>) are &#8220;inherited&#8221;
+from the previous smoothing steps and (n<sub><span 
+class="cmmi-7">m</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,...,n<sub><span 
+class="cmmi-7">M</span></sub><sup><span 
+class="cmmi-7">b</span></sup>) are generated at random from M-m+1 gamma
+distributions with parameters (n<sub><span 
+class="cmmi-7">m</span></sub>,...,n<sub><span 
+class="cmmi-7">M</span></sub>) respectively. Dividing <span 
+class="cmbx-10">n</span><sup><span 
+class="cmmi-7">b</span></sup> by <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup>n<sub><span 
+class="cmmi-7">j</span></sub><sup><span 
+class="cmmi-7">b</span></sup> yields a sample <span 
+class="cmbx-10">p</span><sup><span 
+class="cmmi-7">b</span></sup> from the
+Dirichlet posterior (<span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">j</span></sub><sup><span 
+class="cmmi-7">b</span></sup>=1) [<span 
+class="cmti-10">Devroye</span>, 1986]. Multiplying <span 
+class="cmbx-10">p</span><sup><span 
+class="cmmi-7">b</span></sup> by N=<span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">M</span></sup>n<sub><span 
+class="cmmi-7">j</span></sub> gives a Bayesian
+replication of the original histogram <span 
+class="cmbx-10">n</span>. We now only consider one &#8220;trinomial frame&#8221; of this Bayesian
+replicate (n<sub><span 
+class="cmmi-7">m</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,n<sub><span 
+class="cmmi-7">m</span></sub><sup><span 
+class="cmmi-7">b</span></sup>,n<sub><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">+1</span></sub><sup><span 
+class="cmmi-7">b</span></sup>) and calculate its roughness and the corresponding smoothness weight
+with Equation <a 
+href="#x1-11003r12">12<!--tex4ht:ref: eq:smoothness --></a>. Using the same decision rule as before, we either accept or reject the m<sup><span 
+class="cmmi-7">th</span></sup> bin. Two
+examples of such &#8220;multinomial extensions&#8221; to the b<sup><span 
+class="cmmi-7">th</span></sup> Bayesian replicate are shown on Figure <a 
+href="#x1-1800925">25<!--tex4ht:ref: slidingwindow --></a>.c,
+labeled I and II. The latter candidate will have a much greater chance of being accepted than the
+former.<br 
+class="newline" />
+
+<!--l. 1221--><p class="indent" >   After repeating this procedure B times, we obtain a set of B multinomial extensions to the previously smoothed
+set of samples from the Dirichlet posterior (Figure <a 
+href="#x1-1800925">25<!--tex4ht:ref: slidingwindow --></a>.e). We discard the replicates from the (m+1)<sup><span 
+class="cmmi-7">th</span></sup>
+bin onward and just keep the values for the m<sup><span 
+class="cmmi-7">th</span></sup> bin. The procedure then recursively smooths the
+remaining bins one by one, in exactly the same way as described before. However, at the (M-1)<sup><span 
+class="cmmi-7">th</span></sup>
+frame, we have to accept not only the (m-1)<sup><span 
+class="cmmi-7">th</span></sup>, but also the m<sup><span 
+class="cmmi-7">th</span></sup> bin, in order to end the recursive
+process. Likewise, to start the recursive process, we must accept both the first and the second bin
+of the first trinomial &#8220;frame&#8221; during the first step of the smoothing procedure. To avoid any <span 
+class="cmti-10">edge</span>
+<span 
+class="cmti-10">effects</span>, we &#8220;pad&#8221; the vector <span 
+class="cmbx-10">n </span>of observed bin counts with zeros. This is more than just a trick, because
+it is an explicit assumption of the histogram that the number of observations outside its <span 
+class="cmti-10">support </span>is
+zero.<br 
+class="newline" />
+<!--l. 1237--><p class="indent" >   At the end of the smoothing procedure, the set of posterior samples looks like Figure <a 
+href="#x1-1800925">25<!--tex4ht:ref: slidingwindow --></a>.f. The smoothed
+replicates are &#8220;more parallel&#8221; than the unsmoothed ones shown in Figure <a 
+href="#x1-1800925">25<!--tex4ht:ref: slidingwindow --></a>.a. Thus, it becomes clear why
+the width of the smoothed credibility band is smaller than that of its unsmoothed counterpart, as
+illustrated by an example of the stepwise smoothing procedure on synthetic data shown in Figures <a 
+href="#x1-1100716">16<!--tex4ht:ref: fig:sineSmooth --></a> and
+<a 
+href="#x1-1100817">17<!--tex4ht:ref: fig:triangleseries --></a>.
+<!--l. 1246--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-1800925"></a>
+
+<!--l. 1248--><p class="noindent" ><img 
+src="A1.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index55x.png" src="A1.pdf"  
+-->
+<img 
+src="A2.jpg" alt="PIC" class="graphics" width="300" ><!--tex4ht:graphics  
+name="index56x.png" src="A2.pdf"  
+--><br />
+<img 
+src="A3.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index57x.png" src="A3.pdf"  
+-->
+<img 
+src="A4.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index58x.png" src="A4.pdf"  
+--><br />
+<img 
+src="A5.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index59x.png" src="A5.pdf"  
+-->
+<img 
+src="A6.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="index60x.png" src="A6.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;25: </span><span  
+class="content">Illustration of the &#8220;sliding window&#8221; approach to smoothing the posterior distribution. (a) The
+solid black lines represent B=7 Bayesian replicates generated without smooting (s=0). The dashed line
+marks the frequency polygon of the true population. (b) Suppose that the first (m-1) bins have already
+been smoothed, then B smoothed replicates for the m<sup><span 
+class="cmmi-7">th</span></sup> step can be generated as follows: (c) to get the first
+
+replicate, first try the multinomial extension I and randomly accept or reject it based on its smoothness
+weight (Equation <a 
+href="#x1-11003r12">12<!--tex4ht:ref: eq:smoothness --></a>). Since replicate I is quite rough at the m<sup><span 
+class="cmmi-7">th</span></sup> bin, it is very likely to be rejected. If this
+is the case, generate a new replicate. (d) Replicate II happens to be much smoother at the m<sup><span 
+class="cmmi-7">th</span></sup> bin, giving
+it a greater chance of being accepted. If accepted, discard the replicates from (m+1) onwards. (e) Repeat
+steps (c) and (d) until B values for the m<sup><span 
+class="cmmi-7">th</span></sup> value have been accepted. (f) Repeat steps (c)-(e) until all M
+bins have been filled.</span></div><!--tex4ht:label?: x1-1800925 -->
+
+<!--l. 1271--><p class="indent" >   </div><hr class="endfigure">
+
+   <h3 class="likesectionHead"><a 
+ id="x1-190006"></a>Acknowledgements</h3>
+<!--l. 1276--><p class="noindent" >The author wishes to thank Albert Tarantola and especially Susan Holmes for introducing him to Bayesian
+statistics. However, these people are not responsible for any inaccuracies or errors that may exist in the
+paper.
+<!--l. 1281--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-200006"></a>References.</h3>
+<!--l. 1283--><p class="noindent" >
+     <dl class="description"><dt class="description">
+ </dt><dd 
+class="description">Avigad, D., Kolodner, K., McWilliams, M., Persing, H., and Weissbrod, T., 2003, Provenance of northern
+     Gondwana Cambrian sandstone revealed by detrital zircon SHRIMP dating.: Geology, v. 31, no. 3, p.
+     227-230.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Bayes,  F.  R.  S.,  1763,  An  essay  towards  solving  a  problem  in  the  doctrine  of  chances:  Philosophical
+     Transactions, v. 53, p. 370-418.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Blyth, C. R., 1986, Approximate binomial confidence limits: Journal of the American Statistical Association,
+     v. 81, no. 395, p. 843-855.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Clopper, C. J., and Pearson, E. S., 1934, The use of confidence or fiducial limits illustrated in the case of
+     the binomial: Biometrika, v. 26, no. 4, p. 404-413.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Collettini, C., and Sibson, R. H., 2001, Normal faults, normal friction?: Geology, v. 29, no. 10, p. 927-930.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Culler, T. S., Becker, T. A., Muller, R. A., and Renne, P. R., 2000, Lunar impact history from <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar
+     dating of glass spherules: Science, v. 287, no. 5459, p. 1785-1788.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">DeGraaff-Surpless, K., Mahoney, J. B., Wooden, J. L., and McWilliams, M. O., 2003, Lithofacies control
+     in detrital zircon provenance studies; insights from the Cretaceous Methow Basin, southern Canadian
+     Cordillera: Geological Society of America Bulletin, v. 115, no. 8, p. 899-915.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Devroye, L., 1986, Non-uniform random variate generation: New York, Springer-Verlag, 843 p.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Dickinson, W. R., Beard, L. S., Brakenridge, G. R., Erjavec, J. L., Ferguson, R. C., Inman, K. F., Knepp, R.
+
+     A., Lindberg, F. A., and Ryberg, P. T., 1983, Provenance of North American Phanerozoic sandstones
+     in relation to tectonic setting: Geological Society of America Bulletin, v. 94, no. 2, p. 222-235.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Dickinson, W. R., 1985, Interpreting provenance relations from detrital modes of sandstones, in: Zuffa, G.G.
+     (Ed.), Provenance of Arenites, ed., NATO ASI Series, Series C: Mathematical and Physical Sciences:
+     Reidel, Dordrecht, v. 148, p. 333-361.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Faupl, P., Pavlopoulos, A., and Migiros, G., 2002, Provenance of the Peloponnese (Greece) flysch based on
+     heavy minerals: Geological Magazine, v. 139, no. 5, p. 513-524.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Gill, J., 2002, Bayesian methods : a social and behavioral sciences approach: Boca Raton, FL, Chapman
+     and Hall, 459 p.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Good, J. I., 1965, The estimation of probabilities: an essay on modern Bayesian methods: Cambridge,
+     Massachusetts, MIT Press, 109 p.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Jeffreys, H., 1946, An invariant form for the prior probability in estimation problems: Proceedings of the
+     Royal Society of London A, v. 186, no. 1007, p. 453-461.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Rice, J. A., 1995, Mathematical statistics and data analysis: Belmont, CA, Duxbury Press, 602p.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Rubin, D. B., 1981, The Bayesian Bootstrap: Annals of Statistics, v. 9, no. 1, p. 130-134.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Scott, D. W., 1992, Multivariate density estimation: theory, practice, and visualization, Wiley series in
+     probability and mathematical statistics: New York, Wiley, 317 p.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Silverman, B. W., 1986, Density estimation for statistics and data analysis, Monographs on statistics and
+     applied probability: London ; New York, Chapman and Hall, 175 p.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Sircombe, K. N., and Hazelton, M. L., 2004, Comparison of detrital age distributions by kernel functional
+     estimation: Sedimentary Geology, v. 171, p. 91-111.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Van der Plas, L., and Tobi, A. C., 1965, A chart for judging the reliability of point counting results:
+     American Journal of Science, v. 263, no. 1, p. 87-90.
+
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Vermeesch, P., 2004, How many grains are needed for a provenance study? Earth and Planetary Science
+     Letters, v. 224, no. 3-4, p. 441-451.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Weltje, G. J., 2002, Quantitative analysis of detrital modes; statistically rigorous confidence regions in
+     ternary diagrams and their use in sedimentary petrology: Earth-Science Reviews, v. 57, no. 3-4, p.
+     211-253.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Yue, Y., Ritts, B. D., and Graham, S. A., 2001, Initiation and long-term slip history of the Altyn Tagh
+     Fault: International Geology Review, v. 43, no. 12, p. 1087-1093.
+     </dd></dl>
+</td></table>    
+</body></html> 
+
+
+

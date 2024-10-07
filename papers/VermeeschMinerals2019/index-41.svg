@@ -1,0 +1,64 @@
+ <div class="verbatim" id="verbatim-42">
+<span 
+class="cmtt-10x-x-109">library(provenance)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;major</span><span 
+class="cmtt-10x-x-109">&#x00A0;elements:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">Major</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.compositional('Major.csv')</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;trace</span><span 
+class="cmtt-10x-x-109">&#x00A0;elements:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">Trace</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.compositional('Trace.csv')</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;petrography:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">QFL</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.counts('PT.csv',colmap=cm.colors)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;heavy</span><span 
+class="cmtt-10x-x-109">&#x00A0;minerals:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">HM</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.counts('HM.csv',colmap=cm.colors)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;zircon</span><span 
+class="cmtt-10x-x-109">&#x00A0;U-Pb</span><span 
+class="cmtt-10x-x-109">&#x00A0;dates:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">DZ</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.distributional('DZ.csv')</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;generate</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">summaryplot(Major,Trace,QFL,HM,KDEs(DZ),ncol=2)</span>
+</div>
+<!--l. 1582--><p class="nopar" >                                                                               

@@ -1,0 +1,4 @@
+ <!--l. 2118--><p class="noindent" >library(compositions)  load the package into memory dat ¡- data(SkyeAFM)  load the Skye lava
+dataset AFMcomp ¡- acomp(dat)  enforce the constant sum constraint plot(AFMcomp)  plot as
+a ternary diagram
+                                                                                                                             

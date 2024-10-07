@@ -1,0 +1,284 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <title>Geochron @ Home</title>
+  <link rel="stylesheet" href="../jquery-ui.css" />
+  <script src="../jquery-1.8.3.js"></script>
+  <script src="../jquery-ui.js"></script>
+  	
+<script>
+  
+	$(function() {
+
+		var ft = new FT();
+
+		ft.displaySample(-1);
+
+		$("#samplename").html(ft.getSample().dir);
+
+		$("#grainnum").html(ft.grainnum + 1 + "/" + ft.getSample().grains.length);
+
+		$("#n").html(0);
+
+    		$("#slider").slider({
+			'orientation': 'horizontal',
+			'value': -1,
+			'min': -1,
+			'max': 14,
+			'slide': function(e, ui){
+				ft.displaySample(ui.value);
+			}
+   		});
+
+	        $("#FTimage").click(function (ev) {
+			xx = ev.pageX;
+			yy = ev.pageY;
+			ft.getGrain().X.push(xx);
+			ft.getGrain().Y.push(yy);
+			ft.getGrain().Ns = ft.getGrain().X.length;
+			$("div#n").html(ft.getGrain().Ns);
+			plot(xx,yy);
+    		});
+
+		$("#previous").click(function (ev){
+			if (ft.grainnum>0){
+				ft.grainnum--;
+			} else if (ft.samplenum>0){
+				ft.samplenum--;
+				ft.grainnum = ft.getSample().grains.length-1;
+			}
+			clearCanvas();
+			ft.displaySample(-1);
+		});
+
+		$("#next").click(function (ev){
+			numgrains = ft.getSample().grains.length;
+			if (ft.grainnum<numgrains-1) {
+				ft.grainnum++;
+			} else if (ft.samplenum<ft.samples.length-1) {
+				ft.samplenum++;
+				ft.grainnum = 0;
+			}
+			clearCanvas();
+			ft.displaySample(-1);
+		});
+		
+		function clearCanvas(){
+		        var c = document.getElementById("myCanvas");
+		        var ctx = c.getContext("2d");
+			ctx.clearRect(0, 0, c.width, c.height);
+			ctx.beginPath();
+		}
+
+		$("#reflected").click(function (ev){
+			if ($("#reflected").text()=='Reflected'){
+				$("#reflected").html('Transmitted');
+				$("#focus").hide();
+				ft.displaySample(1000);
+			} else {
+				$("#reflected").html('Reflected');
+				$("#focus").show();
+				ft.displaySample(-1);
+			}
+		});
+
+		$("#calculate").click(function (ev){
+			var ageErr = [];
+			var results = "";
+			var sample = ft.getSample();
+			results += "Sample " + sample.dir + "<br />";
+			for (var i=0; i<sample.grains.length; i++){
+				ageErr = ft.getAgeErr(i);
+				results += "Grain " + (i+1) + ": " + (ageErr[0]/1e6).toFixed(2) + 
+					   " +/- " + (ageErr[1]/1e6).toFixed(2) + " Ma <br />";
+			}
+			$("#results").html(results);
+			$("#results").show();
+		});
+
+		function FT(){
+			this.lambda_d = 0.000000000155125;
+  			this.dir = "../samples/";
+			this.samples = loadSamples();
+			this.samplenum = 0;
+			this.grainnum = 0;
+
+			this.getGrain =  function(){
+				return this.getSample().grains[this.grainnum];
+			}
+			
+			this.getSample = function(){
+				return this.samples[this.samplenum];
+			}
+
+			this.getFileName = function(layer){
+				var fname = this.dir + this.getSample().dir + "/" + this.getGrain().dir + "/";
+				if (layer>100) {
+					fname += "ReflStackFlat.jpeg";
+				} else {
+					fname += "Stack-" + layer + ".jpeg";
+				}
+				return fname;
+			}
+
+			this.drawROI = function(ctx, ROI){
+
+			}
+
+			this.displaySample = function(layer){
+			        var c = document.getElementById("myCanvas");
+			        var ctx = c.getContext("2d");
+				ctx.strokeStyle = '#00ff00';
+				ctx.lineWidth = 3;
+				var image = new Image();
+				var ROIs = this.getGrain().ROIs;
+				var ROI = [];
+				image.src = this.getFileName(layer);
+				image.onload = function(){
+				        ctx.drawImage(image,0,0);
+					for (i = 0; i < ROIs.length; i++){
+					         ROI = ROIs[i];
+					         for (j = 0; j < ROI[0].length-1; j++){
+			                                   ctx.moveTo(ROI[0][j],ROI[1][j]);
+			                                   ctx.lineTo(ROI[0][j+1],ROI[1][j+1]);
+			                                   ctx.stroke();
+				                 }
+					}
+				}
+				$("#results").html(this.getGrain().text);
+			}
+
+			this.plotCounts = function(){
+				for (var i=0; i<this.getGrain().X.length; i++){
+					plot(this.getGrain().X[i],this.getGrain().Y[i]);
+				}
+			}
+
+			this.getAgeErr = function(n){
+				var ageErr = new Array(2);
+				var theSample = this.getSample();
+				var theGrain = theSample.grains[n];
+				var rhoS = theGrain.Ns/theGrain.area;
+				ageErr[0] = Math.log(1+this.lambda_d*theSample.zeta*rhoS/theGrain.U)/this.lambda_d;
+				ageErr[1] = ageErr[0]*Math.sqrt(1/theGrain.Ns + 
+					    (theGrain.Uerr/theGrain.U)*(theGrain.Uerr/theGrain.U));
+				return ageErr;
+			}
+		}
+
+		function plot(xx,yy){
+		  	var size = 10;
+			var color = '#FFFF00';
+        		$("body").append(
+            			$('<div class="added"></div>')
+                		.css('position', 'absolute')
+                		.css('top', yy-0.5*size+'px')
+                		.css('left', xx-0.5*size+'px')
+                		.css('width', size+'px')
+                		.css('height', size+'px')
+                		.css('background-color', color)
+        		);
+		}
+
+		function sample(folder,text){
+			this.dir = folder;
+			this.grains = [];
+		}
+
+		function grain(folder,ROIs,text){
+			this.dir = folder;
+			this.ROIs = ROIs;
+			this.text = text;
+		}
+
+		function loadSamples(){
+			var samples = [new sample('LU324-6-FCT',1926),
+			               new sample('LU324-2-DUR',1926),
+				       //new sample('LU324-10-MD',1926),
+				       new sample('LU324-6-FCT',1926),
+			               new sample('LU324-topglass',1926)
+				       ];
+			samples[0].grains = [new grain('Grain19',
+			                     [[[588,666,666,588,588],[222,222,284,284,222]],
+					      [[450,530,530,450,450],[275,275,366,366,275]],
+					      [[555,603,603,555,555],[505,505,600,600,505]],
+					      [[282,325,325,282,282],[500,500,557,557,500]]],
+                                            'These are fission tracks. They have a relatively wide opening ' +
+					    '(the "etch pit") on the surface of the grain which narrows down ' + 
+					    'as you focus deeper into the grain.')
+					    ,new grain('Grain19',
+					    [[[227,232,397,411,327,227],[399,495,462,326,306,399]],
+					     [[474,501,536,513,500,474],[89,74,193,341,304,89]],
+					     [[468,503,511,477,468],[483,480,656,656,483]],
+					     [[580,660,667,580,580],[374,362,396,418,374]],
+					     [[712,833,833,712,712],[440,440,510,510,440]],
+					     [[732,762,872,837,732],[190,178,296,325,190]]],
+                                            'These are not fission tracks but cracks, scratches, ' +
+					    'inclusions and specks of dust. They are either very ' +
+					    'shallow (i.e., only visible on and immediately ', +
+					    'below the surface) or very deep compared to the ', +
+					    'tracks shown in the previous image.')];
+			samples[1].grains = [new grain('Grain25',
+			                    [[[209,237,329,296,209],[64,27,74,112,64]]],
+			                    'These are crystal defects. They go deeper than fission tracks and show ' +  
+					    'a preferential alignment.')];
+			//samples[2].grains = [new grain('Grain01',
+			//                    [[[209,237,329,296,209],[64,27,74,112,64]]],
+			//                    'These are crystal defects. They go deeper than fission tracks and show ' +  
+			//		    'a preferential alignment.')];
+			samples[2].grains = [new grain('Grain19mica',
+					    [[[],[]]],
+					    'This is the mica print of the grain shown in the previous two ' +
+					    'images. It registers synthetic tracks induced in the apatite by neutron irradiation ' +
+					    'in a nuclear reactor. The density of these induced tracks is used as a proxy for the ' +
+					    'uranium content of the grain. The mica does not have defects or scratches and therefore ' +
+					    'tends to be much easier to count than the sample.')];
+			samples[3].grains = [new grain('Grain01',
+			                    [[[],[]]],
+			                    'This is an etched dosimeter glass, which is used to monitor the neutron ' +
+					    'fluence throughout the sample stack. Like the mica, this is easier to count ' +
+					    'than the apatite grains.')];
+			return samples;
+		}
+
+	});
+
+</script>
+
+<style>
+	body {font-family: sans-serif;}
+	div.separator {width:20px; height:20px;}
+	div.left {float:left;}
+	div.row {width:800px; height:20px; clear: both;}
+	img {width:800px; float: left;}
+	.left {float: left;}
+	.right {float: right;}
+	div#slider {width: 250px;}
+	div.clear {clear: both;}
+	div.box {border: 1px solid; padding: 5px;}
+</style>
+</head>
+<body>
+
+<div class="left">
+<canvas id="myCanvas" width="1040" height="770"></canvas>
+</div>
+<div class="separator left">&nbsp;</div>
+<div class="left">
+	<div class="box left" id="results" style="width:400px;"></div>
+</div>
+<div class="separator clear">&nbsp;</div>
+<button id="previous" class="left">Previous</button>
+<button id="next" class="left">Next</button>
+<div class="left">&nbsp</div>
+<div class="box left" id="focus">
+	<div class="left">focus: up &nbsp;&nbsp;&nbsp;</div>
+	<div id="slider" class="left"></div>
+	<div class="left">&nbsp;&nbsp;&nbsp; down</div>
+</div>
+
+</body>
+</html

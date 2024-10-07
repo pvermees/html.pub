@@ -1,0 +1,77 @@
+<p></p>
+Are the clasts
+<form>
+<input type="radio" name="button" onclick="document.getElementById('rounding').innerHTML=
+'No, try again.';" />well rounded
+<input type="radio" name="button" onclick="document.getElementById('rounding').innerHTML=
+'No, try again.';" />rounded<br>
+<input type="radio" name="button" onclick="document.getElementById('rounding').innerHTML=
+'Yes, these clasts fall between angular and rounded.';" />sub-rounded to sub-angular<br>
+<input type="radio" name="button" onclick="document.getElementById('rounding').innerHTML=
+'No, try again.';" />angular
+<input type="radio" name="button" onclick="document.getElementById('rounding').innerHTML=
+'No, try again.';" />very angular
+</form>
+
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('sphericity').innerHTML=
+'No, very spherical clasts would be almost perfectly spherical with low aspect ratios.';" />highly spherical
+<input type="radio" name="button" onclick="document.getElementById('sphericity').innerHTML=
+'Yes, these clasts are spherical but not completely spherical.';" />spherical
+<input type="radio" name="button" onclick="document.getElementById('sphericity').innerHTML=
+'No, non-spherical clasts would have elongate shapes with high aspect ratios.';" />non-spherical
+</form>
+
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('support').innerHTML=
+'Are you sure? The clasts are supported by each other.';" />loosely packed
+<input type="radio" name="button" onclick="document.getElementById('support').innerHTML=
+'This rock is tightly packed.';" />tightly packed
+</form>
+
+<p></p>
+What is the colour of the dominant mineral?
+<form>
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Are you sure?';" />white
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Yes, this mineral is colourless.';" />colourless
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Are you sure?';" />green
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Are you sure?';" />red
+</form>
+
+<p></p>
+(field of view = 5mm)
+<p></p>
+<button id='ppl1' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'sstppl.JPG\');';
+  document.getElementById('ppl1').style.fontWeight='bold';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='normal';">PPL still</button>
+<button id='xpl1' onclick="location.href='javascript: window.parent.setImage(\'sstxpl.JPG\');'
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='bold';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='normal';">XPL still</button>
+<p></p>
+<button id='ppl2' onclick="
+  location.href = 'javascript: window.parent.setImage(\'sstqtzppl.html\');';
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='bold';
+  document.getElementById('xpl2').style.fontWeight='normal';">PPL rotate</button>
+<button id='xpl2' onclick="location.href='javascript: window.parent.setImage(\'sstqtzxpl.html\');'
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='bold';">XPL rotate</button>
+
+<div id="rounding"></div>
+<div id="sphericity"></div>
+<div id="support"></div>
+<div id="colour"></div>

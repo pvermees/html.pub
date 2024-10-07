@@ -1,0 +1,49 @@
+Answer the following questions:<br> 
+(field of view is 2.5mm)
+<p></p>
+<form>
+Shape?<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are all the crystal faces visible?';" />Euhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are some crystal faces visible?';" />Subhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'No crystal faces are visible.';" />Anhedral
+</form>
+<form>
+Cleavage?<br>
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Does the mineral preferentially break along certain planes?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'There is no visible cleavage';" />No
+</form>
+<form>
+Relief?<br>
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'Does the mineral appear to \'stand out\' from its surroundings?';" />High
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'This mineral has very low relief.';" />Low
+</form>
+<form>
+Birefringence?<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Is the mineral dark at all angles?';" />Isotropic
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'This mineral has first order grey birefringence colours.';" />First<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral feature bright colours?';" />Second
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral show high order pastel colours?';" />Third order
+</form>
+<form>
+Twinning?<br>
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'Are you sure?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'This mineral is not twinned but is made up of a few separate crystals. This is a polycrystalline crystal.';" />No
+</form>
+
+<div id="habit"></div>
+<div id="cleavage"></div>
+<div id="birefringence"></div>
+<div id="twinning"></div>

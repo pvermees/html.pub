@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../mystyle.css" />
+
+<SCRIPT SRC= "../preload.js" TYPE="text/javascript" LANGUAGE="JavaScript1.1"></SCRIPT>
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+
+var pictures = new Array("o-intro.gif","o-1-1.gif","o-2-1.gif","o-3-1.gif","o-3-2.gif",
+"o-4-1.gif","o-5-1.gif","o-8-1.gif","o-10-1.gif","o-10-2.gif","o-11-1.gif");
+
+</SCRIPT>
+
+<TITLE>
+Off-center barchan dune collisions in the Bodele Depression (Chad)
+</TITLE> 
+</HEAD> 
+<BODY BGCOLOR="white" ALIGN="center"> 
+
+<TABLE ALIGN="center" BORDER=0>
+
+<TR>
+<TD CLASS="left"><a href="../index.html">introduction</a></TD>
+<TD CLASS="middle"><a href="../solitons/index.html">solitons</a></TD>
+<TD CLASS="right"><b>off-center</b></TD>
+</TR>
+
+<TR HEIGHT=125><TD CLASS="full" COLSPAN=3>
+<IMG ID="a" CLASS="thumbnail" SRC="o-1-1-thumb.gif">
+<IMG ID="b" CLASS="thumbnail" SRC="o-2-1-thumb.gif">
+<IMG ID="c" CLASS="thumbnail" SRC="o-3-1-thumb.gif">
+<IMG ID="d" CLASS="thumbnail" SRC="o-3-2-thumb.gif">
+<IMG ID="e" CLASS="thumbnail" SRC="o-4-1-thumb.gif">
+</TD></TR>
+
+<TR HEIGHT=400><TD CLASS="full" COLSPAN=3>
+<font size="4">Please be patient while the animations<br>
+are being preloaded...</font><p>
+<script language="JavaScript1.1">
+if (document.images) {
+    loadLocationAfterPreload("../offcenter.html");
+    loadYourImages(pictures);
+    var preloadBar = ''
+    for (i = 0; i < yourImages.length-1; i++) {
+        preloadBar += '<img src="' + dots[0].src + '" width="' + coverage + '" \
+			    height="' + heightOfPreloadBar + '" name="img' + i + '" align="absmiddle">'
+    }
+    preloadBar += '<img src="' + dots[0].src + '" width="' + (leftOverWidth+coverage) + '" \
+			height="' + heightOfPreloadBar + '" name="img' + (yourImages.length-1) + '" align="absmiddle">'
+    document.write(preloadBar)
+}
+document.write('<p><small><a href="javascript:window.location=locationAfterPreload">Skip Preloading</a></small></p>')
+</script>
+</TD></TR>
+
+<TR><TD CLASS="full" COLSPAN=3>
+<IMG ID="f" CLASS="thumbnail" SRC="o-5-1-thumb.gif">
+<IMG ID="g" CLASS="thumbnail" SRC="o-8-1-thumb.gif">
+<IMG ID="h" CLASS="thumbnail" SRC="o-10-1-thumb.gif">
+<IMG ID="i" CLASS="thumbnail" SRC="o-10-2-thumb.gif">
+<IMG ID="j" CLASS="thumbnail" SRC="o-11-1-thumb.gif">
+</TD></TR>
+
+<TR><TD ID="latlon" CLASS="full" COLSPAN=3></TD></TR>
+
+</TABLE>
+
+<script language="JavaScript1.1">
+loadImages()
+</script>
+
+</BODY> 
+</HTML>

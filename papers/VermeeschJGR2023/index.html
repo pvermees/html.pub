@@ -1,0 +1,1053 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Multidimensional scaling of varietal data in sedimentary provenance analysis</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body class="main">
+<div class="maketitle">
+
+
+
+<h2 class="titleHead">Multidimensional scaling of varietal data <br>in
+sedimentary provenance analysis</h2>
+                     <div class="author" ><span 
+class="cmr-12">P. Vermeesch</span>
+<br />     <span 
+class="cmti-12">University College London, United Kingdom</span><br />
+<br />                      <span 
+class="cmr-12">A. G. Lipp</span>
+<br /><span 
+class="cmti-12">Merton College, University of Oxford, United Kingdom</span><br />
+<br />          <span 
+class="cmr-12">D. Hatzenb</span><span 
+class="cmr-12">&uuml;hler and L. Caracciolo</span>
+<br />          <span 
+class="cmti-12">FAU Erlangen-N</span><span 
+class="cmti-12">&uuml;rnberg, Germany</span><br />
+<br />                       <span 
+class="cmr-12">D. Chew</span>
+<br />           <span 
+class="cmti-12">Trinity College Dublin, Ireland </span></div><br />
+<div class="date" ></div>
+   </div>
+   <div 
+class="abstract" 
+>
+   <h3 class="abstracttitle">
+<span 
+class="cmbx-9">Abstract</span>
+</h3>
+     <!--l. 15--><p class="noindent" ><span 
+class="cmr-9">Varietal studies of sedimentary provenance use the properties of individual</span>
+     <span 
+class="cmr-9">minerals or mineral groups. These are recorded as lists of numerical tables</span>
+     <span 
+class="cmr-9">that  can  be  difficult  to  interpret.  Multidimensional  Scaling  (MDS)  is</span>
+     <span 
+class="cmr-9">a  popular  multivariate  ordination  technique  for  analysing  other  types</span>
+     <span 
+class="cmr-9">of  provenance  data  based  on,  for  example,  detrital  geochronology  or</span>
+     <span 
+class="cmr-9">petrography.  Applying  MDS  to  varietal  data  would  allow  them  to</span>
+     <span 
+class="cmr-9">be  treated  on  an  equal  footing  with  those  other  provenance  proxies.</span>
+     <span 
+class="cmr-9">MDS  requires  a  method  to  quantify  the  dissimilarity  between  two</span>
+     <span 
+class="cmr-9">samples. This paper introduces three ways to do so. The first method</span>
+     <span 
+class="cmr-9">(&#8216;treatment-by-row&#8217;) turns lists of (compositional) data tables into lists</span>
+     <span 
+class="cmr-9">of vectors, using principal component analysis. These lists of vectors can</span>
+     <span 
+class="cmr-9">then be treated as &#8216;distributional&#8217; data, and subjected to MDS analysis</span>
+     <span 
+class="cmr-9">using dissimilarity measures such as the Kolmogorov-Smirnov statistic.</span>
+     <span 
+class="cmr-9">The second method (&#8216;treatment-by-column&#8217;) turns lists of compositional</span>
+     <span 
+class="cmr-9">data  tables  into  multiple  lists  of  vectors,  each  representing  a  single</span>
+
+     <span 
+class="cmr-9">component of the varietal data. These multiple distributional datasets are</span>
+     <span 
+class="cmr-9">subsequently subjected to Procrustes analysis or 3-way MDS. The third</span>
+     <span 
+class="cmr-9">method uses the Wasserstein-2 distance to jointly compare the rows and</span>
+     <span 
+class="cmr-9">columns of varietal data. This arguably makes the best use of the data</span>
+     <span 
+class="cmr-9">but acts more like a &#8216;black box&#8217; than the other two methods. Applying the</span>
+     <span 
+class="cmr-9">three methods to a detrital titanite dataset from Colombia yields similar</span>
+     <span 
+class="cmr-9">results. After converting varietal data to dissimilarity matrices, they can</span>
+     <span 
+class="cmr-9">be combined with other types of provenance data, again using Procrustes</span>
+     <span 
+class="cmr-9">analysis or 3-way MDS.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 44--><p class="noindent" >Multidimensional Scaling <span class="cite">MDS <a 
+href="#Xkruskal1978">Kruskal&#x00A0;and Wish</a> (1978); Shepard (1980);
+Vermeesch (2013)</span> is a multivariate ordination technique that has gained considerable
+popularity in recent years as a method to interpret large datasets in sedimentary
+provenance analysis <span class="cite">(<a 
+href="#Xvermeesch2013">Vermeesch</a>, 2013)</span>. Given a table of pairwise &#8216;dissimilarities&#8217;
+between samples, MDS produces a lower (typically two-) dimensional &#8216;map&#8217; in which
+samples plot close together and dissimilar samples plot far apart. MDS can be
+applied to a wide variety of different provenance proxies by choosing an appropriate
+dissimilarity measure. <span class="cite"><a 
+href="#Xvermeesch2019a">Vermeesch</a> (2019)</span> distinguishes between three different types of
+provenance data, each of which is associated with a specific database format
+(Figure&#x00A0;<a 
+href="#x1-10091">1<!--tex4ht:ref: fig:datastructures --></a>):
+<!--l. 57--><p class="indent" >
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-1002x1">
+     <!--l. 58--><p class="noindent" ><span 
+class="cmbx-10">Distributional data </span>such as detrital zircon U-Pb ages can be stored
+     in <span 
+class="cmbx-10">lists of decimal numbers</span>, where each list represents a sample and
+     typically contains a different number of values (i.e. single grain ages).
+     Two samples can be compared using the Kolmogorov-Smirnov distance
+     or  related  non-parametric  statistics  <span class="cite">(<a 
+href="#Xvermeesch2018b">Vermeesch</a>,  2018a)</span>.  The  resulting
+     dissimilarity matrix fulfils the metric requirements and is therefore suitable
+     for both classical and nonmetric MDS <span class="cite">(<a 
+href="#Xvermeesch2013">Vermeesch</a>, 2013)</span>.
+     </li>
+<li 
+  class="enumerate" id="x1-1004x2">
+     <!--l. 66--><p class="noindent" ><span 
+class="cmbx-10">Compositional data </span>such as the major and trace element compositions
+     of bulk samples are stored in <span 
+class="cmbx-10">tables of decimal numbers</span>, in which
+     the rows represent samples and the columns represent components such
+     as  elements  or  isotopes.  Pairwise  comparison  of  the  samples  (rows)  is
+     best done using the Aitchison distance, which corresponds to a Euclidean
+     distance  of  centred  logratios  <span class="cite">(<a 
+href="#Xaitchison1986">Aitchison</a>,  1986)</span>.  It  can  be  shown  that,
+
+     in this case, (classical) MDS is mathematically equivalent to Principal
+     Component  Analysis  <span class="cite">PCA  <a 
+href="#Xaitchison1983">Aitchison</a>  (1983);  Vermeesch  (2013)</span>.  The
+     advantage  of  PCA  over  plain  MDS  is  that  it  provides  two  sets  of
+     coordinates: one representing the rows and one representing the columns
+     of the input data. This feature will be used in Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:method2 --></a> of this paper.
+     </li>
+<li 
+  class="enumerate" id="x1-1006x3">
+     <!--l. 79--><p class="noindent" ><span 
+class="cmbx-10">Count data </span>such as the petrography or heavy mineral composition of
+     sediment are stored in <span 
+class="cmbx-10">tables of integers</span>, in which rows correspond to
+     samples, and columns to lithologies or minerals. Pairwise comparison of
+     samples of count data can be done using the Chi-square distance, which
+     can handle zero values, unlike the Aitchison distance <span class="cite">(<a 
+href="#Xvermeesch2018d">Vermeesch</a>, 2018b)</span>.
+     It can be shown that MDS of Chi-square distance tables is equivalent
+     to Correspondence Analysis <span class="cite">(<a 
+href="#Xgreenacre1984">Greenacre</a>, 1984, CA,)</span>. Like PCA, CA also
+     yields coordinates for the row and columns of the data tables, but these
+     will not be discussed further here.</li></ol>
+<!--l. 91--><p class="indent" >   This paper adds a fourth class of data to this list:
+<!--l. 93--><p class="indent" >
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-1008x4">
+     <!--l. 95--><p class="noindent" ><span 
+class="cmbx-10">Varietal data </span>capture the variations in optical or chemical properties
+     shown by an individual mineral or mineral group <span class="cite">(<a 
+href="#Xmorton1985b">Morton</a>, 1985; Morton,
+     1991)</span>.  This  paper  will  focus  on  chemical  properties,  as  measured  by
+     microanalytical  techniques  such  as  electron,  laser  or  ion  microprobe
+     analysis.  These  data  can  be  stored  in  <span 
+class="cmbx-10">lists  of  compositional  data</span>
+     <span 
+class="cmbx-10">tables</span>. Each table in a varietal dataset contains the same number of
+     columns (representing elements or isotopes) and a different number of rows
+     (representing individual analyses in a sample).</li></ol>
+<!--l. 106--><p class="indent" >   Unlike distributional, compositional and count data, varietal data have hitherto
+not been associated with a &#8216;natural&#8217; dissimilarity measure. It is therefore not clear
+how varietal data can be analysed by MDS. This is unfortunate, because the complex
+structure of varietal data makes the need for multivariate ordination all the more
+pressing. This paper addresses this issue, by proposing three mechanisms
+to compare varietal data (Sections&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:method1 --></a>, <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:method2 --></a> and <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:method3 --></a>). With these mechanisms in
+place, varietal data can be treated on an equal footing with other types of
+provenance data. Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:3way --></a> shows how varietal data can be combined with
+distributional, compositional and count data using 3-way MDS and Procrustes
+analysis.
+<!--l. 119--><p class="indent" >   The methods discussed in this paper are illustrated with a dataset from
+Colombia&#8217;s Sierra Nevada de Santa Marta (SNSM). This dataset comprises
+
+17&#x00A0;samples of modern river sediment, characterised by 12&#x00A0;different provenance
+proxies, including three distributional datasets (detrital zircon, apatite and titanite
+U-Pb ages); four compositional datasets (major and trace element composition of the
+sand and clay fraction); two datasets of counts (petrography and heavy minerals);
+and three varietal datasets (trace element compositions of detrtial zircon,
+apatite and titanite). The geological details of the dataset are not relevant to
+the present discussion and are only briefly mentioned in this paper. The
+reader is referred to a separate paper for further details <span class="cite">(<a 
+href="#Xcaracciolo2023">Caracciolo&#x00A0;et al.</a>, in
+review)</span>.
+<!--l. 132--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10091"></a>
+
+<!--l. 133--><p class="noindent" > <a href="Fig1.png"><img class="snapshot" src="Fig1.png" alt="PIC"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1:  </span><span  
+class="content">Schematic  representation  of  the  four  classes  of  provenance  data.
+Grey boxes represent labels and black boxes numbers. distributional data can
+be stored as lists of vectors, compositional data as tables of positive decimal
+numbers, count data as tables of non-negative integers, and varietal data as lists
+of tables with positive decimal numbers.</span></div><!--tex4ht:label?: x1-10091 -->
+
+<!--l. 141--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Method&#x00A0;1: treatment by row</h3>
+<!--l. 145--><p class="noindent" >As explained in Section&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>, varietal data are, in essence, lists of compositional data
+tables. Compositional data can be compared using the Aitchison distance, and
+subjected to PCA. The dimension-reducing properties of PCA can be used to turn a
+varietal dataset into a distributional dataset:
+<!--l. 151--><p class="indent" >
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-2002x1">
+     <!--l. 152--><p class="noindent" >Pool all the samples together to create one large compositional dataset, i.e.
+     a single table in which each row represents an analysis, and each column
+     represents an element or isotope.
+     </li>
+<li 
+  class="enumerate" id="x1-2004x2">
+     <!--l. 155--><p class="noindent" >Subject this data table to PCA. Return the first principal component,
+     which  accounts  for  the  largest  proportion  of  the  overall  variance,  and
+     discard the other principal components.
+     </li>
+<li 
+  class="enumerate" id="x1-2006x3">
+     <!--l. 158--><p class="noindent" >Parse the first principal component vector into different samples. This
+     results in a list of vectors or, in other words, a distributional dataset.
+     This can then be analysed by MDS with the usual Kolmogorov-Smirnov
+     statistic.</li></ol>
+<!--l. 164--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a> applies the treatment-by-row strategy to the titanite chemistry data
+from the SNSM. Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.a shows the first two principal components of the pooled
+titanite compositions on a biplot. Only the first of these components (PC1) is used
+for subsequent distributional analysis. It is dominated by Pb, Fe, W, Sr and
+Al, which are assocated with negative loadings (red arrows in Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.a),
+and the light lanthanides (La, Ce, Pr, Nd) and actinides (U, Th), which
+are assocated with positive loadings. PC1 accounts for 51% of the total
+variance among the 25 components. This means that 49% of the variance is
+discarded, including the 19% that is associated with PC2. It is the necessary
+sacrifice that is needed to turn the varietal dataset into a distributional
+one.
+<!--l. 178--><p class="indent" >   The distributions of PC1 are shown as kernel density estimates (KDEs) in
+Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.b. It is the shapes of these distributions that are used as a secondary
+
+provenance proxy. Inspecting the KDEs by eye shows some clear groupings. Samples
+TAP, MAR, RAN and AGI are all characterised by sharp unimodal PC1
+distributions that are dominated by positive values, which suggest that these samples
+are enriched in rare earth elements relative to Pb, Fe, W and Al. In contrast, samples
+such as SEV, GUC, COR and FRI are characterised by broader PC1 distributions
+that are shifted towards more negative values. This suggests that these samples are
+enriched in Pb, Fe, W and Al relative to the rare earths, in comparison with samples
+SEV, GUC, COR and FRI.
+<!--l. 191--><p class="indent" >   A more objective comparison of the PC1 distributions is achieved by MDS
+analysis, using the KS-statistic (Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.c). As expected, samples SEV, GUC, COR
+and FRI cluster closely together on the MDS map, opposite to samples MAR, TAP,
+AGI and RAN. This grouping makes geological sense, as SEV, GUC, COR and FRI
+were collected from river catchments that drain metamorphic lithologies
+(migmatite, gneiss, metadiorite), whereas samples MAR, TAP, AGI and RAN were
+collected from catchments that drain igneous lithologies <span class="cite">(<a 
+href="#Xcaracciolo2023">Caracciolo&#x00A0;et al.</a>, in
+review)</span>.
+<!--l. 201--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20072"></a>
+
+<!--l. 202--><p class="noindent" >
+<a href="Fig2.png"><img class="snapshot wide" src="Fig2.png" alt="PIC"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">a) PCA biplot of the pooled titanite geochemistry data. The blue
+dots mark 1,571 titanite analyses, which belong to 17 samples. b) Kernel density
+estimates (bandwidth = 0.8) of the first principal component (PC1) of the 17
+samples; c) Nonmetric MDS configuration of the 17 PC1 distributions, using
+the Komogorov-Smirnov statistic as a dissimilarity measure. MDS coordinates
+are located in the middle of the plot labels. The Kruskal Stress value suggests
+a &#8216;good&#8217; fit.</span></div><!--tex4ht:label?: x1-20072 -->
+
+<!--l. 212--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Method&#x00A0;2: treatment by column</h3>
+<!--l. 216--><p class="noindent" >The treatment-by-row approach turns the varietal data into a single distributional
+dataset. An alternative approach is to turn it into multiple distributional
+datasets:
+<!--l. 220--><p class="indent" >
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-3002x1">
+     <!--l. 221--><p class="noindent" >Break the compositional data table of each sample up into its components
+     (columns), and treat each of these components as a distributional dataset.
+     In other words, a varietal dataset comprising <span 
+class="cmmi-10">n </span>samples and <span 
+class="cmmi-10">m </span>components
+     (e.g., elements), can be turned into <span 
+class="cmmi-10">m </span>distributional datasets containing
+     <span 
+class="cmmi-10">n </span>samples (each in turn containing a variable number of analyses).
+     </li>
+<li 
+  class="enumerate" id="x1-3004x2">
+     <!--l. 227--><p class="noindent" >Compute the dissimilarity matrices of all the distributional datasets and
+     stack them together to form a multidimensional array of size <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">m</span>.
+     </li>
+<li 
+  class="enumerate" id="x1-3006x3">
+     <!--l. 230--><p class="noindent" >Subject the stack of dissimilarity matrices to Procrustes analysis or 3-way
+     MDS  <span class="cite">(<a 
+href="#Xcarroll1970">Carroll&#x00A0;&amp;  Chang</a>,  1970;  Gower,  1975;  Vermeesch&#x00A0;&amp;  Garzanti,
+     2015)</span>. For Procrustes analysis, this produces a similar set of coordinates
+     as Method&#x00A0;1. For 3-way MDS, it produces two sets of coordinates: one for
+     the rows (samples) and one of the columns (components). In this respect,
+     3-way MDS is somewhat similar to PCA.</li></ol>
+<!--l. 238--><p class="indent" >   Applying the treatment-by-column approach to the SNSM data, Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.a shows
+the output of a Generalised Procrustes Analysis <span class="cite">GPA <a 
+href="#Xgower1975">Gower</a> (1975)</span>. It uses affine
+transformations to obtain a single set of coordinates from the 25 compositional MDS
+configurations. The results in Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.a look remarkably similar to the MDS
+configuration of Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.c, despite the completely different mechanism behind it. In
+both case, samples SEV, GUC, COR and FRI cluster closely together, in an opposite
+corner from samples MAR, TAP, AGI and RAN. The only major difference between
+the MDS (Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.c) and GPA (Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.a) configurations is the 45 degree
+clockwise rotation of the latter with respect to the former. This is expected since
+GPA is rotation invariant.
+
+<!--l. 253--><p class="indent" >   One limitation of GPA is the fact that all compositional information is lost in the
+visualisation. This issue is addressed by 3-way MDS, as shown in Figures&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.b and c.
+Together, these two pieces of graphical output display both the row names
+and the column names of the varietal dataset. The &#8216;group configuration&#8217; of
+the samples (Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.b) is similar to the output of the GPA and (2-way)
+MDS configurations of Figures&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.c and <a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.a: once again, samples SEV, GUC,
+COR and FRI plot separately from samples MAR, TAP, AGI and RAN.
+However, the 3-way MDS configuration (Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.b) is less similar to the GPA
+configuration (Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.a) than the GPA configuration is to the 2-way MDS analysis
+(Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.c).
+<!--l. 266--><p class="indent" >   The great appeal of 3-way MDS lies in the combination of the group configuration
+with the source weights, which are shown in Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.c. These weights show the
+relative importance that the two dimensions of the group configuration attach to the
+25 compositional variables. Pb, Fe, W and Al plot at the upper left end of the
+subject weights. They are associated with light horizontal weights (x-coordinates of
+0.7&#8211;0.8) and heavy vertical weights (y-coordinates of 1.7&#8211;2.0). The rare earth
+elements (except Eu) plot at the opposite end of the subject weights, and are
+associated with comparatively heavy horizontal weights (x-coordinates of 1.0&#8211;1.1)
+and light vertical weights (y-coordinates of 0.7&#8211;1.0). Note that the grouping of the
+elements is in good agreement with the loadings of the first principal component
+(Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.a).
+<!--l. 280--><p class="indent" >   The weights tells us that the horizontal dimension (Dim 1) of the group
+configuration (Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.b) is controlled by variability in the rare earth composition,
+whereas the vertical direction (Dim 2) is controlled by variability in the Pb, Fe, W
+and Al concentrations.
+<!--l. 286--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30073"></a>
+
+<!--l. 287--><p class="noindent" >
+<a href="Fig3.png"><img class="snapshot wide" src="Fig3.png" alt="PIC"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">a) Procrustes analysis of the 25 MDS configurations that are obtained
+by breaking the titanite chemistry data up into 25 distributional datasets; b)
+Group configuration of a 3-way MDS analysis of the 25 dissimilarity matrices
+extracted from the same titanite geochemistry dataset; c) Source weights of the
+3-way MDS analysis, showing the stretching factors that are associated with
+each of the 25 components. These can be combined with the group configuration
+to yield 25 &#8216;private spaces&#8217; <span class="cite">(<a 
+href="#Xarabie1987">Arabie, Carroll,&#x00A0;&amp; DeSarbo</a>, 1987; Vermeesch&#x00A0;&amp;
+Garzanti, 2015)</span>.</span></div><!--tex4ht:label?: x1-30073 -->
+
+<!--l. 297--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Method&#x00A0;3: Wasserstein-2 distance</h3>
+<!--l. 301--><p class="noindent" >Thus far we have seen how varietal data can be turned into distributional data, either
+by treating the compositions of each sample by row (method&#x00A0;1, Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:method1 --></a>) or by
+column (method&#x00A0;2, Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:method2 --></a>). In this Section, rows and columns will be treated
+jointly, using the principles of optimal transport (OT). OT is a burgeoning field of
+mathematics that is concerned with the constrained allocation of limited resources to
+achieve the greatest effect.
+<!--l. 310--><p class="indent" >   The &#8216;Wasserstein-p&#8217; distance (<span 
+class="cmmi-10">W</span><sub><span 
+class="cmmi-7">p</span></sub>) is a key concept in the field of OT. A classical
+metaphor for the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmmi-7">p</span></sub>-distance is the minimum amount of work that needs to be done
+to transform a pile of earth into a different pile of earth with the same volume but
+different location and shape. Based on this analogy, the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmmi-7">p</span></sub>-distance is also known as
+the &#8220;earth mover&#8217;s distance&#8221;. Distributional data can be treated as 1-dimensional
+&#8216;piles of earth&#8217;. In this case, the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">1</span></sub>-distance between two samples simply equates to
+the area between their respective empirical cumulative distribution functions
+(ECDFs):
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index0x.png" alt="           ( 1                    ) 1p
+           (&#x222B;  || -1      -1   ||p   )
+Wp (A,B ) =    F A (x)- FB (x)  dx
+             0
+" class="math-display" ><a 
+ id="x1-4001r1"></a></div>
+   </td><td class="equation-label">(1)</td></tr></table>
+<!--l. 325--><p class="nopar" >
+<!--l. 327--><p class="noindent" >where <span 
+class="cmmi-10">A </span>and <span 
+class="cmmi-10">B </span>are two distributional datasets, <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">A</span></sub> and <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">B</span></sub> are their respective
+ECDFs, and <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">A</span></sub><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup> and <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">B</span></sub><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup> are the corresponding quantile functions. The
+<span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>-distance is slightly less intuitive than the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">1</span></sub>-distance but is nevertheless
+preferred because it mathematically behaves like a Euclidean distance. The <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">1</span></sub> and
+<span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> distances fulfil the metric requirements and can therefore be subjected to both
+classical and metric MDS.
+<!--l. 335--><p class="indent" >   <span class="cite"><a 
+href="#Xlipp2022">Lipp&#x00A0;and Vermeesch</a> (2022)</span> show that the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>-distance produces results that are
+often equivalent and sometimes better than those obtained by the KS-statistic. Thus,
+we could substitute the KS-statistic for the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>-distance in Sections&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:method1 --></a> and <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:method2 --></a>.
+
+Alternatively, it is also possible to apply the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>-distance directly to the varietal
+data, without conversion to distributional data, by generalising Equation&#x00A0;<a 
+href="#x1-4001r1">1<!--tex4ht:ref: eq:Wp --></a> from one
+to two dimensions:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index1x.png" alt="           (   &#x222B;       p      ) 1p
+Wp (A, B) =  m&#x03C0;i&#x2208;n&#x03A0;   c(x,y) d&#x03C0;(x,y)
+" class="math-display" ><a 
+ id="x1-4002r2"></a></div>
+   </td><td class="equation-label">(2)</td></tr></table>
+<!--l. 349--><p class="nopar" >
+<!--l. 351--><p class="noindent" >where <span 
+class="cmmi-10">&#x03C0; </span>is the &#8216;transport plan&#8217;, i.e. a probability distribution in which <span 
+class="cmmi-10">d&#x03C0;</span>(<span 
+class="cmmi-10">x,y</span>) is the
+amount of material that is transported from location <span 
+class="cmmi-10">x </span>to <span 
+class="cmmi-10">y</span>; and <span 
+class="cmmi-10">c</span>(<span 
+class="cmmi-10">x,y</span>) is the &#8216;cost&#8217;
+associated with this transport. Given two compositional tables (<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">A</span></sub> and <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">B</span></sub>, say) of
+size <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">A</span></sub> <span 
+class="cmsy-10">&#x00D7;</span><span 
+class="cmmi-10">m </span>and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">B</span></sub> <span 
+class="cmsy-10">&#x00D7;</span><span 
+class="cmmi-10">m</span>, respectively the &#8216;cost matrix&#8217; is obtained by computing the
+Aitchison distance between each row of table <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">A</span></sub> and each row of table <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">B</span></sub>. This
+results in a matrix of size <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">A</span></sub> <span 
+class="cmsy-10">&#x00D7;</span><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">B</span></sub>. The optimal transport plan is obtained from this
+cost matrix by linear programming <span class="cite">(<a 
+href="#Xvillani2021">Villani</a>, 2021)</span>, the principles of which go beyond
+the scope of this paper.
+<!--l. 363--><p class="indent" >   Computing the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>-distance to all sample pairs in a varietal dataset yields a
+square dissimilarity matrix that can be analysed by MDS. For the SNSM titanite
+dataset, this yields a configuration that looks broadly similar to the results
+obtained by methods&#x00A0;1 and 2 (Figure&#x00A0;<a 
+href="#x1-40034">4<!--tex4ht:ref: fig:method3 --></a>). Notable exceptions are samples
+PRO and JER, which are significantly further removed from the bulk of the
+dataset than they are in Figures&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.c, <a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.a and <a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.b. This behaviour is likely
+a consequence of the small number of analyses in these two samples (20
+for JER and 15 for PRO, see Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.b), as confirmed by the uncertainty
+regions of Figure&#x00A0;<a 
+href="#x1-40034">4<!--tex4ht:ref: fig:method3 --></a>.b, which correspond to the convex hull of 20 bootstrapped
+replicates for each sample. Repeating the same procedure for method&#x00A0;1
+produces uncertainty regions that are, on average, larger than for method&#x00A0;3, but
+more uniform in size. This suggests that the &#8216;treatment-by-row&#8217; approach is
+less precise than the Wasserstein approach, but also less &#8216;heteroscedastic&#8217;.
+<!--l. 381--><p class="indent" >   The advantage of method&#x00A0;3 over the other two methods is that it makes full use
+of the entire dataset, including any covariance structure that may be embedded
+therein. The disadvantage is that the compositional information is lost in the process
+of calculating the cost matrix. Therefore, method&#x00A0;3 acts more like a &#8216;black box&#8217; than
+
+method&#x00A0;1 and certainly more than method&#x00A0;2.
+<!--l. 388--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40034"></a>
+
+<!--l. 389--><p class="noindent" >
+<a href="Fig4.png"><img class="snapshot wide" src="Fig4.png" alt="PIC"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4:  </span><span  
+class="content">a)  Nonmetric  MDS  configuration  of  the  titanite  data  using  the
+Wasserstein-2 distance (method&#x00A0;3). Although the Kruskal Stress value is higher
+than for Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.a, this does not necessarily mean that the configuration is
+less informative than that of method&#x00A0;1. The higher stress values just means
+that it was more difficult for the MDS algorithm to fit the dissimilarity matrix
+to a 2-dimensional configuration of points. The fit still qualifies as &#8216;good&#8217;. b)
+Uncertainty regions of the MDS configuration, obtained by constructing the
+convex  hull  of  20  bootstrapped  replicates  of  each  sample.  c)  Bootstrapped
+uncertainty regions for the treatment-by-row results of Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.c.</span></div><!--tex4ht:label?: x1-40034 -->
+
+<!--l. 402--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Combining varietal data with other provenance proxies</h3>
+<!--l. 406--><p class="noindent" >Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:method2 --></a> showed how Procrustes analysis and 3-way MDS can be used to combine
+multiple dissimilarity matrices together, and extract a single configuration of samples
+from them. The same techniques can also be used to combine varietal data with other
+provenance proxies. In principle, this can be done using any of the three methods.
+However, in practice, methods&#x00A0;1 and 3 are the most sensible choices, for the following
+reason.
+<!--l. 414--><p class="indent" >   There are 12 provenance proxies in the SNSM dataset, including three varietal
+datasets, where the titanite, apatite and zircon compositions comprise 25, 22 and 8
+compositional variables, respectively. Using methods&#x00A0;1 or 3, each varietal dataset
+yields its own dissimilarity matrix so that the entire multi-proxy dataset involves 12
+dissimilarity matrices. In contrast, using method&#x00A0;2 would yield 14 + 25 + 22 + 8 = 69
+dissimilarity matrices. This would cause several problems. First, fitting 69 matrices
+would be computationally difficult. Second, any 3-way MDS results would be difficult
+to interpret, as the map of source weights would be overcrowded. Third,
+model&#x00A0;2 would give excessive weight to the varietal data compared to the other
+provenance proxies, with the titanite compositions being represented 25
+times.
+<!--l. 428--><p class="indent" >   Although both method&#x00A0;1 and 3 are viable ways to combine varietal data with
+other types of provenance data, method&#x00A0;3 is arguably the most sensible option.
+This is because its main disadvantage (namely the limited interpretability of
+the resulting MDS configurations) is nullified by the fact that the MDS
+configurations are not actually presented in the Procrustes map or the 3-way MDS
+configuration.
+<!--l. 436--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-50015">5<!--tex4ht:ref: fig:multimethod --></a>.a presents the results of Procrustes analysis for the combined SNSM
+dataset, in which each dataset was subjected to method&#x00A0;3. It represents 12
+multivariate datasets in a single scatterplot that shares many characteristics with the
+MDS plots of the titanite dataset alone. Once again, samples SEV, COR and FRI
+plot in close vicinity to each other, and separately from samples MAR, TAP, AGI
+and RAN. Note that sample GUC is missing from the Procrustes configuration. That
+is because this sample is missing from the dataset of major element concentrations in
+clay.
+<!--l. 446--><p class="indent" >   Although the Procrustes map effectively summarises the salient similarities and
+differences between the samples in the full SNSM dataset, it does not provide any
+clues as to what causes these differences. The output of the 3-way MDS analysis
+addresses this issue. Figure&#x00A0;<a 
+href="#x1-50015">5<!--tex4ht:ref: fig:multimethod --></a>.b shows the group configuration. It fulfils a similar role
+to the Procrustes map of Figure&#x00A0;<a 
+href="#x1-50015">5<!--tex4ht:ref: fig:multimethod --></a>.a and has a similar appearance. However, the
+clustering of the different samples is less distinct in the group configuration than it is
+in the Procrustes map.
+
+<!--l. 456--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-50015">5<!--tex4ht:ref: fig:multimethod --></a>.c shows the source weights of the 12 provenance proxies. It shows that
+samples that are separated along the horizontal dimension (such as FRI and RAN)
+have different bulk compositions, and similar distributional and varietal
+characteristics. In contrast, samples that are separated along the vertical
+dimension have comparatively similar bulk compositions, but differ in their
+distributional and varietal provenance proxies. One possible interpretation of these
+trends is that the horizontal dimension is controlled by lithology, whereas the
+vertical dimension is controlled by the geological evolution of the source
+terrane(s).
+<!--l. 468--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50015"></a>
+
+<!--l. 469--><p class="noindent" >
+<a href="Fig5.png"><img class="snapshot wide" src="Fig5.png" alt="PIC"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">a) Procrustes analysis and b) group configuration of a 3-way MDS
+analysis  of  the  12  provenance  proxies  from  the  SNSM,  using  method  1;  c)
+the  source  weights  of  the  3-way  MDS  analysis.  DA,  DT  and  DZ  stand  for
+U-Pb age distributions of detrital apatite, titanite and zircon, respectively; Ap,
+Ttn and Zirc for the varietal apatite, titanite and zircon data; PT and HM
+for  petrography  and  heavy  minerals;  and  major  and  trace  for  the  chemical
+composition of the bulk sediment and clay fractions. Note that the vertical axis
+of panel b) has been flipped to facilitate comparison with panel a).</span></div><!--tex4ht:label?: x1-50015 -->
+
+<!--l. 480--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Implementation in <span 
+class="cmtt-10">provenance</span></h3>
+<!--l. 484--><p class="noindent" >All the algorithms described in this paper have been implemented in a free and open
+<span 
+class="cmtt-10">R </span>package called <span 
+class="cmtt-10">provenance </span><span class="cite">(<a 
+href="#Xvermeesch2016a">Vermeesch, Resentini,&#x00A0;&amp; Garzanti</a>, 2016)</span>.
+<span 
+class="cmtt-10">provenance </span>comes with a query-based user interface that does not require any
+knowledge of <span 
+class="cmtt-10">R</span>. The following paragraphs, however, will focus on the command
+line interface. Version&#x00A0;4.1 of the package adds a new <span 
+class="cmtt-10">varietal </span>data class,
+which can be populated from a <span 
+class="cmtt-10">.csv </span>input file using the <span 
+class="cmtt-10">read.varietal</span>
+function:
+
+   <pre class="verbatim" id="verbatim-1">
+library(provenance)
+Ttn&#x00A0;&#x003C;-&#x00A0;read.varietal(fname="Ttn_chem.csv",snames=3)
+</pre>
+<!--l. 496--><p class="nopar" >
+<!--l. 498--><p class="noindent" >where <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">Ttn_chem.csv</span></span></span> is a compositional data table containing the concatenated
+compositions of all the samples. The column names of this table specify its
+components, whereas the row names consist of an alphanumeric prefix corresponding
+to the sample name, followed by a unique identifier for each analysis. The <span 
+class="cmtt-10">sname</span>
+argument either specifies a vector of prefixes, or the length of the prefix. The output
+of the <span 
+class="cmtt-10">read.varietal </span>function consists of a list containing the input table, a vector
+of sample names (in this case the prefixes extracted from the row names), the name
+of the dataset, and the dissimilarity measure (<span 
+class="cmtt-10">KS </span>for Kolmogorov-Smirnov by
+default). The varietal data object can be passed on to several other functions of the
+<span 
+class="cmtt-10">provenance </span>package. To subject the varietal data to (2-way) MDS using method&#x00A0;1
+(treatment-by-row):
+
+   <pre class="verbatim" id="verbatim-2">
+plot(MDS(Ttn,method="KS"))
+</pre>
+<!--l. 514--><p class="nopar" >
+<!--l. 516--><p class="noindent" >where the output of the <span 
+class="cmtt-10">MDS </span>function is nested as input in the overloaded <span 
+class="cmtt-10">plot</span>
+function. To analyse the titanite chemistry data by method&#x00A0;2 (treatment-by-column),
+using Procrustes analysis:
+
+   <pre class="verbatim" id="verbatim-3">
+plot(procrustes(Ttn))
+</pre>
+<!--l. 522--><p class="nopar" >
+<!--l. 524--><p class="noindent" >and using 3-way MDS <span class="cite">(<a 
+href="#Xcarroll1970">Carroll&#x00A0;&amp; Chang</a>, 1970, a.k.a. &#8216;Individual Differences Scaling&#8217;
+or INDSCAL)</span>:
+
+   <pre class="verbatim" id="verbatim-4">
+plot(indscal(Ttn))
+</pre>
+<!--l. 528--><p class="nopar" >
+<!--l. 530--><p class="indent" >   Method&#x00A0;3 requires linear programming, which is currently delegated to either the
+<span 
+class="cmtt-10">transport </span>or <span 
+class="cmtt-10">approxOT </span>package <span class="cite">(<a 
+href="#Xschumacher2022">Schuhmacher&#x00A0;et al.</a>, 2022; Dunipace, 2021)</span>. Using
+the former:
+
+   <pre class="verbatim" id="verbatim-5">
+plot(MDS(Ttn,method="W2",package="transport"))
+</pre>
+<!--l. 535--><p class="nopar" >
+<!--l. 537--><p class="indent" >   To combine multiple provenance proxies by Procrustes analysis, for example using
+titanite, apatite and zircon chemistry (using method&#x00A0;3); titanite, apatite and zircon
+U-Pb ages; heavy minerals and petrography; and the major and trace element
+compositions of the bulk sediment and clay fractions:
+
+   <pre class="verbatim" id="verbatim-6">
+Ttn&#x00A0;&#x003C;-&#x00A0;read.varietal(fname="Ttn_chem.csv",snames=3,method="KS")
+Ap&#x00A0;&#x003C;-&#x00A0;read.varietal(fname="Ap_chem.csv",snames=3,method="KS")
+Zr&#x00A0;&#x003C;-&#x00A0;read.varietal(fname="Zr_chem.csv",snames=3,method="KS")
+DA&#x00A0;&#x003C;-&#x00A0;read.distributional("DA.csv")
+DT&#x00A0;&#x003C;-&#x00A0;read.distributional("DT.csv")
+DZ&#x00A0;&#x003C;-&#x00A0;read.distributional("DZ.csv")
+HM&#x00A0;&#x003C;-&#x00A0;read.counts("HM.csv")
+PT&#x00A0;&#x003C;-&#x00A0;read.counts("PT.csv")
+major_bulk&#x00A0;&#x003C;-&#x00A0;read.compositional("Major_BULK.csv")
+major_clay&#x00A0;&#x003C;-&#x00A0;read.compositional("Major_CLAY.csv")
+trace_bulk&#x00A0;&#x003C;-&#x00A0;read.compositional("Trace_BULK.csv")
+trace_clay&#x00A0;&#x003C;-&#x00A0;read.compositional("Trace_CLAY.csv")
+proc&#x00A0;&#x003C;-&#x00A0;procrustes(Ttn,Ap,Zr,DA,DT,DZ,HM,PT,
+&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;major_bulk,major_clay,trace_bulk,trace_clay)
+plot(proc)
+</pre>
+<!--l. 558--><p class="nopar" >
+<!--l. 560--><p class="indent" >   Note that the dissimilarity measure (i.e., <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>) is added to the data by the
+<span 
+class="cmtt-10">read.varietal </span>function, unlike the earlier example, which used the default KS
+method. Analysing the same holistic dataset by 3-way MDS:
+
+   <pre class="verbatim" id="verbatim-7">
+plot(indscal(Ttn,Ap,Zr,DA,DT,DZ,HM,PT,
+&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;major_bulk,major_clay,trace_bulk,trace_clay))
+</pre>
+<!--l. 567--><p class="nopar" >
+<!--l. 569--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Conclusions</h3>
+<!--l. 571--><p class="noindent" >This paper introduced three different approaches to quantify the dissimilarity
+between different samples in varietal datasets. These approaches can be used to
+populate dissimilarity matrices, which can be analysed by MDS.
+<!--l. 576--><p class="indent" >   Methods&#x00A0;1, 2 and 3 produce reassuringly similar results for the titanite chemistry
+data of the SNSM. This suggests that even though the three methods each consider
+different parts of the dataset, they all retain the key inter-sample similarities
+and differences. Comparable results are obtained for the other provenance
+proxies, which confirms that varietal data do carry a robust and reproducible
+provenance signature. The consistency of the results obtained from a single
+dataset with the combined dataset of all the provenance proxies further
+lends credence to the conclusions drawn from the multivariate ordination
+analyses.
+<!--l. 587--><p class="indent" >   In principle, method&#x00A0;3 is the most powerful of the three approaches, because it
+directly converts varietal data to dissimilarity matrices and jointly considers all the
+compositional information that is stored in the varietal data. In contrast,
+methods&#x00A0;1 and 2 require the conversion of the varietal data to distributional
+data. Some information is lost in this additional step. For method&#x00A0;1, only
+the information contained in the first principal component is retained. For
+method&#x00A0;2, the connection between the various columns of the compositional data
+members of the varietal data structure is lost, including any constant sum
+constraint.
+<!--l. 598--><p class="indent" >   Despite these limitations, methods&#x00A0;1 and 2 also offer some advantages over
+method&#x00A0;3. Whereas the connection between the MDS configuration and the
+compositional data variables is lost in the process of calculating the Wasserstein-2
+distance, this connection is partially retained in method&#x00A0;1, and nearly completely in
+method&#x00A0;2. Thus, the results of methods&#x00A0;1 and 2 are easier to verify and interpret
+than those of method&#x00A0;3.
+<!--l. 606--><p class="indent" >   For example, in the case of the titanite chemistry data from the SNSM, samples
+MAR and COR plot on opposite sides of the MDS configuration (Figure&#x00A0;<a 
+href="#x1-40034">4<!--tex4ht:ref: fig:method3 --></a>),
+and it is not immediately clear which compositional variables cause these
+differences. However, inspection of PC1 in method&#x00A0;1 (Figure&#x00A0;<a 
+href="#x1-20072">2<!--tex4ht:ref: fig:method1 --></a>.a) or, more
+directly, the subject weights in method&#x00A0;2 (Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.c) reveals that these
+
+trends reflect differences in the W-Al-Pb-Fe vs. actinides and light rare earth
+abundances.
+<!--l. 615--><p class="indent" >   At first glance, the Procrustes analysis (Figure&#x00A0;<a 
+href="#x1-30073">3<!--tex4ht:ref: fig:method2 --></a>.a) does not seem to offer any
+advantage over 3-way MDS. However, it is useful to repeat the caveat that was
+previously raised by <span class="cite"><a 
+href="#Xborg2005">Borg&#x00A0;and Groenen</a> (2005)</span>, which is that the source weights of a
+3-way MDS analysis are sensitive to noise and are not as stable as the user
+might wish. Thus it is important not to over-interpret the results of 3-way
+MDS.
+<!--l. 623--><p class="indent" >   Inspection of Figures&#x00A0;<a 
+href="#x1-40034">4<!--tex4ht:ref: fig:method3 --></a>.b and c also suggests that the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> distance is more
+sensitive to small sample fluctuations than the KS-distance. This is clearest for
+samples PRO and JER, which contain only 15 and 20 titanite analyses,
+respectively. Although the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> results are, on average, more precise than the
+corresponding <span 
+class="cmmi-10">KS </span>results, the difference in precision between small and
+large samples is greater for the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>-distance than the <span 
+class="cmmi-10">KS</span>-distance. This
+explains the distant location of PRO and JER on the MDS configuration of
+Figure&#x00A0;<a 
+href="#x1-40034">4<!--tex4ht:ref: fig:method3 --></a>.a.
+<!--l. 633--><p class="indent" >   The limitations of method-3 become less important when it is used to combine
+varietal data with other provenance proxies (Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:3way --></a>). The full SNSM dataset
+contains no fewer than 126,408 measurements, spanning 12 dimensions worth of
+information. It is impossible to capture the full richness of datasets like this in a few
+simple scatterplots such as Figure&#x00A0;<a 
+href="#x1-50015">5<!--tex4ht:ref: fig:multimethod --></a>. However, the internal consistency of the SNSM
+results, and their sensible geological interpretation, suggest that the approaches
+described in this paper are capable of separating geologically meaningful signals from
+noise. Further applications will be needed to confirm if this applies in other geological
+settings as well.
+<!--l. 645--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-80007"></a>Open Research Section</h3>
+<!--l. 646--><p class="noindent" >All the data and software introduced in this paper is publicly available on the Comprehensive
+R Archive Network (CRAN, https://CRAN.R-project.org/package=provenance)
+and on GitHub (     <a 
+href="https://github.com/pvermees/provenance/" class="url" ><span 
+class="cmtt-10">https://github.com/pvermees/provenance/</span></a>,
+doi:10.5281/zenodo.7633857). The raw data files can be found at
+<a 
+href="https://github.com/pvermees/provenance/tree/master/inst/SNSM/" class="url" ><span 
+class="cmtt-10">https://github.com/pvermees/provenance/tree/master/inst/SNSM/</span></a>
+<!--l. 653--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-90007"></a>Acknowledgments</h3>
+<!--l. 653--><p class="noindent" >This work was supported by NERC Standard Grant #NE/T001518/1, awarded to
+PV, and by project CA 2099/2-1 of the Deutsche Forschungsgemeinschaft (DFG),
+awarded to LC. AGL is funded by a Junior Research Fellowship from Merton
+College, Oxford. DC is supported in part by a research grant from Science
+Foundation Ireland (SFI) under Grant Number 13/RC/2092_P2 (iCRAG,
+
+the SFI Research Centre in Applied Geosciences). We would like to thank
+Glenn R. Sharman and an anonymous reviewer for positive and constructive
+feedback.
+<!--l. 663--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-100007"></a>References</h3>
+<a 
+ id="Q1-1-16"></a>
+<!--l. 663--><p class="noindent" >
+     <div class="thebibliography">
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J.
+     &#x00A0;(1983). Principal component analysis of compositional data. <span 
+class="cmti-10">Biometrika</span>,
+     <span 
+class="cmti-10">70</span>(1), 57-65. doi: 10.1093/biomet/70.1.57
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J.
+     &#x00A0;(1986). <span 
+class="cmti-10">The statistical analysis of compositional data</span>. London, Chapman and
+     Hall.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Arabie, P., Carroll, J.&#x00A0;D.,&#x00A0;&amp; DeSarbo, W.&#x00A0;S.
+     &#x00A0;(1987). <span 
+class="cmti-10">Three way scaling: A guide to multidimensional scaling and</span>
+     <span 
+class="cmti-10">clustering</span>&#x00A0;(Vol.&#x00A0;65). Sage.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Borg, I.,&#x00A0;&amp; Groenen, P.&#x00A0;J.
+     &#x00A0;(2005). <span 
+class="cmti-10">Modern multidimensional scaling: Theory and applications</span>.
+     Springer.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Caracciolo, L., Hatzenb&uuml;hler, D., Chew, D., Weltje, G.&#x00A0;J., Vermeesch, P.,
+     Piraquive, A., &#x2026; Villanueva, N.
+     &#x00A0;(in review). What do we measure in provenance analysis? a controversial case
+     study on sediment generation in the sierra nevada de santa marta (colombia).
+     <span 
+class="cmti-10">Geological Society of Americal Bulletin</span>.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Carroll, J.&#x00A0;D.,&#x00A0;&amp; Chang, J.-J.
+     &#x00A0;(1970). Analysis of individual differences in multidimensional scaling via an
+     N-way generalization of &#8216;Eckart-Young&#8217; decomposition. <span 
+class="cmti-10">Psychometrika</span>, <span 
+class="cmti-10">35</span>(3),
+     283&#8211;319.
+     </p>
+
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dunipace, E.&#x00A0;A.
+     &#x00A0;(2021). approxOT: approximate optimal transport&#x00A0;[Computer software
+     manual]. Retrieved from&#x00A0;    <a 
+href="https://github.com/ericdunipace/approxOT" class="url" ><span 
+class="cmtt-10">https://github.com/ericdunipace/approxOT</span></a>
+     (R package version 0.1)
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gower, J.&#x00A0;C.
+     &#x00A0;(1975). Generalized procrustes analysis. <span 
+class="cmti-10">Psychometrika</span>, <span 
+class="cmti-10">40</span>(1), 33&#8211;51.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Greenacre, M.&#x00A0;J.
+     &#x00A0;(1984). <span 
+class="cmti-10">Theory and applications of correspondence analysis</span>. Academic
+     Press.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J.&#x00A0;B.,&#x00A0;&amp; Wish, M.
+     &#x00A0;(1978). <span 
+class="cmti-10">Multidimensional scaling</span>&#x00A0;(Vol.&#x00A0;07-011). Sage Publications, Beverly
+     Hills and London.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Lipp, A.&#x00A0;G.,&#x00A0;&amp; Vermeesch, P.
+     &#x00A0;(2022). Comparing detrital age spectra, and other geological distributions,
+     using the Wasserstein distance. <span 
+class="cmti-10">Earth and Planetary Science Letters</span>. doi: 10.31223/X5TM02
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Morton, A.&#x00A0;C.
+     &#x00A0;(1985).  Heavy minerals in provenance studies.  In <span 
+class="cmti-10">Provenance of</span>
+     <span 
+class="cmti-10">arenites</span>&#x00A0;(pp.&#x00A0;249&#8211;277). Springer.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Morton, A.&#x00A0;C.
+     &#x00A0;(1991). Geochemical studies of detrital heavy minerals and their application to
+     provenance research. In A.&#x00A0;Morton, S.&#x00A0;Todd,&#x00A0;&amp; P.&#x00A0;D.&#x00A0;W.&#x00A0;Haughton&#x00A0;(Eds.),
+     <span 
+class="cmti-10">Developments in Sedimentary Provenance Studies</span>&#x00A0;(Vol.&#x00A0;57, pp.&#x00A0;31&#8211;45).
+     Geological Society of London.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Schuhmacher, D., B&auml;hre, B., Gottschlich, C., Hartmann, V., Heinemann, F.,&#x00A0;&amp;
+     Schmitzer, B.
+     &#x00A0; (2022).  transport: Computation of optimal transport plans and
+     wasserstein distances&#x00A0;[Computer software manual].  Retrieved from&#x00A0;
+     <a 
+href="https://cran.r-project.org/package=transport" class="url" ><span 
+class="cmtt-10">https://cran.r-project.org/package=transport</span></a>
+     (R package version 0.12-4)
+
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Shepard, R.&#x00A0;N.
+     &#x00A0;(1980). Multidimensional scaling, tree-fitting, and clustering. <span 
+class="cmti-10">Science</span>,
+     <span 
+class="cmti-10">210</span>(4468), 390&#8211;398.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.
+     &#x00A0;(2013). Multi-sample comparison of detrital age distributions. <span 
+class="cmti-10">Chemical</span>
+     <span 
+class="cmti-10">Geology</span>, <span 
+class="cmti-10">341</span>, 140&#8211;146.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.
+     &#x00A0;(2018a). Dissimilarity measures in detrital geochronology. <span 
+class="cmti-10">Earth-Science</span>
+     <span 
+class="cmti-10">Reviews</span>, <span 
+class="cmti-10">178</span>, 310-321. doi: 10.1016/j.earscirev.2017.11.027
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.
+     &#x00A0;(2018b). Statistical models for point-counting data. <span 
+class="cmti-10">Earth and Planetary</span>
+     <span 
+class="cmti-10">Science Letters</span>, <span 
+class="cmti-10">501</span>, 1&#8211;7.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.
+     &#x00A0;(2019). Exploratory Analysis of Provenance Data Using R and the
+     Provenance Package. <span 
+class="cmti-10">Minerals</span>, <span 
+class="cmti-10">9</span>(3), 193.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.,&#x00A0;&amp; Garzanti, E.
+     &#x00A0;(2015). Making geological sense of &#8216;Big Data&#8217; in sedimentary provenance
+     analysis. <span 
+class="cmti-10">Chemical Geology</span>, <span 
+class="cmti-10">409</span>, 20&#8211;27.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., Resentini, A.,&#x00A0;&amp; Garzanti, E.
+     &#x00A0;(2016). An R package for statistical provenance analysis. <span 
+class="cmti-10">Sedimentary</span>
+     <span 
+class="cmti-10">Geology</span>.
+     </p>
+     <p class="bibitem" ><span class="biblabel">
+<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Villani, C.
+     &#x00A0;(2021). <span 
+class="cmti-10">Topics in optimal transportation</span>&#x00A0;(Vol.&#x00A0;58). American Mathematical
+     Soc.
+</p>
+     </div>
+    
+</body></html> 
+
+
+

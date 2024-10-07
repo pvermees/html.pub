@@ -1,0 +1,3030 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Dissimilarity measures in detrital geochronology</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="disspaper_v7.tex"> 
+<meta name="date" content="2017-12-12 09:43:00"> 
+<link rel="stylesheet" type="text/css" href="disspaper_v7.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body>
+<table class="main" ><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Dissimilarity measures in detrital geochronology</h2>
+          <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br />   <span 
+class="cmr-12">Department of Earth Sciences</span>
+<br />     <span 
+class="cmr-12">University College London</span>
+<br /> <span 
+class="cmr-12">Gower Street, London WC1E 6BT</span>
+<br />      <span 
+class="cmtt-12">p.vermeesch [at] ucl.ac.uk</span></div><br />
+   </div>
+   <div class="abstract" >
+<div class="center" >
+<!--l. 14--><p class="noindent" >
+<!--l. 14--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 15--><p class="indent" >    <span 
+class="cmr-9">The ability to quantify the (dis)similarity between detrital age distributions is an essential aspect</span>
+     <span 
+class="cmr-9">of sedimentary provenance studies. This paper reviews three different ways to do this. A first class of</span>
+     <span 
+class="cmr-9">dissimilarity measures is based on parametric hypothesis tests such as the t- or chi-square test. These are</span>
+     <span 
+class="cmr-9">designed to objectively decide whether two samples were derived from a common population. Appealing</span>
+     <span 
+class="cmr-9">though such tests may appear in theory, in practice they offer little value to sedimentary geologists</span>
+     <span 
+class="cmr-9">because their outcome depends on sample size. In contrast, the effect size of said tests is independent</span>
+     <span 
+class="cmr-9">of sample size and can be used as an objective point of comparison between detrital age distributions.</span>
+     <span 
+class="cmr-9">The main limitation of this approach is that it requires binning or averaging, which discards valuable</span>
+     <span 
+class="cmr-9">information. A second class of dissimilarity measures is based on non-parametric hypothesis tests such</span>
+     <span 
+class="cmr-9">as the Kolmogorov-Smirnov test. These do not require pre-treatment of the data and are able to capture</span>
+     <span 
+class="cmr-9">more subtle differences between age distributions. Unfortunately, non-parametric tests do not have well</span>
+     <span 
+class="cmr-9">defined sample effect sizes and so it is not possible to use them as an absolute point of comparison</span>
+     <span 
+class="cmr-9">that is independent of sample size. Nevertheless, non-parametric dissimilarity measures can be used to</span>
+     <span 
+class="cmr-9">quantify the relative differences between samples. A third class of dissimilarity measures aims to account</span>
+     <span 
+class="cmr-9">for the analytical uncertainties of the age determinations. The likeness and cross-correlation coefficients</span>
+     <span 
+class="cmr-9">are ad-hoc dissimilarity measures that are based on Probability Density Plots (PDPs). These apply a</span>
+     <span 
+class="cmr-9">narrow smoothing kernel to precise data, and a wide smoothing kernel to imprecise data. In contrast, the</span>
+     <span 
+class="cmr-9">Sircombe-Hazelton L2-norm uses Kernel Functional Estimates (KFEs), which use exactly the opposite</span>
+     <span 
+class="cmr-9">strategy as PDPs. They apply a wide smoothing kernel to precise data, and a narrow smoothing kernel</span>
+     <span 
+class="cmr-9">to imprecise data. This paper shows that the KFE-based approach produces sensible results, whereas the</span>
+     <span 
+class="cmr-9">likeness and cross-correlation methods do not. The added complexity of the KFE approach is only worth</span>
+     <span 
+class="cmr-9">the effort in studies that combine data acquired on equipment with hugely variable analytical precision.</span>
+     <span 
+class="cmr-9">In most cases, there is no need to account for the analytical uncertainty of detrital age distributions. The</span>
+     <span 
+class="cmr-9">sample effect size, non-parametric statistics, or L2-norm can be used to graphically compare samples by</span>
+     <span 
+class="cmr-9">Multidimensional Scaling (MDS). In contrast with previous claims, there is no need for these measures</span>
+     <span 
+class="cmr-9">to be independent of sample size.</span>
+</div>
+<!--l. 58--><p class="indent" >   <span 
+class="cmti-10">keywords: statistics, geochronology, sediment</span>
+
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 63--><p class="noindent" >Siliciclastic sediments and sedimentary rocks cover an estimated 66% of the land surface (<a 
+href="#Xblatt1975">Blatt and Jones</a>,&#x00A0;<a 
+href="#Xblatt1975">1975</a>).
+Sedimentary deposits contain valuable archives of Earth history and host economically important mineral resources.
+Constraining the provenance of siliclastic sediments is key to understanding these geological environments.
+Sedimentary provenance may be recovered using a variety of chemical, mineralogical or isotopic properties. Detrital
+geochronology is one approach that has steadily gained popularity over the years. In this approach, a
+representative number of clasts are dated by radiometric geochronology. Examples of this are zircon U-Pb
+dating in sand (<a 
+href="#Xpell1997">Pell et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpell1997">1997</a>;&#x00A0;<a 
+href="#Xgarzanti2013">Garzanti et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2013">2013</a>) or silt (<a 
+href="#Xnie2015">Nie et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnie2015">2015</a>), <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar dating
+of detrital mica (<a 
+href="#Xcopeland1990">Copeland and Harrison</a>,&#x00A0;<a 
+href="#Xcopeland1990">1990</a>), fission track dating of apatite (<a 
+href="#Xvermeesch2007a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2007a">2007</a>)
+and zircon (<a 
+href="#Xhurford1984">Hurford et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhurford1984">1984</a>), U-Th-He dating of apatite (<a 
+href="#Xstock2006">Stock et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstock2006">2006</a>) and zircon (<a 
+href="#Xrahl2003">Rahl
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xrahl2003">2003</a>), and cosmogenic <sup class="textsuperscript"><span 
+class="cmr-9">21</span></sup>Ne measurements in quartz clasts (<a 
+href="#Xcodilean2008">Codilean et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xcodilean2008">2008</a>). The sampling
+distributions are then either compared with the geologic map to identify individual point sources of sediment
+(<a 
+href="#Xpell1997">Pell et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpell1997">1997</a>) or, more commonly, they can be compared with each other in order to trace the
+flow of sediment through an entire sediment routing system (<a 
+href="#Xstevens2013">Stevens et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstevens2013">2013</a>;&#x00A0;<a 
+href="#Xvermeesch2015">Vermeesch and
+Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>).<br 
+class="newline" />
+<!--l. 85--><p class="indent" >   In provenance studies that involve a small number of easily distinguishable age distributions, reliable
+interpretation may be possible by simple visual inspection. But this is seldom true for the general case involving
+many samples that are only subtlely different. In this general case, it is useful to have some numerical value to
+objectively express the (dis)similarity of two samples. Three kinds of approaches have been used to do this. A first
+group of dissimilarity measures is based on parametric statistical hypothesis tests. Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:X2 --></a> presents a brief primer
+to these procedures, using the chi-square test as an example (Section&#x00A0;<a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:hypothesistesting --></a>). This Section will introduce basic
+concepts such as effect size (Section&#x00A0;<a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:effectsize --></a>) and p-value (Section&#x00A0;<a 
+href="#x1-50002.3">2.3<!--tex4ht:ref: sec:p-values --></a>). It will show that the former parameter is the
+only way to quantify the difference between two distributions in absolute terms, independent of sample size. In
+contrast, p-values exhibit a strong dependence on sample size that limits their usefulness for detrital
+geochronology.<br 
+class="newline" />
+<!--l. 103--><p class="indent" >   Although Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:X2 --></a> touches on some fundamental concepts that are relevant to detrital geochronology, it is also
+quite technical. Readers who are more interested in the practical aspects of the subject may wish to skip to
+Section&#x00A0;<a 
+href="#x1-60003">3<!--tex4ht:ref: sec:nonparametric --></a>, which discusses a second group of dissimilarity measures that are based on non-parametric
+hypothesis tests such as Kolmogorov-Smirnov and variants thereof such as the Cram&eacute;r-von-Mises,
+Anderson-Darling and Kuiper tests. This approach has intuitive appeal, as it is better able to capture the
+richness of real age distributions without the need for any pre-treatment of the data. Finally, Earth
+Scientists have invented a number of ad-hoc dissimilarity measures that aim to capture and undo the
+effect of variable measurement uncertainty (aka &#8216;heteroscedasticity&#8217;). Examples of this are <a 
+href="#Xsatkoski2013">Satkoski
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsatkoski2013">2013</a>)&#8217;s <span 
+class="cmti-10">likeness </span>parameter, <a 
+href="#Xsaylor2012">Saylor et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsaylor2012">2012</a>)&#8217;s <span 
+class="cmti-10">cross-correlation </span>coefficient, and <a 
+href="#Xsircombe2004a">Sircombe and
+Hazelton</a>&#x00A0;(<a 
+href="#Xsircombe2004a">2004</a>)&#8217;s <span 
+class="cmti-10">L2-distance</span>. We will see that only the latter method is built on statistically sound foundations,
+whereas the other two methods yield problematic results in some simple but realistic end-member
+scenarios.<br 
+class="newline" />
+<!--l. 123--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-100005">5<!--tex4ht:ref: sec:multisample --></a> discusses p-value tables, in which multiple samples are compared with each other using statistical
+hypothesis tests such as chi-square or Kolmogorov-Smirnov. We will see that such multi-sample comparisons are
+problematic due to the aforementioned sample size dependency of p-values, which is amplified by the increased
+occurrence of so-called &#8216;Type-I&#8217; errors (as defined in Section&#x00A0;<a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:hypothesistesting --></a>). Multidimensional Scaling (MDS) is presented as
+an alternative approach to multi-sample comparison that is immune to these problems. In contrast with earlier
+claims by <a 
+href="#Xvermeesch2013">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2013">2013</a>), we will show that MDS does not require dissimilarity measures to be independent of
+sample size (Section&#x00A0;<a 
+href="#x1-100005">5<!--tex4ht:ref: sec:multisample --></a>).<br 
+class="newline" />
+<!--l. 136--><p class="indent" >   The different dissimilarity measures discussed in this paper will be illustrated with nine synthetic
+populations:
+
+<!--l. 139--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1001x1">consists of five uniformly distributed intervals of 10&#x00A0;Ma length each that are evenly spaced between
+     50 and 140&#x00A0;Ma and are separated by 10&#x00A0;Ma gaps.
+     </li>
+     <li 
+  class="enumerate" id="x1-1002x1">is identical to <span 
+class="cmmi-10">A </span>but has been offset by 20&#x00A0;Ma. In other words, distribution <span 
+class="cmmi-10">B </span>misses the first uniform
+     interval of distribution <span 
+class="cmmi-10">A </span>and has an additional interval between 150 and 160&#x00A0;Ma.
+     </li>
+     <li 
+  class="enumerate" id="x1-1003x1">is offset by a further 60&#x00A0;Ma with respect to distribution <span 
+class="cmmi-10">B</span>.
+     </li>
+     <li 
+  class="enumerate" id="x1-1004x1">is the convolution of distribution <span 
+class="cmmi-10">A </span>with a Normal distribution with zero mean and 2&#x00A0;Ma standard
+     deviation. This is the sampling distribution that would result from an infinite number of grains collected
+     from distribution <span 
+class="cmmi-10">A </span>and dated with 2&#x00A0;Ma analytical precision.
+     </li>
+     <li 
+  class="enumerate" id="x1-1005x1">are the sampling distributions of populations <span 
+class="cmmi-10">B </span>and <span 
+class="cmmi-10">C</span>, assuming 2&#x00A0;Ma analytical uncertainties just
+     like in distribution <span 
+class="cmmi-10">D</span>.
+     </li>
+     <li 
+  class="enumerate" id="x1-1006x1">are the sampling distributions of populations <span 
+class="cmmi-10">A </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">C</span>, assuming a 2 % <span 
+class="cmti-10">relative </span>age uncertainty.</li></ol>
+<!--l. 159--><p class="indent" >   The curves shown in Figure&#x00A0;<a 
+href="#x1-10081">1<!--tex4ht:ref: fig:PDFs --></a> are Probability Density Functions (PDFs). They represent the relative probability
+of any age or date in the population so that:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1007r1"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v70x.png" alt="                 t&int;2
+Prob(t1 &le; t &le; t2) =  PDF  (t)dt
+
+                 t1
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 166--><p class="nopar" >
+<!--l. 168--><p class="indent" >   The piecewise uniform populations <span 
+class="cmmi-10">A </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">C </span>represent the true age distributions, which are unknown and
+unobservable. The actual data that detrital geochronologists work with are not ages but <span 
+class="cmti-10">dates </span>that are affected by
+some degree of analytical uncertainty. As a result of this uncertainty, the PDF of the dates is always smoother than
+the PDF of the true ages (e.g., <span 
+class="cmmi-10">D </span>and <span 
+class="cmmi-10">G </span>vs. <span 
+class="cmmi-10">A</span>; <span 
+class="cmmi-10">E </span>and <span 
+class="cmmi-10">H </span>vs. <span 
+class="cmmi-10">B</span>; and <span 
+class="cmmi-10">F </span>and <span 
+class="cmmi-10">I </span>vs. <span 
+class="cmmi-10">C </span>in Figure&#x00A0;<a 
+href="#x1-10081">1<!--tex4ht:ref: fig:PDFs --></a>).
+Please note that a PDF is <span 
+class="cmti-10">not </span>the same as a PDP (Probability Density Plot), as will be explained in
+Section&#x00A0;<a 
+href="#x1-80004.1">4.1<!--tex4ht:ref: sec:LR2 --></a>. This crucial distinction marks the key difference between the present paper and a recent review
+by <a 
+href="#Xsaylor2016">Saylor and Sundell</a>&#x00A0;(<a 
+href="#Xsaylor2016">2016</a>), whose recommendations are in direct conflict with those presented
+herein.
+<!--l. 182--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10081"></a>
+
+<!--l. 184--><p class="noindent" ><a href="disspaper_v71x.png"><img 
+src="disspaper_v71x.png" alt="PIC" class="snapshot graphics"></a><!--tex4ht:graphics  
+name="disspaper_v71x.png" src="PDFs.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content"><span 
+class="cmmi-10">A </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">C</span>: Probability Density Functions (PDFs) of three synthetic age distributions; <span 
+class="cmmi-10">D </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">F</span>: PDFs
+of the dates obtained from <span 
+class="cmmi-10">A </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">C </span>assuming 2&#x00A0;Ma absolute measurement uncertainties; <span 
+class="cmmi-10">G </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">I</span>: PDFs of the
+dates obtained from <span 
+class="cmmi-10">A </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">C </span>assuming 2 % relative measurement uncertainties.</span></div><!--tex4ht:label?: x1-10081 -->
+
+<!--l. 191--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>chi-square</h3>
+<!--l. 196--><p class="noindent" >Consider the following four sets (&#8216;samples&#8217;) of values (&#8216;dates&#8217;):
+<!--l. 211--><p class="indent" >
+     <dl class="description"><dt class="description">
+<span 
+class="cmmi-10">a</span> </dt><dd 
+class="description"> = <span 
+class="cmsy-10">{</span>115, 115, 88, 71, 89, 76, 110, 74, 58, 135, 90, 98, 114, 121, 90, 50, 91, 53, 136, 95<span 
+class="cmsy-10">}</span>
+     </dd><dt class="description">
+<span 
+class="cmmi-10">b</span> </dt><dd 
+class="description"> = <span 
+class="cmsy-10">{</span>115, 55, 59, 114, 132, 98, 70, 74, 133, 57, 94, 100, 60, 135, 139, 119, 89, 51, 113<span 
+class="cmsy-10">}</span>
+     </dd><dt class="description">
+<span 
+class="cmmi-10">c</span> </dt><dd 
+class="description"> = <span 
+class="cmsy-10">{</span>98, 133, 92, 110, 77, 77, 131, 97, 96, 149, 135, 74, 120, 130, 137, 130, 77, 78, 151, 77, 120<span 
+class="cmsy-10">}</span>
+     </dd><dt class="description">
+<span 
+class="cmmi-10">d</span> </dt><dd 
+class="description"> = <span 
+class="cmsy-10">{</span>196, 221, 214, 129, 218, 136, 176, 150, 135, 171, 177, 158, 137, 138, 172, 195, 133, 193, 196, 177<span 
+class="cmsy-10">}</span></dd></dl>
+<!--l. 224--><p class="indent" >   One way to compare these four samples is to bin them into two categories:
+<div class="center" 
+>
+<!--l. 226--><p class="noindent" >
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-1"  
+class="td11">        &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">  <span 
+class="cmmi-10">a  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">  <span 
+class="cmmi-10">b  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">  <span 
+class="cmmi-10">c  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11">  <span 
+class="cmmi-10">d  </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:right;"><span 
+class="cmsy-10">&le; </span>125&#x00A0;Ma</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11"> 18  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11"> 15  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11"> 13  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11">  0   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:right;"><span 
+class="cmmi-10">&#x003E; </span>125&#x00A0;Ma</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11">  2   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11">  4   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">  8   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11"> 20  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-1"  
+class="td11">           </td></tr></table></div></div>
+<!--l. 235--><p class="indent" >   To compare the bin counts in pairs, define the chi-square statistic as follows:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2001r2"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v72x.png" alt="       &sum;k (Oi &minus; Ei)2
+X2stat =   ---E-----
+       i=1      i
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 241--><p class="nopar" >
+<!--l. 243--><p class="indent" >   where <span 
+class="cmmi-10">O</span><sub><span 
+class="cmmi-7">i</span></sub> is the number of observed counts and <span 
+class="cmmi-10">E</span><sub><span 
+class="cmmi-7">i</span></sub> the number of expected counts in the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> bin, and <span 
+class="cmmi-10">k</span>
+represents the number of bins (e.g., 4 in the case of a 2-sample comparison of 2 bins each). The <span 
+class="cmmi-10">E</span><sub><span 
+class="cmmi-7">i</span></sub>s are calculated
+from the marginal probabilities of the data table. For example, the expected bin counts for the comparison of
+samples <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b</span>:
+
+<div class="center" 
+>
+<!--l. 250--><p class="noindent" >
+<div class="tabular"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"><col 
+id="TBL-3-2"><col 
+id="TBL-3-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:nowrap; text-align:right;" id="TBL-3-1-1"  
+class="td11">        &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-2"  
+class="td11">         <span 
+class="cmmi-10">a            </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-3"  
+class="td11">         <span 
+class="cmmi-10">b            </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:nowrap; text-align:right;" id="TBL-3-2-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:nowrap; text-align:right;" id="TBL-3-3-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:right;"><span 
+class="cmsy-10">&le; </span>125&#x00A0;Ma</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-2"  
+class="td11"> <img 
+src="disspaper_v73x.png" alt="(18+15)(18+2)
+-18+15+2+4--"  class="frac" align="middle"> = 16<span 
+class="cmmi-10">.</span>9  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-3"  
+class="td11"> <img 
+src="disspaper_v74x.png" alt="(18+15)(15+4)
+-18+15+2+4--"  class="frac" align="middle"> = 16<span 
+class="cmmi-10">.</span>1  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:nowrap; text-align:right;" id="TBL-3-4-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:right;"><span 
+class="cmmi-10">&#x003E; </span>125&#x00A0;Ma</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-2"  
+class="td11">  <img 
+src="disspaper_v75x.png" alt="(21+84+)15(1+82++24)"  class="frac" align="middle"> = 3<span 
+class="cmmi-10">.</span>1    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-3"  
+class="td11">  <img 
+src="disspaper_v76x.png" alt="(21+8+41)(51+52++4)4-"  class="frac" align="middle"> = 2<span 
+class="cmmi-10">.</span>9    </td></tr></table></div></div>
+<!--l. 263--><p class="indent" >   Applying Equation&#x00A0;<a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:X2 --></a> to all sample pairs yields a symmetric matrix of chi-square statistics (Table&#x00A0;<a 
+href="#x1-20021">1<!--tex4ht:ref: tab:X2 --></a>.i). This
+matrix indicates that samples <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>are the most similar (<span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> = 0<span 
+class="cmmi-10">.</span>26) while samples <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">d</span>
+are the most dissimilar (<span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> = 29<span 
+class="cmmi-10">.</span>2). This makes sense when we know that samples <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>were
+both derived from distribution <span 
+class="cmmi-10">D</span>, whereas samples <span 
+class="cmmi-10">c </span>and <span 
+class="cmmi-10">d </span>were derived from <span 
+class="cmmi-10">E </span>and <span 
+class="cmmi-10">F</span>, respectively.
+So it appears that the chi-square statistic has adequately captured the differences between the three
+underlying populations. However, increasing the sample sizes from <span 
+class="cmsy-10">&sim;</span>20 to <span 
+class="cmsy-10">&sim;</span>200 changes all the chi-squared
+values (Table&#x00A0;<a 
+href="#x1-20021">1<!--tex4ht:ref: tab:X2 --></a>.ii). Most of them have increased, except for the dissimilarity between <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b</span>, which
+has slightly decreased in value. It is not immediately clear what the actual <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>-value means, or
+how to interpet the <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>-values in a mixture of small and large samples, as is common in detrital
+geochronology (<a 
+href="#Xstevens2013">Stevens et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstevens2013">2013</a>;&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). It is also not clear how &#8216;significant&#8217; the differences
+between the various samples are. It would be useful if we could somehow &#8216;prove&#8217; that samples <span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b</span>, <span 
+class="cmmi-10">e</span>
+and <span 
+class="cmmi-10">f </span>were drawn from the same population, and that the other samples were drawn from different
+populations.
+   <div class="table">
+
+<!--l. 285--><p class="indent" >   <a 
+ id="x1-20021"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"><col 
+id="TBL-4-2"><col 
+id="TBL-4-3"><col 
+id="TBL-4-4"><col 
+id="TBL-4-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-1-1"  
+class="td11"> (i)  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-2"  
+class="td11">  a    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-3"  
+class="td11">  b    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-4"  
+class="td11">  c    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-5"  
+class="td11">  d    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-2-1"  
+class="td11"></td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-3-1"  
+class="td11">   <div class="multicolumn"  style="white-space:nowrap; text-align:right;">a</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-2"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-3"  
+class="td11"> 0.26  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-4"  
+class="td11"> 2.99  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-5"  
+class="td11"> 29.2  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-4-1"  
+class="td11">   <div class="multicolumn"  style="white-space:nowrap; text-align:right;">b</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-2"  
+class="td11"> 0.26  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-3"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-4"  
+class="td11"> 0.69  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-5"  
+class="td11"> 22.4  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-5-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:right;">c</div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-2"  
+class="td11"> 2.99 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-3"  
+class="td11"> 0.69 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-4"  
+class="td11"> 0.00 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-5"  
+class="td11"> 15.4</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-6-1"  
+class="td11">   <div class="multicolumn"  style="white-space:nowrap; text-align:right;">d</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-2"  
+class="td11"> 29.2  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-3"  
+class="td11"> 22.4  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-4"  
+class="td11"> 15.4  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-5"  
+class="td11"> 0.00  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-7-"><td colspan="3" style="white-space:nowrap; text-align:right;" id="TBL-4-7-1"  
+class="td11"></td> <div class="multicolumn"  style="white-space:nowrap; text-align:right;">&#x00A0;</div>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-8-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-8-1"  
+class="td11"> (ii)  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-2"  
+class="td11">  e    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-3"  
+class="td11">   f    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-4"  
+class="td11">  g    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-5"  
+class="td11">  h    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-9-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-9-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-10-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-10-1"  
+class="td11">   <div class="multicolumn"  style="white-space:nowrap; text-align:right;">e</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-2"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-3"  
+class="td11"> 0.22  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-4"  
+class="td11"> 18.5  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-5"  
+class="td11"> 266  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-11-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-11-1"  
+class="td11">   <div class="multicolumn"  style="white-space:nowrap; text-align:right;">f</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-2"  
+class="td11"> 0.22  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-3"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-4"  
+class="td11"> 23.6  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-5"  
+class="td11"> 278  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-12-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-12-1"  
+class="td11">   <div class="multicolumn"  style="white-space:nowrap; text-align:right;">g</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-2"  
+class="td11"> 18.5  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-3"  
+class="td11"> 23.6  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-4"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-5"  
+class="td11"> 172  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-13-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-13-1"  
+class="td11">   <div class="multicolumn"  style="white-space:nowrap; text-align:right;">h</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-2"  
+class="td11"> 266  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-3"  
+class="td11"> 278  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-4"  
+class="td11"> 172  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-5"  
+class="td11"> 0.00  </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Chi-square statistics for the comparison of (i) samples <span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b</span>, <span 
+class="cmmi-10">c </span>and <span 
+class="cmmi-10">d</span>, which contain <span 
+class="cmsy-10">&sim;</span>20 dates each;
+and (ii) samples <span 
+class="cmmi-10">e</span>, <span 
+class="cmmi-10">f</span>, <span 
+class="cmmi-10">g </span>and <span 
+class="cmmi-10">h</span>, which contain <span 
+class="cmsy-10">&sim;</span>200 dates each, collected from populations <span 
+class="cmmi-10">D </span>(samples <span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b</span>,
+<span 
+class="cmmi-10">e </span>and <span 
+class="cmmi-10">f</span>), <span 
+class="cmmi-10">E </span>(samples <span 
+class="cmmi-10">c </span>and <span 
+class="cmmi-10">g</span>) and <span 
+class="cmmi-10">F </span>(samples <span 
+class="cmmi-10">d </span>and <span 
+class="cmmi-10">h</span>).</span></div><!--tex4ht:label?: x1-20021 -->
+
+   </div><hr class="endfloat" />
+   </div>
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a>hypothesis testing</h4>
+<!--l. 313--><p class="noindent" >We can formalise the two-sample comparison problem as a statistical &#8216;null hypothesis&#8217; (<span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>) by proposing
+that:
+<!--l. 316--><p class="indent" >   <center class="quotation"><table class="quotation" 
+border="0" cellpadding="0" cellspacing="15"><tr><td>
+        <div class="quotation">
+     <!--l. 317--><p class="indent" >    <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>: &#8216;two samples (<span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y</span>) were drawn from the same population.&#8217;</div>
+<!--l. 319--><p class="noindent" ></td></tr></table></center>
+   If <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is correct, then <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> is expected to follow a chi-square distribution with <span 
+class="cmmi-10">df </span>= (<span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">s</span></sub> <span 
+class="cmsy-10">&minus; </span>1)(<span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">c</span></sub> <span 
+class="cmsy-10">&minus; </span>1) degrees of
+freedom, where <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">s</span></sub> is the number of samples (i.e. <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">s</span></sub> = 2 for a two-sample comparison) and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">c</span></sub> is the number of
+classes/bins (i.e., <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">c</span></sub> = 2 as well). The probability of observing a <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>-value at least as extreme as the value
+obtained from Equation&#x00A0;<a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:X2 --></a> under <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is called the &#8216;p-value&#8217;. A pre-defined cutoff value <span 
+class="cmmi-10">&alpha; </span>may be used to evaluate <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>
+on a 100(1-<span 
+class="cmmi-10">&alpha;</span>)% confidence level. For example, if <span 
+class="cmmi-10">&alpha; </span>= 0<span 
+class="cmmi-10">.</span>05 and <span 
+class="cmmi-10">p &#x003C; &alpha;</span>, then <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is rejected in favour of the &#8216;alternative
+hypothesis&#8217;:
+<!--l. 333--><p class="indent" >   <center class="quotation"><table class="quotation" 
+border="0" cellpadding="0" cellspacing="15"><tr><td>
+        <div class="quotation">
+     <!--l. 334--><p class="indent" >    <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">a</span></sub>: &#8216;two samples (<span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y</span>) were drawn from different populations.&#8217;</div>
+<!--l. 336--><p class="noindent" ></td></tr></table></center>
+   Applying this procedure to our synthetic data yields two tables of p-values:
+<div class="center" 
+>
+<!--l. 341--><p class="noindent" >
+<div class="tabular"> <table id="TBL-5" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"><col 
+id="TBL-5-3"><col 
+id="TBL-5-4"><col 
+id="TBL-5-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-5-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-1"  
+class="td11"> &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-2"  
+class="td11">     <span 
+class="cmmi-10">a       </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-3"  
+class="td11">     <span 
+class="cmmi-10">b       </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-4"  
+class="td11">     <span 
+class="cmmi-10">c       </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-5"  
+class="td11">     <span 
+class="cmmi-10">d       </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">a</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-2"  
+class="td11">    1.00       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-3"  
+class="td11">    0.61       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-4"  
+class="td11">    0.084      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-5"  
+class="td11">  6 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">8</span></sup>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-1"  
+class="td11">  <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">b</span></div>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-2"  
+class="td11">    0.61       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-3"  
+class="td11">    1.00       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-4"  
+class="td11">    0.41       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-5"  
+class="td11">  2 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">6</span></sup>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-1"  
+class="td11">  <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">c</span></div>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-2"  
+class="td11">    0.084      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-3"  
+class="td11">    0.41       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-4"  
+class="td11">    1.00       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-5"  
+class="td11">  9 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">5</span></sup>    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-6-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">d</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-6-2"  
+class="td11">  6 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">8</span></sup>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-6-3"  
+class="td11">  2 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">6</span></sup>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-6-4"  
+class="td11">  9 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">5</span></sup>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-6-5"  
+class="td11">    1.00       </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-7-"><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-5-7-1"  
+class="td11"></td> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">&#x00A0;</div>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-8-1"  
+class="td11"> &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-8-2"  
+class="td11">     <span 
+class="cmmi-10">e       </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-8-3"  
+class="td11">     <span 
+class="cmmi-10">f       </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-8-4"  
+class="td11">     <span 
+class="cmmi-10">g       </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-8-5"  
+class="td11">     <span 
+class="cmmi-10">h       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-9-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-10-1"  
+class="td11">  <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">e</span></div>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-10-2"  
+class="td11">    1.00       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-10-3"  
+class="td11">    0.64       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-10-4"  
+class="td11">  1<span 
+class="cmmi-10">.</span>7 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">5</span></sup>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-10-5"  
+class="td11"> 8<span 
+class="cmmi-10">.</span>0 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">60</span></sup>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-11-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">f</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-11-2"  
+class="td11">    0.64       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-11-3"  
+class="td11">    1.00       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-11-4"  
+class="td11">  1<span 
+class="cmmi-10">.</span>2 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">6</span></sup>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-11-5"  
+class="td11"> 1<span 
+class="cmmi-10">.</span>7 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">62</span></sup>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-12-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">g</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-12-2"  
+class="td11">  1<span 
+class="cmmi-10">.</span>7 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">5</span></sup>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-12-3"  
+class="td11">  1<span 
+class="cmmi-10">.</span>2 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">6</span></sup>   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-12-4"  
+class="td11">    1.00       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-12-5"  
+class="td11"> 3<span 
+class="cmmi-10">.</span>4 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">39</span></sup>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-13-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">h</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-13-2"  
+class="td11"> 8<span 
+class="cmmi-10">.</span>0 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">60</span></sup>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-13-3"  
+class="td11"> 1<span 
+class="cmmi-10">.</span>7 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">62</span></sup>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-13-4"  
+class="td11"> 3<span 
+class="cmmi-10">.</span>4 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">39</span></sup>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-13-5"  
+class="td11">    1.00       </td></tr></table></div></div>
+<!--l. 364--><p class="indent" >   All the p-values for comparison with sample <span 
+class="cmmi-10">d </span>are well below the 0.05 cutoff, and so we can confidently reject the
+hypothesis that samples <span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b </span>and <span 
+class="cmmi-10">c </span>were drawn from the same population as <span 
+class="cmmi-10">d</span>. It is important to note that failure to
+reject the null hypothesis does not mean that <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> has been accepted. Consider, for example, sample <span 
+class="cmmi-10">c </span>in the first half
+of the table. Recall that this sample was collected from a different population (<span 
+class="cmmi-10">E</span>) than samples <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>(which were
+sampled from distribution <span 
+class="cmmi-10">D</span>), and so <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is most definitely false in this case. Nevertheless, the p-values for
+comparison of <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>with <span 
+class="cmmi-10">c </span>are 0.084 and 0.41, respectively. Both of these are above the 0.05 threshold, resulting
+in a failure to reject the false null hypothesis. In statistical terms, we have committed a &#8216;Type-II error&#8217; (a Type-I
+error occurs when we have accidentally rejected a true null hypothesis). It is only when sample size is increased
+from <span 
+class="cmsy-10">&sim;</span>20 to <span 
+class="cmsy-10">&sim; </span>200 dates per sample that the chi-square test gains sufficient &#8216;power&#8217; to detect the
+relatively subtle difference between populations <span 
+class="cmmi-10">D </span>and <span 
+class="cmmi-10">E</span>. Thanks to this gain in power, the p-values for
+
+comparison of samples <span 
+class="cmmi-10">e </span>and <span 
+class="cmmi-10">f </span>(which are derived from population <span 
+class="cmmi-10">D</span>) and sample <span 
+class="cmmi-10">g </span>(which is derived from
+population <span 
+class="cmmi-10">E</span>) have dropped to 1<span 
+class="cmmi-10">.</span>7 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">5</span></sup> and 1<span 
+class="cmmi-10">.</span>2 <span 
+class="cmsy-10">&#x00D7; </span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">6</span></sup>, respectively. This is well below the cutoff value
+of 0.05 and so we have successfully rejected the null hypothesis and avoided the Type-II error. The
+concept of statistical power is very important but has received little attention in the context of detrital
+geochronology.
+<!--l. 390--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a>effect size</h4>
+<!--l. 393--><p class="noindent" >Statistical power is defined as 1-<span 
+class="cmmi-10">&beta;</span>, where <span 
+class="cmmi-10">&beta; </span>is the probability of committing a Type-II error (the probability of
+committing a Type-I error is simply <span 
+class="cmmi-10">&alpha;</span>). If <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is false, then <span 
+class="cmmi-10">&beta; </span>decreases (and power increases) predictably with
+sample size <span 
+class="cmmi-10">n </span>(<a 
+href="#Xcohen1977">Cohen</a>,&#x00A0;<a 
+href="#Xcohen1977">1977</a>,&#x00A0;<a 
+href="#Xcohen1992">1992</a>). The minimum sample size required to reject a false null hypothesis with
+100(1-<span 
+class="cmmi-10">&alpha;</span>)% confidence at least 100(1-<span 
+class="cmmi-10">&beta;</span>)% of the time crucially depends on &#8216;the degree to which the null hypothesis is
+false&#8217; (<a 
+href="#Xcohen1977">Cohen</a>,&#x00A0;<a 
+href="#Xcohen1977">1977</a>). The latter quantity is better known as the &#8216;effect size&#8217;, <span 
+class="cmmi-10">&#x03F5;</span>. For the chi-square test, the effect size
+is defined as follows (<a 
+href="#Xcohen1977">Cohen</a>,&#x00A0;<a 
+href="#Xcohen1977">1977</a>,&#x00A0;<a 
+href="#Xcohen1992">1992</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r3"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v77x.png" alt="   &#x250C; ------------
+   &#x2502;&#x2502; &sum;k   a   &#x2218; 2
+&#x03F5; = &#x2218;    (pi-&minus; p&#x2218;i)-
+     i=1    pi
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 409--><p class="nopar" >
+<!--l. 411--><p class="indent" >   where <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub><sup><span 
+class="cmsy-7">&#x2218;</span></sup> and <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub><sup><span 
+class="cmmi-7">a</span></sup> are the true proportions of each bin under the null hypothesis and actual populations,
+respectively. For the synthetic data of Figure&#x00A0;<a 
+href="#x1-10081">1<!--tex4ht:ref: fig:PDFs --></a>, we can calculate the exact values of <span 
+class="cmmi-10">&#x03F5; </span>for comparison of populations
+<span 
+class="cmmi-10">D</span>, <span 
+class="cmmi-10">E </span>and <span 
+class="cmmi-10">F</span>:
+   <div class="table">
+
+<!--l. 417--><p class="indent" >   <a 
+ id="x1-40022"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-6" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1"><col 
+id="TBL-6-2"><col 
+id="TBL-6-3"><col 
+id="TBL-6-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-6-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-1"  
+class="td11"> &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-2"  
+class="td11">  <span 
+class="cmmi-10">D   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-3"  
+class="td11">  <span 
+class="cmmi-10">E   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-4"  
+class="td11">  <span 
+class="cmmi-10">F   </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">D</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-2"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-3"  
+class="td11"> 0.31  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-4"  
+class="td11"> 1.15  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">E</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-2"  
+class="td11"> 0.31  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-3"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-4"  
+class="td11"> 0.93  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">F</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-2"  
+class="td11"> 1.15  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-3"  
+class="td11"> 0.93  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-4"  
+class="td11"> 0.00  </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2: </span><span  
+class="content">Chi-square population effect sizes (<span 
+class="cmmi-10">&#x03F5;</span>) of populations <span 
+class="cmmi-10">D</span>&#8211;<span 
+class="cmmi-10">F</span>.</span></div><!--tex4ht:label?: x1-40022 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 431--><p class="indent" >   Recall that, if <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is true (which is equivalent to saying that <span 
+class="cmmi-10">&#x03F5; </span>= 0), then <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> is expected to follow a chi-square
+distribution with <span 
+class="cmmi-10">df </span>degrees of freedom. However, if <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is false (i.e., <span 
+class="cmmi-10">&#x03F5; &#x003E; </span>0), then <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> will follow a different
+distribution, namely the <span 
+class="cmti-10">non-central </span>chi-square distribution. This distribution shifts to higher values as
+a function of the three parameters: effect size, degrees of freedom and sample size (Appendix&#x00A0;A).
+Thus, when sample size increases, the probability of rejecting the null hypothesis increases as well
+(Figure&#x00A0;<a 
+href="#x1-40042">2<!--tex4ht:ref: fig:non-central --></a>). Equation&#x00A0;<a 
+href="#x1-4001r3">3<!--tex4ht:ref: eq:X2effect --></a> defines the effect size <span 
+class="cmmi-10">&#x03F5; </span>as a population property which, by definition, is an unknown
+quantity. However, given two samples of finite size, we can <span 
+class="cmti-10">estimate </span>the effect size using Cram&eacute;r&#8217;s&#x00A0;<span 
+class="cmmi-10">V</span>
+parameter:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4003r4"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v78x.png" alt="    &#x2218; -----
+V =   X2stat
+        n
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 448--><p class="nopar" >
+<!--l. 450--><p class="indent" >   Computing Cram&eacute;r&#8217;s&#x00A0;<span 
+class="cmmi-10">V </span>for samples <span 
+class="cmmi-10">a</span>-<span 
+class="cmmi-10">h </span>yields two new dissimilarity matrices:
+<div class="center" 
+>
+<!--l. 453--><p class="noindent" >
+<div class="tabular"> <table id="TBL-7" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-7-1g"><col 
+id="TBL-7-1"><col 
+id="TBL-7-2"><col 
+id="TBL-7-3"><col 
+id="TBL-7-4"><col 
+id="TBL-7-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-7-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-1"  
+class="td11"> &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-2"  
+class="td11">  <span 
+class="cmmi-10">a   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-3"  
+class="td11">  <span 
+class="cmmi-10">b   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-4"  
+class="td11">  <span 
+class="cmmi-10">c   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-5"  
+class="td11">  <span 
+class="cmmi-10">d   </span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">a</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-2"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-3"  
+class="td11"> 0.11  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-4"  
+class="td11"> 0.39  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-5"  
+class="td11"> 1.21  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">b</span></div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-2"  
+class="td11"> 0.12 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-3"  
+class="td11"> 0.00 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-4"  
+class="td11"> 0.19 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-5"  
+class="td11"> 1.09</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-1"  
+class="td11">  <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">c</span></div>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-2"  
+class="td11"> 0.38  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-3"  
+class="td11"> 0.18  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-4"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-5"  
+class="td11"> 0.86  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-6-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">d</span></div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-6-2"  
+class="td11"> 1.21 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-6-3"  
+class="td11"> 1.06 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-6-4"  
+class="td11"> 0.88 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-6-5"  
+class="td11"> 0.00</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-7-"><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-7-7-1"  
+class="td11"></td>                 <div class="multicolumn"  style="white-space:nowrap; text-align:center;">&#x00A0;</div>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-8-1"  
+class="td11"> &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-8-2"  
+class="td11">  <span 
+class="cmmi-10">e   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-8-3"  
+class="td11">  <span 
+class="cmmi-10">f   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-8-4"  
+class="td11">  <span 
+class="cmmi-10">g   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-8-5"  
+class="td11">  <span 
+class="cmmi-10">h   </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-9-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-10-1"  
+class="td11">  <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">e</span></div>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-10-2"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-10-3"  
+class="td11"> 0.03  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-10-4"  
+class="td11"> 0.30  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-10-5"  
+class="td11"> 1.15  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-11-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">f</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-11-2"  
+class="td11"> 0.03  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-11-3"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-11-4"  
+class="td11"> 0.34  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-11-5"  
+class="td11"> 1.19  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-12-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">g</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-12-2"  
+class="td11"> 0.30  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-12-3"  
+class="td11"> 0.34  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-12-4"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-12-5"  
+class="td11"> 0.91  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-13-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmmi-10">h</span></div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-13-2"  
+class="td11"> 1.15  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-13-3"  
+class="td11"> 1.18  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-13-4"  
+class="td11"> 0.93  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-13-5"  
+class="td11"> 0.00  </td></tr></table></div></div>
+<!--l. 471--><p class="indent" >   Two observations stand out from these tables. First, the values comparing the small samples (<span 
+class="cmmi-10">a</span>&#8211;<span 
+class="cmmi-10">d</span>) do not
+vary much from those comparing the large samples (<span 
+class="cmmi-10">e</span>&#8211;<span 
+class="cmmi-10">h</span>). Second, recalling that <span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b</span>, <span 
+class="cmmi-10">e </span>and <span 
+class="cmmi-10">f </span>were
+sampled from population <span 
+class="cmmi-10">D</span>, samples <span 
+class="cmmi-10">c </span>and <span 
+class="cmmi-10">g </span>from <span 
+class="cmmi-10">E </span>and samples <span 
+class="cmmi-10">d </span>and <span 
+class="cmmi-10">h </span>from <span 
+class="cmmi-10">F</span>, there is an excellent
+agreement between the sample effect size <span 
+class="cmmi-10">V </span>and the population effect sizes <span 
+class="cmmi-10">&#x03F5; </span>listed in Table&#x00A0;<a 
+href="#x1-40022">2<!--tex4ht:ref: tab:epsilon --></a>. We will
+refer to the sample effect size as the chi-square <span 
+class="cmti-10">distance </span>in the remainder of this paper (<a 
+href="#Xmccune2002">McCune and
+Grace</a>,&#x00A0;<a 
+href="#Xmccune2002">2002</a>).
+<!--l. 481--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40042"></a>
+
+<!--l. 483--><p class="noindent" ><a href="disspaper_v79x.png"><img 
+src="disspaper_v79x.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="disspaper_v79x.png" src="non-central-chi-square2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">The non-central chi-square distribution for comparison of two samples collected from populations
+<span 
+class="cmmi-10">D </span>and <span 
+class="cmmi-10">E </span>using sample sizes of 20 and 200 dates; the vertical line marks the 95% cutoff for the null hypothesis
+(<span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>) that both samples were derived from the same distribution. Small samples are more likely to yield low
+<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>-values and fail to reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>, incurring a Type-I error. For the 20-grain dataset, this occurs 72% of
+the time.</span></div><!--tex4ht:label?: x1-40042 -->
+
+<!--l. 493--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-50002.3"></a>The trouble with p-values</h4>
+<!--l. 498--><p class="noindent" >The ability to reject a false null hypothesis steadily increases with sample size. Conversely, the sample size required
+to consistently reject a false null hypothesis is inversely proportional to the &#8216;degree of falseness&#8217; of said hypothesis.
+In other words, no matter how small the difference between distributions may be, there is always a sample size able
+to detect this difference. This observation is very important for the application of statistical hypothesis testing to
+detrital geochronology. No two geological samples are ever exactly the same. Even two samples collected from the
+same river bed, or from the same alluvial fan surface, are likely to be slightly different for any number of
+reasons, such as hydraulic sorting (<a 
+href="#Xgarzanti2009">Garzanti et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2009">2009</a>), sample heterogeneity (<a 
+href="#Xdegraaffsurpless2003">DeGraaff-Surpless
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xdegraaffsurpless2003">2003</a>), or sample preparation (<a 
+href="#Xsircombe2002">Sircombe and Stern</a>,&#x00A0;<a 
+href="#Xsircombe2002">2002</a>). The geological record is extremely
+heterogeneous and no sedimentary mixing process is able to completely erase this inherent heterogeneity. There
+is always a point, which may only occur after hundreds or even thousands of analyses, where this
+heterogeneity becomes detectable. This simple observation casts doubt on the scientific value of formalised
+hypothesis tests (<a 
+href="#Xvermeesch2009d">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2009d">2009</a>;&#x00A0;<a 
+href="#Xziliak2008">Ziliak and McCloskey</a>,&#x00A0;<a 
+href="#Xziliak2008">2008</a>). The key point is that there exists a
+fundamental difference between a mathematical (&#8216;null&#8217;) hypothesis and a scientific hypothesis. Whereas a
+mathematical hypothesis is either true or false, scientific hypotheses are always false (at some decimal
+place,&#x00A0;<a 
+href="#Xtukey1991">Tukey</a>,&#x00A0;<a 
+href="#Xtukey1991">1991</a>). There are just two situations where statistical hypothesis tests and p-values do serve a
+purpose:
+<!--l. 523--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-5002x1">To prevent statistically unjustified interpretations. Visual comparison of random samples and empirical
+     distributions can be misleading. The human brain has a tendency to see clusters and patterns where
+     there are none. It is very difficult to assess the &#8216;significance&#8217; of random sampling fluctuations by mere
+     visual inspection. Statistical hypothesis tests can be useful for verifying whether perceived differences
+     may simply result from this randomness. If the p-value of such a test exceeds 0.05, then any differences
+     between two samples are most likely due to random sampling fluctuations. Put in a different way, a
+     p-value exceeding 0.05 means that the sample size is insufficient to detect the true difference between
+     the two samples of interest. The situation is slightly more complex when more than two samples are
+     involved, as will be discussed in Section&#x00A0;<a 
+href="#x1-100005">5<!--tex4ht:ref: sec:multisample --></a>.
+     </li>
+     <li 
+  class="enumerate" id="x1-5004x2">In powered hypothesis tests. If the effect size is known, or is postulated <span 
+class="cmti-10">a priori</span>, then one can calculate
+     the sample size required to detect this effect at least 80% of the time, say. Such <span 
+class="cmti-10">powered </span>tests are
+     commonly used in the medical sciences, where the &#8216;effect&#8217; may correspond to the gain in life expectancy
+     of patients, and the &#8216;sample size&#8217; is the number of patients enrolled in a clinical trial. Unfortunately,
+     in detrital geochronology it is rarely possible to quantify the effect size in advance. Hence the concept
+     of &#8216;statistical significance&#8217; (<span 
+class="cmmi-10">p &#x003C; </span>0<span 
+class="cmmi-10">.</span>05) has little scientific value and should probably be abandoned in
+     this context. This point of view is gradually gaining acceptance in many fields of science (e.g.,&#x00A0;<a 
+href="#Xgelman2006">Gelman
+     and Stern</a>,&#x00A0;<a 
+href="#Xgelman2006">2006</a>;&#x00A0;<a 
+href="#Xstang2010">Stang et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstang2010">2010</a>;&#x00A0;<a 
+href="#Xhead2015">Head et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhead2015">2015</a>). In fact, some journals have even gone so far
+     as banning the use of p-values from their pages altogether (<a 
+href="#Xtrafimow2015">Trafimow and Marks</a>,&#x00A0;<a 
+href="#Xtrafimow2015">2015</a>). A case can
+     be made that the Earth Sciences should follow suit.</li></ol>
+<!--l. 556--><p class="indent" >   In conclusion, when comparing two age distributions, the scientifically relevant question is how different two
+samples are, and not how <span 
+class="cmti-10">significantly </span>different they are. Only the effect size is able to objectively quantify the
+difference between two samples independent of sample size. The widely documented utility of the effect size
+(<a 
+href="#Xcohen1977">Cohen</a>,&#x00A0;<a 
+href="#Xcohen1977">1977</a>,&#x00A0;<a 
+href="#Xcohen1992">1992</a>) is in direct contradiction with <a 
+href="#Xsaylor2016">Saylor and Sundell</a>&#x00A0;(<a 
+href="#Xsaylor2016">2016</a>)&#8217;s assessment that sample size
+dependence is actually a desirable quality.
+
+<!--l. 565--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-60003"></a>Non-parametric statistics</h3>
+<!--l. 568--><p class="noindent" >The chi-square distance discussed in the previous section is naturally suited to categorical variables (e.g., sandstone
+petrography,&#x00A0;<a 
+href="#Xweltje2002">Weltje</a>,&#x00A0;<a 
+href="#Xweltje2002">2002</a>), and not so much to continuous variables such as geochronological dates. Although it is
+certainly possible to plot geochronological data as a histogram and treat the resulting bin counts as categorical
+variables, this procedure requires the analyst to make a number of rather arbitrary design decisions.
+First of all, (s)he must choose an appropriate number of bins. Second, (s)he must decide where to
+place these bins. As a general rule of thumb, one should strive to do this in such as way that the
+expected counts for the majority of bins is least 10 items, although acceptable results are obtained
+even when the minimum expected number of counts is as low as 1-4 (<a 
+href="#Xfienberg1979">Fienberg</a>,&#x00A0;<a 
+href="#Xfienberg1979">1979</a>). Although this
+binning procedure yielded good results in Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:X2 --></a>, these would have been (slightly) different had a
+different set of bins been selected. The requirement to bin the data also reduces the ability of the
+chi-square distance to detect all but the crudest differences between age distributions. For example, in
+the two-bin example of Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:X2 --></a>, the chi-square approach hinges on the gradual shift of the three
+distributions towards older ages. But it would be unable to detect more subtle changes in shape. Consider
+distribution <span 
+class="cmmi-10">B </span>as an example (Figure&#x00A0;<a 
+href="#x1-10081">1<!--tex4ht:ref: fig:PDFs --></a>.B). This distribution consists of five piecewise uniform &#8216;blocks&#8217;.
+Three of these blocks fall below the 125&#x00A0;Ma cutoff value used to divide the population into two bins.
+Now, suppose that these three sub-populations were merged into one big block, a single bell curve, or
+any other shape. The chi-square test would be unable to &#8216;see&#8217; the difference between those different
+options.<br 
+class="newline" />
+<!--l. 597--><p class="indent" >   These problems can be avoided by using non-parametric dissimilarity measures that do not require binning. The
+oldest and most widely used of these is the Kolmogorov-Smirnov (KS) statistic (<a 
+href="#Xmassey1951">Massey</a>,&#x00A0;<a 
+href="#Xmassey1951">1951</a>). Given two samples
+<span 
+class="cmmi-10">x </span>= <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,x</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">} </span>and <span 
+class="cmmi-10">y </span>= <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">y</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,y</span><sub><span 
+class="cmmi-7">m</span></sub><span 
+class="cmsy-10">}</span>, the KS statistic is defined as the maximum vertical difference between two
+empirical cumulative distribution functions (ecdf, also known as Cumulative Age Distributions or CADs in the
+context of detrital geochronology,&#x00A0;<a 
+href="#Xvermeesch2007a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2007a">2007</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6001r5"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v710x.png" alt="KS (x,y) = t&isin;m{axx,y}|Fx(t) &minus; Fy(t)|
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 609--><p class="nopar" >
+<!--l. 611--><p class="indent" >   where <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">x</span></sub>(<span 
+class="cmmi-10">t</span>) and <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">y</span></sub>(<span 
+class="cmmi-10">t</span>) are the proportion of dates in samples <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y </span>that are younger than <span 
+class="cmmi-10">t</span>. The
+KS-statistic spans values between zero (perfect overlap between the two distributions) and one (no
+overlap between the two distributions). Thus, the KS-dissimilarity can be thought of as the fractional
+difference between two distributions. The KS statistic, like the chi-square statistic, also changes with
+increasing sample size. But unlike the chi-square test, the Kolmogorov-Smirnov test does not have a
+well-defined effect size (<a 
+href="#Xvermeesch2016c">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2016c">2016</a>). It is therefore not possible to make analytical predictions about
+statistical power, and there is no KS-equivalent to the non-central chi-square distribution. However, it is
+possible to assess power by simulation. Figure&#x00A0;<a 
+href="#x1-60023">3<!--tex4ht:ref: fig:KS --></a> shows the KS-distribution for two samples drawn from
+the same population (<span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>) and for two samples drawn from populations <span 
+class="cmmi-10">D </span>and <span 
+class="cmmi-10">F </span>(<span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">a</span></sub>), respectively,
+using sample sizes of <span 
+class="cmmi-10">n </span>= 20 and <span 
+class="cmmi-10">n </span>= 200. The increase in sample size results in a narrowing of the
+KS-distribution, and a shift towards smaller values, which is most pronounced for the null hypothesis
+
+(Figure&#x00A0;<a 
+href="#x1-60023">3<!--tex4ht:ref: fig:KS --></a>).<br 
+class="newline" />
+<!--l. 630--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-60023"></a>
+
+<!--l. 632--><p class="noindent" ><a href="disspaper_v711x.png"><img 
+src="disspaper_v711x.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="disspaper_v711x.png" src="KS.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">The expected distribution (based on 1000 simulations) of the Kolmogorov-Smirnov (KS) statistic
+comparing one sample collected from population <span 
+class="cmmi-10">E </span>with another sample from the same population (<span 
+class="cmmi-10">H</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>,
+blue distributions), or with a sample from population <span 
+class="cmmi-10">F </span>(<span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">a</span></sub>, red distributions), for sample sizes of <span 
+class="cmmi-10">n </span>= 20
+(histograms) and <span 
+class="cmmi-10">n </span>= 200 dates per sample (continuous curves).</span></div><!--tex4ht:label?: x1-60023 -->
+
+<!--l. 641--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 643--><p class="indent" >   Like the chi-square statistic, the Kolmogorov-Smirnov statistic also forms the basis of a statistical hypothesis
+test. This proceeds in exactly the same fashion as the chi-square test. Given some data, we calculate the KS-statistic
+and the probability (p-value) of observing a value at least as extreme as this statistic under the null distribution.
+Again, the p-value depends not only on the true difference between the populations from which the two
+samples were drawn, but also on sample size. And again, the power of the KS-test to resolve even
+the tiniest difference between two detrital populations monotonically increases with sample size. In
+the absence of a sample effect size, the KS-test is not particularly useful for detrital geochronology.
+The KS-statistic, however, is very useful for multi-sample comparisons by Multidimensional Scaling
+(MDS,&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>) analysis. Further details of this will be provided in Section&#x00A0;<a 
+href="#x1-100005">5<!--tex4ht:ref: sec:multisample --></a>. The KS-statistic and -test
+are relatively insensitive to differences between the tails of distributions (Figure&#x00A0;<a 
+href="#x1-60064">4<!--tex4ht:ref: fig:KolmoKuiper --></a>). A host of alternative
+nonparametric statistics have been proposed to address this issue. Two examples of this are the Kuiper
+statistic<span class="footnote-mark"><a 
+href="disspaper_v72.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-6003f1"></a>
+(<a 
+href="#Xkuiper1960">Kuiper</a>,&#x00A0;<a 
+href="#Xkuiper1960">1960</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6004r6"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v712x.png" alt="Kuip (x,y) = max  [Fx(t) &minus; Fy (t),0]+ max  [Fy(t)&minus; Fx(t),0]
+            t&isin;{x,y}                t&isin;{x,y}
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 671--><p class="nopar" >
+<!--l. 673--><p class="indent" >   and the Cram&eacute;r-von-Mises statistic (<a 
+href="#Xanderson1962">Anderson</a>,&#x00A0;<a 
+href="#Xanderson1962">1962</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6005r7"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v713x.png" alt="                   +&int;&infin;
+            -nxny--               2
+CvM  (x,y) = nx + ny   [Fx (t)&minus; Fy(t)] dF{x,y}
+                  &minus; &infin;
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 680--><p class="nopar" >
+<!--l. 682--><p class="indent" >   where <span 
+class="cmmi-10">F</span><sub><span 
+class="cmsy-7">{</span><span 
+class="cmmi-7">x,y</span><span 
+class="cmsy-7">}</span></sub> is the CAD of the pooled samples <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y</span>, and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">x</span></sub> and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">y</span></sub> are the number of dates contained in
+them.
+
+<!--l. 685--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-60064"></a>
+
+<!--l. 687--><p class="noindent" ><a href="disspaper_v714x.png"><img 
+src="disspaper_v714x.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="disspaper_v714x.png" src="KolmoKuiper.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">The Kolmogorov-Smirnov (red) and Kuiper (blue) statistics are equally sensitive to the difference
+between sample distributions <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y</span>, which are laterally offset with respect to each other. The Kuiper
+statistic is more sensitive than the KS-statistic to the difference between sample distributions <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">z</span>, which
+lies in their tails.</span></div><!--tex4ht:label?: x1-60064 -->
+
+<!--l. 695--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-70004"></a>Ad-hoc dissimilarity measures</h3>
+<!--l. 700--><p class="noindent" >Geochronological dates are associated with analytical uncertainties, which can range from <span 
+class="cmmi-10">&#x003C;</span>0.1% (TIMS U-Pb
+dating) to <span 
+class="cmmi-10">&#x003E;</span>100% (fission tracks). None of the dissimilarity measures proposed thus far <span 
+class="cmti-10">explicitly </span>take into account
+these uncertainties. In a way, doing so is not necessary for reasons that were already briefly touched on in Section&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>.
+Any distribution of dates represents the convolution of a true age distribution with an error distribution. If the
+latter is identical for all the samples under consideration, then the dissimilarity measures will only encode differences
+between the age distributions (plus random sampling fluctuations). Thus, it is generally not necessary to explicitly
+account for the analytical uncertainties, even when they are large and vary between grains. Nevertheless, several
+ad-hoc approaches have been developed by geologists to achieve this very goal. This Section will discuss three of
+these approaches: likeness and cross-correlation (Section&#x00A0;<a 
+href="#x1-80004.1">4.1<!--tex4ht:ref: sec:LR2 --></a>), and the Sircombe-Hazelton L2 norm
+(Section&#x00A0;<a 
+href="#x1-90004.2">4.2<!--tex4ht:ref: sec:SH --></a>).
+<!--l. 718--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-80004.1"></a>likeness and cross-correlation</h4>
+<!--l. 721--><p class="noindent" >In many samples, the analytical uncertainty varies greatly between grains. In statistical terminology,
+this is known as &#8216;heteroscedasticity&#8217;. The heteroscedasticity of geochronological data generally has a
+physical origin. For example, the chemical concentration of the parent nuclide may vary significantly
+within a sample, making some grains easier to date precisely than others (<a 
+href="#Xgalbraith1990b">Galbraith and Green</a>,&#x00A0;<a 
+href="#Xgalbraith1990b">1990</a>).
+Whatever the origin of the heteroscedasticity may be, it seems reasonable to consider the precise dates to
+be more &#8216;valuable&#8217; than the imprecise ones. One popular way to visually express this point of view
+is the &#8216;Probability Density Plot&#8217; (PDP), which is not to be confused with the PDF of Equation&#x00A0;<a 
+href="#x1-1007r1">1<!--tex4ht:ref: eq:PDF --></a>.
+A PDP is constructed by summing a number of Gaussian distributions (one for each grain) whose
+means and standard deviations correspond to the individual dates and their analytical uncertainties,
+respectively:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8001r8"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v715x.png" alt="             n
+PDP  (t) = 1-&sum; N (t|&mu; = x,&sigma; = s)
+    x     n i=1          i     i
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 740--><p class="nopar" >
+<!--l. 742--><p class="indent" >   where <span 
+class="cmsy-10"><img 
+src="cmsy10-4e.png" alt="N" class="10x-x-4e" /></span><img 
+src="disspaper_v716x.png" alt="(t|&mu;,&sigma;)"  class="left" align="middle"> is the probability of <span 
+class="cmmi-10">t </span>under a Normal distribution wih mean <span 
+class="cmmi-10">&mu; </span>and standard
+deviation <span 
+class="cmmi-10">&sigma;</span>, <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> is the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> date and <span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">i</span></sub> is its analytical uncertainty. The most precise dates in a sample
+stand out as sharp peaks in a PDP, whereas imprecise dates are smoothed out. The idea behind this
+procedure is to emphasize the &#8216;good&#8217; data and reduce the prominence of the &#8216;bad&#8217; data (<a 
+href="#Xhurford1984">Hurford
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhurford1984">1984</a>;&#x00A0;<a 
+href="#Xbrandon1996">Brandon</a>,&#x00A0;<a 
+href="#Xbrandon1996">1996</a>). <a 
+href="#Xsatkoski2013">Satkoski et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsatkoski2013">2013</a>)&#8217;s likeness parameter, which is based on an approach used by
+<a 
+href="#Xamidon2005">Amidon et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xamidon2005">2005a</a>,<a 
+href="#Xamidon2005b">b</a>), is calculated by taking two PDPs and computing the area overlap between
+
+them<span class="footnote-mark"><a 
+href="disspaper_v73.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-8002f2"></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8003r9"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v717x.png" alt="              &infin;
+           1 &int;
+L(x,y) = 1&minus; 2  |PDPx (t) &minus; P DPy (t)|dt
+             0
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 762--><p class="nopar" >
+<!--l. 764--><p class="indent" >   <a 
+href="#Xsaylor2012">Saylor et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsaylor2012">2012</a>,&#x00A0;<a 
+href="#Xsaylor2013">2013</a>)&#8217;s cross-correlation coefficient is obtained by evaluating the two PDPs
+at equally spaced points <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub> (for 1 <span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">t</span></sub>) and computing Pearson&#8217;s correlation coefficient for the
+scatterplot of <span 
+class="cmmi-10">PDP</span><sub><span 
+class="cmmi-7">x</span></sub>(<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>) against <span 
+class="cmmi-10">PDP</span><sub><span 
+class="cmmi-7">y</span></sub>(<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>). This procedure was inspired by similar approaches in image
+processing (<a 
+href="#Xlewis1995">Lewis</a>,&#x00A0;<a 
+href="#Xlewis1995">1995</a>;&#x00A0;<a 
+href="#Xpan2009">Pan et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpan2009">2009</a>). But whereas digital images are naturally divided into pixels,
+cross-correlating PDPs requires discretisation of continuous functions. This first point of criticism will
+be revisited later in this Section. Both the likeness and cross-correlation coefficients take on values
+between 0 and 1. In this respect they behave similarly to the KS and Kuiper statistics. Unfortunately
+this is where the similarity ends, for neither the likeness nor the cross-correlation coefficient stand up
+to further scrutiny. The main problem with these approaches is their reliance on PDPs, which are
+fundamentally flawed as a data visualisation tool (<a 
+href="#Xgalbraith1998">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith1998">1998</a>;&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). In spite of their
+name, PDPs do not qualify as bona fide probability density estimators. For very precise data, they
+break down into sequences of spikes. For large samples of imprecise data, PDPs are curves that fit
+neither the true age distributions, nor the distributions of the measured dates (<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). These
+problems undermine the reliability of any derived quantities such as likeness and cross-correlation, and
+further mathematical procedures that are based on these dissimilarity measures (e.g.,&#x00A0;<a 
+href="#Xsundell2017">Sundell and
+Saylor</a>,&#x00A0;<a 
+href="#Xsundell2017">2017</a>). Let us illustrate this with two synthetic yet realistic examples (Figure&#x00A0;<a 
+href="#x1-80045">5<!--tex4ht:ref: fig:highprecisionLR2 --></a>). The first example
+compares two samples of 20 dates that were drawn from population <span 
+class="cmmi-10">A </span>with a <span 
+class="cmmi-10">&sigma; </span>= 0<span 
+class="cmmi-10">.</span>05&#x00A0;Ma Gaussian
+analytical error (Figure&#x00A0;<a 
+href="#x1-80045">5<!--tex4ht:ref: fig:highprecisionLR2 --></a>). This example emulates the case of a TIMS U-Pb dataset with better than 1
+permil precision. As predicted before and shown in Figure&#x00A0;<a 
+href="#x1-80045">5<!--tex4ht:ref: fig:highprecisionLR2 --></a>, the corresponding PDPs consist of a
+succession of sharp spikes that do not overlap between the two samples, resulting in a likeness value of
+0.21% and a cross-correlation of 0.00077. These extremely low values imply that the two samples were
+collected from extremely dissimilar populations. This is an absurd conclusion given that they were,
+in fact, sampled from exactly the same population. For comparison, the KS and Kuiper distances
+between the two samples are 0.15 and 0.25, respectively, which correctly identifies them as being very
+similar.<br 
+class="newline" />
+<!--l. 804--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-80045"></a>
+
+<!--l. 806--><p class="noindent" ><a href="disspaper_v718x.png"><img 
+src="disspaper_v718x.png" alt="PIC" width=600></a><!--tex4ht:graphics  
+name="disspaper_v718x.png" src="highprecisionLR2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">Two samples <span 
+class="cmmi-10">j </span>and <span 
+class="cmmi-10">k </span>were drawn from population <span 
+class="cmmi-10">A </span>with 0.05&#x00A0;Ma analytical uncertainties (1<span 
+class="cmmi-10">&sigma;</span>).
+Left: due to the high precision, the Probability Density Plots (PDPs) of the two samples consist of a number
+of spikes resulting in an extremely low value of 0.21% for <a 
+href="#Xsatkoski2013">Satkoski et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsatkoski2013">2013</a>)&#8217;s likeness parameter. Right:
+evaluating the two PDPs at 200 equally spaced points and plotting the corresponding values against each
+other yields a cross-correlation coefficient (<a 
+href="#Xsaylor2013">Saylor et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsaylor2013">2013</a>) of only 7<span 
+class="cmmi-10">.</span>7<span 
+class="cmsy-10">&#x00D7;</span>10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">4</span></sup>. These results demonstrate
+that neither likeness nor cross-correlation are viable dissimilarity measures.</span></div><!--tex4ht:label?: x1-80045 -->
+
+<!--l. 818--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 820--><p class="indent" >   As a second example, let us now investigate what happens when the analytical uncertainties are not small but
+large. Consider two uniform age distributions <span 
+class="cmmi-10">J </span>and <span 
+class="cmmi-10">K </span>that range from 40 to 50&#x00A0;Ma and from 100 to 110&#x00A0;Ma,
+respectively (Figure&#x00A0;<a 
+href="#x1-80056">6<!--tex4ht:ref: fig:lowprecisionLR2 --></a>.i). Suppose that we collect one large sample (<span 
+class="cmmi-10">n &#x003E; </span>100 dates, say) from each of these
+populations, with 10&#x00A0;Ma measurement uncertainties at 1<span 
+class="cmmi-10">&sigma;</span>. The probability distributions of the dates then range
+from <span 
+class="cmsy-10">&sim;</span>15&#x00A0;Ma to <span 
+class="cmsy-10">&sim;</span>75&#x00A0;Ma for the first sample and from <span 
+class="cmsy-10">&sim;</span>75 to <span 
+class="cmsy-10">&sim;</span>135&#x00A0;Ma for the second sample. Thus, there is no
+overlap between the PDFs of either the ages or the dates (Figure&#x00A0;<a 
+href="#x1-80056">6<!--tex4ht:ref: fig:lowprecisionLR2 --></a>.ii). However, when we construct the PDPs of
+the two samples, this double-smooths the age distribution by adding a second convolution with the
+error distribution. As a result, the PDPs range from <span 
+class="cmsy-10">&sim;</span>0&#x00A0;Ma to <span 
+class="cmsy-10">&sim;</span>90&#x00A0;Ma for the first sample and from
+<span 
+class="cmsy-10">&sim;</span>60&#x00A0;Ma to <span 
+class="cmsy-10">&sim;</span>150 for the second one (Figure&#x00A0;<a 
+href="#x1-80056">6<!--tex4ht:ref: fig:lowprecisionLR2 --></a>.iii). Thus, there exists a substantial overlap between
+the PDPs, which results in non-zero likeness and cross-correlation coefficients. Again, likeness and
+(particularly) cross-correlation are producing incorrect results that do not improve by increasing sample
+size.<br 
+class="newline" />
+<!--l. 841--><p class="indent" >   The above two examples demonstrate that likeness and cross-correlation of PDPs are built on shaky foundations
+and do not qualify as valid dissimilarity measures for detrital geochronology. Replacing PDPs with Kernel Density
+Estimates (KDEs,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>), as briefly mentioned by <a 
+href="#Xsatkoski2013">Satkoski et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsatkoski2013">2013</a>), alleviates some of these
+problems but also introduces two new problems. First, recall that the main advantage of KDEs over histograms
+is that they are continuous functions that do not require binning. It is awkward to then discretise
+these smooth curves into regular time intervals for cross-correlation. Using KDEs instead of PDPs also
+produces another problem, which is how to select the bandwidth. This issue will be discussed in more
+detail in the following Section, which introduces our final dissimilarity measure, the Sircombe-Hazelton
+L2-norm.
+<!--l. 855--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-80056"></a>
+
+<div class="minipage">
+<!--l. 858--><p class="noindent" ><center><a href="disspaper_v719x.png"><img 
+src="disspaper_v719x.png" alt="PIC" width=100></a></center><!--tex4ht:graphics  
+name="disspaper_v719x.png" src="lowprecisionLR2.pdf"  
+-->
+</div> <div class="minipage"> <div class="caption" 
+><span class="id">Figure&#x00A0;6: </span><span  
+class="content">(i) Two piecewise uniform populations
+<span 
+class="cmmi-10">J </span>(red) and <span 
+class="cmmi-10">K </span>(blue); (ii) two samples <span 
+class="cmmi-10">l </span>(red) and
+<span 
+class="cmmi-10">m </span>(blue), drawn from <span 
+class="cmmi-10">J </span>and <span 
+class="cmmi-10">K</span>, respectively, and
+affected by 10&#x00A0;Ma analytical uncertainties (1<span 
+class="cmmi-10">&sigma;</span>);
+(iii) the PDPs of the two samples are smoothed
+versions of the distributions of the dates shown
+in the previous panel; this results in a partial
+overlap  of  the  two  curves,  causing  (iv)  <a 
+href="#Xsaylor2013">Saylor
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsaylor2013">2013</a>)&#8217;s cross-correlation coefficient to be
+significantly greater than zero. This is simply an
+artifact  of  the  use  of  PDPs  and  says  nothing
+about the data.</span></div><!--tex4ht:label?: x1-80056 --></div>
+
+<!--l. 872--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-90004.2"></a>Sircombe-Hazelton</h4>
+<!--l. 877--><p class="noindent" >A Kernel Density Estimate (KDE) is defined as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r10"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v720x.png" alt="           1-&sum;n
+KDEx  (t) = n    K(t|xi,bw)
+             i=1
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 882--><p class="nopar" >
+<!--l. 884--><p class="indent" >   where <span 
+class="cmsy-10"><img 
+src="cmsy10-4b.png" alt="K" class="10x-x-4b" /> </span>is the &#8216;kernel&#8217; and <span 
+class="cmmi-10">bw </span>is the &#8216;bandwidth&#8217; (<a 
+href="#Xsilverman1986">Silverman</a>,&#x00A0;<a 
+href="#Xsilverman1986">1986</a>;&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). In this paper we will
+assume the kernel to be Gaussian, in which case
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r11"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v721x.png" alt="           1 &sum;n
+KDEx  (t) =--   N (t|&mu; = xi,&sigma; = bw )
+           n i=1
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 891--><p class="nopar" >
+<!--l. 893--><p class="indent" >   Note the similarity in form between the definition of a KDE (Equation&#x00A0;<a 
+href="#x1-9002r11">11<!--tex4ht:ref: eq:normKDE --></a>) and that of a PDP (Equation&#x00A0;<a 
+href="#x1-8001r8">8<!--tex4ht:ref: eq:PDP --></a>).
+Herein lies the source of much confusion. For small samples, the bandwidth (<span 
+class="cmmi-10">bw</span>) is greater than the analytical
+precision (<span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">i</span></sub>) whereas for large samples the opposite is true. Thus, the PDP does not converge to a KDE at large
+sample sizes, contrary to claims by <a 
+href="#Xpullen2014">Pullen et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xpullen2014">2014</a>). <a 
+href="#Xsircombe2004a">Sircombe and Hazelton</a>&#x00A0;(<a 
+href="#Xsircombe2004a">2004</a>) define a Kernel Functional
+Estimate (KFE) as follows:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9003r12"></a>
+   <center class="math-display" >
+
+<img 
+src="disspaper_v722x.png" alt="             n   (            &#x2218; ------)
+KF Ex (t) = 1&sum;  N   t|&mu; = xi,&sigma; =   c2&minus; s2
+           ni=1                  1   i
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 906--><p class="nopar" >
+<!--l. 908--><p class="indent" >   where <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub> <span 
+class="cmmi-10">&#x003E;</span> max(<span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,s</span><sub><span 
+class="cmmi-7">n</span></sub>). A KFE is a special case of a KDE in which the bandwidth is allowed to vary between
+sample points so as to smooth the precise data more than the imprecise data. Recall that a PDP smooths the
+precise data less than the imprecise data. Thus, KFEs and PDPs work in <span 
+class="cmti-10">opposite </span>ways. KFEs are useful when
+comparing two datasets that were acquired under different analytical conditions resulting in widely differing
+analytical uncertainties. As an example, let us compare sample <span 
+class="cmmi-10">m</span>, which was drawn from population <span 
+class="cmmi-10">K</span>
+(Section&#x00A0;<a 
+href="#x1-80004.1">4.1<!--tex4ht:ref: sec:LR2 --></a>), with a second sample (<span 
+class="cmmi-10">o</span>) drawn from this same population but with a 10 times smaller analytical
+uncertainty (1&#x00A0;Ma instead of 10&#x00A0;Ma). Despite being drawn from the same population, the dates in samples <span 
+class="cmmi-10">m </span>and <span 
+class="cmmi-10">o</span>
+are distributed differently. The sample distribution of <span 
+class="cmmi-10">m </span>ranges from 80-130&#x00A0;Ma, whereas that of sample <span 
+class="cmmi-10">o</span>
+only ranges from 98-112&#x00A0;Ma (Figure&#x00A0;<a 
+href="#x1-90057">7<!--tex4ht:ref: fig:SH --></a>). The PDPs of the two samples look even more different, with
+ranges of 72-138&#x00A0;Ma and 97-113&#x00A0;Ma, respectively. The KFEs, however, are identical (Figure&#x00A0;<a 
+href="#x1-90057">7<!--tex4ht:ref: fig:SH --></a>), which
+makes them an effective tool to separate geologically meaningful differences from analytically induced
+differences between samples. KFEs can be used as the basis of a dissimilarity measure (<a 
+href="#Xsircombe2004a">Sircombe and
+Hazelton</a>,&#x00A0;<a 
+href="#Xsircombe2004a">2004</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9004r13"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v723x.png" alt="          &#x2218;--------------------------
+           &int; &infin;                     2
+SH (x,y) =       [KF Ex (t)&minus; KF  Ey(t)] dt
+             &minus;&infin;
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 932--><p class="nopar" >
+<!--l. 934--><p class="indent" >   Note that the actual value of this distance is rather arbitrary as it depends on the choice of <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub> in Equation&#x00A0;<a 
+href="#x1-9003r12">12<!--tex4ht:ref: eq:KFE --></a>. In
+this respect, the SH-distance is similar to the chi-square dissimilarity, which depends on the choice of bin width. But
+as long as the same value is used for all samples, the relative differences between the SH-distances do carry
+meaningful information about the (dis)similarities of geochronological data. Nevertheless, for datasets that do not
+exhibit great inter-sample differences in analytical precision, the additional smoothing required by the SH-method is
+arguably not justified.
+<!--l. 945--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-90057"></a>
+
+<!--l. 947--><p class="noindent" ><a href="disspaper_v724x.png"><img 
+src="disspaper_v724x.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="disspaper_v724x.png" src="SH.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7: </span><span  
+class="content">(i) the Kernel Density Estimate (KDE) of sample <span 
+class="cmmi-10">m</span>, which was drawn from population <span 
+class="cmmi-10">K </span>with
+<span 
+class="cmmi-10">&sigma;</span>=10&#x00A0;Ma analytical uncertainties; (ii) the KDE of sample <span 
+class="cmmi-10">o</span>, which was also drawn from population <span 
+class="cmmi-10">K</span>, but
+with <span 
+class="cmmi-10">&sigma;</span>=1&#x00A0;Ma analytical uncertainties; (iii) the PDP of sample <span 
+class="cmmi-10">m</span>, which is double smoothed with respect to
+<span 
+class="cmmi-10">K</span>; (iv) the PDP of sample <span 
+class="cmmi-10">o</span>, which is smoothed less than that of <span 
+class="cmmi-10">m </span>due to the smaller analytical uncertainties
+of <span 
+class="cmmi-10">o </span>compared to <span 
+class="cmmi-10">m</span>; (v) the Kernel Functional Estimate (KFE) of sample <span 
+class="cmmi-10">m </span>with <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmr-7">2</span></sup> = 250 in Equation&#x00A0;<a 
+href="#x1-9003r12">12<!--tex4ht:ref: eq:KFE --></a>;
+(vi) the KFE of sample <span 
+class="cmmi-10">o </span>using the same value of <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmr-7">2</span></sup>, which smooths this precise dataset more than sample
+<span 
+class="cmmi-10">m</span>.</span></div><!--tex4ht:label?: x1-90057 -->
+
+<!--l. 961--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-100005"></a>Multi-sample comparison</h3>
+<!--l. 966--><p class="noindent" >So far we have been mainly concerned with the comparison of pairs of samples. However, most geological studies
+require the simultaneous comparison of multiple samples. Such multi-sample studies become increasingly common as
+the analytical cost of detrital geochronology steadily drops with time (<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). Multi-sample
+comparison adds a second layer of statistical complexity to the interpretation of detrital age spectra. A common
+approach to making this exercise more objective is to tabulate the p-values of statistical tests such as
+Kolmogorov-Smirnov and highlight all those values that are less than 0.05, say. Besides the usual caveats regarding
+statistical hypothesis tests (Section&#x00A0;<a 
+href="#x1-50002.3">2.3<!--tex4ht:ref: sec:p-values --></a>), such p-value tables also increase the occurrence of Type-I errors. To
+illustrate this point, consider a 9 <span 
+class="cmsy-10">&#x00D7; </span>9 table of p-values obtained by comparing 10 samples of 100 ages drawn
+from population <span 
+class="cmmi-10">A</span>, using the KS-test. In this synthetic case, the null hypothesis is true and therefore
+we would expect the p-values in our table to fall above the <span 
+class="cmmi-10">&alpha; </span>= 0<span 
+class="cmmi-10">.</span>05 cutoff. For any given pair of
+samples, there is a 1/20 chance of incurring a Type-I error. But in a 9 <span 
+class="cmsy-10">&#x00D7; </span>9 table of pairwise comparisons,
+there are 9 <span 
+class="cmsy-10">&#x00D7; </span>8<span 
+class="cmmi-10">&#x2215;</span>2 = 36 such comparisons. This increases the chance of incurring a Type-I error to
+100(1 <span 
+class="cmsy-10">&minus; </span>[19<span 
+class="cmmi-10">&#x2215;</span>20]<sup><span 
+class="cmr-7">36</span></sup>) = 84% (Table&#x00A0;<a 
+href="#x1-100013">3<!--tex4ht:ref: tab:p-values --></a>). In other words, the occurrence of &#8216;significant&#8217; differences between age
+distributions in p-value tables does not necessarily mean that the underlying population are different as well. One
+way to address this issue is to simply reduce the p-value cutoff from <span 
+class="cmmi-10">&alpha; </span>to <span 
+class="cmmi-10">&alpha;&#x2215;N</span>, where <span 
+class="cmmi-10">N </span>is the number
+of pairwise comparisons. This is known as the &#8216;Bonferroni correction&#8217; (<a 
+href="#Xrice1995">Rice</a>,&#x00A0;<a 
+href="#Xrice1995">1995</a>). Unfortunately,
+the Bonferroni correction is overly conservative. It reduces statistical power and increases the chance
+of committing a Type-II error (<a 
+href="#Xnakagawa2004">Nakagawa</a>,&#x00A0;<a 
+href="#Xnakagawa2004">2004</a>). It is probably better to abandon p-value tables
+altogether.<br 
+class="newline" />
+   <div class="table">
+
+<!--l. 999--><p class="indent" >   <a 
+ id="x1-100013"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-8" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-8-1g"><col 
+id="TBL-8-1"><col 
+id="TBL-8-2"><col 
+id="TBL-8-3"><col 
+id="TBL-8-4"><col 
+id="TBL-8-5"><col 
+id="TBL-8-6"><col 
+id="TBL-8-7"><col 
+id="TBL-8-8"><col 
+id="TBL-8-9"><col 
+id="TBL-8-10"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-8-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-1"  
+class="td11"> &#x00A0;  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-2"  
+class="td11">  2    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-3"  
+class="td11">  3    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-4"  
+class="td11">  4    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-5"  
+class="td11">  5    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-6"  
+class="td11">  6    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-7"  
+class="td11">  7    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-8"  
+class="td11">  8    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-9"  
+class="td11">  9    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-10"  
+class="td11">  10   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-2-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">1</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-2"  
+class="td11"> 0.81  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-3"  
+class="td11"> 0.28  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-4"  
+class="td11"> 0.47  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-5"  
+class="td11"> 0.58  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-6"  
+class="td11"> 0.37  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-7"  
+class="td11"> 0.70  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-8"  
+class="td11"> 0.81  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-9"  
+class="td11"> 0.58  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-10"  
+class="td11"> 0.70  </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">2</div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-2"  
+class="td11"> &#x00A0; </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-3"  
+class="td11"> 0.47 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-4"  
+class="td11"> 0.58 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-5"  
+class="td11"> 0.97 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-6"  
+class="td11"> 0.58 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-7"  
+class="td11"> 0.47 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-8"  
+class="td11"> 0.97 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-9"  
+class="td11"> 0.91 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-10"  
+class="td11"> 0.37</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-5-1"  
+class="td11"></td></tr><tr 
+class="cline"><td></td><td></td><td></td><td></td><td></td><td><hr></td><td></td><td></td><td></td><td></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-6-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">3</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-2"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-3"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-4"  
+class="td11"> 0.81  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-5"  
+class="td11"> 0.58  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-6"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">0.02</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-7"  
+class="td11"> 0.08  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-8"  
+class="td11"> 0.15  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-9"  
+class="td11"> 0.05  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-7-10"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">0.04</div></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-8-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td></td><td></td><td></td><td></td><td><hr></td><td></td><td></td><td></td><td></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-9-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">4</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-2"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-3"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-4"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-5"  
+class="td11"> 0.97  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-6"  
+class="td11"> 0.11  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-7"  
+class="td11"> 0.37  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-8"  
+class="td11"> 0.81  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-9"  
+class="td11"> 0.15  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-10-10"  
+class="td11"> 0.11  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">5</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-2"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-3"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-4"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-5"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-6"  
+class="td11"> 0.47  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-7"  
+class="td11"> 0.21  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-8"  
+class="td11"> 0.81  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-9"  
+class="td11"> 0.58  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-11-10"  
+class="td11"> 0.37  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-12-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td></td><td></td><td></td><td></td><td></td><td><hr></td><td></td><td></td><td></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">6</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-2"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-3"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-4"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-5"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-6"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-7"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">0.02</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-8"  
+class="td11"> 0.47  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-9"  
+class="td11"> 0.70  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-13-10"  
+class="td11"> 0.47  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-14-1"  
+class="td11">
+</td></tr><tr 
+class="cline"><td></td><td></td><td></td><td></td><td></td><td></td><td><hr></td><td></td><td></td><td></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">7</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-2"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-3"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-4"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-5"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-6"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-7"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-8"  
+class="td11"> 0.47  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-9"  
+class="td11"> 0.28  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-15-10"  
+class="td11"> 0.37  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-16-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">8</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-2"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-3"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-4"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-5"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-6"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-7"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-8"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-9"  
+class="td11"> 0.81  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-16-10"  
+class="td11"> 0.47  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-17-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-1"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">9</div> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-2"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-3"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-4"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-5"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-6"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-7"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-8"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-9"  
+class="td11">  &#x00A0;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-17-10"  
+class="td11"> 0.47  </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;3: </span><span  
+class="content">Table of Kolmogorov-Smirnov p-values comparing 10 random samples of 100 ages from population
+<span 
+class="cmmi-10">A </span>with each other. Three of these values fall below the <span 
+class="cmmi-10">&alpha; </span>= 0<span 
+class="cmmi-10">.</span>05 cutoff that is typically used for a statistical
+hypothesis test. In other words, three Type-I errors have been committed in this multiple comparison exercise.</span></div><!--tex4ht:label?: x1-100013 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 1036--><p class="indent" >   Simply tabulating the dissimilarities instead of the p-values works better but requires that sample sizes do not
+vary much between samples. Furthermore, visual interpretation of such tables becomes progressively more
+challenging with increasing number of samples. The number of pairwise comparisons between <span 
+class="cmmi-10">N </span>samples is
+<span 
+class="cmmi-10">N</span>(<span 
+class="cmmi-10">N </span><span 
+class="cmsy-10">&minus; </span>1)<span 
+class="cmmi-10">&#x2215;</span>2, so that <span 
+class="cmmi-10">N </span>= 10 samples may be compared in 45 possible ways, whereas <span 
+class="cmmi-10">N </span>= 100 samples represent no
+fewer than 4500 pairwise comparisons. It is more productive in such cases to explore alternative, graphical means of
+interpreting the data. Multidimensional Scaling (MDS) is one example of such a method that has proven to be quite
+useful in this respect (<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). MDS takes a table of pairwise dissimilarities as input, and produces a set
+of two (or more) dimensional coordinates as output. The scatterplot of these coordinates represents a &#8216;map&#8217; in
+which similar samples plot close together and dissimilar samples plot far apart. If the dissimilarity
+measure fulfils the metric requirements (nonnegativity, symmetry and triangle inequality), then the
+configuration can be obtained by straightforward matrix algebra (<a 
+href="#Xyoung1938">Young and Householder</a>,&#x00A0;<a 
+href="#Xyoung1938">1938</a>). All the
+dissimilarity measures discussed in this paper fulfil the nonnegativity and symmetry requirements.
+The triangle inequality is fulfilled by the chi-square distance (<a 
+href="#Xmccune2002">McCune and Grace</a>,&#x00A0;<a 
+href="#Xmccune2002">2002</a>) and by the
+KS-statistic:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10002r14"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v725x.png" alt="KS  (x,z)  =  tm&isin;a{xx,y}|Fx (t)&minus; Fz(t)|
+          =   max  |Fx (t)&minus; Fy(t)+ Fy(t)&minus; Fz(t)|
+             t&isin;{x,y}
+          &le;  tm&isin;a{xy,z}|Fy(t)&minus; Fy(t)|+ tm&isin;a{yx,z} |Fy(t)&minus; Fz(t)|
+          =  KS (x,y)+ KS (y,z)
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 1068--><p class="nopar" >
+<!--l. 1070--><p class="indent" >   for any three samples <span 
+class="cmmi-10">x</span>, <span 
+class="cmmi-10">y </span>and <span 
+class="cmmi-10">z</span>. The Kuiper statistic obeys the triangle inequality for similar reasons, but the
+Cram&eacute;r-von-Mises statistic and variants thereof such as the Anderson-Darling statistic (<a 
+href="#Xanderson1954">Anderson and
+Darling</a>,&#x00A0;<a 
+href="#Xanderson1954">1954</a>) does not. For example, when inspecting the <span 
+class="cmmi-10">CvM</span>-dissimilarities of samples <span 
+class="cmmi-10">b</span>, <span 
+class="cmmi-10">c </span>and <span 
+class="cmmi-10">d</span>, it turns out
+that:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10003r15"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v726x.png" alt="CvM  (b,c)+ CvM (c,d) = 0.153 + 4.044 = 4.197 &#x003C; 30.196 = CvM (b,d)
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+
+<!--l. 1080--><p class="nopar" >
+<!--l. 1082--><p class="indent" >   Thus, the Cram&eacute;r-von-Mises statistic does not behave as a <span 
+class="cmti-10">bona fide </span>distance measure or &#8216;metric&#8217;. However,
+<a 
+href="#Xtorgerson1952">Torgerson</a>&#x00A0;(<a 
+href="#Xtorgerson1952">1952</a>) showed that it is easy to fix this violation of the triangle inequality by simply adding a
+constant (<span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">2</span></sub>, say) to the dissimilarities. For example, for our Cram<img 
+src="disspaper_v727x.png" alt="´er  "  class="acute" >-von-Mises example we can
+define:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10004r16"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v728x.png" alt="&delta;(x,y) = c2 + CvM (x,y)
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 1092--><p class="nopar" >
+<!--l. 1094--><p class="indent" >   Setting <span 
+class="cmmi-10">c</span><sub><span 
+class="cmr-7">2</span></sub> = 50, it is easy to see that:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10005r17"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v729x.png" alt="&delta;(b,c)+ &delta;(c,d) = 50.153+ 54.044 = 104.197 &#x003E; 80.196 = &delta;(b,d)
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 1099--><p class="nopar" >
+<!--l. 1101--><p class="indent" >   which fulfils the triangle inequality. Equation&#x00A0;<a 
+href="#x1-10004r16">16<!--tex4ht:ref: eq:torgerson --></a> is the simplest example of a transformation that
+converts dissimilaries into <span 
+class="cmti-10">disparities</span>. Generalising this concept to any monotonically increasing function
+further increases the flexibility of MDS (<a 
+href="#Xshepard1962">Shepard</a>,&#x00A0;<a 
+href="#Xshepard1962">1962</a>;&#x00A0;<a 
+href="#Xkruskal1978">Kruskal and Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>;&#x00A0;<a 
+href="#Xshepard1980">Shepard</a>,&#x00A0;<a 
+href="#Xshepard1980">1980</a>).
+In some cases, it even allows the condition of symmetry to be violated. Examples of this are travel
+distances by airplane or ship, which may depend on the wind direction or whether one sails up or
+down a river; or the level of physical attraction between two people, which is rarely symmetric. The
+<a 
+href="#Xshepard1962">Shepard</a>&#x00A0;(<a 
+href="#Xshepard1962">1962</a>) approach is referred to as <span 
+class="cmti-10">nonmetric </span>MDS. The <a 
+href="#Xyoung1938">Young and Householder</a>&#x00A0;(<a 
+href="#Xyoung1938">1938</a>) approach is
+called <span 
+class="cmti-10">classical </span>MDS, although confusingly this term is sometimes also used for the <a 
+href="#Xtorgerson1952">Torgerson</a>&#x00A0;(<a 
+href="#Xtorgerson1952">1952</a>)
+method, or even for any MDS algorithm, including nonmetric approaches, that are based on a single
+dissimilarity matrix (as opposed to 3-way MDS,&#x00A0;<a 
+href="#Xcarroll1970">Carroll and Chang</a>,&#x00A0;<a 
+href="#Xcarroll1970">1970</a>;&#x00A0;<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>).
+<br 
+class="newline" />
+<!--l. 1117--><p class="indent" >   <a 
+href="#Xvermeesch2013">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2013">2013</a>) proposed that, for the application of MDS to detrital geochronology, it is desirable for the
+dissimilarities to be independent of sample size. Only the chi-square effect size fulfils this requirement. Contrary to
+claims by <a 
+href="#Xvermeesch2013">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2013">2013</a>), the KS-dissimilarity is actually not independent of sample size, as discussed in
+
+Section&#x00A0;<a 
+href="#x1-60003">3<!--tex4ht:ref: sec:nonparametric --></a> and shown in Figure&#x00A0;<a 
+href="#x1-60023">3<!--tex4ht:ref: fig:KS --></a>. Fortunately, <a 
+href="#Xvermeesch2016c">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2016c">2016</a>) pointed out that <a 
+href="#Xvermeesch2013">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2013">2013</a>) was not only
+wrong about the KS-distance being independent of sample size, but also about the necessity of this independence
+requirement itself. In fact, such a condition would be incompatible with the non-negativity requirement for noisy
+data. This is because the error distribution of any strictly positive dissimilarity measure is inevitably
+skewed towards positive values. Consider, for example, the Euclidean distance between two points
+that are drawn from Normal distributions with zero mean and a standard deviation <span 
+class="cmmi-10">&sigma;</span>. The expected
+value for this distribution is <span 
+class="cmmi-10">&sigma;</span><img 
+src="disspaper_v730x.png" alt="&#x2218; ----
+  &pi; &#x2215;2"  class="sqrt" > (i.e., the mean of a Rayleigh distribution). If <span 
+class="cmmi-10">&sigma; </span>is the standard
+error of the mean, then it is easy to introduce a sample size dependence on the average Euclidean
+distance between points. Thus, even the Euclidean distance, which is the archetypal example of an
+MDS-worthy dissimilarity measure, does not fulfil the requirement of sample size independence. To see
+why this requirement is not necessary, let us consider the simple case of a three point comparison.
+Suppose that we have three samples <span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub>, <span 
+class="cmmi-10">y</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">z</span><sub><span 
+class="cmr-7">1</span></sub>, let <span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmr-7">1</span></sub>) and <span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,z</span><sub><span 
+class="cmr-7">1</span></sub>) be the dissimilarities
+between <span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">y</span><sub><span 
+class="cmr-7">1</span></sub> or <span 
+class="cmmi-10">z</span><sub><span 
+class="cmr-7">1</span></sub>, respectively. Further suppose that <span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmr-7">1</span></sub>) <span 
+class="cmmi-10">&#x003C; d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,z</span><sub><span 
+class="cmr-7">1</span></sub>). Next, consider a fourth
+sample <span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">2</span></sub> drawn from the same population as <span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub>. Assume that <span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">2</span></sub> contains a different number of
+dates than <span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub>, so that <span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmr-7">1</span></sub>)<span 
+class="cmmi-10">&ne;</span><span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmr-7">1</span></sub>) and <span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,z</span><sub><span 
+class="cmr-7">1</span></sub>)<span 
+class="cmmi-10">&ne;</span><span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,z</span><sub><span 
+class="cmr-7">1</span></sub>). In that case MDS will still work
+if <span 
+class="cmmi-10">d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmr-7">1</span></sub>) <span 
+class="cmmi-10">&#x003C; d</span>(<span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,z</span><sub><span 
+class="cmr-7">1</span></sub>). This is a much weaker requirement than sample size independence. It is a
+requirement that is fulfilled by the Euclidean distance, but also by the KS- and related dissimilarity
+measures.<br 
+class="newline" />
+<!--l. 1152--><p class="indent" >   As an example, Figure&#x00A0;<a 
+href="#x1-110018">8<!--tex4ht:ref: fig:MDS --></a> shows the MDS configuration of 14 samples <span 
+class="cmmi-10">a </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">h </span>and <span 
+class="cmmi-10">q </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">w</span>, whose sampling
+distributions are shown in Figure&#x00A0;<a 
+href="#x1-10081">1<!--tex4ht:ref: fig:PDFs --></a>. Recall that samples <span 
+class="cmmi-10">a,b,e </span>and <span 
+class="cmmi-10">f </span>were drawn from population <span 
+class="cmmi-10">D</span>, samples <span 
+class="cmmi-10">c </span>and
+<span 
+class="cmmi-10">g </span>from population <span 
+class="cmmi-10">E</span>, and samples <span 
+class="cmmi-10">d </span>and <span 
+class="cmmi-10">h </span>from population <span 
+class="cmmi-10">F</span>. Additional samples <span 
+class="cmmi-10">q </span>and <span 
+class="cmmi-10">u </span>were derived from
+population <span 
+class="cmmi-10">G</span>, samples <span 
+class="cmmi-10">r </span>and <span 
+class="cmmi-10">v </span>from population <span 
+class="cmmi-10">H</span>, and samples <span 
+class="cmmi-10">s </span>and <span 
+class="cmmi-10">w </span>from population <span 
+class="cmmi-10">I</span>. Samples
+<span 
+class="cmmi-10">a </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">d </span>and <span 
+class="cmmi-10">q </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">s </span>each contain <span 
+class="cmmi-10">&#x00A0;</span>20 single grain ages, whereas samples <span 
+class="cmmi-10">e </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">h </span>and <span 
+class="cmmi-10">u </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">w </span>contain an order
+of magnitude more dates. Despite the huge range in sample sizes, the MDS map shows a sensible
+configuration, correctly grouping all the samples that share the same population, irrespective of sample
+size. Nevertheless, it is also important to note that the differences between populations <span 
+class="cmmi-10">D </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">F </span>and
+<span 
+class="cmmi-10">G </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">I </span>are small in comparison with the statistical &#8216;noise&#8217; in the KS-dissimilarities of the small samples.
+This is the reason why 200-grain sample <span 
+class="cmmi-10">g </span>plots closer to 200-grain sample <span 
+class="cmmi-10">y </span>(which comes from a
+different population) than it does to 20-grain sample <span 
+class="cmmi-10">c </span>(which comes from the same population as
+<span 
+class="cmmi-10">g</span>).
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-110006"></a>Conclusions</h3>
+<!--l. 1173--><p class="noindent" >The effect size of parametric tests such as chi-square is the only way to compare the dissimilarity between two
+detrital age distributions in absolute terms and independent of sample size. Unfortunately, the chi-square effect size
+requires binning data and lacks the resolution to &#8216;see&#8217; the difference between subtlely different samples. Dissimilarity
+measures based on non-parametric statistics such as Kolmogorov-Smirnov or Kuiper are much better at recognising
+these differences, but do exhibit a dependence on sample size. This reduces their usefulness as an
+absolute point of comparison between samples of greatly different size. Fortunately, most detrital studies
+only rely on the relative differences between age distributions. The rank order of, say, the KS and
+Kuiper dissimilarities between samples, is independent of sample size and can be visualised by MDS
+analysis.<br 
+class="newline" />
+<!--l. 1188--><p class="indent" >   There exists some disagreement within the detrital geochronology community about the best way to deal with
+analytical uncertainty. This paper has reiterated the point previously made by <a 
+href="#Xvermeesch2012b">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2012b">2012</a>) that, as long as all
+the samples in a provenance study were analysed using similar laboratory conditions there is no real need to
+explicitly account for the analytical uncertainty. Deconvolution of the age distribution and the distribution of
+analytical uncertainties is notoriously difficult. But for the vast majority of provenance studies such deconvolution is
+not necessary, and it suffices that we directly compare the distribution of the dates. It is only when a provenance
+study combines samples analysed under different laboratory conditions exhibiting widely different precision that
+
+extra care must be taken. The Sircombe-Hazelton L2-norm has been specifically designed for this situation
+(Section&#x00A0;<a 
+href="#x1-90004.2">4.2<!--tex4ht:ref: sec:SH --></a>).<br 
+class="newline" />
+<!--l. 1204--><p class="indent" >   Detrital geochronology, like other areas within the Earth Sciences, is a field of research that increasingly depends
+on computing and statistics for data interpretation. It is not always easy to adapt existing statistical methods to
+Earth Science applications. The author of the present paper is not immune to these difficulties, as is evident from
+the Errata of his paper on Multidimensional Scaling (<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>,&#x00A0;<a 
+href="#Xvermeesch2014b">2014</a>,&#x00A0;<a 
+href="#Xvermeesch2016c">2016</a>) which, fortunately, do not seem
+to undermine the validity of that method. More serious examples of misused statistics are unpowered statistical
+hypothesis tests (<a 
+href="#Xziliak2008">Ziliak and McCloskey</a>,&#x00A0;<a 
+href="#Xziliak2008">2008</a>;&#x00A0;<a 
+href="#Xtrafimow2015">Trafimow and Marks</a>,&#x00A0;<a 
+href="#Xtrafimow2015">2015</a>), and the misunderstanding that PDPs
+are the same as KDEs due to their similar appearance (Equations&#x00A0;<a 
+href="#x1-8001r8">8<!--tex4ht:ref: eq:PDP --></a> and <a 
+href="#x1-9001r10">10<!--tex4ht:ref: eq:KDE --></a>). As difficult as it may be to get existing
+statistical methods right, inventing new ones is even more difficult. Likeness and cross-correlation are examples of
+statistical devices that appear sensible at first but do not stand up to further scrutiny. When assessing the
+performance of such <span 
+class="cmti-10">ad hoc </span>statistical methods, it is useful to explore their behaviour under asymptotic
+conditions. For example, one would expect statistical estimators of some unknown quantity to converge to
+the correct solution in the limit of infinite sample size and infinitessimal analytical uncertainty. This
+paper has shown that PDPs, likeness and cross-correlation do not fulfil this requirement. Given the
+difficulty of inventing new statistical methods, it is possibly best to avoid doing so altogether, unless this
+happens in collaboration with a mathematician. One successful example of this is the aforementioned
+L2-norm, which is the fruit of a collaboration between a geoscientist and a statistician (<a 
+href="#Xsircombe2004a">Sircombe and
+Hazelton</a>,&#x00A0;<a 
+href="#Xsircombe2004a">2004</a>).
+<!--l. 1233--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-110018"></a>
+
+<!--l. 1235--><p class="noindent" ><a href="disspaper_v731x.png"><img 
+src="disspaper_v731x.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="disspaper_v731x.png" src="MDS2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8: </span><span  
+class="content">Kolmogorov-Smirnov-based Multidimensional Scaling (MDS) configuration of samples <span 
+class="cmmi-10">a </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">h </span>and
+<span 
+class="cmmi-10">q</span><span 
+class="cmsy-10">&minus;</span><span 
+class="cmmi-10">w</span>, whose sampling distributions are shown in Figure&#x00A0;<a 
+href="#x1-10081">1<!--tex4ht:ref: fig:PDFs --></a>. black lines connect samples drawn from identical
+detrital populations. Despite an order of magnitude difference in sample size between samples <span 
+class="cmmi-10">a </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">e</span>, <span 
+class="cmmi-10">q </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">s</span>
+(20 grains each, blue) and <span 
+class="cmmi-10">d </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">h</span>, <span 
+class="cmmi-10">u </span><span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">w </span>(200 grains each, red), the MDS configuration correctly groups the
+samples according to provenance. This illustrates that the sample-size dependence of the KS-dissimilarity
+shown in Figure&#x00A0;<a 
+href="#x1-60023">3<!--tex4ht:ref: fig:KS --></a> does not pose a major problem for MDS analysis. The x- and y-scale are normalised to
+the sum of the squared Euclidean distances within the MDS configuration. </span></div><!--tex4ht:label?: x1-110018 -->
+
+<!--l. 1249--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="likesectionHead"><a 
+ id="x1-120006"></a>Appendix: power analysis and confidence intervals</h3>
+<!--l. 1253--><p class="noindent" >As the name suggests, the non-central chi-square distribution is shifted towards higher values with respect to the
+ordinary (&#8216;central&#8217;) chi-square distribution (Section&#x00A0;<a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:effectsize --></a>). It is not described by one but two parameters: the degrees
+of freedom, <span 
+class="cmmi-10">df</span>, and the &#8216;non-centrality parameter&#8217;, <span 
+class="cmmi-10">&lambda;</span>, which is a function of the effect size (<span 
+class="cmmi-10">&#x03F5;</span>) and sample size
+(<span 
+class="cmmi-10">n</span>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12001r18"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v732x.png" alt="      2
+&lambda; = n&#x03F5;
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 1263--><p class="nopar" >
+<!--l. 1265--><p class="indent" >   The expected value of the non-central chi-square distribution is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12002r19"></a>
+   <center class="math-display" >
+<img 
+src="disspaper_v733x.png" alt="X2 = df + &lambda;
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 1270--><p class="nopar" >
+<!--l. 1272--><p class="indent" >   This explains some important trends and patterns in Table&#x00A0;<a 
+href="#x1-20021">1<!--tex4ht:ref: tab:X2 --></a>. For example, <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">a,b</span>) <span 
+class="cmmi-10">&#x003C; X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">a,c</span>) <span 
+class="cmmi-10">&#x003C; X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">a,d</span>)
+because <span 
+class="cmmi-10">&#x03F5;</span>(<span 
+class="cmmi-10">a,b</span>) <span 
+class="cmmi-10">&#x003C; &#x03F5;</span>(<span 
+class="cmmi-10">a,c</span>) <span 
+class="cmmi-10">&#x003C; &#x03F5;</span>(<span 
+class="cmmi-10">a,b</span>). And <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">c,d</span>) <span 
+class="cmmi-10">&#x003C; X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>(<span 
+class="cmmi-10">g,h</span>) because <span 
+class="cmmi-10">n</span>(<span 
+class="cmmi-10">c</span>)<span 
+class="cmmi-10">,n</span>(<span 
+class="cmmi-10">d</span>) <span 
+class="cmmi-10">&#x003C; n</span>(<span 
+class="cmmi-10">g</span>)<span 
+class="cmmi-10">,n</span>(<span 
+class="cmmi-10">h</span>). Using
+the non-central chi-square distribution, it is possible to calculate the probability <span 
+class="cmmi-10">&beta; </span>of committing a
+Type-II error for any given effect size and sample size. This is done as follows. First, we look up the
+cutoff value of the central chi-square distribution for the confidence level and degrees of freedom of
+interest. For example, to compare two samples drawn from populations <span 
+class="cmmi-10">D </span>and <span 
+class="cmmi-10">E </span>using two histogram
+bins, we can choose <span 
+class="cmmi-10">&alpha; </span>= 0<span 
+class="cmmi-10">.</span>05 and <span 
+class="cmmi-10">df </span>= (2 <span 
+class="cmsy-10">&minus; </span>1)(2 <span 
+class="cmsy-10">&minus; </span>1) = 1. The resulting cutoff value for <span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> is
+3.84. Next, we look up the percentile corresponding to this value under a non-central distribution
+with one degree of freedom and a non-centrality parameter given by Equation&#x00A0;<a 
+href="#x1-12001r18">18<!--tex4ht:ref: eq:lambda --></a>. For example, when
+comparing samples and <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">c</span>, <span 
+class="cmmi-10">&lambda; </span>= 20 <span 
+class="cmsy-10">&#x00D7; </span>0<span 
+class="cmmi-10">.</span>31<sup><span 
+class="cmr-7">2</span></sup> = 1<span 
+class="cmmi-10">.</span>9. The percentile corresponding to <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> = 3<span 
+class="cmmi-10">.</span>84
+under a non-central chi-square distribution with <span 
+class="cmmi-10">&lambda; </span>= 1<span 
+class="cmmi-10">.</span>9 is 0.72. In other words, there is a 72% chance
+of committing a Type-II error and the false null hypothesis going undetected. A tenfold increase of
+
+sample size from 20 to 200 would result in a tenfold increase of the non-centrality parameter. Under the
+corresponding non-central chi-square distribution, the cumulative chance of falling below the cutoff value of
+3.84 drops to only 0.8%. So increasing sample size from 20 to 200 increases the power (defined as
+1 <span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">&beta;</span>) of the chi-square test from 0.28 to 0.99. The increase in statistical power with sample size is a
+universal fact of hypothesis testing. The population <span 
+class="cmmi-10">&#x03F5; </span>is unknown but can be estimated using Cram&eacute;r&#8217;s
+<span 
+class="cmmi-10">V </span>. We can construct a 100(1-<span 
+class="cmmi-10">&alpha;</span>)% confidence interval for <span 
+class="cmmi-10">&#x03F5; </span>by finding the subset of population effect
+sizes that are more than 100(1-<span 
+class="cmmi-10">&alpha;</span>/2)% likely to yield a chi-square value greater than (for the upper
+limit of the confidence interval) or less than (for its lower limit) <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>. See Figure&#x00A0;<a 
+href="#x1-120039">9<!--tex4ht:ref: fig:CI --></a> for an example.
+Increasing sample size tightens the confidence interval for <span 
+class="cmmi-10">&#x03F5; </span>but essentially does not change the value of
+<span 
+class="cmmi-10">V </span>.
+<!--l. 1309--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-120039"></a>
+
+<!--l. 1311--><p class="noindent" ><a href="disspaper_v734x.png"><img 
+src="disspaper_v734x.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="disspaper_v734x.png" src="confidence-interval.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;9: </span><span  
+class="content">The vertical line marks the observed <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>-value for comparison between samples <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">d</span>
+(Table&#x00A0;<a 
+href="#x1-20021">1<!--tex4ht:ref: tab:X2 --></a>.i); the two non-central chi-square distributions mark a 95% confidence interval [0.54,1.16] for the
+population effect size <span 
+class="cmmi-10">&#x03F5;</span>. </span></div><!--tex4ht:label?: x1-120039 -->
+
+<!--l. 1317--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="likesectionHead"><a 
+ id="x1-130006"></a>Acknowledgments</h3>
+<!--l. 1321--><p class="noindent" >The author would like to thank Dr. Joel Saylor and an anonymous reviewer for detailed feedback on the submitted
+manuscript.
+<!--l. 1327--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-140006"></a>References</h3>
+<!--l. 1327--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xamidon2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Amidon, W.&#x00A0;H., Burbank, D.&#x00A0;W., and Gehrels, G.&#x00A0;E.  Construction of detrital mineral populations:
+  insights from mixing of U-Pb zircon ages in Himalayan rivers. <span 
+class="cmti-10">Basin Research</span>, 17:463&#8211;485, 2005a.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xamidon2005b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Amidon, W.&#x00A0;H., Burbank, D.&#x00A0;W., and Gehrels, G.&#x00A0;E. U&#8211;Pb zircon ages as a sediment mixing tracer in
+  the Nepal Himalaya. <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 235(1):244&#8211;260, 2005b.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xanderson1962"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Anderson,  T.&#x00A0;W.   On  the  distribution  of  the  two  sample  Cram&eacute;r  -  Von  Mises  criterion.   <span 
+class="cmti-10">Annals</span>
+  <span 
+class="cmti-10">Mathematical Statistics</span>, 33, 1962. doi: 10.1214/aoms/1177704477.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xanderson1954"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Anderson, T.&#x00A0;W. and Darling, D.&#x00A0;A.  A test of goodness of fit.  <span 
+class="cmti-10">Journal of the American Statistical</span>
+  <span 
+class="cmti-10">Association</span>, 49(268):pp. 765&#8211;769, 1954.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xblatt1975"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Blatt,  H.  and  Jones,  R.&#x00A0;L.   Proportions  of  exposed  igneous,  metamorphic,  and  sedimentary  rocks.
+  <span 
+class="cmti-10">Geological Society of America Bulletin</span>, 86(8):1085&#8211;1088, 1975.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbrandon1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Brandon, M.  Probability density plot for fission-track grain-age samples.  <span 
+class="cmti-10">Radiation Measurements</span>, 26
+  (5):663 &#8211; 676, 1996. ISSN 1350-4487. doi: DOI: 10.1016/S1350-4487(97)82880-6.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcarroll1970"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Carroll, J.&#x00A0;D. and Chang, J.-J.  Analysis of individual differences in multidimensional scaling via an
+  N-way generalization of &#8216;Eckart-Young&#8217; decomposition. <span 
+class="cmti-10">Psychometrika</span>, 35(3):283&#8211;319, 1970.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcodilean2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Codilean,  A.&#x00A0;T.,  Bishop,  P.,  Stuart,  F.&#x00A0;M.,  Hoey,  T.&#x00A0;B.,  Fabel,  D.,  and  Freeman,  S.&#x00A0;P.&#x00A0;H.&#x00A0;T.
+  Single-grain cosmogenic <sup><span 
+class="cmr-7">21</span></sup>Ne concentrations in fluvial sediments reveal spatially variable erosion rates.
+  <span 
+class="cmti-10">Geology</span>, 36:159&#8211;162, 2008.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcohen1977"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cohen, J. <span 
+class="cmti-10">Statistical power analysis for the behavioral sciences</span>. Academic Press New York, 1977.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcohen1992"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cohen, J. A power primer. <span 
+class="cmti-10">Psychological bulletin</span>, 112(1):155, 1992.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcopeland1990"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Copeland, P. and Harrison, T.&#x00A0;M. Episodic rapid uplift in the Himalaya revealed by <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar analysis
+  of detrital K-feldspar and muscovite, Bengal fan. <span 
+class="cmti-10">Geology</span>, 18(4):354&#8211;357, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdegraaffsurpless2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>DeGraaff-Surpless, K., Mahoney, J.&#x00A0;B., Wooden, J.&#x00A0;L., and McWilliams, M.&#x00A0;O.   Lithofacies control
+  in detrital zircon provenance studies: Insights from the Cretaceous Methow basin, southern Canadian
+  Cordillera. <span 
+class="cmti-10">Geological Society of America Bulletin</span>, 115:899&#8211;915, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfienberg1979"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fienberg, S.&#x00A0;E.  The use of chi-squared statistics for categorical data problems.  <span 
+class="cmti-10">Journal of the Royal</span>
+  <span 
+class="cmti-10">Statistical Society. Series B (Methodological)</span>, pages 54&#8211;64, 1979.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. and Green, P.&#x00A0;F.  Estimating the component ages in a finite mixture.  <span 
+class="cmti-10">Nuclear Tracks</span>
+  <span 
+class="cmti-10">and Radiation Measurements</span>, 17:197&#8211;206, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R. The trouble with &#8220;probability density&#8221; plots of fission track ages. <span 
+class="cmti-10">Radiation Measurements</span>,
+  29:125&#8211;131., 1998.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti,  E.,  And&ograve;,  S.,  and  Vezzoli,  G.     Grain-size  dependence  of  sediment  composition  and
+  environmental bias in provenance studies.  <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 277:422&#8211;432, 2009.  doi:
+  10.1016/j.epsl.2008.11.007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., Vermeesch, P., And&ograve;, S., Vezzoli, G., Valagussa, M., Allen, K., Kadi, K.&#x00A0;A., and Al-Juboury,
+  A.&#x00A0;I. Provenance and recycling of Arabian desert sand. <span 
+class="cmti-10">Earth-Science Reviews</span>, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgelman2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gelman, A. and Stern, H. The difference between significant and not significant is not itself statistically
+  significant. <span 
+class="cmti-10">The American Statistician</span>, 60(4):328&#8211;331, 2006.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhead2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Head, M.&#x00A0;L., Holman, L., Lanfear, R., Kahn, A.&#x00A0;T., and Jennions, M.&#x00A0;D. The extent and consequences
+  of p-hacking in science. <span 
+class="cmti-10">PLoS Biol</span>, 13(3):e1002106, 2015.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1984"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hurford, A., Fitch, F., and Clarke, A. Resolution of the age structure of the detrital zircon populations of
+  two Lower Cretaceous sandstones from the Weald of England by fission track dating. <span 
+class="cmti-10">Geological Magazine</span>,
+  121:269&#8211;396, 1984.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1978"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J.&#x00A0;B. and Wish, M.  <span 
+class="cmti-10">Multidimensional scaling</span>, volume 07-011 of <span 
+class="cmti-10">Sage University Paper series</span>
+  <span 
+class="cmti-10">on Quantitative Application in the Social Sciences</span>. Sage Publications, Beverly Hills and London, 1978.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkuiper1960"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kuiper, N.&#x00A0;H. Tests concerning random points on a circle. In <span 
+class="cmti-10">Indagationes Mathematicae (Proceedings)</span>,
+  volume&#x00A0;63, pages 38&#8211;47. Elsevier, 1960.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlewis1995"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Lewis, J.&#x00A0;P. Fast normalized cross-correlation. In <span 
+class="cmti-10">Vision interface</span>, volume&#x00A0;10, pages 120&#8211;123, 1995.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmassey1951"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Massey, F.&#x00A0;J.  The Kolmogorov-Smirnov test for goodness of fit.  <span 
+class="cmti-10">Journal of the American statistical</span>
+  <span 
+class="cmti-10">Association</span>, 46(253):68&#8211;78, 1951.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmccune2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McCune, B. and Grace, J. <span 
+class="cmti-10">Analysis of ecological communities</span>. MjM Software Design, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnakagawa2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nakagawa, S.   A farewell to Bonferroni: the problems of low statistical power and publication bias.
+  <span 
+class="cmti-10">Behavioral Ecology</span>, 15(6):1044&#8211;1045, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnie2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nie, J., Stevens, T., Rittner, M., Stockli, D., Garzanti, E., Limonta, M., Bird, A., And&ograve;, S., Vermeesch,
+  P., Saylor, J., et&#x00A0;al. Loess plateau storage of northeastern Tibetan plateau-derived Yellow River sediment.
+  <span 
+class="cmti-10">Nature communications</span>, 6, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpan2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pan, B., Qian, K., Xie, H., and Asundi, A.   Two-dimensional digital image correlation for in-plane
+  displacement and strain measurement: a review. <span 
+class="cmti-10">Measurement science and technology</span>, 20(6):062001, 2009.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpell1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pell, S.&#x00A0;D., Williams, I.&#x00A0;S., and Chivas, A.&#x00A0;R. The use of protolith zircon-age fingerprints in determining
+  the protosource areas for some Australian dune sands. <span 
+class="cmti-10">Sedimentary Geology</span>, 109:233&#8211;260., 1997.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpullen2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pullen, A., Ib&aacute;&ntilde;ez-Mej&iacute;a, M., Gehrels, G.&#x00A0;E., Ib&aacute;&ntilde;ez-Mej&iacute;a, J.&#x00A0;C., and Pecha, M. What happens when
+  n= 1000? Creating large-n geochronological datasets with LA-ICP-MS for geologic investigations. <span 
+class="cmti-10">Journal</span>
+  <span 
+class="cmti-10">of Analytical Atomic Spectrometry</span>, 29(6):971&#8211;980, 2014.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrahl2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Rahl, J.&#x00A0;M., Reiners, P.&#x00A0;W., Campbell, I.&#x00A0;H., Nicolescu, S., and Allen, C.&#x00A0;M.  Combined single-grain
+  (U-Th)/He and U/Pb dating of detrital zircons from the Navajo Sandstone, Utah.  <span 
+class="cmti-10">Geology</span>, 31:761&#8211;764,
+  2003. doi: 10.1130/G19653.1.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrice1995"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Rice, J.&#x00A0;A. <span 
+class="cmti-10">Mathematical Statistics and Data Analysis</span>. Duxbury, Pacific Grove, California, 1995.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsatkoski2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Satkoski, A.&#x00A0;M., Wilkinson, B.&#x00A0;H., Hietpas, J., and Samson, S.&#x00A0;D.   Likeness among detrital zircon
+  populations &#8211; An approach to the comparison of age frequency data in time and space. <span 
+class="cmti-10">Geological Society</span>
+  <span 
+class="cmti-10">of America Bulletin</span>, 125(11-12):1783&#8211;1799, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsaylor2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Saylor, J.&#x00A0;E. and Sundell, K.&#x00A0;E.   Quantifying comparison of large detrital geochronology data sets.
+  <span 
+class="cmti-10">Geosphere</span>, pages GES01237&#8211;1, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsaylor2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Saylor, J.&#x00A0;E., Stockli, D.&#x00A0;F., Horton, B.&#x00A0;K., Nie, J., and Mora, A.  Discriminating rapid exhumation
+  from syndepositional volcanism using detrital zircon double dating: Implications for the tectonic history
+  of the Eastern Cordillera, Colombia. <span 
+class="cmti-10">Geological Society of America Bulletin</span>, 124(5-6):762&#8211;779, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsaylor2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Saylor, J.&#x00A0;E., Knowles, J.&#x00A0;N., Horton, B.&#x00A0;K., Nie, J., and Mora, A. Mixing of source populations recorded
+  in detrital zircon U-Pb age spectra of modern river sands. <span 
+class="cmti-10">The Journal of Geology</span>, 121(1):17&#8211;33, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshepard1962"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Shepard, R.&#x00A0;N. The analysis of proximities: multidimensional scaling with an unknown distance function.
+  i. <span 
+class="cmti-10">Psychometrika</span>, 27(2):125&#8211;140, 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshepard1980"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Shepard, R.&#x00A0;N. Multidimensional scaling, tree-fitting, and clustering. <span 
+class="cmti-10">Science</span>, 210(4468):390&#8211;398, 1980.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsilverman1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Silverman, B. <span 
+class="cmti-10">Density Estimation for Statistics and Data Analysis</span>. Chapman and Hall, London, 1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsircombe2004a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sircombe, K.&#x00A0;N. and Hazelton, M.&#x00A0;L. Comparison of detrital zircon age distributions by kernel functional
+  estimation. <span 
+class="cmti-10">Sedimentary Geology</span>, 171:91&#8211;111, 2004. doi: 10.1016/j.sedgeo.2004.05.012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsircombe2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sircombe,  K.&#x00A0;N.  and  Stern,  R.&#x00A0;A.    An  investigation  of  artificial  biasing  in  detrital  zircon  U-Pb
+  geochronology due to magnetic separation in sample preparation. <span 
+class="cmti-10">Geochimica et Cosmochimica Acta</span>, 66
+  (13):2379&#8211;2397, 2002.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstang2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stang, A., Poole, C., and Kuss, O. The ongoing tyranny of statistical significance testing in biomedical
+  research. <span 
+class="cmti-10">European journal of epidemiology</span>, 25(4):225&#8211;230, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstevens2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stevens, T., Carter, A., Watson, T., Vermeesch, P., And&ograve;, S., Bird, A., Lu, H., Garzanti, E., Cottam,
+  M., and Sevastjanova, I.  Genetic linkage between the Yellow River, the Mu Us desert and the Chinese
+  Loess Plateau. <span 
+class="cmti-10">Quaternary Science Reviews</span>, 78:355&#8211;368, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstock2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stock,  G.&#x00A0;M.,  Ehlers,  T.&#x00A0;A.,  and  Farley,  K.&#x00A0;A.    Where  does  sediment  come  from?  Quantifying
+  catchment erosion with detrital apatite (U-Th)/He thermochronometry.  <span 
+class="cmti-10">Geology</span>, 34:725&#8211;728, 2006.  doi:
+  10.1130/G22592.1.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsundell2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sundell,  K.  and  Saylor,  J.&#x00A0;E.   Unmixing  detrital  geochronology  age  distributions.   <span 
+class="cmti-10">Geochemistry,</span>
+  <span 
+class="cmti-10">Geophysics, Geosystems</span>, 2017.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtorgerson1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Torgerson, W.&#x00A0;S. Multidimensional scaling: I. Theory and method. <span 
+class="cmti-10">Psychometrika</span>, 17(4):401&#8211;419, 1952.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtrafimow2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Trafimow, D. and Marks, M.  Editorial.  <span 
+class="cmti-10">Basic and Applied Social Psychology</span>, 37(1):1&#8211;2, 2015.  doi:
+  10.1080/01973533.2015.1012991.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtukey1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Tukey, J.&#x00A0;W. The philosophy of multiple comparisons. <span 
+class="cmti-10">Statistical science</span>, pages 100&#8211;116, 1991.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Quantitative geomorphology of the White Mountains (California) using detrital apatite
+  fission track thermochronology.  <span 
+class="cmti-10">Journal of Geophysical Research (Earth Surface)</span>, 112(F11):3004, 2007.
+  doi: 10.1029/2006JF000671.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2009d"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. Lies, Damned Lies, and Statistics (in Geology). <span 
+class="cmti-10">EOS Transactions</span>, 90:443&#8211;443, 2009. doi:
+  10.1029/2009EO470004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  On the visualisation of detrital age distributions.  <span 
+class="cmti-10">Chemical Geology</span>, 312-313:190&#8211;194,
+  2012. doi: 10.1016/j.chemgeo.2012.04.021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Multi-sample comparison of detrital age distributions.  <span 
+class="cmti-10">Chemical Geology</span>, 341:140&#8211;146,
+  2013.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2014b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. Corrigendum to &#8220;Multi-sample comparison of detrital age distributions&#8221; [Chem. Geol. 341
+  (11 March 2013)140-146]. <span 
+class="cmti-10">Chemical Geology</span>, (380):191, 2014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2016c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. Corrigendum to: &#8220;Multi-sample comparison of detrital age distributions (vol 341, pg 140,
+  2013)&#8221;. <span 
+class="cmti-10">Chemical Geology</span>, 425:145&#8211;145, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. and Garzanti, E. Making geological sense of &#8216;Big Data&#8217; in sedimentary provenance analysis.
+  <span 
+class="cmti-10">Chemical Geology</span>, 409:20&#8211;27, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xweltje2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Weltje, G.  Quantitative analysis of detrital modes: statistically rigorous confidence regions in ternary
+  diagrams and their use in sedimentary petrology.  <span 
+class="cmti-10">Earth-Science Reviews</span>, 57(3-4):211 &#8211; 253, 2002.  ISSN
+  0012-8252. doi: DOI: 10.1016/S0012-8252(01)00076-9.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyoung1938"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Young, G. and Householder, A.&#x00A0;S.  Discussion of a set of points in terms of their mutual distances.
+  <span 
+class="cmti-10">Psychometrika</span>, 3(1):19&#8211;22, 1938.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xziliak2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ziliak, S.&#x00A0;T. and McCloskey, D.&#x00A0;N.  <span 
+class="cmti-10">The cult of statistical significance: how the standard error costs us</span>
+  <span 
+class="cmti-10">jobs, justice, and lives</span>. University of Michigan Press, 2008.
+</p>
+  </div>
+</td></tr></table>
+</body></html> 
+
+
+

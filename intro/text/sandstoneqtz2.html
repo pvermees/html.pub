@@ -1,0 +1,82 @@
+How did this rock form?
+<form>
+<input type="radio" name="button" onclick="document.getElementById('formation').innerHTML=
+'This is a clastic rock.';" />From the erosion and sedimentation of pre-existing rocks<br>
+<input type="radio" name="button" onclick="document.getElementById('formation').innerHTML=
+'No, it would be difficult to reconcile the grain shape and mineral variation with chemical precipitation.';" />
+From chemical processes that result in the precipitation of minerals from water
+</form>
+
+<p></p>
+Grain size?
+<form>
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'Are you sure? Compare with the size.';" />2mm 
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'No. Some grains may reach 1mm but generally they are a bit smaller.';" />1mm 
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'Grain size is 0.5mm';" />0.5mm 
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'No, grains are a bit bigger than 1\/4mm';" />0.25mm 
+</form>
+
+<p></p>
+Is this rock:
+<form>
+<input type="radio" name="button" onclick="document.getElementById('support').innerHTML=
+'The clasts are supported by other clasts.';" />clast supported
+<input type="radio" name="button" onclick="document.getElementById('support').innerHTML=
+'No, the clasts touch each other.';" />matrix supported
+</form>
+
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('sorting').innerHTML=
+'Overall, this rock is well sorted.';" />well sorted
+<input type="radio" name="button" onclick="document.getElementById('sorting').innerHTML=
+'This rock shows not enough variation in grain size to be labelled moderately sorted.';" />moderately sorted
+<input type="radio" name="button" onclick="document.getElementById('sorting').innerHTML=
+'No, there isn\'t a great variation in grain-size.';" />poorly sorted
+</form>
+
+<p></p>
+Is there a fabric present?
+<form>
+<input type="radio" name="button" onclick="document.getElementById('fabric').innerHTML=
+'Are you sure? Can you see any laminations?';" />yes
+<input type="radio" name="button" onclick="document.getElementById('fabric').innerHTML=
+'There is no obvious fabric in this rock';" />no
+</form>
+
+<p></p>
+(field of view = 5mm)
+<p></p>
+<button id='ppl1' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'sstppl.JPG\');';
+  document.getElementById('ppl1').style.fontWeight='bold';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='normal';">PPL still</button>
+<button id='xpl1' onclick="location.href='javascript: window.parent.setImage(\'sstxpl.JPG\');'
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='bold';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='normal';">XPL still</button>
+<p></p>
+<button id='ppl2' onclick="
+  location.href = 'javascript: window.parent.setImage(\'sstqtzppl.html\');';
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='bold';
+  document.getElementById('xpl2').style.fontWeight='normal';">PPL rotate</button>
+<button id='xpl2' onclick="location.href='javascript: window.parent.setImage(\'sstqtzxpl.html\');'
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='bold';">XPL rotate</button>
+
+<div id="formation"></div>
+<div id="grainsize"></div>
+<div id="support"></div>
+<div id="sorting"></div>
+<div id="fabric"></div>

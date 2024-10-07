@@ -1,0 +1,31 @@
+Mineral A is colourless and non-pleochroic. Crystals are subhedral and do not show cleavage in PPL. It
+has very low relief. The dusty or turbid appearance is due to late stage alteration. In cross-polar light
+the mineral shows weak birefringence of 1st order greys and lamellar twinning is obvious. They show
+lamellar twinning (with a Michel Levy angle of about 18<sup>o</sup>) and oscillatory zoning and oblique extinction.
+<p></p>
+Now you need to name mineral A using the properties you have identified. Is it:
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Quartz has a different grain shape and doesn\'t have this turbid appearance';" />Quartz
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Orthoclase does not show lamellar twinning';" />Orthoclase feldspar
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Yes, this is plagioclase feldspar';" />Plagioclase feldspar
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Garnet has colour, high relief and is isotropic in cross polar light';" />Garnet
+</form>
+<p></p>
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'7_minAzoom.JPG\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'7-plag-xpl.JPG\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+<p></p>
+<div id="description">
+</div>

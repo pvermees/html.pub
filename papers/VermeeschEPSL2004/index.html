@@ -1,0 +1,954 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>How many grains are needed for a provenance study?</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<meta name="date" content="2012-11-07 11:54:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body >
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">How many grains are needed for a provenance study?</h2>
+                       <div class="author" ><span 
+class="pplr7t-x-x-120">Pieter Vermeesch</span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">*</span></a></span>
+<br />Department of Geological and Environmental Sciences, Stanford University </div><br />
+<div class="date" ></div>
+   <div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10">*</span></span>Address: Braun Hall, room 320-305, 450 Serra Mall, Stanford, CA 94305-2115, USA. <br 
+class="newline" />Telephone: (650) 723-1010. Email: pvermees@pangea.stanford.edu <br 
+class="newline" /></div></div><div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 14--><p class="noindent" >
+<!--l. 14--><p class="noindent" ><span 
+class="pplb7t-x-x-90">Abstract</span></div>
+     <!--l. 15--><p class="indent" >      <span 
+class="pplr7t-x-x-90">Detrital  provenance  studies  using  single-grain  geochronology  are  very  labor-intensive.  This  paper</span>
+     <span 
+class="pplr7t-x-x-90">presents a method for calculating k, the smallest number of grains in a sample that must be dated to achieve</span>
+     <span 
+class="pplr7t-x-x-90">a  required  level  of  statistical  adequacy.  For  example,  if  it  is  desired  that  no  fraction  of  the  population</span>
+     <span 
+class="pplr7t-x-x-90">comprising more than 0.05 of the total is missed at the 95% confidence level, at least 117 grains should be</span>
+     <span 
+class="pplr7t-x-x-90">dated. The paper also provides recommendations about cases where fewer than the optimal number of</span>
+     <span 
+class="pplr7t-x-x-90">grains have been dated.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1    </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 27--><p class="noindent" >Single-grain age measurements have become a popular way to investigate detrital sedimentary provenance. Such
+studies must fulfill an important condition that the measured sample is representative of the total detrital
+population. Dodson <span 
+class="pplri7t-">et al. </span><span class="cite">[<a 
+href="#Xdodson1988">1</a>]</span> argue that at least k=60 grains must be measured to reduce the chance to less than
+
+p=5% that one particular fraction (in their case, the oldest) of the population is missed if this fraction is greater than
+f=0.05, according to:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1001r1"></a>
+   <center class="math-display" >
+<img 
+src="index0x.png" alt="          k
+p = (1- f)
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 39--><p class="nopar" >
+<!--l. 41--><p class="indent" >   This equation has been used incorrectly (e.g. <span class="cite">[<a 
+href="#Xmorton1996">2</a>,&#x00A0;<a 
+href="#Xcawood2001">3</a>]</span>) to imply that 60 grains would be enough to have 95%
+confidence that <span 
+class="pplri7t-">any </span>fraction f<span 
+class="cmsy-10">&#x2265;</span>0.05 of the population was not missed. It will be shown why this is not true (a proof
+is given in Appendix A), and an alternative will be developed for studies that are interested in <span 
+class="pplri7t-">all </span>age components,
+rather than just one. While some studies use 60 grains for the wrong reason, other authors have used
+even fewer grains, thereby increasing the likelihood of missing significant fractions of the detrital age
+spectrum (e.g. <span class="cite">[<a 
+href="#Xrahl2003">4</a>,&#x00A0;<a 
+href="#Xgrimmer2003">5</a>]</span>). However, it is not my intention to suggest that these are necessarily bad studies. In
+addition to making recommendations for the number of sediment grains that should be dated in a
+statistically adequate provenance study, this paper also suggests how to report data sets with fewer
+measurements.
+<!--l. 57--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2    </span> <a 
+ id="x1-20002"></a>The worst-case scenario</h3>
+<!--l. 59--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20011"></a>
+
+<!--l. 61--><p class="noindent" ><img src="fig1a.jpg" alt="PIC" width="350pt" > 
+<img src="fig1b.jpg" alt="PIC"  width="350pt">
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Evolution of p<sub><span 
+class="cmmi-7">max</span></sub> with increasing number of population/sample fractions for a) a fixed number
+of  measurements  (k=60)  and  b)  a  fixed  relevant  fraction  size  (f=0.05).  Solid  lines  represent  worst-  and
+dashed  lines  best-case  scenarios.  The  shaded  region  on  (a)  marks  the  area  where  M<span 
+class="cmsy-10">&#x2265;</span>1/f  and  p  is  kept
+constant at p<sub><span 
+class="cmmi-7">max</span></sub>.</span></div><!--tex4ht:label?: x1-20011 -->
+
+<!--l. 69--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 71--><p class="indent" >   Consider a population that consists of M age fractions and define <span 
+class="pplri7t-">relevant </span>fractions to be those fractions that are
+greater than f. For a given M (assuming M<span 
+class="cmsy-10">&#x2264;</span>1/f), the worst-case scenario is that M-1 of the population fractions are
+of size f, and one fraction is of size 1-f(M-1). The probability p that at least one fraction <span 
+class="cmsy-10">&#x2265;</span>f of the population was
+missed is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2002r2"></a>
+   <center class="math-display" >
+<img 
+src="index1x.png" alt="    M-A        ((      )             (     )           )
+    &#x2211;      n- 1   M - A         k     M  - 1          k
+p = n=1 (- 1)        n    (1- nf) + B   n- 1  ((M  - n)f)
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 82--><p class="nopar" >
+with <div class="eqnarray">
+   <center class="math-display" >
+<img 
+src="index2x.png" alt="A   =  0  if:M f = 1
+
+A   =  1  if:M f &#x2044;= 1
+
+B   =  0  if:M f &#x2265; 1
+
+B   =  1  if:M f &#x003C; 1
+" class="math-display" ></center>
+</div>
+
+<!--l. 91--><p class="indent" >   This is a combinatoric expression where <img 
+src="index3x.png" alt="(x)
+ y" > is the binomial coefficient. Each term in the summation adds a
+correction to the previous terms. Equation <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:2 --></a> is derived in Appendix A. For a given number of relevant fractions m
+(m<span 
+class="cmsy-10">&#x2264;</span>1/f), a best-case scenario can also be calculated (Appendix A):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2004r3"></a>
+   <center class="math-display" >
+<img 
+src="index4x.png" alt="    m&#x2211;        (  ) (      )k
+p =   (- 1)n- 1 m   1 - n-
+    n=1        n       m
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 100--><p class="nopar" >
+<!--l. 102--><p class="indent" >   Exploration of equations <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:2 --></a> and <a 
+href="#x1-2004r3">3<!--tex4ht:ref: eq:3 --></a> over M and m, and for different values of f and k, is shown in Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>. The
+maximum number of (relevant) fractions for which Equations <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:2 --></a> and <a 
+href="#x1-2004r3">3<!--tex4ht:ref: eq:3 --></a> are valid is 1/f. At larger values of M (or m),
+p is kept constant. The shaded region on Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>a marks the area where this is the case. One way
+to reduce the probability that fractions <span 
+class="cmsy-10">&#x2265;</span>f are missed when only k grains are dated is to reduce the
+number of bins in the sample histogram. For example, if k=60, f=0.05, and p=20%, then M<sub><span 
+class="cmmi-7">opt</span></sub>=6 (Figure
+<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>). A detrital age-histogram that is constructed in this way conveys as much information about the
+population as can be inferred from the sample and is statistically &#8221;allowed&#8221; by p and f. However, it is
+less well suited for showing the sample distribution. Therefore, such a histogram should be used in
+conjunction with markers for the sample data, or better still, a probability density plot <span class="cite">[<a 
+href="#Xsilverman1986">6</a>]</span>. Such a
+combined plot carries an optimal amount of information: the histogram represents the population with the
+resolution that the data and the parameters p and f allow, while at the same time, the probability
+density plot represents the data itself and the uncertainties that are associated with it (Figure <a 
+href="#x1-20052">2<!--tex4ht:ref: fig:2 --></a>). M<sub><span 
+class="cmmi-7">opt</span></sub>
+usually is a rather small number, much smaller than commonly used guidelines for the number of
+histogram bins such as Sturges&#8217; rule <span class="cite">[<a 
+href="#Xsturges1926">7</a>,&#x00A0;<a 
+href="#Xscott1992">8</a>]</span>. Using M<sub><span 
+class="cmmi-7">opt</span></sub> will tend to oversmooth the histogram, so
+although it theoretically is a viable way to reduce the chance of missing significant fractions of the
+population, there are better methods for dealing with datasets that contain fewer than the optimal
+
+number of measurements. These methods are discussed in the following paragraph and the Conclusions
+section.
+<!--l. 132--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20052"></a>
+
+<!--l. 134--><p class="noindent" ><img src="fig2a.jpg" alt="PIC"  width="350pt"> 
+<img src="fig2b.jpg" alt="PIC"  width="350pt">
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">As shown in Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>, at most M<sub><span 
+class="cmmi-7">opt</span></sub>=6 bins are allowed in a sample histogram in order to reduce
+the chance that at least one fraction f<span 
+class="cmsy-10">&#x2265;</span>0.05 is missed of a perfectly uniform population (worst-case scenario)
+to less than p=20%. The black dots represent the 60 samples. In histogram a, M=20<span 
+class="cmsy-10">&#x2265;</span>M<sub><span 
+class="cmmi-7">opt</span></sub>. In this particular
+example,  three  bins  are  empty,  amounting  to  a  total  fraction  0.15  of  the  population.  When  the  data  are
+grouped into 20 bins, this occurs 64% of the time. In histogram b, M=M<sub><span 
+class="cmmi-7">opt</span></sub>=6 and, for exactly the same
+sample, no fraction <span 
+class="cmsy-10">&#x2265; </span>0.05 is missed. Only 20% of the histograms with 6 bins will have an empty fraction
+in their worst-case scenario, which corresponds to five fractions of size 0.05 and one of size 0.75. While
+using M<sub><span 
+class="cmmi-7">opt</span></sub> theoretically is a valid way to prevent relevant fractions of being missed, it will generally yield
+oversmoothed histograms and be of limited practical use. Instead, it is better to simply report f<sub><span 
+class="cmmi-7">act</span></sub> and/or
+p<sub><span 
+class="cmmi-7">max</span></sub> along with the data.</span></div><!--tex4ht:label?: x1-20052 -->
+
+<!--l. 153--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 155--><p class="indent" >   Rather than reducing m, a much better way to reduce p is to increase k or f. We now define p<sub><span 
+class="cmmi-7">max</span></sub> as the
+maximum value of p, reached when M=m=[1/f], where square brackets mark truncation to the nearest integer. The
+equation for p<sub><span 
+class="cmmi-7">max</span></sub> is a special case of (<a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:2 --></a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2006r4"></a>
+   <center class="math-display" >
+<img 
+src="index5x.png" alt="      [1&#x2215;&#x2211;f]   n- 1( [1&#x2215;f])       k
+pmax =    (- 1)     n   (1- nf )
+      n=1
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 165--><p class="nopar" >
+<!--l. 167--><p class="indent" >   Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a> shows the evolution of p<sub><span 
+class="cmmi-7">max</span></sub> as a function of f and k. Note the discrete &#8221;knee&#8221; in the p<sub><span 
+class="cmmi-7">max</span></sub> vs. f curve
+wherever M = 1/f. Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a> can be used for a quick assessment of the number of grains that are needed for a
+provenance study, and of the risk of information loss that is caused by smaller samples. For example, if 60 grains
+are dated, then <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">max</span></sub>=64%. Therefore, in the worst-case scenario (which, at m=20, is a perfectly uniform
+population) there is 64% chance that at least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 of the population is missed. This is
+a dramatically different result from the 5% probability suggested by Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:1 --></a>. Furthermore, the
+actual fraction f<sub><span 
+class="cmmi-7">act</span></sub> that we can be sure not to have missed with 95% certainty is not 0.05, but 0.085, as
+can be read from Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a>. Finally, and perhaps most importantly, Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a> also shows that in order
+to be 95% confident that no fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 was missed, at least k=117 grains must be dated. Table 1
+can be used to choose k, the number of grains required to lower p and f to some desired limits. If
+fewer than this optimal number of grains have been dated, Table 2 can be used to estimate the actual
+levels of p and f that have been achieved with that k. The same table also lists the value of <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">opt</span></sub> in
+the unlikely event that the user prefers to reduce the resolution of the age histogram, rather than to
+increase the desired p and/or f. Table 1 should be used before embarking on a provenance study to
+determine how many grains are needed. Alternatively, Table 2 can be used for the interpretation of
+
+provenance data with less than the optimal number of grains. For example, if only 30 grains have been
+dated, Table 2 says that f<sub><span 
+class="cmmi-7">act</span></sub>=0.15 is the smallest fraction not missed at a 95% confidence level. Likewise,
+there is 20% chance of missing at least one fraction representing <span 
+class="cmsy-10">&#x2265;</span>0.12 of the total population, and
+the probability of missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.1 when 30 grains were dated is 37%. Finally, to
+reduce the chance of missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.2 of the population to less than 10%, and still
+only use 30 grains, the age-histogram cannot have more than M<sub><span 
+class="cmmi-7">opt</span></sub>=5 bins. As an alternative to Figure
+<a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a>, and to Tables 1 and 2, an online web-form <span class="cite">[<a 
+href="#Xwebform">9</a>]</span> is available for the calculation of k, p<sub><span 
+class="cmmi-7">max</span></sub>, f<sub><span 
+class="cmmi-7">act</span></sub> and
+M<sub><span 
+class="cmmi-7">opt</span></sub>.
+   <div class="minipage"><!--l. 206--><p class="noindent" >Table 1:<br 
+class="newline" />The adequate number of grains (k) as a function of the desired probability (p) of missing at least one fraction
+<span 
+class="cmsy-10">&#x2265;</span>f of a worst-case population.<br 
+class="newline" /><img src="table1.jpg" alt="PIC"  width="300pt"></div>
+   <h3 class="sectionHead"><span class="titlemark">3    </span> <a 
+ id="x1-30003"></a>More realistic populations</h3>
+<!--l. 215--><p class="noindent" >As was shown in the first part of the paper, of all possible populations, the most difficult to sample is a perfectly
+uniform distribution, where each age fraction is of the same size. It is sufficient to date k grains, according to Figure
+<a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a>, Table 1 or the web-form <span class="cite">[<a 
+href="#Xwebform">9</a>]</span>, to reduce f and p to the desired levels. However, most naturally-occuring
+populations differ from the worst-case distribution and it is less likely that statistically significant fractions of such
+populations might be missed in a sample. As a consequence, fewer grains need dating to achieve the same levels of
+f and p. A number of numerically-generated random populations are discussed next, followed by some real detrital
+age-spectra.<br 
+class="newline" />
+<!--l. 227--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1    </span> <a 
+ id="x1-40003.1"></a>Synthetic populations</h4>
+<!--l. 229--><p class="noindent" >In this section, we will try to find the minimum number of grains that have to be dated to adequately represent an
+&#8221;average&#8221; population, as opposed to the best- and worst-case populations of the previous section. We will assume
+that all possible detrital populations of the geologic record are equally likely to occur. Such populations can be
+synthetically generated by randomly selecting multinomial proportions from a uniform distribution. This
+
+procedure is illustrated in Appendix B. Thus, for any specific number of fractions M, we generate a large number of
+random populations (e.g. 1000). For each population, we construct a large number (e.g 200) of random samples
+(again, see Appendix B for details). For each sample, the relevant population fractions are tested to
+see if the sample contains at least one &#8221;grain age&#8221; that falls within it. If at least one of the relevant
+fractions is empty, the test has failed. The ratio of the number of samples that failed the test to the
+total number of samples represents an estimate of p. This process is repeated for a range of values for
+M.
+<!--l. 246--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40013"></a>
+
+<!--l. 248--><p class="noindent" ><img src="fig3a.jpg" alt="PIC"  width="350pt"> 
+<img src="fig3b.jpg" alt="PIC"  width="350pt">
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Graphs that allow a quick assessment of the number of grains (k) needed to push the chance of
+missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>f of a worst-case population below <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">max</span></sub>, a) as a function of the number of
+grains (k) and b) the number of (relevant) fractions (M) or their size (f).</span></div><!--tex4ht:label?: x1-40013 -->
+
+<!--l. 256--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 258--><p class="indent" >   Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a> shows the result of this procedure for k=60 and f=0.05. For M ranging from one to 100, 1000
+populations of that size were created. For each of these populations, 200 samples of k random numbers were
+generated. For each value of M, a 5, 50, 95, 99 and 100% percentile was computed from the p-values of its 1000
+random populations. The higher its &#8221;percentile&#8221;, the closer a synthetic population is to a uniform distribution. For
+example, a &#8221;99 percentile&#8221; population is likely to be strongly multimodal, while a &#8221;5 percentile&#8221; population would
+be more unimodal. All future plots in this paper that are derived from plots like Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a> will only consider the 95%
+percentile populations. That said, Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a> is the numerical &#8221;intermediate-case&#8221; analogue to Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>. p
+reaches a maximum value at M<span 
+class="cmsy-10">&#x2248;</span>35, and not at M=20, which would be the expected result when only
+considering the fact that at M=20 (=1/f), the number of relevant fractions (m) reaches a maximum. The
+reason why the peak is located at a higher M is that p is not only a function of m, but the result of a
+tradeoff between the number of relevant fractions (m) and the total portion of the population that is
+covered by these fractions, where the latter parameter steadily decreases with increasing M. From
+Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a> (which, as discussed before, is only valid for k=60 and f=0.05), the chance of missing at least
+one fraction f<span 
+class="cmsy-10">&#x2265;</span>0.05 in the median population is 10%; p<span 
+class="cmsy-10">&#x2264;</span>18.5% in 95% of the randomly generated
+populations; p<span 
+class="cmsy-10">&#x2264;</span>25% in 99% of the populations; and p<span 
+class="cmsy-10">&#x2264; </span>30% in all 1000 populations. Not surprisingly, these
+probabilities are significantly less than the 64% which was calculated for the worst-case scenario for the
+same values of k, f and p with Equation <a 
+href="#x1-2006r4">4<!--tex4ht:ref: eq:4 --></a>. However, even for samples from the median synthetic
+population, the chance of missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 is more than the 5% which was the result of
+the erroneous use of Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:1 --></a>. Only in little over 5% of all randomly generated populations there
+is less than 5% chance of missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 of the population when 60 grains were
+measured. In addition to a numerical analogue to the analytical parameter <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">max</span></sub>, it is also possible to
+obtain a numerical version of <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">opt</span></sub> (Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a>). This value will generally be larger than its analytical
+equivalent for the worst-case scenario. For example, to reduce the chance of missing at least one fraction
+<span 
+class="cmsy-10">&#x2265;</span>0.05 of the population to less than 5%, while still only measuring 60 grains, the maximum number of
+fractions that can be used in the age-histogram is M<sub><span 
+class="cmmi-7">opt</span></sub>=6 (as opposed to M<sub><span 
+class="cmmi-7">opt</span></sub>=2 in the worst-case
+scenario).
+<!--l. 301--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40024"></a>
+
+<!--l. 303--><p class="noindent" ><img src="fig4.jpg" alt="PIC"  width="350pt">
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4:  </span><span  
+class="content">The  random  uniform  numerical  analogue  to  Figure  <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>,  for  k=60  and  f=0.05.  The  solid  black
+line  gives  the  worst-case  probability  from  Figure  <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>.  The  different  symbols  represent  different  levels  of
+uniformity. The higher its &#8221;percentile&#8221;, the closer a synthetic population is to a uniform distribution. For
+example, a &#8221;99 percentile&#8221; population is likely to be multimodal, while a &#8221;5 percentile&#8221; population would
+be nearly unimodal.</span></div><!--tex4ht:label?: x1-40024 -->
+
+<!--l. 312--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 314--><p class="indent" >   By tracing the evolution of the numerical <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">max</span></sub> with k and f, Figure <a 
+href="#x1-40035">5<!--tex4ht:ref: fig:5 --></a> illustrates the numerical analogue to
+Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a>. It allows a quick estimation of the number of grains that are required for certain key values of f and p. For
+example, when 95% confidence is desired that no fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 is missed, and this for 95% of all randomly
+generated populations, at least <span 
+class="cmsy-10">~</span>95 grains have to be dated. This estimate is less than the 117 grains which are
+necessary in the worst-case scenario, but greater than the 60 grains that Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:1 --></a> implies. Alternatively, when 60
+grains are dated, we can be 95% certain that no fraction f<sub><span 
+class="cmmi-7">act</span></sub> <span 
+class="cmsy-10">&#x2265;</span>0.07 was missed. As might be expected, the
+numerical estimate falls in between the worst-case scenario (f<sub><span 
+class="cmmi-7">act</span></sub>=0.85) and the result from Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:1 --></a>
+(f=0.05).
+<!--l. 328--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40035"></a>
+
+<!--l. 330--><p class="noindent" ><img src="fig5a.jpg" alt="PIC"  width="350pt"> 
+<img src="fig5b.jpg" alt="PIC"  width="350pt">
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">The numerical analogue to Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a>, this plot allows a quick lookup of the maximum probability
+(p<sub><span 
+class="cmmi-7">max</span></sub>) of missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>f of a &#8221;95 percentile&#8221; synthetic population when k grains are dated.</span></div><!--tex4ht:label?: x1-40035 -->
+
+<!--l. 338--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">3.2    </span> <a 
+ id="x1-50003.2"></a>Case studies of real populations</h4>
+<!--l. 342--><p class="noindent" >Now that the theoretical foundations have been built to calculate the number of grains required for a statistically
+adequate provenance study, they will be tested on real data. Unfortunately, no population is ever completely
+known (certainly not if we consider that most published provenance studies work with fewer than 117 ages per
+sample). Therefore, two relatively large published detrital data sets will be used as a proxy for the populations that
+they were sampled from. By randomly selecting numbers from these &#8221;populations&#8221; with replacement, we can
+generate synthetic samples. This procedure is similar to what is called &#8221;bootstrapping&#8221; in the statistical literature
+<span class="cite">[<a 
+href="#Xefron1993">10</a>]</span>.<br 
+class="newline" />
+<!--l. 354--><p class="indent" >   Avigad <span 
+class="pplri7t-">et al. </span><span class="cite">[<a 
+href="#Xavigad2003">11</a>]</span> published a set of 157 concordant single zircon U/Pb ages from the Early Paleozoic Nubian
+Sandstone. The vast majority of these grains are of Pan-African age (900-540 Ma) with relatively few older grains.
+Therefore, the population is relatively &#8221;easy&#8221; to sample (Figure <a 
+href="#x1-50016">6<!--tex4ht:ref: fig:6 --></a>). 1000 &#8221;bootstrap samples&#8221; of k numbers were
+selected from the data set for each value of M between 1 and 50, where the latter value is assumed to be the highest
+number of bins that one would ever want to use in a grain-age histogram. Similar to the algorithm that was
+used in section <a 
+href="#x1-40003.1">3.1<!--tex4ht:ref: sec:numerical --></a>, the proportion of the 1000 samples that miss at least one of the relevant fractions
+(f<span 
+class="cmsy-10">&#x2265;</span>0.05) was calculated. This exercise was done for k=60, k=95 and k=117 (Figure <a 
+href="#x1-50016">6<!--tex4ht:ref: fig:6 --></a>). The p<sub><span 
+class="cmmi-7">max</span></sub> vs. M
+curve of this figure is much more irregular than that of Figures <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a> and <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>, because it represents only one,
+irregular population, and not the composite of a thousand random distributions (Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a>), or one
+smooth uniform analytical distribution (Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:1 --></a>). For k=60, the maximum value for p is 8.8%. As
+expected, this is less than the 64% predicted by Equation <a 
+href="#x1-2006r4">4<!--tex4ht:ref: eq:4 --></a>, but almost twice as much as predicted by
+Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:1 --></a>. The fact that even samples from this &#8221;easy&#8221; population have <span 
+class="cmsy-10">&#x2265;</span>5% chance of missing at
+least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 is another confirmation that 60 grains is not enough to attain the degree of
+adequacy many would consider necessary for a good provenance study. The maximum probability
+of missing any fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 is reduced to 1.5% when 95 grains are dated, and if k=117, p is only
+0.9%.
+<!--l. 381--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50016"></a>
+
+<!--l. 383--><p class="noindent" ><img src="fig6a.jpg" alt="PIC"  width="350pt"> 
+<img src="fig6b.jpg" alt="PIC"  width="350pt">
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6: </span><span  
+class="content">a) probability density plot of the Nubian Sandstone <span class="cite">[<a 
+href="#Xavigad2003">11</a>]</span> and b) the result of numerical resampling
+experiments for different numbers of grains (k), for f=0.05.</span></div><!--tex4ht:label?: x1-50016 -->
+
+<!--l. 389--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 391--><p class="indent" >   As an example that is closer to the worst-case scenario, we now consider a dataset of 155 <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar
+ages on lunar spherules collected by Apollo 14 <span class="cite">[<a 
+href="#Xculler2000">12</a>]</span>. The age-histogram of these data is more evenly
+distributed than was the case for the Nubian Sandstone (Figure <a 
+href="#x1-50027">7<!--tex4ht:ref: fig:7 --></a>). The maximum probability for
+missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 when only 60 grains are dated is 28%. When 95 grains are dated, the
+probability of missing at least one fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 is reduced to 3.7%. Finally, dating 117 grains results in
+p=1.2%.
+<!--l. 401--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50027"></a>
+
+<!--l. 403--><p class="noindent" ><img src="fig7a.jpg" alt="PIC"  width="350pt"> 
+<img src="fig7b.jpg" alt="PIC"  width="350pt">
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7: </span><span  
+class="content">Same as Figure <a 
+href="#x1-50016">6<!--tex4ht:ref: fig:6 --></a>, but for the lunar impact spherules data <span class="cite">[<a 
+href="#Xculler2000">12</a>]</span>.</span></div><!--tex4ht:label?: x1-50027 -->
+
+<!--l. 408--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4    </span> <a 
+ id="x1-60004"></a>Conclusions and recommendations</h3>
+     <ul class="itemize1">
+     <li class="itemize">The optimal number of grains that should be dated of a detrital provenance sample can be looked up
+     from Table 1, Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a>, or the web-form <span class="cite">[<a 
+href="#Xwebform">9</a>]</span>. To be 95% certain that no fraction <span 
+class="cmsy-10">&#x2265;</span>0.05 of the population
+     was missed, 117 grains should be dated. This is a fairly large number, often too high perhaps for
+     analytical methods such as fission-track, (U-Th)/He, or TIMS. 117 measurements may be more readily
+     achievable with the ion-microprobe (e.g. <span class="cite">[<a 
+href="#Xavigad2003">11</a>]</span>) or laser ablation ICP-MS (e.g. <span class="cite">[<a 
+href="#Xdickinson2003">13</a>]</span>).
+     </li>
+     <li class="itemize">If  there  exists  some  prior  knowledge  about  the  population  that  indicates  it  is  not  uniformly
+     distributed, a risk can be taken to date fewer that the optimal number of grains, by using Figure <a 
+href="#x1-40035">5<!--tex4ht:ref: fig:5 --></a>.
+     To be 95% certain that no fraction f<span 
+class="cmsy-10">&#x2265;</span>0.05 was missed, it is recommended that this number be no less
+     than 95. However, dating fewer grains limits the possibility to rigorously calculate and report p and
+     f.
+     </li>
+     <li class="itemize">It  is  definitely  not  the  purpose  of  this  paper  to  suggest  that  studies  reporting  fewer  than  117
+     single-grain measurements would be scientifically wrong. The purpose of some provenance studies
+     may be to prove the <span 
+class="pplri7t-">presence </span>of one or more specific age fractions in a detrital population. Once these
+     fractions have been found, there is no reason to date more grains. It is only when provenance studies
+     discuss the <span 
+class="pplri7t-">absence </span>of certain age fractions that counting statistics come into play. Even then, it may
+     not be possible to date as many as 117 grains for technical, financial or other reasons. If fewer than 117
+     grains were dated per sample, or when age-histograms must be interpreted from published studies
+     that use fewer than the optimal number of grains, the actual p<sub><span 
+class="cmmi-7">max</span></sub> and f values that result from using
+     the available number of grain ages should be reported. For example: if only 60 grains were dated, it is
+     sufficient to report that the maximum probability of missing at least one fraction greater than 0.05 is
+     p<sub><span 
+class="cmmi-7">max</span></sub>=64%, <span 
+class="pplri7t-">or </span>that there is 95% confidence that no fraction f<sub><span 
+class="cmmi-7">act</span></sub> <span 
+class="cmsy-10">&#x2265;</span>0.085 was missed. Note that the latter
+     definitely sounds better than the former. Such information can be obtained from Equation <a 
+href="#x1-2006r4">4<!--tex4ht:ref: eq:4 --></a>, Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:3 --></a>,
+
+     Table 2, or the web-form <span class="cite">[<a 
+href="#Xwebform">9</a>]</span>. In theory, an alternative solution to changing p and f would be to reduce
+     the number of bins of the age histogram to M<sub><span 
+class="cmmi-7">opt</span></sub>, according to Table 2 or the web-form <span class="cite">[<a 
+href="#Xwebform">9</a>]</span>. However,
+     M<sub><span 
+class="cmmi-7">opt</span></sub> is typically a low number which would over-smooth the histogram.</li></ul>
+   <div class="minipage"><!--l. 456--><p class="noindent" >Table 2<br 
+class="newline" />f<sub><span 
+class="cmmi-7">act</span></sub>, p<sub><span 
+class="cmmi-7">max</span></sub> and M<sub><span 
+class="cmmi-7">opt</span></sub> as a function of k.<br 
+class="newline" /><img 
+src="table2.jpg" alt="PIC"  
+><br 
+class="newline" /> Given a specified number of grains (k), this Table shows f<sub><span 
+class="cmmi-7">act</span></sub> - the smallest population fraction that has not
+been missed with at least p% certainty - for four values of p; p<sub><span 
+class="cmmi-7">max</span></sub> - the maximum probability of missing at
+least one fraction <span 
+class="cmsy-10">&#x2265;</span>f of a worst-case population - for four values of f; and M<sub><span 
+class="cmmi-7">opt</span></sub> - the largest number of bins
+that are less than p% likely to miss at least one fraction <span 
+class="cmsy-10">&#x2265;</span>f of the worst-case population - for four values of
+f and p.
+</div>
+<!--l. 468--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-70004"></a>Appendix A: derivation of Equations 2 and 3</h3>
+
+   <div class="minipage"><!--l. 472--><p class="noindent" >Of all possible populations, those with a perfectly uniform distribution require the collection of the largest
+sample  in  order  to  be  certain  that  no  significant  fractions  have  been  missed.  We  will  consider  the  case
+where there are M=20 such fractions. This case can easily be generalized to any M. For a perfectly uniform
+distribution, each of the 20 fractions equals exactly f=0.05.
+<div class="center" 
+>
+<!--l. 479--><p class="noindent" >
+
+<!--l. 480--><p class="noindent" ><img 
+src="A1.jpg" alt="PIC"  
+></div>
+<!--l. 483--><p class="noindent" >If we are interested in only one of these fractions, e.g. #1 (in subsequent figures, the shaded box(es) indicate(s) the
+fraction(s) of interest), then the probability of missing this fraction is p=1-f. The probability that this occurs for each
+one of k experiments is p = (1-f)<sup><span 
+class="cmmi-7">k</span></sup>. This is the probability calculated by Dodson <span 
+class="pplri7t-">et al. </span><span class="cite">[<a 
+href="#Xdodson1988">1</a>]</span>, and given by Equation
+<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:1 --></a>.
+<div class="center" 
+>
+<!--l. 490--><p class="noindent" >
+
+<!--l. 491--><p class="noindent" ><img 
+src="A2.jpg" alt="PIC"  
+></div>
+<!--l. 494--><p class="noindent" >However, if we are not just interested in one particular fraction, but in all 20 fractions, the probability of missing at
+least one of them is much larger. It is the probability of missing:
+</div>
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 501--><p class="noindent" >
+
+<!--l. 502--><p class="noindent" ><img 
+src="A3.jpg" alt="PIC"  
+><br />
+or:<br />
+<img 
+src="A4.jpg" alt="PIC"  
+><br />
+or<br />
+...<br />
+or<br />
+<img 
+src="A5.jpg" alt="PIC"  
+></div>
+<!--l. 511--><p class="noindent" >In combinatoric terms:
+<table 
+class="equation"><tr><td><a 
+ id="x1-7001r5"></a>
+<center class="math-display" >
+<img 
+src="index6x.png" alt="   (   )
+     20       k
+p =  1  (1- f)
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 516--><p class="nopar" >
+<!--l. 518--><p class="noindent" >While better than (<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:1 --></a>), this is still not the equation that we want, because the probability that any two fractions are
+simultaneously missed is counted twice, causing an estimate of p that is too high. Therefore, the following
+situations:</div>
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 526--><p class="noindent" >
+
+<!--l. 527--><p class="noindent" ><img 
+src="A6.jpg" alt="PIC"  
+><br />
+or<br />
+<img 
+src="A7.jpg" alt="PIC"  
+><br />
+or ...</div>
+<!--l. 533--><p class="noindent" >have to be subtracted from Equation <a 
+href="#x1-7001r5">5<!--tex4ht:ref: eq:first_approx --></a>. This gives rise to the following expression:
+<table 
+class="equation"><tr><td><a 
+ id="x1-7002r6"></a>
+<center class="math-display" >
+<img 
+src="index7x.png" alt="    (  )          (  )
+     20       k    20        k
+p =   1  (1 - f) -   2 (1 - 2f )
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 539--><p class="nopar" >
+<!--l. 541--><p class="noindent" >Equation <a 
+href="#x1-7002r6">6<!--tex4ht:ref: eq:second_approx --></a> is a better approximation than Equation <a 
+href="#x1-7001r5">5<!--tex4ht:ref: eq:first_approx --></a>, but the probability that three fractions are missed at the same
+time is subtracted twice, resulting in too low an estimate for p.
+</div>
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 548--><p class="noindent" >
+
+<!--l. 549--><p class="noindent" ><img 
+src="A8.jpg" alt="PIC"  
+></div>
+<!--l. 552--><p class="noindent" >Therefore, a correction is added to (<a 
+href="#x1-7002r6">6<!--tex4ht:ref: eq:second_approx --></a>), becoming a third-order approximation:
+<table 
+class="equation"><tr><td><a 
+ id="x1-7003r7"></a>
+<center class="math-display" >
+<img 
+src="index8x.png" alt="   (   )         (   )          (  )
+     20       k    20        k    20        k
+p =  1  (1- f) -   2  (1- 2f) +   3  (1- 3f)
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 558--><p class="nopar" >
+<!--l. 560--><p class="noindent" >This equation will again overestimate p because the probability of simultaneously missing four fractions is counted
+twice. It is clear by now that this process of iterative corrections to Equation <a 
+href="#x1-7001r5">5<!--tex4ht:ref: eq:first_approx --></a> can be repeated until we have
+corrected for the probability that all twenty fractions are missed:
+</div>
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 570--><p class="noindent" >
+
+<!--l. 571--><p class="noindent" ><img 
+src="A9.jpg" alt="PIC"  
+></div>
+<!--l. 574--><p class="noindent" >This probability equals <img 
+src="index9x.png" alt="(20)
+ 20" ><span 
+class="cmr-10">(1 </span><span 
+class="cmsy-10">- </span><span 
+class="cmr-10">20</span><span 
+class="cmmi-10">f</span><span 
+class="cmr-10">)</span><sup><span 
+class="cmmi-7">k</span></sup> <span 
+class="cmr-10">= 0</span>, a trivial result. Adding it to the 19 previous corrections
+yields:
+<!--l. 577--><p class="noindent" ><div class="eqnarray">
+<center class="math-display" >
+<img 
+src="index10x.png" alt="      (20 )         (20 )              (20)
+p  =       (1- f)k -     (1- 2f)k + ...-     (1 - 20f)k                (8)
+        1       (  )  2                 20
+      &#x2211;20    n-1  20        k
+   =     (- 1)     n  (1- nf)                                         (9)
+      n=1
+" class="math-display" ><a 
+ id="x1-7004r9"></a></center>
+</div>
+<!--l. 584--><p class="noindent" >or, generalizing by replacing 20 with M:
+<table 
+class="equation"><tr><td><a 
+ id="x1-7005r10"></a>
+<center class="math-display" >
+<img 
+src="index11x.png" alt="&#x2211;M        (M )
+   (- 1)n-1    (1 - nf)k
+n=1         n
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 589--><p class="nopar" >
+<!--l. 591--><p class="noindent" >Equation <a 
+href="#x1-7005r10">10<!--tex4ht:ref: eq:a0b0 --></a> is a special instance of Equation <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:2 --></a> for A = 0 and B = 0. This form gives the correct value for p when the
+relevant fractions exactly add up to 100% of the population (i.e. M = 1/f). There are two situations where the
+relevant fractions do not exactly add up to one:
+
+</div>
+<div class="center" 
+>
+<!--l. 599--><p class="noindent" >
+<!--l. 600--><p class="noindent" >A = 1, B = 0:<br />
+<img 
+src="A10.jpg" alt="PIC"  
+><br />
+or A = 1, B = 1:<br />
+<img 
+src="A11.jpg" alt="PIC"  
+></div>
+<!--l. 606--><p class="noindent" >The derivation of p for these cases is completely analogous to the derivation of Equation <a 
+href="#x1-7005r10">10<!--tex4ht:ref: eq:a0b0 --></a>. Equation <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:2 --></a> is a
+generalization that takes care of all possibilities.<br 
+class="newline" />
+<!--l. 610--><p class="noindent" >In addition to the worst-case scenario, a best-case scenario can also be considered given a certain number
+of relevant fractions (m). If the number of relevant fractions is not known, the lowest possible p is
+always associated with a delta function (one single age component). For the latter population p equals
+zero, which is an information-free trivial result. For example, if m = 3, the best-case scenario is given
+by:
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 621--><p class="noindent" >
+
+<!--l. 622--><p class="noindent" ><img 
+src="A12.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 625--><p class="noindent" >The derivation of p for this case is completely analogous to the derivation of Equation <a 
+href="#x1-7005r10">10<!--tex4ht:ref: eq:a0b0 --></a> with M = m = 3 and f =
+1/3:
+<table 
+class="equation"><tr><td><a 
+ id="x1-7006r11"></a>
+<center class="math-display" >
+<img 
+src="index12x.png" alt="   &#x2211;3     n-1(3) (    n)k
+p =   (- 1)   n   1 - 3-
+   n=1
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 631--><p class="nopar" >
+</div>
+<!--l. 635--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-80004"></a>Appendix B: details of the synthetic population generator.</h3>
+
+   <div class="minipage"><!--l. 639--><p class="noindent" >Consider a specific value for M (the number of fractions), for example M=7. A population is generated by
+selecting an array of M-1 random numbers between zero and one, drawn from a uniform distribution (x<sub><span 
+class="cmmi-7">i</span></sub>,
+with i=1...6). This array is sorted and padded with a leading zero and a trailing one, becoming of size M+1.
+<div class="center" 
+>
+<!--l. 645--><p class="noindent" >
+
+<!--l. 646--><p class="noindent" ><img 
+src="B1.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 649--><p class="noindent" >The difference between subsequent numbers in the array is a new array of size M (f<sub><span 
+class="cmmi-7">j</span></sub>, with j=1...7), in which each
+element represents a fraction of the total population. The population, when generated in this way, is automatically
+normalized to one.
+<div class="center" 
+>
+<!--l. 654--><p class="noindent" >
+
+<!--l. 655--><p class="noindent" ><img 
+src="B2.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 658--><p class="noindent" >Random samples are generated by choosing k (for example 20) random numbers between zero and one, also from a
+uniform distribution. On the following figure, these numbers are marked by black dots. Each of the
+relevant fractions (&#8221;boxes&#8221;) of the population is tested to see if the sample contains at least one number
+(&#8221;dot&#8221;) that falls within it. On the next figure, the relevant fraction size f is marked by a gray bar. If at
+least one of the relevant fractions is empty, the test has failed. This is the case for our example, since
+the third box is empty and f<sub><span 
+class="cmr-7">3</span></sub> <span 
+class="cmsy-10">&#x2265;</span>f. Note that fraction #7 is also empty, but this is irrelevant because
+f<sub><span 
+class="cmr-7">7</span></sub> <span 
+class="cmmi-10">&#x003C;</span>f.
+<div class="center" 
+>
+<!--l. 669--><p class="noindent" >
+
+<!--l. 670--><p class="noindent" ><img 
+src="B3.jpg" alt="PIC"  
+><br />
+</div></div>
+<!--l. 675--><p class="noindent" >For each population, the ratio of the number of samples that failed the test to the total number of samples
+
+represents one estimate of p. This procedure is repeated for a large number of synthetically generated
+populations. The iterative process becomes of third order when a range of M values is evaluated (Figure
+<a 
+href="#x1-40024">4<!--tex4ht:ref: fig:4 --></a>).
+<!--l. 681--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-90004"></a>Acknowledgements</h3>
+<!--l. 683--><p class="noindent" >Many thanks to Jianmei Wang for mathematical discussions and assistance; to Mike McWilliams, Raymond
+Jonckheere and Paul Switzer for useful reviews of initial drafts of the paper; and to Anthony Koppers and Keith
+Sircombe for insightful and constructive reviews of the submitted manuscript, which greatly improved the
+readability of the paper.
+<!--l. 690--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-100004"></a>References</h3>
+<!--l. 690--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+ [1]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xdodson1988"></a>M.H.  Dodson,  W.  Compston,  I.S.  Williams,  J.F.  Wilson,  A  search  for  ancient  detrital  zircons  in
+  Zimbabwean sediments, J. Geol. Soc. London 145 (1988) 6, 977-983.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [2]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xmorton1996"></a>A.C.  Morton,  J.C.  Claou&eacute;-Long  and  C.  Berge,  SHRIMP  constraints  on  sediment  provenance  and
+  transport  history  in  the  Mesozoic  Statfjord  Formation,  North  Sea,  J.  Geol.  Soc.  London  153  (1996)  6,
+  915-929.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [3]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xcawood2001"></a>P.A.  Cawood  and  A.A.  Nemchin,  Paleogeographic  development  of  the  East  Laurentian  margin;
+
+  constraints from U-Pb dating of detrital zircons in the Newfoundland Appalachians, Geol. Soc. Am. Bull.
+  113 (2001) 9, 1234-1246.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [4]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xrahl2003"></a>J.M.  Rahl,  P.W.  Reiners,  I.H.  Campbell,  S.  Nicolescu  and  C.M.  Allen,  Combined  single-grain
+  (U-Th)/He and U/Pb dating of detrital zircons from the Navajo Sandstone, Utah, Geology 31 (2003) 9,
+  761-764.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [5]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xgrimmer2003"></a>J.C. Grimmer, L. Ratschbacher, M. McWilliams, L. Franz, I. Gaitzsch, M. Tichomirowa, B.R. Hacker
+  and Y. Zhang, When did the ultrahigh-pressure rocks reach the surface? A <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">206</span></sup>Pb zircon, <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar
+  white  mica,  Si-in-white  mica,  single-grain  provenance  study  of  Dabie  Shan  synorogenic  foreland
+  sediments, Chem. Geol. 197 (2003) 87-110.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [6]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xsilverman1986"></a>B.W. Silverman, Density estimation for statistics and data analysis, Chapman &amp; Hall, London, 1986,
+  175 pp.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [7]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xsturges1926"></a>H.A. Sturges, The choice of a class interval, J. Am. Stat. Assoc. 21 (1926) 65-55.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [8]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xscott1992"></a>D.W. Scott, Multivariate density estimation : theory, practice, and visualization, Wiley, New York,
+  NY, 1992, 317 pp.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [9]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xwebform"></a>http://pangea.stanford.edu/research/noble/provenance
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [10]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xefron1993"></a>B. Efron and R. Tibshirani, An introduction to the bootstrap (1993) Chapman &amp; Hall, New York,
+  NY, 436 pp.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [11]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xavigad2003"></a>D.  Avigad,  K.  Kolodner,  M.  McWilliams,  H.  Persing,  T.  Weissbrod,  Provenance  of  northern
+  Gondwana  Cambrian  sandstone  revealed  by  detrital  zircon  SHRIMP  dating,  Geology  31  (2003)  3,
+  227-230.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [12]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xculler2000"></a>T.S. Culler, T.A. Becker, R.A. Muller and P.R. Renne, Lunar impact history from <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar dating
+  of glass spherules, Science 287 (2000) 5459, 1785-1788.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [13]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xdickinson2003"></a>W.R. Dickinson and G.E. Gehrels, U-Pb ages of detrital zircons from Permian and Jurassic eolian
+  sandstones  of  the  Colorado  Plateau,  USA:  paleogeographic  implications,  Sediment.  Geol.  163  (2003)
+  29-66.
+</p>
+  </div>
+</td></table>    
+</body></html> 
+
+
+

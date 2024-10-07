@@ -1,0 +1,72 @@
+<p></p>
+
+&nbsp;<help class="translate" id="help_FT_formats"></help>
+<select id="FT-formats" onchange="$.chooseFormat('#FT-formats','fissiontracks');">
+  <option class="translate" id="FT_EDM" value=1></option>
+  <option class="translate" id="FT_ICP_zeta" value=2></option>
+  <option class="translate" id="FT_ICP_absolute" value=3></option>
+</select>
+
+<p></p>
+
+&nbsp;<help class="translate" id="help_ierr"></help>
+<select id="ierr" onchange="$.switchErr();">
+  <option class="translate" id="1se_abs" value=1></option>
+  <option class="translate" id="2se_abs" value=2></option>
+  <option class="translate" id="1se_rel" value=3></option>
+  <option class="translate" id="2se_rel" value=4></option>
+</select>
+
+<p></p>
+
+<div class="hide4kde hide4cad">
+  &nbsp;<help class="translate" id="help_oerr"></help>
+  <select id="oerr">
+    <option class="translate" id="1se_abs" value=1></option>
+    <option class="translate" id="2se_abs" value=2></option>
+    <option class="translate" id="ci_abs" value=3></option>
+    <option class="translate" id="1se_rel" value=4></option>
+    <option class="translate" id="2se_rel" value=5></option>
+    <option class="translate" id="ci_rel" value=6></option>
+  </select>
+  <p></p>
+  &nbsp;<help class="translate" id="help_alpha"></help>
+  <input type="text" id="alpha">
+  <p></p>
+</div>
+
+<div class="hidden hide4EDM hide4ICP show4absolute">
+
+&nbsp;<help class="translate" id="help_mineral_option"></help>
+<select id="mineral-option" onchange="$.chooseMineral();">
+  <option class="translate" id="apatite" value="apatite"></option>
+  <option class="translate" id="zircon" value="zircon"></option>
+</select>
+
+<p></p>
+
+<table>
+<tr><td>&nbsp;<help class="translate" id="help_LambdaU238"></help></td>
+    <td><input type="text" id="LambdaU238"> &plusmn;</td>
+    <td><input type="text" id="errLambdaU238">Myr<sup>-1</sup></td>
+</tr>
+<tr><td>&nbsp;<help class="translate" id="help_LambdaFission"></help></td>
+    <td><input type="text" id="LambdaFission"> &plusmn;</td>
+    <td><input type="text" id="errLambdaFission">Myr<sup>-1</sup></td>
+</tr>
+<tr><td>&nbsp;<help class="translate" id="help_U238U235"></help></td>
+    <td><input type="text" id="U238U235"> &plusmn;</td>
+    <td><input type="text" id="errU238U235"></td>
+</tr>
+<tr><td>&nbsp;<help class="translate" id="help_etchfact"></help></td>
+    <td><input type="text" id="etchfact"></td><td></td>
+</tr>
+<tr><td>&nbsp;<help class="translate" id="help_tracklength"></help></td>
+    <td><input type="text" id="tracklength"></td><td></td>
+</tr>
+<tr><td>&nbsp;<help class="translate" id="help_mindens"></help></td>
+    <td><input type="text" id="mindens"></td><td></td>
+</tr>
+</table>
+
+</div>

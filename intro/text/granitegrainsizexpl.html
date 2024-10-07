@@ -1,0 +1,15 @@
+Do you think this rock is (field of view is 10mm):
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Crystals smaller than 1mm';" />fine grained
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Crystals between 1 and 5mm';" />medium grained
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Crystals greater than 5mm';" />coarse grained
+</form>
+<p></p> 
+<button onclick="location.href='javascript: window.parent.setPage(\'graniteppl.JPG\',\'granitegrainsizeppl.html\');'">PPL</button>
+<button onclick="location.href='javascript: window.parent.setPage(\'granitexpl.JPG\',\'granitegrainsizexpl.html\');'"><b>XPL</b></button>
+<p></p>
+<div id="description">
+</div>

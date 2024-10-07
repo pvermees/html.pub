@@ -1,0 +1,39 @@
+html, body {
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+}
+
+.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+#center {
+  text-align:center;
+}
+
+#results {
+  position: relative;
+  height: 50px;
+}
+
+td {
+  vertical-align: top;
+}
+
+#map_canvas {
+  height: 400px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media print {
+  html, body {
+    height: auto;
+  }
+
+  #map_canvas {
+    height: 650px;
+  }
+}

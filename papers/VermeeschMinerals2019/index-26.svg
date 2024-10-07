@@ -1,0 +1,15 @@
+ <div class="verbatim" id="verbatim-27">
+<span 
+class="cmtt-10x-x-109">X</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;matrix(c(-1,3,4,7,2,3),nrow=3,ncol=2)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">colnames(X)</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;c('a','b')</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">plot(X)</span>
+</div>
+<!--l. 903--><p class="nopar" >                                                                               

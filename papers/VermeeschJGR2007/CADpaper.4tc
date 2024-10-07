@@ -1,0 +1,23 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Abstract}}{3}\relax 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-20001}{QQ2-1-2}{Introduction}}{4}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-20011}{}{\ignorespaces Predicted AFT cooling ages of the northern White Mountains}}{figure}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-20022}{}{\ignorespaces AFT sample locations}}{figure}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-30002}{QQ2-1-5}{PDF vs. CSPDF vs. CAD}}{11}\relax 
+\doTocEntry\tocsubsection{2.1}{\csname a:TocLink\endcsname{1}{x1-40002.1}{QQ2-1-6}{The Probability Density Function (PDF)}}{11}\relax 
+\doTocEntry\toclof{3}{\csname a:TocLink\endcsname{1}{x1-40033}{}{\ignorespaces Comparison of probability density estimators for a ``diving board hypsometry''}}{figure}\relax 
+\doTocEntry\tocsubsection{2.2}{\csname a:TocLink\endcsname{1}{x1-50002.2}{QQ2-1-8}{The Cumulative Synoptic Probability Density Function (CSPDF)}}{16}\relax 
+\doTocEntry\toclof{4}{\csname a:TocLink\endcsname{1}{x1-50024}{}{\ignorespaces Cumulative density estimators for the ``diving board hypsometry''}}{figure}\relax 
+\doTocEntry\tocsubsection{2.3}{\csname a:TocLink\endcsname{1}{x1-60002.3}{QQ2-1-10}{The Cumulative Age Distribution (CAD)}}{20}\relax 
+\doTocEntry\tocsubsection{2.4}{\csname a:TocLink\endcsname{1}{x1-70002.4}{QQ2-1-11}{Taking into account unequal measurement uncertainties}}{20}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-80003}{QQ2-1-12}{CADs of the Marble Creek catchment}}{23}\relax 
+\doTocEntry\tocsubsection{3.1}{\csname a:TocLink\endcsname{1}{x1-90003.1}{QQ2-1-13}{Predicted CAD}}{23}\relax 
+\doTocEntry\toclof{5}{\csname a:TocLink\endcsname{1}{x1-90015}{}{\ignorespaces Boulders A and B}}{figure}\relax 
+\doTocEntry\toclof{6}{\csname a:TocLink\endcsname{1}{x1-90026}{}{\ignorespaces Observed CADs}}{figure}\relax 
+\doTocEntry\tocsubsection{3.2}{\csname a:TocLink\endcsname{1}{x1-100003.2}{QQ2-1-16}{Using the CAD for quantitative geomorphology by comparing observed with predicted CADs}}{30}\relax 
+\doTocEntry\toclof{7}{\csname a:TocLink\endcsname{1}{x1-100017}{}{\ignorespaces Q-Q plot}}{figure}\relax 
+\doTocEntry\tocsubsection{3.3}{\csname a:TocLink\endcsname{1}{x1-110003.3}{QQ2-1-18}{Suggestions for future improvements}}{33}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-120004}{QQ2-1-19}{Conclusions}}{34}\relax 
+\doTocEntry\toclot{1}{\csname a:TocLink\endcsname{1}{x1-120011}{}{\ignorespaces Definition of acronyms used in the literature and in this paper}}{table}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-130004}{QQ2-1-21}{Acknowledgments}}{38}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-140004}{QQ2-1-22}{References}}{38}\relax 

@@ -1,0 +1,19 @@
+.main{
+ width:800px;
+ margin-left:auto;
+ margin-right:auto;
+}
+
+.snapshot { 
+ width: 400px; 
+ height: auto; 
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+.wide { 
+ width: 800px; 
+}
+
+.graphics { width: 400px; }

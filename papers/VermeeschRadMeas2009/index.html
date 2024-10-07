@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>RadialPlotter: a Java application for fission track, luminescence and other radial plots</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="RadialPlotPaper.tex"> 
+<meta name="date" content="2009-06-05 17:17:00"> 
+<link rel="stylesheet" type="text/css" href="RadialPlotPaper.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body>
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">RadialPlotter: a Java application for fission track, luminescence
+and other radial plots</h2>
+<div class="author" ><span 
+class="ecrm-1200">Pieter Vermeesch</span></div>
+<br />
+   </div>Radial plots are bivariate (x<sub><span 
+class="cmmi-7">j</span></sub>,y<sub><span 
+class="cmmi-7">j</span></sub>) scatterplots where:
+<!--l. 32--><p class="indent" >   <div class="eqnarray">
+   <center class="math-display" >
+<img 
+src="RadialPlotPaper0x.png" alt="xj = 1&#x2215;&#x03C3;(zj), yj = (zj - z0)&#x2215;&#x03C3;(zj),    for 1 &#x2264; j &#x2264; n                  (1)
+" class="math-display" ><a 
+ id="x1-2r1"></a></center>
+</div>
+<!--l. 36--><p class="indent" >   with z<sub><span 
+class="cmmi-7">j</span></sub> a transformation of some data and <span 
+class="cmmi-10">&#x03C3;</span><span 
+class="cmr-10">(</span><span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmr-10">) </span>the corresponding measurement uncertainty. For example, if z<sub><span 
+class="cmmi-7">j</span></sub>
+= log(t<sub><span 
+class="cmmi-7">j</span></sub>) then <span 
+class="cmmi-10">&#x03C3;</span><span 
+class="cmr-10">(</span><span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmr-10">) </span>= <span 
+class="cmmi-10">&#x03C3;</span><span 
+class="cmr-10">(</span><span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmr-10">)</span><span 
+class="cmmi-10">&#x2215;t</span><sub><span 
+class="cmmi-7">j</span></sub>. z<sub><span 
+class="cmr-7">0</span></sub> is a convenient central value such as the weighted mean. The slope of a line
+connecting the origin (x=0,y=0) of a radial plot with a data point (x<sub><span 
+class="cmmi-7">j</span></sub>,y<sub><span 
+class="cmmi-7">j</span></sub>) equals <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub>, and the horizontal
+distance along x-axis is a measure if its precision. Thus, the radial plot simultaneously visualises a
+measurement&#8217;s value and precision. No other graphical method achieves this goal with the same elegance
+(Galbraith, 1988). This makes the radial plot the method of choice for visualising heteroscedastic data,
+i.e. data with (large and) variable measurement uncertainties. Traditional applications in the Earth
+Sciences are fission track and luminescence dating, which are governed by Poisson processes (e.g.,
+Galbraith, 1990; Galbraith et al., 1999). In principle, however, radial plots can be used for any kind of
+data.
+<br class="newline" />
+<!--l. 53--><p class="indent" >   <span 
+class="ectt-1000">RadialPlotter </span>is a user-friendly application for generating radial plots. It has the following advantages over
+existing programs such as <span 
+class="ectt-1000">Trackkey </span>or <span 
+class="ectt-1000">MacTrack</span>. (1) The program was developed solely for radial plots and does
+not perform other functions for data reduction or interpretation. Therefore, radial plot functions are not buried deep
+inside the menu structure and the interface is very straightforward. (2) <span 
+class="ectt-1000">RadialPlotter </span>was written in Java (version
+5) and is, therefore, perfectly platform independent. (3) In addition to fission track radial plots, <span 
+class="ectt-1000">RadialPlotter </span>also
+offers the possibility to generate radial plots for luminescence dating, or any other kind of data such as (U-Th)/He
+or <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar ages.
+<br class="newline" />
+
+<!--l. 67--><p class="indent" >   <span 
+class="ectt-1000">RadialPlotter </span>can be downloaded free of charge from <span 
+class="ectt-1000"><a href="http://pvermees.andropov.org/radialplotter">http://pvermees.andropov.org/radialplotter</a></span>. The
+program consists of a single executable jar file (<span 
+class="ectt-1000">RadialPlotter.jar</span>). This makes installation straightforward: it
+suffices to download and open this file to run <span 
+class="ectt-1000">RadialPlotter</span>. For testing purposes, three example input files are
+provided on the website, one for each of the three possible input formats (&#8216;Fission Tracks&#8217;, &#8216;Luminescence&#8217; and
+&#8216;Other&#8217;). The graphical output can be saved as either bitmap or vector images, in a <span 
+class="ectt-1000">.png </span>or <span 
+class="ectt-1000">.pdf</span>
+format, respectively. <span 
+class="ectt-1000">RadialPlotter </span>automatically performs a <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup>-test for statistical homogeneity of
+fission track data. For populations that have failed this test, the program implements the mixture
+modeling algorithm of Galbraith and Green (1990)(Figure <a 
+href="#x1-31">1<!--tex4ht:ref: fig:input-output --></a>). Data points can be colour-coded to show an
+additional variable such as chemical composition or a kinetic parameter. Colour-coding can also be a useful
+tool for double-dating, which is rapidly gaining popularity in detrital studies (e.g., Campbell et al.,
+2005). For example, the U-Pb ages of double-dated zircons could be shown as colours on a (U-Th)/He
+radial plot. Hopefully, this kind of flexibility will give the radial plot the wider user base which it
+deserves.
+<br class="newline" />
+<!--l. 89--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-31"></a>
+
+<!--l. 90--><p class="noindent" ><a href="http://pvermees.andropov.org/radialplotter/RadialPlotPaper/fig1.jpg"><img 
+src="RadialPlotPaper1x.png" alt="PIC" class="graphics" width="469.75502pt" height="253.07117pt" ></a><!--tex4ht:graphics  
+name="RadialPlotPaper1x.png" src="0C__Documents_and_Settings_peter_Desktop_fig1.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;1: </td><td  
+class="content">Input (left) and output (right) in the case of fission track dating.</td></tr></table><!--tex4ht:label?: x1-31 -->
+
+<!--l. 96--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>References</h3>
+<!--l. 102--><p class="noindent" >
+     <dl class="description"><dt class="description">
+<span 
+class="ecbx-1000">Campbell,</span> </dt><dd 
+class="description">I. H., Reiners, P. W., Allen, C. M., Nicolescu, S., Upadhyay, R., 2005: He-Pb double dating of
+     detrital zircons from the Ganges and Indus Rivers: Implication for quantifying sediment recycling and
+     provenance studies, Earth and Planetary Science Letters 237, 402-432.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Galbraith,</span> </dt><dd 
+class="description">R. F., 1988: Graphical display of estimates having differing standard errors, Technometrics, 30,
+     271-281.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Galbraith,</span> </dt><dd 
+class="description">R.  F.,  1990:  The  radial  plot:  graphical  assessment  of  spread  in  ages,  Nuclear  Tracks  and
+     Radiation Measurements, 17, 207-214.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Galbraith,</span> </dt><dd 
+class="description">R. F. and Green, P. F., 1990: Estimating the component ages in a finite mixture, Nuclear Tracks
+     and Radiation Measurements, 17, 197-206.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Galbraith,</span> </dt><dd 
+class="description">R. F., Roberts, R. G., Laslett, G. M., Yoshida, H. and Olley, J. M., 1999: Optical dating of single
+     and multiple grains of quartz from Jinmium rock shelter, northern Australia: Part I, experimental
+     design and statistical models, Archaeometry, 41, 339-364.</dd></dl>
+
+</td></table>    
+</body></html> 
+
+
+

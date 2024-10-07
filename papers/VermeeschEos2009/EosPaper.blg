@@ -1,0 +1,31 @@
+This is BibTeX, Version 0.99cThe top-level auxiliary file: EosPaper.aux
+The style file: plainnat.bst
+Database file #1: d:/papers/biblio.bib
+Unbalanced braces---line 343 of file d:/papers/biblio.bib
+ : pages={447}
+ :            }
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 883 of file d:/papers/biblio.bib
+ : 
+ : pages={731-784}}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 979 of file d:/papers/biblio.bib
+ : 
+ : pages={1-18}}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 990 of file d:/papers/biblio.bib
+ : pages=2
+ :        .1-2.31,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1098 of file d:/papers/biblio.bib
+ : pages=51
+ :         p}
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1363 of file d:/papers/biblio.bib
+ : pages=103
+ :          -112}
+I'm skipping whatever remains of this entry
+Warning--empty publisher in sengor2001
+(There were 6 error messages)

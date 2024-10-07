@@ -1,0 +1,1097 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Maximum depositional age estimation revisited</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body class="main">
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Maximum depositional age estimation revisited</h2>
+     <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br /><span 
+class="cmr-12">University College London</span>
+<br /><span 
+class="cmtt-12">p.vermeesch [at] ucl.ac.uk </span></div><br />
+<div class="date" ><span 
+class="cmr-12">Geoscience Frontiers</span></div>
+   </div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 17--><p class="noindent" >
+<!--l. 17--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 18--><p class="indent" >    <span 
+class="cmr-9">In a recent review published in this journal, Coutts et al. (2019, </span><span 
+class="cmti-9">Geoscience Frontiers</span><span 
+class="cmr-9">, 10, 4, 1421&#8211;1435)</span>
+     <span 
+class="cmr-9">compared nine different ways to estimate the maximum depositional age (MDA) of siliclastic rocks by</span>
+     <span 
+class="cmr-9">means of detrital geochronology. Their results show that among these methods three are positively and</span>
+     <span 
+class="cmr-9">six negatively biased. This paper investigates the cause of these biases and proposes a solution to it.</span>
+     <span 
+class="cmr-9">A simple toy example shows that it is theoretically impossible for the reviewed methods to find the</span>
+     <span 
+class="cmr-9">correct depositional age in even a best case scenario: the MDA estimates drift to ever smaller values with</span>
+     <span 
+class="cmr-9">increasing sample size. This issue can be solved using a maximum likelihood model that was originally</span>
+     <span 
+class="cmr-9">developed for fission track thermochronology by Galbraith and Laslett (1993, </span><span 
+class="cmti-9">Nucl. Tracks Rad. Meas.</span><span 
+class="cmr-9">,</span>
+     <span 
+class="cmr-9">21, 4, 459&#8211;470). This approach parameterises the MDA estimation problem with a binary mixture of</span>
+     <span 
+class="cmr-9">discrete and continuous distributions. The &#8216;Maximum Likelihood Age&#8217; (MLA) algorithm converges to a</span>
+     <span 
+class="cmr-9">unique MDA value, unlike the ad hoc methods reviewed by Coutts et al. (2019). It successfully recovers</span>
+     <span 
+class="cmr-9">the depositional age for the toy example, and produces sensible results for realistic distributions. This</span>
+     <span 
+class="cmr-9">is illustrated with an application to a published dataset of 13 sandstone samples that were analysed</span>
+     <span 
+class="cmr-9">by both LA-ICPMS and CA-TIMS U&#8211;Pb geochronology. The ad hoc algorithms produce unrealistic</span>
+     <span 
+class="cmr-9">MDA estimates that are systematically younger for the LA-ICPMS data than for the CA-TIMS data.</span>
+     <span 
+class="cmr-9">The MLA algorithm does not suffer from this negative bias. The MLA method is a purely statistical</span>
+     <span 
+class="cmr-9">approach to MDA estimation. Like the ad hoc methods, it does not readily accommodate geological</span>
+     <span 
+class="cmr-9">complications such as post-depositional Pb-loss, or analytical issues causing erroneously young outliers.</span>
+     <span 
+class="cmr-9">The best approach in such complex cases is to re-analyse the youngest grains using more accurate dating</span>
+     <span 
+class="cmr-9">techniques. The results of the MLA method are best visualised on radial plots. Both the model and the</span>
+     <span 
+class="cmr-9">plots have applications outside detrital geochronology, for example to determine volcanic eruption ages.</span>
+</div>
+<div class="center" 
+>
+<!--l. 54--><p class="noindent" >
+<!--l. 55--><p class="noindent" >keywords: zircon; U-Pb; geochronology; statistics; maximum depositional age</div>
+
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 60--><p class="noindent" >Detrital geochronology is often the only way to estimate the depositional age of siliclastic rocks in the absence of
+fossils or volcanic ash layers. Detrital zircon U&#8211;Pb geochronology in particular has become a popular technique to
+obtain maximum depositional ages (MDAs). Numerous MDA estimation algorithms have been proposed over the
+years (<span class="cite"><a 
+href="#Xnelson2001">Nelson</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xnelson2001">2001</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xbarbeau2009">Barbeau et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xbarbeau2009">2009</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xdickinson2009">Dickinson and Gehrels</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xdickinson2009">2009</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xtucker2013">Tucker et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xtucker2013">2013</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xchen2016">Chen
+et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xchen2016">2016</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xzhang2016">Zhang et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xzhang2016">2016</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xross2017">Ross et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xross2017">2017</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xherriott2019">Herriott et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xherriott2019">2019</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xcopeland2020">Copeland</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xcopeland2020">2020</a></span>). In a detailed review
+paper that was recently published in this journal, <span class="cite"><a 
+href="#Xcoutts2019">Coutts et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xcoutts2019">2019</a></span>) compared and contrasted the most popular
+among these methods, namely:
+<!--l. 71--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1002x1">the youngest single grain (YSG);
+     </li>
+     <li 
+  class="enumerate" id="x1-1004x2">the mode of the youngest graphical peak on a probability density plot (YPP);
+     </li>
+     <li 
+  class="enumerate" id="x1-1006x3">the youngest grain cluster at 1<span 
+class="cmmi-10">&#x03C3; </span>(YGC1<span 
+class="cmmi-10">&#x03C3;</span>) or 2<span 
+class="cmmi-10">&#x03C3; </span>(YGC2<span 
+class="cmmi-10">&#x03C3;</span>);
+     </li>
+     <li 
+  class="enumerate" id="x1-1008x4">the youngest detrital zircon estimated by <span class="cite"><a 
+href="#Xludwig2003">Ludwig</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xludwig2003">2003</a></span>)&#8217;s Monte Carlo resampling algorithm (YDZ);
+     </li>
+     <li 
+  class="enumerate" id="x1-1010x5">the outcome of <span class="cite"><a 
+href="#Xludwig2002">Ludwig and Mundil</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xludwig2002">2002</a></span>)&#8217;s TuffZirc algorithm;
+     </li>
+     <li 
+  class="enumerate" id="x1-1012x6">the weighted mean of the youngest three (Y3Z) or four (Y4Z) zircons;
+     </li>
+     <li 
+  class="enumerate" id="x1-1014x7">the weighted mean of the grains in the youngest peak of a probability density plot (<span 
+class="cmmi-10">&#x03C4;</span>); and
+     </li>
+     <li 
+  class="enumerate" id="x1-1016x8">the minimum age of grains selected by <span class="cite"><a 
+href="#Xgehrels2003">Gehrels</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgehrels2003">2003</a></span>)&#8217;s AgePick algorithm.</li></ol>
+<!--l. 88--><p class="noindent" >Additionally, they also introduced a new estimator:
+<!--l. 90--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1018x9">the &#8216;Youngest Statistical Population&#8217; (YSP), which groups the youngest sub-sample of more than two
+     grains that pass a Chi-square test for homogeneity.</li></ol>
+<!--l. 97--><p class="indent" >   Using numerical simulations and synthetic age distributions, <span class="cite"><a 
+href="#Xcoutts2019">Coutts et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xcoutts2019">2019</a></span>) found that all but three of
+these methods gradually drift to younger ages with increasing sample size. The only exceptions were the
+YPP, <span 
+class="cmmi-10">&#x03C4; </span>and YSP methods, which converged to ages that were systematically too old. The failure of
+YPP and <span 
+class="cmmi-10">&#x03C4; </span>to retrieve the correct depositional age reflects the underlying flaws of the probability
+density plots (PDPs) on which they are based. The shortcomings of PDPs are explained in detail by
+<span class="cite"><a 
+href="#Xvermeesch2012b">Vermeesch</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xvermeesch2012b">2012</a></span>) and <span class="cite"><a 
+href="#Xvermeesch2018b">Vermeesch</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xvermeesch2018b">2018a</a></span>) and won&#8217;t be discussed further in this paper. The positive bias of
+the YSP method will be briefly discussed in Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:discussion --></a>. The remainder of the paper will focus on the
+undesirable drift of the remaining six MDA estimation algorithms towards geologically unreasonable young
+values.<br 
+class="newline" />
+<!--l. 111--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:convergence --></a> will prove that it is theoretically impossible for the YSG, YGC1<span 
+class="cmmi-10">&#x03C3;</span>/2<span 
+class="cmmi-10">&#x03C3;</span>, YDZ and Y3Z/Y4Z methods to
+converge to the correct solution even in a best case scenario. Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:galbraith --></a> shows that the &#8216;minimum age model&#8217; of
+<span class="cite"><a 
+href="#Xgalbraith1993">Galbraith and Laslett</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith1993">1993</a></span>) does not suffer from this problem. This maximum likelihood based method was
+
+developed for detrital fission track thermochronology but can be equally useful for zircon U&#8211;Pb studies in a modified
+form developed by <span class="cite"><a 
+href="#Xgalbraith2005">Galbraith</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith2005">2005</a></span>, p.107). We will refer to the minimum age model as the &#8216;maximum likelihood
+age&#8217; (MLA) method to avoid confusion with minimum depositional age estimation, which is an entirely different
+subject.<br 
+class="newline" />
+<!--l. 124--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:examples --></a> applies the MLA algorithm to a detrital zircon U&#8211;Pb dataset from the Colorado Plateau Coring
+Project. This case study validates the different MDA methods by comparing measurements obtained by Laser
+Ablation Inductively Coupled Plasma Mass Spectrometry (LA-ICPMS) with measurements obtained on the same
+samples by Chemical Abrasion Thermal Ionisation Mass Spectrometry (CA-TIMS). The new MLA algorithm is the
+only method that passes this stringent test.<br 
+class="newline" />
+<!--l. 133--><p class="indent" >   Despite the advantages of the MLA method over all existing MDA estimation algorithms, it is not a silver bullet
+for samples that have a fat tail at the young end of the age spectrum, or that have been affected by
+post-depositional Pb-loss. Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:limitations --></a> discusses these limitations and provides suggestions to mitigate their
+effects.
+<!--l. 140--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>On the failure of existing MDA algorithms to converge</h3>
+<!--l. 143--><p class="noindent" >The YSG, YGC1<span 
+class="cmmi-10">&#x03C3;</span>/2<span 
+class="cmmi-10">&#x03C3;</span>, YDZ and Y3Z/Y4Z methods essentially amount to averaging the <span 
+class="cmmi-10">n </span>youngest grains obtained
+by some selection criterion. The selection criterion can be simple (e.g., YSG) or complex (YDZ). But all these
+algorithms boil down to analysing the young tails of detrital age spectra. This is a difficult thing to do with ad hoc
+methods.<br 
+class="newline" />
+<!--l. 150--><p class="indent" >   Detrital age spectra are the convolution of two probability distributions: (1) the distribution of the true (but
+unknown) zircon U&#8211;Pb ages; and (2) the distribution of their analytical errors. Analytical uncertainty obscures the
+true ages and must be accounted for during MDA estimation. Geochronologists generally make the reasonable
+assumption that the analytical errors follow a normal distribution with mean <span 
+class="cmmi-10">&#x03BC; </span>= 0 and standard deviation <span 
+class="cmmi-10">&#x03C3;</span>.
+Under this condition it is well known that the actual U&#8211;Pb age is approximately 95% likely to fall
+in a <span 
+class="cmsy-10">&plusmn;</span>2<span 
+class="cmmi-10">&#x03C3; </span>interval around the measured value. However this is only true when considering a single
+analysis.<br 
+class="newline" />
+<!--l. 162--><p class="indent" >   When multiple measurements are considered together, then the likelihood that the measured value is more than
+<span 
+class="cmsy-10">&plusmn;</span>2<span 
+class="cmmi-10">&#x03C3; </span>away from the true value increases. In statistics this is known as a &#8216;Type-1 error&#8217;. As the number of analyses
+increases, so does the probability that at least one value falls outside the <span 
+class="cmsy-10">&plusmn;</span>2<span 
+class="cmmi-10">&#x03C3; </span>interval. Given a sufficiently large
+sample size, there inevitably comes a point when the data contain values that differ from the true
+value by 3<span 
+class="cmmi-10">&#x03C3; </span>or more. This is true for both tails of the normal distribution. In the context of MDA
+estimation, it means that the youngest date in a huge sample may be less than the actual depositional
+age.<br 
+class="newline" />
+<!--l. 174--><p class="indent" >   To further explore this important point, let us consider the simplest case of an MDA estimation exercise.
+Suppose that 100% of the grains in a sample are concordant and syn-depositional at 10&#x00A0;Ma, with normally
+distributed uncertainties of 1&#x00A0;Ma at 1<span 
+class="cmmi-10">&#x03C3;</span>. The solution to this toy example is trivial. The depositional age is
+simply given by the mean of all the dates. Yet six of the nine MDA estimation algorithms reviewed by
+<span class="cite"><a 
+href="#Xcoutts2019">Coutts et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xcoutts2019">2019</a></span>) fail to retrieve it (YPP, <span 
+class="cmmi-10">&#x03C4; </span>and YSP don&#8217;t, but will fail in nearly all non-trivial
+examples).<br 
+class="newline" />
+<!--l. 184--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-2001r1"></a>
+
+<!--l. 185--><p class="noindent" >
+	  <a href="youngestN-.png">
+	    <img src="youngestN-.png" alt="PIC" class="snapshot" >
+	  </a>
+	  <a id="x1-2002"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Exact quantiles of a normal distribution with 10&#x00A0;Ma 
+mean  and  1&#x00A0;Ma  standard  deviation.  The  step  functions  show 
+the expected age of the <span 
+class="cmmi-10">n</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup>  youngest grain (for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&#x2264; </span>10) 
+in a sample of <span 
+class="cmmi-10">N </span>grains (for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">N </span><span 
+class="cmsy-10">&#x2264; </span>50). All these functions 
+monotonically decrease with increasing sample size. This means 
+that any MDA estimation algorithm that is based on the <span 
+class="cmmi-10">n</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> 
+youngest grain(s), or averages thereof, can never converge to the 
+true depositional age.</span></div><!--tex4ht:label?: x1-2001r2 -->
+
+<!--l. 197--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 199--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-2001r1">1<!--tex4ht:ref: fig:youngestN --></a> shows why existing MDA estimation methods fail the toy example. It plots the expected
+age<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-2003f1"></a> of
+the <span 
+class="cmmi-10">n</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> youngest grain among a sample of <span 
+class="cmmi-10">N </span>grains drawn from our normal distribution with mean <span 
+class="cmmi-10">&#x03BC; </span>= 10 and
+standard deviation <span 
+class="cmmi-10">&#x03C3; </span>= 1. For example, consider a sample containing <span 
+class="cmmi-10">N </span>= 5 grains, then the expected age of the
+youngest grain (<span 
+class="cmmi-10">n </span>= 1) is the 1/5<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> quantile of the normal distribution, which is 9.16&#x00A0;Ma. When the sample size is
+increased to 20 grains, then the expected value for the youngest age is given by the 1/20<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> quantile, which is
+8.36&#x00A0;Ma.<br 
+class="newline" />
+<!--l. 212--><p class="indent" >   Thus, the youngest single grain age monotonically decreases with increasing sample size, and so does the second
+youngest grain (<span 
+class="cmmi-10">n </span>= 2), the third youngest grain (<span 
+class="cmmi-10">n </span>= 3) and so forth. Also the average of the youngest <span 
+class="cmmi-10">n </span>grains
+decreases with increasing sample size, and all the other grain selection criteria do so as well. The failure of existing
+MDA estimation algorithms to solve the simplest toy example undermines their credibility in more complex
+scenarios.
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>The maximum likelihood model of <span class="cite"><a 
+href="#Xgalbraith1993">Galbraith and Laslett</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith1993">1993</a></span>)</h3>
+<!--l. 223--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-3001r2"></a>
+
+<!--l. 225--><p class="noindent" >
+	  <a href="Galbraith-.png">
+	    <img src="Galbraith-.png" alt="PIC" class="snapshot" >
+	  </a>
+	  <a id="x1-3002"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Schematic illustration of the four parameter minimum age model (left) and 
+its three parameter special case (right). The minimum age is marked by <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">m</span></sub>. Redrafted 
+from Figure&#x00A0;6.3 of <span class="cite"><a 
+href="#Xgalbraith2005">Galbraith</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith2005">2005</a></span>).</span></div><!--tex4ht:label?: x1-3001r3 -->
+
+<!--l. 233--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 235--><p class="indent" >   The failure of existing MDA estimation algorithms to find the correct solution for the toy example is diagnostic
+of the fact that they are ad hoc algorithms that lack a formal statistical basis. It is desirable for statistical
+estimation techniques to converge to the true solution with increasing sample size. Unfortunately none of the
+existing method manage to do so. The conventional way to solve this issue is to parameterise the problem and
+determine the parameters by Maximum Likelihood Estimation (MLE). Geological examples of this
+approach include isochron regression (<span class="cite"><a 
+href="#Xtitterington1979">Titterington and Halliday</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xtitterington1979">1979</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xyork2004">York et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xyork2004">2004</a></span>), concordia age
+estimation (<span class="cite"><a 
+href="#Xludwig1998">Ludwig</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xludwig1998">1998</a></span>) and finite mixture modelling (<span class="cite"><a 
+href="#Xgalbraith1990b">Galbraith and Green</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xgalbraith1990b">1990</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xsambridge1994">Sambridge and
+Compston</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xsambridge1994">1994</a></span>). The MLE approach can also be used for MDA estimation. In fact, such an algorithm already
+exists.<br 
+class="newline" />
+<!--l. 249--><p class="indent" >   <span class="cite"><a 
+href="#Xgalbraith1993">Galbraith and Laslett</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith1993">1993</a></span>) introduced a minimum age estimator for fission track thermochronology that is
+equally applicable to U&#8211;Pb geochronology. The model asumes that the data were drawn from a two component
+mixture, in which a fraction <span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">&#x03B3;</span></sub> of the population is derived from a discrete minimum age peak at <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">m</span></sub> = exp[<span 
+class="cmmi-10">&#x03B3;</span>] and
+the remaining fraction (1 <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">&#x03B3;</span></sub>) of the grains were drawn from a (log)normal distribution with location parameter <span 
+class="cmmi-10">&#x03BC;</span>
+and dispersion parameter <span 
+class="cmmi-10">&#x03C3;</span>, truncated at <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">m</span></sub> (Figure&#x00A0;<a 
+href="#x1-3001r2">2<!--tex4ht:ref: fig:galbraith --></a>). The four model parameters (<span 
+class="cmmi-10">&#x03B3;</span>, <span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">&#x03B3;</span></sub>, <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03C3;</span>) can be
+estimated by maximising the likelihood function using an appropriate error model for the analytical
+uncertainties.<br 
+class="newline" />
+<!--l. 262--><p class="indent" >   The original fission track implementation of <span class="cite"><a 
+href="#Xgalbraith1993">Galbraith and Laslett</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith1993">1993</a></span>)&#8217;s maximum likelihood model assumed
+binomial counting errors (<span class="cite"><a 
+href="#Xtouw1997">van der Touw et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xtouw1997">1997</a></span>). An alternative formulation using normal errors was
+formulated by <span class="cite"><a 
+href="#Xgalbraith2005">Galbraith</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith2005">2005</a></span>, p.107). This version of the model is most appropriate for MDA estimation by
+detrital U&#8211;Pb geochronology. The minimum age model will be referred to as the MLA (Maximum Likelihood Age)
+method in the remainder of this paper, so as to avoid any confusion with minimum depositional age
+estimation.<br 
+class="newline" />
+<!--l. 271--><p class="indent" >   Standard MLE theory also provides a way to estimate the uncertainties of the model parameters. This is done by
+inverting the negative matrix of second derivatives (i.e. the Hessian) of the log-likelihood function with respect to
+the parameters. Experience shows that the uncertainties of <span 
+class="cmmi-10">&#x03B3; </span>and <span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">&#x03B3;</span></sub> are generally smaller than those of <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03C3;</span>.
+Because <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03C3; </span>are not directly relevant to the MDA estimation problem anyway, there is little harm in reducing
+the number of model parameters from four to three, by requiring that <span 
+class="cmmi-10">&#x03B3; </span>= <span 
+class="cmmi-10">&#x03BC;</span>. The resulting gain in
+numerical stability benefits small datasets whilst having only a minor effect on the accuracy of the MDA
+estimates.<br 
+class="newline" />
+<!--l. 283--><p class="indent" >   It can be shown that among all statistical estimators, the MLE approach is the most <span 
+class="cmti-10">efficient</span>, which means that
+it yields the most precise estimates for any given sample size. MLE algorithms are also <span 
+class="cmti-10">consistent</span>, which means that
+they are guaranteed to converge to the true solution with increasing data size (assuming that the model assumptions
+are met). Thus the MLA method fixes the key issue with existing MDA estimation methods. Applying it to the toy
+example asymptotically yields parameter values of <span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">&#x03B3;</span></sub> = 1, <span 
+class="cmmi-10">&#x03C3; </span>= 0 and <span 
+class="cmmi-10">&#x03B3; </span>= 2<span 
+class="cmmi-10">.</span>3, which corresponds to the correct
+answer of <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">m</span></sub> = 10&#x00A0;Ma.
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Application to U&#8211;Pb data from the Colorado Plateau</h3>
+<!--l. 297--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-4001r3"></a>
+
+<!--l. 299--><p class="noindent" >
+	  <a href="297-.png">
+	    <img src="297-.png" alt="PIC" class="snapshot" >
+	  </a>
+	  <a id="x1-4002"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Radial plots and MLA estimates for sample 297 of <span class="cite"><a 
+href="#Xgehrels2020">Gehrels et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgehrels2020">2020</a></span>, LA-ICPMS 
+data,  left)  and  <span class="cite"><a 
+href="#Xrasmussen2020">Rasmussen  et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xrasmussen2020">2020</a></span>,  CA-TIMS  data,  right),  calculated  with  <span 
+class="cmtt-10">IsoplotR</span> 
+(<span class="cite"><a 
+href="#Xvermeesch2018b">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018b">2018a</a></span>). Uncertainty estimates are reported as studentised 95% confidence intervals. 
+Both datasets are overdispersed with respect to the analytical uncertainties. The MLA estimates 
+agree to within 0.6% despite the great differences in sample size and analytical precision between 
+the two datasets. Existing ad hoc MDA estimation algorithms do not fare so well, resulting in 
+differences of 2 &#8211; 17% between the LA-ICPMS and CA-TIMS data.</span></div><!--tex4ht:label?: x1-4001r4 -->
+
+<!--l. 314--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 316--><p class="indent" >   Leaving the toy example behind and moving on to a geologically more realistic example, we will now apply the
+MLA model to a recently published dataset of detrital zircon U&#8211;Pb ages obtained from the Colorado Plateau Coring
+Project (CPCP). The dataset contains 13 detrital zircon samples that were extracted from a <span 
+class="cmsy-10">~</span>520&#x00A0;m drill core in
+Petrified Forest National Park (Arizona, USA).<br 
+class="newline" />
+<!--l. 323--><p class="indent" >   The 13 samples belong to the Permo-Triassic Coconino, Moenkopi and Chinle Formations. Between 221 and
+308 randomly selected zircon grains from each sample were dated by LA-ICPMS, yielding 13 U&#8211;Pb
+age spectra ranging from 189 to 3428&#x00A0;Ma (<span class="cite"><a 
+href="#Xgehrels2020">Gehrels et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xgehrels2020">2020</a></span>). Subsequently, the youngest 2 &#8211; 19
+grains from each sample were extracted from the LA-ICPMS grain mount and re-analysed by high
+precision CA-TIMS (<span class="cite"><a 
+href="#Xrasmussen2020">Rasmussen et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xrasmussen2020">2020</a></span>). This paired LA-ICPMS + CA-TIMS dataset allows us to
+compare the performance of the different MDA estimators across a range of sample sizes and analytical
+precision.<br 
+class="newline" />
+<!--l. 333--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-4001r3">3<!--tex4ht:ref: fig:297 --></a> shows the LA-ICPMS and CA-TIMS age estimates for sample 297 on so-called radial plots. These are a
+graphical device that was invented by Rex Galbraith, the creator of the MLA model (<span class="cite"><a 
+href="#Xgalbraith1988">Galbraith</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xgalbraith1988">1988</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xgalbraith1990a">1990</a></span>). The
+radial plot is designed to visualise heteroscedastic datasets (i.e., datasets with unequal uncertainties). It is the most
+elegant way to visualise the results of the MLA model, which explicitly takes into account this heterescedasticity.
+See the Appendix for further details.<br 
+class="newline" />
+<!--l. 342--><p class="indent" >   The LA-ICPMS data of sample 297 follow a bimodal age distribution. This is evident in Figure&#x00A0;<a 
+href="#x1-4001r3">3<!--tex4ht:ref: fig:297 --></a> as two linear
+arrays on the radial plot radiating from the origin towards the radial scale at <span 
+class="cmsy-10">~</span>220&#x00A0;Ma and <span 
+class="cmsy-10">~</span>1800&#x00A0;Ma, respectively.
+Unsurprisingly, the radial plot of the CA-TIMS data looks very different. It exhibits a unimodal distribution with
+ages ranging from 220 to 226Ma.<br 
+class="newline" />
+<!--l. 349--><p class="indent" >   From the radial plots it is evident that age dispersion exceeds analytical uncertainty for both the LA-ICPMS and
+CA-TIMS datasets. In fact none of the 13 samples pass a Chi-square test for age homogeneity, indicating the
+presence of geological dispersion. The overdispersion of the LA-ICPMS data is expected because these were meant
+to capture multiple provenance components. However the excess scatter of the CA-TIMS data merits further
+discussion.<br 
+class="newline" />
+<!--l. 357--><p class="indent" >   The overdispersion of the CA-TIMS data could either reflect the presence of multiple detrital components of
+similar age, or it could be caused by protracted pre-eruptive residence of zircon in a volcanic magma chamber. In
+either case, the CA-TIMS data present a similar statistical challenge as the LA-ICPMS data in that it is not
+immediately obvious how to estimate the MDA.<br 
+class="newline" />
+<!--l. 364--><p class="indent" >   To meet this challenge, all the MDA estimate algorithms were applied to both the LA-ICPMS and CA-TIMS
+datasets. Thus we can objectively compare the effects of the different algorithms and of the different analytical
+techniques (Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:comparison --></a>).
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Empirical comparison of the different MDA algorithms</h3>
+<!--l. 372--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-5001r4"></a>
+
+<!--l. 373--><p class="noindent" >
+	  <a href="TIMSvsICP-.png">
+	    <img src="TIMSvsICP-.png" alt="PIC" class="snapshot" >
+	  </a>
+<a id="x1-5002"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4:  </span><span  
+class="content">Pairwise  comparison  of  the  13  LA-ICPMS  and  CA-TIMS  datasets  using  12  different  MDA
+estimators. Error bars are shown at 95% confidence. The area above the 1:1 line represents a &#8216;forbidden zone&#8217;
+where the CA-TIMS estimates exceed the LA-ICPMS estimates. The MLA algorithm is the only method
+that does not suffer from this problem. It is the only algorithm that provides reasonable MDA values for all
+samples.</span></div><!--tex4ht:label?: x1-5001r5 -->
+
+<!--l. 382--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 384--><p class="indent" >   Both radial plots and MLA calculations were made in <span class="cite"><a 
+href="#Xvermeesch2018c">Vermeesch</a></span>&#x00A0;(<span 
+class="cmtt-10">IsoplotR</span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018c">2018b</a></span>). See Appendix&#x00A0;B for
+further details.<br 
+class="newline" />
+<!--l. 388--><p class="indent" >   Applying the MLA method to sample 297 yields MDA estimates of 219.68<span 
+class="cmsy-10">&plusmn;</span>0.46&#x00A0;Ma and 221.09<span 
+class="cmsy-10">&plusmn;</span>0.99&#x00A0;Ma for
+the LA-ICPMS and CA-TIMS data, respectively. The small (-0.6%) age difference between the two estimates
+contrasts starkly with existing methods such as YSG (-17.4%), YGC1<span 
+class="cmmi-10">&#x03C3; </span>(-5.4%), YGC2<span 
+class="cmmi-10">&#x03C3; </span>(-4.5%), Y3Z (-7.8%), Y4Z
+(-5.2%), YDZ (-17.5%) and YSP (-2.1%). Repeating the same exercise for the remaining 12 samples confirms this
+picture.<br 
+class="newline" />
+<!--l. 396--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-5001r4">4<!--tex4ht:ref: fig:TIMSvsICP --></a> compares the MDA estimates of the LA-ICPMS and CA-TIMS data for all the methods discussed in
+this paper. The results are shown as bivariate scatter plots with 95% confidence intervals shown as error bars. These
+plots can be divided into three zones.
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-5004x1">The 1:1 line marks samples whose LA-ICPMS and CA-TIMS based MDA estimates agree within error.
+     This is the expected scenario for compositionally homogenous zircon crystals without common Pb.
+     </li>
+     <li 
+  class="enumerate" id="x1-5006x2">The area below the 1:1 line groups LA-ICPMS based MDA estimates that are older than their CA-TIMS
+     based counterparts. This may indicate complications such as common Pb or the presence of small scale
+     growth zones.
+     </li>
+     <li 
+  class="enumerate" id="x1-5008x3">The area above the 1:1 line is a &#8216;forbidden zone&#8217;. In general, one would not expect CA-TIMS ages
+     to exceed the corresponding LA-ICPMS ages, unless the zircons have experienced post-depositional
+     Pb-loss. It is unlikely that such Pb-loss is a common occurence in nature, for reasons that will be
+     discussed in Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:limitations --></a>.</li></ol>
+<!--l. 418--><p class="indent" >   All but two of the ten ad hoc MDA estimation methods shown on Figure&#x00A0;<a 
+href="#x1-5001r4">4<!--tex4ht:ref: fig:TIMSvsICP --></a> spill over into the &#8216;forbidden zone&#8217;.
+The YSG, YGC1<span 
+class="cmmi-10">&#x03C3;</span>, YGC2<span 
+class="cmmi-10">&#x03C3;</span>, Y3Z, Y4Z and YDZ methods are the worst offenders because all their LA-ICPMS based
+MDA estimates are younger than their CA-TIMS based MDA estimates. This troubling result is likely caused by the
+sample-size effect discussed in Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:convergence --></a>: because the LA-ICPMS datasets are two orders of magnitude
+larger than the CA-TIMS datasets, they are much more likely to drift towards unreasonably young
+values.<br 
+class="newline" />
+<!--l. 428--><p class="indent" >   The MLA method does not suffer from this problem. All its MDA estimates either fall on or below the 1:1 line.
+The only two ad hoc methods that fare reasonably well are YPP and TuffZirc. However the YPP method does not
+provide a measure of uncertainty, while the TuffZircon dates include one sample in the forbidden zone and one
+sample whose LA-ICPMS age is three times older than the CA-TIMS age. All things considered, the MLA method
+provides the most sensible results.<br 
+class="newline" />
+<!--l. 437--><p class="indent" >   The first two panels of Figure&#x00A0;<a 
+href="#x1-5001r4">4<!--tex4ht:ref: fig:TIMSvsICP --></a> show the results of the 3-parameter and 4-parameter versions of the MLA
+algorithm, respectively. The difference between the two models is negligible (<span 
+class="cmsy-10">&#x226A;</span>1%), reflecting the insensitivity of the
+method to the parametric model assumptions.
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Limitations</h3>
+<!--l. 446--><p class="noindent" >Any statistical model is only as good as the assumptions that it makes. For the minimum age model, these
+assumptions are that
+<!--l. 449--><p class="indent" >
+
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-6002x1">the true age distribution approximately follows the functional form shown in Figure&#x00A0;<a 
+href="#x1-3001r2">2<!--tex4ht:ref: fig:galbraith --></a>; and
+     </li>
+     <li 
+  class="enumerate" id="x1-6004x2">the analytical uncertainties are well characterised.</li></ol>
+<!--l. 455--><p class="indent" >   The first assumption is generally easy to verify. If the young end of the age spectrum is marked by a cluster of
+nearly concordant ages, then the minimum age model will appropriately average these. And it will do so even if the
+old end of the spectrum does not look like a (log)normal distribution. It is not uncommon for detrital zircon U&#8211;Pb
+age distributions to be fat tailed at both ends of the spectrum. However, the similar results obtained
+by the 3- and 4-parameter formulations of the MLA algorithm indicates that this is generally not a
+problem.<br 
+class="newline" />
+<!--l. 465--><p class="indent" >   If the age difference between the youngest and the second youngest grains in a sample is significantly greater
+than their respective analytical uncertainties, then the minimum age model will simply return the youngest age as a
+result. In other words, for fat tailed age spectra, the minimum age model reduces to the YSG model. This is the
+most sensible solution from a statistical point of view. In the absence of a discrete youngest age peak, the
+objections to the YSG model raised in Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:convergence --></a> and Figure&#x00A0;<a 
+href="#x1-2001r1">1<!--tex4ht:ref: fig:youngestN --></a> do not apply. However whether age
+of the youngest grain is also the most sensible solution from a geological point of view is a different
+matter.<br 
+class="newline" />
+<!--l. 477--><p class="indent" >   Post-depositional Pb-loss is one way to violate assumption&#x00A0;2. Zircon grains that have experienced Pb-loss can
+yield precise yet inaccurate U&#8211;Pb age estimates that plot in the &#8216;forbidden zone&#8217; of the LA-ICPMS vs. CA-TIMS
+plot (Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:comparison --></a>). The minimum age model is unable to detect this problem. But neither, of course, are any of the
+existing MDA estimation algorithms. In the absence of a statistically sound solution, it is useful to inspect any
+textural or compositional data for clues to identify grains that have been affected by Pb-loss. For example, if the
+young outliers are all characterised by extremely high U- and/or Th-concentrations, then this could be taken as
+evidence for radiation damage induced Pb-loss. Such additional information can be visualised on the radial plot as
+optional fill colours.<br 
+class="newline" />
+<!--l. 491--><p class="indent" >   However, given the low diffusivity of Pb in zircon at the temperatures found in most sedimentary basins,
+post-depositional Pb-loss is probably unlikely to be a common problem in detrital geochronology (<span class="cite"><a 
+href="#Xcherniak2001">Cherniak and
+Watson</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xcherniak2001">2001</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xcopeland2020">Copeland</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xcopeland2020">2020</a></span>). It is possible that many anomalously young ages that have been attributed to
+common Pb-loss to are instead just ordinary outliers violating assumption&#x00A0;2. The probability that a dataset
+contains such anomalously young values increases with sample size. In principle these values could be removed by
+outlier detection algorithms. But all such algorithms are heuristic by nature and are not guaranteed to produce
+sensible results.<br 
+class="newline" />
+<!--l. 502--><p class="indent" >   A better albeit more onerous solution for fat tailed age distributions is to re-analyse the youngest grains either
+by internal isochron analysis (<span class="cite"><a 
+href="#Xnemchin2005">Nemchin and Cawood</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xnemchin2005">2005</a></span>), or by CA-TIMS geochronology as shown in
+this paper. After such validation, even a single isolated grain of zircon can provide a robust MDA
+constraint.
+<!--l. 508--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Discussion</h3>
+<!--l. 511--><p class="noindent" >This paper has shown that the MLA model of <span class="cite"><a 
+href="#Xgalbraith1993">Galbraith and Laslett</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith1993">1993</a></span>) and <span class="cite"><a 
+href="#Xgalbraith2005">Galbraith</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith2005">2005</a></span>) is superior to
+all the MDA estimation algorithms reviewed by <span class="cite"><a 
+href="#Xcoutts2019">Coutts et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xcoutts2019">2019</a></span>). It is the only method that is
+built on solid statistical foundations, and the only method that can converge to the correct solution
+with increasing sample size. In the absence of complications with recent Pb-loss or young outliers,
+the MLA method is entirely objective and completely hands off. It does not require any arbitrary
+decision such as the number of grains to average (Y3Z, Y4Z), or the probability cutoff to use (YGC1<span 
+class="cmmi-10">&#x03C3;</span>,
+
+YGC2<span 
+class="cmmi-10">&#x03C3;</span>).<br 
+class="newline" />
+<!--l. 521--><p class="indent" >   Although this objectivity is appealing in several ways, it lacks any geological context. <span class="cite"><a 
+href="#Xcopeland2020">Copeland</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xcopeland2020">2020</a></span>) argues
+that detrital zircon grains cannot be grouped into discrete (maximum depositional) age components without
+additional geochemical justification. However whilst it is true that MLA estimates may not correspond to a
+particular geological event, it should be emphasised that they are not meant to do so. The principal purpose of
+any MDA algorithm is to obtain an upper limit for the depositional age. Whether this upper limit
+corresponds to a particular geological event, or to a mixture of multiple overlapping events, is a different
+issue.<br 
+class="newline" />
+<!--l. 532--><p class="indent" >   At first glance, the MLA model may seem similar to <span class="cite"><a 
+href="#Xcoutts2019">Coutts et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xcoutts2019">2019</a></span>)&#8217;s YSP method, because both
+algorithms assume that the minimum age belongs to a discrete age component. However there is a crucial difference
+between the two techniques. The YSP method assumes that it is possible to make a clean separation between
+grains whose true ages belong to the youngest age peak, and grains whose true ages belong to older
+age components. In reality this distinction is blurred by the analytical uncertainties. The rank order
+of single grain age <span 
+class="cmti-10">estimates </span>may not necessarily be the same as that of the <span 
+class="cmti-10">true </span>U&#8211;Pb ages. This
+makes the YSP method biased relative to the minimum age model. The latter does not arbitrarily
+assign the grains to two groups, but jointly considers all the age estimates when fitting the model
+parameters.<br 
+class="newline" />
+<!--l. 546--><p class="indent" >   Besides its applications in fission track thermochronology and detrital geochronology, the MLA model can be
+used in other Earth Science applications as well, such as the determination of eruption ages from collections of
+volcanic zircon ages. Volcanic rocks often exhibit positively skewed age distributions with a short tail of syn-eruptive
+U&#8211;Pb ages and a long tail of pre-eruptive or xenocrystic ages. In this context the MLA model would be a good
+alternative to ad hoc approaches such as YSG and YSP that have previously been used, or to the more
+sophisticated Bayesian approaches that have recently been proposed (<span class="cite"><a 
+href="#Xkeller2018">Keller et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xkeller2018">2018</a></span>). It would also be
+useful to visualise such volcanic datasets on radial plots instead of the interval plots that are currently
+used.
+<!--l. 559--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>Acknowledgments</h3>
+<!--l. 561--><p class="noindent" >P.V. would like to thank George Gehrels, Peter Copeland and Daniel Coutts for constructive reviews that
+significantly improved the paper. This research was supported by NERC standard grant #NE/T001518/1 (&#8216;Beyond
+Isoplot&#8217;).
+<!--l. 566--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-90008"></a>Appendix&#x00A0;A: about radial plots</h3>
+<!--l. 568--><p class="noindent" >Like the MLA model itself, radial plots were originally developed by Rex <span class="cite"><a 
+href="#Xgalbraith1988">Galbraith</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgalbraith1988">1988</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xgalbraith2005">2005</a></span>) for the purpose
+fission track geochronology. And like the MLA model, radial plots can be equally useful for U&#8211;Pb and other
+geochronometers (<span class="cite"><a 
+href="#Xvermeesch2009c">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2009c">2009</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018c">2018b</a></span>). Let <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub> and <span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">j</span></sub> be the log-transformed values of <span 
+class="cmmi-10">N </span>single grain ages <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">j</span></sub>
+and their standard errors <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">j</span></sub> (for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">j </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">N</span>):
+   <table 
+class="equation"><tr><td>
+
+   <center class="math-display" >
+<img 
+src="index2x.png" alt="zj = log(tj) and sj = &#x03C3;j&#x2215;tj
+" class="math-display" ><a 
+ id="x1-9001r1"></a></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 578--><p class="nopar" >
+<!--l. 580--><p class="noindent" >then a radial plot is a bivariate (<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmmi-7">j</span></sub>) scatterplot with:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="index3x.png" alt="xj = 1&#x2215;sj and yj = (zj - z&#x2218;)&#x2215;sj
+" class="math-display" ><a 
+ id="x1-9002r2"></a></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 585--><p class="nopar" >
+<!--l. 587--><p class="noindent" >where <span 
+class="cmmi-10">z</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is a reference value such as the weighted mean of the <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub> values. Radial plots allow the observer to
+simultaneously assess both the magnitude and the precision of quantitative data. Each point on the diagram
+represents a single grain analysis. Old grains plot at high (positive) angles to the origin, whereas young grains plot
+at low (negative) angles. The analytical uncertainty can be obtained by extrapolating lines from the origin to the
+radial scale through the top and the bottom of an imaginary 2<span 
+class="cmmi-10">&#x03C3;</span>-error bar added to each sample point. Thus, precise
+measurements plot towards the right hand side of the diagram, whereas imprecise measurements plot
+towards the left. Drawing two parallel lines at 2<span 
+class="cmmi-10">&#x03C3; </span>distances from either side of the origin allow the
+analyst to visually assess whether all the single grain ages within a sample agree within the analytical
+uncertainties.<br 
+class="newline" />
+<!--l. 602--><p class="indent" >   With its ability to visualise heteroscedastic datasets (i.e., datasets with unequal uncertainties), the radial plot
+realises the unfulfilled promise of the probability density plot (<span class="cite"><a 
+href="#Xvermeesch2012b">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2012b">2012</a></span>). It is the most elegant way to
+visualise the results of the MLA model, which explicitly takes into account this heterescedasticity.
+Discrete components (including despositional age components) in a mixed age distribution can be easily
+spotted as linear arrays radiating from the origin towards the radial scale (left panel of Figure&#x00A0;<a 
+href="#x1-4001r3">3<!--tex4ht:ref: fig:297 --></a>).
+Radial plots and the MLA model have been implemented in <span 
+class="cmtt-10">Java </span>(<span 
+class="cmtt-10">RadialPlotter</span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2009c">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2009c">2009</a></span>)
+and <span 
+class="cmtt-10">R </span>(<span 
+class="cmtt-10">IsoplotR</span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018c">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018c">2018b</a></span>). Detailed instructions for the latter application are provided in
+Appendix&#x00A0;B.
+<!--l. 616--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-100008"></a>Appendix&#x00A0;B: Implementation in <span 
+class="cmtt-10">IsoplotR</span></h3>
+<!--l. 618--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10001r5"></a>
+
+<!--l. 619--><p class="noindent" >
+	  <a href="IsoplotR.png">
+	    <img src="IsoplotR.png" alt="PIC" class="snapshot">
+	  </a>
+<a id="x1-10002"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">MLA calculation of LA-ICPMS sample 297 of <span class="cite"><a 
+href="#Xgehrels2020">Gehrels et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xgehrels2020">2020</a></span>), performed using <span 
+class="cmtt-10">IsoplotR</span>&#8217;s
+graphical user interface (<span class="cite"><a 
+href="#Xvermeesch2018b">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018b">2018a</a></span>). This calculation can either be performed from the age estimates
+(background), or from the U&#8211;Pb compositions (foreground). Both methods yield identical results. </span></div><!--tex4ht:label?: x1-10001r8 -->
+
+<!--l. 627--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 629--><p class="indent" >   <span 
+class="cmtt-10">IsoplotR </span>is an <span 
+class="cmtt-10">R </span>package for radiometric geochronology (<span class="cite"><a 
+href="#Xvermeesch2018c">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018c">2018b</a></span>). Figure&#x00A0;<a 
+href="#x1-10001r5">5<!--tex4ht:ref: fig:IsoplotR --></a> shows its online user
+interface. The software implements two ways to plot radial plots and calculate minimum ages. The first of these is to
+(1) select <span 
+class="cmtt-10">other </span>as a data type, (2) paste the U&#8211;Pb ages and their uncertainties into the input window, (3)
+choose <span 
+class="cmtt-10">radial plot </span>as an output device, (4) select <span 
+class="cmtt-10">Options </span><span 
+class="cmsy-10">&#x2192; </span><span 
+class="cmtt-10">Finite mixtures </span><span 
+class="cmsy-10">&#x2192; </span><span 
+class="cmtt-10">minimum</span>, and (5)
+click <span 
+class="cmtt-10">PLOT</span>. A second way to use the minimum age model is to (1) select <span 
+class="cmtt-10">U-Pb </span>as the data type, (2)
+paste the U&#8211;Pb data into the input window, (3) proceed as before. Both methods produce identical
+results.<br 
+class="newline" />
+<!--l. 642--><p class="indent" >   Alternatively, the same calculations can also be performed from the command line with the <span 
+class="cmtt-10">R </span>programming
+language. Using the ages and their uncertainties:
+
+   <div class="verbatim" id="verbatim-1">
+library(IsoplotR)
+&#x00A0;<br />ages&#x00A0;&#x003C;-&#x00A0;read.data("297ages.csv",method="other",
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;format="radial",ierr=1)
+&#x00A0;<br />radialplot(ages,k="min")
+</div>
+<!--l. 651--><p class="nopar" >
+<!--l. 653--><p class="noindent" >or using the U&#8211;Pb compositions:
+
+   <div class="verbatim" id="verbatim-2">
+UPb&#x00A0;&#x003C;-&#x00A0;read.data("297isotopes.csv",method="U-Pb",
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;format=1,ierr=3)
+&#x00A0;<br />radialplot(UPb,k="min")
+</div>
+<!--l. 659--><p class="nopar" >
+<!--l. 661--><p class="noindent" >where <span 
+class="cmtt-10">297ages.csv </span>and <span 
+class="cmtt-10">297isotopes.csv </span>are two comma separated text files with the age data and isotopic
+compositions, respectively. These files are provided in the Supplementary Information. <span 
+class="cmtt-10">297ages.csv </span>specifies
+the uncertainties as absolute values (standard errors), whereas <span 
+class="cmtt-10">297isotopes.csv </span>contains relative
+uncertainties (coefficients of variation). This difference is handled by the <span 
+class="cmtt-10">ierr </span>argument to the <span 
+class="cmtt-10">read.data</span>
+function.
+   <h3 class="likesectionHead"><a 
+ id="x1-110008"></a>References</h3>
+<!--l. 673--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbarbeau2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Barbeau, L., David, Olivero, E.&#x00A0;B., Swanson-Hysell, N.&#x00A0;L., Zahid, K.&#x00A0;M., Murray, K.&#x00A0;E., and Gehrels,
+  G.&#x00A0;E.  Detrital-zircon geochronology of the eastern Magallanes foreland basin: Implications for Eocene
+  kinematics of the northern Scotia Arc and Drake Passage. <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 284(3-4):
+  489&#8211;503, 2009.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchen2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chen,  W.-S.,  Huang,  Y.-C.,  Liu,  C.-H.,  Feng,  H.-T.,  Chung,  S.-L.,  and  Lee,  Y.-H.    UPb  zircon
+  geochronology constraints on the ages of the Tananao Schist Belt and timing of orogenic events in Taiwan:
+  Implications for a new tectonic evolution of the South China Block during the Mesozoic. <span 
+class="cmti-10">Tectonophysics</span>,
+  686:68&#8211;81, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcherniak2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cherniak, D. and Watson, E. Pb diffusion in zircon. <span 
+class="cmti-10">Chemical Geology</span>, 172(1-2):5&#8211;24, 2001.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcopeland2020"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Copeland, P.  On the use of geochronology of detrital grains in determining the time of deposition of
+  clastic sedimentary strata. <span 
+class="cmti-10">Basin Research</span>, 2020. doi: 10.1111/BRE.12441.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcoutts2019"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Coutts, D.&#x00A0;S., Matthews, W.&#x00A0;A., and Hubbard, S.&#x00A0;M.  Assessment of widely used methods to derive
+  depositional ages from detrital zircon populations. <span 
+class="cmti-10">Geoscience Frontiers</span>, 10(4):1421&#8211;1435, 2019.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdickinson2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dickinson, W. and Gehrels, G. U-Pb ages of detrital zircons in Jurassic eolian and associated sandstones
+  of the Colorado Plateau: Evidence for transcontinental dispersal and intraregional recycling of sediment.
+  <span 
+class="cmti-10">Geological Society of America Bulletin</span>, 121:408&#8211;433, 2009. doi: 10.1130/B26406.1.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. The radial plot: graphical assessment of spread in ages. <span 
+class="cmti-10">Nuclear Tracks and Radiation</span>
+  <span 
+class="cmti-10">Measurements</span>, 17:207&#8211;214, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. and Green, P.&#x00A0;F.  Estimating the component ages in a finite mixture.  <span 
+class="cmti-10">Nuclear Tracks</span>
+  <span 
+class="cmti-10">and Radiation Measurements</span>, 17:197&#8211;206, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. <span 
+class="cmti-10">Statistics for fission track analysis</span>. CRC Press, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.  Graphical display of estimates having differing standard errors.  <span 
+class="cmti-10">Technometrics</span>, 30(3):
+  271&#8211;281, 1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R. and Laslett, G. Statistical models for mixed fission track ages. <span 
+class="cmti-10">Nuclear tracks and radiation</span>
+  <span 
+class="cmti-10">measurements</span>, 21(4):459&#8211;470, 1993.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgehrels2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gehrels, G.  AgePick, 2003.  <span 
+class="cmtt-10">https://sites.google.com/a/laserchron.org/laserchron/home/ </span>Last
+  accessed: 2020-06-05.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgehrels2020"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gehrels, G., Giesler, D., Olsen, P., Kent, D., Marsh, A., Parker, W., Rasmussen, C., Mundil, R., Irmis,
+  R., Geissman, J., et&#x00A0;al.  LA-ICPMS U&#8211;Pb geochronology of detrital zircon grains from the Coconino,
+  Moenkopi, and Chinle Formations in the Petrified Forest National Park (Arizona). <span 
+class="cmti-10">Geochronology</span>, 2020.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xherriott2019"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Herriott, T.&#x00A0;M., Crowley, J.&#x00A0;L., Schmitz, M.&#x00A0;D., Wartes, M.&#x00A0;A., and Gillis, R.&#x00A0;J. Exploring the law of
+  detrital zircon: LA-ICP-MS and CA-TIMS geochronology of Jurassic forearc strata, Cook Inlet, Alaska,
+  USA. <span 
+class="cmti-10">Geology</span>, 47(11):1044&#8211;1048, 2019.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkeller2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Keller, C.&#x00A0;B., Schoene, B., and Samperton, K.&#x00A0;M.  A stochastic sampling approach to zircon eruption
+  age interpretation. <span 
+class="cmti-10">Geochemical Perspectives Letters</span>, 8(LLNL-JRNL-738859), 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R. On the treatment of concordant uranium-lead ages. <span 
+class="cmti-10">Geochimica et Cosmochimica Acta</span>,
+  62:665&#8211;676, 1998. doi: 10.1016/S0016-7037(98)00059-3.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R.  User&#8217;s manual for Isoplot 3.00: a geochronological toolkit for Microsoft Excel.  <span 
+class="cmti-10">Berkeley</span>
+  <span 
+class="cmti-10">Geochronology Center Special Publication 4</span>, 4, 2003.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K. and Mundil, R. Extracting reliable U-Pb ages and errors from complex populations of zircons
+  from Phanerozoic tuffs. In <span 
+class="cmti-10">Geochimica et Cosmochimica Acta</span>, volume&#x00A0;66, pages A463&#8211;A463, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnelson2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nelson,  D.&#x00A0;R.    An  assessment  of  the  determination  of  depositional  ages  for  Precambrian  clastic
+  sedimentary rocks by U&#8211;Pb dating of detrital zircons. <span 
+class="cmti-10">Sedimentary Geology</span>, 141:37&#8211;60, 2001.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnemchin2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nemchin, A.&#x00A0;A. and Cawood, P.&#x00A0;A.  Discordance of the U&#8211;Pb system in detrital zircons: Implication
+  for  provenance  studies  of  sedimentary  rocks.     <span 
+class="cmti-10">Sedimentary  Geology</span>,  182:143&#8211;162,  2005.     doi:
+  10.1016/j.sedgeo.2005.07.011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrasmussen2020"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Rasmussen, C., Mundil, R., Irmis, R.&#x00A0;B., Geisler, D., Gehrels, G.&#x00A0;E., Olsen, P.&#x00A0;E., Kent, D.&#x00A0;V., Lepre,
+  C., Kinney, S.&#x00A0;T., Geissman, J.&#x00A0;W., et&#x00A0;al. U-Pb zircon geochronology and depositional age models for the
+  Upper Triassic Chinle Formation (Petrified Forest National Park, Arizona, USA): Implications for Late
+  Triassic paleoecological and paleoenvironmental change. <span 
+class="cmti-10">GSA Bulletin</span>, 2020.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xross2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ross, J.&#x00A0;B., Ludvigson, G.&#x00A0;A., M&ouml;ller, A., Gonzalez, L.&#x00A0;A., and Walker, J. Stable isotope paleohydrology
+  and chemostratigraphy of the Albian Wayan Formation from the wedge-top depozone, North American
+  Western Interior Basin. <span 
+class="cmti-10">Science China Earth Sciences</span>, 60(1):44&#8211;57, 2017.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsambridge1994"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sambridge,  M.&#x00A0;S.  and  Compston,  W.     Mixture  modeling  of  multi-component  data  sets  with
+  application  to  ion-probe  zircon  ages.   <span 
+class="cmti-10">Earth and Planetary Science Letters</span>,  128:373&#8211;390,  1994.   doi:
+  10.1016/0012-821X(94)90157-0.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtitterington1979"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Titterington, D.&#x00A0;M. and Halliday, A.&#x00A0;N. On the fitting of parallel isochrons and the method of maximum
+  likelihood. <span 
+class="cmti-10">Chemical Geology</span>, 26:183&#8211;195, 1979.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtucker2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Tucker, R.&#x00A0;T., Roberts, E.&#x00A0;M., Hu, Y., Kemp, A.&#x00A0;I., and Salisbury, S.&#x00A0;W. Detrital zircon age constraints
+  for  the  Winton  Formation,  Queensland:  contextualizing  Australia&#8217;s  Late  Cretaceous  dinosaur  faunas.
+  <span 
+class="cmti-10">Gondwana Research</span>, 24(2):767&#8211;779, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtouw1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>van  der  Touw,  J.,  Galbraith,  R.,  and  Laslett,  G.   A  logistic  truncated  normal  mixture  model  for
+  overdispersed binomial data. <span 
+class="cmti-10">Journal of Statistical Computation and Simulation</span>, 59(4):349&#8211;373, 1997.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2009c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  RadialPlotter: A Java application for fission track, luminescence and other radial plots.
+  <span 
+class="cmti-10">Radiation Measurements</span>, 44(4):409&#8211;410, 2009.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  On the visualisation of detrital age distributions.  <span 
+class="cmti-10">Chemical Geology</span>, 312-313:190&#8211;194,
+  2012. doi: 10.1016/j.chemgeo.2012.04.021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Dissimilarity measures in detrital geochronology.  <span 
+class="cmti-10">Earth-Science Reviews</span>, 178:310&#8211;321,
+  2018a. doi: 10.1016/j.earscirev.2017.11.027.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. <span 
+class="cmtt-10">IsoplotR</span>: a free and open toolbox for geochronology. <span 
+class="cmti-10">Geoscience Frontiers</span>, 9:1479&#8211;1493,
+  2018b.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyork2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>York, D., Evensen, N.&#x00A0;M., Mart&iacute;nez, M.&#x00A0;L., and De&#x00A0;Basabe&#x00A0;Delgado, J. Unified equations for the slope,
+  intercept, and standard errors of the best straight line. <span 
+class="cmti-10">American Journal of Physics</span>, 72(3):367&#8211;375, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xzhang2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Zhang, X., Pease, V., Skogseid, J., and Wohlgemuth-Ueberwasser, C. Reconstruction of tectonic events
+  on the northern Eurasia margin of the Arctic, from U-Pb detrital zircon provenance investigations of late
+  Paleozoic to Mesozoic sandstones in southern Taimyr Peninsula. <span 
+class="cmti-10">Bulletin</span>, 128(1-2):29&#8211;46, 2016.
+</p>
+  </div>
+    
+</body></html> 
+
+
+

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>In-situ U-Th-Sm-He calculator</title>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="handsontable.min.js"></script>
+<script src="math.min.js"></script>
+<script src="resochronometer.js"></script>
+<script src="tablehandler.js"></script>
+<link rel="stylesheet" href="handsontable.min.css">
+<style>
+body {text-align: center; vertical-align: middle;}
+div.handsontable {margin: 0 auto;}
+div.box {border:1px solid black; display:inline-block;}
+</style>
+</head>
+<body>
+
+<script>
+
+</script>
+
+<form>
+<div class="box" id="boycevermeesch">
+&nbsp;  <input type="radio" name="boyce" id="boyce"/> absolute
+ <input type="radio" name="boyce" id="vermeesch"/> pairwise &nbsp;
+</div>
+<div class="box" id="UThSm">  
+U, Th, Sm in  
+<input type="radio" name="ppmnmolmg" id="ppm" checked="true"/> ppm  
+<input type="radio" name="ppmnmolmg" id="nmolmg"/> nmol/mg 
+</div>
+
+<div id="content-container"></div>
+</form>
+
+Samples:
+<p></p>
+<div id="SMPs" class="handsontable"></div>
+<p></p>
+<button id="run"><b>RUN</b></button>
+<button id="clear">CLEAR</button>
+<button id="help">HELP</button>
+<button id="tohelioplot">TO HELIOPLOT</button>
+<div id="HELIOPLOT" style="overflow: auto; visibility: hidden;">
+<p></p>
+Input file for <a href="http://ucl.ac.uk/~ucfbpve/helioplot">HelioPlot</a>:
+<p></p>
+<div id="HELIOTABLE"></div>
+<p></p>
+<button id="hide">HIDE</button>
+</div>
+
+</body>
+</html>

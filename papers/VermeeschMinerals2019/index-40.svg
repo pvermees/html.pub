@@ -1,0 +1,43 @@
+ <div class="verbatim" id="verbatim-41">
+<span 
+class="cmtt-10x-x-109">library(provenance)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;read</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;detrital</span><span 
+class="cmtt-10x-x-109">&#x00A0;zircon</span><span 
+class="cmtt-10x-x-109">&#x00A0;dataset:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">DZ</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.distributional("DZ.csv")</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;calculate</span><span 
+class="cmtt-10x-x-109">&#x00A0;and</span><span 
+class="cmtt-10x-x-109">&#x00A0;plot</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;(non-metric)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;MDS</span><span 
+class="cmtt-10x-x-109">&#x00A0;configuration</span><span 
+class="cmtt-10x-x-109">&#x00A0;using</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;KS</span><span 
+class="cmtt-10x-x-109">&#x00A0;distance:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">DZ.X</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;MDS(DZ)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">plot(DZ.X)</span>
+</div>
+<!--l. 1497--><p class="nopar" >                                                                                    

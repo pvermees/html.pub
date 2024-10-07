@@ -1,0 +1,22 @@
+This is a coarse grained, crystalline rock
+<p></p>
+Do you think this rock is:
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Extrusive rocks cooled very rapidly near or on the surface and therefore fine grained.';" />extrusive
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Intrusive rocks have cooled slowly at depth and are  coarse grained.';" />intrusive
+</form>
+<p></p> 
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'graniteppl.JPG\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'granitexpl.JPG\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+<p></p>
+<div id="description">
+</div>

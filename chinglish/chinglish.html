@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>The Chinglish Page</TITLE>
+
+<script language="JavaScript">
+
+var photoarray = new
+Array("razor.jpg","jim.jpg","atimething.jpg","vitellus.jpg","goods2.jpg","enzym.jpg","hostel.jpg",
+"mouth.jpg","adidds.jpg","jim2.jpg","happytintin.jpg","goods1.jpg","chop2.jpg","perfectTaiwan.jpg",
+"stain.jpg","unclear9.jpg","CD2.jpg","eclogite.jpg","efl.html");
+var colors = new Array('gold','silver','aqua','beige','lightyellow','white');
+
+function changephoto()
+{if (document.main.description.selectedIndex < photoarray.length-1){
+    document.photo.src=photoarray[document.main.description.selectedIndex];
+} else {
+    open(photoarray[document.main.description.selectedIndex],"NewWindow");
+}
+};
+
+function changebgcolor()
+{document.bgColor=colors[Math.round(Math.random() * 5)];
+};
+
+changebgcolor();
+</script>
+
+</HEAD>
+
+<BODY bgcolor="gold" LINK="white" VLINK="white">
+
+<center>
+<font face="Verdana, Arial, Helvetica, sans-serif" color="gray" size="3">
+<h1>Chinglish!</font><h1>
+
+<form name=main>
+<select name=description onchange="changephoto();changebgcolor();">
+<option selected>Attempt comprehend your sefl
+<option>Sloppily English = Chinglish
+<option>A time sex thing
+<option>& Milk candy
+<option>Fuck the price
+<option>Children are not recommended
+<option>Put the bed
+<option>Enter the mouth
+<option>Copyrightt
+<option>Personal effects
+<option>Happy Titn
+<option>Make Sures
+<option>Glonous chcosticks
+<option>Taiwan is perfect
+<option>Japanese Chinglish
+<option>Middle Eastern Chinglish
+<option>A great deal
+<option>Abstract Russian
+<option>"English" in other countries
+</select>
+</form>
+
+
+<img name=photo src="razor.jpg"><br>
+<p>
+<font face="Verdana, Arial, Helvetica, sans-serif" color="gray" size="1">
+<a href="credits.html"> credits </a><br>
+
+&nbsp <br>
+&nbsp <br>
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript" language="javascript">
+var sc_project=2277100; 
+var sc_invisible=1; 
+var sc_partition=20; 
+var sc_security="ac500019"; 
+</script>
+
+<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c21.statcounter.com/counter.php?sc_project=2277100&java=0&security=ac500019&invisible=1" alt="free web tracker" border="0"></a> </noscript>
+<!-- End of StatCounter Code -->
+</center>
+</body>
+</HTML>

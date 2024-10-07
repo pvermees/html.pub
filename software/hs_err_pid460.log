@@ -1,0 +1,202 @@
+#
+# An unexpected error has been detected by HotSpot Virtual Machine:
+#
+#  SIGBUS (0xa) at pc=0xfe8d623c, pid=460, tid=6
+#
+# Java VM: Java HotSpot(TM) Client VM (1.5.0_34-b03 mixed mode, sharing)
+# Problematic frame:
+# V  [libjvm.so+0xd623c]
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0009ce20):  JavaThread "CompilerThread0" daemon [_thread_in_vm, id=6]
+
+siginfo:si_signo=10, si_errno=0, si_code=1, si_addr=0x48020406
+
+Registers:
+ O0=0x00000078 O1=0x00397209 O2=0x00004e2b O3=0x00062c38
+ O4=0x00008278 O5=0x00008000 O6=0xfc07e3a8 O7=0xffffffff
+ G1=0xda22c4f7 G2=0xa35e22d8 G3=0xb51af113 G4=0xa35e2260
+ G5=0x00000000 G6=0x00000000 G7=0xfe542200 Y=0x00000000
+ PC=0xfe8d623c nPC=0xfe8d6200
+
+
+Top of Stack: (sp=0xfc07e3a8)
+0xfc07e3a8:   48020406 0000006a 00397209 00000015
+0xfc07e3b8:   feda73dc 0002ca65 00010960 00062c38
+0xfc07e3c8:   00000000 00004258 0009ce20 00000015
+0xfc07e3d8:   da23074f 48020406 fc07e408 fe945e38
+0xfc07e3e8:   00004c03 00000000 00000000 0009d410
+0xfc07e3f8:   00000000 0009d410 fc07ec10 00000000
+0xfc07e408:   00000017 0009d420 003d2e90 0009ce20
+0xfc07e418:   fed88000 d87a2768 0009d424 0000004c 
+
+Instructions: (pc=0xfe8d623c)
+0xfe8d622c:   80 a6 20 00 e0 07 60 04 ba 8c 3f fe 32 bf ff f2
+0xfe8d623c:   de 07 60 00 b0 10 20 00 80 a6 20 00 02 80 00 04 
+
+Stack: [0xfc000000,0xfc080000),  sp=0xfc07e3a8,  free space=504k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xd623c]
+V  [libjvm.so+0x145e40]
+V  [libjvm.so+0x15cfcc]
+V  [libjvm.so+0x160538]
+V  [libjvm.so+0x1600c0]
+V  [libjvm.so+0x15ed90]
+V  [libjvm.so+0x158988]
+V  [libjvm.so+0x150358]
+V  [libjvm.so+0x14ecfc]
+V  [libjvm.so+0x14db9c]
+V  [libjvm.so+0x14d074]
+V  [libjvm.so+0x14cefc]
+V  [libjvm.so+0x147188]
+V  [libjvm.so+0x146f40]
+V  [libjvm.so+0x146b08]
+V  [libjvm.so+0x13ee90]
+V  [libjvm.so+0x13a7ec]
+V  [libjvm.so+0xfc38c]
+V  [libjvm.so+0x44e4c0]
+
+
+Current CompileTask:
+HotSpot Client Compiler:391   b  sun.java2d.pipe.AlphaPaintPipe.renderPathTile(Ljava/lang/Object;[BIIIIII)V (491 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x003e2548 JavaThread "SIGTERM handler" daemon [_thread_blocked, id=35]
+  0x002ebee0 JavaThread "AWT-EventQueue-1" [_thread_blocked, id=34]
+  0x002a7050 JavaThread "SysExecutionThead" [_thread_blocked, id=32]
+  0x00190bb0 JavaThread "Thread-10" [_thread_blocked, id=30]
+  0x0018fdf0 JavaThread "Thread-9" [_thread_blocked, id=29]
+  0x000759a0 JavaThread "thread applet-com.citrix.JICA" [_thread_blocked, id=27]
+  0x000d1270 JavaThread "AWT-EventQueue-0" [_thread_blocked, id=25]
+  0x000d77f0 JavaThread "AWT-Shutdown" [_thread_blocked, id=24]
+  0x002456e8 JavaThread "Thread-2" [_thread_in_native, id=16]
+  0x000b6a48 JavaThread "Thread-1" [_thread_blocked, id=15]
+  0x0018d580 JavaThread "traceMsgQueueThread" daemon [_thread_blocked, id=13]
+  0x000ad210 JavaThread "AWT-Motif" daemon [_thread_blocked, id=11]
+  0x001848d8 
+[error occurred during error reporting, step 170, id 0xa]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ def new generation   total 2112K, used 1336K [0xd0400000, 0xd0620000, 0xd0b10000)
+  eden space 2048K,  62% used [0xd0400000, 0xd053e160, 0xd0600000)
+  from space 64K, 100% used [0xd0600000, 0xd0610000, 0xd0610000)
+  to   space 64K,   0% used [0xd0610000, 0xd0610000, 0xd0620000)
+ tenured generation   total 5392K, used 1865K [0xd0b10000, 0xd1054000, 0xd4400000)
+   the space 5392K,  34% used [0xd0b10000, 0xd0ce2500, 0xd0ce2600, 0xd1054000)
+ compacting perm gen  total 8192K, used 2827K [0xd4400000, 0xd4c00000, 0xd8400000)
+   the space 8192K,  34% used [0xd4400000, 0xd46c2c50, 0xd46c2e00, 0xd4c00000)
+    ro space 8192K,  64% used [0xd8400000, 0xd8931eb0, 0xd8932000, 0xd8c00000)
+    rw space 12288K,  45% used [0xd8c00000, 0xd9171f40, 0xd9172000, 0xd9800000)
+
+Dynamic libraries:
+0x00010000 	/usr/jdk/instances/jdk1.5.0/jre/bin/java_vm
+0xff360000 	/usr/lib/libthread.so.1
+0xff330000 	/usr/lib/libdl.so.1
+0xff180000 	/usr/lib/libc.so.1
+0xff320000 	/platform/SUNW,Sun-Fire-V440/lib/libc_psr.so.1
+0xfe800000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/client/libjvm.so
+0xff2e0000 	/usr/lib/libsocket.so.1
+0xff300000 	/usr/lib/libsched.so.1
+0xff150000 	/usr/lib/libCrun.so.1
+0xff130000 	/usr/lib/libm.so.1
+0xff000000 	/usr/lib/libnsl.so.1
+0xfef00000 	/usr/lib/libm.so.2
+0xff100000 	/usr/lib/libscf.so.1
+0xff0e0000 	/usr/lib/libdoor.so.1
+0xff0c0000 	/usr/lib/libuutil.so.1
+0xfefe0000 	/usr/lib/libgen.so.1
+0xfefb0000 	/usr/lib/libmd.so.1
+0xfeee0000 	/platform/SUNW,Sun-Fire-V440/lib/libmd_psr.so.1
+0xfeec0000 	/usr/lib/libmp.so.2
+0xfee90000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/native_threads/libhpi.so
+0xfee30000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libverify.so
+0xfedf0000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libjava.so
+0xfedd0000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libzip.so
+0xfe520000 	/usr/lib/locale/en_GB.ISO8859-1/en_GB.ISO8859-1.so.3
+0xfbc80000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libawt.so
+0xfbb00000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libmlib_image.so
+0xfba80000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/motif21/libmawt.so
+0xfb800000 	/usr/lib/libXm.so.4
+0xfb780000 	/usr/lib/libXt.so.4
+0xfc2c0000 	/usr/lib/libXext.so.0
+0xfe410000 	/usr/lib/libXtst.so.1
+0xfb600000 	/usr/lib/libX11.so.4
+0xfc1c0000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libjavaplugin_jni.so
+0xfe510000 	/usr/lib/libintl.so.1
+0xfc290000 	/usr/lib/libSM.so.6
+0xfc0c0000 	/usr/lib/libICE.so.6
+0xfc190000 	/usr/lib/libXtsol.so.1
+0xfc0a0000 	/usr/lib/libtsol.so.2
+0xfbfe0000 	/usr/lib/libsecdb.so.1
+0xfbfc0000 	/usr/lib/libcmd.so.1
+0xfbec0000 	/usr/lib/libbsm.so.1
+0xfb500000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libfontmanager.so
+0xfbea0000 	/usr/openwin/lib/locale/common/xlibi18n.so.2
+0xfbdd0000 	/usr/lib/libXcursor.so.1
+0xfbdb0000 	/usr/openwin/sfw/lib/libXrender.so.1
+0xfbc60000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libdeploy.so
+0xfbc30000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libnet.so
+0xfba40000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libj2pkcs11.so
+0xfb5c0000 	/usr/lib/libpkcs11.so
+0xfb5a0000 	/usr/lib/libcryptoutil.so.1
+0xfb490000 	/usr/lib/security/pkcs11_softtoken.so
+0xfb3e0000 	/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libnio.so
+0xfb3c0000 	/usr/lib/librt.so.1
+0xfb3a0000 	/usr/lib/libaio.so.1
+0xfb2e0000 	/usr/lib/libsendfile.so.1
+
+VM Arguments:
+jvm_args: -DtrustProxy=true -Xverify:remote -Djava.protocol.handler.pkgs=sun.plugin.net.protocol -Xbootclasspath/a:/usr/jdk/instances/jdk1.5.0/jre/lib/plugin.jar:/usr/jdk/instances/jdk1.5.0/jre/lib/deploy.jar:/usr/jdk/instances/jdk1.5.0/jre/lib/javaplugin_l10n.jar -Djavaplugin.lib=/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libjavaplugin_jni.so -Dmozilla.workaround=true -Djavaplugin.nodotversion=150_34 -Djavaplugin.version=1.5.0_34 -Djavaplugin.vm.options=-DtrustProxy=true -Xverify:remote -Djava.class.path=/usr/jdk/instances/jdk1.5.0/jre/classes -Djava.class.path=/usr/jdk/instances/jdk1.5.0/jre/classes -Djava.protocol.handler.pkgs=sun.plugin.net.protocol -Xbootclasspath/a:/usr/jdk/instances/jdk1.5.0/jre/lib/plugin.jar:/usr/jdk/instances/jdk1.5.0/jre/lib/deploy.jar:/usr/jdk/instances/jdk1.5.0/jre/lib/javaplugin_l10n.jar -Djavaplugin.lib=/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/libjavaplugin_jni.so -Dmozilla.workaround=true -Djavaplugin.nodotversion=150_34 -Djavaplugin.version=1.5.0_34 
+java_command: <unknown>
+Launcher Type: generic
+
+Environment Variables:
+JAVA_HOME=/usr/jdk/instances/jdk1.5.0/jre
+PATH=/usr/local/bin:/usr/local/rbin:/usr/bin:/usr/sbin:/usr/local/public:/usr/local/rlib/SunStudio11/SUNWspro/bin:/usr/ucb:/usr/ccs/bin:/usr/openwin/bin:/usr/dt/bin:/usr/sfw/bin:.
+LD_LIBRARY_PATH=/usr/jdk/instances/jdk1.5.0/jre/lib/sparc/client:/usr/jdk/instances/jdk1.5.0/jre/lib/sparc:/nfs/rcs/solv10/usr/local/rlib/firefox1.5.0.4/firefox:/nfs/rcs/solv10/usr/local/rlib/firefox1.5.0.4/firefox/plugins:/usr/local/lib/mre/mre-1.5.0.4:/usr/lib:/usr/openwin/lib:/usr/local/rlib
+SHELL=/bin/csh
+DISPLAY=localhost:15.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x4e4618], sa_mask[0]=0xffbffeff, sa_flags=0x00000004
+SIGBUS: [libjvm.so+0x4e4618], sa_mask[0]=0xffbffeff, sa_flags=0x00000004
+SIGFPE: [libjvm.so+0x21dff0], sa_mask[0]=0xffbffeff, sa_flags=0x0000000c
+SIGPIPE: [libjvm.so+0x21dff0], sa_mask[0]=0xffbffeff, sa_flags=0x0000000c
+SIGILL: [libjvm.so+0x21dff0], sa_mask[0]=0xffbffeff, sa_flags=0x0000000c
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGHUP: [libjvm.so+0x44f6cc], sa_mask[0]=0xffbffeff, sa_flags=0x00000004
+SIGINT: [libjvm.so+0x44f6cc], sa_mask[0]=0xffbffeff, sa_flags=0x00000004
+SIGQUIT: [libjvm.so+0x44f6cc], sa_mask[0]=0xffbffeff, sa_flags=0x00000004
+SIGTERM: [libjvm.so+0x44f6cc], sa_mask[0]=0xffbffeff, sa_flags=0x00000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:                       Solaris 10 1/06 s10s_u1wos_19a SPARC
+           Copyright 2005 Sun Microsystems, Inc.  All Rights Reserved.
+                        Use is subject to license terms.
+                           Assembled 07 December 2005
+
+uname:SunOS 5.10 Generic_147440-12 sun4u  (T2 libthread)
+rlimit: STACK 8192k, CORE 0k, NOFILE 65536, AS infinity
+load average:1.04 0.96 0.61
+
+CPU:total 4 has_v8, has_v9, has_vis1, has_vis2, is_ultra3
+
+Memory: 8k page, physical 16777216k(14002584k free)
+
+vm_info: Java HotSpot(TM) Client VM (1.5.0_34-b03) for solaris-sparc, built on Jan 17 2012 16:52:10 by unknown with unknown Workshop:0x550
+
+time: Tue May 27 12:44:52 2014
+elapsed time: 704 seconds
+

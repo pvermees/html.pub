@@ -1,0 +1,1999 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>An R package for statistical provenance analysis</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<meta name="date" content="2016-01-18 22:52:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body 
+>
+<div class="main">
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">An R package for statistical provenance analysis</h2>
+                             <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">&lowast;</span></a></span>
+<br /> <span 
+class="cmr-12">London Geochronology Centre, University College London, United Kingdom</span>
+<br />                                     <span 
+class="cmr-12">&#x00A0;</span>
+<br />                  <span 
+class="cmr-12">Alberto Resentini and Eduardo Garzanti</span>
+<br /><span 
+class="cmr-12">Laboratorio di Petrografia del Sedimentario, Universit</span><span 
+class="cmr-12">&aacute; Milano-Bicocca, Italy</span></div><br />
+   <div class="thanks" >
+<center>
+<a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10">&lowast;</span></span> corresponding author: +44(0)2076792428, <span 
+class="cmtt-10">p.vermeesch [at] ucl.ac.uk</span></center></div></div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 15--><p class="noindent" >
+<!--l. 15--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 16--><p class="indent" >    <span 
+class="cmr-9">This  paper  introduces  </span><span 
+class="cmtt-9">provenance</span><span 
+class="cmr-9">,  a  software  package  within</span>
+     <span 
+class="cmr-9">the  statistical  programming  environment  </span><span 
+class="cmtt-9">R</span><span 
+class="cmr-9">,  which  aims  to  facilitate</span>
+     <span 
+class="cmr-9">the  visualisation  and  interpretation  of  large  amounts  of  sedimentary</span>
+     <span 
+class="cmr-9">provenance  data,  including  mineralogical,  petrographic,  chemical  and</span>
+     <span 
+class="cmr-9">isotopic  provenance  proxies,  or  any  combination  of  these.  </span><span 
+class="cmtt-9">provenance</span>
+     <span 
+class="cmr-9">comprises functions to: (a) calculate the sample size required to achieve a</span>
+     <span 
+class="cmr-9">given detection limit; (b) plot distributional data such as detrital zircon</span>
+     <span 
+class="cmr-9">U-Pb age spectra as Cumulative Age Distributions (CADs) or adaptive</span>
+     <span 
+class="cmr-9">Kernel  Density  Estimates  (KDEs);  (c)  plot  compositional  data  as  pie</span>
+     <span 
+class="cmr-9">charts or ternary diagrams; (d) correct the effects of hydraulic sorting</span>
+     <span 
+class="cmr-9">on sandstone petrography and heavy mineral composition; (e) assess the</span>
+     <span 
+class="cmr-9">settling  equivalence  of  detrital  minerals  and  grain-size  dependence  of</span>
+     <span 
+class="cmr-9">sediment composition; (f) quantify the dissimilarity between distributional</span>
+     <span 
+class="cmr-9">data  using  the  Kolmogorov-Smirnov  and  Sircombe-Hazelton  distances,</span>
+     <span 
+class="cmr-9">or  between  compositional  data  using  the  Aitchison  and  Bray-Curtis</span>
+     <span 
+class="cmr-9">distances; (e) interpret multi-sample datasets by means of (classical and</span>
+     <span 
+class="cmr-9">nonmetric) Multidimensional Scaling (MDS) and Principal Component</span>
+     <span 
+class="cmr-9">Analysis  (PCA);  and  (f)  simplify  the  interpretation  of  multi-method</span>
+     <span 
+class="cmr-9">datasets by means of Generalised Procrustes Analysis (GPA) and 3-way</span>
+     <span 
+class="cmr-9">MDS. All these tools can be accessed through an intuitive query-based</span>
+     <span 
+class="cmr-9">user interface, which does not require knowledge of the </span><span 
+class="cmtt-9">R </span><span 
+class="cmr-9">programming</span>
+     <span 
+class="cmr-9">language. </span><span 
+class="cmtt-9">provenance </span><span 
+class="cmr-9">is free software released under the GPL-2 license</span>
+     <span 
+class="cmr-9">and will be expanded based on user feedback.</span>
+
+</div>
+<div class="center" 
+>
+<!--l. 42--><p class="noindent" >
+<!--l. 44--><p class="noindent" ><span 
+class="cmti-10">keywords: provenance &#8211; statistics &#8211; U-Pb &#8211; zircon &#8211; heavy minerals &#8211;</span>
+<span 
+class="cmti-10">petrography &#8211; geochemistry</span></div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 50--><p class="noindent" >Sedimentary provenance analysis, in which chemical, mineralogical and isotopic
+properties of siliciclastic sediments are used to trace the flow of sand (or
+silt) through a sediment routing system, has entered an era of &#8216;Big Data&#8217;
+(<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). Thanks to technological improvements, it is now
+common practice to analyse thousands of grains in dozens of samples. These
+large datasets can be prohibitively difficult to interpret without statistical
+aids. Over the past few years, sedimentary geologists and geochronologists
+have developed a plethora of methods to address this issue, which are
+scattered in many different places and implemented in a variety of different
+software environments (e.g.,&#x00A0;<a 
+href="#Xludwig2003">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003">2003</a>;&#x00A0;<a 
+href="#Xmarshall1996">Marshall</a>,&#x00A0;<a 
+href="#Xmarshall1996">1996</a>;&#x00A0;<a 
+href="#Xsircombe2004a">Sircombe and
+Hazelton</a>,&#x00A0;<a 
+href="#Xsircombe2004a">2004</a>;&#x00A0;<a 
+href="#Xsircombe2004b">Sircombe</a>,&#x00A0;<a 
+href="#Xsircombe2004b">2004</a>;&#x00A0;<a 
+href="#Xresentini2013">Resentini et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xresentini2013">2013</a>;&#x00A0;<a 
+href="#Xtempl2011">Templ et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtempl2011">2011</a>;&#x00A0;<a 
+href="#Xvandenboogaart2008">van&#x00A0;den
+Boogaart and Tolosana-Delgado</a>,&#x00A0;<a 
+href="#Xvandenboogaart2008">2008</a>;&#x00A0;<a 
+href="#Xvermeesch2004b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2004b">2004</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>;&#x00A0;<a 
+href="#Xvermeesch2015">Vermeesch
+and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). This paper aims to group some of the most useful tools under a
+common umbrella, the <span 
+class="cmtt-10">provenance </span>package. The various sections of this article are
+arranged in order of increasing complexity and dimensionality, using a published
+dataset from Namibia for examples (Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:datahandling --></a>).
+<!--l. 69--><p class="indent" >   Section <a 
+href="#x1-50003">3<!--tex4ht:ref: sec:singlesample --></a> covers some functions that deal with a single provenance proxy
+applied to a single sample of sediment. This includes sample size calculations
+(Section <a 
+href="#x1-60003.1">3.1<!--tex4ht:ref: sec:samplesize --></a>) and functions to plot detrital age distributions as Kernel Density
+Estimates and Cumulative Age Distributions (Section <a 
+href="#x1-70003.2">3.2<!--tex4ht:ref: sec:plotting --></a>). Sections <a 
+href="#x1-80003.3">3.3<!--tex4ht:ref: sec:srd --></a> and
+<a 
+href="#x1-90003.4">3.4<!--tex4ht:ref: sec:minsorting --></a> show how the effects of selective entrainment of dense minerals can be
+undone and how mineralogical and petrographic provenance proxies are
+affected by hydraulic sorting. Section <a 
+href="#x1-100004">4<!--tex4ht:ref: sec:multiplesamples --></a> introduces Principal Component
+Analysis and Multidimensional Scaling as dimension reducing techniques which
+facilitate the interpretation of multi-sample datasets analysed by a single
+method. This Section also presents a brief overview of different approaches to
+quantify the &#8216;dissimilarity&#8217; between distributional and compositional data.
+Finally, section <a 
+href="#x1-130005">5<!--tex4ht:ref: sec:multiplemethods --></a> covers functionality to combine large datasets comparing
+multiple samples analysed with multiple methods, using Procrustes analysis
+and 3-way Multidimensional Scaling. The various functions in this paper
+are illustrated with many code snippets. Further examples are provided at
+<span 
+class="cmtt-10">http://provenance.london-geochron.com </span>and in the built-in documentation. To
+run these examples and use the <span 
+class="cmtt-10">provenance </span>package, one should first install <span 
+class="cmtt-10">R</span>. This
+is an increasingly popular programming environment similar in scope and
+purpose to <span 
+class="cmtt-10">Matlab</span>, which is available free of charge on any operating system
+
+at <span 
+class="cmtt-10">http://r-project.org</span>. The actual package can then be installed by
+typing
+
+   <div class="verbatim" id="verbatim-1">
+install.packages(&#39;provenance&#39;)
+</div>
+<!--l. 98--><p class="nopar" >
+<!--l. 100--><p class="indent" >   at the command prompt. Once installed, the package can be loaded by
+typing
+
+   <div class="verbatim" id="verbatim-2">
+library(provenance)
+</div>
+<!--l. 105--><p class="nopar" >
+<!--l. 107--><p class="indent" >   The easiest way to use <span 
+class="cmtt-10">provenance </span>is by typing:
+
+   <div class="verbatim" id="verbatim-3">
+provenance()
+</div>
+<!--l. 111--><p class="nopar" >
+<!--l. 113--><p class="indent" >   which brings up a query-based user interface, removing the need to master the
+syntax of the <span 
+class="cmtt-10">R </span>programming language (Figure <a 
+href="#x1-10011">1<!--tex4ht:ref: fig:gui --></a>). The <span 
+class="cmtt-10">provenance() </span>user interface
+is self explanatory and won&#8217;t be discussed further in this paper. Instead, the different
+tools within the <span 
+class="cmtt-10">provenance </span>package will be illustrated with short code snippets
+which more advanced users may incorporate in their own <span 
+class="cmtt-10">R </span>scripts for enhanced
+flexibility and automation. Internal documentation of these functions can be accessed
+through the <span 
+class="cmtt-10">? </span>command. For example, to display the documentation for the
+<span 
+class="cmtt-10">procrustes </span>function (Section <a 
+href="#x1-130005">5<!--tex4ht:ref: sec:multiplemethods --></a>):
+
+   <div class="verbatim" id="verbatim-4">
+?procrustes
+</div>
+<!--l. 127--><p class="nopar" >
+<!--l. 129--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10011"></a>
+
+
+<!--l. 131--><p class="noindent" ><a href="gui.png"><img class="snapshot"
+src="gui.png" alt="PIC"  ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">The query-based user interface.</span></div><!--tex4ht:label?: x1-10011 -->
+
+<!--l. 134--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Data handling</h3>
+<!--l. 139--><p class="noindent" >Over the years, geologists have tried and tested literally dozens of
+provenance proxies (e.g.,&#x00A0;<a 
+href="#Xbasu1989">Basu and Molinaroli</a>,&#x00A0;<a 
+href="#Xbasu1989">1989</a>;&#x00A0;<a 
+href="#Xmatter1985">Matter and
+Ramseyer</a>,&#x00A0;<a 
+href="#Xmatter1985">1985</a>;&#x00A0;<a 
+href="#Xmorton1985">Morton</a>,&#x00A0;<a 
+href="#Xmorton1985">1985</a>;&#x00A0;<a 
+href="#Xowen1987">Owen</a>,&#x00A0;<a 
+href="#Xowen1987">1987</a>;&#x00A0;<a 
+href="#Xrenne1990">Renne et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xrenne1990">1990</a>;&#x00A0;<a 
+href="#Xhurford1991">Hurford and
+Carter</a>,&#x00A0;<a 
+href="#Xhurford1991">1991</a>;&#x00A0;<a 
+href="#Xmclennan1993">McLennan et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmclennan1993">1993</a>;&#x00A0;<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). Most of
+these can be diviced into two broad classes:
+<!--l. 144--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-2002x1"><span 
+class="cmtt-10">distributional </span>data cover single-mineral proxies such as detrital zircon
+     U-Pb or mica <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar ages, in which samples can be summarised as
+     lists of ordinal values.
+     </li>
+     <li 
+  class="enumerate" id="x1-2004x2"><span 
+class="cmtt-10">compositional </span>data  cover  multi-mineral  proxies  such  as  petrography,
+     heavy mineral analysis and bulk geochemistry, in which samples can be
+     summarised as one-way tables in which each row can be (re)normalised to
+     unity.</li></ol>
+<!--l. 154--><p class="indent" >   <span 
+class="cmtt-10">provenance </span>reads raw data as <span 
+class="cmtt-10">.csv </span>files and casts these into two classes by
+separate functions. For example:
+
+   <div class="verbatim" id="verbatim-5">
+DZ&#x00A0;&#x003C;-&#x00A0;read.distributional(DZ.fname.csv,DZ.err.fname.csv)
+&#x00A0;<br />HM&#x00A0;&#x003C;-&#x00A0;read.compositional(HM.fname.csv)
+</div>
+<!--l. 160--><p class="nopar" >
+<!--l. 162--><p class="indent" >   Here <span 
+class="cmtt-10">DZ.fname.csv </span>and <span 
+class="cmtt-10">DZ.err.fname.csv </span>stand for the file names of some
+U-Pb age data and their analytical uncertainties (where the latter argument is
+optional). Different columns of these files correspond to different samples, with the
+rows containing the numerical values of the single grain analyses. <span 
+class="cmtt-10">HM.fname.csv</span>
+stands for the file name of a heavy mineral dataset, stored as a table with samples
+arranged by row and each column corresponding to a different type of mineral. The
+data objects produced by the two <span 
+class="cmtt-10">read </span>functions are treated differently by all
+subsequent functions.
+<!--l. 173--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a>Built-in datasets</h4>
+<!--l. 176--><p class="noindent" >To illustrate <span 
+class="cmtt-10">provenance</span>&#8217;s functionality, the package is bundled with a published
+dataset from Namibia (<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). Entering
+
+   <div class="verbatim" id="verbatim-6">
+data(Namib)
+</div>
+<!--l. 181--><p class="nopar" >
+<!--l. 183--><p class="indent" >   loads a variable called <span 
+class="cmtt-10">Namib </span>into memory, which is comprised of one
+distributional and five compositional datasets: (1) <span 
+class="cmtt-10">Namib$DZ </span>contains the
+zircon U-Pb ages and their analytical uncertainties; (2) <span 
+class="cmtt-10">Namib$PT </span>the bulk
+petrography; (3) <span 
+class="cmtt-10">Namib$HM </span>the heavy mineral compositions less the opaque
+minerals; (4) <span 
+class="cmtt-10">Namib$PTHM </span>the combined petrography and heavy minerals,
+including micas and opaque minerals, normalised to unity; (5) <span 
+class="cmtt-10">Namib$Major</span>
+the major element composition of the bulk sediment; and (6) <span 
+class="cmtt-10">Namib$Trace</span>
+the trace element composition of the bulk sediment. To avoid having to
+repeatedly type the preamble <span 
+class="cmtt-10">Namib$</span>, we can <span 
+class="cmtt-10">attach </span>the dataset to the search
+path:
+
+   <div class="verbatim" id="verbatim-7">
+attach(Namib)
+</div>
+<!--l. 197--><p class="nopar" >
+<!--l. 199--><p class="indent" >   After which we can access its data members as <span 
+class="cmtt-10">DZ</span>, <span 
+class="cmtt-10">PT </span>etc. Additionally,
+<span 
+class="cmtt-10">provenance </span>also includes a table of mineral and rock densities (<span 
+class="cmtt-10">densities</span>) as well as
+the petrographic/mineralogical end-member compositions (<span 
+class="cmtt-10">endmembers</span>) of various
+tectonic settings which will be used to evaluate the settling equivalence of detrital
+components (Section <a 
+href="#x1-90003.4">3.4<!--tex4ht:ref: sec:minsorting --></a>). Also these two datasets can be loaded with the <span 
+class="cmtt-10">data</span>
+function:
+
+   <div class="verbatim" id="verbatim-8">
+data(densities,endmembers)
+</div>
+<!--l. 210--><p class="nopar" >
+<!--l. 212--><p class="indent" >   The built-in datasets are based on the following ten files: <span 
+class="cmtt-10">DZ.csv</span>, <span 
+class="cmtt-10">DZ.err.csv</span>,
+<span 
+class="cmtt-10">PT.csv</span>, <span 
+class="cmtt-10">HM.csv</span>, <span 
+class="cmtt-10">PTHM.csv</span>, <span 
+class="cmtt-10">Major.csv</span>, <span 
+class="cmtt-10">Trace.csv</span>, <span 
+class="cmtt-10">densities.csv </span>and
+<span 
+class="cmtt-10">endmembers.csv</span>. The system paths of these files can be retrieved as follows:
+
+   <div class="verbatim" id="verbatim-9">
+HM.fname.csv&#x00A0;&#x003C;-&#x00A0;system.file("HM.csv",package="provenance")
+</div>
+<!--l. 220--><p class="nopar" >
+<!--l. 222--><p class="indent" >   Further details about these datasets can be obtained from the built-in help
+functions <span 
+class="cmtt-10">?Namib</span>, <span 
+class="cmtt-10">?densities </span>and <span 
+class="cmtt-10">?endmembers</span>.
+<!--l. 226--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a>Basic data manipulation</h4>
+<!--l. 229--><p class="noindent" ><span 
+class="cmtt-10">provenance </span>includes a number of basic operations to query and manipulate the large
+datasets contained within <span 
+class="cmtt-10">distributional </span>and <span 
+class="cmtt-10">compositional </span>data objects. For
+example, to extract the coastal samples of the Namibian geochronology and heavy
+mineral datasets:
+
+   <div class="verbatim" id="verbatim-10">
+coast.samples&#x00A0;&#x003C;-&#x00A0;c(&#39;N1&#39;,&#39;N2&#39;,&#39;T8&#39;,&#39;T13&#39;,&#39;N12&#39;,&#39;N13&#39;)
+&#x00A0;<br />coast.DZ&#x00A0;&#x003C;-&#x00A0;subset(DZ,select=coast.samples)
+&#x00A0;<br />coast.HM&#x00A0;&#x003C;-&#x00A0;subset(HM,select=coast.samples)
+</div>
+<!--l. 239--><p class="nopar" >
+<!--l. 241--><p class="indent" >   For compositional data, the <span 
+class="cmtt-10">subset </span>function also allows the user to extract
+subcompositions. For example, to extract the zircon, tourmaline and rutile content of
+all samples in the heavy mineral dataset:
+
+   <div class="verbatim" id="verbatim-11">
+ZTR&#x00A0;&#x003C;-&#x00A0;subset(HM,components=c(&#39;zr&#39;,&#39;tm&#39;,&#39;rt&#39;))
+</div>
+<!--l. 248--><p class="nopar" >
+<!--l. 250--><p class="indent" >   Of course, both options can also be combined:
+
+   <div class="verbatim" id="verbatim-12">
+coast.ZTR&#x00A0;&#x003C;-&#x00A0;subset(HM,select=coast.samples,components=c(&#39;zr&#39;,&#39;tm&#39;,&#39;rt&#39;))
+</div>
+<!--l. 254--><p class="nopar" >
+<!--l. 256--><p class="indent" >   which returns the zircon, tourmaline and rutile contents of the coastal samples
+alone. For compositional data, it is often useful to add several components together,
+an operation which is referred to as &#8216;amalgamation&#8217; (<a 
+href="#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>). This is useful
+for removing missing components (&#8216;zero counts&#8217;) prior to logratio analysis (Section
+<a 
+href="#x1-120004.2">4.2<!--tex4ht:ref: sec:PCAMDS --></a>). For example, to extract the QFL (Quartz &#8211; Feldspar &#8211; Lithics) composition
+from the petrographic dataset by amalgamation:
+
+   <div class="verbatim" id="verbatim-13">
+QFL&#x00A0;&#x003C;-&#x00A0;amalgamate(PT,Q=&#39;Q&#39;,F=c(&#39;KF&#39;,&#39;P&#39;),L=c(&#39;Lm&#39;,&#39;Lv&#39;,&#39;Ls&#39;))
+</div>
+<!--l. 266--><p class="nopar" >
+<!--l. 268--><p class="indent" >   where <span 
+class="cmtt-10">KF </span>and <span 
+class="cmtt-10">P </span>stand for K-feldspar and plagioclase, and <span 
+class="cmtt-10">Lm</span>, <span 
+class="cmtt-10">Lv </span>and <span 
+class="cmtt-10">Ls </span>refer to
+the lithic fragments of metamorphic, volcanic and sedimentary origin respectively. In
+the special case of a three component system, amalgamation can also be achieved by
+a different function:
+
+   <div class="verbatim" id="verbatim-14">
+QFL.tern&#x00A0;&#x003C;-&#x00A0;ternary(PT,&#39;Q&#39;,c(&#39;KF&#39;,&#39;P&#39;),c(&#39;Lm&#39;,&#39;Lv&#39;,&#39;Ls&#39;))
+</div>
+<!--l. 276--><p class="nopar" >
+<!--l. 278--><p class="indent" >   This produces an object of class <span 
+class="cmtt-10">ternary </span>which is handled by a special,
+overloaded version of the <span 
+class="cmtt-10">plot </span>function (Section <a 
+href="#x1-70003.2">3.2<!--tex4ht:ref: sec:plotting --></a>). The statistical field of
+compositional data analysis is very rich, and <span 
+class="cmtt-10">provenance </span>does not attempt to cover
+all but its most basic operations. The user is referred to other <span 
+class="cmtt-10">R </span>packages such
+as <span 
+class="cmtt-10">compositions </span>(<a 
+href="#Xvandenboogaart2008">van&#x00A0;den Boogaart and Tolosana-Delgado</a>,&#x00A0;<a 
+href="#Xvandenboogaart2008">2008</a>) and
+<span 
+class="cmtt-10">robCompositions </span>(<a 
+href="#Xtempl2011">Templ et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtempl2011">2011</a>) for a more comprehensive toolset. Three
+functions are provided to facilitate the interaction between <span 
+class="cmtt-10">provenance </span>and these
+other packages. <span 
+class="cmtt-10">as.acomp </span>and <span 
+class="cmtt-10">as.data.frame </span>convert <span 
+class="cmtt-10">compositional </span>datasets to
+objects of class <span 
+class="cmtt-10">acomp </span>and <span 
+class="cmtt-10">data.frame</span>, for use in <span 
+class="cmtt-10">robCompositions </span>and
+<span 
+class="cmtt-10">compositions</span>, repectively. For example:
+
+   <div class="verbatim" id="verbatim-15">
+PT.acomp&#x00A0;&#x003C;-&#x00A0;as.acomp(PT)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;can&#x00A0;be&#x00A0;used&#x00A0;in&#x00A0;&#39;compositions&#39;
+&#x00A0;<br />PT.data.frame&#x00A0;&#x003C;-&#x00A0;as.data.frame(PT)&#x00A0;#&#x00A0;can&#x00A0;be&#x00A0;used&#x00A0;in&#x00A0;&#39;robCompositions&#39;
+</div>
+<!--l. 294--><p class="nopar" >
+<!--l. 296--><p class="indent" >   Conversely, the <span 
+class="cmtt-10">as.compositional </span>function translates <span 
+class="cmtt-10">acomp </span>or <span 
+class="cmtt-10">data.frame</span>
+objects to <span 
+class="cmtt-10">compositional </span>data for use in <span 
+class="cmtt-10">provenance</span>. For example, using the
+<span 
+class="cmtt-10">Kongite </span>and <span 
+class="cmtt-10">skyeLavas </span>datasets which are built into <span 
+class="cmtt-10">compositions </span>and
+<span 
+class="cmtt-10">robCompositions</span>:
+
+   <div class="verbatim" id="verbatim-16">
+library(compositions)
+&#x00A0;<br />data(Kongite)
+&#x00A0;<br />Kongite.comp&#x00A0;&#x003C;-&#x00A0;as.compositional(Kongite)
+&#x00A0;<br />library(robCompositions)
+&#x00A0;<br />data(skyeLavas)
+&#x00A0;<br />skyeLavas.comp&#x00A0;&#x003C;-&#x00A0;as.compositional(skyeLavas)
+</div>
+<!--l. 309--><p class="nopar" >
+<!--l. 311--><p class="indent" >   where <span 
+class="cmtt-10">Kongite.comp </span>and <span 
+class="cmtt-10">skyeLavas.comp </span>can be further analysed by the
+functions described later in this paper.
+<!--l. 314--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-50003"></a>Functions applying to a single sample</h3>
+<!--l. 317--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-60003.1"></a>Sample size calculations</h4>
+<!--l. 320--><p class="noindent" >On the most basic level, provenance analysis requires the geologist to identify certain
+properties in a representative number of grains from each sample. The question then
+arises how many grains constitute a &#8216;representative&#8217; number of grains. The answer to
+this question depends on the geological problem of interest. If the main purpose of
+the study is merely to characterise the general shape of the distribution (e.g., &#8216;young&#8217;
+vs. &#8216;old&#8217; or &#8216;narrow&#8217; vs. &#8216;wide&#8217;), then a few dozen grains may be enough
+(<a 
+href="#Xavdeev2011">Avdeev et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xavdeev2011">2011</a>). If instead one is looking for a particular component
+comprising, say, a fraction f=1/N of the total population (where N is an
+integer denoting the number of fractions), then the likelihood of missing
+this fraction is given by (1 <span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">f</span>)<sup><span 
+class="cmmi-7">n</span></sup>, where n is the number of grains (<a 
+href="#Xdodson1988">Dodson
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xdodson1988">1988</a>). Finally, if, we are interested in collecting all fractions of a
+sample (<a 
+href="#Xvermeesch2004b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2004b">2004</a>), then the likelihood of missing any of them is given
+by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6001r1"></a>
+   <center class="math-display" >
+<img 
+src="index0x.png" alt="    N&sum;        (N )
+p =   (&minus; 1)i&minus;1  i (1 &minus; if)n
+    i=1
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 338--><p class="nopar" >
+<!--l. 340--><p class="indent" >   where <span 
+class="cmex-10">(</span><span 
+class="cmmi-7">N</span>
+   <span 
+class="cmmi-7">i</span> <span 
+class="cmex-10">)</span>
+   is the Binomial coefficient. To calculate the probability that at least
+one 10% fraction is missing from a 60-grain sample in <span 
+class="cmtt-10">provenance</span>:
+
+   <div class="verbatim" id="verbatim-17">
+p&#x00A0;&#x003C;-&#x00A0;get.p(n=60,f=0.1)
+</div>
+<!--l. 346--><p class="nopar" >
+<!--l. 348--><p class="indent" >   Conversely, to estimate the largest fraction (f) which one can be 95% confident
+not to have missed in the same 60-grain sample:
+
+   <div class="verbatim" id="verbatim-18">
+f&#x00A0;&#x003C;-&#x00A0;get.f(n=60,p=0.05)
+</div>
+<!--l. 353--><p class="nopar" >
+<!--l. 355--><p class="indent" >   Finally, to compute the number of grains needed to be 95% certain that no
+fraction greater than 5% of the total population is missed:
+
+   <div class="verbatim" id="verbatim-19">
+n&#x00A0;&#x003C;-&#x00A0;get.n(p=0.05,f=0.05)
+</div>
+<!--l. 360--><p class="nopar" >
+<!--l. 362--><p class="indent" >   which is 117 (<a 
+href="#Xvermeesch2004b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2004b">2004</a>).
+<!--l. 364--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-70003.2"></a>Plotting individual samples</h4>
+<!--l. 367--><p class="noindent" >The geologically meaningful information carried by distributional data does not so
+much lie in their values as, like their name suggests, in their distribution. A first step
+towards interpreting such data in <span 
+class="cmtt-10">provenance </span>is to plot them as either cumulative or
+density plots. To illustrate this, consider an infinite population characterised by a
+uniform distribution between 100 and 110 Ma. Plotting an infinite number of
+values collected from this population on a histogram with infinitessimal
+binwidth yields a simple step function (red line in Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.a). This is the
+probability density function of the population. The corresponding cumulative
+distribution (red line in Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.b) is a straight line rising from 0 at 100
+Ma (0% of the population falls below 100 Ma) to 1 at 110 Ma (100% of
+the population falls below 110 Ma). Of course, in real life geologists never
+have the luxury of exhaustively collecting an entire population. Instead,
+they must work with a representative subset of that population, the sample.
+Suppose that we have collected a random sample of 100 values from our
+uniform population (black ticks on Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.a). Further suppose that these
+values are analysed with infinite analytical precision. From this sample of
+random values, we cannot reconstruct the step function. Instead, the density
+must be <span 
+class="cmti-10">estimated </span>using histograms or kernel density estimates (KDEs).
+For a sample of limited size, these estimates never exactly agree with the
+true age distribution, but are smooth approximation thereof (black line in
+Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.a). In contrast, the Empirical Cumulative Distribution Function
+(ECDF, a.k.a. &#8216;Cumulative Age Distribution&#8217; or CAD in a geochronological
+context,&#x00A0;<a 
+href="#Xvermeesch2007a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2007a">2007</a>) is a method to visualise distributional datasets
+without the need for any smoothing. Let <span 
+class="cmmi-10">x </span>= <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,x</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,...,x</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">} </span>be a sample
+of distributional data, then the cumulative distribution <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">x</span></sub> is defined as
+follows:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7001r2"></a>
+   <center class="math-display" >
+
+<img 
+src="index1x.png" alt="F  (t) = 1(#x &le; t)
+  x     n   i
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 402--><p class="nopar" >
+<!--l. 404--><p class="indent" >   where &#8216;#<span 
+class="cmmi-10">x </span><span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">t</span>&#8217; stands for &#8220;the number of items in x that are smaller than or
+equal to t&#8221;. In contrast with density estimates, CADs do not suffer from
+oversmoothing (Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.b). Despite this significant advantage of CADs over KDEs,
+the latter are still preferred by many practitioners of detrital geochronology because
+they are more intuitive to interpret.<br 
+class="newline" />
+<!--l. 411--><p class="indent" >   In real life, analytical precision is never infinite, but measured ages are offset from
+their true values by some experimental error. Suppose that this error is characterised
+by a Normal distribution with standard deviation <span 
+class="cmmi-10">&sigma; </span>= 2 Ma. Convolution of the error
+distribution with the uniform distribution of the true ages yields a smooth
+probability density function which spreads into values beyond the 100-110 Ma
+interval (red line in Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.c). The corresponding cumulative distribution rises
+gently from 0 at <span 
+class="cmsy-10">&sim;</span>95 Ma (0% of the distribution falls below 95 Ma) to 1
+at <span 
+class="cmsy-10">&sim;</span>115 Ma (100% of the distribution falls below 115 Ma), with a linear
+section in between (red line in Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.d). Like before, the KDE of the
+measurements (black line in Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.c) oversmooths the theoretical probability
+density function (red line). And like before, the correponding CAD (black
+line in Figure <a 
+href="#x1-70022">2<!--tex4ht:ref: fig:synthplots --></a>.d) does not suffer from this problem. Note that Probability
+Density Plots (PDPs), which are a popular way to account for the variable
+precision of detrital data by using the analytical uncertainty as a bandwidth
+estimator (<a 
+href="#Xludwig2003">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003">2003</a>;&#x00A0;<a 
+href="#Xsircombe2004b">Sircombe</a>,&#x00A0;<a 
+href="#Xsircombe2004b">2004</a>) unfortunately suffer from significant
+levels of undersmoothing for small datasets and oversmoothing for large
+datasets (<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). For this reason, PDPs are not implemented in
+<span 
+class="cmtt-10">provenance</span>.<br 
+class="newline" />
+<!--l. 434--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-70022"></a>
+
+
+<!--l. 436--><p class="noindent" >
+<a href="synthplots.png"><img 
+src="synthplots.png" alt="PIC" class="snapshot"  ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2:  </span><span  
+class="content">a.  red  &#8211;  a  uniform  distribution  between  100  and  110  Ma,  black
+&#8211;  a  kernel  density  estimate  (KDE)  of  100  randomly  selected  values,  which
+oversmooths the theoretical distribution; b. red &#8211; cumulative version of a., black
+&#8211; Cumulative Age Distribution (CAD) of the 100 random samples, which does
+not oversmooth the theoretical curve; c. red &#8211; theoretical sampling distribution
+in the presence of normally distributed analytical uncertainties (<span 
+class="cmmi-10">&sigma;</span>=1), black &#8211;
+the KDE of 100 random samples which again oversmooth the theoretical curve;
+d. red &#8211; the cumulative measurement distribution, black &#8211; the CAD of the 100
+randomly selected measurements is an unbiased estimator of the theoretical
+distribution.</span></div><!--tex4ht:label?: x1-70022 -->
+
+<!--l. 450--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 452--><p class="indent" >   In <span 
+class="cmtt-10">provenance</span>, CADs are obtained using an overloaded <span 
+class="cmtt-10">plot </span>function. For
+example, for detrital zircon U-Pb sample <span 
+class="cmtt-10">N1 </span>(Figure <a 
+href="#x1-70033">3<!--tex4ht:ref: fig:visualisation --></a>a):
+
+   <div class="verbatim" id="verbatim-20">
+plot(DZ,snames=&#39;N1&#39;,CAD=TRUE)
+</div>
+<!--l. 458--><p class="nopar" >
+<!--l. 460--><p class="indent" >   Both histograms and KDEs are implemented in standard <span 
+class="cmtt-10">R </span>as the <span 
+class="cmtt-10">hist </span>and
+<span 
+class="cmtt-10">density </span>functions, respectively. These built-in functions work very well for relatively
+simple, unimodal distributions (<a 
+href="#Xsilverman1986">Silverman</a>,&#x00A0;<a 
+href="#Xsilverman1986">1986</a>). However, the distributions
+occurring in detrital geochronology tend to be more complex than that, causing the
+<span 
+class="cmtt-10">density </span>function to overestimate the kernel bandwidth and oversmooth the resulting
+distribution. For this reason, the <span 
+class="cmtt-10">provenance </span>package includes a separate function for
+kernel density estimation using a hybrid adaptive kernel density algorithm,
+adopted from <span 
+class="cmtt-10">DensityPlotter </span>(version 3.0 and above,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). This
+algorithm consists of two steps. First, the fixed bandwidth algorithm by <a 
+href="#Xbotev2010">Botev
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xbotev2010">2010</a>) is used to calculate a &#8216;pilot&#8217; density. Then, the bandwidth is
+adjusted at each sample point to scale with the square root of the local density,
+normalised by the geometric mean of the entire distribution (<a 
+href="#Xabramson1982">Abramson</a>,&#x00A0;<a 
+href="#Xabramson1982">1982</a>).
+Thus, the fixed bandwidth estimate is converted into an adaptive density
+estimate, which assigns a narrower bandwidth to densely sampled segments of
+the age distribution and a wider bandwidth to those segments which are
+sparsely sampled. This increases the resolution of the density estimates where
+sufficient data are available, whilst smoothing out those parts with insufficient
+data. As an example, the following code plots the U-Pb age distribution
+of sample <span 
+class="cmtt-10">N1 </span>from the Namibian dataset with the default settings (Figure
+<a 
+href="#x1-70033">3<!--tex4ht:ref: fig:visualisation --></a>b):
+
+   <div class="verbatim" id="verbatim-21">
+N1&#x00A0;&#x003C;-&#x00A0;DZ$x$N1&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;extract&#x00A0;the&#x00A0;ages&#x00A0;of&#x00A0;sample&#x00A0;N1
+&#x00A0;<br />dens&#x00A0;&#x003C;-&#x00A0;KDE(N1)&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;create&#x00A0;the&#x00A0;density&#x00A0;estimate
+&#x00A0;<br />plot(dens)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;plot&#x00A0;the&#x00A0;density&#x00A0;estimate
+</div>
+<!--l. 489--><p class="nopar" >
+<!--l. 491--><p class="indent" >   The appearance of the plot can be changed by modifying the optional arguments.
+The following example plots the data on a logarithmic scale from 10 to 3,000 Ma
+with a fixed bandwidth of 50 Ma and turns off the sample point indicators on the
+x-axis (Figure <a 
+href="#x1-70033">3<!--tex4ht:ref: fig:visualisation --></a>c):
+
+   <div class="verbatim" id="verbatim-22">
+dens&#x00A0;&#x003C;-&#x00A0;KDE(N1,bw=50,from=100,to=4000,adaptive=FALSE,log=TRUE)
+&#x00A0;<br />plot(dens,pch=NA&#x00A0;)&#x00A0;#&#x00A0;pch&#x00A0;=&#x00A0;the&#x00A0;symbol&#x00A0;used&#x00A0;for&#x00A0;the&#x00A0;sample&#x00A0;points
+</div>
+<!--l. 499--><p class="nopar" >
+<!--l. 501--><p class="indent" >   <span 
+class="cmtt-10">provenance </span>also includes some basic functionality to plot compositional data on
+ternary diagrams. For example, to plot the petrography of the Namib dataset on
+<a 
+href="#Xdickinson1983">Dickinson et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xdickinson1983">1983</a>)&#8217;s QFL diagram (Figure <a 
+href="#x1-70033">3<!--tex4ht:ref: fig:visualisation --></a>d):
+
+   <div class="verbatim" id="verbatim-23">
+plot(QFL.tern,type=&#39;QFL.dickinson&#39;)
+</div>
+<!--l. 508--><p class="nopar" >
+<!--l. 510--><p class="indent" >   where <span 
+class="cmtt-10">QFL.tern </span>was produced by the <span 
+class="cmtt-10">ternary() </span>function (Section <a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:datamanipulation --></a>). The
+graphical output can be saved as a vector-editable PDF for further processing in
+software such as Adobe Illustrator<span 
+class="cmsy-10"><sup>&copy;</sup></span>, CorelDraw<span 
+class="cmsy-10"><sup>&copy;</sup></span> or Inkscape:
+
+   <div class="verbatim" id="verbatim-24">
+dev.copy2pdf(file="QFL.tern.pdf")
+</div>
+<!--l. 518--><p class="nopar" >
+<!--l. 520--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-70033"></a>
+
+
+<!--l. 522--><p class="noindent" ><a href="visualisation.png"><img 
+src="visualisation.png" alt="PIC" class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Graphical output generated by <span 
+class="cmtt-10">provenance </span>for <span 
+class="cmtt-10">distributional </span>and
+<span 
+class="cmtt-10">compositional </span>data. a. the CAD of sample N1; b. the KDE of sample N1, using
+a the hybrid adaptive bandwidth algorithm outlined in Section <a 
+href="#x1-70003.2">3.2<!--tex4ht:ref: sec:plotting --></a>, plotted on
+a linear scale; c. a KDE using a fixed bandwidth of 50 Ma and a log scale; d.
+the quartz - feldspar - lithic composition of the Namib samples on <a 
+href="#Xdickinson1983">Dickinson
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xdickinson1983">1983</a>)&#8217;s QFL diagram.</span></div><!--tex4ht:label?: x1-70033 -->
+
+<!--l. 531--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-80003.3"></a>The SRD correction: a simple way to correct for environmental
+bias</h4>
+<!--l. 537--><p class="noindent" >To facilitate the comparison of detrital modes for provenance analysis or
+stratigraphic correlation, we need to first remove the often significant compositional
+differences among sediment samples that are caused by hydrodynamic processes in
+the depositional environment. Intersample modal variability can be corrected for by a
+simple principle. In the absence of provenance changes and environmental bias, the
+weighted average Source Rock Density (SRD) of terrigenous grains should be equal,
+for each sample and each grain-size class of each sample, to the weighted average
+density of source rocks. By correcting relative abundances of detrital minerals in
+proportion to their densities, we can restore the appropriate SRD index for any
+provenance and subprovenance type in each sample or grain-size class (<a 
+href="#Xgarzanti2009">Garzanti
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2009">2009</a>). Modal variability is effectively reduced by this procedure, which can be
+applied confidently to modern sediments deposited by tractive currents in any
+environment. Good results are obtained even for placer sands and finest grain-size
+fractions where heavy-mineral concentration is strongest. Such &#8216;SRD correction&#8217; also
+successfully compensates for biased narrow-window modes, thus providing a
+numerical solution of general validity to the problem of environmental bias in
+sedimentary petrology.<br 
+class="newline" />
+<!--l. 559--><p class="indent" >   The SRD index, used to assess average density of source rocks in the absence of
+hydrodynamic effects or to detect hydraulic-controlled concentration of denser
+minerals, is defined as the weighted average density of terrigenous grains (spurious
+and intrabasinal particles such as bioclasts are neglected in the calculation;&#x00A0;<a 
+href="#Xgarzanti2007">Garzanti
+and And&ograve;</a>,&#x00A0;<a 
+href="#Xgarzanti2007">2007</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8001r3"></a>
+   <center class="math-display" >
+<img 
+src="index2x.png" alt="       &sum;n              &sum;n
+SRD  =   (%mi  &rho;mi) = 1&#x2215;  (%Mi &#x2215;&rho;mi)
+       i=1              i=1
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 569--><p class="nopar" >
+<!--l. 571--><p class="indent" >   where %m and %M are the volume and weight percentages of mineral m, and <span 
+class="cmmi-10">&rho;</span><sub><span 
+class="cmmi-7">m</span></sub>
+its density. In order to compensate for selective-entrainment effects, we must
+
+recalculate detrital modes for each sample until the same SRD index is restored for
+each. The mathematical procedure is similar to that used to convert volume
+percentages to weight percentages, and vice-versa:
+<!--l. 578--><p class="indent" >
+<table 
+class="align">
+           <tr><td 
+class="align-odd">%<span 
+class="cmmi-10">M</span></td>           <td 
+class="align-even"> = %<span 
+class="cmmi-10">m</span><span 
+class="cmmi-10">&#x00A0;&rho;</span><sub><span 
+class="cmmi-7">m</span></sub><span 
+class="cmmi-10">&#x2215;SRD </span>= %<span 
+class="cmmi-10">m</span><span 
+class="cmmi-10">&#x00A0;&rho;</span><sub><span 
+class="cmmi-7">m</span></sub><span 
+class="cmmi-10">&#x2215;</span><span 
+class="cmex-10">&sum;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup>(%<span 
+class="cmmi-10">m</span><sub>
+<span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">&#x00A0;&rho;</span><sub><span 
+class="cmmi-7">m</span><sub><span 
+class="cmmi-5">i</span></sub></sub>)</td>                      <td 
+class="align-label"><a 
+ id="x1-8002r4"></a>(4)
+           </td></tr><tr><td 
+class="align-odd">%<span 
+class="cmmi-10">m</span></td>            <td 
+class="align-even"> = %<span 
+class="cmmi-10">M</span><span 
+class="cmmi-10">&#x00A0;SRD&#x2215;&rho;</span><sub><span 
+class="cmmi-7">m</span></sub> = %<span 
+class="cmmi-10">M&#x2215;</span><img 
+src="index3x.png" alt="[               ]
+    &sum;n
+ &rho;m    (%Mi &#x2215;&rho;mi)
+    i=1"  class="left" align="middle"></td>                        <td 
+class="align-label"><a 
+ id="x1-8003r5"></a>(5)           </td></tr></table>
+<!--l. 583--><p class="indent" >   The &#8216;SRD correction&#8217; assumes the form of Equation <a 
+href="#x1-8002r4">4<!--tex4ht:ref: eq:pctMu --></a> for heavy-mineral-poor
+samples:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8004r6"></a>
+   <center class="math-display" >
+<img 
+src="index4x.png" alt="               n
+%m &lowast; = %m &rho;m &#x2215;&sum;  (%mi  &rho;m )
+              i=1       i
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 589--><p class="nopar" >
+<!--l. 591--><p class="indent" >   and the form of Equation <a 
+href="#x1-8003r5">5<!--tex4ht:ref: eq:pctml --></a> for heavy-mineral-rich samples:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8005r7"></a>
+
+   <center class="math-display" >
+<img 
+src="index5x.png" alt="              &sum;n
+%m &lowast; = %m &#x2215;[&rho;m   (%mi &#x2215;&rho;mi)]
+               i=1
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 596--><p class="nopar" >
+<!--l. 598--><p class="indent" >   To remove environmental bias by the SRD correction we need to assume an
+appropriate common SRD value for all samples. Such a value may be determined
+empirically, by averaging SRD indices of &#8216;normal&#8217; samples with the same provenance.
+Or we may proceed in reverse, and find through successive approximations the SRD
+value which minimizes the residual variance in the data set. In any case, we need
+criteria to tell us which SRD value is appropriate and which should be considered
+anomalous. In the absence of hydrodynamic effects, the SRD index faithfully
+reflects the average density of source rocks (Garzanti et al., 2006). With the
+exception of less dense glass-rich volcanic and porous sedimentary rocks,
+and of denser mafic and ultramafic rocks, rocks densities typically lie in the
+2.6-2.8 g/cm<sup><span 
+class="cmr-7">3</span></sup> range (Daly et al., 1966). Therefore, besides monogenic detritus
+supplied locally by specific rock types (e.g., ignimbrite, gypsum, gabbro,
+peridotite, granulite, eclogite), SRD indices of homogenized detritus derived
+long-distance from diverse crustal sources must lie in a narrow range (2.70 <span 
+class="cmsy-10">&plusmn;</span>
+0.05). Given the regional geology and geomorphology of southern Africa, we
+can confidently rule out exotic compositions and safely assume an SRD
+of <span 
+class="cmsy-10">&sim; </span>2.71. Restoring all samples from the Namib dataset to this reference
+value:
+
+   <div class="verbatim" id="verbatim-25">
+rescomp&#x00A0;&#x003C;-&#x00A0;restore(PTHM,dens=densities,target=2.71)
+&#x00A0;<br />HMcomp&#x00A0;&#x003C;-&#x00A0;c("zr","tm","rt","sph","ap","ep","gt","st","amp","cpx","opx")
+&#x00A0;<br />PHO&#x00A0;&#x003C;-&#x00A0;amalgamate(rescomp,Plag="P",HM=HMcomp,Opq="opaques")
+&#x00A0;<br />plot(ternary(PHO),showpath=TRUE)
+</div>
+<!--l. 624--><p class="nopar" >
+<!--l. 626--><p class="indent" >   where <span 
+class="cmtt-10">HMcomp </span>is a list of heavy minerals and <span 
+class="cmtt-10">amcomp </span>amalgamates the restored
+<span 
+class="cmtt-10">PTHM </span>composition to the reference SRD density. Setting <span 
+class="cmtt-10">showpath=TRUE </span>in the
+overloaded <span 
+class="cmtt-10">plot </span>function displays the intermediate steps of the iterative SRD
+correction algorithm on the ternary diagram. In the above example, plagioclase, the
+amalgamated transparent heavy minerals and the opaque minerals are plotted
+together because they cover a wide range of densities (2.67, <span 
+class="cmsy-10">&sim;</span>3.5 and 5 g/cm<sup><span 
+class="cmr-7">3</span></sup>,
+respectively). For the Namib dataset, the correction path clearly shows that samples
+N8 and N9 are most strongly affected by the SRD correction and, hence,
+hydraulic sorting effects. This is entirely consistent with the interpretations
+of <a 
+href="#Xgarzanti2012">Garzanti et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xgarzanti2012">2012</a>), <a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>&#x00A0;(<a 
+href="#Xvermeesch2015">2015</a>), and Section <a 
+href="#x1-130005">5<!--tex4ht:ref: sec:multiplemethods --></a>.
+Finally, to illustrate the combined use of <span 
+class="cmtt-10">provenance </span>with the <span 
+class="cmtt-10">compositions</span>
+package, the following code adds an ellipse from the mean and the variance
+to the SRD-corrected data, using the <span 
+class="cmtt-10">compositions </span>package&#8217;s <span 
+class="cmtt-10">ellipses</span>
+function:
+
+   <div class="verbatim" id="verbatim-26">
+PHO.acomp&#x00A0;&#x003C;-&#x00A0;as.acomp(PHO)&#x00A0;#&#x00A0;convert&#x00A0;to&#x00A0;class&#x00A0;&#39;acomp&#39;
+&#x00A0;<br />ellipses(mean(PHO.acomp),var(PHO.acomp),r=2)
+</div>
+<!--l. 647--><p class="nopar" >
+<!--l. 649--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-80064"></a>
+
+
+<!--l. 651--><p class="noindent" ><a href="srd.png"><img 
+src="srd.png" alt="PIC"  class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">The effect of the Source Rock Density (SRD) correction on the Namib
+dataset, shown on a ternary diagram with P = plagioclase (<span 
+class="cmmi-10">&rho; </span>= 2.67 g/cm<sup><span 
+class="cmr-7">3</span></sup>),
+HM = heavy minerals (<span 
+class="cmmi-10">&rho; </span>= 3.5 g/cm<sup><span 
+class="cmr-7">3</span></sup>), and Opq = opaque minerals (<span 
+class="cmmi-10">&rho; </span>= 5
+g/cm<sup><span 
+class="cmr-7">3</span></sup>). Circles mark the restored compositions, lines connect the intermediate
+values of the SRD correction algorithm. It is evident that samples N8 and N9 are
+most strongly affected by hydraulic sorting and benefit from the SRD correction
+the most. The ellipse was drawn using the <span 
+class="cmtt-10">compositions </span>package&#8217;s <span 
+class="cmtt-10">ellipses</span>
+function.</span></div><!--tex4ht:label?: x1-80064 -->
+
+<!--l. 662--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">3.4   </span> <a 
+ id="x1-90003.4"></a>Size-density sorting of detrital grains and intrasample variability</h4>
+<!--l. 668--><p class="noindent" >The settling velocity of a detrital particle represents the balance between
+gravitational forces and drag resistance due to both turbulence and viscosity. Settling
+of clay and silt particles in water is resisted by viscosity, whereas turbulence is the
+dominant drag component during settling of pebbles or in air. Different
+empirical formulas have been proposed to model settling of particles by tractive
+currents, accounting for the wide range of grain sizes displayed by sedimentary
+deposits and their diverse depositional facies (aeolian vs. fluvial vs. marine).
+The settling velocity of clay and silt particles can be calculated by Stokes&#8217;
+Law:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r8"></a>
+   <center class="math-display" >
+<img 
+src="index6x.png" alt="         2
+v = gRxD x&#x2215;18&eta;
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 682--><p class="nopar" >
+<!--l. 684--><p class="indent" >   where g is the gravitational constant, <span 
+class="cmmi-10">R</span><sub><span 
+class="cmmi-7">x</span></sub> is the submerged density (<span 
+class="cmmi-10">&rho;</span><sub><span 
+class="cmmi-7">grain</span></sub>-<span 
+class="cmmi-10">&rho;</span><sub><span 
+class="cmmi-7">fluid</span></sub>),
+<span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">x</span></sub> is the diameter of the particle, and <span 
+class="cmmi-10">&eta; </span>is the fluid viscosity. The settling velocity of
+sand-sized particles in water must be calculated by empirical formulas, such as the
+relatively simple one proposed by (<a 
+href="#Xcheng1997">Cheng</a>,&#x00A0;<a 
+href="#Xcheng1997">1997</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r9"></a>
+   <center class="math-display" >
+<img 
+src="index7x.png" alt="          [&#x2218; --------------------   ]3&#x2215;2
+v = (&eta;&#x2215;Dx)   25+ 1.2(gRxD3x&#x2215;&eta;2)2&#x2215;3 &minus; 5
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+
+<!--l. 695--><p class="nopar" >
+<!--l. 697--><p class="indent" >   The settling velocity of granules and pebbles can be described by Newton&#8217;s
+Impact Law:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9003r10"></a>
+   <center class="math-display" >
+<img 
+src="index8x.png" alt="   &#x2218; -------------
+v =  2gR  D &#x2215;(3&rho; )
+         x x    f
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 703--><p class="nopar" >
+<!--l. 705--><p class="indent" >   where <span 
+class="cmmi-10">&rho;</span><sub><span 
+class="cmmi-7">f</span></sub> is the fluid density. The same formula has been shown empirically
+to be sufficiently accurate also to calculate the settling of particles of any
+grain size in air (Garzanti et al., 2008). These three formulas allow us to
+calculate the difference in nominal diameter (the &#8216;size shift&#8217;, SS) between two
+settling-equivalent particles for any size, in any transporting medium, and
+usually referred to quartz. For clay and silt particles, size shifts between
+any mineral x and a reference mineral or the bulk sediment are calculated
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9004r11"></a>
+   <center class="math-display" >
+<img 
+src="index9x.png" alt="SSx = log2(Rx&#x2215;Rref)&#x2215;2
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 718--><p class="nopar" >
+<!--l. 720--><p class="indent" >   For sand sized particles:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9005r12"></a>
+
+   <center class="math-display" >
+<img 
+src="index10x.png" alt="SSx = log2(Rx &#x2215;Rref) &minus; (3&#x2215;2)log2(&Xi;m &#x2215;&Xi;ref)
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 725--><p class="nopar" >
+<!--l. 727--><p class="indent" >   where &Xi; = <span 
+class="cmmi-10">v&#x2215;&eta; </span>+ <img 
+src="index11x.png" alt="&#x2218; (v&#x2215;&eta;)2 +-48(g-R-&#x2215;&eta;2)2&#x2215;3
+               x"  class="sqrt" >. For granules and pebbles or
+any sediment settling in air, size shifts are twice those predicted by Stokes&#8217;
+Law:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9006r13"></a>
+   <center class="math-display" >
+<img 
+src="index12x.png" alt="SS  = log (R &#x2215;R   )
+  x     2  x  ref
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 734--><p class="nopar" >
+<!--l. 736--><p class="indent" >   The average settling velocity for each given sediment sample can be calculated
+with formulas <a 
+href="#x1-9001r8">8<!--tex4ht:ref: eq:stokes --></a>, <a 
+href="#x1-9002r9">9<!--tex4ht:ref: eq:cheng --></a> or <a 
+href="#x1-9003r10">10<!--tex4ht:ref: eq:newton --></a> according to its mean grain size, grain density (SRD index of
+the bulk sediment, see Section <a 
+href="#x1-80003.3">3.3<!--tex4ht:ref: sec:srd --></a>) and depositional environment (air, freshwater or
+seawater). For each detrital mineral or rock fragment, the size shift referred to the
+bulk-sediment (SRD index) is calculated with formulas <a 
+href="#x1-9004r11">11<!--tex4ht:ref: eq:SSclay --></a>, <a 
+href="#x1-9005r12">12<!--tex4ht:ref: eq:SSsand --></a> or <a 
+href="#x1-9006r13">13<!--tex4ht:ref: eq:SSgravel --></a>. To
+account for shape effects (<a 
+href="#Xkomar1984">Komar et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xkomar1984">1984</a>), the density of micas is lowered
+by 0.5 g/cm<sup><span 
+class="cmr-7">3</span></sup> (<a 
+href="#Xgarzanti2008">Garzanti et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2008">2008</a>). Finally, a Gaussian size-frequency
+distribution is calculated for each detrital component by combining its size shift
+referred to the mean size of the bulk sediment and the sorting value of the
+latter.<br 
+class="newline" />
+<!--l. 750--><p class="indent" >   In <span 
+class="cmtt-10">provenance</span>, all these calculations are performed by the <span 
+class="cmtt-10">minsorting </span>function,
+so named after the spreadsheet application of <a 
+href="#Xresentini2013">Resentini et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xresentini2013">2013</a>) on which it is
+based. To illustrate the use of the <span 
+class="cmtt-10">minsorting </span>function, the following code snippet
+applies it to one of the end-member compositions included with the package,
+assuming a mean grain size of (Krumbein) &Phi;=2 and standard deviation
+&Phi;=1:
+
+   <div class="verbatim" id="verbatim-27">
+data(endmembers,densities)
+&#x00A0;<br />distribution&#x00A0;&#x003C;-&#x00A0;minsorting(endmembers,densities,sname=&#39;ophiolite&#39;,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;phi=2,sigmaphi=1,medium="seawater",by=0.05)
+&#x00A0;<br />plot(distribution,components=c(&#39;F&#39;,&#39;px&#39;,&#39;opaques&#39;))
+</div>
+<!--l. 763--><p class="nopar" >
+<!--l. 765--><p class="indent" >   Which yields the grain size distribution of feldspar, pyroxene and opaque minerals
+(in 0.05 &Phi; intervals), so chosen because of the great contrast in density between
+them (Figure <a 
+href="#x1-90075">5<!--tex4ht:ref: fig:minsorting --></a>). When - as is commonly done in geochronological analysis -
+one specific mineral is targeted (e.g., apatite or zircon), we can use such
+information to choose the most suitable size window for laboratory treatment and
+analysis, and thus obtain a most faithful characterization of the sediment
+sample.
+<!--l. 774--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-90075"></a>
+
+
+<!--l. 776--><p class="noindent" ><a href="minsorting.png"><img 
+src="minsorting.png" alt="PIC"  class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">Graphical output of the <span 
+class="cmtt-10">minsorting </span>routine applied to an ophiolitic
+end-member  composition.  Different  colours  show  the  inferred  grain-size
+distribution of feldspars (&#8216;F&#8217;, red), pyroxene (&#8216;px&#8217;, blue) and opaque minerals
+(green) in Krumbein&#8217;s &Phi; units, assuming a mean grain size for the bulk sediment
+of &Phi;=2 with standard deviation &Phi;=1. It can be seen that relatively coarse grains
+of the comparatively light minerals are hydraulically equivalent with finer grains
+of the dense minerals.</span></div><!--tex4ht:label?: x1-90075 -->
+
+<!--l. 786--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-100004"></a>Jointly considering multiple samples</h3>
+<!--l. 791--><p class="noindent" ><span 
+class="cmtt-10">provenance </span>allows multiple samples to be plotted together. For example, to plot all
+16 detrital age distributions from the Namibian dataset on a scale from 0 to 3,000
+Ma in four columns:
+
+   <div class="verbatim" id="verbatim-28">
+UPb&#x00A0;&#x003C;-&#x00A0;KDEs(DZ,from=0,to=3000,normalise=TRUE)
+&#x00A0;<br />summaryplot(UPb,ncol=4)
+</div>
+<!--l. 798--><p class="nopar" >
+<!--l. 800--><p class="indent" >   where the <span 
+class="cmtt-10">normalise </span>flag sets the area under each of the KDEs to the same
+value. The resulting plot contains 16 kernel density estimates, resulting in 16 <span 
+class="cmsy-10">&#x00D7; </span>15 /
+2 = 120 pairwise comparisons (Figure <a 
+href="#x1-100016">6<!--tex4ht:ref: fig:KDEs --></a>). The first step towards simplifying this
+multi-sample comparison problem is to convert the raw data into a table of pairwise
+distances. This can be achieved using a number of different dissimilarity
+measures.
+<!--l. 808--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-100016"></a>
+
+
+<!--l. 810--><p class="noindent" ><a href="KDEs.png"><img 
+src="KDEs.png" alt="PIC"  class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6: </span><span  
+class="content">Graphical output of the <span 
+class="cmtt-10">summaryplot </span>function, applied to the detrital
+zircon U-Pb age data. The areas under the KDEs have been normalised to the
+same value.</span></div><!--tex4ht:label?: x1-100016 -->
+
+<!--l. 815--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-110004.1"></a>Dissimilarity measures</h4>
+<!--l. 820--><p class="noindent" >A crucial first step towards simplifying the interpretation of multi-sample datasets is
+to replace the visual comparison of age distributions, histograms and pie charts
+with numerical values expressing the &#8216;dissimilarity&#8217; between samples. For
+distributional data, the default method is the Kolmogorov-Smirnov (K-S) statistic
+(<span 
+class="cmmi-10">&delta;</span><sub><span 
+class="cmmi-7">AB</span></sub><sup><span 
+class="cmmi-7">ks</span></sup>), which uses the maximum absolute difference between two cumulative
+distributions (<a 
+href="#Xfeller1948">Feller</a>,&#x00A0;<a 
+href="#Xfeller1948">1948</a>). Given two samples A and B, the K-S distance is defined
+as
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11001r14"></a>
+   <center class="math-display" >
+<img 
+src="index13x.png" alt=" ks
+&delta;AB = maxt |FA(t)&minus; FB(t)|
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 832--><p class="nopar" >
+<!--l. 834--><p class="indent" >   where F<sub><span 
+class="cmmi-7">A</span></sub> and F<sub><span 
+class="cmmi-7">B</span></sub> are defined by Equation <a 
+href="#x1-7001r2">2<!--tex4ht:ref: eq:cdf --></a> and <span 
+class="cmsy-10">|&sdot;| </span>stands for the absolute value.
+One nice feature of the K-S distance is that it obeys the triangle inequality, which
+states that, for any three samples A, B and C, the distance between A and C is less
+than or equal to the distance between A and B plus the distance between B and C.
+The triangle inequality makes the K-S distance behave like the physical distances
+which we are familiar with in the real world. On the other hand, the K-S statistic
+also has limitations, such as its inability to take into account the effect of unequal
+analytical uncertainties. This makes it difficult to objectively compare samples
+acquired on different mass spectrometers characterised by differing analytical
+precision. This problem was addressed by <a 
+href="#Xsircombe2004a">Sircombe and Hazelton</a>&#x00A0;(<a 
+href="#Xsircombe2004a">2004</a>)
+using the squared overlap between so-called Kernel Functional Estimates
+(KFEs):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11002r15"></a>
+   <center class="math-display" >
+
+<img 
+src="index14x.png" alt="      &#x2218; ------------------
+        &int;             2
+&delta;sAhB =     (fA(t)&minus; fB (t)) dt
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+<!--l. 852--><p class="nopar" >
+<!--l. 854--><p class="indent" >   where <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">A</span></sub> and <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">B</span></sub> are the KFEs of samples A and B. KFEs are a special type of
+KDEs, in which a variable degree of deliberate oversmoothing is applied to the
+different samples to account for the differing analytical uncertainties between them
+(<a 
+href="#Xsircombe2004a">Sircombe and Hazelton</a>,&#x00A0;<a 
+href="#Xsircombe2004a">2004</a>). Although KFEs are useful as a point of
+comparison between different samples, they have limited value as a data
+visualisation tool due to the oversmoothing. To use the S-H dissimilarity, the user
+needs to supply the analytical uncertainties in a separate <span 
+class="cmtt-10">.csv </span>file. The
+following code demonstrates the calculation of K-S and S-H dissimilarities in
+<span 
+class="cmtt-10">provenance</span>:
+
+   <div class="verbatim" id="verbatim-29">
+KS.diss&#x00A0;&#x003C;-&#x00A0;diss(DZ,method=&#39;KS&#39;)
+&#x00A0;<br />SH.diss&#x00A0;&#x003C;-&#x00A0;diss(DZ,method=&#39;SH&#39;)
+</div>
+<!--l. 868--><p class="nopar" >
+<!--l. 870--><p class="indent" >   For compositional proxies such as petrographic, heavy mineral or chemical data,
+<span 
+class="cmtt-10">provenance </span>provides a further two dissimilarity measures. If the dataset is free of
+zero values, Aitchison&#8217;s central logratio distance is used by default:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11003r16"></a>
+   <center class="math-display" >
+<img 
+src="index15x.png" alt="      &#x250C;&#x2502; -n-[--(-----)-----(-----)]2
+&delta;ait= &#x2502;&#x2218; &sum;   ln  -Ai-  &minus; ln  -Bi-
+ AB     i=1     g(A)       g(B )
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 880--><p class="nopar" >
+<!--l. 882--><p class="indent" >   where &#8216;g(x) stands for &#8216;the geometric mean of x (<a 
+href="#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>;&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>).
+Note that the same distance is obtained irrespective of whether the input data
+are expressed as fractions or percentages. The Aitchison distance breaks
+down for datasets comprising &#8216;zero counts&#8217; (<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">i</span></sub> = 0 or <span 
+class="cmmi-10">B</span><sub><span 
+class="cmmi-7">i</span></sub>=0 for any <span 
+class="cmmi-10">i</span>). This
+problem can be solved by pooling several categories together (see Section
+<a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:datamanipulation --></a>), or by using a different dissimilarity measure such as the Bray-Curtis
+distance:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11004r17"></a>
+   <center class="math-display" >
+<img 
+src="index16x.png" alt="      &sum;n          &sum;n
+&delta;bAcB =    |Ai &minus; Bi|/  (Ai + Bi)
+      i=1         i=1
+
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 895--><p class="nopar" >
+<!--l. 897--><p class="indent" >   The following example yields the dissimilarity matrices of the heavy mineral and
+major element compositions using the Bray-Curtis and Aitchison measures,
+respectively:
+
+   <div class="verbatim" id="verbatim-30">
+HM.diss&#x00A0;&#x003C;-&#x00A0;diss(HM,method=&#39;bray&#39;)
+&#x00A0;<br />Major.diss&#x00A0;&#x003C;-&#x00A0;diss(Major,method=&#39;aitchison&#39;)
+</div>
+<!--l. 904--><p class="nopar" >
+<!--l. 906--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-120004.2"></a>Principal Component Analysis and Multidimensional Scaling</h4>
+<!--l. 909--><p class="noindent" >Although the dissimilarity matrices introduced in the previous section make the
+comparison of two samples more objective, it remains difficult to discern
+any meaningful patterns in large numbers of such pairwise comparisons.
+Multidimensional Scaling (MDS) is a dimension-reducing technique which
+can make the comparison of multiple samples more objective (<a 
+href="#Xborg2005">Borg and
+Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>). MDS is widely used in other scientific disciplines and can easily be
+adapted for provenance studies (<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). Given a table of pairwise
+distances between samples, MDS produces a configuration of points in which
+similar samples plot close together and dissimilar samples plot far apart.
+<span 
+class="cmtt-10">provenance </span>implements both <span 
+class="cmti-10">classical </span>MDS, in which the physical distances
+between the different points in the MDS configuration are directly proportional
+to the dissimilarities between the corresponding samples; and <span 
+class="cmti-10">nonmetric</span>
+MDS, which merely aims to reproduce the relative ranks of the dissimilarities
+(<a 
+href="#Xborg2005">Borg and Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>). In the latter case, provenance allows the user to
+graphically assess the goodness of fit by plotting the dissimilarities against the
+fitted distances on a so-called &#8216;Shepard Plot&#8217; (<a 
+href="#Xkruskal1978">Kruskal and Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>).
+<span 
+class="cmtt-10">provenance </span>uses nonmetric MDS by default because it produces better fits than
+classical MDS and accepts a wider range of dissimilarity measures (<a 
+href="#Xkruskal1978">Kruskal and
+Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>;&#x00A0;<a 
+href="#Xborg2005">Borg and Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>). The <span 
+class="cmtt-10">MDS </span>function accepts as input either
+data of class <span 
+class="cmtt-10">compositional </span>or <span 
+class="cmtt-10">distributional</span>, or a dissimilary matrix
+(class <span 
+class="cmtt-10">diss</span>). The following two lines of code are therefore equivalent to each
+other:
+
+   <div class="verbatim" id="verbatim-31">
+MDS.DZ.1&#x00A0;&#x003C;-&#x00A0;MDS(DZ)
+&#x00A0;<br />MDS.DZ.2&#x00A0;&#x003C;-&#x00A0;MDS(diss(DZ))
+</div>
+<!--l. 938--><p class="nopar" >
+<!--l. 940--><p class="indent" >   In contrast with nonmetric MDS, classical MDS can only be used for dissimilarity
+measures are proper distances and therefore fulfil the triangle inequality (<a 
+href="#Xborg2005">Borg and
+Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>), which is the case for the Kolmogorov-Smirnov and Aitchison
+distances. For example, using the latter dissimilarity measure, the major element
+composition can be plotted as a classical MDS configuration:
+
+   <div class="verbatim" id="verbatim-32">
+Major.diss&#x00A0;&#x003C;-&#x00A0;diss(Major,method=&#39;aitchison&#39;)
+&#x00A0;<br />MDS.Major&#x00A0;&#x003C;-&#x00A0;MDS(Major.diss,classical=TRUE)
+&#x00A0;<br />plot(MDS.Major,xaxt=&#39;s&#39;,yaxt=&#39;s&#39;)
+</div>
+<!--l. 951--><p class="nopar" >
+<!--l. 953--><p class="indent" >   Where the <span 
+class="cmtt-10">xaxt </span>and <span 
+class="cmtt-10">yaxt </span>flags add tick marks and labels to the x and y axes
+(these are turned off by default). By definition, the Aitchison distance does not only
+fulfil the triangle inequality but is a Euclidean distance as well. In this case, MDS is
+equivalent to Principal Component Analysis (PCA,&#x00A0;<a 
+href="#Xaitchison1983">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1983">1983</a>;&#x00A0;<a 
+href="#Xcox2000">Cox and
+Cox</a>,&#x00A0;<a 
+href="#Xcox2000">2000</a>). This equivalence can be demonstrated by the fact that:
+
+   <div class="verbatim" id="verbatim-33">
+PCA.Major&#x00A0;&#x003C;-&#x00A0;PCA(Major)
+&#x00A0;<br />plot(PCA.Major)
+</div>
+<!--l. 963--><p class="nopar" >
+<!--l. 965--><p class="indent" >   produces identical output as the previous code snippet (Figure <a 
+href="#x1-120017">7<!--tex4ht:ref: fig:MDSPCA --></a>). The main
+advantage of PCA over MDS is that it can be visualised as a &#8216;biplot&#8217;, in which the
+configuration is accompanied by a set of vector &#8216;loadings&#8217; showing the relationship
+between the categorical input variables (Figure <a 
+href="#x1-120017">7<!--tex4ht:ref: fig:MDSPCA --></a>.b). Thus, the PCA biplot facilitates
+the interpretation of the configuration in terms of underlying processes (<a 
+href="#Xaitchison2002">Aitchison
+and Greenacre</a>,&#x00A0;<a 
+href="#Xaitchison2002">2002</a>). In this respect, compositional biplots are similar to a
+3-way extension of the MDS method called INDSCAL, which is discussed in
+the next section. One limitation of compositional PCA is its inability to
+handle datasets containing zero values, which is due to its dependence on
+logratios (see Section <a 
+href="#x1-110004.1">4.1<!--tex4ht:ref: sec:dissimilarity --></a>). Various ways have been proposed to deal with
+this problem (e.g.,&#x00A0;<a 
+href="#Xmartin2003">Mart&iacute;n-Fern&aacute;ndez et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmartin2003">2003</a>), but none of these are
+implemented in <span 
+class="cmtt-10">provenance </span>(yet). Instead, the user is presented with two
+options. The zero-value problem can either be circumvented by employing
+non-metric MDS using the Bray-Curtis dissimilarity; or by resorting to the
+PCA functionality implemented in the <span 
+class="cmtt-10">compositions </span>and <span 
+class="cmtt-10">robCompositions</span>
+packages.
+<!--l. 984--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-120017"></a>
+
+
+<!--l. 986--><p class="noindent" ><a href="MDSPCA.png"><img 
+src="MDSPCA.png" alt="PIC"  class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7: </span><span  
+class="content">Illustration of the equivalence of Multidimensional Scaling (MDS,
+a) and Principal Component Analysis (PCA, b) for compositional data using
+the Aitchison dissimilarity, using the major element composition of the Namib
+samples as an example. The two configurations are identical apart from an
+arbitrary rotation.</span></div><!--tex4ht:label?: x1-120017 -->
+
+<!--l. 993--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-130005"></a>Combining multiple methods in multiple samples</h3>
+<!--l. 998--><p class="noindent" >The entire 5-proxy dataset can be visualised together with the <span 
+class="cmtt-10">summaryplot</span>
+command, producing a diagram with 16 KDEs and 64 pie charts:
+
+   <div class="verbatim" id="verbatim-34">
+PT$colmap&#x00A0;&#x003C;-&#x00A0;&#39;cm.colors&#39;
+&#x00A0;<br />Trace$colmap&#x00A0;&#x003C;-&#x00A0;&#39;rainbow&#39;
+&#x00A0;<br />UPb&#x00A0;&#x003C;-&#x00A0;KDEs(DZ,from=0,to=3000,normalise=TRUE)
+&#x00A0;<br />summaryplot(UPb,HM,PT,Major,Trace,ncol=2)
+</div>
+<!--l. 1007--><p class="nopar" >
+<!--l. 1009--><p class="indent" >   Which assigns a different colour map to the pie charts of the petrographic and
+trace element data from the default <span 
+class="cmtt-10">heat.colors</span>. The summary plot manages to
+squeeze 16,125 numerical values into a single diagram, which provides a good visual
+illustration of the term &#8216;Big Data&#8217;, but is next to impossible to interpret
+geologically. Using the methods introduced in Section <a 
+href="#x1-100004">4<!--tex4ht:ref: sec:multiplesamples --></a>, we can produce five MDS
+maps and thereby facilitate the multi-sample comparison for each dataset
+(<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). Unfortunately, the subtle differences between
+these maps present a second type of multiple comparison problem, which
+calls for second layer of statistical simplification. The <span 
+class="cmtt-10">provenance </span>package
+provides two alternative solutions for this: Procrustes analysis and 3-way
+MDS.<br 
+class="newline" />
+<!--l. 1023--><p class="indent" >   Procrustes analysis is the process by which a combination of shape-preserving
+transformations is used to match the shape of one object with that of another.
+Generalised Procrustes Analysis (GPA) is a generalisation of this procedure to
+multiple objects. In a provenance context, GPA extracts a single &#8216;consensus&#8217;
+view from a collection of MDS configurations, by rotating, reflecting and
+scaling them to minimise a least squares criterion (<a 
+href="#Xgower1975">Gower</a>,&#x00A0;<a 
+href="#Xgower1975">1975</a>;&#x00A0;<a 
+href="#Xvermeesch2015">Vermeesch
+and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). The following code applies this method to the Namib
+dataset:
+
+   <div class="verbatim" id="verbatim-35">
+proc&#x00A0;&#x003C;-&#x00A0;procrustes(DZ,HM,PT,Major,Trace)
+&#x00A0;<br />plot(proc)
+</div>
+<!--l. 1036--><p class="nopar" >
+<!--l. 1038--><p class="indent" >   GPA is a two step process, in which the individual datasets are first subjected to
+an MDS analysis, and the resulting configurations are then transformed into a group
+configuration. Alternatively, the same type of graphical output can be generated
+in a single step, using the final technique discussed in this paper, 3-way
+MDS.<br 
+class="newline" />
+<!--l. 1044--><p class="indent" >   As the name suggests, 3-way MDS is a generalisation of the methods discussed in
+Section <a 
+href="#x1-120004.2">4.2<!--tex4ht:ref: sec:PCAMDS --></a> from two- to three-dimensional dissimilarity matrices. For the Namib
+dataset, the combination of 16 samples and 5 methods results in a dissimilarity
+matrix of size 15 <span 
+class="cmsy-10">&#x00D7; </span>15 <span 
+class="cmsy-10">&#x00D7; </span>5. There exist many types of 3-way MDS algorithms, the
+oldest and most widely used of which is called INdividual Differences SCALing
+(INDSCAL,&#x00A0;<a 
+href="#Xcarroll1970">Carroll and Chang</a>,&#x00A0;<a 
+href="#Xcarroll1970">1970</a>). In contrast with 2-way MDS and GPA,
+INDSCAL produces not one but two pieces of graphical output: the &#8216;group
+configuration&#8217; and the &#8216;source weights&#8217;. For the Namib dataset, the former
+reproduces the relative dissimilarities between the samples, whereas the latter
+displays the relationship between the provenance proxies (<a 
+href="#Xvermeesch2015">Vermeesch and
+Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). This is similar in a way to the compositional biplots produced by
+PCA (Section <a 
+href="#x1-120004.2">4.2<!--tex4ht:ref: sec:PCAMDS --></a>), which simultaneously display the configuration of the
+samples and the relationship between the variables (e.g. minerals or chemical
+elements). In the case of INDSCAL, the &#8216;source weights&#8217; quantify the relative
+importance attached by each of the data sources (i.e. provenance proxies) to
+the horizontal and vertical axis of the &#8216;group configuration&#8217; (<a 
+href="#Xcarroll1970">Carroll and
+Chang</a>,&#x00A0;<a 
+href="#Xcarroll1970">1970</a>;&#x00A0;<a 
+href="#Xdeleeuw2011">De&#x00A0;Leeuw and Mair</a>,&#x00A0;<a 
+href="#Xdeleeuw2011">2011</a>;&#x00A0;<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). In
+<span 
+class="cmtt-10">provenance</span>:
+
+   <div class="verbatim" id="verbatim-36">
+IND&#x00A0;&#x003C;-&#x00A0;indscal(DZ,HM,PT,Trace,Major)
+&#x00A0;<br />plot(IND)
+</div>
+<!--l. 1069--><p class="nopar" >
+<!--l. 1071--><p class="indent" >   Note that the resulting group configuration (Figure <a 
+href="#x1-130018">8<!--tex4ht:ref: fig:indscal --></a>.a) looks significantly
+different from that presented by <a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>&#x00A0;(<a 
+href="#Xvermeesch2015">2015</a>). This is due to an
+error in the original petrographic data table, which has been fixed in the present
+paper. The &#8216;source&#8217; weights (Figure <a 
+href="#x1-130018">8<!--tex4ht:ref: fig:indscal --></a>.b) show that the major and trace
+element compositions attach much greater weight to the horizontal axis of the
+group configuration than the other proxies. This is attributed to hydraulic
+sorting, which affects bulk compositions more than it does mineral separates
+(<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). This is entirely consistent with Figure <a 
+href="#x1-80064">4<!--tex4ht:ref: fig:srd --></a>, which
+showed that samples N8 and N9 are particularly affected by winnowing
+effects.
+<!--l. 1084--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-130018"></a>
+
+
+<!--l. 1086--><p class="noindent" ><a href="indscal.png"><img 
+src="indscal.png" alt="PIC"  class="snapshot"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8:  </span><span  
+class="content">a.  group  configuration  of  an  INDSCAL  analysis  of  the  Namib
+dataset using the Kolmogorov-Smirnov dissimilarity for the U-Pb data (DZ),
+the Bray-Curtis dissimilarity for the heavy mineral (HM) and bulk petrography
+(PT)  data,  and  the  Aitchison  distance  for  the  major  and  trace  element
+compositions; b. the source weights, which show the relative importance which
+each of the five provenance proxies attach to the horizontal and vertical axis of
+the group configuration (<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>); note that samples N8
+and N9 plot on the far right of the group configuration, indicating that they have
+significantly different Major and Trace element compositions. This is consistent
+with  these  samples  being  affected  by  hydraulic  sorting,  as  was  previously
+shown  in  Figure  <a 
+href="#x1-80064">4<!--tex4ht:ref: fig:srd --></a>.  c.  the  group  configuration  of  the  same  data,  but  using
+the Sircombe-Hazelton dissimilarity for the U-Pb data, and the Bray-Curtis
+dissimilarity for the major and trace compositions; d. the correponding source
+weights. Although the two configurations look very similar, the actual weights
+attached to each of the proxies are very different.</span></div><!--tex4ht:label?: x1-130018 -->
+
+<!--l. 1106--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 1108--><p class="indent" >   Although, in principle, 3-way MDS yields more insightful output than GPA, in
+practice things do not always work out so well. The problem is that the output of
+INDSCAL is often very sensitive to subtle changes in the input data. For example,
+running INDSCAL on the same data as before, but using the S-H dissimilarity
+instead of the K-S distance for the DZ data and the Bray-Curtis distance instead of
+the Aitchison distance for the bulk chemistry results in a similar looking group
+configurations (Figure <a 
+href="#x1-130018">8<!--tex4ht:ref: fig:indscal --></a>.c), but a significantly different subject weights (Figure
+<a 
+href="#x1-130018">8<!--tex4ht:ref: fig:indscal --></a>.d).
+
+   <div class="verbatim" id="verbatim-37">
+DZ$method&#x00A0;&#x003C;-&#x00A0;"SH"
+&#x00A0;<br />Major$method&#x00A0;&#x003C;-&#x00A0;"bray"
+&#x00A0;<br />Trace$method&#x00A0;&#x003C;-&#x00A0;"bray"
+&#x00A0;<br />IND.SH&#x00A0;&#x003C;-&#x00A0;indscal(DZ,HM,PT,Trace,Major)
+&#x00A0;<br />plot(IND.SH)
+</div>
+<!--l. 1124--><p class="nopar" >
+<!--l. 1126--><p class="indent" >   It is therefore advisable not to overinterpret these weights, and thus in practice
+INDSCAL often does not outperform GPA as might be hoped.
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-140006"></a>Conclusions</h3>
+<!--l. 1132--><p class="noindent" >It is increasingly being recognised that, in order to truly understand sediment routing
+systems, the combination of multiple proxies teaches more than the sum of its parts
+(<a 
+href="#Xgarzanti2015">Garzanti</a>,&#x00A0;<a 
+href="#Xgarzanti2015">2015</a>). This paper introduced an <span 
+class="cmtt-10">R </span>package named <span 
+class="cmtt-10">provenance </span>to
+facilitate the joint interpretation of large datasets comprising many samples and
+several provenance proxies. Technological advances such as fast scanning electron
+microscopes (e.g, QEMSCAN,&#x00A0;<a 
+href="#Xallen2012">Allen et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xallen2012">2012</a>) and high-throughput
+LA-ICP-MS (e.g.,&#x00A0;<a 
+href="#Xfrei2009">Frei and Gerdes</a>,&#x00A0;<a 
+href="#Xfrei2009">2009</a>) promise to fully unlock the power of
+multi-method provenance analysis and further increase the need for the &#8216;Big
+Data&#8217; analysis tools provided by <span 
+class="cmtt-10">provenance</span>. Much work remains to be
+done to extend the methods presented in this paper. One example is the
+incorporation of dissimilarity measures to compare distributional data of higher
+dimensionality, such as paired U-Pb ages and Hf- or O-isotopic compositions
+(e.g.,&#x00A0;<a 
+href="#Xowen1987">Owen</a>,&#x00A0;<a 
+href="#Xowen1987">1987</a>). Another example is the introduction of weighted MDS
+(<a 
+href="#Xdeleeuw2009">de&#x00A0;Leeuw and Mair</a>,&#x00A0;<a 
+href="#Xdeleeuw2009">2009</a>) to handle, say, datasets containing samples of widely
+different sizes.<br 
+class="newline" />
+<!--l. 1150--><p class="indent" >   We would like to conclude this paper with the advice not to rely exclusively on
+statistics for the interpretation of provenance data. It is our opinion that statistical
+provenance analysis should be used as a complement to rather than a substitute for
+expert geological knowledge. It is sometimes found that petrographic information,
+especially the composition of the lithic fragments, allows an experienced analyst to
+unequivocally constrain provenance with much greater confidence than any machine
+or computer algorithm (<a 
+href="#Xgarzanti2015">Garzanti</a>,&#x00A0;<a 
+href="#Xgarzanti2015">2015</a>). Like any &#8216;black box&#8217; technique,
+statistical methods such as MDS or INDSCAL can easily be abused. By
+exhaustively going through all the options provided by <span 
+class="cmtt-10">provenance</span>, it may be
+possible to &#8216;cherry pick&#8217; a configuration that supports a pre-conceived model.
+Paraphrasing Andrew Lang, we would like to urge the user to resist the temptation
+of using <span 
+class="cmtt-10">provenance </span>in the same way that a drunk uses lamp-posts &#8211; for
+support rather than illumination. It is important to keep in mind that good
+scientific practice involves testing and rejecting rather than &#8216;proving&#8217; hypotheses
+
+(<a 
+href="#Xpopper1959">Popper</a>,&#x00A0;<a 
+href="#Xpopper1959">1959</a>). We hope that <span 
+class="cmtt-10">provenance </span>will be used according to this philosophy,
+along with all the other techniques at the disposal of sedimentary geologist
+today.
+<!--l. 1171--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-150006"></a>Acknowledgments</h3>
+<!--l. 1173--><p class="noindent" >The author would like to thank Istv&aacute;n Dunkl, Luca Caracciolo, Hilmar von Eynatten
+and Guido Meinhold for organising the 2014 Working Group for Sediment
+Generation workshop in G&ouml;ttingen and inviting him to present the work
+behind the <span 
+class="cmtt-10">provenance </span>package. This research was funded by NERC standard
+grant #NE/1009248/1 and ERC starting grant 259505 (&#8216;KArSD&#8217;). Raimon
+Tolosana-Delgado and two anonymous reviewers are gratefully acknowledged
+for their critical but constructive comments which truly transformed the
+paper.
+<!--l. 1185--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-160006"></a>References</h3>
+<!--l. 1185--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xabramson1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Abramson, I.S., 1982. On bandwidth variation in kernel estimates-a square
+  root law. The Annals of Statistics , 1217&#8211;1223.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1983.  Principal component analysis of compositional data.
+  Biometrika 70, 57&#8211;65. doi:10.1093/biomet/70.1.57.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1986. The statistical analysis of compositional data. London,
+  Chapman and Hall.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., Greenacre, M., 2002.  Biplots of compositional data.  Journal
+  of the Royal Statistical Society: Series C (Applied Statistics) 51, 375&#8211;392.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xallen2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Allen, J.L., Johnson, C.L., Heumann, M.J., Gooley, J., Gallin, W., 2012.
+  New  technology  and  methodology  for  assessing  sandstone  composition:  A
+  preliminary  case  study  using  a  quantitative  electron  microscope  scanner
+  (QEMScan). Geological Society of America Special Papers 487, 177&#8211;194.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xavdeev2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Avdeev, B., Niemi, N.A., Clark, M.K., 2011. Doing more with less: Bayesian
+  estimation of erosion models with detrital thermochronometric data.  Earth
+  and Planetary Science Letters 305, 385&#8211;395.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbasu1989"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Basu, A., Molinaroli, E., 1989. Provenance characteristics of detrital opaque
+  Fe-Ti oxide minerals. Journal of Sedimentary Research 59.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvandenboogaart2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>van&#x00A0;den Boogaart, K.G., Tolosana-Delgado, R., 2008.  &#8221;Compositions&#8221;: a
+  unified R package to analyze compositional data.  Computers &amp; Geosciences
+  34, 320&#8211;338.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xborg2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Borg, I., Groenen, P.J., 2005. Modern multidimensional scaling: Theory and
+  applications. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbotev2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Botev, Z.I., Grotowski, J.F., Kroese, D.P., 2010. Kernel density estimation
+  via diffusion. Annals of Statistics 38, 2916&#8211;2957.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcarroll1970"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Carroll,  J.D.,  Chang,  J.J.,  1970.    Analysis  of  individual  differences  in
+  multidimensional  scaling  via  an  N-way  generalization  of  Eckart-Young
+  decomposition. Psychometrika 35, 283&#8211;319.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcheng1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cheng, N.S., 1997. Simplified settling velocity formula for sediment particle.
+  Journal of hydraulic engineering 123, 149&#8211;152.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcox2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cox, T.F., Cox, M.A., 2000. Multidimensional scaling. CRC Press.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdeleeuw2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>De&#x00A0;Leeuw, J., Mair, P., 2011. Multidimensional scaling using majorization:
+  SMACOF in R. Department of Statistics, UCLA .
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdickinson1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dickinson, W.R., Beard, L.S., Brakenridge, G.R., Erjavec, J.L., Ferguson,
+  R.C.,  Inman,  K.F.,  Knepp,  R.A.,  Lindberg,  F.A.,  Ryberg,  P.T.,  1983.
+  Provenance of North American Phanerozoic sandstones in relation to tectonic
+  setting. Geological Society of America Bulletin 94, 222&#8211;235.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdodson1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dodson, M., Compston, W., Williams, I., Wilson, J., 1988.  A search for
+  ancient detrital zircons in Zimbabwean sediments. Journal of the Geological
+  Society 145, 977&#8211;983. doi:10.1144/gsjgs.145.6.0977.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfeller1948"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Feller, W., 1948. On the Kolmogorov-Smirnov limit theorems for empirical
+  distributions. The Annals of Mathematical Statistics 19, 177&#8211;189.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfrei2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Frei, D., Gerdes, A., 2009.  Precise and accurate <span 
+class="cmti-10">in situ </span>U&#8211;Pb dating of
+  zircon with high sample throughput by automated LA-SF-ICP-MS. Chemical
+  Geology 261, 261&#8211;270.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti,  E.,  2015.     From  static  to  dynamic  provenance  analysis  -
+  sedimentary petrology upgraded. Sedimentary Geology (this issue).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., And&ograve;, S., 2007. Heavy-mineral concentration in modern sands:
+  implications for provenance interpretation, in: Mange, M., Wright, D. (Eds.),
+  Heavy Minerals in Use, Developments in Sedimentology Series 58. Elsevier,
+  Amsterdam, pp. 517&#8211;545.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., And&ograve;, S., Vezzoli, G., 2008.  Settling equivalence of detrital
+  minerals  and  grain-size  dependence  of  sediment  composition.   Earth  and
+  Planetary Science Letters 273, 138&#8211;151.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., And&ograve;, S., Vezzoli, G., 2009. Grain-size dependence of sediment
+  composition  and  environmental  bias  in  provenance  studies.    Earth  and
+  Planetary Science Letters 277, 422&#8211;432. doi:10.1016/j.epsl.2008.11.007.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti,  E.,  And&ograve;,  S.,  Vezzoli,  G.,  Lustrino,  M.,  Boni,  M.,  Vermeesch,
+  P., 2012.   Petrology of the Namib Sand Sea: Long-distance transport and
+  compositional variability in the wind-displaced Orange Delta. Earth-Science
+  Reviews 112, 173 &#8211; 189. doi:10.1016/j.earscirev.2012.02.008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgower1975"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gower,  J.C.,  1975.   Generalized  procrustes  analysis.   Psychometrika  40,
+  33&#8211;51.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hurford,  A.J.,  Carter,  A.,  1991.     The  role  of  fission  track  dating
+  in  discrimination  of  provenance.     Geological  Society,  London,  Special
+  Publications 57, 67&#8211;78.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkomar1984"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Komar, P.D., Baba, J., Cui, B., 1984.  Grain-size analyses of mica within
+  sediments  and  the  hydraulic  equivalence  of  mica  and  quartz.   Journal  of
+  Sedimentary Research 54.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1978"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J.B., Wish, M., 1978.   Multidimensional scaling. volume 07-011
+  of <span 
+class="cmti-10">Sage University Paper series on Quantitative Application in the Social</span>
+  <span 
+class="cmti-10">Sciences</span>. Sage Publications, Beverly Hills and London.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdeleeuw2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>de&#x00A0;Leeuw, J., Mair, P., 2009. Multidimensional scaling using majorization:
+  The  R  package  smacof.   Journal  of  Statistical  Software  31,  1&#8211;30.   URL:
+  <span 
+class="cmtt-10">http://www.jstatsoft.org/v31/i03/</span>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K., 2003.  Isoplot 3.00 &#8211; a user&#8217;s manual.  Berkeley Geochronology
+  Center Special Publication .
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmarshall1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Marshall, D., 1996.  TernPlot: An Excel spreadsheet for ternary diagrams.
+  Computers &amp; Geosciences 22, 697&#8211;699.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmartin2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Mart&iacute;n-Fern&aacute;ndez,  J.A.,  Barcel&oacute;-Vidal,  C.,  Pawlowsky-Glahn,  V.,  2003.
+  Dealing  with  zeros  and  missing  values  in  compositional  data  sets  using
+  nonparametric imputation. Mathematical Geology 35, 253&#8211;278.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmatter1985"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Matter, A., Ramseyer, K., 1985. Cathodoluminescence microscopy as a tool
+  for provenance studies of sandstones, in: Provenance of arenites. Springer, pp.
+  191&#8211;211.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmclennan1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McLennan, S., Hemming, S., McDaniel, D., Hanson, G., 1993. Geochemical
+  approaches to sedimentation, provenance, and tectonics.  Geological Society
+  of America Special Papers 284, 21&#8211;40.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmorton1985"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Morton,  A.C.,  1985.    A  new  approach  to  provenance  studies:  electron
+  microprobe analysis of detrital garnets from Middle Jurassic sandstones of
+  the northern North Sea. Sedimentology 32, 553&#8211;566.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xowen1987"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Owen,  M.R.,  1987.   Hafnium  content  of  detrital  zircons,  a  new  tool  for
+  provenance study. Journal of Sedimentary Research 57.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpopper1959"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Popper, K.R., 1959. The logic of scientific discovery. London: Hutchinson.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrenne1990"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Renne,  P.R.,  Becker,  T.A.,  Swapp,  S.M.,  1990.    <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar  laser-probe
+  dating of detrital micas from the Montgomery Creek Formation, northern
+  California: Clues to provenance, tectonics, and weathering processes. Geology
+  18, 563&#8211;566.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xresentini2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Resentini, A., Malus&aacute, M.G., Garzanti, E., 2013. MinSORTING: An Excel&copy;
+  worksheet for modelling mineral grain-size distribution in sediments, with
+  application to detrital geochronology and provenance studies.  Computers &amp;
+  Geosciences 59, 90&#8211;97.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsilverman1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Silverman, B., 1986.  Density Estimation for Statistics and Data Analysis.
+  Chapman and Hall, London.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsircombe2004b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sircombe, K.N., 2004.  AgeDisplay: an EXCEL workbook to evaluate and
+  display univariate geochronological data using binned frequency histograms
+  and probability density distributions. Computers and Geosciences 30, 21&#8211;31.
+  doi:10.1016/j.cageo.2003.09.006.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsircombe2004a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sircombe, K.N., Hazelton, M.L., 2004.  Comparison of detrital zircon age
+  distributions  by  kernel  functional  estimation.   Sedimentary  Geology  171,
+  91&#8211;111. doi:10.1016/j.sedgeo.2004.05.012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtempl2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Templ, M., Hron, K., Filzmoser, P., 2011.  robCompositions: an R-package
+  for robust statistical analysis of compositional data. John Wiley and Sons.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2004b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2004. How many grains are needed for a provenance study?
+  Earth and Planetary Science Letters 224, 441&#8211;451.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2007.  Quantitative geomorphology of the White Mountains
+  (California) using detrital apatite fission track thermochronology. Journal of
+  Geophysical Research (Earth Surface) 112, 3004. doi:10.1029/2006JF000671.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.,  2012.   On  the  visualisation  of  detrital  age  distributions.
+  Chemical Geology 312-313, 190&#8211;194. doi:10.1016/j.chemgeo.2012.04.021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2013. Multi-sample comparison of detrital age distributions.
+  Chemical Geology 341, 140&#8211;146.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., Garzanti, E., 2015. Making geological sense of &#8216;Big Data&#8217; in
+  sedimentary provenance analysis. Chemical Geology 409, 20&#8211;27.
+</p>
+  </div>
+
+</div>    
+</body></html> 
+
+
+

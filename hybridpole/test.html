@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>Hybrid Pole Calculator</title>
+<link href="mystyle.css" rel="stylesheet">
+<script src="jquery-1.8.3.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="hybrid.js"></script>
+<script>
+  $(function() {
+
+    var theMap = new myMap();
+
+    $("#go").click(function (ev){
+      theMap.plot();
+    });
+
+  }
+</script>
+
+</head>
+
+<body class="center">
+
+<h1>Hybrid Pole Calculator</h1>
+
+Enter the site latitude, site longitude, pole latitude, pole longitude and 
+whether the pole falls on a small or a great circle
+<p></p>
+
+<!--
+<table id="tab">
+<thead>
+<tr>
+<th>site</th><th>site lat</th><th>site lon</th><th>pole lat</th><th>pole lon</th><th>great or small</th>
+</tr>
+</thead>
+<tbody contenteditable>
+<tr>
+<td>Kirghyzstan 1</td><td>40.7</td><td>76.1</td><td>76.9</td><td>-170.4</td><td>small</td>
+</tr>
+<tr>
+<td>Kirghyzstan 2</td><td>40.2</td><td>75.25</td><td>45.1</td><td>160.3</td><td>small</td>
+</tr>
+<tr>
+<td>Sheppey</td><td>51.4</td><td>0.9</td><td>63.7</td><td>178.6</td><td>great</td>
+</tr>
+<tr>
+<td>Faroer</td><td>60.8</td><td>-7</td><td>71.4</td><td>154.7</td><td>small</td>
+</tr>
+</tbody contenteditable>
+</table>
+-->
+
+<FORM NAME="inputform" ACTION="" METHOD="GET">
+<table class="center" id="center">
+<tr><td>
+site 1<br>
+site 2<br>
+site 3<br>
+...
+</td>
+<td>
+<textarea rows="8" cols="40" name="inputdata">
+  40.7 76.1  76.9 -170.4 small
+  51.4 0.9   63.7  178.6 great
+  40.2 75.25 45.1  160.3 small
+  60.8 -7    71.4  154.7 small
+</textarea><br>
+<!--
+   50  -50   54.6 -146.8 small
+   50    0   62.0  139.4 small
+   50   10   52.9 -178.1 great
+   50   70   63.2 -163.6 great
+   40  -30   43.8  122.9 great
+-->
+Plot 
+<INPUT TYPE="checkbox" NAME="plotSites" checked> sites 
+<INPUT TYPE="checkbox" NAME="plotPoles" checked> poles 
+<INPUT TYPE="checkbox" NAME="plotCircles"> circles<br>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<button id="go">Go</button>
+</td>
+</table>
+<div id="results" class="center"></div>
+</FORM>
+
+<div id="map_canvas"></div>
+
+</body>
+</html>

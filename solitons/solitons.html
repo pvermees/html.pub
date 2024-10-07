@@ -1,0 +1,78 @@
+<HTML>
+<HEAD> 
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="mystyle.css" />
+
+<SCRIPT LANGUAGE="JavaScript">
+
+var pictures = new Array("s-1.gif","s-2.gif","s-3-1.gif","s-3-2.gif",
+"s-3-3.gif","s-7.gif","s-8.gif","s-11.gif","s-12.gif","s-13.gif");
+
+var latlons = new Array(
+"Latitude: N16&deg;57&#8217;44&#8221; Longitude: E17&deg;2&#8217;23&#8221;",
+"Latitude: N16&deg;54&#8217;17&#8221; Longitude: E17&deg;2&#8217;58&#8221;",
+"Latitude: N16&deg;53&#8217;43&#8221; Longitude: E17&deg;1&#8217;10&#8221;",
+"Latitude: N16&deg;54&#8217;26&#8221; Longitude: E17&deg;0&#8217;56&#8221;",
+"Latitude: N16&deg;54&#8217;17&#8221; Longitude: E17&deg;2&#8217;58&#8221;",
+"Latitude: N16&deg;44&#8217;57&#8221; Longitude: E18&deg;5&#8217;44&#8221;",
+"Latitude: N16&deg;49&#8217;6&#8221; Longitude: E18&deg;11&#8217;6&#8221;",
+"Latitude: N16&deg;59&#8217;27&#8221; Longitude: E18&deg;5&#8217;78&#8221;",
+"Latitude: N16&deg;59&#8217;33&#8221; Longitude: E18&deg;3&#8217;33&#8221;",
+"Latitude: N16&deg;51&#8217;42&#8221; Longitude: E18&deg;12&#8217;30&#8221;"
+);
+
+var dir = "solitons/"
+
+var currimg = "z"; // current image
+
+function loadGIF(i,evt){
+  var srcElement = evt.srcElement ? evt.srcElement : evt.target;
+  document.animation.src = dir + pictures[i];
+  document.getElementById(currimg).border = 0;
+  currimg = srcElement.id;
+  document.getElementById(currimg).border = 2;
+  document.getElementById("latlon").innerHTML = latlons[i];
+}
+
+</SCRIPT>
+
+<TITLE> 
+Soliton behavior in the Bodele Depression (Chad)
+</TITLE> 
+</HEAD> 
+<BODY BGCOLOR="white" ALIGN="center"> 
+
+<TABLE ALIGN="center" BORDER=0>
+
+<TR>
+<TD CLASS="left"><a href="index.html">introduction</a></TD>
+<TD CLASS="middle"><a href="solitons/index.html"><b>solitons</b></a></TD>
+<TD CLASS="right"><a href="offcenter/index.html">off-center</a></TD>
+</TR>
+
+<TR HEIGHT=125><TD CLASS="full" COLSPAN=3>
+<IMG ID="a" CLASS="thumbnail" SRC="solitons/s-1-thumb.gif" ONCLICK='loadGIF(0,event);'>
+<IMG ID="b" CLASS="thumbnail" SRC="solitons/s-2-thumb.gif" ONCLICK='loadGIF(1,event);'>
+<IMG ID="c" CLASS="thumbnail" SRC="solitons/s-3-1-thumb.gif" ONCLICK='loadGIF(2,event);'>
+<IMG ID="d" CLASS="thumbnail" SRC="solitons/s-3-2-thumb.gif" ONCLICK='loadGIF(3,event);'>
+<IMG ID="e" CLASS="thumbnail" SRC="solitons/s-3-3-thumb.gif" ONCLICK='loadGIF(4,event);'>
+</TD></TR>
+
+<TR><TD CLASS="full" COLSPAN=3>
+<IMG HEIGHT=400 id="z" NAME="animation" SRC="solitons/s-intro.gif">
+</TD></TR>
+
+<TR><TD CLASS="full" COLSPAN=3>
+<IMG ID="f" CLASS="thumbnail" SRC="solitons/s-7-thumb.gif" ONCLICK='loadGIF(5,event);'>
+<IMG ID="g" CLASS="thumbnail" SRC="solitons/s-8-thumb.gif" ONCLICK='loadGIF(6,event);'>
+<IMG ID="h" CLASS="thumbnail" SRC="solitons/s-11-thumb.gif" ONCLICK='loadGIF(7,event);'>
+<IMG ID="i" CLASS="thumbnail" SRC="solitons/s-12-thumb.gif" ONCLICK='loadGIF(8,event);'>
+<IMG ID="j" CLASS="thumbnail" SRC="solitons/s-13-thumb.gif" ONCLICK='loadGIF(9,event);'>
+</TD></TR>
+
+<TR><TD ID="latlon" CLASS="full" COLSPAN=3></TD></TR>
+
+</TABLE>
+
+</BODY> 
+</HTML>

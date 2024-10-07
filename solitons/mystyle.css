@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif
+}
+
+table {
+  border-width: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color:red;
+}
+
+div.skip:hover {
+  CURSOR: pointer;
+  COLOR: #FF0000;
+}
+
+table td.left {
+  width: 100px;
+  text-align: center;
+}
+
+table td.right {
+  width: 100px;
+  text-align: center;
+}
+
+table td.middle {
+  width: 410px;
+  text-align: center;
+}
+
+table td.full {
+  width: 610px;
+  text-align: center;
+}
+
+img.thumbnail:hover {
+  CURSOR: pointer;
+}
+
+img.thumbnail {
+  height:80px;
+  border:2px solid #ffffff;
+}

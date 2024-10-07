@@ -1,0 +1,3213 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2011.4.5)  6 NOV 2012 18:04
+entering extended mode
+ %&-line parsing enabled.
+**\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx"\HCode\def\HCo
+de"##1"{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.
+{\g@addto@macro\@documentclasshook{\RequirePackage[#1,html]{tex4ht}}\let\HCode\
+documentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname
+ tex4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{
+\HCode}{\documentstyle[tex4ht]}}}\makeatother\HCode .a.b.c.\input  discPaper
+(./discPaper.tex (/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/generic/tex4ht/tex4ht.sty
+version 2008-10-27-17:23
+Package: tex4ht 
+--------------------------------------
+--- Note --- for _ at preamble, use the command line option `early_'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ at preamble, use the command line option `early^'
+--------------------------------------
+\tmp:toks=\toks14
+)
+(/usr/share/texmf/tex/generic/tex4ht/usepackage.4ht
+version 2009-05-21-09:32
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texmf-texlive/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip43
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks16
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks17
+\ex@=\dimen105
+))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen106
+)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count87
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count88
+\leftroot@=\count89
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count90
+\DOTSCASE@=\count91
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen107
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count92
+\c@MaxMatrixCols=\count93
+\dotsspace@=\muskip10
+\c@parentequation=\count94
+\dspbrk@lvl=\count95
+\tag@help=\toks18
+\row@=\count96
+\column@=\count97
+\maxfields@=\count98
+\andhelp@=\toks19
+\eqnshift@=\dimen108
+\alignsep@=\dimen109
+\tagshift@=\dimen110
+\tagwidth@=\dimen111
+\totwidth@=\dimen112
+\lineht@=\dimen113
+\@envbody=\toks20
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf-texlive/tex/latex/xtab/xtab.sty
+Package: xtab 2008/07/26 v2.3c Extended supertabular package
+\c@tracingst=\count99
+\PWSTcapht=\dimen114
+\ST@wd=\dimen115
+\ST@rightskip=\skip47
+\ST@leftskip=\skip48
+\ST@parfillskip=\skip49
+\c@PWSTtable=\count100
+\PWSTlastpage=\count101
+\PWSTpenultimate=\count102
+\PWSTcurpage=\count103
+\PWSTtempc=\count104
+\PWSTlines=\count105
+\PWST@lastht=\dimen116
+\PWST@generalht=\dimen117
+\PWST@ht=\dimen118
+\ST@pageleft=\dimen119
+\ST@headht=\dimen120
+\ST@tailht=\dimen121
+\ST@pagesofar=\dimen122
+\ST@pboxht=\dimen123
+\ST@lineht=\dimen124
+\ST@stretchht=\dimen125
+\ST@prevht=\dimen126
+\ST@toadd=\dimen127
+\ST@dimen=\dimen128
+\ST@pbox=\box28
+)
+(/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
+Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
+
+Package: `setspace' 6.7 <2000/12/01>
+) (/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
+O)
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
+Package: xcolor-patch 2009/10/02 xcolor patch
+))
+\@linkdim=\dimen129
+\Hy@linkcounter=\count106
+\Hy@pagecounter=\count107
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+))
+Package hyperref Info: Option `colorlinks' set `true' on input line 2864.
+Package hyperref Info: Hyper figures OFF on input line 2975.
+Package hyperref Info: Link nesting OFF on input line 2980.
+Package hyperref Info: Hyper index ON on input line 2983.
+Package hyperref Info: Plain pages OFF on input line 2990.
+Package hyperref Info: Backreferencing OFF on input line 2995.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 3191.
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip11
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 3428.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)))
+\Fld@menulength=\count108
+\Field@Width=\dimen130
+\Fld@charsize=\dimen131
+\Field@toks=\toks22
+Package hyperref Info: Hyper figures OFF on input line 4377.
+Package hyperref Info: Link nesting OFF on input line 4382.
+Package hyperref Info: Hyper index ON on input line 4385.
+Package hyperref Info: backreferencing OFF on input line 4392.
+Package hyperref Info: Link coloring ON on input line 4395.
+Package hyperref Info: Link coloring with OCG OFF on input line 4402.
+Package hyperref Info: PDF/A mode OFF on input line 4407.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+)
+\Hy@abspage=\count109
+
+Hyperref stopped early
+)
+*hyperref using driver htex4ht*
+(/usr/share/texmf-texlive/tex/latex/hyperref/htex4ht.def
+File: htex4ht.def 2009/10/09 v6.79a Hyperref driver for TeX4ht
+
+hyperref tex4ht: tex4ht already loaded
+) (/usr/share/texmf/tex/generic/tex4ht/tex4ht.4ht
+version 2009-01-07-07:11
+--------------------------------------
+--- Note --- for additional information, use the command line option `info'
+--------------------------------------
+
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (/usr/share/texmf/tex/generic/tex4ht/tex4ht.sty
+version 2008-10-27-17:23
+
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 130.
+
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+--- needs --- tex4ht discPaper ---
+\tmp:cnt=\count110
+\openout15 = `discPaper.tmp'.
+
+(./discPaper.tmp)
+\tmp:dim=\skip50
+--------------------------------------
+--- Note --- for XML code, use the command line option `xml' or `xhtml'
+--------------------------------------
+ (./discPaper.xref)
+\:refout=\write3
+\openout3 = `discPaper.xref'.
+
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- to remove the <?xml version=...?> processing instruction use the c
+ommand line option `no-VERSION'
+--------------------------------------
+--------------------------------------
+--- Note --- to remove the DOCTYPE declaration use the command line option `no-
+DOCTYPE'
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+--------------------------------------
+--- Note --- for marking of the base font, use the command line option `fonts+'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for non active _, use the command line option `no_'
+--------------------------------------
+--------------------------------------
+--- Note --- for _ of catcode 13, use the command line option `_13'
+--------------------------------------
+--------------------------------------
+--- Note --- for non active ^, use the command line option `no^'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ of catcode 13, use the command line option `^13'
+--------------------------------------
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for alternative charset, use the command line option `charset=...'
+
+--------------------------------------
+--------------------------------------
+--- Note --- to ignore CSS font decoration, use the `NoFonts' command line opti
+on
+--------------------------------------
+--------------------------------------
+--- Note --- for jpg bitmaps of pictures, use the `jpg' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for gif bitmaps of pictures, use the `gif' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for content and toc in 2 frames, use the command line option `fram
+es'
+--------------------------------------
+--------------------------------------
+--- Note --- for content, toc, and footnotes in 3 frames, use the command line 
+option `frames-fn'
+--------------------------------------
+--------------------------------------
+--- Note --- for file extension name xht, use the command line option `xht'
+--------------------------------------
+TeX4ht package options: html
+--------------------------------------
+--- Note --- to ignore CSS code, use the command line option `-css
+--------------------------------------
+--------------------------------------
+--- Note --- for inline CSS code, use the command line option `css-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for pop ups on mouse over, use the command line option `mouseover'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for addressing images in a subdirectory, use the command line opti
+on `imgdir:.../'
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+\:tokwrite=\toks23
+\:tokpage=\toks24
+--------------------------------------
+--- Note --- for back links to toc, use the command line option `sections+'
+--------------------------------------
+--------------------------------------
+--- Note --- for linear crosslinks of pages, use the command line option `next'
+
+--------------------------------------
+\openout15 = `discPaper.4ct'.
+
+\:tocout=\write4
+\openout4 = `discPaper.4tc'.
+
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/latex.4ht
+version 2009-05-21-09:32
+--------------------------------------
+--- Note --- for links into captions, instead of float heads, use the command l
+ine option `refcaption'
+--------------------------------------
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- For mini tocs immediately aftter the header use the command line o
+ption `minitoc<'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements with valued data, use the command lin
+e option `enumerate+'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements li's with value attributes, use the c
+ommand line option `enumerate-'
+--------------------------------------
+--------------------------------------
+--- Note --- for CSS2 code, use the command line option `css2'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial tabular, use the command line option `pic-tabular'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap fbox'es, use the command line option `pic-fbox'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap framebox'es, use the command line option `pic-framebox'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for inline footnotes use command line option `fn-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for tracing of latex font commands, use the command line option `f
+onts'
+--------------------------------------
+--------------------------------------
+--- Note --- for width specifications of tabular p entries, use the `p-width' c
+ommand line option or a configuration similar to \Configure{HColWidth}{\HCode{ 
+style="width:\HColWidth"}}
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for pictorial eqnarray, use the command line option `pic-eqnarray'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ environments, use the command line option `pic
+-m' (not recommended!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ and $$...$$ environments with latex alt, use t
+he command line option `pic-m+' (not safe!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+))
+(/usr/share/texmf/tex/generic/tex4ht/fontmath.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/article.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for automatic sectioning pagination, use the command line option `
+1', `2', `3', '4', '5', '6', or '7'
+--------------------------------------
+--------------------------------------
+--- Note --- for files named derived from section titles, use the command line 
+option `sec-filename'
+--------------------------------------
+--------------------------------------
+--- Note --- for i-columns index, use the command line option `index=i' (e.g., 
+index=2)
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/graphicx.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/graphics.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- if included graphics are of degraded quality, try the command line
+ options `graphics-num' or `graphics-'. The `num' should provide the density of
+ pixels in the bitmaps (e.g., 110). 
+--------------------------------------
+--------------------------------------
+--- Note --- for key dimensions try the option `Gin-dim'; for key dimensions wh
+en bounding box is unavailable try `Gin-dim+'; neither is recommended
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/dvips.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amssymb.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsfonts.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsmath.4ht
+version 2009-05-21-09:32
+\tmp:muskip=\muskip12
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amstext.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsbsy.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/amsopn.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/hyperref.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+\c@section@level=\count111
+)
+(/usr/share/texmf/tex/generic/tex4ht/nameref.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+LaTeX Info: Redefining \autoref on input line 99.
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/pd1enc.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/url.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for URL encoding within href use the command line option `url-enc'
+
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/color.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/dvipsnam.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def)
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)) (./discPaper.aux
+(./tables.aux) (./figures.aux))
+\openout1 = `discPaper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+Package hyperref Info: Link coloring ON on input line 9.
+LaTeX Info: Redefining \ref on input line 9.
+LaTeX Info: Redefining \pageref on input line 9.
+\AtBeginShipoutBox=\box29
+--- file discPaper.css ---
+ [1
+
+] [2]
+LaTeX Font Info:    Try loading font information for U+msa on input line 12.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 12.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+) [3] [4]
+l. 108 Writing discPaper.idv[1] (discPaper0x.png)
+l. 114 Writing discPaper.idv[2] (discPaper1x.png)
+l. 118 Writing discPaper.idv[3] (discPaper2x.png)
+ [5]
+l. 131 Writing discPaper.idv[4] (discPaper3x.png)
+l. 142 Writing discPaper.idv[5] (discPaper4x.png)
+l. 155 Writing discPaper.idv[6] (discPaper5x.png)
+ [6] [7]
+l. 254 Writing discPaper.idv[7] (discPaper6x.png)
+
+[8]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 296.
+
+ (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 296.
+ [9]
+--- file discPaper2.html ---
+ [10
+
+] [11]
+l. 477 Writing discPaper.idv[8] (discPaper7x.png)
+ [12]
+l. 499 Writing discPaper.idv[9] (discPaper8x.png)
+
+[13]
+l. 530 Writing discPaper.idv[10] (discPaper9x.png)
+l. 531 Writing discPaper.idv[11] (discPaper10x.png)
+ [14] [15] [16] [17] [18] [19] [20] (./discPaper.4ct) [21
+
+] [22
+
+]
+\openout2 = `tables.aux'.
+
+
+(./tables.tex [23
+
+] [24] [25] [26]
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.125 \end{xtabular}
+                    
+? 
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.125 \end{xtabular}
+                    
+? 
+[27] [28
+
+] [29]
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.208 \end{xtabular}
+                    
+? 
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.208 \end{xtabular}
+                    
+? 
+[30] [31] [32
+
+] [33] [34] [35]
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.336 \end{xtabular}
+                    
+? 
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.336 \end{xtabular}
+                    
+? 
+[36] [37
+
+] [38] [39]
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.424 \end{xtabular}
+                    
+? 
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.424 \end{xtabular}
+                    
+? 
+[40] [41
+
+] [42] [43]
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.567 \end{xtabular}
+                    
+? 
+! Misplaced \noalign.
+\a:hline ->\ifx \ar:cnt \:UnDef \else \o:noalign: 
+                                                  {\append:def \hline:s {\a:...
+l.567 \end{xtabular}
+                    
+? 
+[44] [45
+
+] [46
+
+] [47
+
+] [48
+
+] [49
+
+]) [50
+
+] [51
+
+] (./discPaper.4ct) [52
+
+] [53
+
+]
+\openout2 = `figures.aux'.
+
+
+(./figures.tex [54
+
+] [55
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.6 ...aphics[width=400]{figures/discriminant.jpg}
+                                                  
+? 
+l.6 --- TeX4ht warning --- Cannot determine size of graphic in figures/discrimi
+nant.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.6 ...aphics[width=400]{figures/discriminant.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.6 ...aphics[width=400]{figures/discriminant.jpg}
+                                                  
+? 
+l. 6 --- needs --- figures/discriminant.jpg ---
+[56
+
+] [57
+
+] [58
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.15 ...egraphics[width=600]{figures/PCAvsLDA.jpg}
+                                                  
+? 
+l.15 --- TeX4ht warning --- Cannot determine size of graphic in figures/PCAvsLD
+A.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.15 ...egraphics[width=600]{figures/PCAvsLDA.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.15 ...egraphics[width=600]{figures/PCAvsLDA.jpg}
+                                                  
+? 
+l. 15 --- needs --- figures/PCAvsLDA.jpg ---
+[59
+
+] [60
+
+] [61
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.26 ...degraphics[width=400]{figures/closure.jpg}
+                                                  
+? 
+l.26 --- TeX4ht warning --- Cannot determine size of graphic in figures/closure
+.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.26 ...degraphics[width=400]{figures/closure.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.26 ...degraphics[width=400]{figures/closure.jpg}
+                                                  
+? 
+l. 26 --- needs --- figures/closure.jpg ---
+[62
+
+] [63
+
+] [64
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.37 ...graphics[width=600]{figures/spurious2.jpg}
+                                                  
+? 
+l.37 --- TeX4ht warning --- Cannot determine size of graphic in figures/spuriou
+s2.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.37 ...graphics[width=600]{figures/spurious2.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.37 ...graphics[width=600]{figures/spurious2.jpg}
+                                                  
+? 
+l. 37 --- needs --- figures/spurious2.jpg ---
+[65
+
+] [66
+
+] [67
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.47 ...h=400]{figures/closure_ternary_wrong2.jpg}
+                                                  
+? 
+
+LaTeX Warning: File `figures/closure_ternary_wrong2.jpg' not found on input lin
+e 47.
+
+l.47 --- TeX4ht warning --- File `figures/closure_ternary_wrong2.jpg' not found
+ ---
+l.47 --- TeX4ht warning --- Cannot determine size of graphic in figures/closure
+_ternary_wrong2.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.47 ...h=400]{figures/closure_ternary_wrong2.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.47 ...h=400]{figures/closure_ternary_wrong2.jpg}
+                                                  
+? 
+l. 47 --- needs --- figures/closure_ternary_wrong2.jpg ---
+[68
+
+] [69
+
+] [70
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.58 ...cs[width=600]{figures/closure_mapping.jpg}
+                                                  
+? 
+l.58 --- TeX4ht warning --- Cannot determine size of graphic in figures/closure
+_mapping.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.58 ...cs[width=600]{figures/closure_mapping.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.58 ...cs[width=600]{figures/closure_mapping.jpg}
+                                                  
+? 
+l. 58 --- needs --- figures/closure_mapping.jpg ---
+[71
+
+] [72
+
+] [73
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.69 ...0]{figures/closure_discriminant_wrong.jpg}
+                                                  
+? 
+l.69 --- TeX4ht warning --- Cannot determine size of graphic in figures/closure
+_discriminant_wrong.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.69 ...0]{figures/closure_discriminant_wrong.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.69 ...0]{figures/closure_discriminant_wrong.jpg}
+                                                  
+? 
+l. 69 --- needs --- figures/closure_discriminant_wrong.jpg ---
+[74
+
+] [75
+
+] [76
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.81 ...res/closure_binary_discriminant_right.jpg}
+                                                  
+? 
+l.81 --- TeX4ht warning --- Cannot determine size of graphic in figures/closure
+_binary_discriminant_right.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.81 ...res/closure_binary_discriminant_right.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.81 ...res/closure_binary_discriminant_right.jpg}
+                                                  
+? 
+l. 81 --- needs --- figures/closure_binary_discriminant_right.jpg ---
+[77
+
+] [78
+
+] [79
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.92 ...es/closure_ternary_discriminant_right.jpg}
+                                                  
+? 
+l.92 --- TeX4ht warning --- Cannot determine size of graphic in figures/closure
+_ternary_discriminant_right.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.92 ...es/closure_ternary_discriminant_right.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.92 ...es/closure_ternary_discriminant_right.jpg}
+                                                  
+? 
+l. 92 --- needs --- figures/closure_ternary_discriminant_right.jpg ---
+[80
+
+] [81
+
+] [82
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.103 ...[width=600]{figures/sample_locations.jpg}
+                                                  
+? 
+l.103 --- TeX4ht warning --- Cannot determine size of graphic in figures/sample
+_locations.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.103 ...[width=600]{figures/sample_locations.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.103 ...[width=600]{figures/sample_locations.jpg}
+                                                  
+? 
+l. 103 --- needs --- figures/sample_locations.jpg ---
+[83
+
+] [84
+
+] [85
+
+] [86
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.114 ...graphics[width=600]{figures/Ti_V_lin.jpg}
+                                                  
+? 
+l.114 --- TeX4ht warning --- Cannot determine size of graphic in figures/Ti_V_l
+in.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.114 ...graphics[width=600]{figures/Ti_V_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.114 ...graphics[width=600]{figures/Ti_V_lin.jpg}
+                                                  
+? 
+l. 114 --- needs --- figures/Ti_V_lin.jpg ---
+[87
+
+] [88
+
+] [89
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.129 ...raphics[width=600]{figures/Ti_V_quad.jpg}
+                                                  
+? 
+l.129 --- TeX4ht warning --- Cannot determine size of graphic in figures/Ti_V_q
+uad.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.129 ...raphics[width=600]{figures/Ti_V_quad.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.129 ...raphics[width=600]{figures/Ti_V_quad.jpg}
+                                                  
+? 
+l. 129 --- needs --- figures/Ti_V_quad.jpg ---
+[90
+
+] [91
+
+] [92
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.140 ...raphics[width=600]{figures/Ti_Zr_lin.jpg}
+                                                  
+? 
+l.140 --- TeX4ht warning --- Cannot determine size of graphic in figures/Ti_Zr_
+lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.140 ...raphics[width=600]{figures/Ti_Zr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.140 ...raphics[width=600]{figures/Ti_Zr_lin.jpg}
+                                                  
+? 
+l. 140 --- needs --- figures/Ti_Zr_lin.jpg ---
+[93
+
+] [94
+
+] [95
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.148 ...aphics[width=600]{figures/Ti_Zr_quad.jpg}
+                                                  
+? 
+l.148 --- TeX4ht warning --- Cannot determine size of graphic in figures/Ti_Zr_
+quad.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.148 ...aphics[width=600]{figures/Ti_Zr_quad.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.148 ...aphics[width=600]{figures/Ti_Zr_quad.jpg}
+                                                  
+? 
+l. 148 --- needs --- figures/Ti_Zr_quad.jpg ---
+[96
+
+] [97
+
+] [98
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.156 ...phics[width=600]{figures/Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+l.156 --- TeX4ht warning --- Cannot determine size of graphic in figures/Ti_Zr_
+Y_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.156 ...phics[width=600]{figures/Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.156 ...phics[width=600]{figures/Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+l. 156 --- needs --- figures/Ti_Zr_Y_lin.jpg ---
+[99
+
+] [100
+
+] [101
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.170 ...hics[width=600]{figures/Ti_Zr_Y_quad.jpg}
+                                                  
+? 
+l.170 --- TeX4ht warning --- Cannot determine size of graphic in figures/Ti_Zr_
+Y_quad.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.170 ...hics[width=600]{figures/Ti_Zr_Y_quad.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.170 ...hics[width=600]{figures/Ti_Zr_Y_quad.jpg}
+                                                  
+? 
+l. 170 --- needs --- figures/Ti_Zr_Y_quad.jpg ---
+[102
+
+] [103
+
+] [104
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.181 ...phics[width=600]{figures/Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+l.181 --- TeX4ht warning --- Cannot determine size of graphic in figures/Nb_Zr_
+Y_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.181 ...phics[width=600]{figures/Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.181 ...phics[width=600]{figures/Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+l. 181 --- needs --- figures/Nb_Zr_Y_lin.jpg ---
+[105
+
+] [106
+
+] [107
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.191 ...hics[width=600]{figures/Nb_Zr_Y_quad.jpg}
+                                                  
+? 
+l.191 --- TeX4ht warning --- Cannot determine size of graphic in figures/Nb_Zr_
+Y_quad.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.191 ...hics[width=600]{figures/Nb_Zr_Y_quad.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.191 ...hics[width=600]{figures/Nb_Zr_Y_quad.jpg}
+                                                  
+? 
+l. 191 --- needs --- figures/Nb_Zr_Y_quad.jpg ---
+[108
+
+] [109
+
+] [110
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.199 ...hics[width=600]{figures/Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+l.199 --- TeX4ht warning --- Cannot determine size of graphic in figures/Th_Ta_
+Hf_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.199 ...hics[width=600]{figures/Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.199 ...hics[width=600]{figures/Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+l. 199 --- needs --- figures/Th_Ta_Hf_lin.jpg ---
+[111
+
+] [112
+
+] [113
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.207 ...ics[width=600]{figures/Th_Ta_Hf_quad.jpg}
+                                                  
+? 
+l.207 --- TeX4ht warning --- Cannot determine size of graphic in figures/Th_Ta_
+Hf_quad.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.207 ...ics[width=600]{figures/Th_Ta_Hf_quad.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.207 ...ics[width=600]{figures/Th_Ta_Hf_quad.jpg}
+                                                  
+? 
+l. 207 --- needs --- figures/Th_Ta_Hf_quad.jpg ---
+[114
+
+] [115
+
+] [116
+
+] [117
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.217 ...ics[width=600]{figures/discrimiFunc2.jpg}
+                                                  
+? 
+l.217 --- TeX4ht warning --- Cannot determine size of graphic in figures/discri
+miFunc2.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.217 ...ics[width=600]{figures/discrimiFunc2.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.217 ...ics[width=600]{figures/discrimiFunc2.jpg}
+                                                  
+? 
+l. 217 --- needs --- figures/discrimiFunc2.jpg ---
+[118
+
+] [119
+
+] [120
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.233 ...ics[width=600]{figures/discrimiFunc1.jpg}
+                                                  
+? 
+l.233 --- TeX4ht warning --- Cannot determine size of graphic in figures/discri
+miFunc1.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.233 ...ics[width=600]{figures/discrimiFunc1.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.233 ...ics[width=600]{figures/discrimiFunc1.jpg}
+                                                  
+? 
+l. 233 --- needs --- figures/discrimiFunc1.jpg ---
+[121
+
+] [122
+
+] [123
+
+] [124
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.248 ...=300]{figures/xPlotMajor2_linear_IAB.jpg}
+                                                  
+? 
+l.248 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_linear_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.248 ...=300]{figures/xPlotMajor2_linear_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.248 ...=300]{figures/xPlotMajor2_linear_IAB.jpg}
+                                                  
+? 
+l. 248 --- needs --- figures/xPlotMajor2_linear_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.249 ...300]{figures/xPlotMajor2_linear_MORB.jpg}
+                                                  \\
+? 
+l.249 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_linear_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.249 ...300]{figures/xPlotMajor2_linear_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.249 ...300]{figures/xPlotMajor2_linear_MORB.jpg}
+                                                  \\
+? 
+l. 249 --- needs --- figures/xPlotMajor2_linear_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.250 ...=300]{figures/xPlotMajor2_linear_OIB.jpg}
+                                                  
+? 
+l.250 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_linear_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.250 ...=300]{figures/xPlotMajor2_linear_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.250 ...=300]{figures/xPlotMajor2_linear_OIB.jpg}
+                                                  
+? 
+l. 250 --- needs --- figures/xPlotMajor2_linear_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.251 ...=300]{figures/xPlotMajor2_linear_err.jpg}
+                                                  
+? 
+l.251 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_linear_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.251 ...=300]{figures/xPlotMajor2_linear_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.251 ...=300]{figures/xPlotMajor2_linear_err.jpg}
+                                                  
+? 
+l. 251 --- needs --- figures/xPlotMajor2_linear_err.jpg ---
+[125
+
+] [126
+
+] [127
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.265 ...0]{figures/xPlotMajor2_quadratic_IAB.jpg}
+                                                  
+? 
+l.265 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_quadratic_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.265 ...0]{figures/xPlotMajor2_quadratic_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.265 ...0]{figures/xPlotMajor2_quadratic_IAB.jpg}
+                                                  
+? 
+l. 265 --- needs --- figures/xPlotMajor2_quadratic_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.266 ...]{figures/xPlotMajor2_quadratic_MORB.jpg}
+                                                  \\
+? 
+l.266 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_quadratic_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.266 ...]{figures/xPlotMajor2_quadratic_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.266 ...]{figures/xPlotMajor2_quadratic_MORB.jpg}
+                                                  \\
+? 
+l. 266 --- needs --- figures/xPlotMajor2_quadratic_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.267 ...0]{figures/xPlotMajor2_quadratic_OIB.jpg}
+                                                  
+? 
+l.267 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_quadratic_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.267 ...0]{figures/xPlotMajor2_quadratic_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.267 ...0]{figures/xPlotMajor2_quadratic_OIB.jpg}
+                                                  
+? 
+l. 267 --- needs --- figures/xPlotMajor2_quadratic_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.268 ...0]{figures/xPlotMajor2_quadratic_err.jpg}
+                                                  
+? 
+l.268 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor2_quadratic_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.268 ...0]{figures/xPlotMajor2_quadratic_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.268 ...0]{figures/xPlotMajor2_quadratic_err.jpg}
+                                                  
+? 
+l. 268 --- needs --- figures/xPlotMajor2_quadratic_err.jpg ---
+[128
+
+] [129
+
+] [130
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.277 ...=300]{figures/xPlotTrace2_linear_IAB.jpg}
+                                                  
+? 
+l.277 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_linear_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.277 ...=300]{figures/xPlotTrace2_linear_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.277 ...=300]{figures/xPlotTrace2_linear_IAB.jpg}
+                                                  
+? 
+l. 277 --- needs --- figures/xPlotTrace2_linear_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.278 ...300]{figures/xPlotTrace2_linear_MORB.jpg}
+                                                  \\
+? 
+l.278 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_linear_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.278 ...300]{figures/xPlotTrace2_linear_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.278 ...300]{figures/xPlotTrace2_linear_MORB.jpg}
+                                                  \\
+? 
+l. 278 --- needs --- figures/xPlotTrace2_linear_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.279 ...=300]{figures/xPlotTrace2_linear_OIB.jpg}
+                                                  
+? 
+l.279 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_linear_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.279 ...=300]{figures/xPlotTrace2_linear_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.279 ...=300]{figures/xPlotTrace2_linear_OIB.jpg}
+                                                  
+? 
+l. 279 --- needs --- figures/xPlotTrace2_linear_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.280 ...=300]{figures/xPlotTrace2_linear_err.jpg}
+                                                  
+? 
+l.280 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_linear_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.280 ...=300]{figures/xPlotTrace2_linear_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.280 ...=300]{figures/xPlotTrace2_linear_err.jpg}
+                                                  
+? 
+l. 280 --- needs --- figures/xPlotTrace2_linear_err.jpg ---
+[131
+
+] [132
+
+] [133
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.290 ...0]{figures/xPlotTrace2_quadratic_IAB.jpg}
+                                                  
+? 
+l.290 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_quadratic_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.290 ...0]{figures/xPlotTrace2_quadratic_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.290 ...0]{figures/xPlotTrace2_quadratic_IAB.jpg}
+                                                  
+? 
+l. 290 --- needs --- figures/xPlotTrace2_quadratic_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.291 ...]{figures/xPlotTrace2_quadratic_MORB.jpg}
+                                                  \\
+? 
+l.291 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_quadratic_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.291 ...]{figures/xPlotTrace2_quadratic_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.291 ...]{figures/xPlotTrace2_quadratic_MORB.jpg}
+                                                  \\
+? 
+l. 291 --- needs --- figures/xPlotTrace2_quadratic_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.292 ...0]{figures/xPlotTrace2_quadratic_OIB.jpg}
+                                                  
+? 
+l.292 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_quadratic_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.292 ...0]{figures/xPlotTrace2_quadratic_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.292 ...0]{figures/xPlotTrace2_quadratic_OIB.jpg}
+                                                  
+? 
+l. 292 --- needs --- figures/xPlotTrace2_quadratic_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.293 ...0]{figures/xPlotTrace2_quadratic_err.jpg}
+                                                  
+? 
+l.293 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race2_quadratic_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.293 ...0]{figures/xPlotTrace2_quadratic_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.293 ...0]{figures/xPlotTrace2_quadratic_err.jpg}
+                                                  
+? 
+l. 293 --- needs --- figures/xPlotTrace2_quadratic_err.jpg ---
+[134
+
+] [135
+
+] [136
+
+] [137
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.303 ...00]{figures/xPlotMajor3Ti_linear_IAB.jpg}
+                                                  
+? 
+l.303 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_linear_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.303 ...00]{figures/xPlotMajor3Ti_linear_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.303 ...00]{figures/xPlotMajor3Ti_linear_IAB.jpg}
+                                                  
+? 
+l. 303 --- needs --- figures/xPlotMajor3Ti_linear_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.304 ...0]{figures/xPlotMajor3Ti_linear_MORB.jpg}
+                                                  \\
+? 
+l.304 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_linear_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.304 ...0]{figures/xPlotMajor3Ti_linear_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.304 ...0]{figures/xPlotMajor3Ti_linear_MORB.jpg}
+                                                  \\
+? 
+l. 304 --- needs --- figures/xPlotMajor3Ti_linear_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.305 ...00]{figures/xPlotMajor3Ti_linear_OIB.jpg}
+                                                  
+? 
+l.305 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_linear_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.305 ...00]{figures/xPlotMajor3Ti_linear_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.305 ...00]{figures/xPlotMajor3Ti_linear_OIB.jpg}
+                                                  
+? 
+l. 305 --- needs --- figures/xPlotMajor3Ti_linear_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.306 ...00]{figures/xPlotMajor3Ti_linear_err.jpg}
+                                                  
+? 
+l.306 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_linear_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.306 ...00]{figures/xPlotMajor3Ti_linear_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.306 ...00]{figures/xPlotMajor3Ti_linear_err.jpg}
+                                                  
+? 
+l. 306 --- needs --- figures/xPlotMajor3Ti_linear_err.jpg ---
+[138
+
+] [139
+
+] [140
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.316 ...{figures/xPlotMajor3Ti_quadratic_IAB.jpg}
+                                                  
+? 
+l.316 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_quadratic_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.316 ...{figures/xPlotMajor3Ti_quadratic_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.316 ...{figures/xPlotMajor3Ti_quadratic_IAB.jpg}
+                                                  
+? 
+l. 316 --- needs --- figures/xPlotMajor3Ti_quadratic_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.317 ...figures/xPlotMajor3Ti_quadratic_MORB.jpg}
+                                                  \\
+? 
+l.317 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_quadratic_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.317 ...figures/xPlotMajor3Ti_quadratic_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.317 ...figures/xPlotMajor3Ti_quadratic_MORB.jpg}
+                                                  \\
+? 
+l. 317 --- needs --- figures/xPlotMajor3Ti_quadratic_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.318 ...{figures/xPlotMajor3Ti_quadratic_OIB.jpg}
+                                                  
+? 
+l.318 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_quadratic_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.318 ...{figures/xPlotMajor3Ti_quadratic_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.318 ...{figures/xPlotMajor3Ti_quadratic_OIB.jpg}
+                                                  
+? 
+l. 318 --- needs --- figures/xPlotMajor3Ti_quadratic_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.319 ...{figures/xPlotMajor3Ti_quadratic_err.jpg}
+                                                  
+? 
+l.319 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotM
+ajor3Ti_quadratic_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.319 ...{figures/xPlotMajor3Ti_quadratic_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.319 ...{figures/xPlotMajor3Ti_quadratic_err.jpg}
+                                                  
+? 
+l. 319 --- needs --- figures/xPlotMajor3Ti_quadratic_err.jpg ---
+[141
+
+] [142
+
+] [143
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.327 ...00]{figures/xPlotTrace3Ti_linear_IAB.jpg}
+                                                  
+? 
+l.327 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_linear_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.327 ...00]{figures/xPlotTrace3Ti_linear_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.327 ...00]{figures/xPlotTrace3Ti_linear_IAB.jpg}
+                                                  
+? 
+l. 327 --- needs --- figures/xPlotTrace3Ti_linear_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.328 ...0]{figures/xPlotTrace3Ti_linear_MORB.jpg}
+                                                  \\
+? 
+l.328 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_linear_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.328 ...0]{figures/xPlotTrace3Ti_linear_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.328 ...0]{figures/xPlotTrace3Ti_linear_MORB.jpg}
+                                                  \\
+? 
+l. 328 --- needs --- figures/xPlotTrace3Ti_linear_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.329 ...00]{figures/xPlotTrace3Ti_linear_OIB.jpg}
+                                                  
+? 
+l.329 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_linear_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.329 ...00]{figures/xPlotTrace3Ti_linear_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.329 ...00]{figures/xPlotTrace3Ti_linear_OIB.jpg}
+                                                  
+? 
+l. 329 --- needs --- figures/xPlotTrace3Ti_linear_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.330 ...00]{figures/xPlotTrace3Ti_linear_err.jpg}
+                                                  
+? 
+l.330 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_linear_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.330 ...00]{figures/xPlotTrace3Ti_linear_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.330 ...00]{figures/xPlotTrace3Ti_linear_err.jpg}
+                                                  
+? 
+l. 330 --- needs --- figures/xPlotTrace3Ti_linear_err.jpg ---
+[144
+
+] [145
+
+] [146
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.340 ...{figures/xPlotTrace3Ti_quadratic_IAB.jpg}
+                                                  
+? 
+l.340 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_quadratic_IAB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.340 ...{figures/xPlotTrace3Ti_quadratic_IAB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.340 ...{figures/xPlotTrace3Ti_quadratic_IAB.jpg}
+                                                  
+? 
+l. 340 --- needs --- figures/xPlotTrace3Ti_quadratic_IAB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.341 ...figures/xPlotTrace3Ti_quadratic_MORB.jpg}
+                                                  \\
+? 
+l.341 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_quadratic_MORB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.341 ...figures/xPlotTrace3Ti_quadratic_MORB.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.341 ...figures/xPlotTrace3Ti_quadratic_MORB.jpg}
+                                                  \\
+? 
+l. 341 --- needs --- figures/xPlotTrace3Ti_quadratic_MORB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.342 ...{figures/xPlotTrace3Ti_quadratic_OIB.jpg}
+                                                  
+? 
+l.342 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_quadratic_OIB.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.342 ...{figures/xPlotTrace3Ti_quadratic_OIB.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.342 ...{figures/xPlotTrace3Ti_quadratic_OIB.jpg}
+                                                  
+? 
+l. 342 --- needs --- figures/xPlotTrace3Ti_quadratic_OIB.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.343 ...{figures/xPlotTrace3Ti_quadratic_err.jpg}
+                                                  
+? 
+l.343 --- TeX4ht warning --- Cannot determine size of graphic in figures/xPlotT
+race3Ti_quadratic_err.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.343 ...{figures/xPlotTrace3Ti_quadratic_err.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.343 ...{figures/xPlotTrace3Ti_quadratic_err.jpg}
+                                                  
+? 
+l. 343 --- needs --- figures/xPlotTrace3Ti_quadratic_err.jpg ---
+[147
+
+] [148
+
+] [149
+
+] [150
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.353 ...hics[width=600]{figures/Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+l.353 --- TeX4ht warning --- Cannot determine size of graphic in figures/Si_Ti_
+Sr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.353 ...hics[width=600]{figures/Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.353 ...hics[width=600]{figures/Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+l. 353 --- needs --- figures/Si_Ti_Sr_lin.jpg ---
+[151
+
+] [152
+
+] [153
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.361 ...hics[width=600]{figures/Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+l.361 --- TeX4ht warning --- Cannot determine size of graphic in figures/Eu_Lu_
+Sr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.361 ...hics[width=600]{figures/Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.361 ...hics[width=600]{figures/Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+l. 361 --- needs --- figures/Eu_Lu_Sr_lin.jpg ---
+[154
+
+] [155
+
+] [156
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.369 ...phics[width=600]{figures/V_Ti_Sc_lin.jpg}
+                                                  
+? 
+l.369 --- TeX4ht warning --- Cannot determine size of graphic in figures/V_Ti_S
+c_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.369 ...phics[width=600]{figures/V_Ti_Sc_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.369 ...phics[width=600]{figures/V_Ti_Sc_lin.jpg}
+                                                  
+? 
+l. 369 --- needs --- figures/V_Ti_Sc_lin.jpg ---
+[157
+
+] [158
+
+] [159
+
+] [160
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.380 ...ics[width=600]{figures/Na_Nb_Sr_quad.jpg}
+                                                  
+? 
+l.380 --- TeX4ht warning --- Cannot determine size of graphic in figures/Na_Nb_
+Sr_quad.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.380 ...ics[width=600]{figures/Na_Nb_Sr_quad.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.380 ...ics[width=600]{figures/Na_Nb_Sr_quad.jpg}
+                                                  
+? 
+l. 380 --- needs --- figures/Na_Nb_Sr_quad.jpg ---
+[161
+
+] [162
+
+] [163
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.389 ...hics[width=600]{figures/V_Ti_Sm_quad.jpg}
+                                                  
+? 
+l.389 --- TeX4ht warning --- Cannot determine size of graphic in figures/V_Ti_S
+m_quad.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.389 ...hics[width=600]{figures/V_Ti_Sm_quad.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.389 ...hics[width=600]{figures/V_Ti_Sm_quad.jpg}
+                                                  
+? 
+l. 389 --- needs --- figures/V_Ti_Sm_quad.jpg ---
+[164
+
+] [165
+
+] [166
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.398 ...hics[width=500]{figures/biasVariance.jpg}
+                                                  
+? 
+l.398 --- TeX4ht warning --- Cannot determine size of graphic in figures/biasVa
+riance.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.398 ...hics[width=500]{figures/biasVariance.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.398 ...hics[width=500]{figures/biasVariance.jpg}
+                                                  
+? 
+l. 398 --- needs --- figures/biasVariance.jpg ---
+[167
+
+] [168
+
+] [169
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.416 ...graphics[width=300]{figures/Shervais.jpg}
+                                                  \\
+? 
+l.416 --- TeX4ht warning --- Cannot determine size of graphic in figures/Sherva
+is.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.416 ...graphics[width=300]{figures/Shervais.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.416 ...graphics[width=300]{figures/Shervais.jpg}
+                                                  \\
+? 
+l. 416 --- needs --- figures/Shervais.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.417 ...hics[width=300]{figures/log_Ti_V_lin.jpg}
+                                                  
+? 
+l.417 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Ti
+_V_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.417 ...hics[width=300]{figures/log_Ti_V_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.417 ...hics[width=300]{figures/log_Ti_V_lin.jpg}
+                                                  
+? 
+l. 417 --- needs --- figures/log_Ti_V_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.418 ...aphics[width=300]{figures/log_Ti_V_q.jpg}
+                                                  
+? 
+l.418 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Ti
+_V_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.418 ...aphics[width=300]{figures/log_Ti_V_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.418 ...aphics[width=300]{figures/log_Ti_V_q.jpg}
+                                                  
+? 
+l. 418 --- needs --- figures/log_Ti_V_q.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.419 ...ics[width=300]{figures/test_Ti_V_lin.jpg}
+                                                  
+? 
+l.419 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+i_V_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.419 ...ics[width=300]{figures/test_Ti_V_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.419 ...ics[width=300]{figures/test_Ti_V_lin.jpg}
+                                                  
+? 
+l. 419 --- needs --- figures/test_Ti_V_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.420 ...phics[width=300]{figures/test_Ti_V_q.jpg}
+                                                  
+? 
+l.420 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+i_V_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.420 ...phics[width=300]{figures/test_Ti_V_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.420 ...phics[width=300]{figures/test_Ti_V_q.jpg}
+                                                  
+? 
+l. 420 --- needs --- figures/test_Ti_V_q.jpg ---
+[170
+
+] [171
+
+] [172
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.436 ...aphics[width=300]{figures/PearceTiZr.jpg}
+                                                  \\
+? 
+l.436 --- TeX4ht warning --- Cannot determine size of graphic in figures/Pearce
+TiZr.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.436 ...aphics[width=300]{figures/PearceTiZr.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.436 ...aphics[width=300]{figures/PearceTiZr.jpg}
+                                                  \\
+? 
+l. 436 --- needs --- figures/PearceTiZr.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.437 ...ics[width=300]{figures/log_Ti_Zr_lin.jpg}
+                                                  
+? 
+l.437 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Ti
+_Zr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.437 ...ics[width=300]{figures/log_Ti_Zr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.437 ...ics[width=300]{figures/log_Ti_Zr_lin.jpg}
+                                                  
+? 
+l. 437 --- needs --- figures/log_Ti_Zr_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.438 ...phics[width=300]{figures/log_Ti_Zr_q.jpg}
+                                                  
+? 
+l.438 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Ti
+_Zr_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.438 ...phics[width=300]{figures/log_Ti_Zr_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.438 ...phics[width=300]{figures/log_Ti_Zr_q.jpg}
+                                                  
+? 
+l. 438 --- needs --- figures/log_Ti_Zr_q.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.439 ...cs[width=300]{figures/test_Ti_Zr_lin.jpg}
+                                                  
+? 
+l.439 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+i_Zr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.439 ...cs[width=300]{figures/test_Ti_Zr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.439 ...cs[width=300]{figures/test_Ti_Zr_lin.jpg}
+                                                  
+? 
+l. 439 --- needs --- figures/test_Ti_Zr_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.440 ...hics[width=300]{figures/test_Ti_Zr_q.jpg}
+                                                  
+? 
+l.440 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+i_Zr_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.440 ...hics[width=300]{figures/test_Ti_Zr_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.440 ...hics[width=300]{figures/test_Ti_Zr_q.jpg}
+                                                  
+? 
+l. 440 --- needs --- figures/test_Ti_Zr_q.jpg ---
+[173
+
+] [174
+
+] [175
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.450 ...phics[width=300]{figures/PearceTiZrY.jpg}
+                                                  \\
+? 
+l.450 --- TeX4ht warning --- Cannot determine size of graphic in figures/Pearce
+TiZrY.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.450 ...phics[width=300]{figures/PearceTiZrY.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.450 ...phics[width=300]{figures/PearceTiZrY.jpg}
+                                                  \\
+? 
+l. 450 --- needs --- figures/PearceTiZrY.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.451 ...s[width=300]{figures/log_Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+l.451 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Ti
+_Zr_Y_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.451 ...s[width=300]{figures/log_Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.451 ...s[width=300]{figures/log_Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+l. 451 --- needs --- figures/log_Ti_Zr_Y_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.452 ...ics[width=300]{figures/log_Ti_Zr_Y_q.jpg}
+                                                  
+? 
+l.452 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Ti
+_Zr_Y_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.452 ...ics[width=300]{figures/log_Ti_Zr_Y_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.452 ...ics[width=300]{figures/log_Ti_Zr_Y_q.jpg}
+                                                  
+? 
+l. 452 --- needs --- figures/log_Ti_Zr_Y_q.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.453 ...[width=300]{figures/test_Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+l.453 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+i_Zr_Y_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.453 ...[width=300]{figures/test_Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.453 ...[width=300]{figures/test_Ti_Zr_Y_lin.jpg}
+                                                  
+? 
+l. 453 --- needs --- figures/test_Ti_Zr_Y_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.454 ...cs[width=300]{figures/test_Ti_Zr_Y_q.jpg}
+                                                  
+? 
+l.454 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+i_Zr_Y_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.454 ...cs[width=300]{figures/test_Ti_Zr_Y_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.454 ...cs[width=300]{figures/test_Ti_Zr_Y_q.jpg}
+                                                  
+? 
+l. 454 --- needs --- figures/test_Ti_Zr_Y_q.jpg ---
+[176
+
+] [177
+
+] [178
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.464 ...graphics[width=300]{figures/Meschede.jpg}
+                                                  \\
+? 
+l.464 --- TeX4ht warning --- Cannot determine size of graphic in figures/Mesche
+de.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.464 ...graphics[width=300]{figures/Meschede.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.464 ...graphics[width=300]{figures/Meschede.jpg}
+                                                  \\
+? 
+l. 464 --- needs --- figures/Meschede.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.465 ...s[width=300]{figures/log_Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+l.465 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Nb
+_Zr_Y_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.465 ...s[width=300]{figures/log_Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.465 ...s[width=300]{figures/log_Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+l. 465 --- needs --- figures/log_Nb_Zr_Y_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.466 ...ics[width=300]{figures/log_Nb_Zr_Y_q.jpg}
+                                                  
+? 
+l.466 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Nb
+_Zr_Y_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.466 ...ics[width=300]{figures/log_Nb_Zr_Y_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.466 ...ics[width=300]{figures/log_Nb_Zr_Y_q.jpg}
+                                                  
+? 
+l. 466 --- needs --- figures/log_Nb_Zr_Y_q.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.467 ...[width=300]{figures/test_Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+l.467 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_N
+b_Zr_Y_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.467 ...[width=300]{figures/test_Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.467 ...[width=300]{figures/test_Nb_Zr_Y_lin.jpg}
+                                                  
+? 
+l. 467 --- needs --- figures/test_Nb_Zr_Y_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.468 ...cs[width=300]{figures/test_Nb_Zr_Y_q.jpg}
+                                                  
+? 
+l.468 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_N
+b_Zr_Y_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.468 ...cs[width=300]{figures/test_Nb_Zr_Y_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.468 ...cs[width=300]{figures/test_Nb_Zr_Y_q.jpg}
+                                                  
+? 
+l. 468 --- needs --- figures/test_Nb_Zr_Y_q.jpg ---
+[179
+
+] [180
+
+] [181
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.478 ...ludegraphics[width=300]{figures/Wood.jpg}
+                                                  \\
+? 
+l.478 --- TeX4ht warning --- Cannot determine size of graphic in figures/Wood.j
+pg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.478 ...ludegraphics[width=300]{figures/Wood.jpg}
+                                                  \\
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.478 ...ludegraphics[width=300]{figures/Wood.jpg}
+                                                  \\
+? 
+l. 478 --- needs --- figures/Wood.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.479 ...[width=300]{figures/log_Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+l.479 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Th
+_Ta_Hf_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.479 ...[width=300]{figures/log_Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.479 ...[width=300]{figures/log_Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+l. 479 --- needs --- figures/log_Th_Ta_Hf_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.480 ...cs[width=300]{figures/log_Th_Ta_Hf_q.jpg}
+                                                  
+? 
+l.480 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Th
+_Ta_Hf_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.480 ...cs[width=300]{figures/log_Th_Ta_Hf_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.480 ...cs[width=300]{figures/log_Th_Ta_Hf_q.jpg}
+                                                  
+? 
+l. 480 --- needs --- figures/log_Th_Ta_Hf_q.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.481 ...width=300]{figures/test_Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+l.481 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+h_Ta_Hf_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.481 ...width=300]{figures/test_Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.481 ...width=300]{figures/test_Th_Ta_Hf_lin.jpg}
+                                                  
+? 
+l. 481 --- needs --- figures/test_Th_Ta_Hf_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.482 ...s[width=300]{figures/test_Th_Ta_Hf_q.jpg}
+                                                  
+? 
+l.482 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+h_Ta_Hf_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.482 ...s[width=300]{figures/test_Th_Ta_Hf_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.482 ...s[width=300]{figures/test_Th_Ta_Hf_q.jpg}
+                                                  
+? 
+l. 482 --- needs --- figures/test_Th_Ta_Hf_q.jpg ---
+[182
+
+] [183
+
+] [184
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.492 ...[width=300]{figures/log_Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+l.492 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Si
+_Ti_Sr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.492 ...[width=300]{figures/log_Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.492 ...[width=300]{figures/log_Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+l. 492 --- needs --- figures/log_Si_Ti_Sr_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.493 ...width=300]{figures/test_Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+l.493 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_S
+i_Ti_Sr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.493 ...width=300]{figures/test_Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.493 ...width=300]{figures/test_Si_Ti_Sr_lin.jpg}
+                                                  
+? 
+l. 493 --- needs --- figures/test_Si_Ti_Sr_lin.jpg ---
+[185
+
+] [186
+
+] [187
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.504 ...[width=300]{figures/log_Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+l.504 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Eu
+_Lu_Sr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.504 ...[width=300]{figures/log_Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.504 ...[width=300]{figures/log_Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+l. 504 --- needs --- figures/log_Eu_Lu_Sr_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.505 ...width=300]{figures/test_Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+l.505 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_E
+u_Lu_Sr_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.505 ...width=300]{figures/test_Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.505 ...width=300]{figures/test_Eu_Lu_Sr_lin.jpg}
+                                                  
+? 
+l. 505 --- needs --- figures/test_Eu_Lu_Sr_lin.jpg ---
+[188
+
+] [189
+
+] [190
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.514 ...s[width=300]{figures/log_V_Ti_Sc_lin.jpg}
+                                                  
+? 
+l.514 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_V_
+Ti_Sc_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.514 ...s[width=300]{figures/log_V_Ti_Sc_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.514 ...s[width=300]{figures/log_V_Ti_Sc_lin.jpg}
+                                                  
+? 
+l. 514 --- needs --- figures/log_V_Ti_Sc_lin.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.515 ...[width=300]{figures/test_V_Ti_Sc_lin.jpg}
+                                                  
+? 
+l.515 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_V
+_Ti_Sc_lin.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.515 ...[width=300]{figures/test_V_Ti_Sc_lin.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.515 ...[width=300]{figures/test_V_Ti_Sc_lin.jpg}
+                                                  
+? 
+l. 515 --- needs --- figures/test_V_Ti_Sc_lin.jpg ---
+[191
+
+] [192
+
+] [193
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.524 ...cs[width=300]{figures/log_Na_Nb_Sr_q.jpg}
+                                                  
+? 
+l.524 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Na
+_Nb_Sr_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.524 ...cs[width=300]{figures/log_Na_Nb_Sr_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.524 ...cs[width=300]{figures/log_Na_Nb_Sr_q.jpg}
+                                                  
+? 
+l. 524 --- needs --- figures/log_Na_Nb_Sr_q.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.525 ...s[width=300]{figures/test_Na_Nb_Sr_q.jpg}
+                                                  
+? 
+l.525 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_N
+a_Nb_Sr_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.525 ...s[width=300]{figures/test_Na_Nb_Sr_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.525 ...s[width=300]{figures/test_Na_Nb_Sr_q.jpg}
+                                                  
+? 
+l. 525 --- needs --- figures/test_Na_Nb_Sr_q.jpg ---
+[194
+
+] [195
+
+] [196
+
+]
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.535 ...ics[width=300]{figures/log_Ti_V_Sm_q.jpg}
+                                                  
+? 
+l.535 --- TeX4ht warning --- Cannot determine size of graphic in figures/log_Ti
+_V_Sm_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.535 ...ics[width=300]{figures/log_Ti_V_Sm_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.535 ...ics[width=300]{figures/log_Ti_V_Sm_q.jpg}
+                                                  
+? 
+l. 535 --- needs --- figures/log_Ti_V_Sm_q.jpg ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.536 ...cs[width=300]{figures/test_Ti_V_Sm_q.jpg}
+                                                  
+? 
+l.536 --- TeX4ht warning --- Cannot determine size of graphic in figures/test_T
+i_V_Sm_q.jpg (no BoundingBox) ---
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.536 ...cs[width=300]{figures/test_Ti_V_Sm_q.jpg}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.536 ...cs[width=300]{figures/test_Ti_V_Sm_q.jpg}
+                                                  
+? 
+l. 536 --- needs --- figures/test_Ti_V_Sm_q.jpg ---
+[197
+
+]) [198
+
+] [199
+
+] (./discPaper.aux (./tables.aux) (./figures.aux)) )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 11 (\begingroup)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 16170 strings out of 495062
+ 209469 string characters out of 1182645
+ 397365 words of memory out of 3000000
+ 19003 multiletter control sequences out of 15000+50000
+ 12624 words of font info for 49 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 43i,9n,33p,5034b,946s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on discPaper.dvi (199 pages, 1572140 bytes).

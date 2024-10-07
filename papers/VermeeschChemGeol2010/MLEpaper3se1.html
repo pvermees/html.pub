@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Introduction</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,3 --> 
+<meta name="src" content="MLEpaper3.tex"> 
+<meta name="date" content="2010-01-08 16:32:00"> 
+<link rel="stylesheet" type="text/css" href="MLEpaper3.css"> 
+</head><body 
+>
+   <!--l. 34--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se2.html" >next</a>] [<a 
+href="#tailMLEpaper3se1.html">tail</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se1.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x2-10001"></a>Introduction</h3>
+<!--l. 36--><p class="noindent" >Measuring several single grain U-Th-(Sm)-He aliquots per sample is not only possible, thanks to the development
+of laser heating (<a 
+href="MLEpaper3li2.html#Xhouse2000">House et&#x00A0;al.</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xhouse2000">2000</a>), but also desirable, because U-Th-(Sm)-He data are generally
+overdispersed with respect to the formal analytical uncertainty and this overdispersion can only be
+quantified by analysing a representative number of mineral grains. The question then arises how to average
+these measurements. Traditionally, this is done by simply averaging the single grain age estimates, an
+<span 
+class="cmti-10">ad hoc </span>solution that lacks a proper theoretical justification and does not make full use of the data.
+Potentially valuable information is lost when the chemical composition of samples is ignored, and
+compositional controls on thermochronological models may go unnoticed. The most natural way to
+study U-Th-(Sm)-He data is as a geochemical composition on a ternary diagram or in logratio space
+(<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>).<br 
+class="newline" />
+<!--l. 51--><p class="indent" >   <span 
+class="cmtt-10">HelioPlot </span>is a data visualisation tool that plots U-Th-(Sm)-He data on ternary diagrams and logratio
+plots. The program also calculates the so-called &#8216;central age&#8217;, which is the age corresponding to the
+geometric mean U-Th-(Sm)-He composition. To this end, it applies a weighted mean algorithm taking into
+account both the analytical uncertainty and any possible overdispersion simultaneously, in contrast with
+<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>)&#8217;s web calculator, which propagated them separately. U-Th-(Sm)-He data are often overdispersed
+with respect to the analytical uncertainty, for reasons that have been discussed elsewhere (<a 
+href="MLEpaper3li2.html#Xfitzgerald2006">Fitzgerald
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xfitzgerald2006">2006</a>;&#x00A0;<a 
+href="MLEpaper3li2.html#Xshuster2006">Shuster et&#x00A0;al.</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xshuster2006">2006</a>). The amount of overdispersion can be quantified using the Mean Square of
+the Weighted Deviates (MSWD, &#x00A0;<a 
+href="MLEpaper3li2.html#Xmcintyre1966">McIntyre et&#x00A0;al.</a>,&#x00A0;<a 
+href="MLEpaper3li2.html#Xmcintyre1966">1966</a>). Given a dataset of n age measurements, or
+the logarithms thereof (t<sub><span 
+class="cmmi-7">i</span></sub>, for 1<span 
+class="cmsy-10">&#x2264;</span>i<span 
+class="cmsy-10">&#x2264;</span>n), the MSWD is a measure of the ratio of the observed scatter
+of the data points (t<sub><span 
+class="cmmi-7">i</span></sub>) around the mean value (<span class="bar-css"><span 
+class="cmmi-10">t</span></span>) to the expected scatter from the assigned errors
+(<span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">i</span></sub>):
+   <table 
+class="equation"><tr><td><a 
+ id="x2-1001r1"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper30x.png" alt="                n       2
+M SW D  = --1--&#x2211;  (ti -t¯)
+          n- 1 i=1   &#x03C3;2i
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 71--><p class="nopar" >
+<!--l. 73--><p class="indent" >   If the assigned errors are the only cause of scatter, the MSWD will tend to be near unity. MSWD values much
+less than unity indicate either overestimated analytical errors or unrecognized error-correlations. MSWD values
+much greater than unity generally indicate either underestimated analytical errors, or the presence of non-analytical
+scatter. <span 
+class="cmtt-10">HelioPlot </span>implements methods to deal with the latter situation.<br 
+class="newline" />
+<!--l. 81--><p class="indent" >   Although there is no formally agreed convention for calculating the average of multiple (U-Th)/He ages, this is
+either done by computing the unweighted arithmetic mean, ignoring the analytical precision, or by
+calculating the error-weighted mean, ignoring overdispersion. Section&#x00A0;<a 
+href="MLEpaper3se2.html#x3-20002">2<!--tex4ht:ref: sec:ages --></a> introduces a one-dimensional
+
+weighted mean algorithm that deals with analytical precision and overdispersion simultaneously, using the
+method of maximum likelihood. Section&#x00A0;<a 
+href="MLEpaper3se3.html#x4-30003">3<!--tex4ht:ref: sec:compositions --></a> generalises this method to compositional data space, so as to
+calculate the best estimate for the central age, taking into account both the internal and external
+reproducibilities of the data, as well as their full covariance structure. &#8216;Conventional&#8217; propagation
+of uncertainty for the central age, as implemented by <a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>), involves linearisation by a
+first-order Maclaurin series expansion, which may be inaccurate. Section <a 
+href="MLEpaper3se4.html#x5-40004">4<!--tex4ht:ref: sec:ci --></a> proposes a deterministic
+algorithm to avoid this problem, yielding exact confidence intervals for the central age. Finally, Section <a 
+href="MLEpaper3se5.html#x6-50005">5<!--tex4ht:ref: sec:helioplot --></a>
+provides further details about <span 
+class="cmtt-10">HelioPlot </span>and illustrates its usefulness with a number of real world
+examples.
+   <!--l. 101--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se2.html" >next</a>] [<a 
+href="MLEpaper3se1.html" >front</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se1.html" >up</a>] </p></div>
+<!--l. 101--><p class="indent" >   <a 
+ id="tailMLEpaper3se1.html"></a>  
+</body></html> 

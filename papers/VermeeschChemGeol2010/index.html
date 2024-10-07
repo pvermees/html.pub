@@ -1,0 +1,724 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>HelioPlot, and the treatment of
+overdispersed (U-Th-Sm)/He data</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="MLEpaper3.tex"> 
+<meta name="date" content="2010-01-08 16:48:00"> 
+<link rel="stylesheet" type="text/css" href="MLEpaper3.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body>
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">HelioPlot, and the treatment of<br />
+overdispersed (U-Th-Sm)/He data</h2>
+<div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">*</span></a></span></div><br />
+<div class="date" ></div>
+   <div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10">*</span></span>School of Earth Sciences; Birkbeck, University of London</div></div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 12--><p class="noindent" >
+<!--l. 12--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 13--><p class="indent" >    <span 
+class="cmr-9">More often that not, (U-Th-Sm)/He ages are overdispersed with respect to the formal analytical</span>
+     <span 
+class="cmr-9">uncertainty. The Mean Square of the Weighted Deviates (MSWD) is a useful tool for assessing the</span>
+     <span 
+class="cmr-9">amount of overdispersion. If the MSWD is significantly greater than one, the ages can be parameterised</span>
+     <span 
+class="cmr-9">by a (log)normal distribution with two sources of variance, which can be iteratively solved using the</span>
+     <span 
+class="cmr-9">method of maximum likelihood. The overdispersion of replicate (U-Th-Sm)/He ages is caused by the</span>
+     <span 
+class="cmr-9">overdispersion of the underlying U-Th-Sm-He compositions, the geometric mean of which gives rise</span>
+     <span 
+class="cmr-9">to the so-called &#8216;central age&#8217;. These compositions can be normalised to unity and parameterised by a</span>
+     <span 
+class="cmr-9">multivariate logistic normal distribution with two sources of variance, which can be iteratively solved</span>
+     <span 
+class="cmr-9">by a multivariate generalisation of the aforementioned age-averaging algorithm. Exact and asymmetric</span>
+     <span 
+class="cmr-9">confidence intervals for the central age are obtained using a deterministic Bayesian algorithm. </span><span 
+class="cmtt-9">HelioPlot</span>
+     <span 
+class="cmr-9">is a Java application developed for the purpose of plotting U-Th-(Sm)-He data on ternary diagrams</span>
+     <span 
+class="cmr-9">and  logratio  plots  that  implements  all  these  calculations.  The  program  can  be  downloaded  from</span>
+     <span 
+class="cmtt-9">http://pvermees.andropov.org/helioplot</span><span 
+class="cmr-9">.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 36--><p class="noindent" >Measuring several single grain U-Th-(Sm)-He aliquots per sample is not only possible, thanks to the development
+of laser heating (<a 
+href="#Xhouse2000">House et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhouse2000">2000</a>), but also desirable, because U-Th-(Sm)-He data are generally
+overdispersed with respect to the formal analytical uncertainty and this overdispersion can only be
+quantified by analysing a representative number of mineral grains. The question then arises how to average
+these measurements. Traditionally, this is done by simply averaging the single grain age estimates, an
+<span 
+class="cmti-10">ad hoc </span>solution that lacks a proper theoretical justification and does not make full use of the data.
+Potentially valuable information is lost when the chemical composition of samples is ignored, and
+compositional controls on thermochronological models may go unnoticed. The most natural way to
+
+study U-Th-(Sm)-He data is as a geochemical composition on a ternary diagram or in logratio space
+(<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>).<br 
+class="newline" />
+<!--l. 51--><p class="indent" >   <span 
+class="cmtt-10">HelioPlot </span>is a data visualisation tool that plots U-Th-(Sm)-He data on ternary diagrams and logratio
+plots. The program also calculates the so-called &#8216;central age&#8217;, which is the age corresponding to the
+geometric mean U-Th-(Sm)-He composition. To this end, it applies a weighted mean algorithm taking into
+account both the analytical uncertainty and any possible overdispersion simultaneously, in contrast with
+<a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>)&#8217;s web calculator, which propagated them separately. U-Th-(Sm)-He data are often overdispersed
+with respect to the analytical uncertainty, for reasons that have been discussed elsewhere (<a 
+href="#Xfitzgerald2006">Fitzgerald
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfitzgerald2006">2006</a>;&#x00A0;<a 
+href="#Xshuster2006">Shuster et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xshuster2006">2006</a>). The amount of overdispersion can be quantified using the Mean Square of
+the Weighted Deviates (MSWD, &#x00A0;<a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcintyre1966">1966</a>). Given a dataset of n age measurements, or
+the logarithms thereof (t<sub><span 
+class="cmmi-7">i</span></sub>, for 1<span 
+class="cmsy-10">&#x2264;</span>i<span 
+class="cmsy-10">&#x2264;</span>n), the MSWD is a measure of the ratio of the observed scatter
+of the data points (t<sub><span 
+class="cmmi-7">i</span></sub>) around the mean value (<span class="bar-css"><span 
+class="cmmi-10">t</span></span>) to the expected scatter from the assigned errors
+(<span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">i</span></sub>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1001r1"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper30x.png" alt="                n       2
+M SW D  = --1--&#x2211;  (ti -t¯)
+          n- 1 i=1   &#x03C3;2i
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 71--><p class="nopar" >
+<!--l. 73--><p class="indent" >   If the assigned errors are the only cause of scatter, the MSWD will tend to be near unity. MSWD values much
+less than unity indicate either overestimated analytical errors or unrecognized error-correlations. MSWD values
+much greater than unity generally indicate either underestimated analytical errors, or the presence of non-analytical
+scatter. <span 
+class="cmtt-10">HelioPlot </span>implements methods to deal with the latter situation.<br 
+class="newline" />
+<!--l. 81--><p class="indent" >   Although there is no formally agreed convention for calculating the average of multiple (U-Th)/He ages, this is
+either done by computing the unweighted arithmetic mean, ignoring the analytical precision, or by
+calculating the error-weighted mean, ignoring overdispersion. Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a> introduces a one-dimensional
+weighted mean algorithm that deals with analytical precision and overdispersion simultaneously, using the
+method of maximum likelihood. Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositions --></a> generalises this method to compositional data space, so as to
+calculate the best estimate for the central age, taking into account both the internal and external
+reproducibilities of the data, as well as their full covariance structure. &#8216;Conventional&#8217; propagation
+of uncertainty for the central age, as implemented by <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>), involves linearisation by a
+first-order Maclaurin series expansion, which may be inaccurate. Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:ci --></a> proposes a deterministic
+algorithm to avoid this problem, yielding exact confidence intervals for the central age. Finally, Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:helioplot --></a>
+provides further details about <span 
+class="cmtt-10">HelioPlot </span>and illustrates its usefulness with a number of real world
+examples.
+<!--l. 101--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Overdispersed ages</h3>
+
+<!--l. 103--><p class="noindent" >Assume that the ages (or the logarithm of the ages) come from a normal distribution of the form
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2001r2"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper31x.png" alt="         2    2
+ti ~ N (&#x03BC;,&#x03C3;i + &#x03BE;)
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 109--><p class="nopar" >
+<!--l. 111--><p class="indent" >   where <span 
+class="cmmi-10">&#x03BC; </span>denotes the mean and <span 
+class="cmmi-10">&#x03BE;</span><sup><span 
+class="cmr-7">2</span></sup> is the amount of <span 
+class="cmti-10">overdispersion</span>, i.e. the excess scatter that cannot be explained
+by the analytical uncertainty alone. Unbiased estimates <img 
+src="MLEpaper32x.png" alt="&#x02C6;&#x03BC;"  class="circ" > and <img 
+src="MLEpaper33x.png" alt="&#x02C6;
+&#x03BE;"  class="circ" > <sup><span 
+class="cmr-7">2</span></sup> for these two parameters can be obtained by
+maximising the likelihood l:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2002r3"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper34x.png" alt="          (  (t- &#x02C6;&#x03BC;)2)
+   &#x220F;n exp  - 2(i&#x03C3;2i+&#x02C6;&#x03BE;2i)-
+l &#x2261;   --&#x2218;------------
+   i=1    2&#x03C0;(&#x03C3;2i + &#x02C6;&#x03BE;2)
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 123--><p class="nopar" >
+<!--l. 125--><p class="noindent" >or, more conveniently, the log-likelihood L <span 
+class="cmsy-10">&#x2261; </span>log(l):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2003r4"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper35x.png" alt="          [                           ]
+     1 &#x2211;n  (ti - &#x02C6;&#x03BC;)2     2   2
+L = -2     -&#x03C3;2+-&#x02C6;&#x03BE;2-+ ln(&#x03C3;i + &#x02C6;&#x03BE; )+ ln(2&#x03C0;)
+       i=1   i
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 134--><p class="nopar" >
+
+<!--l. 136--><p class="noindent" >Calculating the derivatives of L with respect to <img 
+src="MLEpaper36x.png" alt="&#x03BC;&#x02C6;"  class="circ" > and <img 
+src="MLEpaper37x.png" alt="&#x02C6;&#x03BE;"  class="circ" > <sup><span 
+class="cmr-7">2</span></sup> and setting them to zero to find the maximum
+likelihood:
+<!--l. 139--><p class="indent" >
+<table 
+class="align">
+                            <tr><td 
+class="align-odd"></td>                            <td 
+class="align-even"><img 
+src="MLEpaper38x.png" alt="&#x2202;L-
+ &#x2202;&#x02C6;&#x03BC;"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><img 
+src="MLEpaper39x.png" alt="ti --&#x02C6;&#x03BC;-
+&#x03C3;2i + &#x02C6;&#x03BE;2"  class="frac" align="middle"> = 0</td>                                                                       <td 
+class="align-label"><a 
+ id="x1-2004r5"></a>(5)
+                            </td></tr><tr><td 
+class="align-odd"></td>                            <td 
+class="align-even"><img 
+src="MLEpaper310x.png" alt=" &#x2202;L
+---
+&#x2202; &#x02C6;&#x03BE;2"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><img 
+src="MLEpaper311x.png" alt="[ (t - &#x02C6;&#x03BC;)2      1   ]
+ --2i----- - -2-----
+ (&#x03C3;i + &#x02C6;&#x03BE;2)2   &#x03C3;i + &#x02C6;&#x03BE;2"  class="left" align="middle"> = 0</td>                                                        <td 
+class="align-label"><a 
+ id="x1-2005r6"></a>(6)                            </td></tr></table>
+<!--l. 149--><p class="indent" >   which can be solved iteratively for <img 
+src="MLEpaper312x.png" alt="&#x02C6;&#x03BC;"  class="circ" > and <img 
+src="MLEpaper313x.png" alt="&#x02C6;&#x03BE;"  class="circ" > <sup><span 
+class="cmr-7">2</span></sup>. The variance <img 
+src="MLEpaper314x.png" alt="&#x02C6;&#x03C3;"  class="circ" ><sub><span 
+class="cmmi-7">&#x03BC;</span></sub><sup><span 
+class="cmr-7">2</span></sup> of the weighted mean <img 
+src="MLEpaper315x.png" alt="&#x02C6;&#x03BC;"  class="circ" > is given by the inverse of
+the Fisher Information, i.e. the negative expected value of the second derivative of the log-likelihood function with
+respect to <img 
+src="MLEpaper316x.png" alt="&#x02C6;&#x03BC;"  class="circ" >:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2006r7"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper317x.png" alt="&#x02C6;&#x03C3;2=  &#x2211;-----1--------
+ &#x03BC;     ni=1 1&#x2215;(&#x03C3;2i + &#x02C6;&#x03BE;2)
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 162--><p class="nopar" >
+
+<!--l. 164--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Overdispersed compositions</h3>
+<!--l. 167--><p class="noindent" >U, Th and He form a ternary system, can be plotted on a ternary diagram, and are subject to the peculiar
+mathematics of the ternary dataspace. The &#8216;central age&#8217; is calculated from the geometric mean composition of a
+U-Th-(Sm)-He dataset and is a more accurate estimator of the true age than the arithmetic mean
+(<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>). This concept can be easily generalised to four dimensions and this section will, therefore, discuss
+the case of (U-Th-Sm)/He dating. Given n single grain measurements [U<sup><span 
+class="cmmi-7">i</span></sup>, Th<sup><span 
+class="cmmi-7">i</span></sup>, Sm<sup><span 
+class="cmmi-7">i</span></sup>, He<sup><span 
+class="cmmi-7">i</span></sup>] (1<span 
+class="cmsy-10">&#x2264;</span>i<span 
+class="cmsy-10">&#x2264;</span>n), the calculation
+of a central age involves a bijection from the four-dimensional &#8216;simplex&#8217; to a three-dimensional Euclidean
+logratio-space (<a 
+href="#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>;&#x00A0;<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r8"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper318x.png" alt="      (   i )         (    i)         (    i)
+vi = ln -[U-]i  , wi = ln -[Th-]i  , xi = ln [Smi]
+       [He ]           [He ]           [He ]
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 184--><p class="nopar" >
+<!--l. 186--><p class="indent" >   The central age is obtained by calculating the average logratio composition (<span class="overline"><span 
+class="cmmi-10">v</span></span>, <span class="overline"><span 
+class="cmmi-10">w</span></span>, <span class="overline"><span 
+class="cmmi-10">x</span></span>) and converting it to a
+geometric mean composition using the inverse logratio transformation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3002r9"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper319x.png" alt="--         ev        ---        ew-
+U =  v----w---x---, Th = -v---w----x---
+     e + e + ex + 1       e + e  + e + 1
+Sm- = ------e-------, He = ------1-------
+      ev + ew + ex + 1      ev + ew + ex + 1
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 199--><p class="nopar" >
+<!--l. 201--><p class="indent" >   This result is then plugged into the U-Th-(Sm)-He age equation. <br 
+class="newline" />
+<!--l. 204--><p class="indent" >   The problem of averaging the compositions is very similar to the problem of averaging the ages
+discussed in the previous section. Given n logratio measurements X<sup><span 
+class="cmmi-7">i</span></sup> and their (co)variances <span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> (1 <span 
+class="cmsy-10">&#x2264; </span>i <span 
+class="cmsy-10">&#x2264;</span>
+n):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3003r10"></a>
+
+   <center class="math-display" >
+<img 
+src="MLEpaper320x.png" alt="       vi             &#x03C3;2vi    covvi,wi  covvi,xi
+Xi &#x2261; [wi ] and Ei &#x2261; [covvi,wi  &#x03C3;2wi   covwi,xi]
+       xi            covvi,xi  covwi,xi    &#x03C3;2xi
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 228--><p class="nopar" >
+<!--l. 230--><p class="noindent" >our aim is to develop an algorithm to calculate the weighted mean M and its covariance matrix &#x03A3;:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3004r11"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper321x.png" alt="      -
+      v-            &#x03C3;2v    covv,w-  covv,x
+M &#x2261; [ w-] and &#x03A3; &#x2261; [covv,w   &#x03C3;2w-   covw,x ]
+      x            covv,x  covw,x   &#x03C3;2x
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 252--><p class="nopar" >
+<!--l. 254--><p class="indent" >   In principle, the logratio covariances (E<sup><span 
+class="cmmi-7">i</span></sup>) could be directly determined from the raw mass spectrometer
+measurements. In practice, however, they are calculated from the individual concentrations by linear
+approximation, using Equation 21 of <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>), which assumes that the errors on the individual
+concentrations are Normal and independently distributed. Rather than propagating the internal and
+external uncertainties separately, as done by <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>), this section introduces a weighted
+mean algorithm that considers both factors simultaneously, using a multivariate generalisation of the
+one-dimensional maximum likelihood algorithm developed in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a>. First, redefine the MSWD in matrix
+form:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3005r12"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper322x.png" alt="          1-&#x2211;n   i     &#x2032;  i-1  i
+M SW D  = df    (X - M ) [E ]  (X - M )
+            i=1
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+
+<!--l. 271--><p class="nopar" >
+<!--l. 273--><p class="noindent" >where df = d <span 
+class="cmsy-10">&#x00D7; </span>(n - 1) is the number of degrees of freedom of the problem, with d = 2 for (U-Th)/He and d = 3 for
+(U-Th-Sm)/He dating. Note that, because the variability of Sm does not contribute as much to the age dispersion as
+that of U and Th, it is better to use only the latter two elements for the MSWD calculation. If MSWD <span 
+class="cmsy-10">&#x226B; </span>1, the
+data are overdispersed and, in analogy with Equation <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:norm1 --></a>, we will assume that the observations come from a
+multivariate normal distribution of the form
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3006r13"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper323x.png" alt="  i         i
+X  ~ N (M,E  + &#x039E;)
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 285--><p class="nopar" >
+<!--l. 287--><p class="noindent" >where M denotes the mean and &#x039E; is the overdispersion. The log-likelihood is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3007r14"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper324x.png" alt="      1&#x2211;n (                                               )
+L = - -     (Xi - M&#x02C6;)&#x2032;[Ei + &#x039E;&#x02C6;]-1(Xi - &#x02C6;M )+ ln |Ei + &#x02C6;&#x039E;|+ 3 ln(2&#x03C0;)
+      2 i=1
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 297--><p class="nopar" >
+<!--l. 299--><p class="noindent" ><img 
+src="MLEpaper325x.png" alt="M&#x02C6;"  class="circ" > and <img 
+src="MLEpaper326x.png" alt="&#x02C6;&#x039E;"  class="circ" > can be found by solving the following system of non-linear equations:
+<!--l. 302--><p class="indent" >
+
+<table 
+class="align">
+               <tr><td 
+class="align-odd"></td>               <td 
+class="align-even"><img 
+src="MLEpaper327x.png" alt="&#x2202;L--
+&#x2202;M&#x02C6;"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup>[(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper328x.png" alt=" &#x02C6;
+&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>(<span 
+class="cmmi-10">X</span><sup><span 
+class="cmmi-7">i</span></sup> <span 
+class="cmsy-10">-</span><img 
+src="MLEpaper329x.png" alt=" &#x02C6;
+M"  class="circ" >)] = 0</td>                                                           <td 
+class="align-label"><a 
+ id="x1-3008r15"></a>(15)
+               </td></tr><tr><td 
+class="align-odd"></td>               <td 
+class="align-even"><img 
+src="MLEpaper330x.png" alt="&#x2202;L
+&#x2202;&#x02C6;&#x039E;-"  class="frac" align="middle"> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup>[(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper331x.png" alt="&#x02C6;&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>(<span 
+class="cmmi-10">X</span><sup><span 
+class="cmmi-7">i</span></sup> <span 
+class="cmsy-10">-</span><img 
+src="MLEpaper332x.png" alt="M&#x02C6;"  class="circ" >)(<span 
+class="cmmi-10">X</span><sup><span 
+class="cmmi-7">i</span></sup> <span 
+class="cmsy-10">-</span><img 
+src="MLEpaper333x.png" alt="M&#x02C6;"  class="circ" >)<span 
+class="cmsy-10">&#x2032;</span>(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper334x.png" alt="&#x02C6;&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup> <span 
+class="cmsy-10">- </span>(<span 
+class="cmmi-10">E</span><sup><span 
+class="cmmi-7">i</span></sup> + <img 
+src="MLEpaper335x.png" alt="&#x02C6;&#x039E;"  class="circ" >)<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>] = 0</td>                              <td 
+class="align-label"><a 
+ id="x1-3009r16"></a>(16)               </td></tr></table>
+<!--l. 312--><p class="indent" >   The covariance matrix <img 
+src="MLEpaper336x.png" alt="&#x02C6;
+&#x03A3;"  class="circ" > of the weighted mean <img 
+src="MLEpaper337x.png" alt=" &#x02C6;
+M"  class="circ" > is obtained by inverting the Fisher Information
+matrix, i.e. the matrix of the negative expected values of the second derivatives of the log-likelihood
+function:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3010r17"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper338x.png" alt="    &#x2211;n
+&#x02C6;&#x03A3; = [  (Ei +&#x039E;&#x02C6;)- 1]-1
+     i=1
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 324--><p class="nopar" >
+<!--l. 326--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Confidence intervals</h3>
+<!--l. 328--><p class="noindent" >Using the covariance matrix of the logratio average (<img 
+src="MLEpaper339x.png" alt=" &#x02C6;
+&#x03A3;"  class="circ" >), and performing a linear error propagation, it is
+straightforward to calculate the covariance matrix of the geometric mean composition (<img 
+src="MLEpaper340x.png" alt=" &#x02C6;
+&#x0393;"  class="circ" >), evaluated at
+<img 
+src="MLEpaper341x.png" alt=" &#x02C6;
+M"  class="circ" >:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r18"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper342x.png" alt="&#x02C6;    &#x2032;&#x02C6;
+&#x0393; = A &#x03A3;A
+
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 336--><p class="nopar" >
+<!--l. 338--><p class="indent" >   where A is the matrix of first derivatives of Equation <a 
+href="#x1-3002r9">9<!--tex4ht:ref: eq:inverse-transform --></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4002r19"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper343x.png" alt="      &#x2202;U-- &#x2202;Th  &#x2202;Sm-  &#x2202;He
+      &#x2202;&#x2202;Uv- &#x2202;&#x2202;vTh  &#x2202;&#x2202;Svm-  &#x2202;&#x2202;vHe
+A = [ &#x2202;w&#x2202;U-- &#x2202;&#x2202;wTh  &#x2202;&#x2202;Swm-  &#x2202;&#x2202;wHe ] &#x02C6;M
+      &#x2202;x   &#x2202;x    &#x2202;x   &#x2202;x
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 352--><p class="nopar" >
+<!--l. 354--><p class="indent" >   Equation <a 
+href="#x1-4001r18">18<!--tex4ht:ref: eq:gamma --></a> contains an expression for the covariances of the geometric mean composition, which were omitted
+by <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>) but are required for a full propagation of age uncertainty. However, even the complete error
+propagation may be inaccurate because it is based on a first order Maclaurin series expansion of Equation <a 
+href="#x1-3002r9">9<!--tex4ht:ref: eq:inverse-transform --></a>,
+which is highly non-linear. This problem can be circumvented using numerical techniques, such as the
+following deterministic algorithm. First, build a regular grid across the two (for U-Th-He) or three (for
+U-Th-Sm-He) dimensions of logratio space (Figure <a 
+href="#x1-90011">1<!--tex4ht:ref: fig:ci --></a>.a). Second, for each of these grid points, calculate
+(a) its likelihood under a normal distribution with mean <img 
+src="MLEpaper344x.png" alt="M&#x02C6;"  class="circ" > and covariance matrix <img 
+src="MLEpaper345x.png" alt="&#x02C6;&#x03C3;"  class="circ" >, and (b) the
+corresponding age. Third, calculate the Bayesian cumulative posterior distribution by ranking the numerical
+data in order of increasing age and computing the running sum of the likelihoods. Fourth, obtain an
+asymmetrical 95% confidence interval from the 2.5 and 97.5 percentiles of the posterior distribution (Figure
+<a 
+href="#x1-90011">1<!--tex4ht:ref: fig:ci --></a>.b).
+
+   <h3 class="likesectionHead"><a 
+ id="x1-90006"></a></h3>
+<!--l. 509--><p class="noindent" ><hr class="figure"><div class="figure" 
+><a 
+ id="x1-90011"></a>             a.<img 
+src="MLEpaper346x.png" alt="PIC" class="graphics" height="350pt" ><!--tex4ht:graphics  
+name="MLEpaper346x.png" src="Bayes2.pdf"  
+-->
+b.<img 
+src="MLEpaper347x.png" alt="PIC" class="graphics" height="350pt" ><!--tex4ht:graphics  
+name="MLEpaper347x.png" src="CI2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">a. the deterministic Bayesian algorithm collects a large number of ages across a regular grid in
+logratio space (crosses), and records the corresponding logistic normal likelihood of the data (ellipse); b. 95%
+confidence intervals are then simply calculated by looking up the 2.5 and 97.5 percentiles of the resulting
+&#8216;posterior distribution&#8217;.</span></div><!--tex4ht:label?: x1-90011 -->
+<!--l. 519--><p class="noindent" ></div><hr class="endfigure">
+
+<!--l. 373--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Applications</h3>
+<!--l. 375--><p class="noindent" ><span 
+class="cmtt-10">HelioPlot </span>is a computer program for visualising U-Th-(Sm)-He data on ternary diagrams and logratio
+plots that implements all the above calculations, including the computation of central ages and 95%
+confidence intervals. Equations <a 
+href="#x1-2005r6">6<!--tex4ht:ref: eq:Lxi1 --></a> and <a 
+href="#x1-3009r16">16<!--tex4ht:ref: eq:Lxi --></a> are solved using Newton&#8217;s method. <span 
+class="cmtt-10">HelioPlot </span>was written
+in Java and is, therefore, perfectly platform independent. The program and its source code can be
+downloaded free of charge from <span 
+class="cmtt-10">http://pvermees.andropov.org/helioplot</span>. Data can be copied and
+pasted to-and-from Microsoft Excel, or entered directly using the built-in editing tools. Data files are
+saved in a comma-separated-variable (<span 
+class="cmtt-10">.csv</span>) format. Samarium is an optional input parameter and the
+complete functionality of the program is still available when Sm is missing. If Sm is absent, it will be
+assumed to be zero, and the data naturally reduce to their two dimensions in compositional datapace. If
+Sm is present, the geometric mean Sm composition is used as a common reference for the ternary
+diagrams and logratio plots. Colour is used to visualise the Sm content of aliquots, or any other numerical
+quantity, such as sample number (Figure <a 
+href="#x1-90022">2<!--tex4ht:ref: fig:helioplot --></a>.a), grain size (Figure <a 
+href="#x1-90022">2<!--tex4ht:ref: fig:helioplot --></a>.b), elevation, or, for the case of
+double-dated grains, a U-Pb or fission track age (<a 
+href="#Xcampbell2005">Campbell et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xcampbell2005">2005</a>). <span 
+class="cmtt-10">HelioPlot </span>is capable of
+saving the graphical output as either bitmap or vector images, in a <span 
+class="cmtt-10">.png </span>or <span 
+class="cmtt-10">.pdf </span>format, respectively.
+<br 
+class="newline" />
+
+<!--l. 401--><p class="indent" >   Example input files are provided on the website for testing purposes. Figure <a 
+href="#x1-90022">2<!--tex4ht:ref: fig:helioplot --></a>.b shows the output for one of
+these files, based on a published (U-Th)/He dataset (<a 
+href="#Xvermeesch2007b">Vermeesch et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch2007b">2007</a>), which was <span 
+class="cmmi-10">&#x03B1;</span>-ejection corrected
+according to the guidelines of <a 
+href="#Xketcham2009">Ketcham</a>&#x00A0;(<a 
+href="#Xketcham2009">2009</a>). The output includes the arithmetic and geometric
+mean ages and their standard errors, calculated using the methods of Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a>, in addition to the
+central age, its standard error and 95% confidence interval, calculated according to the algorithm of
+Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositions --></a>. Three separate MSWDs are given, reflecting the overdispersion of the ages and the U-Th-He
+compositions.
+
+<!--l. 521--><p class="indent" >   <hr class="figure"><div class="figure" 
+><a 
+ id="x1-90022"></a>                      a.<img 
+src="MLEpaper348x.png" alt="PIC" class="graphics" height="350" ><!--tex4ht:graphics  
+name="MLEpaper348x.png" src="ternaryplot.pdf"  
+-->
+b.<img 
+src="MLEpaper349x.png" alt="PIC" class="graphics" height="350" ><!--tex4ht:graphics  
+name="MLEpaper349x.png" src="logratioplot.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Two diagrams produced by <span 
+class="cmtt-10">HelioPlot</span>. (a) Ternary diagram with two synthetic U-Th-He samples
+(<span 
+class="cmmi-10">U</span><span 
+class="cmsy-10">* </span>=  <img 
+src="MLEpaper350x.png" alt="U-00..3066121"  class="frac" align="middle">,  <span 
+class="cmmi-10">Th</span><span 
+class="cmsy-10">* </span>=  <img 
+src="MLEpaper351x.png" alt="Th0-.036.5274"  class="frac" align="middle">,  <span 
+class="cmmi-10">He</span><span 
+class="cmsy-10">* </span>=  <img 
+src="MLEpaper352x.png" alt="He-0.03.062041-"  class="frac" align="middle">).  (b)  Logratio  plot  of  U-Th-He  data  from  Naxos
+(<a 
+href="#Xvermeesch2007b">Vermeesch et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch2007b">2007</a>), colour-coded according to grain size. The geometric mean composition is shown
+as a white ellipse.</span></div><!--tex4ht:label?: x1-90022 -->
+<!--l. 531--><p class="indent" >   </div><hr class="endfigure">
+
+<!--l. 413--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Conclusions</h3>
+<!--l. 415--><p class="noindent" >The aim of this paper was to bring the statistical treatment of U-Th-(Sm)-He data on an equal footing with more
+established geochronometers such as U-Pb, <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar, or fission tracks. Weighted least squares algorithms similar to
+the maximum likelihood methods of Sections <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a> and <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositions --></a> have been used in U-Pb (<a 
+href="#Xludwig1998">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig1998">1998</a>) and fission track
+dating (<a 
+href="#Xgalbraith1990b">Galbraith and Green</a>,&#x00A0;<a 
+href="#Xgalbraith1990b">1990</a>). Visual aids such as the U-Pb concordia diagram, the Rb-Sr isochron, or the
+fission track radial plot can be very useful for the exploratory analysis of geochronological data. The ternary
+diagram and logratio plot play the same role for helium thermochronology, as they bring out the full information
+content of U-Th-(Sm)-He data, and can help to reveal patterns between aliquots and samples that may not be seen
+otherwise.
+<!--l. 429--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-70006"></a>Acknowledgments</h3>
+<!--l. 431--><p class="noindent" >John Rudge formulated equation <a 
+href="#x1-3006r13">13<!--tex4ht:ref: eq:norm2 --></a>, from which the rest of the calculations followed naturally. He and an
+anonymous reviewer are gratefully acknowledged for this and other constructive comments.
+<!--l. 438--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-80006"></a>References</h3>
+<!--l. 438--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1986. The statistical analysis of compositional data. London, Chapman and Hall.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcampbell2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Campbell, I.&#x00A0;H., Reiners, P.&#x00A0;W., Allen, C.&#x00A0;M., Nicolescu, S., Upadhyay, R., Sep. 2005. He-Pb double
+  dating of detrital zircons from the Ganges and Indus Rivers: Implication for quantifying sediment recycling
+  and provenance studies. Earth and Planetary Science Letters 237, 402&#8211;432.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfitzgerald2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fitzgerald, P.&#x00A0;G., Baldwin, S.&#x00A0;L., Webb, L.&#x00A0;E., O&#8217;Sullivan, P.&#x00A0;B., 2006. Interpretation of (U-Th)/He
+  single grain ages from slowly cooled crustal terranes: A case study from the Transantarctic Mountains of
+  southern Victoria Land. Chemical Geology 225, 91&#8211;120.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F., Green, P.&#x00A0;F., 1990. Estimating the component ages in a finite mixture. Nuclear Tracks
+  and Radiation Measurements 17, 197&#8211;206.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhouse2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>House, M.&#x00A0;A., Farley, K.&#x00A0;A., Stockli, D., Dec. 2000. Helium chronometry of apatite and titanite using
+  Nd-YAG laser heating. Earth and Planetary Science Letters 183, 365&#8211;368.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ketcham, R., 2009. Refinements for alpha stopping distances and FT corrections. OnTrack, the electronic
+  newsletter of the international thermochronology community 16.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig,  K.&#x00A0;R.,  Feb.  1998.  On  the  treatment  of  concordant  uranium-lead  ages.  Geochimica  et
+  Cosmochimica Acta 62, 665&#8211;676.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcintyre1966"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McIntyre, G.&#x00A0;A., Brooks, C., Compston, W., Turek, A., 1966. The Statistical Assessment of Rb-Sr
+  Isochrons. Journal of Geophysical Research 71, 5459&#8211;5468.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshuster2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Shuster, D.&#x00A0;L., Flowers, R.&#x00A0;M., Farley, K.&#x00A0;A., Sep. 2006. The influence of natural radiation damage on
+  helium diffusion kinetics in apatite. Earth and Planetary Science Letters 249, 148&#8211;161.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2008a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2008. Three new ways to calculate average (U-Th)/He ages. Chemical Geology 249,
+  339&#8211;347.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., Seward, D., Latkoczy, C., Wipf, M., G&uuml;nther, D., Baur, H., 2007. <span 
+class="cmmi-10">&#x03B1;</span>-Emitting mineral
+  inclusions in apatite, their effect on (U-Th)/He ages, and how to reduce it. Geochimica et Cosmochimica
+  Acta 71, 1737&#8211;1746.
+</p>
+  </div>
+</td></table>    
+</body></html> 
+
+
+

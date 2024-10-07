@@ -1,0 +1,105 @@
+This is pdfTeX, Version 3.141592-1.40.4 (MiKTeX 2.6) (preloaded format=pdflatex 2008.2.2)  28 APR 2009 14:06
+entering extended mode
+**\nonstopmode\input{letter.tex}
+(letter.tex ("C:\Program Files\MiKTeX 2.6\tex\latex\base\letter.cls"
+Document Class: letter 1999/04/29 v1.2z Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\size10.clo"
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\longindentation=\dimen102
+\indentedwidth=\dimen103
+\labelcount=\count79
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\graphics.sty"
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 90.
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\pdftex.def"
+File: pdftex.def 2007/06/12 v0.04h Graphics/color for pdfTeX
+\Gread@gobject=\count80
+))
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\preprint\fullpage.sty"
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip41
+)
+
+LaTeX Warning: Unused global option(s):
+    [a4].
+
+(letter.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+ ("C:\Program Files\MiKTeX 2.6\tex\context\base\supp-pdf.tex"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count81
+\scratchdimen=\dimen106
+\scratchbox=\box26
+\nofMPsegments=\count82
+\nofMParguments=\count83
+\MPscratchCnt=\count84
+\MPscratchDim=\dimen107
+\MPnumerator=\count85
+\everyMPtoPDFconversion=\toks15
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 21.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 21.
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--36
+
+ []
+
+<D:/signature.pdf, id=1, 199.1689pt x 56.90596pt>
+File: D:/signature.pdf Graphic file (type pdf)
+ <use D:/signature.pdf>
+[1
+
+{psfonts.map} <D:/signature.pdf
+
+pdfTeX warning:  (file D:/signature.pdf): PDF inclusion: Page Group detected wh
+ich pdfTeX can't handle. Ignoring it.
+>] (letter.aux) ) 
+Here is how much of TeX's memory you used:
+ 851 strings out of 95295
+ 9826 string characters out of 1184860
+ 56735 words of memory out of 1058899
+ 4055 multiletter control sequences out of 60000
+ 3986 words of font info for 15 fonts, out of 1000000 for 2000
+ 14 hyphenation exceptions out of 8191
+ 26i,6n,19p,220b,135s stack positions out of 5000i,500n,10000p,200000b,32768s
+<C:/Program Files/MiKTeX 2.6/fonts/type1/bluesky/cm/cmr10.pfb>
+<C:/Program Files/MiKTeX 2.6/fonts/type1/bluesky/cm/cmti10.pfb>
+Output written on letter.pdf (1 page, 27727 bytes).
+PDF statistics:
+ 25 PDF objects out of 300000 (max. 8388607)
+ 0 named destinations out of 300000 (max. 131072)
+ 6 words of extra memory for PDF output out of 65536 (max. 10000000)
+

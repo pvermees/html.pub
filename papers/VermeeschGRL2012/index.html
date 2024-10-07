@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>A 45-year time series of dune mobility indicating constant wind velocity over the central
+Sahara</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="GRLpaper.tex"> 
+<meta name="date" content="2012-06-09 16:16:00"> 
+<link rel="stylesheet" type="text/css" href="GRLpaper.css">
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head>
+<body >
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+<h2 class="titleHead">A 45-year time series of dune mobility indicating
+constant wind velocity over the central Sahara</h2>
+               <div class="author" ><span 
+class="cmr-12x-x-120">Pieter Vermeesch</span><span 
+class="cmr-10"><sup>1</sup></span><span 
+class="cmsy-10">*</span> <span 
+class="cmr-12x-x-120">and Sebastien Leprince</span><span 
+class="cmr-10"><sup>2</sup></span><br />
+<br />                <span 
+class="cmr-8"><sup>1</sup></span>Birkbeck, University of London, United Kingdom
+<br />           <span 
+class="cmr-8"><sup>2</sup></span>California Institute of Technology, Pasadena, United States
+<br />
+<br /><span 
+class="cmsy-8">*</span>To whom correspondence should be addressed; E-mail: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">p.vermeesch [at] ucl.ac.uk.</span></span> </div>
+<br />
+<div class="date" ></div>
+   </div>
+      <div class="quote">
+      <!--l. 54--><p class="noindent" ><span 
+class="cmbx-12">Although evidence is mounting that links global warming to changes</span>
+      <span 
+class="cmbx-12">in atmospheric dynamics over the Atlantic realm, similar studies</span>
+      <span 
+class="cmbx-12">over the African continent are lacking. And even if such models</span>
+      <span 
+class="cmbx-12">would  exist,  it  would  be  difficult  to  verify  their  validity  due  to</span>
+      <span 
+class="cmbx-12">the  paucity  of  meteorological  observations  and  anemometers  in</span>
+      <span 
+class="cmbx-12">the  central  Sahara.  A  pragmatic  way  around  this  problem  is  to</span>
+      <span 
+class="cmbx-12">monitor  barchan  dune  velocity  as  a  proxy  for  the  windiness  of</span>
+      <span 
+class="cmbx-12">desert areas. Dune migration rates are a measure of the amount of</span>
+      <span 
+class="cmbx-12">work done by the wind which does not require field measurements</span>
+
+      <span 
+class="cmbx-12">but  can  be  observed  from  space  instead.  This  paper  presents  a</span>
+      <span 
+class="cmbx-12">novel  application  of  the  remote  sensing  tool  COSI-Corr  for  the</span>
+      <span 
+class="cmbx-12">construction of time series of dune mobility from sequences of optical</span>
+      <span 
+class="cmbx-12">satellite imagery. The technique has been applied to the Bod</span><span 
+class="cmbx-12">&eacute;l</span><span 
+class="cmbx-12">&eacute;</span>
+      <span 
+class="cmbx-12">Depression in northern Chad, to demonstrate that dune migration</span>
+      <span 
+class="cmbx-12">rates in the central Sahara have been remarkably constant for nearly</span>
+      <span 
+class="cmbx-12">half a century, leading us to conclude that wind velocities have not</span>
+      <span 
+class="cmbx-12">changed more than 0.2% per year over that period. It is therefore</span>
+      <span 
+class="cmbx-12">unlikely that the frequency and intensity of dust storms originating</span>
+      <span 
+class="cmbx-12">from this &#8216;hot spot&#8217; has significantly changed over the past decades</span>
+      <span 
+class="cmbx-12">either.</span></div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 77--><p class="noindent" >As the average global temperature rises due to the greenhouse effect, the polar regions heat up
+more rapidly than the low latitudes (<a href="#Xgitelman1997"><span class="cmti-12"> Gitelman et al.</span></a>, <a href="#Xgitelman1997"> 1997</a>;&nbsp;<a 
+href="#Xholland2003"><span 
+class="cmti-12">Holland and Bitz</span></a>,&#x00A0;<a 
+href="#Xholland2003">2003</a>). This decrease in thermal
+gradient affects the dynamics of the atmosphere, leading to an overall weakening of atmospheric
+circulation (<a 
+href="#Xheld2006"><span 
+class="cmti-12">Held and Soden</span></a>,&#x00A0;<a 
+href="#Xheld2006">2006</a>) while paradoxally increasing the storminess over the
+Atlantic as well (<a 
+href="#Xemanuel2005"><span 
+class="cmti-12">Emanuel</span></a>,&#x00A0;<a 
+href="#Xemanuel2005">2005</a>). Much less is known about the presence or absence of large
+scale trends in the windiness over the African continent, despite the important implications that
+such trends might have on the global aeolian dust budget. To overcome the lack of long term
+meteorological records, we propose dune migration rates as a sensitive proxy for the &#8216;effective
+windiness&#8217; of desert areas, i.e., the amount of work done by the wind on the land. The
+rationale is as follows. <a 
+href="#Xbagnold1941"><span 
+class="cmti-12">Bagnold</span></a>&#x00A0;(<a 
+href="#Xbagnold1941">1941</a>) showed that the velocity (v) of barchan dunes
+is inversely proportional to their height (h) and proportional to sand flux, which
+
+in turn is approximately proportional to the cube of wind (shear) velocity (u<sub><span 
+class="cmsy-8">*</span></sub>) so
+that:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="GRLpaper0x.png" alt="v = Cu3*&#x2215;h
+" class="math-display" ><a 
+ id="x1-1001r1"></a></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 98--><p class="nopar" >
+<!--l. 100--><p class="indent" >   where C is the constant of proportionality. By taking the partial derivative of v with respect
+to u<sub><span 
+class="cmsy-8">*</span></sub> and rearranging, it can be shown that:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="GRLpaper1x.png" alt="&#x2202;v     &#x2202;u *
+---=  3----
+ v      u*
+
+" class="math-display" ><a 
+ id="x1-1002r2"></a></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 107--><p class="nopar" >
+<!--l. 109--><p class="indent" >   In other words, any change in wind velocity is &#8216;magnified&#8217; by a factor of three in the dune
+velocity, or slightly less if an alternative transport equation is used instead of Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:bagnold --></a>
+(e.g.,&#x00A0;<a 
+href="#Xungar1987"><span 
+class="cmti-12">Ungar and Haff </span></a>,&#x00A0;<a 
+href="#Xungar1987">1987</a>). Furthermore, the dust emission flux (f) generated by saltating
+sand grains is closely proportional to sand flux as well (<a 
+href="#Xshao1993"><span 
+class="cmti-12">Shao et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xshao1993">1993</a>). Therefore, changes
+in aeolian dust production are also governed by wind velocity according to Equation <a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:rearranging --></a>
+(subsituting &#8216;v&#8217; with &#8216;f&#8217;), and hence scale linearly with dune celerity. In other words, every 1%
+increase in wind velocity results in a <span 
+class="cmsy-10x-x-120">~</span>3% change in dune celerity and a <span 
+class="cmsy-10x-x-120">~</span>3% change of dust
+production as well.
+<!--l. 121--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Study area</h3>
+<!--l. 123--><p class="noindent" >The central Sahara contains a number of localized &#8216;hot spots&#8217; of dust production, the single
+most important of which is the Bod&eacute;l&eacute; Depression of northern Chad (<a 
+href="#Xgoudie2001"><span 
+class="cmti-12">Goudie and</span>
+<span 
+class="cmti-12">Middleton</span></a>,&#x00A0;<a 
+href="#Xgoudie2001">2001</a>;&#x00A0;<a 
+href="#Xkoren2006"><span 
+class="cmti-12">Koren et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xkoren2006">2006</a>). This 24,000km<sup><span 
+class="cmr-8">2</span></sup> area supplies an estimated 6.5 million
+tonnes of Fe and 0.12 million tonnes of P to the Atlantic Ocean and Amazon Basin each year
+(<a 
+href="#Xbristow2009"><span 
+class="cmti-12">Bristow et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xbristow2009">2009</a>,&#x00A0;<a 
+href="#Xbristow2010">2010</a>), due to a unique coincidence of two factors. First, the Bod&eacute;l&eacute; is
+located downwind from a narrow gap between the Tibesti and Ennedi Montains on the border
+with Libya, which accelerates the northeasterly trade winds to a low level jet with the capacity
+to do a lot of work (<a 
+href="#Xwashington2006"><span 
+class="cmti-12">Washington et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xwashington2006">2006</a>). Second, it once formed the deepest part of
+palaeolake Megachad which rivaled the Caspian Sea in size as recently as 8,000 years ago (<a 
+href="#Xdrake2006"><span 
+class="cmti-12">Drake</span>
+<span 
+class="cmti-12">and Bristow</span></a>,&#x00A0;<a 
+href="#Xdrake2006">2006</a>). Today, the lake has disappeared, but its sediments remain. In the Bod&eacute;l&eacute;,
+
+these sediments form white crusts of diatomite, which is readily broken down and
+transported to form some of the world&#8217;s largest and fastest barchan dunes (Figure
+<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:locationmap --></a>).
+<!--l. 141--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20011"></a>
+
+
+<!--l. 142--><p class="noindent" ><a href="fig1.png"><img 
+src="fig1.png" alt="PIC" width="400"  
+></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Landsat-4 image (from 1984) of the eastern Bod&eacute;l&eacute; Depression with indication
+of the footprints (yellow rectangles) of the other imagery used in the automated time
+series analysis. Yellow shaded areas indicate areas of overlap between the seven images.</span></div><!--tex4ht:label?: x1-20011 -->
+
+<!--l. 148--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 150--><p class="indent" >   We have tracked the movement of these dunes by remote sensing, using a technique called
+COSI-Corr, which stands for &#8216;<span 
+class="cmti-12">Co-registration of Optically Sensed Images and Correlation</span>&#8217;
+(<a 
+href="#Xleprince2007"><span 
+class="cmti-12">Leprince et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xleprince2007">2007</a>). COSI-Corr quantifies Earth surface displacements from sub-pixel
+correlations of pairs of remotely sensed optical imagery. Although the technique was originally
+developed for the detection of co-seismic displacements (<a 
+href="#Xavouac2006"><span 
+class="cmti-12">Avouac et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xavouac2006">2006</a>), it has
+since found applications in the study of glaciers, landslides, and sand dunes (<a 
+href="#Xleprince2008"><span 
+class="cmti-12">Leprince</span>
+<span 
+class="cmti-12">et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xleprince2008">2008</a>;&#x00A0;<a 
+href="#Xvermeesch2008b"><span 
+class="cmti-12">Vermeesch and Drake</span></a>,&#x00A0;<a 
+href="#Xvermeesch2008b">2008</a>;&#x00A0;<a 
+href="#Xnecsoiu2009"><span 
+class="cmti-12">Necsoiu et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xnecsoiu2009">2009</a>). COSI-Corr has been used to
+show that the barchan dunes of the Bod&eacute;l&eacute; Depression, which are made of diatomite flakes,
+are some of the fastest on the planet, with sand flux at the dune crest in excess of
+200m<sup><span 
+class="cmr-8">2</span></sup>yr<sup><span 
+class="cmsy-8">-</span><span 
+class="cmr-8">1</span></sup> (<a 
+href="#Xvermeesch2008b"><span 
+class="cmti-12">Vermeesch and Drake</span></a>,&#x00A0;<a 
+href="#Xvermeesch2008b">2008</a>). A 20m high barchan will therefore migrate
+approximately 10m per year which is comparable to the resolution of commercial
+satellite imagery available since the mid-1980s. This enables the creation of time
+series of dune mobility with a temporal resolution of just a few years, allowing the
+detection of temporal trends in the dune mobility, and therefore windiness, of the Bod&eacute;l&eacute;
+Depression.
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Method</h3>
+<!--l. 172--><p class="noindent" >To create such a time series, seven Landsat-4 (1984), SPOT-3 (1990 and 1996), and ASTER
+(2000, 2003, 2007, and 2010) scenes were acquired from the central Bod&eacute;l&eacute; Depression (Figure
+<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:locationmap --></a>). The images were resampled to a common resolution of 15m, georeferenced by selecting tie
+points on a Landsat-7 image (band 8) from 1999, and orthorectified using an SRTM digital
+elevation model. Animations of the imagery used in the time series analysis can be viewed at
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12"><a href="http://www.ucl.ac.uk/~ucfbpve/bodele">http://www.ucl.ac.uk/~ucfbpve/bodele</a></span></span></span>. Thanks to the exceptionally high sand flux in the Bod&eacute;l&eacute; Depression, aeolian processes are accelerated so that subtle trends and rare events are
+magnified and multiplied. For example, detailed observations of this image sequence has
+revealed several examples of shape preserving binary dune collisions (<a 
+href="#Xvermeesch2011"><span class="cmti-12">Vermeesch</span></a>,&#x00A0;<a 
+href="#Xvermeesch2011">2011</a>,
+<a href="http://www.ucl.ac.uk/~ucfbpve/solitons"><span class="cmtt-12">http://www.ucl.ac.uk/~ucfbpve/solitons</span></a>).
+<!--l. 188--><p class="indent" >   The time series extraction algorithm comprised the following seven steps. First, dune
+displacements were measured for each time step using COSI-Corr&#8217;s frequential correlator,
+using a 64<span 
+class="cmsy-10x-x-120">&#x00D7;</span>64 pixel correlation window (<a 
+href="#Xleprince2007"><span 
+class="cmti-12">Leprince et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xleprince2007">2007</a>). Second, the raw
+correlation results were destriped to remove uncorrected attitude effects. Third, the
+destriped displacement fields were &#8216;warped&#8217; back in time to a common reference,
+namely the first image in the sequence (Figure <a 
+href="#x1-30012">2<!--tex4ht:ref: fig:mapping --></a>). Fourth, the correlation results
+were &#8216;cleaned&#8217; with a combination of two filters, requiring the displacements to (a)
+have a high signal-to-noise ratio and (b) move in a consistent direction with time.
+Fifth, the &#8216;surviving&#8217; pixels of the displacement map were connected and tracked
+across the image with time, yielding a map-view of dune migration paths (Figure <a 
+href="#x1-30023">3<!--tex4ht:ref: fig:dot-to-dot --></a>).
+Sixth, the stepwise displacements of each dune track were projected on the resultant
+migration direction (<a 
+href="#Xnecsoiu2009"><span 
+class="cmti-12">Necsoiu et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xnecsoiu2009">2009</a>), yielding a broad distribution of cumulative
+dune displacements. Seventh, a celerity time series was created by selecting those
+pixels with a total displacement near the mode of this distribution, and dividing their
+stepwise displacements by the time elapsed between the satellite exposures (Figure
+<a 
+href="#x1-40014">4<!--tex4ht:ref: fig:timeseries --></a>).
+<!--l. 209--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30012"></a>
+
+
+<!--l. 211--><p class="noindent" ><img 
+src="05from06from08from09from10img_framed.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Semi-synthetic satellite image warped back in time using the displacement
+fields calculated by COSI-Corr. The &#8216;tails&#8217; attached to the dune horns are caused by the
+so-called &#8216;fattening effect&#8217;, which affects features that are smaller in size than the (64<span 
+class="cmsy-10x-x-120">&#x00D7;</span>64
+pixel) correlation window used for the COSI-Corr analysis. This fattening effect is partly
+responsible for the scatter observed in the resulting time series.</span></div><!--tex4ht:label?: x1-30012 -->
+
+<!--l. 220--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 222--><p class="indent" >   The accuracy of this algorithm was demonstrated on a semi-synthetic dataset generated in
+the following manner. Five repeat exposures of a large interdune area were extracted from
+15m-resolution Landsat-7 images from the central Bod&eacute;l&eacute; Depression (N 16<sup><span 
+class="cmsy-8">&#x2218;</span></sup>50&#8217;, E 17<sup><span 
+class="cmsy-8">&#x2218;</span></sup>
+50&#8217;). Then, a barchan dune was &#8216;extracted&#8217; from elsewhere in one of the images (N
+16<sup><span 
+class="cmsy-8">&#x2218;</span></sup>56&#8217;, E 17<sup><span 
+class="cmsy-8">&#x2218;</span></sup> 05&#8217;) using a graphics editor, and superimposed on the first interdune
+image. Thus, the first image in the time sequence was obtained. The second image in
+the synthetic time series was generated by superimposing the same barchan dune
+&#8216;clipping&#8217; on the next interdune image, with an offset of 10 pixels (150m) to the east,
+and 5 pixels to the south (75m). This process was repeated for the remaining three
+interdune images. The five synthetic images were subjected to the same analytical
+procedure as described in the previous paragraph. Figure <a 
+href="#x1-30012">2<!--tex4ht:ref: fig:mapping --></a> shows the last images
+mapped back to the time of the first image, using the displacement fields calculated
+by COSI-Corr. This demonstrates the effectiveness of the method used to warp the
+displacement fields. Sending the raw displacements between the four time steps through the
+signal-to-noise and directional filters yields a histogram with total displacements of
+669<span 
+class="cmsy-10x-x-120">&plusmn;</span>23m (2<span 
+class="cmmi-12">&#x03C3;</span>), which is in good agreement with the known displacement of 668m (=
+4 <span 
+class="cmsy-10x-x-120">&#x00D7;</span><img
+src="GRLpaper2x.png" alt="&#x221A; -----------
+  1502 + 752"  class="sqrt" >).
+<!--l. 245--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30023"></a>
+
+
+<!--l. 246--><p class="noindent" ><a href="fig3.png"><img 
+src="fig3.png" alt="PIC"  width="400"
+></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Map-view of individually tracked image pixels of sand dunes in the central
+Bod&eacute;l&eacute;  Depression.  Black  lines  and  coloured  dots  were  produced  by  the  automated
+COSI-Corr algorithm. Grey crescents mark the footprints of the corresponding barchan
+dunes in an analog Corona (KH-4) declassified American spy satellite image.</span></div><!--tex4ht:label?: x1-30023 -->
+
+<!--l. 253--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Results</h3>
+<!--l. 257--><p class="noindent" >Applying the time series extraction algorithm to our sequence of seven coregistered images from
+the Bod&eacute;l&eacute; Depression yielded 2853 individually tracked pixels with raw dune celerities between
+0 and 50m yr<sup><span 
+class="cmsy-8">-</span><span 
+class="cmr-8">1</span></sup> and a broad distribution of total displacements with a mode at <span 
+class="cmsy-10x-x-120">~</span>600m. The
+automated analysis was extended further back into the past by comparison of the
+1984 image with declassified American spy satellite (Corona) images from 1965 and
+1970. Due to the presence of specks of dust as well as image distortions caused by
+shrinking of the photographic film, it was not possible to automatically measure the dune
+displacements of these scenes with COSI-Corr. Instead, the image was georeferenced and
+coregistered to the 1984 Landsat imagery by third order polynomial fits to 531 tie
+points, and the displacements of ten large barchan dunes were measured by hand.
+Thanks to the 19-year time lapse between the two images used for these &#8216;analog&#8217;
+measurements, their precision is better than 5%, which is comparable with that of the
+automated COSI-Corr analysis. The resulting dune celerities are identical to the
+automated measurements, which themselves show less than 10% temporal variability
+over the subsequent 26 years (Figure <a 
+href="#x1-40014">4<!--tex4ht:ref: fig:timeseries --></a>). The lack of any trend in the time series of
+dune celerity paints a picture of remarkably stable dune mobility over the past 45
+years.
+<!--l. 279--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40014"></a>
+
+
+<!--l. 280--><p class="noindent" ><a href="fig4.png"><img 
+src="fig4.png" alt="PIC"  width="400"
+></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">Normalised time series of dune mobility for the Bod&eacute;l&eacute; data set, based on 2583
+dune displacements with a total displacement of 600<span 
+class="cmsy-10x-x-120">&plusmn;</span>100m. The red contours mark the
+precentiles of the observed distribution, with the darkest shade of red corresponding to the
+median. The dashed lines show the migration rates of ten dunes tracked by hand between
+a 1967 Corona spy satellity image and a Landsat image from 1984. White lines mark a
+linear least squares regression of the mean celerities and its 95% confidence envelope. The
+lack of any trend in the time series indicates that the &#8216;effective storminess&#8217; of the Sahara
+has remained constant over the past 45 years.</span></div><!--tex4ht:label?: x1-40014 -->
+
+<!--l. 293--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Discussion</h3>
+<!--l. 297--><p class="noindent" >Previous studies (<a 
+href="#Xprospero2003"><span 
+class="cmti-12">Prospero and Lamb</span></a>,&#x00A0;<a 
+href="#Xprospero2003">2003</a>;&#x00A0;<a 
+href="#Xmukhopadhyay2008"><span 
+class="cmti-12">Mukhopadhyay and Kreycik</span></a>,&#x00A0;<a 
+href="#Xmukhopadhyay2008">2008</a>) have indicated
+that the dust output of the Sahara has undergone significant variations over the course of the
+past few decades, with relatively low dust levels during the 1960s, high dust production during
+the 1970s and 1980s, and a gradual decrease after that. These changes can be explained either
+by (a) changes in precipitation and vegetation cover (<a 
+href="#Xmiddleton1985"><span 
+class="cmti-12">Middleton</span></a>,&#x00A0;<a 
+href="#Xmiddleton1985">1985</a>;&#x00A0;<a 
+href="#Xschlesinger1990"><span 
+class="cmti-12">Schlesinger</span>
+<span 
+class="cmti-12">et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xschlesinger1990">1990</a>;&#x00A0;<a 
+href="#Xnicholson1998"><span 
+class="cmti-12">Nicholson et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xnicholson1998">1998</a>), or (b) changes in the wind regime and storminess of the
+desert (<a 
+href="#Xruddiman1997"><span 
+class="cmti-12">Ruddiman</span></a>,&#x00A0;<a 
+href="#Xruddiman1997">1997</a>;&#x00A0;<a 
+href="#Xgillette1999"><span 
+class="cmti-12">Gillette</span></a>,&#x00A0;<a 
+href="#Xgillette1999">1999</a>;&#x00A0;<a 
+href="#Xgoudie2001"><span 
+class="cmti-12">Goudie and Middleton</span></a>,&#x00A0;<a 
+href="#Xgoudie2001">2001</a>;&#x00A0;<a 
+href="#Xbozzano2002"><span 
+class="cmti-12">Bozzano</span>
+<span 
+class="cmti-12">et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xbozzano2002">2002</a>;&#x00A0;<a 
+href="#Xprospero2003"><span 
+class="cmti-12">Prospero and Lamb</span></a>,&#x00A0;<a 
+href="#Xprospero2003">2003</a>). Whereas the first model has been validated by remote
+sensing (<a 
+href="#Xtucker1991"><span 
+class="cmti-12">Tucker et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xtucker1991">1991</a>;&#x00A0;<a 
+href="#Xnicholson1998"><span 
+class="cmti-12">Nicholson et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xnicholson1998">1998</a>), the second model is much harder to test.
+In a recent study, <span 
+class="cmbx-12">? </span>used a 23-year record of GEOSAT altimeter data to reconstruct
+trends in wind speed over the oceanic realm. For the north Atlantic, they found an
+increasing trend of 0-1% per year. As discussed before, no such data are available over
+the African continent, and herein lies the value of our dune celerity time series. A
+95% confidence envelope for a linear least squares regression of our dataset indicates
+that dune velocities have changed less than 10% over the 26 year duration of the
+automated analysis, corresponding to an annual change of less than 0.4% per year. Using
+Equation <a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:rearranging --></a>, this translates into an annual change of the wind velocity of probably less
+than 0.13% and (accounting for different transport equations) certainly less than
+0.2%.
+<!--l. 322--><p class="indent" >   As briefly discussed in Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>, wind tunnel experiments have shown that the
+emission flux of aeolian dust is proportional to the saltation flux of aeolian sand
+
+(<a 
+href="#Xshao1993"><span 
+class="cmti-12">Shao et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xshao1993">1993</a>;&#x00A0;<a 
+href="#Xshao2009"><span 
+class="cmti-12">Shao</span></a>,&#x00A0;<a 
+href="#Xshao2009">2009</a>), which in turn is proportional to dune velocity. There
+should therefore exist a correlation between dust production and dune mobility in
+the area. The constance of dune mobility in the 45-year time series of the Bod&eacute;l&eacute;
+dunes indicates that the &#8216;effective windiness&#8217; of the so-called &#8216;Bod&eacute;l&eacute; Low Level Jet&#8217;
+(<a 
+href="#Xwashington2006"><span 
+class="cmti-12">Washington et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xwashington2006">2006</a>;&#x00A0;<a 
+href="#Xwarren2007"><span 
+class="cmti-12">Warren et</span><span 
+class="cmti-12">&#x00A0;al.</span></a>,&#x00A0;<a 
+href="#Xwarren2007">2007</a>) has not significantly changed over the past
+half century, and it is therefore unlikely that the frequency and intensity of aeolian
+dust storms originating from this important area has significantly changed over that
+time period either. In conclusion, we have found no evidence that (anthropogenic)
+climate change has significantly affected atmospheric circulation over the central
+Sahara.
+<!--l. 338--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-60005"></a>Acknowledgments</h3>
+<!--l. 339--><p class="noindent" >Part of this research was done during an academic visit of P.V. to Caltech, sponsored by a grant
+from the Keck Institute for Space Studies (KISS) awarded to S.L. We would like to
+thank the help of two anonymous reviewers, one of whom suggested Equation <a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:rearranging --></a> to
+us.
+<!--l. 1--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-70005"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+  <div class="thebibliography">
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xavouac2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Avouac,  J.-P.,  F.&#x00A0;Ayoub,  S.&#x00A0;Leprince,  O.&#x00A0;Konca,  and  D.&#x00A0;V.  Helmberger  (2006),
+  The  2005,  M<sub><span 
+class="cmmi-8">w</span></sub>  7.6  Kashmir  earthquake:  Sub-pixel  correlation  of  ASTER  images
+  and seismic waveforms analysis, <span 
+class="cmti-12">Earth and Planetary Science Letters</span>, <span 
+class="cmti-12">249</span>, 514&#8211;528,
+  doi:10.1016/j.epsl.2006.06.025.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbagnold1941"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bagnold, R.&#x00A0;A. (1941), <span 
+class="cmti-12">The physics of blown sand and desert dunes</span>, Methuen, London.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbozzano2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bozzano, G., H.&#x00A0;Kuhlmann, and B.&#x00A0;Alonso (2002), Storminess control over African
+  dust input to the Moroccan Atlantic margin (NW Africa) at the time of maxima boreal
+  summer insolation: a record of the last 220 kyr, <span 
+class="cmti-12">Palaeogeography, Palaeoclimatology,</span>
+  <span 
+class="cmti-12">Palaeoecology</span>, <span 
+class="cmti-12">183</span>(1-2), 155 &#8211; 168, doi:DOI: 10.1016/S0031-0182(01)00466-7.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbristow2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bristow,  C.&#x00A0;S.,  N.&#x00A0;Drake,  and  S.&#x00A0;Armitage  (2009),  Deflation  in  the  dustiest
+  place   on   Earth:   The   Bod&eacute;l&eacute;   Depression,   Chad,   <span 
+class="cmti-12">Geomorphology</span>,   <span 
+class="cmti-12">105</span>,   50&#8211;58,
+  doi:10.1016/j.geomorph.2007.12.014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbristow2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bristow,  C.&#x00A0;S.,  K.&#x00A0;A.  Hudson-Edwards,  and  A.&#x00A0;Chappell  (2010),  Fertilizing  the
+  Amazon and equatorial Atlantic with West African dust, <span 
+class="cmti-12">Geophysical Research Letters</span>,
+  <span 
+class="cmti-12">37</span>, L14,807, doi:10.1029/2010GL043486.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdrake2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Drake, N., and C.&#x00A0;Bristow (2006), Shorelines in the Sahara: geomorphological evidence
+  for an enhanced monsoon from palaeolake Megachad, <span 
+class="cmti-12">The Holocene</span>, <span 
+class="cmti-12">16</span>, 901&#8211;911.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xemanuel2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Emanuel, K. (2005), Increasing destructiveness of tropical cyclones over the past 30
+  years, <span 
+class="cmti-12">Nature</span>, <span 
+class="cmti-12">436</span>, 686&#8211;688, doi:10.1038/nature03906.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgillette1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gillette, D.&#x00A0;A. (1999), A qualitative geophysical explanation for hot spot dust emitting
+  source regions, <span 
+class="cmti-12">Contributions to atmospheric physics</span>, <span 
+class="cmti-12">72</span>, 67&#8211;77.
+  </p>
+<p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgitelman2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gitelman, A. I., J. S. Risbey, R. E. Kass, and R. D. Rosen (1997), Trends in
+the surface meridional temperature gradient<span 
+class="cmti-12">Geophys. Res. Lett.</span>, <span 
+class="cmti-12">, 24</span>,
+1243-1246, doi:10.1029/97GL01154.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgoudie2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Goudie,  A.&#x00A0;S.,  and  N.&#x00A0;J.  Middleton  (2001),  Saharan  dust  storms:  nature  and
+  consequences, <span 
+class="cmti-12">Earth Science Reviews</span>, <span 
+class="cmti-12">56</span>, 179&#8211;204, doi:10.1016/S0012-8252(01)00067-8.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xheld2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Held, I.&#x00A0;M., and B.&#x00A0;J. Soden (2006), Robust Responses of the Hydrological Cycle to
+  Global Warming, <span 
+class="cmti-12">Journal of Climate</span>, <span 
+class="cmti-12">19</span>, 5686, doi:10.1175/JCLI3990.1.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xholland2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Holland, M.&#x00A0;M., and C.&#x00A0;M. Bitz (2003), Polar amplification of climate change in
+  coupled models, <span 
+class="cmti-12">Climate Dynamics</span>, <span 
+class="cmti-12">21</span>, 221&#8211;232, doi:10.1007/s00382-003-0332-6.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkoren2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Koren,  I.,  Y.&#x00A0;J.  Kaufman,  R.&#x00A0;Washington,  M.&#x00A0;C.  Todd,  Y.&#x00A0;Rudich,  J.&#x00A0;Vanderlei
+  Martins, and D.&#x00A0;Rosenfeld (2006), The Bod&eacute;l&eacute; depression: a single spot in the Sahara
+  that provides most of the mineral dust to the Amazon forest, <span 
+class="cmti-12">Environmental Research</span>
+  <span 
+class="cmti-12">Letters</span>, <span 
+class="cmti-12">1</span>(1), 014,005&#8211;+, doi:10.1088/1748-9326/1/1/014005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xleprince2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Leprince,  S.,  S.&#x00A0;Barbot,  F.&#x00A0;Ayoub,  and  J.-P.  Avouac  (2007),  Automatic  and
+  Precise Orthorectification, Coregistration, and Subpixel Correlation of Satellite Images,
+  Application to Ground Deformation Measurements, <span 
+class="cmti-12">IEEE Transactions on Geoscience</span>
+  <span 
+class="cmti-12">and Remote Sensing</span>, <span 
+class="cmti-12">45</span>, 1529&#8211;1558, doi:10.1109/TGRS.2006.888937.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xleprince2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Leprince,  S.,  E.&#x00A0;Berthier,  F.&#x00A0;Ayoub,  C.&#x00A0;Delacourt,  and  J.&#x00A0;P.  Avouac  (2008),
+  Monitoring earth surface dynamics with optical imagery, <span 
+class="cmti-12">EOS, Transactions, American</span>
+  <span 
+class="cmti-12">Geophysical Union</span>, <span 
+class="cmti-12">89</span>, 1&#8211;2.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmiddleton1985"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Middleton, N.&#x00A0;J. (1985), Effect of drought on dust production in the Sahel, <span 
+class="cmti-12">Nature</span>,
+  <span 
+class="cmti-12">316</span>, 431&#8211;434, doi:10.1038/316431a0.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmukhopadhyay2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Mukhopadhyay, S., and P.&#x00A0;Kreycik (2008), Dust generation and drought patterns in
+  Africa from helium-4 in a modern Cape Verde coral, <span 
+class="cmti-12">Geophysical Research Letters</span>, <span 
+class="cmti-12">35</span>,
+  20,820, doi:10.1029/2008GL035722.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnecsoiu2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Necsoiu,  M.,  S.&#x00A0;Leprince,  D.&#x00A0;M.  Hooper,  C.&#x00A0;L.  Dinwiddie,  R.&#x00A0;N.  McGinnis,  and
+  G.&#x00A0;R. Walter (2009), Monitoring migration rates of an active subarctic dune field using
+  optical imagery, <span 
+class="cmti-12">Remote Sensing of Environment</span>, <span 
+class="cmti-12">113</span>, 2441&#8211;2447.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnicholson1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nicholson,                 S.&#x00A0;E.,                 C.&#x00A0;J.                 Tucker,                 and
+  M.&#x00A0;B. Ba (1998), Desertification, Drought, and Surface Vegetation: An Example from
+  the West African Sahel., <span 
+class="cmti-12">Bulletin of the American Meteorological Society</span>, <span 
+class="cmti-12">79</span>, 815&#8211;829,
+  doi:10.1175/1520-0477(1998)079<span 
+class="cmmi-12">&#x003C;</span>0815:DDASVA<span 
+class="cmmi-12">&#x003E;</span>2.0.CO;2.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xprospero2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Prospero,  J.&#x00A0;M.,  and  P.&#x00A0;J.  Lamb  (2003),  African  Droughts  and  Dust  Transport
+  to  the  Caribbean:  Climate  Change  Implications,  <span 
+class="cmti-12">Science</span>,  <span 
+class="cmti-12">302</span>(5647),  1024&#8211;1027,
+  doi:10.1126/science.1089915.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xruddiman1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ruddiman, W.&#x00A0;F. (1997), Tropical atlantic terrigenous fluxes since 25,000 yrs b.p.,
+  <span 
+class="cmti-12">Marine Geology</span>, <span 
+class="cmti-12">136</span>(3-4), 189 &#8211; 207, doi:DOI: 10.1016/S0025-3227(96)00069-2.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xschlesinger1990"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Schlesinger,  W.&#x00A0;H.,  J.&#x00A0;F.  Reynolds,  G.&#x00A0;L.  Cunningham,  L.&#x00A0;F.  Huenneke,  W.&#x00A0;M.
+  Jarrell, R.&#x00A0;A. Virginia, and W.&#x00A0;G. Whitford (1990), Biological Feedbacks in Global
+  Desertification, <span 
+class="cmti-12">Science</span>, <span 
+class="cmti-12">247</span>, 1043&#8211;1048, doi:10.1126/science.247.4946.1043.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshao2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Shao,  Y.  (2009),  <span 
+class="cmti-12">Physics  and  Modelling  of  Wind  Erosion</span>,  <span 
+class="cmti-12">Atmospheric  and</span>
+  <span 
+class="cmti-12">Oceanographic Sciences Library</span>, vol.&#x00A0;37, 2nd ed., 452 pp., Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshao1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Shao,   Y.,   M.&#x00A0;R.   Raupach,   and   P.&#x00A0;A.   Findlater   (1993),   Effect   of   saltation
+  bombardment on the entrainment of dust by wind, <span 
+class="cmti-12">Journal of Geophysical Research</span>,
+  <span 
+class="cmti-12">98</span>, 12,719&#8211;12,726, doi:10.1029/93JD00396.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtucker1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Tucker,  C.&#x00A0;J.,  H.&#x00A0;E.  Dregne,  and  W.&#x00A0;W.  Newcomb  (1991),  Expansion  and
+  Contraction  of  the  Sahara  Desert  from  1980  to  1990,  <span 
+class="cmti-12">Science</span>,  <span 
+class="cmti-12">253</span>,  299&#8211;301,
+  doi:10.1126/science.253.5017.299.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xungar1987"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ungar, J.&#x00A0;E., and P.&#x00A0;K. Haff (1987), Steady state saltation in air, <span 
+class="cmti-12">Sedimentology</span>, <span 
+class="cmti-12">34</span>,
+  289&#8211;299, doi:10.1111/j.1365-3091.1987.tb00778.x.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. (2011), Solitary wave behavior in sand dunes observed from space,
+  <span 
+class="cmti-12">Geophysical Research Letters</span>, <span 
+class="cmti-12">38</span>, L22402, doi:10.1029/2011GL049610.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2008b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., and N.&#x00A0;Drake (2008), Remotely sensed dune celerity and sand flux
+  measurements of the world&#8217;s fastest barchans (Bod&eacute;l&eacute;, Chad), <span 
+class="cmti-12">Geophysical Research</span>
+  <span 
+class="cmti-12">Letters</span>, <span 
+class="cmti-12">35</span>(L24404), doi:doi:10.1029/2008GL035921.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwarren2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Warren,  A.,  A.&#x00A0;Chappell,  M.&#x00A0;C.  Todd,  C.&#x00A0;Bristow,  N.&#x00A0;Drake,  S.&#x00A0;Engelstaedter,
+  V.&#x00A0;Martins, S.&#x00A0;M&#8217;bainayel, and R.&#x00A0;Washington (2007), Dust-raising in the dustiest
+  place on earth, <span 
+class="cmti-12">Geomorphology</span>, <span 
+class="cmti-12">92</span>, 25&#8211;37, doi:10.1016/j.geomorph.2007.02.007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwashington2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Washington, R., et&#x00A0;al. (2006), Links between topography, wind, deflation, lakes and
+  dust: The case of the Bod&eacute;l&eacute; Depression, Chad, <span 
+class="cmti-12">Geophysical Research Letters</span>, <span 
+class="cmti-12">33</span>, 9401,
+  doi:10.1029/2006GL025827.
+</p>
+  </div>
+</td></tr></table>    
+</body></html>

@@ -1,0 +1,222 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.5.22)  11 JUN 2012 17:04
+entering extended mode
+ %&-line parsing enabled.
+**\nonstopmode\input GRLpaper3.tex
+(./GRLpaper3.tex (/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/natbib/natbib.sty
+Package: natbib 2009/07/16 8.31 (PWD, AO)
+\bibhang=\skip43
+\bibsep=\skip44
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count87
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count88
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (./lineno.sty
+Package: lineno 2002/01/27 line numbers on paragraphs v3.08b
+\linenopenalty=\count89
+\output=\toks15
+\linenoprevgraf=\count90
+\linenumbersep=\dimen105
+\linenumberwidth=\dimen106
+\c@linenumber=\count91
+\c@pagewiselinenumber=\count92
+\c@linenumbermodulo=\count93
+\c@internallinenumber=\count94
+\c@internallinenumbers=\count95
+\quotelinenumbersep=\dimen107
+\bframerule=\dimen108
+\bframesep=\dimen109
+\bframebox=\box26
+)
+\c@lastnote=\count96
+
+! Illegal parameter number in definition of \@author.
+<to be read again> 
+                   p
+l.42 }
+      
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \@author.
+<to be read again> 
+                   .
+l.42 }
+      
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+(./GRLpaper3.aux)
+\openout1 = `GRLpaper3.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+ (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count97
+\scratchdimen=\dimen110
+\scratchbox=\box27
+\nofMPsegments=\count98
+\nofMParguments=\count99
+\everyMPshowfont=\toks16
+\MPscratchCnt=\count100
+\MPscratchDim=\dimen111
+\MPnumerator=\count101
+\everyMPtoPDFconversion=\toks17
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 50.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 50.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 50.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 50.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 50.
+
+! You can't use `macro parameter character #' in restricted horizontal mode.
+\@author ...-mail: \verb ##p.vermeesch@ucl.ac.uk##
+                                                  .} 
+l.50 \maketitle
+               
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+! LaTeX Error: \verb illegal in command argument.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.50 \maketitle
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+[7] (./GRLpaper3.bbl
+Underfull \hbox (badness 2027) in paragraph at lines 29--33
+[]\OT1/cmr/m/n/12 Bristow, C. S., N. Drake, and S. Ar-mitage (2009), De-fla-tio
+n in the dusti-est
+ []
+
+[8] [9]
+Underfull \hbox (badness 3068) in paragraph at lines 119--123
+\OT1/cmr/m/n/12 and Sur-face Veg-e-ta-tion: An Ex-am-ple from the West African 
+Sa-hel., \OT1/cmr/m/it/12 Bul-
+ []
+
+
+Underfull \hbox (badness 3240) in paragraph at lines 119--123
+\OT1/cmr/m/it/12 letin of the Amer-i-can Me-te-o-ro-log-i-cal So-ci-ety\OT1/cmr
+/m/n/12 , \OT1/cmr/m/it/12 79\OT1/cmr/m/n/12 , 815--829, doi:10.1175/1520-
+ []
+
+[10] [11]) [12]
+
+pdfTeX warning: pdflatex (file ./locationmap3-optimized.pdf): PDF inclusion: fo
+und PDF version <1.7>, but at most version <1.4> allowed
+<locationmap3-optimized.pdf, id=50, 1606.0pt x 973.6375pt>
+File: locationmap3-optimized.pdf Graphic file (type pdf)
+
+<use locationmap3-optimized.pdf>
+<05from06from08from09from10img_framed.png, id=52, 335.2525pt x 227.85126pt>
+File: 05from06from08from09from10img_framed.png Graphic file (type png)
+
+<use 05from06from08from09from10img_framed.png>
+
+pdfTeX warning: pdflatex (file ./dot-to-dot-detail-optimized.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.4> allowed
+<dot-to-dot-detail-optimized.pdf, id=54, 1251.92119pt x 882.03526pt>
+File: dot-to-dot-detail-optimized.pdf Graphic file (type pdf)
+
+<use dot-to-dot-detail-optimized.pdf>
+<timeseries8410c.pdf, id=56, 552.0625pt x 301.125pt>
+File: timeseries8410c.pdf Graphic file (type pdf)
+ <use timeseries8410c.pdf>
+[13
+
+ <./locationmap3-optimized.pdf>] [14 <./05from06from08from09from10img_framed.pn
+g>] [15 <./dot-to-dot-detail-optimized.pdf>] [16 <./timeseries8410c.pdf>]
+(./GRLpaper3.aux) ) 
+Here is how much of TeX's memory you used:
+ 1532 strings out of 495061
+ 20153 string characters out of 1182621
+ 74077 words of memory out of 3000000
+ 4742 multiletter control sequences out of 15000+50000
+ 9017 words of font info for 32 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 25i,8n,26p,805b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmb
+x12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
+sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on GRLpaper3.pdf (16 pages, 585444 bytes).
+PDF statistics:
+ 134 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+

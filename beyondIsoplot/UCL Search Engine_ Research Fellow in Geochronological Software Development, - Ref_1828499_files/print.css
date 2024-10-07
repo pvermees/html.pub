@@ -1,0 +1,29 @@
+/* THIS IS ONLY USED WHEN PRINTING */
+
+div#skip, div#header, div#leftmenu, div#footer2, div#key, div#left_menu_head, div#options, div#namediv, #options_bar, .help_link, div.submit_row, div#clear_all, div#footer_all {
+    display: none;
+}
+
+div#main {
+    margin-left: 0px;
+}
+
+div#print_title {
+    display: block;
+}
+
+h2.print_app {
+    border-bottom: solid 1px #000;
+    background-color: #fff;
+    color: #000;
+    padding-top: 2px 0px 2px 3px; 
+    display: block;  
+}
+
+
+.view_app_text { color: black; }
+.print_app_col { float: left; }
+.print_app_row {}
+
+
+

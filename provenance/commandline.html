@@ -1,0 +1,119 @@
+<html>
+<title>
+provenance: command line functionality
+</title>
+<script src="../run_prettify.js"></script>
+<script src="../lang-r.js"></script>
+<body>
+
+In addition to the query-based user interface, the full functionality
+of the <tt>provenance</tt> package can be accessed through the command
+line. This is the preferred option for automated analysis of multiple
+dataset, and the integration of <tt>provenance</tt> with other
+software packages such as <tt>compositions</tt> and
+<tt>robCompositions</tt>.  This page contains a number of very simple
+tutorials illustrating the most common command line functions of the
+<tt>provenance</tt> package. Full documentation of the public
+functions is provided in <a
+href="http://cran.r-project.org/web/packages/provenance/provenance.pdf">this</a>
+PDF document.
+
+<p></p>
+Load the input files into objects of class <tt>compositional</tt> and <tt>distributional</tt>:
+
+<pre class="prettyprint lang-r">
+DZ <- read.distributional("DZ.csv")
+DZ.with.err <- read.distributional("DZ.csv","DZerr.csv")
+HM <- read.counts("HM.csv")
+PT <- read.counts("PT.csv")
+PTHM <- read.counts("PTHM.csv")
+Major <- read.compositional("Major.csv")
+Trace <- read.compositional("Trace.csv")
+densities <- read.densities("densities.csv")
+endmembers <- read.compositional("endmembers.csv")
+</pre>
+
+Simple plotting functions for ordinal data (U-Pb ages):
+
+<pre class="prettyprint lang-r">
+# plot sample N1 as a Cumulative Age Distribution:
+plot(DZ,snames='N1',CAD=TRUE)
+# plot sample N1 as an adaptive Kernel Density Estimate
+dev.new(); plot(KDE(DZ$x$N1))
+# create KDEs for all age distributions:
+kdes <- KDEs(DZ,from=0,to=3000)
+# plot all the age distributions as KDEs:
+dev.new(); summaryplot(kdes,ncol=4)
+</pre>
+
+Plotting categorical data (petrography) on a QFL diagram:
+
+<pre class="prettyprint lang-r">
+# form ternary composition of quartz, feldspars and lithics:
+tern <- ternary(PT,'Q',c('KF','P'),c('Lm','Lv','Ls'))
+plot(tern,type="QFL.dickinson")
+</pre>
+
+Hydraulic sorting correction of the mineralogical composition 
+by restoring the Source Rock Density (SRD) to 2.71 g/cm<sup>3</sup>:
+
+<pre class="prettyprint lang-r">
+rescomp <- restore(PTHM,densities,2.71)
+# define a vector collecting the labels
+# of the transparent heavy minerals:
+HMcomp <- c("zr","tm","rt","sph","ap","ep","gt","st","amp","cpx","opx")
+# select and group three subcompositions by amalgamation
+amcomp <- amalgamate(rescomp,Plag="P",HM=HMcomp,Opq="opaques")
+# plot as a ternary diagram also showing the 
+# intermediate values of the SRD correction algorithm:
+plot(ternary(amcomp),showpath=TRUE)
+</pre>
+
+Assess the grain size distribution of different minerals in a state of settling equivalence:
+
+<pre class="prettyprint lang-r">
+# select the feldspar, pyroxene and opaque
+# minerals from the ophiolite end-member:
+FPO.ophiolite <- subset(endmembers,select="ophiolite",
+                        components=c('F','px','opaques'))
+# calculate the grain size distribution of 
+# the three components at 0.05&Phi; intervals:
+distribution <- minsorting(FPO.ophiolite,densities,phi=2,sigmaphi=1,
+                           medium="seawater",by=0.05)
+# plot the grain size distributions of the three minerals
+plot(distribution,cumulative=FALSE)
+</pre>
+
+Multidimensional scaling:
+
+<pre class="prettyprint lang-r">
+# we will colour the coastal samples in red and the other samples in yellow:
+coast <- c('N1','N2','N3','N10','N11','N12','T8','T13')
+snames <- names(DZ)
+bgcol <- rep('yellow',length(snames))
+bgcol[which(snames %in% coast)] <- 'red'
+# plot the MDS configuration, adding nearest neighbour lines
+plot(MDS(DZ),pch=21,bg=bgcol,cex=5,nnlines=TRUE)
+</pre>
+
+The following code demonstrates the equivalence of classical MDS using
+the Euclidean Aitchison distance to Principal Component Analysis:
+
+<pre class="prettyprint lang-r">
+plot(MDS(Major,classical=TRUE)) # classical MDS of the major elements
+dev.new(); plot(PCA(Major))     # Principal Component Analysis
+</pre>
+
+Integrating all five datasets:
+
+<pre class="prettyprint lang-r">
+# jointly plot all the data:
+summaryplot(kdes,HM,PT,Major,Trace,ncol=2)
+# perform Generalised Procrustes Analysis:
+dev.new(); plot(procrustes(DZ,HM,PT,Major,Trace))
+# 3-way MDS:
+dev.new(); plot(indscal(DZ,HM,PT,Trace,Major))
+</pre>
+
+</body>
+</html>

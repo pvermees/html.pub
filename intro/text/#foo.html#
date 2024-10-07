@@ -1,0 +1,27 @@
+Does the mineral show (field of view is 2.5mm):
+<p></p>
+<form>
+Colour?
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Are you sure?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'This mineral is colourless';" />No
+<p></p>
+Pleochroism?
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'Does the mineral change colour?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'This mineral is not pleochroic.';" />No
+<p></p>
+</form>
+
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'granitequartzppl.jpg\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'granitequartzxpl.jpg\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+
+<div id="colour"></div><br>
+<div id="pleochroism"></div><br>

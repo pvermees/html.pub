@@ -1,0 +1,64 @@
+<a href="summaryplot.png"><img src="summaryplot.png" class="screenshot centered"></a>
+
+<tt>provenance</tt> is a software package in the <tt>R</tt>
+programming environment, which aims to facilitate the visualisation
+and interpretation of `Big Data' in the context of sedimentary
+provenance analysis. After installing <tt>R</tt> from <a
+href="http://r-project.org">http://r-project.org</a>,
+<tt>provenance</tt> can be installed by typing
+
+<pre class="prettyprint lang-r">
+install.packages('provenance')
+</pre>
+
+Once installed, the package can be loaded by typing
+
+<pre class="prettyprint lang-r">
+library(provenance)
+</pre>
+
+There are TWO WAYS to run <tt>provenance</tt>:
+
+<ol>
+<li>The package comes with a query-based user interface which does not
+require any knowledge of the <tt>R</tt> programming language.
+<li>Experienced users can access all the functionality from the
+command line using the <tt>provenance</tt> API.
+</ol>
+
+Further details about these two modes are provided in two sets of
+tutorials, which can be accessed from the tabs above, and in the <a
+href="http://ucl.ac.uk/~ucfbpve/papers/VermeeschSedGeol2016">Sedimentary
+Geology</a> paper.  The tutorials use an example dataset from Namibia,
+comprising the following files:
+
+<p></p>
+<center>
+<table style="background-color: cyan; border-width: 0;">
+<tbody>
+<tr><td align="center">Downloads:</td></tr>
+<tr><td>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/DZ.csv">DZ.csv</a>&nbsp;- detrital zircon ages<br />
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/DZerr.csv">DZerr.csv</a>&nbsp;- standard errors of the detrital zircon ages<br/>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/HM.csv">HM.csv</a>&nbsp;- heavy mineral counts<br/>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/PT.csv">PT.csv</a>&nbsp;- bulk petrography<br/>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/PTHM.csv">PTHM.csv</a>&nbsp;- combined petrography and heavy minerals<br/>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/Major.csv">Major.csv</a>&nbsp;- major element composition<br/>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/Trace.csv">Trace.csv</a>&nbsp;- trace element composition<br/>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/densities.csv">densities.csv</a>
+&nbsp;- densities of common minerals and rock fragments<br/>
+-&nbsp;<a href="http://ucl.ac.uk/~ucfbpve/software/endmembers.csv">endmembers.csv</a>
+&nbsp;- mineralogy of compositional end members<br/>
+</td>
+</tr>
+</tbody></table>
+</center>
+
+<p></p>
+
+<div class="boxed">
+<a href="http://ucl.ac.uk/~ucfbpve/papers/VermeeschSedGeol2016">Citeable reference</a>:<br>
+Vermeesch, P., Resentini, A. and Garzanti, E., 2016.
+An <tt>R</tt> package for statistical provenance analysis.
+Sedimentary Geology, doi:10.1016/j.sedgeo.2016.01.009.
+</div>

@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="mystyle.css" />
+
+<SCRIPT SRC= "preload.js" TYPE="text/javascript" LANGUAGE="JavaScript1.1"></SCRIPT>
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+
+var pictures = new Array("intro.gif","s2s.gif","s3s.gif","s7s.gif","s8s.gif","s12s.gif",
+"o1s.gif","o2s.gif","o3s.gif","o10s.gif","o11s.gif");
+
+</SCRIPT>
+
+<TITLE>
+Barchan dune collisions in the Bodele Depression (Chad)
+</TITLE> 
+</HEAD> 
+<BODY BGCOLOR="white" ALIGN="center"> 
+
+<TABLE ALIGN="center" BORDER=0>
+
+<TR HEIGHT=125><TD CLASS="full" COLSPAN=3>
+<IMG ID="a" CLASS="thumbnail" SRC="s2-thumb.gif">
+<IMG ID="b" CLASS="thumbnail" SRC="s3-thumb.gif">
+<IMG ID="c" CLASS="thumbnail" SRC="s7-thumb.gif">
+<IMG ID="d" CLASS="thumbnail" SRC="s8-thumb.gif">
+<IMG ID="e" CLASS="thumbnail" SRC="s12-thumb.gif">
+</TD></TR>
+
+<TR HEIGHT=400><TD CLASS="full" COLSPAN=3>
+<font size="4">Please be patient while the<br>
+               animations are preloaded ...</font><p>
+<script language="JavaScript1.1">
+if (document.images) {
+    loadLocationAfterPreload("lowres.html");
+    loadYourImages(pictures);
+    var preloadBar = ''
+    for (i = 0; i < yourImages.length-1; i++) {
+        preloadBar += '<img src="' + dots[0].src + '" width="' + coverage + '" \
+			    height="' + heightOfPreloadBar + '" name="img' + i + '" align="absmiddle">'
+    }
+    preloadBar += '<img src="' + dots[0].src + '" width="' + (leftOverWidth+coverage) + '" \
+			height="' + heightOfPreloadBar + '" name="img' + (yourImages.length-1) + '" align="absmiddle">'
+    document.write(preloadBar)
+}
+document.write('<p><small><a href="lowres.html">Skip preload</a></small></p>')
+//document.write('<p><small><a href="javascript:window.location=locationAfterPreload">Skip preload</a></small></p>')
+</script>
+</TD></TR>
+
+<TR><TD CLASS="full" COLSPAN=3>
+<IMG ID="f" CLASS="thumbnail" SRC="o1-thumb.gif">
+<IMG ID="g" CLASS="thumbnail" SRC="o2-thumb.gif">
+<IMG ID="h" CLASS="thumbnail" SRC="o3-thumb.gif">
+<IMG ID="i" CLASS="thumbnail" SRC="o10-thumb.gif">
+<IMG ID="j" CLASS="thumbnail" SRC="o11-thumb.gif">
+</TD></TR>
+
+<TR><TD ID="latlon" CLASS="full" COLSPAN=3></TD></TR>
+
+</TABLE>
+
+<script language="JavaScript1.1">
+loadImages()
+</script>
+
+</BODY> 
+</HTML>

@@ -1,0 +1,603 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2016.8.18)  24 FEB 2017 17:44
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx"\HCode\def\HCo
+de"##1"{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.
+{\g@addto@macro\@documentclasshook{\RequirePackage[#1,html]{tex4ht}}\let\HCode\
+documentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname
+ tex4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{
+\HCode}{\documentstyle[tex4ht]}}}\makeatother\HCode .a.b.c.\input  LAFT_v2.tex
+(./LAFT_v2.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/generic/tex4ht/tex4ht.sty
+version 2008-10-27-17:23
+Package: tex4ht 
+--------------------------------------
+--- Note --- for _ at preamble, use the command line option `early_'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ at preamble, use the command line option `early^'
+--------------------------------------
+\tmp:toks=\toks14
+)
+(/usr/share/texmf/tex/generic/tex4ht/usepackage.4ht
+version 2009-05-21-09:32
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 95.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip43
+\bibsep=\skip44
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count87
+)
+(/usr/share/texlive/texmf-dist/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip45
+)
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count88
+\output=\toks16
+\linenoprevgraf=\count89
+\linenumbersep=\dimen105
+\linenumberwidth=\dimen106
+\c@linenumber=\count90
+\c@pagewiselinenumber=\count91
+\c@LN@truepage=\count92
+\c@internallinenumber=\count93
+\c@internallinenumbers=\count94
+\quotelinenumbersep=\dimen107
+\bframerule=\dimen108
+\bframesep=\dimen109
+\bframebox=\box26
+LaTeX Info: Redefining \\ on input line 3056.
+)
+(/usr/share/texmf/tex/generic/tex4ht/tex4ht.4ht
+version 2009-01-07-07:11
+--------------------------------------
+--- Note --- for additional information, use the command line option `info'
+--------------------------------------
+
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (/usr/share/texmf/tex/generic/tex4ht/tex4ht.sty
+version 2008-10-27-17:23
+
+--- needs --- tex4ht LAFT_v2 ---
+\tmp:cnt=\count95
+\openout15 = `LAFT_v2.tmp'.
+
+(./LAFT_v2.tmp)
+\tmp:dim=\skip46
+--------------------------------------
+--- Note --- for XML code, use the command line option `xml' or `xhtml'
+--------------------------------------
+ (./LAFT_v2.xref)
+\:refout=\write3
+\openout3 = `LAFT_v2.xref'.
+
+ (/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- to remove the <?xml version=...?> processing instruction use the c
+ommand line option `no-VERSION'
+--------------------------------------
+--------------------------------------
+--- Note --- to remove the DOCTYPE declaration use the command line option `no-
+DOCTYPE'
+--------------------------------------
+) (/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+--------------------------------------
+--- Note --- for marking of the base font, use the command line option `fonts+'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for non active _, use the command line option `no_'
+--------------------------------------
+--------------------------------------
+--- Note --- for _ of catcode 13, use the command line option `_13'
+--------------------------------------
+--------------------------------------
+--- Note --- for non active ^, use the command line option `no^'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ of catcode 13, use the command line option `^13'
+--------------------------------------
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for alternative charset, use the command line option `charset=...'
+
+--------------------------------------
+--------------------------------------
+--- Note --- to ignore CSS font decoration, use the `NoFonts' command line opti
+on
+--------------------------------------
+--------------------------------------
+--- Note --- for jpg bitmaps of pictures, use the `jpg' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for gif bitmaps of pictures, use the `gif' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for content and toc in 2 frames, use the command line option `fram
+es'
+--------------------------------------
+--------------------------------------
+--- Note --- for content, toc, and footnotes in 3 frames, use the command line 
+option `frames-fn'
+--------------------------------------
+--------------------------------------
+--- Note --- for file extension name xht, use the command line option `xht'
+--------------------------------------
+TeX4ht package options: html
+--------------------------------------
+--- Note --- to ignore CSS code, use the command line option `-css
+--------------------------------------
+--------------------------------------
+--- Note --- for inline CSS code, use the command line option `css-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for pop ups on mouse over, use the command line option `mouseover'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for addressing images in a subdirectory, use the command line opti
+on `imgdir:.../'
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+\:tokwrite=\toks17
+\:tokpage=\toks18
+--------------------------------------
+--- Note --- for back links to toc, use the command line option `sections+'
+--------------------------------------
+--------------------------------------
+--- Note --- for linear crosslinks of pages, use the command line option `next'
+
+--------------------------------------
+\openout15 = `LAFT_v2.4ct'.
+
+\:tocout=\write4
+\openout4 = `LAFT_v2.4tc'.
+
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/latex.4ht
+version 2009-05-21-09:32
+--------------------------------------
+--- Note --- for links into captions, instead of float heads, use the command l
+ine option `refcaption'
+--------------------------------------
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- For mini tocs immediately aftter the header use the command line o
+ption `minitoc<'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements with valued data, use the command lin
+e option `enumerate+'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements li's with value attributes, use the c
+ommand line option `enumerate-'
+--------------------------------------
+--------------------------------------
+--- Note --- for CSS2 code, use the command line option `css2'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial tabular, use the command line option `pic-tabular'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap fbox'es, use the command line option `pic-fbox'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap framebox'es, use the command line option `pic-framebox'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for inline footnotes use command line option `fn-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for tracing of latex font commands, use the command line option `f
+onts'
+--------------------------------------
+--------------------------------------
+--- Note --- for width specifications of tabular p entries, use the `p-width' c
+ommand line option or a configuration similar to \Configure{HColWidth}{\HCode{ 
+style="width:\HColWidth"}}
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for pictorial eqnarray, use the command line option `pic-eqnarray'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ environments, use the command line option `pic
+-m' (not recommended!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ and $$...$$ environments with latex alt, use t
+he command line option `pic-m+' (not safe!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+))
+(/usr/share/texmf/tex/generic/tex4ht/fontmath.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/article.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for automatic sectioning pagination, use the command line option `
+1', `2', `3', '4', '5', '6', or '7'
+--------------------------------------
+--------------------------------------
+--- Note --- for files named derived from section titles, use the command line 
+option `sec-filename'
+--------------------------------------
+--------------------------------------
+--- Note --- for i-columns index, use the command line option `index=i' (e.g., 
+index=2)
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/graphicx.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/graphics.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- if included graphics are of degraded quality, try the command line
+ options `graphics-num' or `graphics-'. The `num' should provide the density of
+ pixels in the bitmaps (e.g., 110). 
+--------------------------------------
+--------------------------------------
+--- Note --- for key dimensions try the option `Gin-dim'; for key dimensions wh
+en bounding box is unavailable try `Gin-dim+'; neither is recommended
+--------------------------------------
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/dvips.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/natbib.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/lineno.4ht
+version 2009-05-21-09:32
+
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+
+l.36925 --- TeX4ht warning --- The line numbers are commented out. To reintrodu
+ce them, use the \Configure{lineno}{...}{...} command ---
+) (/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+))
+(/usr/share/texmf/tex/generic/tex4ht/html4.4ht
+version 2009-05-18-23:01
+)
+(/usr/share/texmf/tex/generic/tex4ht/html4-math.4ht
+version 2009-05-18-23:01
+)) (./LAFT_v2.aux)
+\openout1 = `LAFT_v2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+--- file LAFT_v2.css ---
+ [1
+
+]
+[2]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 57.
+ [3]
+l. 67 Writing LAFT_v2.idv[1] (LAFT_v20x.png)
+l. 104 Writing LAFT_v2.idv[2] (LAFT_v21x.png)
+ [4]
+--- file LAFT_v22.html ---
+l. 120 Writing LAFT_v2.idv[3] (LAFT_v22x.png)
+l. 124 Writing LAFT_v2.idv[4] (LAFT_v23x.png)
+l. 135 Writing LAFT_v2.idv[5] (LAFT_v24x.png)
+l. 137 Writing LAFT_v2.idv[6] (LAFT_v25x.png)
+l. 143 Writing LAFT_v2.idv[7] (LAFT_v26x.png)
+ [5
+
+] [6]
+l. 218 Writing LAFT_v2.idv[8] (LAFT_v27x.png)
+l. 242 Writing LAFT_v2.idv[9] (LAFT_v28x.png)
+l. 261 Writing LAFT_v2.idv[10] (LAFT_v29x.png)
+ [7]
+l. 278 Writing LAFT_v2.idv[11] (LAFT_v210x.png)
+l. 285 Writing LAFT_v2.idv[12] (LAFT_v211x.png)
+l. 290 Writing LAFT_v2.idv[13] (LAFT_v212x.png)
+l. 294 Writing LAFT_v2.idv[14] (LAFT_v213x.png)
+l. 307 Writing LAFT_v2.idv[15] (LAFT_v214x.png)
+ [8] [9] [10
+
+]
+l. 333 Writing LAFT_v2.idv[16] (LAFT_v215x.png)
+
+l.333 --- TeX4ht warning --- Cannot determine size of graphic in Ksienzyk.pdf (
+no BoundingBox) ---
+File: Ksienzyk.pdf Graphic file (type eps)
+<Ksienzyk.pdf> [11
+
+]
+l. 368 Writing LAFT_v2.idv[17] (LAFT_v216x.png)
+l. 371 Writing LAFT_v2.idv[18] (LAFT_v217x.png)
+l. 388 Writing LAFT_v2.idv[19] (LAFT_v218x.png)
+ [12
+
+]
+l. 395 Writing LAFT_v2.idv[20] (LAFT_v219x.png)
+l. 406 Writing LAFT_v2.idv[21] (LAFT_v220x.png)
+l. 418 Writing LAFT_v2.idv[22] (LAFT_v221x.png)
+l. 419 Writing LAFT_v2.idv[23] (LAFT_v222x.png)
+l. 428 Writing LAFT_v2.idv[24] (LAFT_v223x.png)
+ [13]
+l. 437 Writing LAFT_v2.idv[25] (LAFT_v224x.png)
+l. 440 Writing LAFT_v2.idv[26] (LAFT_v225x.png)
+l. 440 Writing LAFT_v2.idv[27] (LAFT_v226x.png)
+ [14] [15
+
+]
+l. 445 Writing LAFT_v2.idv[28] (LAFT_v227x.png)
+
+l.445 --- TeX4ht warning --- Cannot determine size of graphic in spots.pdf (no 
+BoundingBox) ---
+File: spots.pdf Graphic file (type eps)
+<spots.pdf> [16
+
+]
+l. 482 Writing LAFT_v2.idv[29] (LAFT_v228x.png)
+l. 489 Writing LAFT_v2.idv[30] (LAFT_v229x.png)
+l. 494 Writing LAFT_v2.idv[31] (LAFT_v230x.png)
+l. 497 Writing LAFT_v2.idv[32] (LAFT_v231x.png)
+ [17
+
+]
+l. 505 Writing LAFT_v2.idv[33] (LAFT_v232x.png)
+l. 515 Writing LAFT_v2.idv[34] (LAFT_v233x.png)
+l. 522 Writing LAFT_v2.idv[35] (LAFT_v234x.png)
+ [18]
+l. 547 Writing LAFT_v2.idv[36] (LAFT_v235x.png)
+l. 556 Writing LAFT_v2.idv[37] (LAFT_v236x.png)
+l. 569 Writing LAFT_v2.idv[38] (LAFT_v237x.png)
+ [19]
+l. 576 Writing LAFT_v2.idv[39] (LAFT_v238x.png)
+l. 581 Writing LAFT_v2.idv[40] (LAFT_v239x.png)
+l. 584 Writing LAFT_v2.idv[41] (LAFT_v240x.png)
+l. 598 Writing LAFT_v2.idv[42] (LAFT_v241x.png)
+ [20]
+l. 632 Writing LAFT_v2.idv[43] (LAFT_v242x.png)
+l. 639 Writing LAFT_v2.idv[44] (LAFT_v243x.png)
+l. 639 Writing LAFT_v2.idv[45] (LAFT_v244x.png)
+l. 640 Writing LAFT_v2.idv[46] (LAFT_v245x.png)
+l. 640 Writing LAFT_v2.idv[47] (LAFT_v246x.png)
+l. 642 Writing LAFT_v2.idv[48] (LAFT_v247x.png)
+l. 655 Writing LAFT_v2.idv[49] (LAFT_v248x.png)
+ [21] [22] [23] [24] [25] [26] [27]
+[28]
+--- file LAFT_v23.html ---
+ [29
+
+] [30] [31
+
+]
+l. 826 Writing LAFT_v2.idv[50] (LAFT_v249x.png)
+
+l.826 --- TeX4ht warning --- Cannot determine size of graphic in radialFCT.pdf 
+(no BoundingBox) ---
+File: radialFCT.pdf Graphic file (type eps)
+<radialFCT.pdf>
+l. 827 Writing LAFT_v2.idv[51] (LAFT_v250x.png)
+
+l.827 --- TeX4ht warning --- Cannot determine size of graphic in radialDURDOM.p
+df (no BoundingBox) ---
+File: radialDURDOM.pdf Graphic file (type eps)
+<radialDURDOM.pdf> [32
+
+] [33
+
+] [34
+
+]
+! Argument of \new:mfont has an extra }.
+<inserted text> 
+                \par 
+l.873   respective standard errors.}
+                                    
+? 
+Runaway argument?
+! Paragraph ended before \new:mfont was complete.
+<to be read again> 
+                   \par 
+l.873   respective standard errors.}
+                                    
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.873   respective standard errors.}
+                                    
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.873   respective standard errors.}
+                                    
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.873   respective standard errors.}
+                                    
+? 
+! Extra }, or forgotten $.
+\@makecaption ...\cap:ref {#1}\cptB: }{\cptC: {#2}
+                                                  \cptD: }
+l.873   respective standard errors.}
+                                    
+? 
+! Extra }, or forgotten $.
+\@makecaption ... {#1}\cptB: }{\cptC: {#2}\cptD: }
+                                                  
+l.873   respective standard errors.}
+                                    
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.873   respective standard errors.}
+                                    
+? 
+[35
+
+] [36
+
+] [37
+
+] [38
+
+] [39
+
+] [40
+
+] [41
+
+] [42
+
+] [43
+
+] [44] [45]
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+ [46] (./LAFT_v2.aux) ) 
+Here is how much of TeX's memory you used:
+ 4943 strings out of 493030
+ 57121 string characters out of 6136260
+ 262552 words of memory out of 5000000
+ 8430 multiletter control sequences out of 15000+600000
+ 8568 words of font info for 31 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 28i,9n,26p,1520b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on LAFT_v2.dvi (46 pages, 213760 bytes).

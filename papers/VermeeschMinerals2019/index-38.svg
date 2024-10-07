@@ -1,0 +1,42 @@
+ <div class="verbatim" id="verbatim-39">
+<span 
+class="cmtt-10x-x-109">library(provenance)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;tell</span><span 
+class="cmtt-10x-x-109">&#x00A0;R</span><span 
+class="cmtt-10x-x-109">&#x00A0;that</span><span 
+class="cmtt-10x-x-109">&#x00A0;Major.csv</span><span 
+class="cmtt-10x-x-109">&#x00A0;contains</span><span 
+class="cmtt-10x-x-109">&#x00A0;compositional</span><span 
+class="cmtt-10x-x-109">&#x00A0;data:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">Major.comp</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.compositional('Major.csv')</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;perform</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;principal</span><span 
+class="cmtt-10x-x-109">&#x00A0;component</span><span 
+class="cmtt-10x-x-109">&#x00A0;analysis:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">pc.comp</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;PCA(Major.comp)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">#</span><span 
+class="cmtt-10x-x-109">&#x00A0;create</span><span 
+class="cmtt-10x-x-109">&#x00A0;the</span><span 
+class="cmtt-10x-x-109">&#x00A0;biplot:</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">plot(pc.comp)</span>
+</div>
+<!--l. 1367--><p class="nopar" >                                                                               

@@ -1,0 +1,74 @@
+please answer the following questions: <br>
+(field of view = 2.5mm)
+<p></p>
+<form>
+Colour?<br>
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Are you sure?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'This mineral is colourless.';" />No
+</form>
+<form>
+Pleochroism?<br>
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'Does the mineral change colour?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'This mineral is not pleochroic.';" />No
+</form>
+<form>
+Shape?<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are all the crystal faces visible?';" />Euhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are some crystal faces visible?';" />Subhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'No crystal faces are visible.';" />Anhedral
+</form>
+<form>
+Cleavage?<br>
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Does the mineral preferentially break along certain planes?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'There is no visible cleavage';" />No
+</form>
+<form>
+Relief?<br>
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'Does the mineral appear to \'stand out\' from its surroundings?';" />High
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'This mineral has very low relief.';" />Low
+</form>
+<form>
+Birefringence?<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Is the mineral dark at all angles?';" />Isotropic
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'This mineral has first order grey birefringence colours.';" />First<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral feature bright colours?';" />Second
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral show high order pastel colours?';" />Third order
+</form>
+<form>
+Twinning?<br>
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'Are you sure?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'This mineral is not twinned but is made up of a few separate crystals. This is a polycrystalline crystal.';" />No
+</form>
+
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'granitequartzppl.jpg\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'granitequartzxpl.jpg\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+
+<div id="colour"></div>
+<div id="pleochroism"></div>
+<div id="habit"></div>
+<div id="cleavage"></div>
+<div id="relief"></div>
+<div id="birefringence"></div>
+<div id="twinning"></div>

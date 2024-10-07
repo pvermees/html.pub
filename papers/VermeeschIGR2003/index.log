@@ -1,0 +1,498 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2011.4.5)  7 NOV 2012 12:13
+entering extended mode
+ %&-line parsing enabled.
+**index
+(./index.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip43
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
+Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
+
+Package: `setspace' 6.7 <2000/12/01>
+) (./index.aux)
+\openout1 = `index.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 18.
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--51
+
+ []
+
+
+! LaTeX Error: Cannot determine size of graphic in chinazones.jpg (no BoundingB
+ox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.53 ...raphics[width=1\textwidth]{chinazones.jpg}
+                                                  
+? 
+File: chinazones.jpg Graphic file (type eps)
+<chinazones.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 59--74
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--89
+
+ []
+
+[1
+
+] [2] [3]
+
+! LaTeX Error: Cannot determine size of graphic in chinaslossSmallMagmatic_n=1.
+jpg (no BoundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.93    {chinaslossSmallMagmatic_n=1.jpg}}
+                                          
+? 
+File: chinaslossSmallMagmatic_n=1.jpg Graphic file (type eps)
+<chinaslossSmallMagmatic_n=1.jpg>
+
+LaTeX Warning: Float too large for page by 154.6055pt on input line 105.
+
+[4]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 119.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 119.
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--131
+
+ []
+
+
+! LaTeX Error: Cannot determine size of graphic in slossmethod.jpg (no Bounding
+Box).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.134 ...ics[width=0.6\textwidth]{slossmethod.jpg}
+                                                  
+? 
+File: slossmethod.jpg Graphic file (type eps)
+<slossmethod.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 145--168
+
+ []
+
+[5
+
+
+]
+
+! LaTeX Error: Cannot determine size of graphic in problems2c.jpg (no BoundingB
+ox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.171 ...hics[width=0.6\textwidth]{problems2c.jpg}
+                                                  
+? 
+File: problems2c.jpg Graphic file (type eps)
+<problems2c.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 193--199
+
+ []
+
+[6]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 201.
+
+ (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 201.
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--219
+
+ []
+
+
+! LaTeX Error: Cannot determine size of graphic in problems1.jpg (no BoundingBo
+x).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.234 ...raphics[width=1\textwidth]{problems1.jpg}
+                                                  
+? 
+File: problems1.jpg Graphic file (type eps)
+<problems1.jpg>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+! LaTeX Error: Cannot determine size of graphic in chinazones2.jpg (no Bounding
+Box).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.273 ...phics[width=1\textwidth]{chinazones2.jpg}
+                                                  
+? 
+File: chinazones2.jpg Graphic file (type eps)
+<chinazones2.jpg> [7]
+
+! LaTeX Error: Cannot determine size of graphic in northeasttris.jpg (no Boundi
+ngBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.325 ...s[width=0.8\textwidth]{northeasttris.jpg}
+                                                  
+? 
+File: northeasttris.jpg Graphic file (type eps)
+<northeasttris.jpg>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+! LaTeX Error: Cannot determine size of graphic in northwesttris.jpg (no Boundi
+ngBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.394 ...s[width=0.8\textwidth]{northwesttris.jpg}
+                                                  
+? 
+File: northwesttris.jpg Graphic file (type eps)
+<northwesttris.jpg>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 439--461
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--502
+
+ []
+
+[9]
+
+! LaTeX Error: Cannot determine size of graphic in centraltris.jpg (no Bounding
+Box).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.543 ...ics[width=0.8\textwidth]{centraltris.jpg}
+                                                  
+? 
+File: centraltris.jpg Graphic file (type eps)
+<centraltris.jpg>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10]
+
+! LaTeX Error: Cannot determine size of graphic in southwestbisb.jpg (no Boundi
+ngBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.613 ...s[width=0.8\textwidth]{southwestbisb.jpg}
+                                                  
+? 
+File: southwestbisb.jpg Graphic file (type eps)
+<southwestbisb.jpg>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 631--644
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 645--661
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 679--687
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--693
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 694--701
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 702--706
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--712
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 713--719
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 720--724
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 725--728
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 735--738
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 739--743
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 744--747
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 748--751
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 752--756
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 757--760
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 761--764
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 765--769
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 770--774
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 775--778
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 779--782
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 783--785
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 786--789
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 790--794
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 795--798
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 799--802
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 803--806
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 807--810
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 811--815
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 816--820
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--824
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--827
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--832
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 833--836
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 837--841
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 842--846
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 847--851
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 852--855
+
+ []
+
+[15] [16] [17] [18] [19] [20] [21] (./index.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 679 strings out of 495062
+ 8569 string characters out of 1182645
+ 63958 words of memory out of 3000000
+ 3885 multiletter control sequences out of 15000+50000
+ 8848 words of font info for 31 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 25i,6n,19p,1678b,292s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on index.dvi (21 pages, 56768 bytes).

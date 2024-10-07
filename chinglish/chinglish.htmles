@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>The Chinglish Page</TITLE>
+
+<script language="JavaScript">
+
+var photoarray = new
+Array("razor.jpg","vitellus.jpg","hostel.jpg","adidds.jpg",
+"jim.jpg","jim2.jpg","happytintin.jpg","goods1.jpg","goods2.jpg");
+var colors = new Array('yellow','green','blue','red','black');
+
+function changephoto()
+{document.photo.src=photoarray[document.main.description.selectedIndex];
+};
+
+function changebgcolor()
+{document.bgColor=colors[Math.round(Math.random() * 5)];
+};
+
+changebgcolor();
+</script>
+
+</HEAD>
+
+<BODY bgcolor="olive">
+
+<center>
+<font face="Verdana, Arial, Helvetica, sans-serif" color="white" size="3">
+<h1>Chinglish!</font><h1>
+<font face="Verdana, Arial, Helvetica, sans-serif" color="white" size="1">
+(for some reason, this page only works properly with IE)
+
+<form name=main>
+<select name=description onchange="changephoto();changebgcolor();">
+<option selected> Attempt comprehend your sefl
+<option>Flavorful flashiness candy
+<option>Put the bed
+<option>Copyrightt
+<option>Sloppily English = Chinglish
+<option>Personal effects
+<option>Happy Titn
+<option>Make Sures
+<option>Fuck the price
+</select>
+</form>
+
+
+<img name=photo src="razor.jpg">
+</center>
+
+
+</body>
+</HTML>

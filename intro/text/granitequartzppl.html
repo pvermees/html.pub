@@ -1,0 +1,46 @@
+Answer the following questions:<br> 
+(field of view is 2.5mm)
+<p></p>
+<form>
+Colour?<br>
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Are you sure?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'This mineral is colourless.';" />No
+</form>
+<form>
+Pleochroism?<br>
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'Does the mineral change colour?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'This mineral is not pleochroic.';" />No
+</form>
+<form>
+Shape?<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are all the crystal faces visible?';" />Euhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are some crystal faces visible?';" />Subhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'No crystal faces are visible.';" />Anhedral
+</form>
+<form>
+Cleavage?<br>
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Does the mineral preferentially break along certain planes?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'There is no visible cleavage';" />No
+</form>
+<form>
+Relief?<br>
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'Does the mineral appear to \'stand out\' from its surroundings?';" />High
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'This mineral has very low relief.';" />Low
+</form>
+
+<div id="colour"></div>
+<div id="pleochroism"></div>
+<div id="habit"></div>
+<div id="cleavage"></div>
+<div id="relief"></div>

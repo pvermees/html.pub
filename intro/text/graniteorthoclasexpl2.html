@@ -1,0 +1,50 @@
+please answer the following questions: <br>
+(field of view = 2.5mm)
+<p></p>
+<form>
+Shape?<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are all the crystal faces visible?';" />Euhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Are some crystal faces visible?';" />Subhedral
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'No crystal faces are visible.';" />Anhedral
+</form>
+<form>
+Cleavage?<br>
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Does the mineral preferentially break along certain planes?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'There is no visible cleavage';" />No
+</form>
+<form>
+Birefringence?<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Is the mineral dark at all angles?';" />Isotropic
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'This mineral has first order grey birefringence colours.';" />First<br>
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral feature bright colours?';" />Second
+<input type="radio" name="button" onclick="document.getElementById('birefringence').innerHTML=
+'Does this mineral show high order pastel colours?';" />Third order
+</form>
+<form>
+Twinning?<br>
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'Are you sure?';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('twinning').innerHTML=
+'This mineral is not twinned but does show perthitic texture. This occurs as the Na-rich phase exsolves out of a K-rich phase due to a change in temperature conditions. This is called a perthite or perthitic texture.';" />No
+</form>
+<form>
+Extinction angle?<br>
+<input type="radio" name="button" onclick="document.getElementById('angle').innerHTML=
+'Difficult to see from this example but judge against the long axis';" />Parallel
+<input type="radio" name="button" onclick="document.getElementById('angle').innerHTML=
+'This mineral has an inclined extinction.';" />No
+</form>
+
+<div id="habit"></div>
+<div id="cleavage"></div>
+<div id="birefringence"></div>
+<div id="twinning"></div>
+<div id="angle"></div>

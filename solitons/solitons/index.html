@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../mystyle.css" />
+
+<SCRIPT SRC= "../preload.js" TYPE="text/javascript" LANGUAGE="JavaScript1.1"></SCRIPT>
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+
+var pictures = new Array("s-intro.gif","s-1.gif","s-2.gif","s-3-1.gif","s-3-2.gif",
+"s-3-3.gif","s-7.gif","s-8.gif","s-11.gif","s-12.gif","s-13.gif");
+
+</SCRIPT>
+
+<TITLE>
+Soliton behavior in the Bodele Depression (Chad)
+</TITLE> 
+</HEAD> 
+<BODY BGCOLOR="white" ALIGN="center"> 
+
+<TABLE ALIGN="center" BORDER=0>
+
+<TR>
+<TD CLASS="left"><a href="../index.html">introduction</a></TD>
+<TD CLASS="middle"><b>solitons</b></TD>
+<TD CLASS="right"><a href="../offcenter/index.html">off-center</a></TD>
+</TR>
+
+<TR HEIGHT=125><TD CLASS="full" COLSPAN=3>
+<IMG ID="a" CLASS="thumbnail" SRC="s-1-thumb.gif">
+<IMG ID="b" CLASS="thumbnail" SRC="s-2-thumb.gif">
+<IMG ID="c" CLASS="thumbnail" SRC="s-3-1-thumb.gif">
+<IMG ID="d" CLASS="thumbnail" SRC="s-3-2-thumb.gif">
+<IMG ID="e" CLASS="thumbnail" SRC="s-3-3-thumb.gif">
+</TD></TR>
+
+<TR HEIGHT=400><TD CLASS="full" COLSPAN=3>
+<font size="4">Please be patient while the animations<br>
+are being preloaded...</font><p>
+<script language="JavaScript1.1">
+if (document.images) {
+    loadLocationAfterPreload("../solitons.html");
+    loadYourImages(pictures);
+    var preloadBar = ''
+    for (i = 0; i < yourImages.length-1; i++) {
+        preloadBar += '<img src="' + dots[0].src + '" width="' + coverage + '" \
+			    height="' + heightOfPreloadBar + '" name="img' + i + '" align="absmiddle">'
+    }
+    preloadBar += '<img src="' + dots[0].src + '" width="' + (leftOverWidth+coverage) + '" \
+			height="' + heightOfPreloadBar + '" name="img' + (yourImages.length-1) + '" align="absmiddle">'
+    document.write(preloadBar)
+}
+document.write('<p><small><a href="javascript:window.location=locationAfterPreload">Skip Preloading</a></small></p>')
+</script>
+</TD></TR>
+
+<TR><TD CLASS="full" COLSPAN=3>
+<IMG ID="f" CLASS="thumbnail" SRC="s-7-thumb.gif">
+<IMG ID="g" CLASS="thumbnail" SRC="s-8-thumb.gif">
+<IMG ID="h" CLASS="thumbnail" SRC="s-11-thumb.gif">
+<IMG ID="i" CLASS="thumbnail" SRC="s-12-thumb.gif">
+<IMG ID="j" CLASS="thumbnail" SRC="s-13-thumb.gif">
+</TD></TR>
+
+<TR><TD ID="latlon" CLASS="full" COLSPAN=3></TD></TR>
+
+</TABLE>
+
+<script language="JavaScript1.1">
+loadImages()
+</script>
+
+</BODY> 
+</HTML>

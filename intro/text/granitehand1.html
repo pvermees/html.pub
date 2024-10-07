@@ -1,0 +1,61 @@
+Please answer following questions:
+<p></p>
+<form>
+Grain size?<br>
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'Fine grained is less than 1mm.';" />Fine
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'Coarse grained is between 1 and 5mm.';" />Medium
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'This is a coarse grained rock, containing crystals greater than 5mm.';" />Coarse
+</form>
+<form>
+Colour?<br>
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'This rock is light coloured.';" />Light
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'The pink mineral is classified as a light mineral making this a light coloured rock.';" />Dark
+</form>
+<form>
+Is this rock...<br>
+<input type="radio" name="button" onclick="document.getElementById('depth').innerHTML=
+'This rock is intrusive. it has had time to cool slowly and grow large crystals.';" />Intrusive?
+<input type="radio" name="button" onclick="document.getElementById('depth').innerHTML=
+'Extrusive rocks have cooled very quickly and are therefore composed of fine grained crystals.';" />Extrusive?
+</form>
+<form>
+Are the minerals...<br>
+<input type="radio" name="button" onclick="document.getElementById('minerals').innerHTML=
+'Mafic minerals are high in Mg and Fe and are usually very dark in colour.';" />Mafic?
+<input type="radio" name="button" onclick="document.getElementById('minerals').innerHTML=
+'This rock contains felsic minerals, which are low in Fe and Mg and generally light in colour.';" />Felsic?
+</form>
+<form>
+Is this rock...<br>
+<input type="radio" name="button" onclick="document.getElementById('chemistry').innerHTML=
+'This rock is acidic because it contains more than 50% felsic minerals.';" />Acidic?
+<input type="radio" name="button" onclick="document.getElementById('chemistry').innerHTML=
+'Basic rocks have about 50% mafic minerals. This rock has about 20%.';" />Basic?
+</form>
+<form>
+Colour index?<br>
+<input type="radio" name="button" onclick="document.getElementById('CI').innerHTML=
+'High colour index refers to rocks with greater than 50% minerals.';" />High
+<input type="radio" name="button" onclick="document.getElementById('CI').innerHTML=
+'This rock has less than 30% mafic minerals and therefore has a low colour index.';" />Low
+</form>
+<form>
+Is this rock porphyritic?<br>
+<input type="radio" name="button" onclick="document.getElementById('porphyritic').innerHTML=
+'This rock contains large phenocrysts of a pink mineral, making up about 55% of the rock.';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('porphyritic').innerHTML=
+'Are all the crystals roughly the same size or is there a bimodal grain size distribution?';" />Now
+</form>
+
+<div id="grainsize"></div>
+<div id="colour"></div>
+<div id="depth"></div>
+<div id="minerals"></div>
+<div id="chemistry"></div>
+<div id="CI"></div>
+<div id="porphyritic"></div>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Frequently Asked Questions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <style type="text/css">
+    h1 {font-size:150%; font-weight:bold;}
+    h2 {font-size:125%; font-weight:bold; font-style: italic;}
+    img {float:right; width:200px;}
+  </style>
+  <body>
+<table width="900px" align="center">
+<tr><td width="700px">
+<h1>Frequently Asked Questions</h1>
+<h2>1. Why does my KDE look so smooth/spiky?</h2>
+Two possible reasons:
+<ol>
+<li> <tt>DensityPlotter</tt> uses a single bandwidth for the entire distribution.
+If the age distribution is characterised by clusters of ages as well as more sparsely
+sampled intervals, then the former will tend to be over- and the latter undersmoothed.
+A typical example of this would be a U-Pb age distribution with a sharp peak of
+Phanerozoic ages, followed by a smaller number of Precambrian ages.
+<i>Adaptive</i> KDE algorithms are the solution to this problem, but these 
+require large datasets (100s of ages) and are computationally very intensive.
+
+<li> <tt>DensityPlotter</tt> uses the bandwidth selection algorithm of
+Botev et al.  (2010, Annals of Statistics). In rare occasions
+(typically for small sample sizes), this algorithm fails to converge
+and the program switches to an analytical default which tends to
+oversmooth the data.  </ol>
+</td>
+<td width="150px"><a href="default.png"><img src="default.png"></a></td>
+<tr>
+<td>
+<h2>2. Am I allowed to change the kernel bandwidth?</h2>
+
+Yes! Kernel bandwidths are equivalent to histogram binwidths. Although
+there are some rules of thumb for choosing the number of histogram bins 
+(e.g. <span style="white-space: nowrap; font-size:larger"> &radic;<span
+style="text-decoration:overline;">n</span></span> or 1+log<sub>2</sub>(n) 
+for n = sample size), these do not always work for complex multimodal distributions.
+In those cases it is often better to (subjectively) pick a better value.
+Likewise, the bandwidth of a KDE can be changed as well.
+
+<h2>3. How do I change the kernel bandwidth?</h2>
+
+Simply click <tt>Options</tt> &rarr; <tt>Settings</tt> and choose your
+preferred value.  You could even divide your dataset into two parts
+(young and old ages), create two KDEs and combine those in the
+graphics program of your choice. This effectively mimics an adaptive
+KDE.
+</td><td><a href="adaptive.png"><img src="adaptive.png"></a></td>
+<tr><td>
+<h2>4. What do the 'peaks' produced by the 'mixture models' mean?</h2>
+
+The peaks are fitted with the algorithm of Galbraith and Green (1990,
+Nuclear Tracks and Radiation Measurements), which was originally
+developed for fission track dating but has also been adopted for U-Pb
+dating by Sambridge and Compston (1994, EPSL).  The underlying
+assumption is that the peaks correspond to <i>discrete</i> events and
+that the spread in the ages around these peaks is exclusively due to
+the analytical uncertainty. This assumption is often correct for
+fission track data but rarely so for U-Pb data.  Nevertheless, the
+peak locations and frequencies are often meaningful for U-Pb data as
+well.
+
+<p></p>
+The annotations of the mixture models mark the maximum likelihood estimates
+of the peak locations and their standard errors, as well as the frequency
+contribution of the peaks and their standard errors.
+Users suspecting that their ages do not correspond to discrete peaks
+might want to check out the '<tt>BayesMix</tt>' algorithm of Jasra et al.
+(Mathematical Geology, 2006).
+</td><td></td>
+</table>
+  </body>
+</html>

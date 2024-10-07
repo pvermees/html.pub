@@ -1,0 +1,2418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Unifying the U&#8211;Pb and Th&#8211;Pb methods: joint isochron regression and common Pb
+correction</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body class="main">
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Unifying the U&#8211;Pb and Th&#8211;Pb methods: joint
+isochron regression and common Pb correction</h2>
+     <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br /><span 
+class="cmr-12">University College London,</span>
+<br />     <span 
+class="cmr-12">United Kingdom</span></div><br />
+<div class="date" ><span 
+class="cmr-12"><tt>p.vermeesch [at] ucl.ac.uk</tt></span></div>
+   </div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 95--><p class="noindent" >
+<!--l. 95--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 96--><p class="indent" >    <span 
+class="cmr-9">The actinide elements U and Th undergo radioactive decay to three</span>
+     <span 
+class="cmr-9">isotopes of Pb, forming the basis of three coupled geochronometers. The</span>
+     <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">U  and  </span><sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup><span 
+class="cmr-9">U  decay  systems  are  routinely  combined</span>
+     <span 
+class="cmr-9">to improve accuracy. Joint consideration with the </span><sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup><span 
+class="cmr-9">Th decay</span>
+     <span 
+class="cmr-9">system is less common. This paper aims to change this. Co-measured</span>
+     <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup><span 
+class="cmr-9">Th  is  particularly  useful  for  discordant  samples  containing</span>
+     <span 
+class="cmr-9">variable amounts of non-radiogenic (&#8216;common&#8217;) Pb.</span>
+     <!--l. 107--><br class="indent" >     <span 
+class="cmr-9">The  paper  presents  a  maximum  likelihood  algorithm  for  joint</span>
+     <span 
+class="cmr-9">isochron regression of the </span><sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">Pb, </span><sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup><span 
+class="cmr-9">Pb, and </span><sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup><span 
+class="cmr-9">Th</span>
+     <span 
+class="cmr-9">chronometers.  Given  a  set  of  cogenetic  samples,  this  &#8216;Total-Pb/U&#8211;Th</span>
+     <span 
+class="cmr-9">algorithm&#8217; estimates the common Pb composition and concordia intercept</span>
+     <span 
+class="cmr-9">age.  U&#8211;Th&#8211;Pb  data  can  be  visualised  on  a  conventional  Wetherill</span>
+     <span 
+class="cmr-9">or  Tera-Wasserburg  concordia  diagram,  or  on  a  </span><sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup><span 
+class="cmr-9">Th  vs.</span>
+     <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup><span 
+class="cmr-9">Pb/</span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">U plot. Alternatively, the results of the new discordia regression</span>
+     <span 
+class="cmr-9">algorithm can also be visualised as a </span><sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb</span><sub class="textsubscript"><span 
+class="cmr-9">c</span></sub><span 
+class="cmr-9">/</span><sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup><span 
+class="cmr-9">Pb vs. </span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">U/</span><sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup><span 
+class="cmr-9">Pb or</span>
+     <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb</span><sub class="textsubscript"><span 
+class="cmr-9">c</span></sub><span 
+class="cmr-9">/</span><sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup><span 
+class="cmr-9">Pb vs. </span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">U/</span><sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup><span 
+class="cmr-9">Pb isochron, where </span><sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb</span><sub class="textsubscript"><span 
+class="cmr-9">c</span></sub> <span 
+class="cmr-9">represents the</span>
+     <span 
+class="cmr-9">common </span><sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup><span 
+class="cmr-9">Pb component. In its most general form, the Total-Pb/U&#8211;Th</span>
+     <span 
+class="cmr-9">algorithm accounts for the uncertainties of all isotopic ratios involved,</span>
+     <span 
+class="cmr-9">including the </span><sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup><span 
+class="cmr-9">Th/</span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">U-ratio, as well as the systematic uncertainties</span>
+     <span 
+class="cmr-9">associated with the decay constants and the </span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">U/</span><sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup><span 
+class="cmr-9">U-ratio. However,</span>
+     <span 
+class="cmr-9">numerical  stability  is  greatly  improved  when  the  dependency  on  the</span>
+     <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup><span 
+class="cmr-9">Th/</span><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup><span 
+class="cmr-9">U-ratio uncertainty is dropped.</span>
+
+     <!--l. 134--><br class="indent" >     <span 
+class="cmr-9">For  detrital  minerals,  it  is  generally  not  safe  to  assume  a  shared</span>
+     <span 
+class="cmr-9">common Pb composition and concordia intercept age. In this case the</span>
+     <span 
+class="cmr-9">Total-Pb/U&#8211;Th  regression  method  must  be  modified  by  tying  it  to  a</span>
+     <span 
+class="cmr-9">terrestrial Pb evolution model. Thus also detrital common Pb correction</span>
+     <span 
+class="cmr-9">can be formulated in a maximum likelihood sense.</span>
+     <!--l. 140--><br class="indent" >     <span 
+class="cmr-9">The new method was applied to three published datasets, including low</span>
+     <span 
+class="cmr-9">Th/U carbonates, high Th/U allanites and overdispersed monazites. The</span>
+     <span 
+class="cmr-9">carbonate example illustrates how the Total-Pb/U&#8211;Th method achieves</span>
+     <span 
+class="cmr-9">a more precise common-Pb correction than a conventional </span><sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup><span 
+class="cmr-9">Pb-based</span>
+     <span 
+class="cmr-9">approach. The allanite sample shows the significant gain in both precision</span>
+     <span 
+class="cmr-9">and  accuracy  that  is  made  when  the  Th&#8211;Pb  decay  system  is  jointly</span>
+     <span 
+class="cmr-9">considered with the U&#8211;Pb system. Finally the monazite example is used</span>
+     <span 
+class="cmr-9">to illustrate how the Total-Pb/U&#8211;Th regression algorithm can be modified</span>
+     <span 
+class="cmr-9">to include an overdispersion parameter.</span>
+     <!--l. 151--><br class="indent" >     <span 
+class="cmr-9">All the parameters in the discordia regression method (including the</span>
+     <span 
+class="cmr-9">age  and  the  overdispersion  parameter)  are  strictly  positive  quantities</span>
+     <span 
+class="cmr-9">that exhibit skewed error distributions near zero. This skewness can be</span>
+     <span 
+class="cmr-9">accounted  for  using  the  profile  log-likelihood  method,  or  by  recasting</span>
+     <span 
+class="cmr-9">the  regression  algorithm  in  terms  of  logarithmic  quantities.  Both</span>
+     <span 
+class="cmr-9">approaches yield realistic asymmetric confidence intervals for the model</span>
+     <span 
+class="cmr-9">parameters. The new algorithm is flexible enough that it can accommodate</span>
+     <span 
+class="cmr-9">disequilibrium corrections and inter-sample error correlations when these</span>
+     <span 
+class="cmr-9">are  provided  by  the  user.  All  the  methods  presented  in  this  paper</span>
+     <span 
+class="cmr-9">have been added to the </span><span 
+class="cmtt-9">IsoplotR </span><span 
+class="cmr-9">software package. This will hopefully</span>
+     <span 
+class="cmr-9">encourage geochronologists to take full advantage of the entire U&#8211;Th&#8211;Pb</span>
+     <span 
+class="cmr-9">decay system.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 169--><p class="noindent" >The Pb content of U-bearing minerals comprises two components:
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1002x1">Non-radiogenic  (a.k.a.  initial  or  &#8216;common&#8217;)  Pb  is  inherited  from  the
+     environment during crystallisation. It contains all of lead&#8217;s four stable
+     isotopes (<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb, <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb, <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb and <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb) in fixed proportions for a given
+     sample.
+     </li>
+     <li 
+  class="enumerate" id="x1-1004x2">Radiogenic Pb is added to the common Pb after crystallisation due to
+     the decay of U and Th. It contains only three isotopes (<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb, <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb
+     and  <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb),  which  occur  in  variable  proportions  as  a  function  of  the
+     Th/U-ratio and age.</li></ol>
+<!--l. 182--><p class="noindent" >Denoting the measured and non-radiogenic components with subscripts &#8216;<span 
+class="cmmi-10">m</span>&#8217; and &#8216;<span 
+class="cmmi-10">c</span>&#8217;
+respectively, and assuming initial secular equilibrium, we can write:
+
+<table 
+class="align">
+                 <tr><td 
+class="align-odd"><sup><span 
+class="cmr-7">204</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">m</span></sub></td>                 <td 
+class="align-even"> = <sup><span 
+class="cmr-7">204</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">c</span></sub></td>                                                    <td 
+class="align-label"><a 
+ id="x1-1005r1"></a>(1)
+                 </td></tr><tr><td 
+class="align-odd"><sup><span 
+class="cmr-7">206</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">m</span></sub></td>                 <td 
+class="align-even"> = <sup><span 
+class="cmr-7">206</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">c</span></sub> + <sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span><sub>
+<span 
+class="cmmi-7">m</span></sub><img 
+src="index0x.png" alt="(e&#x03BB;38t - 1)"  class="left" align="middle"></td>                                   <td 
+class="align-label"><a 
+ id="x1-1006r2"></a>(2)
+                 </td></tr><tr><td 
+class="align-odd"><sup><span 
+class="cmr-7">207</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">m</span></sub></td>                 <td 
+class="align-even"> = <sup><span 
+class="cmr-7">207</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">c</span></sub> + <sup><span 
+class="cmr-7">235</span></sup><span 
+class="cmmi-10">U</span><sub>
+<span 
+class="cmmi-7">m</span></sub><img 
+src="index1x.png" alt="( &#x03BB; t   )
+ e 35 - 1"  class="left" align="middle"></td>                                   <td 
+class="align-label"><a 
+ id="x1-1007r3"></a>(3)
+                 </td></tr><tr><td 
+class="align-odd"><sup><span 
+class="cmr-7">208</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">m</span></sub></td>                 <td 
+class="align-even"> = <sup><span 
+class="cmr-7">208</span></sup><span 
+class="cmmi-10">Pb</span><sub>
+<span 
+class="cmmi-7">c</span></sub> + <sup><span 
+class="cmr-7">232</span></sup><span 
+class="cmmi-10">Th</span><sub>
+<span 
+class="cmmi-7">m</span></sub><img 
+src="index2x.png" alt="(       )
+ e&#x03BB;32t - 1"  class="left" align="middle"></td>                                  <td 
+class="align-label"><a 
+ id="x1-1008r4"></a>(4)                 </td></tr></table>
+<!--l. 191--><p class="indent" >   where <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">38</span></sub>, <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">35</span></sub> and <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">32</span></sub> are the decay constants of <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U, <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th,
+respectively, and <span 
+class="cmmi-10">t </span>is the time elapsed since isotopic closure. In order to accurately
+estimate <span 
+class="cmmi-10">t</span>, the common Pb composition is needed. One way to account for common
+Pb is to normalise all the measurements to <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb. For example, using the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U &#8211;
+<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb decay scheme:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1009r5"></a>
+   <center class="math-display" >
+<img 
+src="index3x.png" alt="[206Pb]    [206Pb]   [ 238U  ] (       )
+ 204Pb   =  204Pb   +  204P-b   e&#x03BB;38t - 1
+       m          c          m
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 204--><p class="nopar" >
+Applying Equation&#x00A0;<a 
+href="#x1-1009r5">5<!--tex4ht:ref: eq:Pb206U238isochron --></a> to multiple cogenetic aliquots of the same sample
+defines an isochron with slope <img 
+src="index4x.png" alt="( &#x03BB;38t   )
+ e    - 1"  class="left" align="middle"> and intercept <img 
+src="index5x.png" alt="[206   204  ]
+   P b&#x2215;  Pb"  class="left" align="middle"><sub><span 
+class="cmmi-7">c</span></sub>.
+Alternatively, and equivalently, an &#8216;inverse&#8217; isochron line can be defined
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1010r6"></a>
+
+   <center class="math-display" >
+<img 
+src="index6x.png" alt="[204  ]    [204  ] {    [ 238  ]  (       )}
+ 206Pb   =  206Pb    1-  206U-    e&#x03BB;38t - 1
+    Pb m       Pb c         Pb m
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 215--><p class="nopar" >
+In this case, the isochron is a line whose y-intercept defines the common
+<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratio, and the x-intercept determines the radiogenic <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratio.
+<!--l. 221--><p class="indent" >   The isochron concept can easily be applied to the <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb system, by
+replacing <sup><span 
+class="cmr-7">206</span></sup><span 
+class="cmmi-10">Pb </span>with <sup><span 
+class="cmr-7">207</span></sup><span 
+class="cmmi-10">Pb</span>, <sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">Pb </span>with <sup><span 
+class="cmr-7">235</span></sup><span 
+class="cmmi-10">Pb </span>and <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">38</span></sub> with <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">35</span></sub> in Equations&#x00A0;<a 
+href="#x1-1009r5">5<!--tex4ht:ref: eq:Pb206U238isochron --></a> and <a 
+href="#x1-1010r6">6<!--tex4ht:ref: eq:U238Pb206isochron --></a>.
+The accuracy and precision of the calculation can be further improved by solving the
+<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U isochron equations simultaneously and requiring <span 
+class="cmmi-10">t </span>to be
+the same in both systems. The resulting three-dimensional constrained isochron is
+known as a &#8216;Total-Pb/U isochron&#8217; (<a 
+href="#Xludwig1998">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig1998">1998</a>).
+<!--l. 234--><p class="indent" >   In igneous samples, the conventional Total-Pb/U isochron requires isotopic data
+for two or more cogenetic aliquots. In the simplest case, a two-point isochron can be
+formed by analysing the U-Pb composition of the U-bearing phase of interest along
+with a cogenetic mineral devoid of U (e.g, feldspar). In detrital samples, the common
+Pb intercept of the isochron can be anchored to some nominal value, or to a
+terrestrial Pb evolution model (e.g.,&#x00A0;<a 
+href="#Xstacey1975">Stacey and Kramers</a>,&#x00A0;<a 
+href="#Xstacey1975">1975</a>). Thus, the
+<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-based total U-Pb isochron method is beneficial to nearly all applications of the
+U-Pb method.
+<!--l. 245--><p class="indent" >   Unfortunately, <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-based common Pb correction is not always practical. First,
+not all mass spectrometers are able to measure <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb with sufficient precision and
+accuracy. In some ICP-MS instruments, the presence of an isobaric interference with
+<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Hg precludes accurate <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb measurements. And second, because <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb is by far
+the least abundant of lead&#8217;s four naturally occurring isotopes, it requires the longest
+dwell times. For single collector instruments, this reduces the precision of the other
+isotopes.
+<!--l. 256--><p class="indent" >   To overcome these problems, alternative common-Pb correction schemes have
+been proposed that use <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb or <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb instead of <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb. The &#8216;SemiTotal-Pb/U
+isochron&#8217; method is based on linear regression of <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb&#8211;<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb&#8211;<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-data in
+Tera-Wasserburg space (<a 
+href="#Xludwig1998">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig1998">1998</a>;&#x00A0;<a 
+href="#Xwilliams1998">Williams</a>,&#x00A0;<a 
+href="#Xwilliams1998">1998</a>;&#x00A0;<a 
+href="#Xchew2011">Chew et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xchew2011">2011</a>). It
+assumes that all the samples are cogenetic and form a simple two component mixture
+between common Pb and radiogenic Pb. The common Pb then marks the intercept
+with the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-axis, and the radiogenic Pb can be obtained from
+the intersection of the isochron with the concordia line. The <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-based
+common Pb correction only works if the assumption of initial concordance is
+valid, if <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb can be measured with sufficient precision, and if there is
+enough spread in the initial Pb/U-ratios to produce a statistically robust
+isochron.
+
+<!--l. 273--><p class="indent" >   <a 
+href="#Xandersen2002">Andersen</a>&#x00A0;(<a 
+href="#Xandersen2002">2002</a>) introduced a <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-based common-Pb correction scheme that
+does not require initial concordance. His method assumes that U&#8211;Th&#8211;Pb discordance
+can be accounted for by a combination of Pb loss at a defined time, and the presence
+of common Pb of known composition. However in most cases neither the timing of Pb
+loss, nor the composition of the common Pb are known. Furthermore, the
+assumptions that underlie the <a 
+href="#Xandersen2002">Andersen</a>&#x00A0;(<a 
+href="#Xandersen2002">2002</a>) method were tailored to the
+mineral zircon, but do not apply so much to other minerals such as carbonates,
+which crystallise at low temperatures and do not experience diffusive Pb
+loss.
+<!--l. 285--><p class="indent" >   This paper introduces a &#8216;Total-Pb/U&#8211;Th isochron&#8217; algorithm that uses the <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th
+&#8211; <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb decay scheme to determine the common Pb component. Unlike the
+<a 
+href="#Xandersen2002">Andersen</a>&#x00A0;(<a 
+href="#Xandersen2002">2002</a>) method, it does not require the common Pb composition to be
+pre-specified, but assumes that no Pb-loss has occurred. The new algorithm is based
+on <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>)&#8217;s Total-Pb/U isochron method, but uses <sup><span 
+class="cmr-7">208</span></sup><span 
+class="cmmi-10">Pb</span><sub><span 
+class="cmmi-7">c</span></sub> instead of <sup><span 
+class="cmr-7">204</span></sup><span 
+class="cmmi-10">Pb </span>in
+Equation&#x00A0;<a 
+href="#x1-1009r5">5<!--tex4ht:ref: eq:Pb206U238isochron --></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1011r7"></a>
+   <center class="math-display" >
+<img 
+src="index7x.png" alt="         [     ]
+206Pbm--   206P-b    238Um-( &#x03BB;38t   )
+208P bc =  208P b c + 208P bc e  - 1
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 298--><p class="nopar" >
+and similarly for Equation&#x00A0;<a 
+href="#x1-1010r6">6<!--tex4ht:ref: eq:U238Pb206isochron --></a> and the <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb equivalents of Equations&#x00A0;<a 
+href="#x1-1009r5">5<!--tex4ht:ref: eq:Pb206U238isochron --></a> and
+<a 
+href="#x1-1010r6">6<!--tex4ht:ref: eq:U238Pb206isochron --></a>.
+<!--l. 303--><p class="indent" >   The algorithms introduced in this paper will be illustrated using three published
+U&#8211;Th&#8211;Pb datasets, which showcase how the combined U&#8211;Th&#8211;Pb approach improves
+both the precision and accuracy of U&#8211;Pb geochronology (Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:applications --></a>). The cases
+studies include a carbonate dataset of <a 
+href="#Xparrish2018">Parrish et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xparrish2018">2018</a>), an allanite dataset
+of <a 
+href="#Xjanots2014">Janots and Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>), and an overdispersed monazite dataset of
+<a 
+href="#Xgibson2016">Gibson et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xgibson2016">2016</a>). The carbonate dataset is an example of a low Th/U
+setting in which the <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-based common Pb correction is more precise
+than a conventional <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-based common Pb correction. The allanite
+dataset is an example of a high Th/U setting in which the <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th
+method offers greater precision than the U&#8211;Pb method. The <a 
+href="#Xjanots2014">Janots and
+Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>) study used SIMS and therefore also offers an opportunity to
+compare the new <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb method with a conventional <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-based common Pb
+correction.
+<!--l. 320--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:skew --></a> shows how the isochron regression algorithm can be modified to
+
+accommodate strongly skewed uncertainty distributions, using a simple logarithmic
+change of variables. The Total-Pb/U&#8211;Th isochron algorithm assumes that all aliquots
+are cogenetic. However Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:detrital --></a> shows how the algorithm can be adapted to
+detrital samples, by tying it to the two-stage Pb evolution model of <a 
+href="#Xstacey1975">Stacey and
+Kramers</a>&#x00A0;(<a 
+href="#Xstacey1975">1975</a>). This procedure is similar in spirit to the iterative algorithm of <a 
+href="#Xchew2011">Chew
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xchew2011">2011</a>), but uses a maximum likelihood approach that weights the
+uncertainties of all isotopes in the coupled U&#8211;Th&#8211;Pb decay system. Finally, Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:IsoplotR --></a>
+introduces an implementation of the algorithms described herein, using the <span 
+class="cmtt-10">IsoplotR</span>
+software package.
+<!--l. 333--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>U&#8211;Th&#8211;Pb concordia and the Total-Pb/U&#8211;Th isochron</h3>
+<!--l. 336--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20011"></a>
+
+<!--l. 337--><p class="noindent" >
+<center>
+	  <a href="JanotsConcordiaAndIsochron.png">
+	    <img src="JanotsConcordiaAndIsochron.png" class="snapshot" alt="PIC">
+	  </a>
+</center>
+<div class="caption" 
+><span class="id">Figure&#x00A0;1:   </span><span  
+class="content">U&#8211;Th&#8211;Pb   data   for   allanite   sample   MF482   of   <a 
+href="#Xjanots2014">Janots   and
+Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>)  shown  on  (a)  a  U&#8211;Th&#8211;Pb  concordia  diagram,  and  (b)  a
+<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb isochron plot. The raw data are shown in shades
+of green to red on the concordia diagram, in proportion to the Th/U ratio.
+The same raw data are shown as green ellipses on the isochron diagram. Red,
+light  and  dark  blue  ellipses  show  the  measurements  with  5,  23  and  40&#x00A0;Ma
+worth of radiogenic <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb removed, respectively. The misfit of the radiogenic
+<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-corrected data around the best fit line is expressed as weighted square of
+mean deviates (MSWD,&#x00A0;<a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcintyre1966">1966</a>) values. Error ellipses are shown
+at 1<span 
+class="cmmi-10">&#x03C3;</span>.</span></div><!--tex4ht:label?: x1-20011 -->
+
+<!--l. 353--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 355--><p class="indent" >   In conventional U&#8211;Pb geochronology, the set of concordant <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U- and
+<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U-ratios defines a &#8216;Wetherill&#8217; concordia line. Similarly, U&#8211;Th&#8211;Pb data can
+be visualised in <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th- vs. <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ratio space. In the absence of common
+Pb, samples whose <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th-ages equal their <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ages plot on a
+U&#8211;Th&#8211;Pb concordia line. The addition of common Pb pulls samples away from this
+line. Binary mixing between common Pb and radiogenic Pb forms linear trends in
+conventional concordia space, but not in U&#8211;Th&#8211;Pb concordia space. For example the
+<a 
+href="#Xjanots2014">Janots and Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>) data plot above or below the concordia line depending on
+the Th/U-ratio (Figure&#x00A0;<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:JanotsCorrection --></a>a).
+<!--l. 371--><p class="indent" >   An alternative visualisation is to plot <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb against <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb
+(Figure&#x00A0;<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:JanotsCorrection --></a>b). The radiogenic <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-component can be removed by rearranging
+Equation&#x00A0;<a 
+href="#x1-1008r4">4<!--tex4ht:ref: eq:208 --></a> for <sup><span 
+class="cmr-7">208</span></sup><span 
+class="cmmi-10">Pb</span><sub><span 
+class="cmmi-7">c</span></sub><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">232</span></sup><span 
+class="cmmi-10">Th</span><sub><span 
+class="cmmi-7">m</span></sub>. Doing this for different values of <span 
+class="cmmi-10">t </span>moves the various
+aliquots vertically on the diagram. Each value of <span 
+class="cmmi-10">t </span>also corresponds to a radiogenic
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb ratio, thus marking a point on the horizontal axis of the diagram. We
+can fit a line through this point and minimise the residual scatter of the
+data around it, using a least squares criterion such as the mean square of
+the weighted deviates (MSWD,&#x00A0;<a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcintyre1966">1966</a>). For the <a 
+href="#Xjanots2014">Janots and
+Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>) data, the residual scatter is minimised when <span 
+class="cmmi-10">t </span><span 
+class="cmsy-10">&#x2248;</span> 23&#x00A0;Ma
+(Figure&#x00A0;<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:JanotsCorrection --></a>b). At this value, the aliquots plot along a simple binary mixture
+between common Pb and radiogenic Pb. This marks the best estimate for the
+concordia age. The corresponding common-Pb corrected <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th &#8211;
+<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U composition is shown as a tight cluster of blue error ellipses on
+Figure&#x00A0;<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:JanotsCorrection --></a>a.
+<!--l. 394--><p class="indent" >   In order to formalise this procedure in a mathematical sense, let us first define a
+number of variables. In analogy to the variable names used by <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>), we
+will refer to the blank corrected isotopic ratios as <span 
+class="cmmi-10">X</span>, <span 
+class="cmmi-10">Y </span>, <span 
+class="cmmi-10">Z</span>, <span 
+class="cmmi-10">W </span>and <span 
+class="cmmi-10">U</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2002r8"></a>
+   <center class="math-display" >
+<img 
+src="index8x.png" alt="    [     ]       [     ]       [      ]       [     ]       [     ]
+X =  207Pb   , Y = 206Pb   , Z = -208Pb   , W =  232Th   , U =  238U-
+      235U  m        238U  m       232Th  m        238U  m        235U
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 404--><p class="nopar" >
+<!--l. 406--><p class="noindent" >where <span 
+class="cmmi-10">X</span>, <span 
+class="cmmi-10">Y </span>and <span 
+class="cmmi-10">Z </span>are vectors, <span 
+class="cmmi-10">W </span>is a diagonal matrix, and <span 
+class="cmmi-10">U </span>is a scalar; we will use
+Greek characters for the unknown common Pb ratios:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2003r9"></a>
+
+   <center class="math-display" >
+<img 
+src="index9x.png" alt="    [206  ]      [207  ]       208
+&#x03B1; =  208Pb  , &#x03B2; = 208Pb  , &#x03B3; = 232P-bc
+        Pb c         Pb c        Thm
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 414--><p class="nopar" >
+<!--l. 416--><p class="noindent" >where <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2; </span>are scalars and <span 
+class="cmmi-10">&#x03B3; </span>is a vector; and finally, we will use <span 
+class="cmmi-10">t </span>as the concordia
+age so that the radiogenic ratios are given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2004r10"></a>
+   <center class="math-display" >
+<img 
+src="index10x.png" alt="[208P b]            [207P b]            [206Pb]
+ 232---  = e&#x03BB;32t - 1, -235--  = e&#x03BB;35t - 1,-238--   = e&#x03BB;38t - 1
+   T h *               U  *               U  *
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 424--><p class="nopar" >
+<!--l. 426--><p class="indent" >   Next, we define three misfit vectors <span 
+class="cmmi-10">K</span>, <span 
+class="cmmi-10">L </span>and <span 
+class="cmmi-10">M </span>containing the difference
+between the measured and the predicted (i.e. common + radiogenic) isotope
+ratios:
+
+<table 
+class="align">
+                     <tr><td 
+class="align-odd"></td>                     <td 
+class="align-even"><span 
+class="cmmi-10">K </span>= <span 
+class="cmmi-10">X </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">U&#x03B2;W&#x03B3; </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">&#x03BB;</span><sub><span 
+class="cmr-5">35</span></sub><span 
+class="cmmi-7">t</span></sup> + 1</td>                                          <td 
+class="align-label"><a 
+ id="x1-2005r11"></a>(11)
+                     </td></tr><tr><td 
+class="align-odd"></td>                     <td 
+class="align-even"><span 
+class="cmmi-10">L </span>= <span 
+class="cmmi-10">Y </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B1;W&#x03B3; </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">&#x03BB;</span><sub><span 
+class="cmr-5">38</span></sub><span 
+class="cmmi-7">t</span></sup> + 1</td>                                            <td 
+class="align-label"><a 
+ id="x1-2006r12"></a>(12)
+                     </td></tr><tr><td 
+class="align-odd"></td>                     <td 
+class="align-even"><span 
+class="cmmi-10">M </span>= <span 
+class="cmmi-10">Z </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B3; </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">&#x03BB;</span><sub><span 
+class="cmr-5">32</span></sub><span 
+class="cmmi-7">t</span></sup> + 1</td>                                               <td 
+class="align-label"><a 
+ id="x1-2007r13"></a>(13)                     </td></tr></table>
+<!--l. 435--><p class="indent" >   This formulation is a straightforward adaptation of <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>)&#8217;s <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-based
+Total-Pb/U isochron equations. And like <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>), we can then estimate <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1;</span>
+and <span 
+class="cmmi-10">&#x03B2; </span>by minimising the sum of squares:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2008r14"></a>
+   <center class="math-display" >
+<img 
+src="index11x.png" alt="S = &#x0394;&#x03A3; -&#x0394;1&#x0394;T
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 442--><p class="nopar" >
+<!--l. 444--><p class="noindent" >where &#x0394; is the amalgamated misfit vector and &#x0394;<sup><span 
+class="cmmi-7">T</span></sup> is its transpose (i.e.,
+&#x0394;<sup><span 
+class="cmmi-7">T</span></sup> = <img 
+src="index12x.png" alt="[ T   T  T ]
+ K  L  M"  class="left" align="middle">). &#x03A3;<sub><span 
+class="cmr-7">&#x0394;</span></sub> is the covariance matrix of &#x0394;, which can be estimated by
+error propagation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2009r15"></a>
+   <center class="math-display" >
+<img 
+src="index13x.png" alt="             [          ][  ]
+     [      ]  &#x03A3;x  04n&#x00D7;4   JTx
+&#x03A3;&#x0394; =  Jx  J&#x03BB;  04&#x00D7;4n &#x03A3;&#x03BB;    JT&#x03BB;
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+<!--l. 468--><p class="nopar" >
+<!--l. 470--><p class="indent" >   in which &#x03A3;<sub><span 
+class="cmmi-7">x</span></sub> is the 4<span 
+class="cmmi-10">n</span> <span 
+class="cmsy-10">&#x00D7;</span> 4<span 
+class="cmmi-10">n</span> covariance matrix of the collated data measurements
+<span 
+class="cmmi-10">X</span>, <span 
+class="cmmi-10">Y </span>, <span 
+class="cmmi-10">Z </span>and <span 
+class="cmmi-10">W</span>; &#x03A3;<sub><span 
+class="cmmi-7">&#x03BB;</span></sub> is the 4 <span 
+class="cmsy-10">&#x00D7; </span>4 covariance matrix of the decay constants
+and <span 
+class="cmmi-10">U</span>, and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">x</span></sub> and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">&#x03BB;</span></sub> are Jacobian matrices with partial derivatives of &#x0394;
+with respect to the isotopic ratio measurements and the decay constants
+(plus <span 
+class="cmmi-10">U</span>), respectively. Further details for &#x03A3;<sub><span 
+class="cmmi-7">x</span></sub>, &#x03A3;<sub><span 
+class="cmmi-7">&#x03BB;</span></sub>, <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">x</span></sub> and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">&#x03BB;</span></sub> are provided in
+Appendix&#x00A0;A.
+<!--l. 479--><p class="indent" >   Equation&#x00A0;<a 
+href="#x1-2008r14">14<!--tex4ht:ref: eq:S --></a> can be solved for <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1;</span>, and <span 
+class="cmmi-10">&#x03B2; </span>by iterative methods, but the numerical
+stability of these methods is not guaranteed. Numerical stability and speed of
+convergence can be greatly improved if we remove the uncertainties of <span 
+class="cmmi-10">W </span>from the
+data covariance matrix &#x03A3;<sub><span 
+class="cmmi-7">x</span></sub>. If the sum of squares <span 
+class="cmmi-10">S </span>does not depend on the
+uncertainty of <span 
+class="cmmi-10">W</span>, then the partial derivatives of <span 
+class="cmmi-10">S </span>w.r.t. <span 
+class="cmmi-10">&#x03B1;</span>, <span 
+class="cmmi-10">&#x03B2;</span>, <span 
+class="cmmi-10">&#x03B3; </span>and <span 
+class="cmmi-10">t </span>can be
+calculated manually, which greatly simplifies the optimisation. Further details about
+this simplified algorithm are provided in Appendix&#x00A0;B.
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Error propagation and overdispersion</h3>
+<!--l. 492--><p class="noindent" >The log-likelihood of the isochron fit is given by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r16"></a>
+   <center class="math-display" >
+<img 
+src="index14x.png" alt="L = - 1[3nln(2&#x03C0;) +ln|&#x03A3;&#x0394; |+S ]
+      2
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 497--><p class="nopar" >
+where <span 
+class="cmsy-10">|</span>&#x03A3;<sub><span 
+class="cmr-7">&#x0394;</span></sub><span 
+class="cmsy-10">| </span>marks the determinant of &#x03A3;<sub><span 
+class="cmr-7">&#x0394;</span></sub>. The covariance matrix of the fit
+parameters is then obtained by inverting the matrix of second derivates of the
+negative log-likelihood with respect to the vector <span 
+class="cmmi-10">&#x03B3; </span>and the scalars <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1;</span>, <span 
+class="cmmi-10">&#x03B2;</span>. This is
+also known as the Fisher Information matrix:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3002r17"></a>
+
+   <center class="math-display" >
+<img 
+src="index15x.png" alt="&#x230A;                      &#x230B;     &#x230A; &#x2202;2L -&#x2202;2L- &#x2202;2L--&#x2202;2L&#x230B; -1
+   &#x03A3;&#x03B3;  s[&#x03B3;,t] s[&#x03B3;,&#x03B1;] s[&#x03B3;,&#x03B2;]   | &#x2202;&#x03B3;22 &#x2202;&#x03B3;2&#x2202;t &#x2202;&#x03B3;&#x2202;2&#x03B1; &#x2202;&#x03B3;&#x2202;2&#x03B2;|
+||s[t,&#x03B3;]  s[t]2  s[t,&#x03B1; ] s[t,&#x03B2; ]||    || &#x2202;&#x2202;t&#x2202;L&#x03B3;- &#x2202;&#x2202;Lt2- &#x2202;&#x2202;t&#x2202;L&#x03B1;- &#x2202;&#x2202;t&#x2202;L&#x03B2;||
+&#x2308;s[&#x03B1;,&#x03B3;] s[&#x03B1;,t] s[&#x03B1; ]2 s[&#x03B1;,&#x03B2;]&#x2309; = - |&#x2308;&#x2202;&#x2202;&#x03B1;2&#x2202;L&#x03B3; &#x2202;&#x2202;2&#x03B1;L&#x2202;t &#x2202;&#x2202;2&#x03B1;L2 &#x2202;&#x2202;&#x03B1;2&#x2202;L&#x03B2;|&#x2309;
+ s[&#x03B2;,&#x03B3;] s[&#x03B2;,t] s[&#x03B2;,&#x03B1;] s[&#x03B2;]2     -&#x2202;2L -&#x2202;2L- &#x2202;2L- &#x2202;2L
+                              &#x2202;&#x03B2;&#x2202;&#x03B3; &#x2202;&#x03B2;&#x2202;t &#x2202;&#x03B2;&#x2202;&#x03B1;  &#x2202;&#x03B2;2
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 538--><p class="nopar" >
+where &#x03A3;<sub><span 
+class="cmmi-7">&#x03B3;</span></sub> is an <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">n </span>matrix; <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&#x03B3;,t</span>], <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&#x03B3;,&#x03B1;</span>] and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&#x03B3;,&#x03B2;</span>] are <span 
+class="cmmi-10">n</span>-element row vectors,
+<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t,&#x03B3;</span>], <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&#x03B1;,&#x03B3;</span>] and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&#x03B2;,&#x03B3;</span>] are <span 
+class="cmmi-10">n</span>-element column vectors, and all other elements
+are scalars. The second derivatives are given in Appendix&#x00A0;C. The Fisher
+Information matrix is best solved by block matrix inversion. This is achieved by
+partitioning Equation&#x00A0;<a 
+href="#x1-3002r17">17<!--tex4ht:ref: eq:Fisher --></a> into four parts, with <span 
+class="cmmi-10">&#x2202;</span><sup><span 
+class="cmr-7">2</span></sup>L<span 
+class="cmmi-10">&#x2215;&#x2202;&#x03B3;</span><sup><span 
+class="cmr-7">2</span></sup> defining the first block.
+<!--l. 549--><p class="indent" >   If analytical uncertainty is the only source of data scatter around the discordia
+line, then the sum of squares <span 
+class="cmmi-10">S </span>follows a central Chi-square distribution with 2<span 
+class="cmmi-10">n</span><span 
+class="cmsy-10">- </span>3
+degrees of freedom (i.e., <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmr-7">2</span><span 
+class="cmmi-7">n</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmr-7">2</span></sup>). Normalising <span 
+class="cmmi-10">S </span>by the degrees of freedom gives rise
+to the so-called reduced Chi-square statistic, which is also known as the Mean Square
+of the Weighted Deviates (MSWD):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3003r18"></a>
+   <center class="math-display" >
+<img 
+src="index16x.png" alt="          --S---
+M SW D =  2n- 3
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 557--><p class="nopar" >
+Datasets are said to be <span 
+class="cmti-10">overdispersed </span>if <span 
+class="cmmi-10">S </span>is greater than the 95% percentile of
+<span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmr-7">2</span><span 
+class="cmmi-7">n</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">3</span></sub><sup><span 
+class="cmr-7">2</span></sup> or, equivalently, if <span 
+class="cmmi-10">MSWD </span><span 
+class="cmsy-10">&#x226B; </span>1 <a 
+href="#Xwendt1991">Wendt and Carl</a>&#x00A0;(<a 
+href="#Xwendt1991">1991</a>). The overdispersion
+can either be attributed to geological scatter in the concordia intercept age <span 
+class="cmmi-10">t</span>,
+or to excess variability in the common Pb ratios <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2;</span>. Suppose that
+the scatter follows a normal distribution with zero mean and let <span 
+class="cmmi-10">&#x03C9; </span>be the
+
+standard deviation of this distribution. Then we can redefine Equation&#x00A0;<a 
+href="#x1-2009r15">15<!--tex4ht:ref: eq:SigmaDelta --></a>
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3004r19"></a>
+   <center class="math-display" >
+<img 
+src="index17x.png" alt="              [         ][   ]
+      [     ]   &#x03A3;x 04n&#x00D7;4  JTx        2 T
+&#x03A3; &#x0394; =  Jx J&#x03BB;   04&#x00D7;4n &#x03A3; &#x03BB;   JT&#x03BB;  + J&#x03C9;&#x03C9; J&#x03C9;
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 586--><p class="nopar" >
+where <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">&#x03C9;</span></sub> a the Jacobian matrix with the partial derivatives of &#x0394; w.r.t. to the
+dispersion parameter <span 
+class="cmmi-10">&#x03C9;</span>. If the overdispersion is attributed to diachronous isotopic
+closure, then:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3005r20"></a>
+   <center class="math-display" >
+<img 
+src="index18x.png" alt="     &#x230A;              &#x230B;
+       - &#x03BB;35e&#x03BB;35tIn&#x00D7;n
+J&#x03C9; = &#x2308; - &#x03BB;38e&#x03BB;38tIn&#x00D7;n &#x2309;
+       - &#x03BB;32e&#x03BB;32tIn&#x00D7;n
+" class="math-display" ></center></td><td class="equation-label">(20)</td></tr></table>
+<!--l. 601--><p class="nopar" >
+<!--l. 603--><p class="indent" >   Alternatively, if the overdispersion is attributed to excess scatter of the common
+Pb ratios, then:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index19x.png" alt="     &#x230A;        &#x230B;
+       - U W &#x03B3;
+J&#x03C9; = &#x2308;  - W &#x03B3; &#x2309;
+        0n&#x00D7;1
+" class="math-display" ></center></td></tr></table>
+<!--l. 614--><p class="nopar" >
+<!--l. 616--><p class="indent" >   <span 
+class="cmmi-10">&#x03C9; </span>can then be found by plugging Equation&#x00A0;<a 
+href="#x1-3004r19">19<!--tex4ht:ref: eq:SigmaDw --></a> into Equation&#x00A0;<a 
+href="#x1-3001r16">16<!--tex4ht:ref: eq:L --></a> and maximising
+<span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span>. Like before, the uncertainty of <span 
+class="cmmi-10">&#x03C9; </span>is obtained by inverting the Fisher Information,
+replacing Equation&#x00A0;<a 
+href="#x1-3002r17">17<!--tex4ht:ref: eq:Fisher --></a> with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3006r21"></a>
+   <center class="math-display" >
+<img 
+src="index20x.png" alt="                                    &#x230A; 2    2    2    2    2  &#x230B;-1
+&#x230A; &#x03A3; &#x03B3;  s[&#x03B3;,t] s[&#x03B3;,&#x03B1; ] s[&#x03B3;,&#x03B2;] s[&#x03B3;,&#x03C9;]&#x230B;    &#x2202;&#x2202;&#x03B3;L2  &#x2202;&#x2202;&#x03B3;L&#x2202;t&#x2202;&#x2202;&#x03B3;L&#x2202;&#x03B1;  &#x2202;&#x2202;&#x03B3;&#x2202;L&#x03B2;- &#x2202;&#x2202;&#x03B3;L&#x2202;&#x03C9;-
+|s[t,&#x03B3;] s[t]2 s[t,&#x03B1;]  s[t,&#x03B2;] s[t,&#x03C9;]|     ||&#x2202;&#x2202;2tL&#x2202;&#x03B3; &#x2202;&#x2202;2tL2 &#x2202;&#x2202;t2L&#x2202;&#x03B1;  &#x2202;&#x2202;2t&#x2202;L&#x03B2;- &#x2202;&#x2202;2t&#x2202;L&#x03C9;-||
+||s[&#x03B1;,&#x03B3;] s[&#x03B1;,t] s[&#x03B1;]2 s[&#x03B1;,&#x03B2;] s[&#x03B1;,&#x03C9;]|| = - ||&#x2202;2L- &#x2202;2L- &#x2202;2L2  &#x2202;2L- &#x2202;2L-||
+|&#x2308;s[&#x03B2;,&#x03B3;] s[&#x03B2;,t] s[&#x03B2;,&#x03B1; ] s[&#x03B2; ]2 s[&#x03B2;,&#x03C9;]|&#x2309;     ||&#x2202;&#x2202;&#x03B1;2&#x2202;L&#x03B3; &#x2202;&#x2202;&#x03B1;2&#x2202;Lt-&#x2202;&#x2202;&#x03B1;2L-  &#x2202;&#x03B1;&#x2202;&#x2202;2&#x03B2;L  &#x2202;&#x2202;&#x03B1;2&#x2202;&#x03C9;L-||
+ s[&#x03C9;,&#x03B3;] s[&#x03C9;,t] s[&#x03C9;, &#x03B1;] s[&#x03C9;,&#x03B2; ]2 s[&#x03C9;]2     &#x2308;&#x2202;&#x03B2;2&#x2202;&#x03B3; &#x2202;&#x03B2;2&#x2202;t&#x2202;&#x03B2;&#x2202;2&#x03B1;  &#x2202;&#x03B2;22  &#x2202;&#x03B2;2&#x2202;&#x03C9; &#x2309;
+                                     &#x2202;&#x2202;&#x03C9;L&#x2202;&#x03B3; &#x2202;&#x2202;&#x03C9;L&#x2202;t&#x2202;&#x2202;&#x03C9;L&#x2202;&#x03B1; &#x2202;&#x2202;&#x03C9;&#x2202;L&#x03B2;2 &#x2202;&#x2202;&#x03C9;L2
+" class="math-display" ></center></td><td class="equation-label">(21)</td></tr></table>
+<!--l. 663--><p class="nopar" >
+<!--l. 665--><p class="indent" >   In this case, manual calculation of the second derivatives is only possible if the
+overdispersion is attributed to <span 
+class="cmmi-10">t</span>, with formulae shown in Appendix&#x00A0;D. The second
+derivates are not tractable if the excess dispersion is assigned to <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2;</span>. In this case
+the Fisher Information must always be calculated numerically, which can be
+difficult.
+<!--l. 672--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Application to literature data</h3>
+<!--l. 675--><p class="noindent" >This section applies the U&#8211;Th&#8211;Pb isochron algorithm to two published datasets, a
+carbonate dataset of <a 
+href="#Xparrish2018">Parrish et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xparrish2018">2018</a>) and an allanite dataset of <a 
+href="#Xjanots2014">Janots and
+Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>). <a 
+href="#Xparrish2018">Parrish et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xparrish2018">2018</a>) investigated the Palaeogene deformation
+history of southern England by dating calcite veins in chalk and greensand. The
+measurements were made by quadrupole LA-ICP-MS, for which it was not possible
+
+to measure <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb with sufficient precision or accuracy. Figure&#x00A0;<a 
+href="#x1-40012">2<!--tex4ht:ref: fig:Parrish --></a>a shows the
+U&#8211;Pb data of one particular sample (CB-2, Isle of Wight) on a conventional
+Tera-Wasserburg diagram. In the absence of <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb, conventional data processing
+would apply a common-Pb correction using the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-method. That is, it would infer
+the concordia intercept age by regression of a Semitotal-Pb/U isochron. Doing so
+suggests a U&#8211;Pb age of 29.72 <span 
+class="cmsy-10">&plusmn; </span>1.23 Ma. However, this isochron exhibits significant
+overdispersion with respect to the analytical uncertainties (MSWD = 3.2), casting
+doubt on the accuracy of the date. The fit also suffers from low precision,
+caused by the large uncertainties of the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-measurements. These cause
+the error ellipses of some spots to cross over into negative <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb
+space.
+<!--l. 696--><p class="indent" >   The Th/U-ratios of CB-2 are extremely low (<span 
+class="cmmi-10">&#x003C;</span>12, as shown on the colour scale of
+Figure&#x00A0;<a 
+href="#x1-40012">2<!--tex4ht:ref: fig:Parrish --></a>). These low ratios are caused by the low solubility of Th in the vein-forming
+fluids. As a consequence, less than 1% of the measured <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb is of radiogenic origin.
+At the same time, the sample contains between 2 and 20 times more <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb than it
+does <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb. This makes the <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-based Total-Pb/U&#8211;Th correction far more precise
+than the conventional <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-based Semitotal-Pb/U correction. Figure&#x00A0;<a 
+href="#x1-40012">2<!--tex4ht:ref: fig:Parrish --></a>b shows the
+Total-Pb/U&#8211;Th isochron of CB-2 in <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb space. The scatter
+around this line is much tighter than that of the Semitotal-Pb/U fit, and the MSWD
+is only 2.5 despite the high precision of the added <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb data. The isochron
+intercept age has dropped to 24.43 <span 
+class="cmsy-10">&plusmn; </span>0.84 Ma, which is significantly younger
+than the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-corrected date. Importantly, the two age estimates do not
+overlap within the stated uncertainties. The new date is close to, but not quite
+as young as, the 22.6 <span 
+class="cmsy-10">&plusmn; </span>1.5 Ma value proposed by <a 
+href="#Xparrish2018">Parrish et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xparrish2018">2018</a>),
+which was obtained by a heuristic version of the Total-Pb/U&#8211;Th isochron
+algorithm.
+<!--l. 718--><p class="indent" >   It is not possible to formally prove that the <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-corrected date is more accurate
+than the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-corrected date for the carbonate dataset. However, an independent
+assessment of accuracy <span 
+class="cmti-10">is </span>possible for our second case study. <a 
+href="#Xjanots2014">Janots and
+Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>)&#8217;s allanite dataset used SIMS instead of LA-ICP-MS, making it
+possible to compare a <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-based common Pb correction with the new <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb
+method. Figure&#x00A0;<a 
+href="#x1-40023">3<!--tex4ht:ref: fig:Janots --></a>a shows the U&#8211;Pb data of one particular allanite sample
+(MF482) on a conventional Tera-Wasserburg concordia diagram, yielding a
+Semitotal-Pb/U isochron age of 22.77 <span 
+class="cmsy-10">&plusmn; </span>5.63&#x00A0;Ma. This is nearly identical to
+<a 
+href="#Xjanots2014">Janots and Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>)&#8217;s <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-corrected <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub> &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>
+isochron age of 22.7 <span 
+class="cmsy-10">&plusmn; </span>1.0&#x00A0;Ma. As before, the Th/U-ratios are shown as
+shades of green to red. These values range from 23 to 235, which is three
+orders of magnitude higher than <a 
+href="#Xparrish2018">Parrish et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xparrish2018">2018</a>)&#8217;s carbonate data.
+Consequently, most of the chronometric power of the allanite data is contained in
+the Th&#8211;Pb system and not in the U&#8211;Pb method. 90 &#8211; 97% of the <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb is
+radiogenic, as opposed to 0.3 &#8211; 1.0% of the <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb, and only 0.06 &#8211; 0.016% of the
+<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb.
+<!--l. 741--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-40023">3<!--tex4ht:ref: fig:Janots --></a>b shows the Th&#8211;Pb data in <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb space, where
+they form an isochron with a Th&#8211;Pb age of 21.50 <span 
+class="cmsy-10">&plusmn; </span>4.37&#x00A0;Ma. This agrees within
+error with the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-corrected U&#8211;Pb age, despite the possible presence of an
+unresolved isobaric interference on <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb (<a 
+href="#Xjanots2014">Janots and Rubatto</a>,&#x00A0;<a 
+href="#Xjanots2014">2014</a>). However the
+
+Th&#8211;Pb isochron age has a slightly smaller uncertainty and a much lower MSWD
+(0.74 instead of 1.4). Combining the U&#8211;Pb and Th&#8211;Pb systems together, Figure&#x00A0;<a 
+href="#x1-40023">3<!--tex4ht:ref: fig:Janots --></a>c
+shows allanite sample MF482 in <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb space, where it defines
+an 23.21 <span 
+class="cmsy-10">&plusmn; </span>0.85&#x00A0;Ma isochron. This falls within the uncertainties of the U&#8211;Pb and
+Th&#8211;Pb age estimates, but is more than five times more precise than the previous age
+estimates. An alternative visualisation of the Total-Pb/U&#8211;Th isochron is shown in
+Figure&#x00A0;<a 
+href="#x1-40023">3<!--tex4ht:ref: fig:Janots --></a>d. Here, the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-ratio is plotted against <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb. Thus,
+we use the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb as a common-Pb indicator instead of the <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb used in
+Figure&#x00A0;<a 
+href="#x1-40023">3<!--tex4ht:ref: fig:Janots --></a>b. The <span 
+class="cmmi-10">&#x003E;</span>15 times greater abundance of <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb compared to <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb
+nearly quadruples the precision of the data, producing a tight fit around the
+isochron.
+<!--l. 767--><p class="indent" >   <hr class="figure"><div class="figure">
+
+<a 
+ id="x1-40012"></a>
+
+<!--l. 768--><p class="noindent" >
+<center>
+	  <a href="Parrish.png">
+	    <img class="snapshot" src="Parrish.png" alt="PIC">
+	  </a>
+</center>
+<div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">a) SemiTotal-Pb/U isochron (<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-based common Pb correction)
+for <a 
+href="#Xparrish2018">Parrish et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xparrish2018">2018</a>)&#8217;s chalk data; b) Total-Pb/U&#8211;Th isochron (<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-based
+common Pb correction) shown in <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb space. Colours
+indicate the Th/U-ratio. All uncertainties are shown at 1<span 
+class="cmmi-10">&#x03C3;</span>.</span></div><!--tex4ht:label?: x1-40012 -->
+
+<!--l. 777--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 779--><p class="indent" >   <hr class="figure"><div class="figure" >
+<a id="x1-40023"></a>
+
+<!--l. 780--><p class="noindent" >
+<center>
+	  <a href="JanotsMFUThPb.png">
+	    <img src="JanotsMFUThPb.png" class="snapshot" alt="PIC">
+	  </a>
+</center>
+<div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">a) SemiTotal-Pb/U isochron (<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-based common Pb correction)
+for <a 
+href="#Xjanots2014">Janots and Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>)&#8217;s allanite data; b) Conventional Pb/Th-isochron
+(<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-based  common  Pb  correction);  c)  and  d)  Total-Pb/U&#8211;Th  isochron
+(<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-based common Pb correction) shown in <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb
+space (c) and <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb<sub><span 
+class="cmsy-7">&#x2218;</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb &#8211; <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb space (d). Colours indicate the
+Th/U-ratio. All uncertainties are shown at 1<span 
+class="cmmi-10">&#x03C3;</span>.</span></div><!--tex4ht:label?: x1-40023 -->
+
+<!--l. 792--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Dealing with skewed error distributions</h3>
+<!--l. 797--><p class="noindent" >All the free parameters in the regression algorithm (<span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1;</span>, <span 
+class="cmmi-10">&#x03B2; </span>and <span 
+class="cmmi-10">&#x03C9;</span>) are strictly
+positive quantities. This positivity constraint manifests itself in skewed error
+distributions. For example, when the four parameter algorithm of Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:errorpropagation --></a> is
+applied to datasets that exhibit little or no overdispersion (<span 
+class="cmmi-10">&#x03C9; </span><span 
+class="cmsy-10">&#x2248; </span>0), then the usual
+&#8216;2-sigma&#8217; error bounds can cross over into physically impossible negative
+data space. This section of the paper introduces two ways to deal with this
+problem.
+<!--l. 807--><p class="indent" >   A first solution is to obtain asymmetric uncertainty bounds for <span 
+class="cmmi-10">&#x03C9; </span>using a profile
+likelihood approach (<a 
+href="#Xgalbraith2005">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>;&#x00A0;<a 
+href="#Xvermeesch2018c">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2018c">2018</a>). First, maximise
+Equation&#x00A0;<a 
+href="#x1-3001r16">16<!--tex4ht:ref: eq:L --></a> for the four parameters <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1;</span>, <span 
+class="cmmi-10">&#x03B2; </span>and <span 
+class="cmmi-10">&#x03C9;</span>. Denote the corresponding
+log-likelihood value by <span 
+class="cmsy-10">L</span><sub><span 
+class="cmmi-7">m</span></sub>. Second, consider a range of values for <span 
+class="cmmi-10">&#x03C9; </span>around the
+maximum likelihood estimate. For each of these values, maximise <span 
+class="cmsy-10">L </span>for <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2;</span>
+whilst keeping <span 
+class="cmmi-10">&#x03C9; </span>fixed. Denote the corresponding log-likelihood by <span 
+class="cmsy-10">L</span><sub><span 
+class="cmmi-7">&#x03C9;</span></sub>. Finally, a 95%
+confidence region for <span 
+class="cmmi-10">&#x03C9; </span>is obtained by collecting all the values of <span 
+class="cmmi-10">&#x03C9; </span>for which
+<span 
+class="cmsy-10">L</span><sub><span 
+class="cmmi-7">&#x03C9;</span></sub> <span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmsy-10">l</span><sub><span 
+class="cmmi-7">m</span></sub> <span 
+class="cmsy-10">- </span>3<span 
+class="cmmi-10">.</span>85<span 
+class="cmmi-10">&#x2215;</span>2, where 3.85 corresponds to the 95<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> percentile of a chi-square
+distribution with one degree of freedom (Figure&#x00A0;<a 
+href="#x1-50044">4<!--tex4ht:ref: fig:profileLL --></a>). The same procedure can also be
+applied to <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2;</span>, in order to obtain asymmetic confidence intervals for
+those parameters if needed. This would be particularly useful for very young
+samples.
+<!--l. 825--><p class="indent" >   A second and more pragmatic approach to dealing with the positivity constraint
+is to simply redefine the regression parameters in terms of logarithmic quantities.
+This is done by replacing Equations&#x00A0;<a 
+href="#x1-2005r11">11<!--tex4ht:ref: eq:K1 --></a>, <a 
+href="#x1-2006r12">12<!--tex4ht:ref: eq:L1 --></a> and <a 
+href="#x1-3004r19">19<!--tex4ht:ref: eq:SigmaDw --></a> with:
+<table 
+class="align">
+           <tr><td 
+class="align-odd"></td>           <td 
+class="align-even"><span 
+class="cmmi-10">K </span>= <span 
+class="cmmi-10">X </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">U</span> exp[<span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmsy-7">*</span></sub>]<span 
+class="cmmi-10">W&#x03B3; </span><span 
+class="cmsy-10">-</span> exp[<span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">35</span></sub><span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">t</span><sub><span 
+class="cmsy-5">*</span></sub>
+ </sup>] + 1</td>                                  <td 
+class="align-label"><a 
+ id="x1-5001r22"></a>(22)
+           </td></tr><tr><td 
+class="align-odd"></td>           <td 
+class="align-even"><span 
+class="cmmi-10">L </span>= <span 
+class="cmmi-10">Y </span><span 
+class="cmsy-10">-</span> exp[<span 
+class="cmmi-10">&#x03B1;</span><sub><span 
+class="cmsy-7">*</span></sub>]<span 
+class="cmmi-10">W&#x03B3; </span><span 
+class="cmsy-10">-</span> exp[<span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">38</span></sub><span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">t</span><sub><span 
+class="cmsy-5">*</span></sub>
+ </sup>] + 1</td>                                    <td 
+class="align-label"><a 
+ id="x1-5002r23"></a>(23)
+           </td></tr><tr><td 
+class="align-odd"></td>           <td 
+class="align-even">&#x03A3;<sub><span 
+class="cmr-7">&#x0394;</span></sub> = <img 
+src="index21x.png" alt="[Jx  J&#x03BB;]"  class="left" align="middle"><img 
+src="index22x.png" alt="[          ]
+  &#x03A3;x  04n&#x00D7;4
+ 04&#x00D7;4n &#x03A3; &#x03BB;"  class="left" align="middle"><img 
+src="index23x.png" alt=" [  ]
+ JTx
+ JT&#x03BB;"  class="left" align="middle"> + <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">&#x03C9;</span></sub> exp[<span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmsy-7">*</span></sub>]<sup><span 
+class="cmr-7">2</span></sup><span 
+class="cmmi-10">J</span><sub>
+<span 
+class="cmmi-7">&#x03C9;</span></sub><sup><span 
+class="cmmi-7">T</span></sup></td>                      <td 
+class="align-label"><a 
+ id="x1-5003r24"></a>(24)           </td></tr></table>
+
+<!--l. 850--><p class="noindent" >respectively, and maximising Equation&#x00A0;<a 
+href="#x1-3001r16">16<!--tex4ht:ref: eq:L --></a> with respect to <span 
+class="cmmi-10">t</span><sub><span 
+class="cmsy-7">*</span></sub>, <span 
+class="cmmi-10">&#x03B1;</span><sub><span 
+class="cmsy-7">*</span></sub>, <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmsy-7">*</span></sub> and
+<span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmsy-7">*</span></sub>. The standard errors for these log parameters (again obtained from the
+Fisher Information matrix) can then be converted to asymmetric confidence
+intervals for <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1;</span>, <span 
+class="cmmi-10">&#x03B2; </span>and <span 
+class="cmmi-10">&#x03C9;</span>. This approach yields results that are similar to those
+obtained using the profile log-likelihood method, as illustrated in Figure&#x00A0;<a 
+href="#x1-50044">4<!--tex4ht:ref: fig:profileLL --></a> for
+monazite grain #10 in sample BHE-01 of <a 
+href="#Xgibson2016">Gibson et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xgibson2016">2016</a>). This sample
+experienced a diachronous crystallisation history, resulting in an overdispersed
+Total-Pb/U&#8211;Th isochron fit (MSWD = 8). Quantifying the excess dispersion with a
+model-3 fit yields an overdispersion parameter <span 
+class="cmmi-10">&#x03C9; </span>= 0<span 
+class="cmmi-10">.</span>67&#x00A0;Ma with asymmetric
+confidence bounds of +0.48/-0.23&#x00A0;Ma. Besides generating realistic confidence
+regions, the logarithmic reparameterisation of the likelihood function has the
+added benefit increasing the numerical stability of the maximum likelihood
+method.
+
+<!--l. 867--><p class="indent" >
+      <a id="x1-50044"></a><hr class="float"><div class="float">
+
+<center>
+	<a href="profileLL.png">
+	  <img src="profileLL.png" class="snapshot" alt="PIC">
+	</a>
+</center>	
+<div class="caption" 
+><span class="id">Figure&#x00A0;4:  </span><span  
+class="content">Profile  log-likelihood  intervals  of  the  overdispersion  parameter  <span 
+class="cmmi-10">&#x03C9;</span>
+(black,  left)  and  log(<span 
+class="cmmi-10">&#x03C9;</span>)  (black,  right)  for  the  <a 
+href="#Xgibson2016">Gibson  et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xgibson2016">2016</a>)  dataset.
+The set of <span 
+class="cmmi-10">&#x03C9;</span>-values whose log-likelihood fall within a range of 1.92 from the
+maximum value define an asymmetric 95% confidence interval. Alternatively, a
+standard symmetric confidence interval for log(<span 
+class="cmmi-10">&#x03C9;</span>) (grey, right) can be mapped
+to an asymmetric confidence interval for <span 
+class="cmmi-10">&#x03C9; </span>(grey, left). The two approaches yield
+similar results.</span></div><!--tex4ht:label?: x1-50044 -->
+
+   </div><hr class="endfloat" />
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Detrital samples</h3>
+<!--l. 884--><p class="noindent" >So far we have assumed that all the U&#8211;Th&#8211;Pb measurements are cogenetic and share
+the same common Pb composition. This assumption is generally not valid for detrital
+minerals, which tend to contain a mixture of provenance components. In this case the
+different crystals in a sample are not expected to plot along a single isochron line.
+However it is still possible to remove the common Pb component by making certain
+assumptions about the common Pb composition. One way to do this is to assume
+that the mineral of interest was extracted from a reservoir of known U&#8211;Th&#8211;Pb
+composition.
+<!--l. 894--><p class="indent" >   For example, using the two-stage Pb evolution model of <a 
+href="#Xstacey1975">Stacey and
+Kramers</a>&#x00A0;(<a 
+href="#Xstacey1975">1975</a>), it is possible to predict the <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb and <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb
+ratios of the reservoir for any given time <span 
+class="cmmi-10">t</span>. More specifically, if <span 
+class="cmmi-10">t &#x003C; </span>3<span 
+class="cmmi-10">.</span>7&#x00A0;Ga,
+then
+<table 
+class="align">
+             <tr><td 
+class="align-odd"></td>             <td 
+class="align-even"><span 
+class="cmmi-10">&#x03B1;</span>(<span 
+class="cmmi-10">t</span>) = <img 
+src="index24x.png" alt="[    ]     [    ]
+ 220604Pb    +  220384U-   (e&#x03BB;383.7 - e&#x03BB;38t)
+[20P8b]3.7---[232Pb]sk--------------
+ 20P4P-bb3.7 +  204TPhb-sk (e&#x03BB;323.7 - e&#x03BB;32t)"  class="frac" align="middle"></td>                            <td 
+class="align-label"><a 
+ id="x1-6001r25"></a>(25)
+             </td></tr><tr><td 
+class="align-odd"></td>             <td 
+class="align-even"><span 
+class="cmmi-10">&#x03B2;</span>(<span 
+class="cmmi-10">t</span>) = <img 
+src="index25x.png" alt="[207Pb]     1[ 238U-]  (&#x03BB;353.7   &#x03BB;35t)
+-2[04Pb-3].7-+-U[-204Pb]-sk-e-------e----
+  22008P4Pbb 3.7 +  232024TPhb-sk (e&#x03BB;323.7 - e&#x03BB;32t)"  class="frac" align="middle"></td>                          <td 
+class="align-label"><a 
+ id="x1-6002r26"></a>(26)             </td></tr></table>
+<!--l. 920--><p class="noindent" >where <img 
+src="index26x.png" alt="[206Pb]
+ 204Pb"  class="left" align="middle"><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">.</span><span 
+class="cmr-7">7</span></sub> = 11<span 
+class="cmmi-10">.</span>152, <img 
+src="index27x.png" alt="[208Pb]
+ 204Pb"  class="left" align="middle"><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">.</span><span 
+class="cmr-7">7</span></sub> = 31<span 
+class="cmmi-10">.</span>23, <img 
+src="index28x.png" alt="[207Pb]
+ 204Pb"  class="left" align="middle"><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">.</span><span 
+class="cmr-7">7</span></sub> = 12<span 
+class="cmmi-10">.</span>998, <img 
+src="index29x.png" alt="[ 238U-]
+  204Pb"  class="left" align="middle"><sub><span 
+class="cmmi-7">sk</span></sub> = 9<span 
+class="cmmi-10">.</span>74,
+and <img 
+src="index30x.png" alt="[     ]
+ 22302T4P-hb"  class="left" align="middle"><sub><span 
+class="cmmi-7">sk</span></sub> = 36<span 
+class="cmmi-10">.</span>84. Substituting <span 
+class="cmmi-10">&#x03B1;</span>(<span 
+class="cmmi-10">t</span>) and <span 
+class="cmmi-10">&#x03B2;</span>(<span 
+class="cmmi-10">t</span>) for <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2; </span>in Equations&#x00A0;<a 
+href="#x1-2005r11">11<!--tex4ht:ref: eq:K1 --></a>&#8211;<a 
+href="#x1-2007r13">13<!--tex4ht:ref: eq:M1 --></a>
+reduces the number of free parameters from three (<span 
+class="cmmi-10">&#x03B1;</span>, <span 
+class="cmmi-10">&#x03B2; </span>and <span 
+class="cmmi-10">t</span>) to one (<span 
+class="cmmi-10">t</span>). This
+
+provides a quick and numerically robust mechanism for common-Pb correction of
+detrital minerals. It is the maximum likelihood equivalent of the heuristic approach
+used by <a 
+href="#Xchew2011">Chew et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xchew2011">2011</a>).
+<!--l. 932--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Implementation in <span 
+class="cmtt-10">IsoplotR</span></h3>
+<!--l. 935--><p class="noindent" >The algorithms presented in this paper have been implemented in the <span 
+class="cmtt-10">IsoplotR</span>
+software toolbox for geochronology (<a 
+href="#Xvermeesch2018c">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2018c">2018</a>). The easiest way to use the
+U&#8211;Th&#8211;Pb isochron functions is via an online graphical user interface at <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">http://</span></span></span>
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">isoplotr.</span></span></span> <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">london-geochron.com</span></span></span>. Alternatively, the same functions can also be
+accessed from the command line, using the <span 
+class="cmtt-10">R </span>programming language (<a 
+href="#Xr2020">R Core
+Team</a>,&#x00A0;<a 
+href="#Xr2020">2020</a>). This section of the paper presents some code snippets to illustrate the
+key functions involved. This brief tutorial assumes that the reader has <span 
+class="cmtt-10">R </span>and
+<span 
+class="cmtt-10">IsoplotR </span>installed on her/his computer. Further details about this are provided by
+<a 
+href="#Xvermeesch2018c">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2018c">2018</a>), and on the aforementioned website. First, we need to load
+<span 
+class="cmtt-10">IsoplotR </span>into <span 
+class="cmtt-10">R</span>:
+
+   <div class="verbatim" id="verbatim-1">
+library(IsoplotR)
+</div>
+<!--l. 950--><p class="nopar" > Two new data formats have been added to <span 
+class="cmtt-10">IsoplotR</span>&#8217;s existing six U&#8211;Pb formats, to
+accommodate datasets comprising <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th and <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb. Sample&#x00A0;Ga2 of <a 
+href="#Xjanots2014">Janots and
+Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>) has been included in the <span 
+class="cmtt-10">IsoplotR </span>package as two data files
+(<span 
+class="cmtt-10">UPb7.csv </span>and <span 
+class="cmtt-10">UPb8.csv</span>).<br 
+class="newline" />
+<!--l. 957--><p class="indent" >   <span 
+class="cmtt-10">UPb7.csv </span>specifies the U&#8211;Th&#8211;Pb composition using the &#8216;Wetherill&#8217; ratios
+<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U, <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U, <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th and <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U, whereas <span 
+class="cmtt-10">UPb8.csv </span>uses
+the &#8216;Tera-Wasserburg&#8217; ratios <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb, <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb, <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb and
+<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U. The key difference between the two formats is the strength of the
+internal error correlations, which is greater for format 7 than it is for format
+8. The following commands load the contents of <span 
+class="cmtt-10">UPb8.csv </span>into a variable
+called <span 
+class="cmtt-10">UPb</span>, and plot the data on a <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th vs. <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concordia
+diagram:
+
+   <div class="verbatim" id="verbatim-2">
+UPb&#x00A0;&#x003C;-&#x00A0;read.data('UPb8.csv',method='U-Pb',format=8)
+&#x00A0;<br />concordia(UPb,type=3)
+</div>
+<!--l. 976--><p class="nopar" > Performing a discordia regression and visualising the results as a <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb<sub class="textsubscript"><span 
+class="cmr-9">c</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb vs.
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb isochron:
+
+   <div class="verbatim" id="verbatim-3">
+isochron(UPb,type=1)
+</div>
+<!--l. 982--><p class="nopar" > which performs a three parameter regression without overdispersion. Accounting for
+overdispersion is done using the optional <span 
+class="cmtt-10">model </span>argument:
+
+   <div class="verbatim" id="verbatim-4">
+fit&#x00A0;&#x003C;-&#x00A0;isochron(UPb,type=1,model=3)
+</div>
+<!--l. 988--><p class="nopar" > where <span 
+class="cmtt-10">fit </span>is a variable that stores the numerical results of the isochron regression.
+This is a list of items that can be inspected by typing <span 
+class="cmtt-10">fit </span>at the <span 
+class="cmtt-10">R </span>command prompt.
+For example, the maximum likelihood estimates for <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1;</span>, <span 
+class="cmmi-10">&#x03B2; </span>and <span 
+class="cmmi-10">&#x03C9; </span>are stored in
+<span 
+class="cmtt-10">fit$par </span>and the covariance matrix in <span 
+class="cmtt-10">fit$cov</span>. Changing <span 
+class="cmtt-10">type </span>to <span 
+class="cmtt-10">2 </span>plots the
+regression results as a <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb<sub class="textsubscript"><span 
+class="cmr-9">c</span></sub>/<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb vs. <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb isochron. The isochron results
+can also be visualised on the concordia diagram:
+
+   <div class="verbatim" id="verbatim-5">
+concordia(UPb,type=2,show.age=2)
+</div>
+<!--l. 1001--><p class="nopar" > where <span 
+class="cmtt-10">type=2 </span>produces a Tera-Wasserburg diagram and the <span 
+class="cmtt-10">show.age </span>argument
+adds a three-parameter regression line to it. Change this to <span 
+class="cmtt-10">show.age=4 </span>for a
+four-parameter fit.
+<!--l. 1007--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>Discussion and future developments</h3>
+<!--l. 1009--><p class="noindent" >This paper introduced a &#8216;Total-Pb/U&#8211;Th algorithm&#8217; for common Pb correction by
+joint regression of all Pb isotopes of U and Th. For samples that are low in Th (such
+as carbonates), <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb offers the most precise way to correct for common Pb, because
+<sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb tends to be more abundant than both <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb and <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb. For samples that are
+high in Th, the <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th clock adds chronometrically valuable information to the
+joint U&#8211;Pb decay systems.
+<!--l. 1020--><p class="indent" >   The ingrowth of radiogenic Pb described by Equations&#x00A0;<a 
+href="#x1-1006r2">2<!--tex4ht:ref: eq:206 --></a>&#8211;<a 
+href="#x1-1008r4">4<!--tex4ht:ref: eq:208 --></a> assumes initial secular
+equilibrium between all the intermediate daughters in the U&#8211;Th&#8211;Pb decay chains.
+The new discordia regression algorithm can be modified to accommodate departures
+from this assumption. In fact, such disequilibrium corrections have already been
+implemented in <span 
+class="cmtt-10">IsoplotR</span>, using the matrix derivative approach of <a 
+href="#Xmclean2016b">McLean
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xmclean2016b">2016</a>). A manuscript detailing these calculation is in preparation by the latter
+author. The disequilibrium correction is particularly useful for applications to young
+carbonates, whose initial <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U activity ratios may be far out
+of equilibrium.
+<!--l. 1034--><p class="indent" >   The new discordia regression algorithm is based on the method of maximum
+likelihood, and accounts for correlated uncertainties between variables. However
+geochronological datasets are often associated with equally significant error
+correlations <span 
+class="cmti-10">between samples </span>(<a 
+href="#Xvermeesch2015b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2015b">2015</a>). The algorithm presented in this
+paper easily handles such correlations, which carry <span 
+class="cmti-10">systematic uncertainty</span>. These are
+represented by the off-diagonal terms of the covariance matrix &#x03A3;<sub><span 
+class="cmmi-7">x</span></sub> in Equation&#x00A0;<a 
+href="#x1-2009r15">15<!--tex4ht:ref: eq:SigmaDelta --></a>.
+However, to use this option in practical applications will require a new generation of
+low level data processing software.
+<!--l. 1045--><p class="indent" >   This new generation software will also need to deal with a second issue that
+negatively affects the accuracy of the U(-Th)-Pb method, which is apparent from
+Figure&#x00A0;<a 
+href="#x1-20011">1<!--tex4ht:ref: fig:JanotsCorrection --></a>. After removing the radiogenic <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb-component from the <a 
+href="#Xjanots2014">Janots and
+Rubatto</a>&#x00A0;(<a 
+href="#Xjanots2014">2014</a>) dataset, the 95% confidence ellipse of one of the aliquots crosses over
+into negative <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th ratios. This nonsensical result is related to the issues
+discussed in Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:skew --></a>. Isotopic data are strictly positive quantities that exhibit
+skewed error distributions. &#8216;Normal&#8217; statistical operations such as averaging and the
+calculation of &#8216;2-sigma&#8217; confidence intervals can produce counter-intuitive results
+when applied to such data.
+
+<!--l. 1059--><p class="indent" >   In Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:skew --></a>, the skewness of the fit parameters was removed by reformulating the
+regression algorithm in terms of logarithmic quantities. Similarly, <a 
+href="#Xvermeesch2015b">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2015b">2015</a>)
+showed that the skewness of isotopic compositions can be removed using log-ratios, in
+the context of <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar geochronology. <a 
+href="#Xmclean2016">McLean et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xmclean2016">2016</a>) introduced
+the same approach to in-situ U&#8211;Pb geochronology by LA-ICP-MS. Future
+software development will allow analysts to export their U&#8211;Th&#8211;Pb isotopic
+data directly as logratios and covariance matrices. Such a data structure
+can still be analysed with the new discordia regression algorithm, after a
+logarithmic change a variables for <span 
+class="cmmi-10">X</span>, <span 
+class="cmmi-10">Y </span>, <span 
+class="cmmi-10">Z </span>and <span 
+class="cmmi-10">W </span>in Equations&#x00A0;<a 
+href="#x1-2005r11">11<!--tex4ht:ref: eq:K1 --></a>, <a 
+href="#x1-2006r12">12<!--tex4ht:ref: eq:L1 --></a> and
+<a 
+href="#x1-2007r13">13<!--tex4ht:ref: eq:M1 --></a>.
+<!--l. 1072--><p class="indent" >   The U&#8211;Pb method is one of the most powerful and versatile methods in the
+geochronological toolbox. With two isotopes of the same parent (<sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U)
+decaying to two different isotopes of the same daughter (<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb and <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb), the U&#8211;Pb
+method offers an internal quality control that is absent from most other
+geochronological techniques. U-bearing minerals often contain significant amounts of
+Th, which decays to <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Pb. However until this day geochronologists have not
+frequently used this additional parent-daughter pair to its full potential. It is hoped
+that the algorithm and software presented in this paper will change this
+situation.
+<!--l. 1085--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-90008"></a>Appendix&#x00A0;A</h3>
+<!--l. 1087--><p class="noindent" >The covariance matrix of the isotopic ratio measurements <span 
+class="cmmi-10">X</span>, <span 
+class="cmmi-10">Y </span>, <span 
+class="cmmi-10">Z </span>and <span 
+class="cmmi-10">W </span>is given
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r27"></a>
+   <center class="math-display" >
+<img 
+src="index31x.png" alt="     &#x230A;                    &#x230B;
+       &#x03A3;X  &#x03A3;X,Y &#x03A3;X,Z &#x03A3;X,W
+&#x03A3;x = ||&#x03A3;Y,X  &#x03A3;Y   &#x03A3;Y,Z  &#x03A3;Y,W ||
+     &#x2308;&#x03A3;Z,X &#x03A3;Z,Y  &#x03A3;Z   &#x03A3;Z,W &#x2309;
+      &#x03A3;W,X &#x03A3;W,Y &#x03A3;W,Z  &#x03A3;W
+" class="math-display" ></center></td><td class="equation-label">(27)</td></tr></table>
+<!--l. 1101--><p class="nopar" >
+<!--l. 1103--><p class="noindent" >where
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r28"></a>
+
+   <center class="math-display" >
+<img 
+src="index32x.png" alt="      &#x230A;      2                     &#x230B;
+      | s[X1]   s[X1,X22 ] ...s[X1, Xn]|
+&#x03A3;X  = ||s[X2,.X1]  s[X2. ]  ...s[X2,.Xn]||,
+      &#x2308;    ..       ..    ...    ..   &#x2309;
+       s[Xn, X1] s[Xn,X2 ] ... s[Xn]2
+" class="math-display" ></center></td><td class="equation-label">(28)</td></tr></table>
+<!--l. 1115--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9003r29"></a>
+   <center class="math-display" >
+<img 
+src="index33x.png" alt="       &#x230A;                           &#x230B;
+        s[X1,Y1]2 s[X1, Y2] ...s[X1,Yn ]
+       || s[X2,Y1] s[X2, Y2] ...s[X2,Yn ]||
+&#x03A3;X,Y = |&#x2308;    ..       ..    ...    ..   |&#x2309; ,
+            .       .          .
+        s[Xn,Y1] s[Xn, Y2] ...s[Xn, Yn]
+" class="math-display" ></center></td><td class="equation-label">(29)</td></tr></table>
+<!--l. 1127--><p class="nopar" >
+<!--l. 1129--><p class="noindent" >and so forth, in which <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">a</span>]<sup><span 
+class="cmr-7">2</span></sup> is the variance of <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">a,b</span>] is the covariance of <span 
+class="cmmi-10">a </span>and
+<span 
+class="cmmi-10">b</span>, for any <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b</span>. &#x03A3;<sub><span 
+class="cmmi-7">&#x03BB;</span></sub> is the covariance matrix of the decay constants and the
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U-ratio:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9004r30"></a>
+   <center class="math-display" >
+<img 
+src="index34x.png" alt="     &#x230A;                       &#x230B;
+      s[&#x03BB;35]2   0     0    0
+     ||   0  s[&#x03BB;38]2   0    0  ||
+&#x03A3;&#x03BB; = &#x2308;   0     0   s[&#x03BB;32]2  0  &#x2309; ,
+         0     0     0   s[U ]2
+" class="math-display" ></center></td><td class="equation-label">(30)</td></tr></table>
+<!--l. 1144--><p class="nopar" >
+<!--l. 1146--><p class="indent" >   Here the covariance terms have been set to zero, but nonzero values could
+also be accommodated. Finally, the Jacobian matrices <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">x</span></sub> and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">&#x03BB;</span></sub> are given
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9005r31"></a>
+   <center class="math-display" >
+<img 
+src="index35x.png" alt="     &#x230A;                        &#x230B;
+      In&#x00D7;n 0n&#x00D7;n 0n&#x00D7;n - U&#x03B2;In&#x00D7;n &#x03B3;
+Jx = &#x2308;0n&#x00D7;n In&#x00D7;n 0n&#x00D7;n - &#x03B1;In&#x00D7;n&#x03B3; &#x2309;
+      0n&#x00D7;n 0n&#x00D7;n In&#x00D7;n    0n&#x00D7;n
+" class="math-display" ></center></td><td class="equation-label">(31)</td></tr></table>
+<!--l. 1159--><p class="nopar" >
+<!--l. 1161--><p class="noindent" >and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9006r32"></a>
+   <center class="math-display" >
+<img 
+src="index36x.png" alt="    &#x230A;       &#x03BB; t                         &#x230B;
+      - tn&#x00D7;1e 35   0n&#x00D7;1&#x03BB;  t  0n&#x00D7;1   - &#x03B2;W &#x03B3;
+J&#x03BB; = &#x2308;  0n&#x00D7;1   - tn&#x00D7;1e 38   0n&#x00D7;1    0n&#x00D7;1 &#x2309;
+        0n&#x00D7;1      0n&#x00D7;1   - tn&#x00D7;1e&#x03BB;32t 0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(32)</td></tr></table>
+<!--l. 1171--><p class="nopar" >
+<!--l. 1173--><p class="noindent" >where 0<sub><span 
+class="cmmi-7">a</span><span 
+class="cmsy-7">&#x00D7;</span><span 
+class="cmmi-7">b</span></sub> and 1<sub><span 
+class="cmmi-7">a</span><span 
+class="cmsy-7">&#x00D7;</span><span 
+class="cmmi-7">b</span></sub> mark a <span 
+class="cmmi-10">a </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">b </span>matrices of zeros and ones, respectively, whereas
+<span 
+class="cmmi-10">I</span><sub><span 
+class="cmmi-7">n</span><span 
+class="cmsy-7">&#x00D7;</span><span 
+class="cmmi-7">n</span></sub> is the <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">n </span>identity matrix.
+
+<!--l. 1177--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-100008"></a>Appendix&#x00A0;B</h3>
+<!--l. 1179--><p class="noindent" >The numerical stability of the optimisation is greatly enhanced by dropping the
+dependency of the sum of squares <span 
+class="cmmi-10">S </span>on the uncertainty of the Th/U ratios <span 
+class="cmmi-10">W</span>. Thus,
+we replace Equation&#x00A0;<a 
+href="#x1-9001r27">27<!--tex4ht:ref: eq:Ex --></a> by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10001r33"></a>
+   <center class="math-display" >
+<img 
+src="index37x.png" alt="     &#x230A;              &#x230B;
+       &#x03A3;X  &#x03A3;X,Y &#x03A3;X,Z
+&#x03A3;x = &#x2308;&#x03A3;Y,X  &#x03A3;Y  &#x03A3;Y,Z&#x2309;
+      &#x03A3;Z,X &#x03A3;Z,Y  &#x03A3;Z
+" class="math-display" ></center></td><td class="equation-label">(33)</td></tr></table>
+<!--l. 1192--><p class="nopar" >
+<!--l. 1194--><p class="noindent" >and Equation&#x00A0;<a 
+href="#x1-9005r31">31<!--tex4ht:ref: eq:Jx --></a> by the 3<span 
+class="cmmi-10">n</span><span 
+class="cmsy-10">&#x00D7;</span> 3<span 
+class="cmmi-10">n</span> identity matrix (i.e., <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">x</span></sub> = <span 
+class="cmmi-10">I</span><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">n</span><span 
+class="cmsy-7">&#x00D7;</span><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">n</span></sub>). Let us define &#x03A9;
+to be the inverse covariance matrix of &#x0394;, so that
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10002r34"></a>
+   <center class="math-display" >
+<img 
+src="index38x.png" alt="          &#x230A;           &#x230B;
+ -1       &#x2308;&#x03A9;1,1 &#x03A9;1,2 &#x03A9;1,3&#x2309;
+&#x03A3;&#x0394;  &#x2261; &#x03A9; =  &#x03A9;2,1 &#x03A9;2,2 &#x03A9;2,3
+           &#x03A9;3,1 &#x03A9;3,2 &#x03A9;3,3
+" class="math-display" ></center></td><td class="equation-label">(34)</td></tr></table>
+<!--l. 1206--><p class="nopar" >
+<!--l. 1208--><p class="indent" >   Then, we can directly estimate <span 
+class="cmmi-10">&#x03B3; </span>for any given value of <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2;</span>, by replacing <span 
+class="cmmi-10">&#x03B3;</span>
+with <span 
+class="cmmi-10">Z </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">M </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">&#x03BB;</span><sub><span 
+class="cmr-5">32</span></sub><span 
+class="cmmi-7">t</span></sup> + 1 in Equation&#x00A0;<a 
+href="#x1-2007r13">13<!--tex4ht:ref: eq:M1 --></a>, so that:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10003r35"></a>
+
+   <center class="math-display" >
+<img 
+src="index39x.png" alt="                                       &#x03BB;32t       &#x03BB;35t
+K = K&#x02C6; +U &#x03B2;W M  withK&#x02C6; = X - U&#x03B2;W (Z - e   + 1)- e   + 1
+" class="math-display" ></center></td><td class="equation-label">(35)</td></tr></table>
+<!--l. 1216--><p class="nopar" >
+and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10004r36"></a>
+   <center class="math-display" >
+<img 
+src="index40x.png" alt="    &#x02C6;             &#x02C6;               &#x03BB;32t       &#x03BB;38t
+L = L + &#x03B1;W M  with L = Y - &#x03B1;W (Z - e   + 1)- e   + 1
+" class="math-display" ></center></td><td class="equation-label">(36)</td></tr></table>
+<!--l. 1223--><p class="nopar" >
+Plugging Equations&#x00A0;<a 
+href="#x1-10003r35">35<!--tex4ht:ref: eq:K2 --></a> and <a 
+href="#x1-10004r36">36<!--tex4ht:ref: eq:L2 --></a> into Equation&#x00A0;<a 
+href="#x1-2008r14">14<!--tex4ht:ref: eq:S --></a> and rearranging yields:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10005r37"></a>
+   <center class="math-display" >
+<img 
+src="index41x.png" alt="S = M TAM  + BM  + M TC + D
+" class="math-display" ></center></td><td class="equation-label">(37)</td></tr></table>
+<!--l. 1228--><p class="nopar" >
+where
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10006r38"></a>
+
+   <center class="math-display" >
+<img 
+src="index42x.png" alt="A =U 2&#x03B2;2W &#x03A9;   W  + &#x03B1;2W  &#x03A9;  W  + &#x03A9;   + U&#x03B1; &#x03B2;W (&#x03A9;   + &#x03A9;  )W  +
+          d 1,1  d      d 2,2  d   3,3        d  1,2   2,1  d
+   U &#x03B2;(Wd&#x03A9;1,3 + &#x03A9;3,1Wd) +&#x03B1; (Wd &#x03A9;2,3 + &#x03A9;3,2Wd )
+" class="math-display" ></center></td><td class="equation-label">(38)</td></tr></table>
+<!--l. 1236--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10007r39"></a>
+   <center class="math-display" >
+<img 
+src="index43x.png" alt="B =U &#x03B2;K&#x02C6;T &#x03A9;  W   +&#x03B1; &#x02C6;LT&#x03A9;   W  + &#x03B1; &#x02C6;KT &#x03A9; W  + U &#x03B2;&#x02C6;LT&#x03A9;   W  + &#x02C6;KT &#x03A9;   + &#x02C6;LT&#x03A9;
+          1,1 d        2,2 d        1,2  d         2,1  d      1,3      2,3
+" class="math-display" ></center></td><td class="equation-label">(39)</td></tr></table>
+<!--l. 1242--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10008r40"></a>
+   <center class="math-display" >
+<img 
+src="index44x.png" alt="C =U &#x03B2;Wd &#x03A9;1,1K&#x02C6;+ &#x03B1;Wd &#x03A9;2,2&#x02C6;L+ U &#x03B2;Wd &#x03A9;1,2&#x02C6;L + &#x03B1;Wd &#x03A9;2,1K&#x02C6;+ &#x03A9;3,1 &#x02C6;K + &#x03A9;3,2&#x02C6;L
+" class="math-display" ></center></td><td class="equation-label">(40)</td></tr></table>
+<!--l. 1248--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10009r41"></a>
+
+   <center class="math-display" >
+<img 
+src="index45x.png" alt="     T          T        T         T
+D = &#x02C6;K  &#x03A9;1,1 &#x02C6;K + K&#x02C6; &#x03A9;1,2L&#x02C6;+ &#x02C6;L &#x03A9;2,1K&#x02C6;+ &#x02C6;L  &#x03A9;2,2&#x02C6;L
+" class="math-display" ></center></td><td class="equation-label">(41)</td></tr></table>
+<!--l. 1254--><p class="nopar" >
+Taking the matrix derivative of <span 
+class="cmmi-10">S </span>with respect to <span 
+class="cmmi-10">M</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10010r42"></a>
+   <center class="math-display" >
+<img 
+src="index46x.png" alt="           T      T         T
+&#x2202;S&#x2215;&#x2202;M  = M  (A + A ) + B +C
+" class="math-display" ></center></td><td class="equation-label">(42)</td></tr></table>
+<!--l. 1258--><p class="nopar" >
+Setting <span 
+class="cmmi-10">&#x2202;S&#x2215;&#x2202;M </span>= 0 and solving for <span 
+class="cmmi-10">M</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10011r43"></a>
+   <center class="math-display" >
+<img 
+src="index47x.png" alt="M = - (A + AT )-1(BT  +C )
+" class="math-display" ></center></td><td class="equation-label">(43)</td></tr></table>
+<!--l. 1262--><p class="nopar" >
+Plugging <span 
+class="cmmi-10">M </span>back into Equation&#x00A0;<a 
+href="#x1-2007r13">13<!--tex4ht:ref: eq:M1 --></a> yields our estimate of <span 
+class="cmmi-10">&#x03B3;</span>, which allows us to
+calculate <span 
+class="cmmi-10">S</span>. The values of <span 
+class="cmmi-10">t</span>, <span 
+class="cmmi-10">&#x03B1; </span>and <span 
+class="cmmi-10">&#x03B2; </span>that minimise <span 
+class="cmmi-10">S </span>are then found by numerical
+methods.
+
+<!--l. 1268--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-110008"></a>Appendix&#x00A0;C</h3>
+<!--l. 1270--><p class="noindent" >Explicit formulae for the Fisher Information matrix (Equation&#x00A0;<a 
+href="#x1-3002r17">17<!--tex4ht:ref: eq:Fisher --></a>) are possible for
+the simplified algorithm, in which the uncertainty of <span 
+class="cmmi-10">W </span>is ignored:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11001r44"></a>
+   <center class="math-display" >
+<img 
+src="index48x.png" alt=" 2      &#x230A; U &#x03B2;W  &#x230B;T    &#x230A;  U&#x03B2;W  &#x230B;
+&#x2202;-L-= - &#x2308;  &#x03B1;W   &#x2309;  &#x03A3;-&#x0394;1&#x2308;  &#x03B1;W   &#x2309;
+&#x2202;&#x03B3;2       In&#x00D7;n           In&#x00D7;n
+" class="math-display" ></center></td><td class="equation-label">(44)</td></tr></table>
+<!--l. 1290--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11002r45"></a>
+   <center class="math-display" >
+<img 
+src="index49x.png" alt="                    &#x230A;      &#x230B;      &#x230A;           &#x230B;
+ 2     (  2  )T       U&#x03B2;W    T     (&#x03BB;35e&#x03BB;35t)n&#x00D7;1
+&#x2202;-L--=  -&#x2202;-L-   = - &#x2308; &#x03B1;W   &#x2309;  &#x03A3; -&#x0394;1&#x2308;(&#x03BB;38e&#x03BB;38t)n&#x00D7;1&#x2309;
+&#x2202;&#x03B3;&#x2202;t    &#x2202;t&#x2202;&#x03B3;          In&#x00D7;n         (&#x03BB;32e&#x03BB;32t)n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(45)</td></tr></table>
+<!--l. 1311--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11003r46"></a>
+   <center class="math-display" >
+
+<img 
+src="index50x.png" alt="                   &#x230A;      &#x230B;         &#x230A;       &#x230B;      &#x230A;    &#x230B;
+  2    (   2  )T     0n&#x00D7;n   T          U&#x03B2;W    T     0n&#x00D7;1
+-&#x2202;-L-=   -&#x2202;-L-   = &#x2308;  W   &#x2309;  &#x03A3;-&#x0394; 1&#x0394; -&#x2308;  &#x03B1;W   &#x2309;  &#x03A3; -&#x0394;1&#x2308; W &#x03B3;&#x2309;
+&#x2202;&#x03B3;&#x2202;&#x03B1;     &#x2202;&#x03B1;&#x2202; &#x03B3;       0n&#x00D7;n              In&#x00D7;n         0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(46)</td></tr></table>
+<!--l. 1340--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11004r47"></a>
+   <center class="math-display" >
+<img 
+src="index51x.png" alt="                   &#x230A;      &#x230B;T        &#x230A;       &#x230B;T    &#x230A;     &#x230B;
+&#x2202;2L--  ( &#x2202;2L-)T      U W      -1      U &#x03B2;W      -1  UW &#x03B3;
+&#x2202;&#x03B3;&#x2202;&#x03B2; =   &#x2202;&#x03B2;&#x2202;&#x03B3;    = &#x2308; 0n&#x00D7;n &#x2309;  &#x03A3;&#x0394; &#x0394; - &#x2308;  &#x03B1;W   &#x2309;  &#x03A3;&#x0394; &#x2308; 0n&#x00D7;1&#x2309;
+                     0n&#x00D7;n              In&#x00D7;n          0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(47)</td></tr></table>
+<!--l. 1369--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11005r48"></a>
+   <center class="math-display" >
+<img 
+src="index52x.png" alt="             &#x230A;(e&#x03BB;35t&#x03BB;2)n&#x00D7;1&#x230B;   &#x230A;(&#x03BB;35e&#x03BB;35t)n&#x00D7;1&#x230B;T     &#x230A;(&#x03BB;35e&#x03BB;35t)n&#x00D7;1&#x230B;
+&#x2202;2L-= &#x0394;T &#x03A3; -1&#x2308;(e&#x03BB;38t&#x03BB;325)   &#x2309; - &#x2308;(&#x03BB;  e&#x03BB;38t)   &#x2309;  &#x03A3;-1 &#x2308;(&#x03BB; e&#x03BB;38t)   &#x2309;
+ &#x2202;t2        &#x0394;  (e&#x03BB;32t&#x03BB;328)n&#x00D7;1     (&#x03BB;38e&#x03BB;32t)n&#x00D7;1    &#x0394;   (&#x03BB;38e&#x03BB;32t)n&#x00D7;1
+                    32n&#x00D7;1       32    n&#x00D7;1          32    n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(48)</td></tr></table>
+<!--l. 1397--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11006r49"></a>
+
+   <center class="math-display" >
+<img 
+src="index53x.png" alt="                &#x230A;    &#x230B;T     &#x230A;    &#x03BB;  t   &#x230B;
+ &#x2202;2L    &#x2202;2L      01&#x00D7;n    - 1 (&#x03BB;35e&#x03BB;35)tn&#x00D7;1
+&#x2202;t&#x2202;&#x03B1;-= &#x2202;&#x03B1;-&#x2202;t = - &#x2308; W &#x03B3;&#x2309; &#x03A3;&#x0394;  &#x2308;(&#x03BB;38e&#x03BB;38)tn&#x00D7;1&#x2309;
+                 01&#x00D7;n        (&#x03BB;32e 32)n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(49)</td></tr></table>
+<!--l. 1416--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11007r50"></a>
+   <center class="math-display" >
+<img 
+src="index54x.png" alt="                &#x230A;     &#x230B;T    &#x230A;     &#x03BB; t   &#x230B;
+&#x2202;2L    &#x2202;2L       UW &#x03B3;     -1 (&#x03BB;35e 35 )n&#x00D7;1
+&#x2202;t&#x2202;&#x03B2;-= &#x2202;&#x03B2;&#x2202;t-= - &#x2308;0n&#x00D7;1 &#x2309; &#x03A3; &#x0394; &#x2308;(&#x03BB;38e&#x03BB;38t)n&#x00D7;1&#x2309;
+                 0n&#x00D7;1        (&#x03BB;32e&#x03BB;32t)n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(50)</td></tr></table>
+<!--l. 1435--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11008r51"></a>
+   <center class="math-display" >
+<img 
+src="index55x.png" alt="        &#x230A;    &#x230B;T    &#x230A;     &#x230B;
+&#x2202;2L      0n&#x00D7;1        0n&#x00D7;1
+&#x2202;&#x03B1;2-= - &#x2308;W &#x03B3; &#x2309;  &#x03A3;-&#x0394;1&#x2308; W &#x03B3; &#x2309;
+         0n&#x00D7;1        0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(51)</td></tr></table>
+<!--l. 1453--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11009r52"></a>
+
+   <center class="math-display" >
+<img 
+src="index56x.png" alt="        &#x230A;     &#x230B;T    &#x230A;     &#x230B;
+&#x2202;2L      U W &#x03B3;    -1  UW &#x03B3;
+&#x2202;&#x03B2;2-= - &#x2308;0n&#x00D7;1 &#x2309;  &#x03A3;&#x0394; &#x2308; 0n&#x00D7;1&#x2309;
+         0n&#x00D7;1         0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(52)</td></tr></table>
+<!--l. 1471--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11010r53"></a>
+   <center class="math-display" >
+<img 
+src="index57x.png" alt="                 &#x230A;     &#x230B;T    &#x230A;    &#x230B;
+ &#x2202;2L    &#x2202;2L       UW  &#x03B3;    -1 0n&#x00D7;1
+&#x2202;&#x03B1;&#x2202;&#x03B2;-= &#x2202;-&#x03B2;&#x2202;&#x03B1; = - &#x2308;0n&#x00D7;1 &#x2309; &#x03A3; &#x0394; &#x2308; W &#x03B3;&#x2309;
+                  0n&#x00D7;1        0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(53)</td></tr></table>
+<!--l. 1490--><p class="nopar" >
+<!--l. 1492--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-120008"></a>Appendix&#x00A0;D</h3>
+<!--l. 1494--><p class="noindent" >Additional derivatives are required to propagate the uncertainty of the overdispersion
+parameters <span 
+class="cmmi-10">&#x03C9;</span>. This can only be done manually if the overdispersion is attributed to
+the concordia intercept age <span 
+class="cmmi-10">t</span>, using the simplified model (ignoring the uncertainty of
+<span 
+class="cmmi-10">W</span>). In that case
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12001r54"></a>
+   <center class="math-display" >
+
+<img 
+src="index58x.png" alt="                            &#x230A;       &#x230B;
+ &#x2202;2L   (  &#x2202;2L  )T       &#x2202;&#x03A3; -1   U&#x03B2;W
+-----=   -----   = - &#x0394;T---&#x0394;-&#x2308;  &#x03B1;W   &#x2309;
+&#x2202;&#x03B3;&#x2202;&#x03C9;     &#x2202;&#x03C9;&#x2202;&#x03B3;           &#x2202; &#x03C9;    In&#x00D7;n
+" class="math-display" ></center></td><td class="equation-label">(54)</td></tr></table>
+<!--l. 1511--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12002r55"></a>
+   <center class="math-display" >
+<img 
+src="index59x.png" alt="                            &#x230A;           &#x230B;
+ &#x2202;2L   ( &#x2202;2L )T        &#x2202;&#x03A3;-1  (&#x03BB;35e&#x03BB;35t)n&#x00D7;1
+&#x2202;t&#x2202;&#x03C9;-=   &#x2202;&#x03C9;&#x2202;t-  = - &#x0394;T -&#x2202;&#x0394;&#x03C9;--&#x2308;(&#x03BB;38e&#x03BB;38t)n&#x00D7;1&#x2309;
+                             (&#x03BB;32e&#x03BB;32t)n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(55)</td></tr></table>
+<!--l. 1524--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12003r56"></a>
+   <center class="math-display" >
+<img 
+src="index60x.png" alt="                             &#x230A;    &#x230B;
+ &#x2202;2L    ( &#x2202;2L )T      T &#x2202;&#x03A3;-&#x0394;1  0n&#x00D7;1
+&#x2202;&#x03B1;&#x2202;-&#x03C9; =  &#x2202;&#x03C9;-&#x2202;&#x03B1;   = - &#x0394;  -&#x2202;&#x03C9;--&#x2308; W &#x03B3;&#x2309;
+                              0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(56)</td></tr></table>
+<!--l. 1537--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12004r57"></a>
+
+   <center class="math-display" >
+<img 
+src="index61x.png" alt="       (      )             &#x230A;     &#x230B;
+&#x2202;2L--    -&#x2202;2L- T      T &#x2202;-&#x03A3;-&#x0394;1&#x2308;U W &#x03B3;&#x2309;
+&#x2202;&#x03B2;&#x2202;&#x03C9; =   &#x2202;&#x03C9;&#x2202;&#x03B2;    = - &#x0394;  &#x2202; &#x03C9;   0n&#x00D7;1
+                              0n&#x00D7;1
+" class="math-display" ></center></td><td class="equation-label">(57)</td></tr></table>
+<!--l. 1550--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12005r58"></a>
+   <center class="math-display" >
+<img 
+src="index62x.png" alt="&#x2202;2L     1 (&#x2202;2ln|&#x03A3; |      &#x2202;2&#x03A3; -1  )
+---2 = --  -----2&#x0394;- +&#x0394;T  ---&#x0394;2-&#x0394;
+&#x2202; &#x03C9;     2    &#x2202; &#x03C9;          &#x2202;&#x03C9;
+" class="math-display" ></center></td><td class="equation-label">(58)</td></tr></table>
+<!--l. 1558--><p class="nopar" >
+with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12006r59"></a>
+   <center class="math-display" >
+<img 
+src="index63x.png" alt="  -1
+&#x2202;&#x03A3;&#x0394;--= - &#x03A3;-&#x0394;1&#x2202;&#x03A3;-&#x0394;&#x03A3; -&#x0394;1
+ &#x2202;&#x03C9;          &#x2202;&#x03C9;
+" class="math-display" ></center></td><td class="equation-label">(59)</td></tr></table>
+<!--l. 1563--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12007r60"></a>
+
+   <center class="math-display" >
+<img 
+src="index64x.png" alt="&#x2202;2&#x03A3; -1    ( &#x2202;&#x03A3;- 1&#x2202;&#x03A3;           &#x2202;2&#x03A3;            &#x2202;&#x03A3;  &#x2202;&#x03A3;- 1)
+----&#x0394;2-= -   --&#x0394;----&#x0394;-&#x03A3;-&#x0394; 1+ &#x03A3;-&#x0394;1---2&#x0394;&#x03A3; -&#x0394;1+ &#x03A3;-&#x0394; 1--&#x0394;---&#x0394;--
+ &#x2202; &#x03C9;         &#x2202;&#x03C9;   &#x2202;&#x03C9;           &#x2202;&#x03C9;            &#x2202; &#x03C9;  &#x2202;&#x03C9;
+" class="math-display" ></center></td><td class="equation-label">(60)</td></tr></table>
+<!--l. 1576--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12008r61"></a>
+   <center class="math-display" >
+<img 
+src="index65x.png" alt="&#x2202;2ln-|&#x03A3;-&#x0394;|     (&#x2202;&#x03A3;--&#x0394;1&#x2202;&#x03A3;-&#x0394;    -1&#x2202;2&#x03A3;-&#x0394;)
+  &#x2202;&#x03C9;2   = Tr   &#x2202;&#x03C9;   &#x2202;&#x03C9;  + &#x03A3;&#x0394;  &#x2202;&#x03C9;2
+" class="math-display" ></center></td><td class="equation-label">(61)</td></tr></table>
+<!--l. 1582--><p class="nopar" >
+in which Tr(<span 
+class="cmsy-10">*</span>) stands for the trace of <span 
+class="cmsy-10">* </span>and
+
+<table 
+class="align">
+                          <tr><td 
+class="align-odd"><img 
+src="index66x.png" alt="&#x2202;&#x03A3;
+---&#x0394;
+ &#x2202;&#x03C9;"  class="frac" align="middle"></td>                          <td 
+class="align-even"> = 2<span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">&#x03C9;</span></sub><sup><span 
+class="cmmi-7">T</span></sup><span 
+class="cmmi-10">&#x03C9;J</span><sub>
+<span 
+class="cmmi-7">&#x03C9;</span></sub></td>                                                    <td 
+class="align-label"><a 
+ id="x1-12009r62"></a>(62)
+                          </td></tr><tr><td 
+class="align-odd"><img 
+src="index67x.png" alt=" 2
+&#x2202;-&#x03A3;&#x0394;2-
+ &#x2202;&#x03C9;"  class="frac" align="middle"></td>                          <td 
+class="align-even"> = 2<span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">&#x03C9;</span></sub><sup><span 
+class="cmmi-7">T</span></sup><span 
+class="cmmi-10">J</span><sub>
+<span 
+class="cmmi-7">&#x03C9;</span></sub></td>                                                     <td 
+class="align-label"><a 
+ id="x1-12010r63"></a>(63)                          </td></tr></table>
+<!--l. 1589--><p class="indent" >   Explicit formulae for the second derivatives are not available for the common-Pb
+based overdispersion model. In that case, the Fisher Information matrix must be
+computed numerically.
+<!--l. 1603--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-130008"></a>Acknowledgements</h3>
+<!--l. 1605--><p class="noindent" >PV would like to thank Randy Parrish, Phil Hopley and John Cottle for stimulating
+discussions that prompted the writing of this paper; and Ryan Ickert and Kyle
+Samperton for careful reviews.
+<!--l. 1617--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-140008"></a>References</h3>
+<!--l. 1617--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xandersen2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Andersen, T.: Correction of common lead in U&#8211;Pb analyses that do not
+  report <sup><span 
+class="cmr-7">204</span></sup>Pb, Chemical Geology, 192, 59&#8211;79, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chew, D.&#x00A0;M., Sylvester, P.&#x00A0;J., and Tubrett, M.&#x00A0;N.: U&#8211;Pb and Th&#8211;Pb dating
+  of apatite by LA-ICPMS, Chemical Geology, 280, 200&#8211;216, 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F.: Statistics for fission track analysis, CRC Press, 2005.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgibson2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gibson, R., Godin, L., Kellett, D.&#x00A0;A., Cottle, J.&#x00A0;M., and Archibald, D.:
+  Diachronous deformation along the base of the Himalayan metamorphic core,
+  west-central  Nepal,  Geological  Society  of  America  Bulletin,  128,  860&#8211;878,
+  2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjanots2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Janots, E. and Rubatto, D.: U&#8211;Th&#8211;Pb dating of collision in the external
+  Alpine domains (Urseren zone, Switzerland) using low temperature allanite
+  and monazite, Lithos, 184, 155&#8211;166, 2014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig,                                      K.&#x00A0;R.:                                      On
+  the treatment of concordant uranium-lead ages, Geochimica et Cosmochimica
+  Acta, 62, 665&#8211;676, https://doi.org/10.1016/S0016-7037(98)00059-3, 1998.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcintyre1966"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McIntyre, G.&#x00A0;A., Brooks, C., Compston, W., and Turek, A.: The Statistical
+  Assessment  of  Rb-Sr  Isochrons,  Journal  of  Geophysical  Research,  71,
+  5459&#8211;5468, 1966.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmclean2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McLean,   N.&#x00A0;M.,   Bowring,   J.&#x00A0;F.,   and   Gehrels,   G.:   Algorithms   and
+  software for U-Pb geochronology by LA-ICPMS, Geochemistry, Geophysics,
+  Geosystems, 17, 2480&#8211;2496, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmclean2016b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McLean,  N.&#x00A0;M.,  Smith,  C.&#x00A0;J.&#x00A0;M.,  Roberts,  N.&#x00A0;M.&#x00A0;W.,  and  Richards,
+  D.&#x00A0;A.: Connecting the U-Th and U-Pb Chronometers: New Algorithms and
+  Applications, AGU Fall Meeting Abstracts, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xparrish2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Parrish, R.&#x00A0;R., Parrish, C.&#x00A0;M., and Lasalle, S.: Vein calcite dating reveals
+  Pyrenean orogen as cause of Paleogene deformation in southern England,
+  Journal of the Geological Society, 175, 425&#8211;442, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xr2020"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R   Core   Team:   R:   A   Language   and   Environment   for   Statistical
+  Computing, R Foundation for Statistical Computing, Vienna, Austria, URL
+  <span 
+class="cmtt-10">https://www.R-project.org/</span>, 2020.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstacey1975"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stacey,  J.  and  Kramers,  J.:  Approximation  of  terrestrial  lead  isotope
+  evolution by a two-stage model, Earth and Planetary Science Letters, 26,
+  207&#8211;221, 1975.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.:  Revised  error  propagation  of  <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar  data,  including
+  covariances, Geochimica et Cosmochimica Acta, 171, 325&#8211;337, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.:  <span 
+class="cmtt-10">IsoplotR</span>:  a  free  and  open  toolbox  for  geochronology,
+  Geoscience Frontiers, 9, 1479&#8211;1493, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwendt1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wendt, I. and Carl, C.: The statistical distribution of the mean squared
+  weighted  deviation,  Chemical  Geology:  Isotope  Geoscience  Section,  86,
+  275&#8211;285, 1991.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwilliams1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Williams,  I.&#x00A0;S.:  U-Th-Pb  geochronology  by  ion  microprobe,  Reviews  in
+  Economic Geology, 7, 1&#8211;35, 1998.
+</p>
+  </div>
+<!--l. 1854--><p class="indent" >
+    
+</body></html> 
+
+
+

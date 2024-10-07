@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Remotely sensed dune celerity and sand flux measurements of the world&#8217;s fastest barchans (Bod&eacute;l&eacute;,
+Chad)</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="2008GL035921.tex"> 
+<meta name="date" content="2008-11-10 15:25:00"> 
+<link rel="stylesheet" type="text/css" href="2008GL035921.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css"> 
+</head><body>
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Remotely sensed dune celerity and sand flux measurements of the
+world&#8217;s fastest barchans (Bod&eacute;l&eacute;, Chad)</h2>
+<div class="author" ><span 
+class="ecrm-1200">Pieter Vermeesch</span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">*</span></a></span> <span 
+class="ecrm-1200">and Nick Drake</span><span class="thank-mark"><a 
+href="#tk-2"><span 
+class="cmsy-10x-x-120">&#8224;</span></a></span></div>
+<br />
+<div class="date" ></div>
+<div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10">*</span></span>School of Earth Sciences, Birkbeck College, University of London, London, WC1E 7HX, UK<br /><a 
+ id="tk-2"></a><span class="thank-mark"><span 
+class="cmsy-10">&#8224;</span></span>Department of
+Geography, King&#8217;s College, University of London, London, WC2R 2LS, UK</div>
+   </div><table 
+class="abstract"><tr><td 
+>
+<div class="center" 
+>
+<!--l. 45--><p class="noindent" >
+<!--l. 45--><p class="noindent" ><span 
+class="ecbx-0900">Abstract</span></div>
+     <!--l. 46--><p class="indent" >    <span 
+class="ecrm-0900">Quantifying sand flux with field measurements is an expensive and time-consuming process. We here</span>
+     <span 
+class="ecrm-0900">present an alternative approach using the COSI-Corr software package for Earth surface deformation</span>
+     <span 
+class="ecrm-0900">detection. Using pairs of ASTER satellite images, we detected dune migration in the Bod</span><span 
+class="ecrm-0900">&eacute;l</span><span 
+class="ecrm-0900">&eacute; depression</span>
+     <span 
+class="ecrm-0900">of northern Chad over time intervals of one month to 6.5 years. The displacement map can be used to</span>
+     <span 
+class="ecrm-0900">automatically distinguish dunes from interdunes, which is a crucial step towards calculating sand flux.</span>
+     <span 
+class="ecrm-0900">We interpolated a surface between the interdune areas and subtracted it from a digital elevation model,</span>
+     <span 
+class="ecrm-0900">thus obtaining dune heights and volumes. Multiplying height with celerity yields a pixel-by-pixel estimate</span>
+     <span 
+class="ecrm-0900">of the sand flux. We applied this method to large diatomite dunes in the Bod</span><span 
+class="ecrm-0900">&eacute;l</span><span 
+class="ecrm-0900">&eacute;, confirming that these</span>
+     <span 
+class="ecrm-0900">are some of the world&#8217;s fastest moving barchans. Plotting dune height against inverse celerity reveals</span>
+     <span 
+class="ecrm-0900">sand flux at the dune crest of </span><span 
+class="cmmi-9">&#x003E;</span><span 
+class="ecrm-0900">200 m</span><sup><span 
+class="cmr-6">3</span></sup><span 
+class="ecrm-0900">/m/yr. Average dune sand flux values for the eastern and western</span>
+     <span 
+class="ecrm-0900">Bod</span><span 
+class="ecrm-0900">&eacute;l</span><span 
+class="ecrm-0900">&eacute; are 76 and 99 m</span><sup><span 
+class="cmr-6">3</span></sup><span 
+class="ecrm-0900">/m/yr, respectively. The contribution of the dunes to the total area-averaged</span>
+     <span 
+class="ecrm-0900">sand flux is 24-29 m</span><sup><span 
+class="cmr-6">3</span></sup><span 
+class="ecrm-0900">/m/yr, which is </span><span 
+class="cmsy-9">~</span><span 
+class="ecrm-0900">10% of the saltation flux determined by previously published field</span>
+     <span 
+class="ecrm-0900">measurements.</span>
+</td></tr></table>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 69--><p class="noindent" >Measuring dune celerity and sand flux is a crucial step towards understanding aeolian systems, which represent some
+of the most dynamic geomorphic environments on our planet. Traditionally, such measurements have been carried
+out by (a) geodetic field surveys and/or long term monitoring of stakes set out in the (inter)dunes (e.g., Stokes et
+al., 1999; Bristow and Lancaster, 2004), (b) short term sand trap and anemometer studies (e.g., Greeley et al., 1996)
+or more recently (c) the use of saltation flux impact responders (Baas, 2004). We here propose an approach for
+measuring sand flux using pairs of high resolution optical satellite images. Although remote sensing has been used to
+study dune migration before (e.g., Crippen and Blom, 1991; Brown and Arbogast, 1999; Yao et al.,
+2007), our method is new in that it is fully automated and because dune celerity is combined with a
+
+digital elevation model (DEM) to determine sand flux. To detect dune migration we use the software
+package COSI-Corr, which stands for <span 
+class="ecti-1000">Co-registration of Optically Sensed Images and Correlation </span>and
+was developed for the purpose of detecting surface deformation caused by earthquakes (Leprince et
+al., 2007, 2008). Because co-seismic deformation is typically on the order of centimeters to meters,
+their detection requires sub-pixel accuracy and precision, which can only be achieved by carefully
+projecting and resampling the two satellite images (&#8216;before&#8217; and &#8216;after&#8217;) onto a common reference frame.
+COSI-Corr currently performs this operation for SPOT, ASTER and QuickBird imagery as well as
+aerial photographs. ASTER is the only one of these formats that is freely available to the research
+community while routinely producing DEMs and these are the main reasons why we have chosen it
+over the higher resolution alternatives. We use pairs of the 15 meter resolution ASTER nadir near
+infrared band (V3N) with COSI-Corr to determine dune celerity. We employ all three 15 m visible and
+infrared bands (VNIR) to produce colour composites that allow us to discriminate between dunes
+that have different chemical compositions. Finally we employ the DEM to calculate dune volumes.
+ASTER&#8217;s nadir-looking V3N and backward-looking V3B sensors form a stereographic pair that allows the
+calculation of DEMs with a spatial resolution of 30m and a vertical precision of 13m (Cuartero et al.,
+2005).
+<br class="newline" />
+<!--l. 106--><p class="indent" >   We have tested our approach on barchan dunes because they are better suited to this kind of study than more
+complex dunes as they completely overturn over relatively short time spans and often lack second order features that
+might otherwise &#8216;confuse&#8217; the image correlation algorithm. We chose the Bod&eacute;l&eacute; depression of northern Chad
+(Figure <a 
+href="#x1-10011">1<!--tex4ht:ref: fig:location --></a>) as our test area for two reasons. First, the Bod&eacute;l&eacute; is characterised by extremely strong
+north-easterly winds (Washington et al., 2006) ensuring easily detectable dune migration over relatively
+short time spans. Second, two types of dunes exist in the area (Figure <a 
+href="#x1-20012">2<!--tex4ht:ref: fig:quartzanddiatomite --></a>), making it a particularly
+interesting target for understanding the mechanics of dune migration. The Bod&eacute;l&eacute; is a subbasin of
+Palaeolake Megachad (Drake and Bristow, 2006) and is covered by lacustrine diatomite (Washington et
+al., 2006; Warren et al., 2007). Dunes around the edges of the depression consist mostly of quartz
+whereas dunes in the center also contain diatomite pellets (Warren et al., 2007). The low density of the
+latter futher increases dune celerity and the false colour contrast between the blue dunes and the
+white interdunes facilitates their identification (Figure <a 
+href="#x1-20012">2<!--tex4ht:ref: fig:quartzanddiatomite --></a>.c,d). The combination of readily eroded lake
+sediments and strong winds make the Bod&eacute;l&eacute; depression the &#8216;dustiest place on Earth&#8217; (Giles, 2005)
+and the dune sand flux rate may well be related to the amount of dust produced (Chappell et al.,
+2008).
+<br class="newline" />
+<!--l. 130--><p class="indent" >   In the following paragraphs, we will demonstrate that COSI-Corr is very successful at orthorectifying otherwise
+relatively imprecise ASTER imagery; illustrate that ASTER imagery orthorectified by COSI-Corr accurately shows
+dune migration over relatively short timescales; explain how to automatically extract displacement maps and display
+them as vector fields; show how the calculations break down when the time interval between two images is too long;
+confirm that dune celerities are highest in winter when winds are strongest; introduce an algorithm for
+using the displacement field to extract a base level from ASTER-generated DEMs, which can then be
+used to calculate dune volumes; calculate sand flux for some very large diatomite barchans in the
+eastern and western Bod&eacute;l&eacute;; show that the dunes move faster and have higher sand flux rates than than
+any others that have been reported in the literature; and conclude with some proposals for future
+research.
+<!--l. 146--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-10011"></a>
+
+<!--l. 148--><p class="noindent" ><a href="fig1.jpg"><img 
+src="fig1small.jpg" alt="PIC" class="snapshot" ></a><!--tex4ht:graphics  
+name="2008GL0359210x.png" src="4D__COSI-Corr_paper_fig1small.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;1: </td><td  
+class="content">Landsat image of the Bod&eacute;l&eacute; depression with indication of the footprints of the ASTER images
+used in this study. LLJ = Bod&eacute;l&eacute; Low Level Jet.</td></tr></table><!--tex4ht:label?: x1-10011 -->
+
+<!--l. 156--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Orthorectification, correlation, and dune migration</h3>
+<!--l. 162--><p class="noindent" >We will first consider four sets of overlapping ASTER images (using band V3N) from the eastern part
+of the Bod&eacute;l&eacute; depression, taken in 2000, 2005, 2006 and 2007 (Figure <a 
+href="#x1-10011">1<!--tex4ht:ref: fig:location --></a>). Because the footprints of
+these images differ (causing parallax errors), and because of uncertainties in the satellite orbit and
+optics, it is not possible to directly compare the raw images. COSI-Corr provides a series of tools to
+precisely coregister and resample two images onto a common reference frame, correcting for all of the
+above effects. This requires the identification of a number of tie points that have not moved during the
+time interval between two images. In the Bod&eacute;l&eacute;, such tie points are abundant in the form of patches
+of massive diatomite crust that can be easily identified as intricately shaped white patterns (Figure
+<a 
+href="#x1-20012">2<!--tex4ht:ref: fig:quartzanddiatomite --></a>.a,b). Using the 2000-2007 image pair as an example, it is possible to see, with the naked eye, how
+small barchan dunes move significantly faster in a southwesterly direction than larger ones do (Figure
+<a 
+href="#x1-20012">2<!--tex4ht:ref: fig:quartzanddiatomite --></a>.a-d).
+<br class="newline" />
+<!--l. 180--><p class="indent" >   After the orthorectification and resampling step, the two images are fed into the correlation engine. Using a
+square sliding window, COSI-Corr employs a Fourier algorithm to calculate the relative N-S and E-W displacement
+fields by maximising their cross-correlation (Leprince et al., 2007). We used a variable window size of 64 to 32 pixels
+wide with a step size of two pixels. This causes the output resolution of the displacement field to be 30m, i.e. half of
+the ASTER VNIR system resolution, but identical to the DEMs generated by combining the satellite&#8217;s stereographic
+V3N-V3B pair. This common resolution facilitates the calculation of sand flux, as discussed below.
+The N-S and E-W displacement maps can be visualised as a vector field or converted to a Euclidean
+distance map (Figure <a 
+href="#x1-20012">2<!--tex4ht:ref: fig:quartzanddiatomite --></a>.d). COSI-Corr successfully detects dune displacements of as little as 5 m over a
+period of only one month (Figure <a 
+href="#x1-20012">2<!--tex4ht:ref: fig:quartzanddiatomite --></a>.e). The precision of the correlation is <span 
+class="cmsy-10">&plusmn; </span>3 m (1 <span 
+class="cmmi-10">&#x03C3;</span>), as determined
+from the residual displacement over stable ground. The signal-to-noise ratio (as defined by Leprince et
+al., 2007; Equation 43) of the displacement map improves over somewhat longer time scales of 15
+months (2005-2007), but then decreases again for even longer time scales of 6.5 years (2000-2007;
+Figure <a 
+href="#x1-20012">2<!--tex4ht:ref: fig:quartzanddiatomite --></a>.f,g). The reason for this is that dune shapes and patterns change over such time scales as
+small dunes overtake larger ones, are shed from them or absorbed by them, thus complicating the
+correlation process. Two image displacement maps can be directly compared on a pixel-by-pixel basis
+because they are projected onto a common reference frame. This reveals that dune celerities between
+December 2006 and January 2007 are 2.5 times faster than between October 2005 and January 2007,
+consistent with the higher wind speeds of the Bod&eacute;l&eacute; &#8216;Low Level Jet&#8217; during winter (Warren et al.,
+2007).
+<!--l. 211--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-20012"></a>
+
+<!--l. 213--><p class="noindent" ><a href="fig2a.jpg"><img
+src="fig2asmall.jpg" alt="PIC" class="graphics" width="419.56749pt" height="420.57124pt" ></a><!--tex4ht:graphics  
+name="2008GL0359211x.png" src="5D__COSI-Corr_paper_fig2asmall.eps"  
+--><a href="fig2b.jpg"><img 
+src="fig2bsmall.jpg" alt="PIC" class="graphics" width="406.37917pt" height="419.0pt" ></a><!--tex4ht:graphics  
+name="2008GL0359212x.png" src="6D__COSI-Corr_paper_fig2bsmall.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;2: </td><td  
+class="content">a-b &#8211; Orthorectified ASTER images of quartz dunes and c-d &#8211; diatomite dunes, taken in 2000
+(a,c) and 2007 (b,d) in the eastern Bod&eacute;l&eacute;; e-g &#8211; The displacement maps of three image pairs shown as
+vector fields; h &#8211; Euclidean distance map of the 2005-2007 pair. Wind comes from the northeast.</td></tr></table><!--tex4ht:label?: x1-20012 -->
+
+<!--l. 224--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Measuring sand flux</h3>
+<!--l. 230--><p class="noindent" >In this section, we will study the diatomite area of the Bod&eacute;l&eacute; depression, where barchans reach heights of 50m, well
+above the detection limit of ASTER DEMs (Figure <a 
+href="#x1-30013">3<!--tex4ht:ref: fig:sandflux --></a>). In order to calculate dune volumes, the &#8216;base level&#8217; must be
+subtracted from the raw DEM. Rather than doing this by hand, we use the displacement map by selecting all
+pixels with a displacement less than 0.1m and interpolating their elevations (Figure <a 
+href="#x1-30013">3<!--tex4ht:ref: fig:sandflux --></a>.b). Because the
+Bod&eacute;l&eacute; depression is very flat, this creates a smooth and even surface. We estimated the precision of
+the dune elevation map as 9 m (RMSE) by measuring the difference between two different DEMs
+that were closely spaced in time. Sand flux is defined as the volume (or mass) of dune sand passing
+through a line of unit length perpendicular to the wind direction per unit time. For a sand column of
+width w and height h, moving over a distance d in time t, the volume is given by h<span 
+class="cmsy-10">&#x00D7;</span>w<span 
+class="cmsy-10">&#x00D7;</span>d, so the
+sand flux equals h<span 
+class="cmsy-10">&#x00D7;</span>w<span 
+class="cmsy-10">&#x00D7;</span>d/(w<span 
+class="cmsy-10">&#x00D7;</span>t) = h<span 
+class="cmsy-10">&#x00D7;</span>d/t. In other words, the sand flux of any given location on a
+sand dune is calculated by multiplying its elevation above &#8216;base level&#8217; with the celerity at the same
+location.
+<br class="newline" /><hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-30013"></a>
+
+<!--l. 251--><p class="noindent" ><a href="fig3.jpg"><img 
+src="fig3small.jpg" alt="PIC" class="graphics" width="396.48125pt" height="434.62375pt" ></a><!--tex4ht:graphics  
+name="2008GL0359213x.png" src="7D__COSI-Corr_paper_fig3small.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;3: </td><td  
+class="content">Sequence of operations for calculating sand flux. a &#8211; ASTER image of diatomite barchan field in
+the western Bod&eacute;l&eacute;; b &#8211; Euclidean distance map, the minimum values (<span 
+class="cmmi-10">&#x003C;</span>0.1m) of which are used to define
+the interdune areas; c &#8211; dune height, calculated by subtracting the interpolated interdune surface from a
+digital elevation model; d &#8211; sand flux, calculated by multiplying b with c.</td></tr></table><!--tex4ht:label?: x1-30013 -->
+
+<!--l. 263--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+<!--l. 266--><p class="indent" >   We follow the recommendations of Ahmedou et al. (2007) and consider a number of possible definitions for the
+dune sand flux. The first definition is the flux measured at the summit of a dune (Q<sub><span 
+class="cmsy-7">&#x2218;</span></sub>), which is estimated by simply
+multiplying dune height with dune celerity. Although Q<sub><span 
+class="cmsy-7">&#x2218;</span></sub> in itself is not a particularly interesting quantity, it is very
+useful in that it is an objective point of comparison with other dune fields. We compared the dune celerity
+of 75 large diatomite dunes from the eastern and western Bod&eacute;l&eacute; with barchan fields in Mauritania
+(Ahmedou et al., 2007), California (Long and Sharp, 1964), and Saudi Arabia (Fryberger et al., 1984)
+(Figure <a 
+href="#x1-30024">4<!--tex4ht:ref: fig:inversecelerity --></a>.e). Not only are the Bod&eacute;l&eacute; dunes much larger than these other active barchans, they are
+faster too, with Q<sub><span 
+class="cmsy-7">&#x2218;</span></sub><span 
+class="cmmi-10">&#x003E;</span>200m<sup><span 
+class="cmr-7">3</span></sup>/m/yr. There appears to be no difference between the eastern and the
+western parts of the Bod&eacute;l&eacute;, although this is hard to assess because of the significant amount of scatter
+in the results, which is caused by the limited precision of the DEM and by noise in the correlation
+results.
+<br class="newline" />
+<!--l. 285--><p class="indent" >   A second and arguably more relevant definition of dune sand flux is the average flux of all the dunes in a certain
+area (Q<sub><span 
+class="cmmi-7">dune</span></sub>). We calculated this by selecting all the pixels above 5 meters height and averaging the
+corresponding sand flux values. The results are 76 and 99 m<sup><span 
+class="cmr-7">3</span></sup>/m/yr for the western and eastern diatomite
+dune areas, respectively. To quantify the spatial variability of these estimates, we divided the dune
+areas into 10 equal parts and calculated the average dune sand flux for each of them. The resulting
+Q<sub><span 
+class="cmmi-7">dune</span></sub>-values vary from 30 to 190 m<sup><span 
+class="cmr-7">3</span></sup>/m/yr, with an average and median value of 101 m<sup><span 
+class="cmr-7">3</span></sup>/m/yr, a standard
+deviation of 50m<sup><span 
+class="cmr-7">3</span></sup>/m/yr and an interquartile range of 55-140m<sup><span 
+class="cmr-7">3</span></sup>/m/yr. This substantial scatter at
+least partly reflects real variations of the dune flux in different parts of the dune field. Chappell et
+al. (2008), for example, measured the total sand flux of three Bod&eacute;l&eacute; dunes by a conventional sand
+trap and anemometer study and found a similar degree of variability both within and between the
+dunes.
+<br class="newline" />
+<!--l. 303--><p class="indent" >   Finally, one can simply average the contribution of sand dunes to the sand flux of the entire area (dunes +
+interdunes), yielding the bulk transport rate (Q<sub><span 
+class="cmmi-7">field</span></sub>; Ahmedou et al., 2007). We measured values of 24 and 29
+m<sup><span 
+class="cmr-7">3</span></sup>/m/yr for the eastern and western Bod&eacute;l&eacute;, respectively. These values are, of course, strongly dependent on which
+area is chosen for the analysis. We did not attempt to quantify the variability of the bulk sand flux, as some of the
+subregions would not contain enough dunes to calculate a meaningful Q<sub><span 
+class="cmmi-7">field</span></sub>. Comparison with a similar analysis in
+Mauritania (2.5m<sup><span 
+class="cmr-7">3</span></sup>/m/yr; Ahmedou et al, 2007) confirms that sand flux in the Bod&eacute;l&eacute; is an order of magnitude
+higher than in other deserts.
+<br class="newline" />
+<!--l. 316--><p class="indent" >   Chappell et al. (2008) measured integrated horizontal saltation mass flux values of between 57 and 12,500
+tons/m/yr for the dunes and interdunes of the eastern Bod&eacute;l&eacute;, with averages of 1350-3800 tons/m/yr. Using a bulk
+density for the diatomite dunes of 0.9 g/cm<sup><span 
+class="cmr-7">3</span></sup> (Chappell et al., 2008) yields averaged volume fluxes of 1500-4200
+m<sup><span 
+class="cmr-7">3</span></sup>/m/yr. Therefore, the flux associated with dune migration is <span 
+class="cmsy-10">~</span>10% of the saltation flux, consistent with earlier
+experiments (Ahmedou et al., 2007).
+<!--l. 326--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-30024"></a>
+
+<!--l. 328--><p class="noindent" ><a href="fig4.jpg"><img src="fig4small.jpg" alt="PIC" class="snapshot"></a><!--tex4ht:graphics  
+name="2008GL0359214x.png" src="8D__COSI-Corr_paper_fig4small.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;4: </td><td  
+class="content">The ratio of dune height and inverse celerity estimates the sand flux at the dune summit and is
+a point of a comparison between the Bod&eacute;l&eacute; dunes (circles) and barchans in other deserts (squares). Black
+circles &#8211; eastern Bod&eacute;l&eacute;; white circles &#8211; western Bod&eacute;l&eacute;; black squares &#8211; Salton Sea (Long and Sharp, 1964);
+gray squares &#8211; Mauritania (Ahmedou et al., 2007); white squares &#8211; Saudi Arabia (Fryberger et al., 1984).</td></tr></table><!--tex4ht:label?: x1-30024 -->
+
+<!--l. 340--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Conclusions and outlook</h3>
+<!--l. 346--><p class="noindent" >COSI-Corr is an exciting new tool for the remote sensing of changes in Earth surface form. We have demonstrated
+the first application of this tool to aeolian geomorphology. We presented a case study of the Bod&eacute;l&eacute; depression of
+northern Chad, successfully measuring dune celerity over a time interval of as little as one month. Most importantly,
+we have outlined and demonstrated, for the first time, a method for measuring sand flux from satellite images. We
+do this by combining the displacement map with a high resolution DEM calculated from the same set of satellite
+images. The displacement map is used to detect the interdune areas, which define the &#8216;base level&#8217;
+that is subtracted from the topography to yield dune volumes. The advantages of this remote sensing
+approach to field measurements of sand flux are obvious. Remote sensing is cheaper, can be applied to
+larger areas and over longer time scales than field measurements, and allows us to study otherwise
+inaccessible places, independent of logistic or political constraints. Because of the relatively low resolution of
+ASTER imagery (15m), the method currently only works for the largest barchans in our study area.
+Applying our algorithm to the higher resolution SPOT (2.5-5m) and QuickBird (0.6-2.4m) systems will
+significantly improve the accuracy and precision of the method and allow us, for example, to compare
+the sand flux of the diatomite and quartz sand dune areas within the Bod&eacute;l&eacute; area. As new satellite
+systems come online, the possibilities will further increase, opening tremendous opportunities for aeolian
+research.
+<!--l. 372--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-50004"></a>Acknowledgments</h3>
+<!--l. 374--><p class="noindent" >We would like to thank Chris Knell (UCL Geography) for granting access to the Chorley Institute Linux cluster;
+Charlie Bristow for discussions and suggestions; Sebastien Leprince for promptly replying to COSI-Corr enquiries;
+the USGS for free access to the ASTER image library under the LPDAAC scheme; and two reviewers for
+constructive comments.
+<!--l. 381--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-60004"></a>References</h3>
+<!--l. 383--><p class="noindent" >
+     <dl class="description"><dt class="description">
+<span 
+class="ecbx-1000">Ahmedou,</span> </dt><dd 
+class="description">D. O., Mahfoudh, A. O., Dupont, P., El Moctar, A. O., Valance, A. and Rasmussen, K. R., 2007.
+     Barchan dune mobility in Mauritania related to dune and interdune sand fluxes, Journal of Geophysical
+     Research, 112, F02016, doi:10.1029/2006JF000500.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Baas,</span> </dt><dd 
+class="description">A.C.W., 2004. Evaluation of Saltation Flux Impact Responders (Safires) for measuring instantaneous
+     aeolian sand transport rates, Geomorphology, 59, 99-118.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Bristow,</span> </dt><dd 
+class="description">C. S. and Lancaster, N., 2004. Movement of a small slipfaceless dome dune in the Namib Sand
+     Sea, Namibia, Geomorphology, 59, 189-196.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Brown,</span> </dt><dd 
+class="description">D. G. and Arbogast, A. F., 1999. Digital photogrammetric change analysis as applied to active
+     coastal dunes in Michigan, Photogrammetric engineering and remote sensing, 65, 467-474.
+
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Chappell,</span> </dt><dd 
+class="description">A. Warren, A. O&#8217;Donoghue, A. Robinson, A. Thomas, A. Bristow C. 2008. The implications
+     for  dust  emission  modeling  of  spatial  and  vertical  variations  in  horizontal  dust  flux  and  particle
+     size  in  the  Bod&eacute;l&eacute;  Depression,  Northern  Chad,  Journal  of  Geophysical  Research,  113,  D04214,
+     doi:10.1029/2007JD009032.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Crippen,</span> </dt><dd 
+class="description">R.  and  Blom,  R.,  1991.  Measurement  of  subresolution  terrain  displacement  using  SPOT
+     panchromatic imagery, in: Procedings of the International Geoscience and Remote Sensing Symposium
+     (IGARSS), 3, 1667-1670.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Cuartero,</span> </dt><dd 
+class="description">A., Felicisimo, A. M., Ariza, F. J., 2005. Accuracy, reliability, and depuration of SPOT HRV
+     and Terra ASTER digital elevation models, IEEE Transactions on Geoscience and Remote Sensing,
+     43, 404-407.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Drake,</span> </dt><dd 
+class="description">N. and Bristow, C., 2006. Shorelines in the Sahara: geomorphological evidence for an enhanced
+     monsoon from palaeolake Megachad Holocene, 16, 901-911.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Fryberger,</span> </dt><dd 
+class="description">S., Al-Sari, M.A., Clisam, T.J., Rizvi S.A.R. and Al-Hinai, K.G., 1984. Wind sedimentation in
+     the Jafurah sand sea, Saudi Arabia, Sedimentology, 31, 413-431.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Giles,</span> </dt><dd 
+class="description">J., 2005. The dustiest place on earth, Nature, 434, 816-819.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Greeley,</span> </dt><dd 
+class="description">R., Blumberg, D. G. and Williams, S. H., 1996. Field measurements of the flux and speed of
+     wind-blown sand, Sedimentology, 43, 41-52.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Leprince,</span> </dt><dd 
+class="description">S., Barbot, S., Ayoub, F. and Avouac, J. P., 2007. Automatic and Precise Ortho-rectification,
+     Coregistration,  and  Subpixel  Correlation  of  Satellite  Images,  Application  to  Ground  Deformation
+     Measurements, IEEE Transactions on Geoscience and Remote Sensing, 45, 1529-1558.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Leprince,</span> </dt><dd 
+class="description">S., Berthier, E., Ayoub, F., Delacourt, C. and Avouac, J. P., 2008. Monitoring Earth Surface
+     Dynamics with Optical Imagery, EOS, Transactions, American Geophysical Union, 89, 1-2.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Long,</span> </dt><dd 
+class="description">J. T., and Sharp, R. S., 1964. Barchan-dune movement in Imperial Valley, California, Geological
+     Society of America Bulletin, 75, 149-156.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Stokes,</span> </dt><dd 
+class="description">S., Goudie, A. S., Ballard, J., Gifford, S., Samieh, S., Embabi, N., El-Rashidi, O. A., 1999. Accurate
+     dune  displacements  and  morphometric  data  using  kinematic  GPS,  Zeitschrift  f&uuml;r  Geomorpologie
+     Supplementband, 116, 195-214.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Warren,</span> </dt><dd 
+class="description">A., Chappell, A., Todd, M. C., Bristow, C., Drake, N., Engelstaedter, S., Martins, V., M&#8217;bainayel,
+     S. and Washington, R., 2007. Dust-raising in the dustiest place on earth, Geomorphology, 92, 25-37.
+
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Washington,</span> </dt><dd 
+class="description">R., Todd, M. C., Lizcano, G., Tegen, I., Flamant, C., Koren, I., Ginoux, P., Engelstaedter,
+     S., Bristow, C. S., Zender, C. S., Goudie, A. S., Warren, A. and Prospero, J. M., 2006. Links between
+     topography, wind, deflation, lakes and dust: The case of the Bod&eacute;l&eacute; Depression, Chad, Geophysical
+     Research Letters, 33, doi:10.1029/2006GL025827.
+     </dd><dt class="description">
+<span 
+class="ecbx-1000">Yao,</span> </dt><dd 
+class="description">Z. Y., Wang, T., Han, Z. W., Zhang, W. M. and Zhao, A. G., 2007. Migration of sand dunes on the
+     northern Alxa Plateau, Inner Mongolia, China, Journal of Arid Environments, 70, 80-93.</dd></dl>
+
+</td></table>    
+</body></html> 
+
+
+

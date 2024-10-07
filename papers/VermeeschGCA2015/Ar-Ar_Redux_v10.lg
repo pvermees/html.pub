@@ -1,0 +1,307 @@
+htfcss: cmtt font-family: monospace;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: cmtt font-family: monospace;
+htfcss: cmmi font-style: italic;
+htfcss: cmmib font-style: italic; font-weight: bold;
+File: Ar-Ar_Redux_v10.html
+File: Ar-Ar_Redux_v10.css
+File: Ar-Ar_Redux_v10.tmp
+File: Ar-Ar_Redux_v10.tmp
+Font_Class(1,"1"): <img  src="" alt="" class="%s-%dx-x-%x" />
+File: Ar-Ar_Redux_v10.tmp
+Css: p.noindent { text-indent: 0em }
+Css: td p.noindent { text-indent: 0em; margin-top:0em; }
+Css: p.nopar { text-indent: 0em; }
+Css: p.indent{ text-indent: 1.5em }
+Css: @media print {div.crosslinks {visibility:hidden;}}
+Css: a img { border-top: 0; border-left: 0; border-right: 0; }
+Font_Css("4"): .small-caps{font-variant: small-caps; }
+Font_Css("10"): .htf-cmbx {font-weight: bold; font-style:normal;}
+Font_Css("12"): .htf-calligraphy {font-family:cursive}
+Font_Css("14"): .htf-italic {font-style: italic;}
+Font_Css("16"): .htf-bold {font-weight: bold;}
+Font_Css("12"): .htf-calligraphy-bold {font-family:cursive ; font-weight: bold; }
+Css: center { margin-top:1em; margin-bottom:1em; }
+Css: td center { margin-top:0em; margin-bottom:0em; }
+Css: .Canvas { position:relative; }
+Css: img.math{vertical-align:middle;}
+Css: li p.indent { text-indent: 0em }
+Css: li p:first-child{ margin-top:0em; }
+Css: li p:last-child, li div:last-child { margin-bottom:0.5em; }
+Css: li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+Css: .enumerate1 {list-style-type:decimal;}
+Css: .enumerate2 {list-style-type:lower-alpha;}
+Css: .enumerate3 {list-style-type:lower-roman;}
+Css: .enumerate4 {list-style-type:upper-alpha;}
+Css: div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+Css: .obeylines-h,.obeylines-v {white-space: nowrap; }
+Css: div.obeylines-v p { margin-top:0; margin-bottom:0; }
+Css: .overline{ text-decoration:overline; }
+Css: .overline img{ border-top: 1px solid black; }
+Css: td.displaylines {text-align:center; white-space:nowrap;}
+Css: .centerline {text-align:center;}
+Css: .rightline {text-align:right;}
+Css: div.verbatim {font-family: monospace; white-space: nowrap; text-align:left; clear:both; }
+Css: .fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.fbox {display:table}
+Css: div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.minipage{width:100%;}
+Css: div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+Css: div.center div {text-align: left;}
+Css: div.flushright, div.flushright div.flushright {text-align: right;}
+Css: div.flushright div {text-align: left;}
+Css: div.flushleft {text-align: left;}
+Css: .underline{ text-decoration:underline; }
+Css: .underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+Css: .framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: .framebox-c {text-align:center;}
+Css: .framebox-l {text-align:left;}
+Css: .framebox-r {text-align:right;}
+Css: span.thank-mark{ vertical-align: super }
+Css: span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+Css: div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+Css: table.tabular td p{margin-top:0em;}
+Css: table.tabular {margin-left: auto; margin-right: auto;}
+Css: td p:first-child{ margin-top:0em; }
+Css: td p:last-child{ margin-bottom:0em; }
+Css: div.td00{ margin-left:0pt; margin-right:0pt; }
+Css: div.td01{ margin-left:0pt; margin-right:5pt; }
+Css: div.td10{ margin-left:5pt; margin-right:0pt; }
+Css: div.td11{ margin-left:5pt; margin-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: td.td00{ padding-left:0pt; padding-right:0pt; }
+Css: td.td01{ padding-left:0pt; padding-right:5pt; }
+Css: td.td10{ padding-left:5pt; padding-right:0pt; }
+Css: td.td11{ padding-left:5pt; padding-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: .hline hr, .cline hr{ height : 1px; margin:0px; }
+Css: .tabbing-right {text-align:right;}
+Css: span.TEX {letter-spacing: -0.125em; }
+Css: span.TEX span.E{ position:relative;top:0.5ex;left:-0.0417em;}
+Css: a span.TEX span.E {text-decoration: none; }
+Css: span.LATEX span.A{ position:relative; top:-0.5ex; left:-0.4em; font-size:85%;}
+Css: span.LATEX span.TEX{ position:relative; left: -0.4em; }
+Css: div.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: div.float img {text-align:center;}
+Css: div.figure img {text-align:center;}
+Css: .marginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+Css: .marginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+Css: table.equation {width:100%;}
+Css: .equation td{text-align:center; }
+Css: td.equation { margin-top:1em; margin-bottom:1em; } 
+Css: td.equation-label { width:5%; text-align:center; }
+Css: td.eqnarray4 { width:5%; white-space: normal; }
+Css: td.eqnarray2 { width:5%; }
+Css: table.eqnarray-star, table.eqnarray {width:100%;}
+Css: div.eqnarray{text-align:center;}
+Css: div.array {text-align:center;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.pmatrix img{vertical-align:middle;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.bar-css {text-decoration:overline;}
+Css: img.cdots{vertical-align:middle;}
+Css: .partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+Css: .index-item, .index-subitem, .index-subsubitem {display:block}
+Css: div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+Css: div.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: h1.partHead{text-align: center}
+Css: p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: .paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+Css: .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+Css: .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
+Css: .verse{white-space:nowrap; margin-left:2em}
+Css: div.maketitle {text-align:center;}
+Css: h2.titleHead{text-align:center;}
+Css: div.maketitle{ margin-bottom: 2em; }
+Css: div.author, div.date {text-align:center;}
+Css: div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+Css: div.author{white-space: nowrap;}
+Css: .quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+Css: .abstract p {margin-left:5%; margin-right:5%;}
+Css: div.abstract {width:100%;}
+Css: .equation td{text-align:center; }
+Css: .equation-star td{text-align:center; }
+Css: table.equation-star { width:100%; }
+Css: table.equation { width:100%; }
+Css: table.align, table.alignat, table.xalignat, table.xxalignat, table.flalign {width:100%; margin-left:5%; white-space: nowrap;}
+Css: table.align-star, table.alignat-star, table.xalignat-star, table.flalign-star {margin-left:auto; margin-right:auto; white-space: nowrap;}
+Css: td.align-label { width:5%; text-align:center; }
+Css: td.align-odd { text-align:right; padding-right:0.3em;}
+Css: td.align-even { text-align:left; padding-right:0.6em;}
+Css: table.multline, table.multline-star {width:100%;}
+Css: td.gather {text-align:center; }
+Css: table.gather {width:100%;}
+Css: div.gather-star {text-align:center;}
+Css: .figure img.graphics {margin-left:10%;}
+--- needs --- Ar-Ar_Redux_v10.idv[1] ==> Ar-Ar_Redux_v100x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[2] ==> Ar-Ar_Redux_v101x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[3] ==> Ar-Ar_Redux_v102x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[4] ==> Ar-Ar_Redux_v103x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[5] ==> Ar-Ar_Redux_v104x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[6] ==> Ar-Ar_Redux_v105x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[7] ==> Ar-Ar_Redux_v106x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[8] ==> Ar-Ar_Redux_v107x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[9] ==> Ar-Ar_Redux_v108x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[10] ==> Ar-Ar_Redux_v109x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[11] ==> Ar-Ar_Redux_v1010x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[12] ==> Ar-Ar_Redux_v1011x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[13] ==> Ar-Ar_Redux_v1012x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[14] ==> Ar-Ar_Redux_v1013x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[15] ==> Ar-Ar_Redux_v1014x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[16] ==> Ar-Ar_Redux_v1015x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[17] ==> Ar-Ar_Redux_v1016x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[18] ==> Ar-Ar_Redux_v1017x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[19] ==> Ar-Ar_Redux_v1018x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[20] ==> Ar-Ar_Redux_v1019x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[21] ==> Ar-Ar_Redux_v1020x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[22] ==> Ar-Ar_Redux_v1021x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[23] ==> Ar-Ar_Redux_v1022x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[24] ==> Ar-Ar_Redux_v1023x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[25] ==> Ar-Ar_Redux_v1024x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[26] ==> Ar-Ar_Redux_v1025x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[27] ==> Ar-Ar_Redux_v1026x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[28] ==> Ar-Ar_Redux_v1027x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[29] ==> Ar-Ar_Redux_v1028x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[30] ==> Ar-Ar_Redux_v1029x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[31] ==> Ar-Ar_Redux_v1030x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[32] ==> Ar-Ar_Redux_v1031x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[33] ==> Ar-Ar_Redux_v1032x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[34] ==> Ar-Ar_Redux_v1033x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[35] ==> Ar-Ar_Redux_v1034x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[36] ==> Ar-Ar_Redux_v1035x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[37] ==> Ar-Ar_Redux_v1036x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[38] ==> Ar-Ar_Redux_v1037x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[39] ==> Ar-Ar_Redux_v1038x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[40] ==> Ar-Ar_Redux_v1039x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[41] ==> Ar-Ar_Redux_v1040x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[42] ==> Ar-Ar_Redux_v1041x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[43] ==> Ar-Ar_Redux_v1042x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[44] ==> Ar-Ar_Redux_v1043x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[45] ==> Ar-Ar_Redux_v1044x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[46] ==> Ar-Ar_Redux_v1045x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[47] ==> Ar-Ar_Redux_v1046x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[48] ==> Ar-Ar_Redux_v1047x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[49] ==> Ar-Ar_Redux_v1048x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[50] ==> Ar-Ar_Redux_v1049x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[51] ==> Ar-Ar_Redux_v1050x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[52] ==> Ar-Ar_Redux_v1051x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[53] ==> Ar-Ar_Redux_v1052x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[54] ==> Ar-Ar_Redux_v1053x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[55] ==> Ar-Ar_Redux_v1054x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[56] ==> Ar-Ar_Redux_v1055x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[57] ==> Ar-Ar_Redux_v1056x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[58] ==> Ar-Ar_Redux_v1057x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[59] ==> Ar-Ar_Redux_v1058x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[60] ==> Ar-Ar_Redux_v1059x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[61] ==> Ar-Ar_Redux_v1060x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[62] ==> Ar-Ar_Redux_v1061x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[63] ==> Ar-Ar_Redux_v1062x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[64] ==> Ar-Ar_Redux_v1063x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[65] ==> Ar-Ar_Redux_v1064x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[66] ==> Ar-Ar_Redux_v1065x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[67] ==> Ar-Ar_Redux_v1066x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[68] ==> Ar-Ar_Redux_v1067x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[69] ==> Ar-Ar_Redux_v1068x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[70] ==> Ar-Ar_Redux_v1069x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[71] ==> Ar-Ar_Redux_v1070x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[72] ==> Ar-Ar_Redux_v1071x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[73] ==> Ar-Ar_Redux_v1072x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[74] ==> Ar-Ar_Redux_v1073x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[75] ==> Ar-Ar_Redux_v1074x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[76] ==> Ar-Ar_Redux_v1075x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[77] ==> Ar-Ar_Redux_v1076x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[78] ==> Ar-Ar_Redux_v1077x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[79] ==> Ar-Ar_Redux_v1078x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[80] ==> Ar-Ar_Redux_v1079x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[81] ==> Ar-Ar_Redux_v1080x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[82] ==> Ar-Ar_Redux_v1081x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[83] ==> Ar-Ar_Redux_v1082x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[84] ==> Ar-Ar_Redux_v1083x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[85] ==> Ar-Ar_Redux_v1084x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[86] ==> Ar-Ar_Redux_v1085x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[87] ==> Ar-Ar_Redux_v1086x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[88] ==> Ar-Ar_Redux_v1087x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[89] ==> Ar-Ar_Redux_v1088x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[90] ==> Ar-Ar_Redux_v1089x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[91] ==> Ar-Ar_Redux_v1090x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[92] ==> Ar-Ar_Redux_v1091x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[93] ==> Ar-Ar_Redux_v1092x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[94] ==> Ar-Ar_Redux_v1093x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[95] ==> Ar-Ar_Redux_v1094x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[96] ==> Ar-Ar_Redux_v1095x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[97] ==> Ar-Ar_Redux_v1096x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[98] ==> Ar-Ar_Redux_v1097x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[99] ==> Ar-Ar_Redux_v1098x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[100] ==> Ar-Ar_Redux_v1099x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[101] ==> Ar-Ar_Redux_v10100x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[102] ==> Ar-Ar_Redux_v10101x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[103] ==> Ar-Ar_Redux_v10102x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[104] ==> Ar-Ar_Redux_v10103x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[105] ==> Ar-Ar_Redux_v10104x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[106] ==> Ar-Ar_Redux_v10105x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[107] ==> Ar-Ar_Redux_v10106x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[108] ==> Ar-Ar_Redux_v10107x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[109] ==> Ar-Ar_Redux_v10108x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[110] ==> Ar-Ar_Redux_v10109x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[111] ==> Ar-Ar_Redux_v10110x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[112] ==> Ar-Ar_Redux_v10111x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[113] ==> Ar-Ar_Redux_v10112x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[114] ==> Ar-Ar_Redux_v10113x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[115] ==> Ar-Ar_Redux_v10114x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[116] ==> Ar-Ar_Redux_v10115x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[117] ==> Ar-Ar_Redux_v10116x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[118] ==> Ar-Ar_Redux_v10117x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[119] ==> Ar-Ar_Redux_v10118x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[120] ==> Ar-Ar_Redux_v10119x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[121] ==> Ar-Ar_Redux_v10120x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[122] ==> Ar-Ar_Redux_v10121x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[123] ==> Ar-Ar_Redux_v10122x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[124] ==> Ar-Ar_Redux_v10123x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[125] ==> Ar-Ar_Redux_v10124x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[126] ==> Ar-Ar_Redux_v10125x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[127] ==> Ar-Ar_Redux_v10126x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[128] ==> Ar-Ar_Redux_v10127x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[129] ==> Ar-Ar_Redux_v10128x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[130] ==> Ar-Ar_Redux_v10129x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[131] ==> Ar-Ar_Redux_v10130x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[132] ==> Ar-Ar_Redux_v10131x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[133] ==> Ar-Ar_Redux_v10132x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[134] ==> Ar-Ar_Redux_v10133x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[135] ==> Ar-Ar_Redux_v10134x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[136] ==> Ar-Ar_Redux_v10135x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[137] ==> Ar-Ar_Redux_v10136x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[138] ==> Ar-Ar_Redux_v10137x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[139] ==> Ar-Ar_Redux_v10138x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[140] ==> Ar-Ar_Redux_v10139x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[141] ==> Ar-Ar_Redux_v10140x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[142] ==> Ar-Ar_Redux_v10141x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[143] ==> Ar-Ar_Redux_v10142x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[144] ==> Ar-Ar_Redux_v10143x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[145] ==> Ar-Ar_Redux_v10144x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[146] ==> Ar-Ar_Redux_v10145x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[147] ==> Ar-Ar_Redux_v10146x.png ---
+--- needs --- Ar-Ar_Redux_v10.idv[148] ==> Ar-Ar_Redux_v10147x.png ---
+--- characters ---
+Font("cmex","10","10","100")
+Font("cmr","5","5","100")
+Font("cmr","7","7","100")
+Font("cmr","10","10","100")
+Font("cmmi","5","5","100")
+Font("cmmi","7","7","100")
+Font("cmmi","10","10","100")
+Font("cmsy","5","5","100")
+Font("cmsy","7","7","100")
+Font("cmsy","10","10","100")
+--- needs --- Ar-Ar_Redux_v10.idv[149] ==> cmsy10-4e.png ---
+Font("cmr","17","17","100")
+Font("cmr","12","12","100")
+Font("cmsy","10","10","120")
+Font("cmr","6","6","100")
+Font("cmtt","10","10","100")
+Font("cmr","9","9","100")
+Font("cmbx","9","9","100")
+Font("cmtt","9","9","100")

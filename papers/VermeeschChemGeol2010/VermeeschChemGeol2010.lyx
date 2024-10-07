@@ -1,0 +1,1282 @@
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{fullpage}\usepackage{lineno}\title{{\ttHelioPlot},andthetreatmentof\\overdispersed(U-Th-Sm)/Hedata}\author{PieterVermeesch\footnote{SchoolofEarthSciences;Birkbeck,UniversityofLondon}}\date{}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tt HelioPlot
+\end_layout
+
+\end_inset
+
+, and the treatment of overdispersed (U-Th-Sm)/He data
+\end_layout
+
+\begin_layout Author
+Pieter Vermeesch
+\end_layout
+
+\begin_layout Address
+Birkbeck Earth Sciences, University of London
+\end_layout
+
+\begin_layout Abstract
+More often that not, (U-Th-Sm)/He ages are overdispersed with respect to
+ the formal analytical uncertainty.
+ The Mean Square of the Weighted Deviates (MSWD) is a useful tool for assessing
+ the amount of overdispersion.
+ If the MSWD is significantly greater than one, the ages can be parameterised
+ by a (log)normal distribution with two sources of variance, which can be
+ iteratively solved using the method of maximum likelihood.
+ The overdispersion of replicate (U-Th-Sm)/He ages is caused by the overdispersi
+on of the underlying U-Th-Sm-He compositions, the geometric mean of which
+ gives rise to the so-called `central age'.
+ These compositions can be normalised to unity and parameterised by a multivaria
+te logistic normal distribution with two sources of variance, which can
+ be iteratively solved by a multivariate generalisation of the aforementioned
+ age-averaging algorithm.
+ Exact and asymmetric confidence intervals for the central age are obtained
+ using a deterministic Bayesian algorithm.
+ 
+\family typewriter
+HelioPlot
+\family default
+ is a Java application developed for the purpose of plotting U-Th-(Sm)-He
+ data on ternary diagrams and logratio plots that implements all these calculati
+ons.
+ The program can be downloaded from 
+\family typewriter
+http://pvermees.andro\SpecialChar \-
+pov.org/helio\SpecialChar \-
+plot
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:intro"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Measuring several single grain U-Th-(Sm)-He aliquots per sample is not only
+ possible, thanks to the development of laser heating 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "house2000"
+
+\end_inset
+
+, but also desirable, because U-Th-(Sm)-He data are generally overdispersed
+ with respect to the formal analytical uncertainty and this overdispersion
+ can only be quantified by analysing a representative number of mineral
+ grains.
+ The question then arises how to average these measurements.
+ Traditionally, this is done by simply averaging the single grain age estimates,
+ an 
+\shape italic
+ad hoc
+\shape default
+ solution that lacks a proper theoretical justification and does not make
+ full use of the data.
+ Potentially valuable information is lost when the chemical composition
+ of samples is ignored, and compositional controls on thermochronological
+ models may go unnoticed.
+ The most natural way to study U-Th-(Sm)-He data is as a geochemical composition
+ on a ternary diagram or in logratio space 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "vermeesch2008a"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+HelioPlot
+\family default
+ is a data visualisation tool that plots U-Th-(Sm)-He data on ternary diagrams
+ and logratio plots.
+ The program also calculates the so-called `central age', which is the age
+ corresponding to the geometric mean U-Th-(Sm)-He composition.
+ To this end, it applies a weighted mean algorithm taking into account both
+ the analytical uncertainty and any possible overdispersion simultaneously,
+ in contrast with 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "vermeesch2008a"
+
+\end_inset
+
+'s web calculator, which propagated them separately.
+ U-Th-(Sm)-He data are often overdispersed with respect to the analytical
+ uncertainty, for reasons that have been discussed elsewhere 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fitzgerald2006, shuster2006"
+
+\end_inset
+
+.
+ The amount of overdispersion can be quantified using the Mean Square of
+ the Weighted Deviates 
+\begin_inset CommandInset citation
+LatexCommand citep
+before "MSWD, "
+key "mcintyre1966"
+
+\end_inset
+
+.
+ Given a dataset of n age measurements, or the logarithms thereof (t
+\begin_inset Formula $_{i}$
+\end_inset
+
+, for 1
+\begin_inset Formula $\leq$
+\end_inset
+
+i
+\begin_inset Formula $\leq$
+\end_inset
+
+n), the MSWD is a measure of the ratio of the observed scatter of the data
+ points (t
+\begin_inset Formula $_{i}$
+\end_inset
+
+) around the mean value (
+\begin_inset Formula $\bar{t}$
+\end_inset
+
+) to the expected scatter from the assigned errors (
+\begin_inset Formula $\sigma_{i}$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+MSWD=\frac{1}{n-1}\sum_{i=1}^{n}\frac{(t_{i}-\bar{t})^{2}}{\sigma_{i}^{2}}\label{eq:MSWDt}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the assigned errors are the only cause of scatter, the MSWD will tend
+ to be near unity.
+ MSWD values much less than unity indicate either overestimated analytical
+ errors or unrecognized error-correlations.
+ MSWD values much greater than unity generally indicate either underestimated
+ analytical errors, or the presence of non-analytical scatter.
+ 
+\family typewriter
+HelioPlot
+\family default
+ implements methods to deal with the latter situation.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although there is no formally agreed convention for calculating the average
+ of multiple (U-Th)/He ages, this is either done by computing the unweighted
+ arithmetic mean, ignoring the analytical precision, or by calculating the
+ error-weighted mean, ignoring overdispersion.
+ Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:ages"
+
+\end_inset
+
+ introduces a one-dimensional weighted mean algorithm that deals with analytical
+ precision and overdispersion simultaneously, using the method of maximum
+ likelihood.
+ Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:compositions"
+
+\end_inset
+
+ generalises this method to compositional data space, so as to calculate
+ the best estimate for the central age, taking into account both the internal
+ and external reproducibilities of the data, as well as their full covariance
+ structure.
+ `Conventional' propagation of uncertainty for the central age, as implemented
+ by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "vermeesch2008a"
+
+\end_inset
+
+, involves linearisation by a first-order Maclaurin series expansion, which
+ may be inaccurate.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:ci"
+
+\end_inset
+
+ proposes a deterministic algorithm to avoid this problem, yielding exact
+ confidence intervals for the central age.
+ Finally, Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:helioplot"
+
+\end_inset
+
+ provides further details about 
+\family typewriter
+HelioPlot
+\family default
+ and illustrates its usefulness with a number of real world examples.
+\end_layout
+
+\begin_layout Section
+Overdispersed ages
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:ages"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assume that the ages (or the logarithm of the ages) come from a normal distribut
+ion of the form
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+t_{i}\sim N(\mu,\sigma_{i}^{2}+\xi^{2})\label{eq:norm1}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mu$
+\end_inset
+
+ denotes the mean and 
+\begin_inset Formula $\xi^{2}$
+\end_inset
+
+ is the amount of 
+\shape italic
+overdispersion
+\shape default
+, i.e.
+ the excess scatter that cannot be explained by the analytical uncertainty
+ alone.
+ Unbiased estimates 
+\begin_inset Formula $\hat{\mu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\xi}^{2}$
+\end_inset
+
+ for these two parameters can be obtained by maximising the likelihood l:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+l\equiv\prod_{i=1}^{n}\frac{exp\left(-\frac{(t_{i}-\hat{\mu})^{2}}{2(\sigma_{i}^{2}+\hat{\xi_{i}^{2}})}\right)}{\sqrt{2\pi(\sigma_{i}^{2}+\hat{\xi}^{2})}}\label{eq:l1}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+or, more conveniently, the log-likelihood L 
+\begin_inset Formula $\equiv$
+\end_inset
+
+ log(l):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+L=-\frac{1}{2}\sum_{i=1}^{n}\left[\frac{(t_{i}-\hat{\mu})^{2}}{\sigma_{i}^{2}+\hat{\xi}^{2}}+ln(\sigma_{i}^{2}+\hat{\xi}^{2})+ln(2\pi)\right]\label{eq:L1}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Calculating the derivatives of L with respect to 
+\begin_inset Formula $\hat{\mu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\xi}^{2}$
+\end_inset
+
+ and setting them to zero to find the maximum likelihood:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{align}
+ & \frac{\partial L}{\partial\hat{\mu}}=\sum_{i=1}^{n}\frac{t_{i}-\hat{\mu}}{\sigma_{i}^{2}+\hat{\xi}^{2}}=0\label{eq:Lmu1}\\
+ & \frac{\partial L}{\partial\hat{\xi}^{2}}=\sum_{i=1}^{n}\left[\frac{(t_{i}-\hat{\mu})^{2}}{(\sigma_{i}^{2}+\hat{\xi}^{2})^{2}}-\frac{1}{\sigma_{i}^{2}+\hat{\xi}^{2}}\right]=0\label{eq:Lxi1}\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which can be solved iteratively for 
+\begin_inset Formula $\hat{\mu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\xi}^{2}$
+\end_inset
+
+.
+ The variance 
+\begin_inset Formula $\hat{\sigma}_{\mu}^{2}$
+\end_inset
+
+ of the weighted mean 
+\begin_inset Formula $\hat{\mu}$
+\end_inset
+
+ is given by the inverse of the Fisher Information, i.e.
+ the negative expected value of the second derivative of the log-likelihood
+ function with respect to 
+\begin_inset Formula $\hat{\mu}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+\hat{\sigma}_{\mu}^{2}=\frac{1}{\sum_{i=1}^{n}1/(\sigma_{i}^{2}+\hat{\xi}^{2})}\label{eq:sigma1}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Overdispersed compositions
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:compositions"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+U, Th and He form a ternary system, can be plotted on a ternary diagram,
+ and are subject to the peculiar mathematics of the ternary dataspace.
+ The `central age' is calculated from the geometric mean composition of
+ a U-Th-(Sm)-He dataset and is a more accurate estimator of the true age
+ than the arithmetic mean 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "vermeesch2008a"
+
+\end_inset
+
+.
+ This concept can be easily generalised to four dimensions and this section
+ will, therefore, discuss the case of (U-Th-Sm)/He dating.
+ Given n single grain measurements [U
+\begin_inset Formula $^{i}$
+\end_inset
+
+, Th
+\begin_inset Formula $^{i}$
+\end_inset
+
+, Sm
+\begin_inset Formula $^{i}$
+\end_inset
+
+, He
+\begin_inset Formula $^{i}$
+\end_inset
+
+] (1
+\begin_inset Formula $\leq$
+\end_inset
+
+i
+\begin_inset Formula $\leq$
+\end_inset
+
+n), the calculation of a central age involves a bijection from the four-dimensio
+nal `simplex' to a three-dimensional Euclidean logratio-space 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "aitchison1986, vermeesch2008a"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+v^{i}=ln\left(\frac{[U^{i}]}{[He^{i}]}\right),~w^{i}=ln\left(\frac{[Th^{i}]}{[He^{i}]}\right),~x^{i}=ln\left(\frac{[Sm^{i}]}{[He^{i}]}\right)\label{eq:logratio-transform}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The central age is obtained by calculating the average logratio composition
+ (
+\begin_inset Formula $\overline{v}$
+\end_inset
+
+, 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+, 
+\begin_inset Formula $\overline{x}$
+\end_inset
+
+) and converting it to a geometric mean composition using the inverse logratio
+ transformation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+\begin{split} & \overline{U}=\frac{e^{\overline{v}}}{e^{\overline{v}}+e^{\overline{w}}+e^{\overline{x}}+1},~\overline{Th}=\frac{e^{\overline{w}}}{e^{\overline{v}}+e^{\overline{w}}+e^{\overline{x}}+1}\\
+ & \overline{Sm}=\frac{e^{\overline{x}}}{e^{\overline{v}}+e^{\overline{w}}+e^{\overline{x}}+1},~\overline{He}=\frac{1}{e^{\overline{v}}+e^{\overline{w}}+e^{\overline{x}}+1}\end{split}
+\label{eq:inverse-transform}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This result is then plugged into the U-Th-(Sm)-He age equation.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The problem of averaging the compositions is very similar to the problem
+ of averaging the ages discussed in the previous section.
+ Given n logratio measurements X
+\begin_inset Formula $^{i}$
+\end_inset
+
+ and their (co)variances 
+\begin_inset Formula $E^{i}$
+\end_inset
+
+ (1 
+\begin_inset Formula $\leq$
+\end_inset
+
+ i 
+\begin_inset Formula $\leq$
+\end_inset
+
+ n):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+X^{i}\equiv\Biggl[\begin{array}{c}
+v^{i}\\
+w^{i}\\
+x^{i}\end{array}\Biggr]\mbox{~and~}E^{i}\equiv\Biggl[\begin{array}{ccc}
+\sigma_{v^{i}}^{2} & cov_{v^{i},w^{i}} & cov_{v^{i},x^{i}}\\
+cov_{v^{i},w^{i}} & \sigma_{w^{i}}^{2} & cov_{w^{i},x^{i}}\\
+cov_{v^{i},x^{i}} & cov_{w^{i},x^{i}} & \sigma_{x^{i}}^{2}\end{array}\Biggr]\label{eq:Ai}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+our aim is to develop an algorithm to calculate the weighted mean M and
+ its covariance matrix 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+M\equiv\Biggl[\begin{array}{c}
+\overline{v}\\
+\overline{w}\\
+\overline{x}\end{array}\Biggr]\mbox{~and~}\Sigma\equiv\Biggl[\begin{array}{ccc}
+\sigma_{\overline{v}}^{2} & cov_{\overline{v},\overline{w}} & cov_{\overline{v},\overline{x}}\\
+cov_{\overline{v},\overline{w}} & \sigma_{\overline{w}}^{2} & cov_{\overline{w},\overline{x}}\\
+cov_{\overline{v},\overline{x}} & cov_{\overline{w},\overline{x}} & \sigma_{\overline{x}}^{2}\end{array}\Biggr]\label{eq:Abar}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In principle, the logratio covariances (E
+\begin_inset Formula $^{i}$
+\end_inset
+
+) could be directly determined from the raw mass spectrometer measurements.
+ In practice, however, they are calculated from the individual concentrations
+ by linear approximation, using Equation 21 of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "vermeesch2008a"
+
+\end_inset
+
+, which assumes that the errors on the individual concentrations are Normal
+ and independently distributed.
+ Rather than propagating the internal and external uncertainties separately,
+ as done by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "vermeesch2008a"
+
+\end_inset
+
+, this section introduces a weighted mean algorithm that considers both
+ factors simultaneously, using a multivariate generalisation of the one-dimensio
+nal maximum likelihood algorithm developed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:ages"
+
+\end_inset
+
+.
+ First, redefine the MSWD in matrix form:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+MSWD=\frac{1}{df}\sum_{i=1}^{n}(X^{i}-M)'[E^{i}]^{-1}(X^{i}-M)\label{eq:MSWDc}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+where df = d 
+\begin_inset Formula $\times$
+\end_inset
+
+ (n - 1) is the number of degrees of freedom of the problem, with d = 2
+ for (U-Th)/He and d = 3 for (U-Th-Sm)/He dating.
+ Note that, because the variability of Sm does not contribute as much to
+ the age dispersion as that of U and Th, it is better to use only the latter
+ two elements for the MSWD calculation.
+ If MSWD 
+\begin_inset Formula $\gg$
+\end_inset
+
+ 1, the data are overdispersed and, in analogy with Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:norm1"
+
+\end_inset
+
+, we will assume that the observations come from a multivariate normal distribut
+ion of the form
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+X^{i}\sim N(M,E^{i}+\Xi)\label{eq:norm2}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+where M denotes the mean and 
+\begin_inset Formula $\Xi$
+\end_inset
+
+ is the overdispersion.
+ The log-likelihood is given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+L=-\frac{1}{2}\sum_{i=1}^{n}\left((X^{i}-\hat{M})'[E^{i}+\hat{\Xi}]^{-1}(X^{i}-\hat{M})+ln|E^{i}+\hat{\Xi}|+3~ln(2\pi)\right)\label{eq:L2}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $\hat{M}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\Xi}$
+\end_inset
+
+ can be found by solving the following system of non-linear equations:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{align}
+ & \frac{\partial L}{\partial\hat{M}}=\sum_{i=1}^{n}[(E^{i}+\hat{\Xi})^{-1}(X^{i}-\hat{M})]=0\label{eq:Lmu}\\
+ & \frac{\partial L}{\partial\hat{\Xi}}=\sum_{i=1}^{n}[(E^{i}+\hat{\Xi})^{-1}(X^{i}-\hat{M})(X^{i}-\hat{M})'(E^{i}+\hat{\Xi})^{-1}-(E^{i}+\hat{\Xi})^{-1}]=0\label{eq:Lxi}\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The covariance matrix 
+\begin_inset Formula $\hat{\Sigma}$
+\end_inset
+
+ of the weighted mean 
+\begin_inset Formula $\hat{M}$
+\end_inset
+
+ is obtained by inverting the Fisher Information matrix, i.e.
+ the matrix of the negative expected values of the second derivatives of
+ the log-likelihood function:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+\hat{\Sigma}=\Biggl[\sum_{i=1}^{n}(E^{i}+\hat{\Xi})^{-1}\Biggr]^{-1}\label{eq:Sigma}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Confidence intervals
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:ci"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the covariance matrix of the logratio average (
+\begin_inset Formula $\hat{\Sigma}$
+\end_inset
+
+), and performing a linear error propagation, it is straightforward to calculate
+ the covariance matrix of the geometric mean composition (
+\begin_inset Formula $\hat{\Gamma}$
+\end_inset
+
+), evaluated at 
+\begin_inset Formula $\hat{M}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+\hat{\Gamma}=A'\hat{\Sigma}A\label{eq:gamma}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where A is the matrix of first derivatives of Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:inverse-transform"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{equation}
+A=\Biggl[\begin{array}{cccc}
+\frac{\partial U}{\partial v} & \frac{\partial Th}{\partial v} & \frac{\partial Sm}{\partial v} & \frac{\partial He}{\partial v}\\
+\frac{\partial U}{\partial w} & \frac{\partial Th}{\partial w} & \frac{\partial Sm}{\partial w} & \frac{\partial He}{\partial w}\\
+\frac{\partial U}{\partial x} & \frac{\partial Th}{\partial x} & \frac{\partial Sm}{\partial x} & \frac{\partial He}{\partial x}\end{array}\Biggr]_{\hat{M}}\label{eq:df}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:gamma"
+
+\end_inset
+
+ contains an expression for the covariances of the geometric mean composition,
+ which were omitted by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "vermeesch2008a"
+
+\end_inset
+
+ but are required for a full propagation of age uncertainty.
+ However, even the complete error propagation may be inaccurate because
+ it is based on a first order Maclaurin series expansion of Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:inverse-transform"
+
+\end_inset
+
+, which is highly non-linear.
+ This problem can be circumvented using numerical techniques, such as the
+ following deterministic algorithm.
+ First, build a regular grid across the two (for U-Th-He) or three (for
+ U-Th-Sm-He) dimensions of logratio space (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ci"
+
+\end_inset
+
+.a).
+ Second, for each of these grid points, calculate (a) its likelihood under
+ a normal distribution with mean 
+\begin_inset Formula $\hat{M}$
+\end_inset
+
+ and covariance matrix 
+\begin_inset Formula $\hat{\sigma}$
+\end_inset
+
+, and (b) the corresponding age.
+ Third, calculate the Bayesian cumulative posterior distribution by ranking
+ the numerical data in order of increasing age and computing the running
+ sum of the likelihoods.
+ Fourth, obtain an asymmetrical 95% confidence interval from the 2.5 and
+ 97.5 percentiles of the posterior distribution (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ci"
+
+\end_inset
+
+.b).
+\end_layout
+
+\begin_layout Section
+Applications
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:helioplot"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+HelioPlot
+\family default
+ is a computer program for visualising U-Th-(Sm)-He data on ternary diagrams
+ and logratio plots that implements all the above calculations, including
+ the computation of central ages and 95% confidence intervals.
+ Equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Lxi1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Lxi"
+
+\end_inset
+
+ are solved using Newton's method.
+ 
+\family typewriter
+HelioPlot
+\family default
+ was written in Java and is, therefore, perfectly platform independent.
+ The program and its source code can be downloaded free of charge from 
+\family typewriter
+http://pvermees.andro\SpecialChar \-
+pov.org/helio\SpecialChar \-
+plot
+\family default
+.
+ Data can be copied and pasted to-and-from Microsoft Excel, or entered directly
+ using the built-in editing tools.
+ Data files are saved in a comma-separated-variable (
+\family typewriter
+.csv
+\family default
+) format.
+ Samarium is an optional input parameter and the complete functionality
+ of the program is still available when Sm is missing.
+ If Sm is absent, it will be assumed to be zero, and the data naturally
+ reduce to their two dimensions in compositional datapace.
+ If Sm is present, the geometric mean Sm composition is used as a common
+ reference for the ternary diagrams and logratio plots.
+ Colour is used to visualise the Sm content of aliquots, or any other numerical
+ quantity, such as sample number (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:helioplot"
+
+\end_inset
+
+.a), grain size (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:helioplot"
+
+\end_inset
+
+.b), elevation, or, for the case of double-dated grains, a U-Pb or fission
+ track age 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "campbell2005"
+
+\end_inset
+
+.
+ 
+\family typewriter
+HelioPlot
+\family default
+ is capable of saving the graphical output as either bitmap or vector images,
+ in a 
+\family typewriter
+.png
+\family default
+ or 
+\family typewriter
+.pdf
+\family default
+ format, respectively.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Example input files are provided on the website for testing purposes.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:helioplot"
+
+\end_inset
+
+.b shows the output for one of these files, based on a published (U-Th)/He
+ dataset 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "vermeesch2007b"
+
+\end_inset
+
+, which was 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-ejection corrected according to the guidelines of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ketcham2009"
+
+\end_inset
+
+.
+ The output includes the arithmetic and geometric mean ages and their standard
+ errors, calculated using the methods of Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:ages"
+
+\end_inset
+
+, in addition to the central age, its standard error and 95% confidence
+ interval, calculated according to the algorithm of Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:compositions"
+
+\end_inset
+
+.
+ Three separate MSWDs are given, reflecting the overdispersion of the ages
+ and the U-Th-He compositions.
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+The aim of this paper was to bring the statistical treatment of U-Th-(Sm)-He
+ data on an equal footing with more established geochronometers such as
+ U-Pb, 
+\begin_inset Formula $^{40}$
+\end_inset
+
+Ar/
+\begin_inset Formula $^{39}$
+\end_inset
+
+Ar, or fission tracks.
+ Weighted least squares algorithms similar to the maximum likelihood methods
+ of Sections 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:ages"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:compositions"
+
+\end_inset
+
+ have been used in U-Pb 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ludwig1998"
+
+\end_inset
+
+ and fission track dating 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "galbraith1990b"
+
+\end_inset
+
+.
+ Visual aids such as the U-Pb concordia diagram, the Rb-Sr isochron, or
+ the fission track radial plot can be very useful for the exploratory analysis
+ of geochronological data.
+ The ternary diagram and logratio plot play the same role for helium thermochron
+ology, as they bring out the full information content of U-Th-(Sm)-He data,
+ and can help to reveal patterns between aliquots and samples that may not
+ be seen otherwise.
+\end_layout
+
+\begin_layout Section*
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+John Rudge formulated equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:norm2"
+
+\end_inset
+
+, from which the rest of the calculations followed naturally.
+ He and an anonymous reviewer are gratefully acknowledged for this and other
+ constructive comments.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "/home/pieter/Documents/biblio"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+bibliographystyle{/home/pieter/Documents/elsart-harv}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Figures
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+ a.
+\begin_inset Graphics
+	filename Bayes2.pdf
+	width 50text%
+
+\end_inset
+
+ b.
+\begin_inset Graphics
+	filename CI2.pdf
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ci"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+ a.
+\begin_inset Graphics
+	filename ternaryplot.pdf
+	width 45text%
+
+\end_inset
+
+ b.
+\begin_inset Graphics
+	filename logratioplot.pdf
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\family typewriter
+HelioPlot
+\family default
+.
+ (a) Ternary diagram with two synthetic U-Th-He samples (
+\begin_inset Formula $U*=\frac{U-0.0611}{0.362}$
+\end_inset
+
+, 
+\begin_inset Formula $Th*=\frac{Th-0.574}{0.362}$
+\end_inset
+
+, 
+\begin_inset Formula $He*=\frac{He-0.0041}{0.362}$
+\end_inset
+
+).
+ (b) Logratio plot of U-Th-He data from Naxos 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "vermeesch2007b"
+
+\end_inset
+
+, colour-coded according to grain size.
+ The geometric mean composition is shown as a white ellipse.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:helioplot"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,22 @@
+This is a coarse grained rock
+<p></p>
+Do you think this rock is:
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Crystaline rocks are made of interlocking crystals and indicate one stage of cooling.';" />crystalline
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Porphyritic rocks have two differing crystal sizes. Usually a fine-grained groundmass/matrix with medium to coarse grained phenocrysts. Indicates two stages of cooling.';" />porphyritic
+</form>
+<p></p> 
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'graniteppl.JPG\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'granitexpl.JPG\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+<p></p>
+<div id="description">
+</div>

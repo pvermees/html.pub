@@ -1,0 +1,3567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>IsoplotR: a free and open toolbox for geochronology</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<meta name="date" content="2018-04-02 11:15:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body>
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">IsoplotR: a free and open toolbox for geochronology</h2>
+
+          <div class="author" ><span class="cmr-12">Pieter Vermeesch</span><br />   
+<span class="cmr-12">Department of Earth Sciences</span><br />     
+<span class="cmr-12">University College London</span><br /> 
+<span class="cmr-12">Gower Street, London WC1E 6BT</span><br />     
+<span class="cmtt-12">p.vermeesch [at] ucl.ac.uk </span></div>
+   </div>
+
+<div class="center">
+<a href="../VermeeschGSF2018.pdf">doi: 10.1016/j.gsf.2018.04.001</a>
+</div>
+
+   <div class="abstract">
+<div class="center" 
+>
+<!--l. 18--><p class="noindent" >
+<!--l. 18--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 19--><p class="indent" >    <span 
+class="cmr-9">This paper reviews the basic principles of radiometric geochronology as implemented in a new software</span>
+     <span 
+class="cmr-9">package called </span><span 
+class="cmtt-9">IsoplotR</span><span 
+class="cmr-9">, which was designed to be free, flexible and future-proof. </span><span 
+class="cmtt-9">IsoplotR </span><span 
+class="cmr-9">is free</span>
+     <span 
+class="cmr-9">because it is written in non-proprietary languages (</span><span 
+class="cmtt-9">R</span><span 
+class="cmr-9">, </span><span 
+class="cmtt-9">Javascript </span><span 
+class="cmr-9">and </span><span 
+class="cmtt-9">HTML</span><span 
+class="cmr-9">) and is released under the</span>
+     <span 
+class="cmr-9">GPL license. The program is flexible because its graphical user interface (GUI) is separated from the</span>
+     <span 
+class="cmr-9">command line functionality, and because its code is completely open for inspection and modification. To</span>
+     <span 
+class="cmr-9">increase future-proofness, the software is built on free and platform-independent foundations that adhere</span>
+     <span 
+class="cmr-9">to international standards, have existed for several decades, and continue to grow in popularity. </span><span 
+class="cmtt-9">IsoplotR</span>
+     <span 
+class="cmr-9">currently includes functions for U-Pb, Pb-Pb, </span><sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup><span 
+class="cmr-9">Ar/</span><sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup><span 
+class="cmr-9">Ar, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, fission</span>
+     <span 
+class="cmr-9">track and U-series disequilibrium dating. It implements isochron regression in two and three dimensions,</span>
+     <span 
+class="cmr-9">visualises multi-aliquot datasets as cumulative age distributions, kernel density estimates and radial plots,</span>
+     <span 
+class="cmr-9">and calculates weighted mean ages using a modified Chauvenet outlier detection criterion that accounts</span>
+     <span 
+class="cmr-9">for the analytical uncertainties in heteroscedastic datasets. Overdispersion of geochronological data with</span>
+     <span 
+class="cmr-9">respect to these analytical uncertainties can be attributed to either a proportional underestimation of</span>
+     <span 
+class="cmr-9">the analytical uncertainties, or to an additive geological scatter term. </span><span 
+class="cmtt-9">IsoplotR </span><span 
+class="cmr-9">keeps track of error</span>
+     <span 
+class="cmr-9">correlations of the isotopic ratio measurements within aliquots of the same samples. It uses a statistical</span>
+     <span 
+class="cmr-9">framework that will allow it to handle error correlations between aliquots in the future. Other ongoing</span>
+     <span 
+class="cmr-9">developments include the implementation of alternative user interfaces and the integration of </span><span 
+class="cmtt-9">IsoplotR</span>
+     <span 
+class="cmr-9">with other data reduction software.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 53--><p class="noindent" >Geology is, in essence, a historical science in which timing is of the utmost importance. Geochronology underpins
+the study of Earth history and puts fundamental constraints on the rate of biological evolution (<a 
+href="#Xchen2012">Chen and
+Benton</a>,&#x00A0;<a 
+href="#Xchen2012">2012</a>;&#x00A0;<a 
+href="#Xgradstein2012">Gradstein et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgradstein2012">2012</a>). Technological advances in mass spectrometry, such as the widespread
+
+availability of multi-collector instruments, are ever increasing the precision of the isotopic data that form the basis
+of the chronostratigraphic timescale. A plethora of mathematical-statistical techniques are available to extract
+chronological constraints from these isotopic measurements. Examples of this include isochrons, concordia diagrams,
+age spectra and density estimates. Implementing these methods in a rigorous and self-consistent manner requires
+appropriate software. For many years, a <span 
+class="cmtt-10">Microsoft Excel </span>add-in called <span 
+class="cmtt-10">Isoplot </span>has served this purpose extremely
+well.<br 
+class="newline" />
+<!--l. 68--><p class="indent" >   Developed by Kenneth R. Ludwig over a period of two decades, <span 
+class="cmtt-10">Isoplot </span>is a user-friendly toolbox
+that allows geologists to calculate and visualise geochronological data within a familiar spreadsheet
+environment (<a 
+href="#Xludwig1988">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig1988">1988</a>,&#x00A0;<a 
+href="#Xludwig1999">1999</a>,&#x00A0;<a 
+href="#Xludwig2003">2003a</a>,&#x00A0;<a 
+href="#Xludwig2012">2012</a>). Few computer programs have been as widely used in the
+Earth Sciences as <span 
+class="cmtt-10">Isoplot</span>. Written in Visual Basic for Applications (<span 
+class="cmtt-10">VBA</span>), <span 
+class="cmtt-10">Isoplot </span>takes isotopic data
+as input and produces publication-ready figures as output. Unfortunately, recent versions of <span 
+class="cmtt-10">Excel</span>
+are incompatible with <span 
+class="cmtt-10">Isoplot</span>, whose creator has retired and no longer maintains the code. These
+software issues are a major problem for the field of radiometric geochronology, to the point where some
+laboratories keep an old <span 
+class="cmtt-10">Windows</span><span 
+class="cmtt-10">&#x00A0;XP </span>computer with <span 
+class="cmtt-10">Excel</span><span 
+class="cmtt-10">&#x00A0;2003 </span>around for the sole purpose of running
+<span 
+class="cmtt-10">Isoplot</span>.<br 
+class="newline" />
+<!--l. 83--><p class="indent" >   This paper introduces a new computer code called <span 
+class="cmtt-10">IsoplotR </span>as a free, open and more future-proof alternative
+for <span 
+class="cmtt-10">Isoplot</span>. The principal aim of this paper is to provide a general overview of the design philosophy and basic
+operating principles behind the software, rather than a detailed manual of all its components. Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:architecture --></a> discusses
+the software architecture, which uses a modular design with future-proofness and extendability in mind. Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:input --></a>
+presents three fundamental types of input format that are used by <span 
+class="cmtt-10">IsoplotR </span>to capture the covariance structure of
+isotopic ratio data. We will see that this covariance structure plays a fundamental role in all of <span 
+class="cmtt-10">IsoplotR</span>&#8217;s
+methods.<br 
+class="newline" />
+<!--l. 96--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:regression --></a> reviews the important subject of linear regression, which underpins the construction of isochrons.
+<span 
+class="cmtt-10">IsoplotR </span>currently implements three different types of error weighted linear regression algorithms that account for
+error correlations between variables and between aliquots in two or three dimensions. Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:overdispersion --></a> explains how these
+three methods represent different approaches of dealing with overdispersion. Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:averaging --></a> introduces a weighted mean
+plot to visualise multiple age estimates and proposes a heuristic method to detect outliers. Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:confidence --></a>
+presents three approaches to construct confidence intervals for isochron ages, weighted means and
+so forth. It introduces a profile log-likelihood method for the calculation of asymmetric confidence
+intervals.<br 
+class="newline" />
+<!--l. 111--><p class="indent" >   Section&#x00A0;<a 
+href="#x1-80008">8<!--tex4ht:ref: sec:density --></a> discusses three further methods to visualise multi-aliquot collections of ages. Cumulative age
+distributions (CADs) and kernel density estimates (KDEs) show the frequency distribution of the age measurements
+but do not explicitly take into account the analytical uncertainties. The radial plot is introduced as a more
+appropriate data visualisation tool for &#8216;heteroscedastic&#8217; data (i.e. data with unequal measurements uncertainties).
+The radial plot provides a good vehicle to assess the dispersion of multi-aliquot datasets. Overdispersed
+datasets require further processing with continuous or discrete mixture models that are discussed in
+Section&#x00A0;<a 
+href="#x1-90009">9<!--tex4ht:ref: sec:mixtures --></a>.<br 
+class="newline" />
+<!--l. 123--><p class="indent" >   Sections&#x00A0;<a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:PD --></a>-<a 
+href="#x1-1500015">15<!--tex4ht:ref: sec:FT --></a> provide specific details about the Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar, U-Pb, Pb-Pb,
+U-Th-He, fission track and U-series dating methods. Section&#x00A0;<a 
+href="#x1-1600016">16<!--tex4ht:ref: sec:detritals --></a> introduces a selection of statistical methods to help
+interpret collections of multiple geochronological datasets that are useful in detrital geochronology.
+Finally, Section&#x00A0;<a 
+href="#x1-1700017">17<!--tex4ht:ref: sec:future --></a> sets out a roadmap for future developments to improve the accuracy and precision of
+geochronological data, and to provide closer integration of <span 
+class="cmtt-10">IsoplotR </span>with earlier steps of the data processing
+chain.
+<!--l. 134--><p class="noindent" >
+
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Software architecture</h3>
+<!--l. 137--><p class="noindent" >There are three ways to use <span 
+class="cmtt-10">IsoplotR</span>: online, offline and from the command line.<br 
+class="newline" />
+<!--l. 140--><p class="indent" >   The online version can be accessed at <span 
+class="cmtt-10">http://isoplotr.london-geochron.com </span>(see Appendix&#x00A0;A), and is
+convenient in several ways. First, it requires no software installation. Second, the <span 
+class="cmtt-10">IsoplotR </span>website is perfectly
+platform-independent. It renders on any modern HTML-5 compatible web browser, including those installed on
+smartphones and tablet computers. Third, by using the online version, the user is guaranteed to have accessed the
+most up-to-date version of the software.<br 
+class="newline" />
+<!--l. 149--><p class="indent" >   An offline version of the GUI is provided for use on computers that are not (permanently) connected
+to the internet. This is often the case for machines that are connected to mass spectrometers, as a
+safety precaution. The offline version of the GUI works by emulating a web server within the default
+browser on the user&#8217;s system. Installation instructions are provided on the <span 
+class="cmtt-10">IsoplotR </span>website and on
+<span 
+class="cmtt-10">GitHub</span>.<br 
+class="newline" />
+<!--l. 157--><p class="indent" >   The third way to access the full functionality of <span 
+class="cmtt-10">IsoplotR </span>is through the command line within the <span 
+class="cmtt-10">R</span>
+programming environment (see Appendix&#x00A0;B). The command line offers the greatest flexibility to automate, modify
+and extend <span 
+class="cmtt-10">IsoplotR</span>&#8217;s functionality.<br 
+class="newline" />
+<!--l. 162--><p class="indent" >   The code base for the GUI and the core data processing algorithms are surgically separated. The command-line
+functionality is grouped in a lightweight package called <span 
+class="cmtt-10">IsoplotR </span>that may be installed from the &#8216;Comprehensive R
+Archive Network&#8217; (CRAN) by typing <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">install.packages('IsoplotR')</span></span></span> at the command prompt. Once installed, the
+package can be loaded into memory by typing <span 
+class="cmtt-10">library(IsoplotR)</span>. The <span 
+class="cmtt-10">IsoplotR </span>package has minimal
+dependencies and should work on a basic <span 
+class="cmtt-10">R </span>installation. In contrast, the GUI is written in <span 
+class="cmtt-10">HTML </span>and <span 
+class="cmtt-10">Javascript </span>and
+interacts with <span 
+class="cmtt-10">IsoplotR </span>via an interface package (<a 
+href="#Xchang2017">Chang et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xchang2017">2017</a>). It is provided in a second <span 
+class="cmtt-10">R </span>package called
+<span 
+class="cmtt-10">IsoplotRgui </span>that is available from <span 
+class="cmtt-10">GitHub </span>(see the <span 
+class="cmtt-10">IsoplotR </span>website for details). <span 
+class="cmtt-10">IsoplotRgui </span>is separate from
+but depends on <span 
+class="cmtt-10">IsoplotR</span>.<br 
+class="newline" />
+<!--l. 177--><p class="indent" >   The clean separation between the two programs allows <span 
+class="cmtt-10">IsoplotR </span>to remain light and easy to install. This is
+important for any future <span 
+class="cmtt-10">R </span>packages that may wish to incorporate <span 
+class="cmtt-10">IsoplotR </span>functions. A second reason for keeping
+the code base of the GUI and command line functionality separated is that other user interfaces are
+planned, for example within <span 
+class="cmtt-10">Excel </span>(Section&#x00A0;<a 
+href="#x1-1700017">17<!--tex4ht:ref: sec:future --></a>). Incorporating all these additional functions into a
+single package would add unnecessary bulk and redundancy. <span 
+class="cmtt-10">IsoplotR </span>and <span 
+class="cmtt-10">IsoplotRgui </span>are free and
+open software. The computer code for both programs is made available under the GPL license, which
+permits re-use and modification provided that any derived code is released under the same conditions
+(<a 
+href="#Xgplv3">Free&#x00A0;Software&#x00A0;Foundation</a>,&#x00A0;<a 
+href="#Xgplv3">2007</a>).
+<!--l. 191--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Input formats</h3>
+<!--l. 194--><p class="noindent" >In an abstract sense, <span 
+class="cmtt-10">IsoplotR </span>is a set of functions <span 
+class="cmmi-10">F </span>that take some isotopic data <span 
+class="cmmi-10">A </span>as input and generate some
+numerical and/or graphical output <span 
+class="cmmi-10">B</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r1"></a>
+   <center class="math-display" >
+<img 
+src="index0x.png" alt="B = F (A)
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 201--><p class="nopar" >
+<!--l. 203--><p class="indent" >   For example, <span 
+class="cmmi-10">A </span>could be some <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">36</span></sup>Ar- and <sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">36</span></sup>Ar-measurements and <span 
+class="cmmi-10">B </span>could be the <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-age. Or
+<span 
+class="cmmi-10">A </span>could be some <sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Sr/<sup class="textsuperscript"><span 
+class="cmr-9">86</span></sup>Sr- and <sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Rb/<sup class="textsuperscript"><span 
+class="cmr-9">86</span></sup>Sr-measurements and <span 
+class="cmmi-10">B </span>a vector with the slope and intercept of an
+isochron fit to these data. <span 
+class="cmmi-10">A </span>may also include decay constants, stable isotope ratios and other parameters that are
+associated with analytical uncertainty.<br 
+class="newline" />
+<!--l. 214--><p class="indent" >   Regardless of the application, the error propagation of <span 
+class="cmmi-10">B </span>is as important as estimation of <span 
+class="cmmi-10">B </span>itself
+(<a 
+href="#Xludwig2003">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003">2003a</a>). Without analytical uncertainties, it is impossible to ascertain whether the difference between two
+geochronological dates is real, or simply an artifact of analytical imprecision. <span 
+class="cmtt-10">IsoplotR </span>propagates the analytical
+uncertainty of <span 
+class="cmmi-10">B </span>using one of two methods. If <span 
+class="cmmi-10">F </span>is a likelihood function, then the error propagation is done by
+inverting the (negative) matrix of its second derivatives. In all other cases, the error propagation uses a first order
+Taylor approximation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3002r2"></a>
+   <center class="math-display" >
+<img 
+src="index1x.png" alt="            T
+&Sigma;B = JF &Sigma;AJF
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 227--><p class="nopar" >
+<!--l. 229--><p class="noindent" >where &Sigma;<sub><span 
+class="cmmi-7">A</span></sub> is the covariance matrix of the input data <span 
+class="cmmi-10">A</span>, &Sigma;<sub><span 
+class="cmmi-7">B</span></sub> is the covariance matrix of the estimated parameters <span 
+class="cmmi-10">B</span>,
+<span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">F</span></sub> is the Jacobian matrix with the partial derivatives of the function <span 
+class="cmmi-10">F </span>with respect to the measurements <span 
+class="cmmi-10">A</span>, and
+<span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">F</span></sub><sup><span 
+class="cmmi-7">T</span></sup> is the transpose of the Jacobian matrix. If <span 
+class="cmmi-10">A </span>is a vector of <span 
+class="cmmi-10">n </span>measurements and <span 
+class="cmmi-10">B </span>is a vector of <span 
+class="cmmi-10">m </span>estimated
+parameters, then &Sigma;<sub><span 
+class="cmmi-7">A</span></sub> and &Sigma;<sub><span 
+class="cmmi-7">B</span></sub> are <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">n </span>and <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">m </span>matrices with the variances of the <span 
+class="cmmi-10">A</span>s and <span 
+class="cmmi-10">B</span>s on
+the diagonal and their covariances on the off-diagonal terms; and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">F</span></sub> is an <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">m </span>matrix of partial
+derivatives.<br 
+class="newline" />
+<!--l. 240--><p class="indent" >   In order to use Equations&#x00A0;<a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:BFA --></a> and <a 
+href="#x1-3002r2">2<!--tex4ht:ref: eq:errorprop --></a>, <span 
+class="cmtt-10">IsoplotR </span>requires not only the isotopic measurements and their
+analytical uncertainties, but also the covariances between these quantities. For example, in the case of the
+aformentioned <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar example, we require the isotopic ratio measurements <sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar </span>and <sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span>,
+their standard errors <span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span>] and <span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span>], and their covariance <span 
+class="cmmi-10">cov</span>[<sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar,</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span>].
+Similarly, for the Rb-Sr example, we require <sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Rb&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr</span>, <span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Rb&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr</span>], <sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Sr&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr</span>, <span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Sr&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr</span>] and
+<span 
+class="cmmi-10">cov</span>[<sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Rb&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr,</span><sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Sr&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr</span>].<br 
+class="newline" />
+<!--l. 254--><p class="indent" >   It is generally quite straightforward to obtain the isotopic ratio estimates and their uncertainties using most data
+acquisition software. Unfortunately this is not always the case for the covariance terms. <span 
+class="cmtt-10">IsoplotR </span>includes three
+kinds of input format to overcome this problem. A first class of input formats consists of a flat table with five or
+nine columns:
+   <center class="par-math-display" >
+<img 
+src="index2x.png" alt="X, s[X ], Y, s[Y], &rho;[X,Y ]
+" class="par-math-display" ></center>
+<!--l. 263--><p class="nopar" >
+<!--l. 265--><p class="noindent" >or
+   <center class="par-math-display" >
+<img 
+src="index3x.png" alt="X,  s[X ], Y, s[Y], Z, s[Z], &rho;[X,Y ], &rho;[X, Z], &rho;[Y,Z]
+" class="par-math-display" ></center>
+<!--l. 269--><p class="nopar" >
+<!--l. 271--><p class="noindent" >where <span 
+class="cmmi-10">X</span>, <span 
+class="cmmi-10">Y </span>and <span 
+class="cmmi-10">Z </span>are the isotopic (ratio) measurements, <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">X</span>], <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">Y </span>] and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">Z</span>] are their analytical uncertainties
+(standard errors); and <span 
+class="cmmi-10">&rho;</span>[<span 
+class="cmmi-10">X,Y </span>], <span 
+class="cmmi-10">&rho;</span>[<span 
+class="cmmi-10">X,Z</span>] and <span 
+class="cmmi-10">&rho;</span>[<span 
+class="cmmi-10">Y,Z</span>] are the error correlations, which are related to the covariances as
+follows:<br 
+class="newline" />
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index4x.png" alt="cov[X,Y ] = &rho;[X,Y ]s[X]s[Y ]
+" class="math-display" ></center></td></tr></table>
+<!--l. 280--><p class="nopar" >
+<!--l. 282--><p class="indent" >   The remaining two classes of input formats specify the covariance structure of the data without requiring any
+actual covariances or correlation coefficients. For synchronously acquired isotopic data, such as <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-data
+measured by noble gas mass spectrometry or U-Pb data measured by laser ablation inductively coupled mass
+spectrometry (LAICPMS), this is achieved using redundant ratios. For example, in the case of <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-data, let
+<span 
+class="cmmi-10">X</span>, <span 
+class="cmmi-10">Y </span>and <span 
+class="cmmi-10">Z </span>be three ratios of <sup class="textsuperscript"><span 
+class="cmr-9">36,39,40</span></sup>Ar:
+   <center class="par-math-display" >
+<img 
+src="index5x.png" alt="X &equiv; 36Ar&#x2215;40Ar, Y &equiv; 39Ar&#x2215;40Ar, Z &equiv; 36Ar&#x2215;39Ar
+" class="par-math-display" ></center>
+<!--l. 296--><p class="nopar" >
+<!--l. 298--><p class="noindent" >and let <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">X</span>], <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">Y </span>] and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">Z</span>] be their standard errors. Then first order Taylor expansion yields:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index6x.png" alt="(     )2   (      )2   (     )2  (     )2
+  s[Z]   =  s[X&#x2215;Y-]  &asymp;   s[X-]   +  s[Y-]  &minus; 2 cov[X,Y-]
+   Z         X &#x2215;Y         X         Y          XY
+" class="math-display" ></center></td></tr></table>
+<!--l. 306--><p class="nopar" >
+<!--l. 308--><p class="noindent" >from which the covariance between <span 
+class="cmmi-10">X </span>and <span 
+class="cmmi-10">Y </span>can be inferred as
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index7x.png" alt="               [(    )2   (    )2   (    )2]
+cov[X,Y ] &asymp; XY-   s[X-]  +   s[Y-]  &minus;   s[Z]-
+            2      X         Y         Z
+" class="math-display" ></center></td></tr></table>
+<!--l. 319--><p class="nopar" >
+<!--l. 321--><p class="indent" >   It is important to note that this approach makes the crucial assumption that all three standard errors (<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">X</span>], <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">Y </span>]
+and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">Z</span>]) are based on the same number of data points. If some data has been rejected from one ratio but not
+another, then this relation will not work.<br 
+class="newline" />
+<!--l. 327--><p class="indent" >   Finally, for isotopic data that are analysed asynchronously, such as Rb-Sr or Sm-Nd measurements
+involving liquid chromatography, the covariance can be obtained from the parent and daughter element
+concentrations and the daughter isotopic ratio. For example, in the case of Rb-Sr data, if the following data are
+given:
+   <center class="par-math-display" >
+<img 
+src="index8x.png" alt="                               87   86
+X &equiv; Rb [ppm], Y &equiv; Sr [ppm ], Z &equiv; ( Sr&#x2215; Sr),
+" class="par-math-display" ></center>
+<!--l. 337--><p class="nopar" >
+<!--l. 339--><p class="noindent" >then the <sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Rb/<sup class="textsuperscript"><span 
+class="cmr-9">86</span></sup>Sr-ratio is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3003r3"></a>
+   <center class="math-display" >
+<img 
+src="index9x.png" alt="     (        )   X M (Rb)1 + Z[1 +(84Sr&#x2215;87Sr)+ (88Sr&#x2215;87Sr)]
+W  &equiv;  87Rb &#x2215;86Sr  = ----------------------85---87-------------
+                  Y M (Sr)          1+ ( Rb &#x2215; Rb )
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+
+<!--l. 351--><p class="nopar" >
+<!--l. 353--><p class="noindent" >where (<sup><span 
+class="cmr-7">84</span></sup><span 
+class="cmmi-10">Sr&#x2215;</span><sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Sr</span>), (<sup><span 
+class="cmr-7">88</span></sup><span 
+class="cmmi-10">Sr&#x2215;</span><sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Sr</span>) and (<sup><span 
+class="cmr-7">85</span></sup><span 
+class="cmmi-10">Rb&#x2215;</span><sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Rb</span>) are constant, non-radiogenic isotope ratios, and <span 
+class="cmmi-10">M</span>(<span 
+class="cmmi-10">Rb</span>)
+and <span 
+class="cmmi-10">M</span>(<span 
+class="cmmi-10">Sr</span>) are the molar masses of Rb and Sr, respectively. Because <span 
+class="cmmi-10">Z </span>appears in Equation&#x00A0;<a 
+href="#x1-3003r3">3<!--tex4ht:ref: eq:ID --></a>, the
+covariance (<span 
+class="cmmi-10">cov</span>[<span 
+class="cmmi-10">W,Z</span>]) between (<sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Rb&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr</span>) and (<sup><span 
+class="cmr-7">87</span></sup><span 
+class="cmmi-10">Sr&#x2215;</span><sup><span 
+class="cmr-7">86</span></sup><span 
+class="cmmi-10">Sr</span>) is nonzero and can be estimated using
+Equation&#x00A0;<a 
+href="#x1-3002r2">2<!--tex4ht:ref: eq:errorprop --></a>.
+<!--l. 361--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Regression</h3>
+<!--l. 364--><p class="noindent" >Isochrons are an important instrument of high precision, high accuracy geochronology. Given several aliquots from a
+single sample, they allow the non-radiogenic component of the daughter nuclide to be quantified and separated from
+the radiogenic component. In its simplest form, an isochron is obtained by setting out the amount of radiogenic
+daughter against the amount of radioactive parent, both normalised to a non-radiogenic isotope of the daughter
+element, and fitting a straight line through these points by least squares regression (<a 
+href="#Xnicolaysen1961">Nicolaysen</a>,&#x00A0;<a 
+href="#Xnicolaysen1961">1961</a>). The slope
+and intercept then yield the radiogenic daughter-parent ratio and the non-radiogenic daughter composition,
+respectively.<br 
+class="newline" />
+<!--l. 376--><p class="indent" >   There are several ways to fit an isochron. The easiest of these is ordinary least squares regression, which weights
+all data points equally. In the presence of quantifiable analytical uncertainty, it is equally straightforward to use the
+inverse of the y-errors as weights. It is significantly more difficult to take into account uncertainties in both the
+x- and y-variable. The <a 
+href="#Xyork1966">York</a>&#x00A0;(<a 
+href="#Xyork1966">1966</a>) method assumes that the analytical uncertainties of the x- and
+y-variables are independent of each other. <span 
+class="cmtt-10">IsoplotR </span>uses this method to construct U-Th-He isochrons
+(Section&#x00A0;<a 
+href="#x1-1400014">14<!--tex4ht:ref: sec:UThHe --></a>). But for other chronometers, the assumption of uncorrelated uncertainties is generally not
+valid.<br 
+class="newline" />
+<!--l. 388--><p class="indent" >   <a 
+href="#Xyork1969">York</a>&#x00A0;(<a 
+href="#Xyork1969">1969</a>) addresses this issue with a bivariate error weighted linear least squares algorithm that accounts for
+covariant errors in both variables (Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.a). This algorithm was further improved by <a 
+href="#Xyork2004">York et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xyork2004">2004</a>) to ensure
+consistency with the maximum likelihood approach of <a 
+href="#Xtitterington1979">Titterington and Halliday</a>&#x00A0;(<a 
+href="#Xtitterington1979">1979</a>). <span 
+class="cmtt-10">IsoplotR </span>uses the <a 
+href="#Xyork2004">York
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xyork2004">2004</a>) algorithm for its <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar, Pb-Pb, Rb-Sr, Sm-Nd, Re-Os and Lu-Hf isochrons (Section&#x00A0;<a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:PD --></a>). The
+maximum likelihood algorithm of <a 
+href="#Xtitterington1979">Titterington and Halliday</a>&#x00A0;(<a 
+href="#Xtitterington1979">1979</a>) was generalised from two to three dimensions by
+<a 
+href="#Xludwig1994">Ludwig and Titterington</a>&#x00A0;(<a 
+href="#Xludwig1994">1994</a>) for U-series disequilibrium dating. Also this algorithm is implemented in <span 
+class="cmtt-10">IsoplotR</span>
+(Section&#x00A0;<a 
+href="#x1-1300013">13<!--tex4ht:ref: sec:ThU --></a>).<br 
+class="newline" />
+<!--l. 401--><p class="indent" >   Finally, the 3-dimensional maximum likelihood approach of <a 
+href="#Xludwig1994">Ludwig and Titterington</a>&#x00A0;(<a 
+href="#Xludwig1994">1994</a>) was further
+modified by <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>) to fit so-called &#8216;Total Pb-U isochrons&#8217;, which are constrained to a radiogenic
+endmember composition that falls on the concordia line (Section&#x00A0;<a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:UPb --></a>). In its most sophisticated form,
+this algorithm does not only allow for correlated errors between variables, but also between aliquots.
+<span 
+class="cmtt-10">IsoplotR </span>currently uses this algorithm to propagate decay constant uncertainties in the total Pb-U
+isochron ages. Future versions of the program will generalise this approach to other chronometers as well
+(Section&#x00A0;<a 
+href="#x1-1700017">17<!--tex4ht:ref: sec:future --></a>).<br 
+class="newline" />
+<!--l. 412--><p class="indent" >   The extent to which the observed scatter in the data can be explained by the analytical uncertainties can be
+assessed using a chi-square test. To this end, we define the chi-square statistic as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r4"></a>
+
+   <center class="math-display" >
+<img 
+src="index10x.png" alt="       [     ]    [      ]T
+&chi;2stat = X  &minus; &#x02C6;X &Sigma; &minus;X1 X &minus; X&#x02C6;
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 419--><p class="nopar" >
+<!--l. 421--><p class="noindent" >where <span 
+class="cmmi-10">X </span>are the data, <img 
+src="index11x.png" alt="X&#x02C6;"  class="circ" > are the fitted values, and &Sigma;<sub><span 
+class="cmmi-7">X</span></sub> is the covariance matrix of <span 
+class="cmmi-10">X</span>. For example, in the case of a
+3-dimensional U-series isochron comprised of <span 
+class="cmmi-10">n </span>aliquots, <span 
+class="cmmi-10">X </span>is a [1 <span 
+class="cmsy-10">&#x00D7; </span>3<span 
+class="cmmi-10">n</span>]-matrix obtained by concatenating all the
+<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-, <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U- and <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ratio measurements, and &Sigma;<sub><span 
+class="cmmi-7">X</span></sub> is the corresponding [3<span 
+class="cmmi-10">n</span><span 
+class="cmsy-10">&#x00D7; </span>3<span 
+class="cmmi-10">n</span>] covariance
+matrix.<br 
+class="newline" />
+<!--l. 430--><p class="indent" >   The p-value is defined as the probability of observing a value greater than <span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> under a chi-square distribution
+with <span 
+class="cmmi-10">df </span>= (<span 
+class="cmmi-10">k&minus;1</span>)(<span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&minus; </span>2) degrees of freedom, where <span 
+class="cmmi-10">k </span>is the dimensionality of the linear fit. If the p-value falls
+below a cutoff value of 0.05, say, then this indicates that the data are &#8216;overdispersed&#8217; with respect
+to the formal analytical uncertainties around the best-fit line. In contrast, p-values that are much
+greater than 0.95 are indicative of &#8216;underdispersed&#8217; data, possibly reflecting overestimated analytical
+uncertainties.<br 
+class="newline" />
+<!--l. 440--><p class="indent" >   An alternative way to assess the degree of over- or underdispersion is by dividing the chi-square statistic <span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>
+by the number of degrees of freedom <span 
+class="cmmi-10">df</span>. The resulting numerical value is called the &#8216;Mean Square of the Weighted
+Deviates&#8217; (MSWD,&#x00A0;<a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcintyre1966">1966</a>) by geochronologists, but is known as the &#8216;reduced chi-square statistic&#8217;
+elsewhere. MSWD values that are far smaller or greater than 1 indicate under- or overdispersed measurements,
+respectively.
+<!--l. 448--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Dealing with overdispersion</h3>
+<!--l. 451--><p class="noindent" >Let us consider the simple case of a 2-dimensional dataset <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmsy-10">}</span><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&hellip;</span><span 
+class="cmmi-10">,</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmsy-10">}</span><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&hellip;</span><span 
+class="cmmi-10">,</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">}</span>. Data are overdispersed
+with respect to the analytical uncertainties if:
+   <center class="par-math-display" >
+<img 
+src="index12x.png" alt="        &sum;n
+MSWD  &equiv;    Xi &Omega;iXTi &#x2215;df &#x003E; 1
+        i=1
+" class="par-math-display" ></center>
+<!--l. 458--><p class="nopar" >
+<!--l. 460--><p class="noindent" >with
+   <center class="par-math-display" >
+<img 
+src="index13x.png" alt="     [                 ]
+Xi =  (xi &minus; &#x02C6;xi) (yi &minus; &#x02C6;yi) ,
+" class="par-math-display" ></center>
+<!--l. 468--><p class="nopar" >
+<!--l. 470--><p class="noindent" >where <img 
+src="index14x.png" alt="&#x02C6;x"  class="circ" ><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">&#x0177;</span><sub><span 
+class="cmmi-7">i</span></sub> are the fitted values, and
+   <center class="par-math-display" >
+<img 
+src="index15x.png" alt="     [      2             ]&minus;1
+&Omega;i &equiv;    s[xi]    cov(xi,2yi)
+      cov(xi,yi)    s[yi]
+" class="par-math-display" ></center>
+<!--l. 480--><p class="nopar" >
+<!--l. 482--><p class="indent" >   <span 
+class="cmtt-10">IsoplotR </span>provides three alternative strategies (&#8216;models&#8217;) to deal with overdispersed data. A first way (&#8216;model-1&#8217;)
+to account for overdispersion is to inflate all analytical uncertainties by a common <span 
+class="cmti-10">factor </span><span 
+class="cmmi-10">f</span>, which is chosen so as to
+reduce the MSWD to unity:
+   <center class="par-math-display" >
+<img 
+src="index16x.png" alt="&sum;n
+   Xi &Omega;i,fXTi &#x2215;df = 1
+i=1
+" class="par-math-display" ></center>
+<!--l. 489--><p class="nopar" >
+<!--l. 491--><p class="noindent" >with
+   <center class="par-math-display" >
+<img 
+src="index17x.png" alt="     [    2    2     2         ]&minus;1
+&Omega;i,f &equiv;    f2 s[xi]     f cov2(xi,2yi)     = &Omega;i&#x2215;f2
+       f cov(xi,yi)    f s[yi]
+" class="par-math-display" ></center>
+<!--l. 503--><p class="nopar" >
+<!--l. 505--><p class="noindent" >from which it is easy to show that <span 
+class="cmmi-10">f </span>= <img 
+src="index18x.png" alt="&radic; -------
+  MSWD"  class="sqrt" >.<br 
+class="newline" />
+<!--l. 508--><p class="indent" >   A second option (&#8216;model-2&#8217;) for dealing with overdispersion is to simply ignore the analytical uncertainties and
+perform an ordinary least squares regression. This option is offered for the sake of completeness but is inherently
+flawed, because (1) its results may differ depending on which ratio is chosen as the dependent variable; (2) it
+assumes that only the dependent variable is subject to scatter; which results in (3) unreliable error calculations
+(<a 
+href="#Xludwig2003b">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003b">2003b</a>, p. 648). <br 
+class="newline" />
+<!--l. 517--><p class="indent" >   Finally, a third option (&#8216;model-3&#8217;) is to attribute the overdispersion to geological scatter in the ages or in the
+non-radiogenic isotope composition. The latter hypothesis can be formalised as follows:
+   <center class="par-math-display" >
+<img 
+src="index19x.png" alt="&sum;n
+   Xi &Omega;i,&omega;XTi &#x2215;df = 1
+i=1
+" class="par-math-display" ></center>
+<!--l. 523--><p class="nopar" >
+<!--l. 525--><p class="noindent" >with
+   <center class="par-math-display" >
+<img 
+src="index20x.png" alt="      [       2             ]&minus;1
+&Omega;i,&omega; &equiv;     s[xi]    cov(x2i,yi)2
+        cov(xi,yi) s[yi] + &omega;
+" class="par-math-display" ></center>
+<!--l. 535--><p class="nopar" >
+<!--l. 537--><p class="noindent" >where <span 
+class="cmmi-10">&omega; </span>is the overdispersion <span 
+class="cmti-10">term</span>, which can be found iteratively. This term has geological significance and is
+reported separately by <span 
+class="cmtt-10">IsoplotR</span>. The third strategy is arguably the most sensible one, because geological scatter is
+a very common phenomenon. For example, not all aliquots in a multi-mineral Rb-Sr isochron may
+have formed with exactly the same initial <sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Sr/<sup class="textsuperscript"><span 
+class="cmr-9">86</span></sup>Sr ratio (<a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcintyre1966">1966</a>). As the analytical
+
+precision of mass spectrometers has increased over the years, geochronologists&#8217; ability to detect even
+the smallest amount of geological dispersion has steadily grown as well. It is reasonable to assume
+that this trend will continue into the future, and that overdispersed datasets will become ever more
+common.<br 
+class="newline" />
+<!--l. 551--><p class="indent" >   It is important to note that the overdispersion of geochronological datasets contains meaningful
+geological information. For example, the dispersion of igneous zircon U-Pb dates bears information
+on the magmatic residence time of these crystals (<a 
+href="#Xmatzel2006">Matzel et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmatzel2006">2006</a>;&#x00A0;<a 
+href="#Xrioux2012">Rioux et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xrioux2012">2012</a>). Thus,
+the increasing prevalence of overdispersed datasets should be seen as a positive trend rather than a
+nuisance.
+<!--l. 558--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Weighted means</h3>
+<!--l. 561--><p class="noindent" >Let <span 
+class="cmmi-10">t </span>= <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">t</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,t</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">} </span>be a set of <span 
+class="cmmi-10">n </span>age estimates determined on different aliquots of the same sample, and let
+<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmr-7">1</span></sub>]<span 
+class="cmmi-10">,...,s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">n</span></sub>]<span 
+class="cmsy-10">} </span>be their respective analytical uncertainties. <span 
+class="cmtt-10">IsoplotR </span>calculates the weighted mean of these data
+assuming a Normal distribution with two sources of variance:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6001r5"></a>
+   <center class="math-display" >
+<img 
+src="index21x.png" alt="            (     2      2   2)
+p(ti|&mu;,&omega;) = N ti|&mu;,&sigma;  = s[ti] + &omega;
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 571--><p class="nopar" >
+<!--l. 573--><p class="noindent" >where <span 
+class="cmmi-10">p</span>(<span 
+class="cmmi-10">a</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">b,c</span>) stands for &#8220;the probability of observing <span 
+class="cmmi-10">a </span>given <span 
+class="cmmi-10">b </span>and <span 
+class="cmmi-10">c</span>&#8221;, <span 
+class="cmmi-10">&mu; </span>is the mean, <span 
+class="cmmi-10">&sigma;</span><sup><span 
+class="cmr-7">2</span></sup> is the total variance and
+<span 
+class="cmmi-10">&omega; </span>is the overdispersion. The latter parameter is equivalent to its namesake from Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:overdispersion --></a>. Equation&#x00A0;<a 
+href="#x1-6001r5">5<!--tex4ht:ref: eq:weightedmean --></a> can be
+solved for <span 
+class="cmmi-10">&mu; </span>and <span 
+class="cmmi-10">&omega; </span>by the method of maximum likelihood, yielding two estimates <img 
+src="index22x.png" alt="&#x02C6;&mu;"  class="circ" > and <img 
+src="index23x.png" alt="&#x02C6;&omega;"  class="circ" > and their approximate
+covariance matrix. Substituting <span 
+class="cmmi-10">X </span>for <span 
+class="cmmi-10">t </span>and <img 
+src="index24x.png" alt="X&#x02C6;"  class="circ" > for <img 
+src="index25x.png" alt="&mu;&#x02C6;"  class="circ" > in Equation&#x00A0;<a 
+href="#x1-4001r4">4<!--tex4ht:ref: eq:Chi2 --></a> and dividing by <span 
+class="cmmi-10">df </span>= <span 
+class="cmmi-10">n</span><span 
+class="cmsy-10">&minus; </span>2 degrees of freedom
+yields the MSWD value for age homogeneity.<br 
+class="newline" />
+<!--l. 584--><p class="indent" >   With regards to error propagation, it is important to make a distinction between random and systematic sources
+of uncertainty (<a 
+href="#Xhorstwood2016">Horstwood et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhorstwood2016">2016</a>). Random uncertainties can be reduced to arbitrarily low levels by averaging
+an arbitrarily large number of aliquots. In contrast, systematic uncertainties impose absolute limits on the
+precision of geochronological dates. For example, no absolute age determination can be more precise than
+the decay constants involved. Similarly, for dating methods such as <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar or fission tracks, no
+sample date can be more precise than the <span 
+class="cmmi-10">J </span>and <span 
+class="cmmi-10">&zeta; </span>calibration factors, respectively (see Sections&#x00A0;<a 
+href="#x1-1100011">11<!--tex4ht:ref: sec:ArAr --></a> and
+<a 
+href="#x1-1500015">15<!--tex4ht:ref: sec:FT --></a>).<br 
+class="newline" />
+<!--l. 597--><p class="indent" >   When solving Equation&#x00A0;<a 
+href="#x1-6001r5">5<!--tex4ht:ref: eq:weightedmean --></a>, <span 
+class="cmtt-10">IsoplotR </span>only incorporates the random sources of uncertainty into <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>]. If the user
+wishes to include the systematic uncertainties as well, then this is done by first computing the isotopic
+composition corresponding to the weighted mean age (and its uncertainty), and then re-propagating the
+analytical uncertainty of the weighted mean age, this time including the decay or calibration constant
+uncertainties.<br 
+class="newline" />
+<!--l. 605--><p class="indent" >   Note that this procedure is unable to handle the systematic uncertainties associated with stable
+isotope ratios, molar masses etc. Those comparably small uncertainties demand a different approach in
+which not the ages but the isotopic data are averaged. Doing so would require the addition of new
+input formats that can trace error correlations between samples (Section&#x00A0;<a 
+href="#x1-1700017">17<!--tex4ht:ref: sec:future --></a>). It would also require the
+development of a new generation of low-level data-processing software (<a 
+href="#Xvermeesch2015b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2015b">2015</a>;&#x00A0;<a 
+href="#Xmclean2016">McLean
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmclean2016">2016</a>).<br 
+class="newline" />
+<!--l. 614--><p class="indent" >   <span 
+class="cmtt-10">IsoplotR </span>uses a modified version of Chauvenet&#8217;s criterion for outlier detection. The conventional version of this
+criterion proceeds as follows:
+<!--l. 618--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-6003x1">Compute  the  (unweighted)  arithmetic  mean  (<span class="bar-css"><span 
+class="cmmi-10">t</span></span>)  and  standard  deviation  (<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span>])  of  the  <span 
+class="cmmi-10">n  </span>age
+     determinations:
+     <center class="par-math-display" >
+     <img 
+src="index26x.png" alt="                   &#x250C;&#x2502; -----------------
+   &sum;n              &#x2502;&#x2218; &sum;n      2
+¯t =   ti&#x2215;n and s[t] =     (ti &minus; ¯t)&#x2215;(n&minus; 1)
+   i=1                i=1
+     " class="par-math-display" ></center>
+     <!--l. 625--><p class="nopar" >
+     </li>
+     <li 
+  class="enumerate" id="x1-6005x2">For each of the <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>s, compute the probability <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> that <span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&tau;</span><span 
+class="cmsy-10">| </span><span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">&minus;</span><span class="bar-css"><span 
+class="cmmi-10">t</span></span><span 
+class="cmsy-10">| </span>for
+     <center class="par-math-display" >
+     <img 
+src="index27x.png" alt="&tau; &sim; N(&mu; = 0,&sigma;2 = s[t]2)
+     " class="par-math-display" ></center>
+     <!--l. 632--><p class="nopar" >
+     </li>
+     <li 
+  class="enumerate" id="x1-6007x3">Let <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">j</span></sub> <span 
+class="cmsy-10">&equiv;</span> min(<span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,p</span><sub><span 
+class="cmmi-7">n</span></sub>). If <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">j</span></sub> <span 
+class="cmmi-10">&#x003C; </span>0<span 
+class="cmmi-10">.</span>05<span 
+class="cmmi-10">&#x2215;n</span>, then reject the <span 
+class="cmmi-10">j</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> date, reduce <span 
+class="cmmi-10">n </span>by one (i.e., <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">&rarr; </span><span 
+class="cmmi-10">n</span><span 
+class="cmsy-10">&minus; </span>1) and
+     repeat steps 1 through 3 until all the surviving dates pass the third step.
+     </li></ol>
+<!--l. 641--><p class="indent" >   Although this procedure is effective at removing outliers in <span 
+class="cmti-10">homoscedastic </span>datasets, in which all datapoints
+are derived from a single Normal distribution, it is unable to account for <span 
+class="cmti-10">heteroscedasticity</span>, in which
+different samples are characterised by different analytical uncertainties (<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>] in Equation&#x00A0;<a 
+href="#x1-6001r5">5<!--tex4ht:ref: eq:weightedmean --></a>). <span 
+class="cmtt-10">IsoplotR</span>
+introduces a heuristic modification to Chauvenet&#8217;s criterion that detects outliers among heteroscedastic
+data:
+<!--l. 650--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-6009x1">Compute the error-weighted mean of the <span 
+class="cmmi-10">n </span>age determinations <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub> using their analytical uncertainties
+     <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>] by solving Equation&#x00A0;<a 
+href="#x1-6001r5">5<!--tex4ht:ref: eq:weightedmean --></a> for <span 
+class="cmmi-10">&mu; </span>and <span 
+class="cmmi-10">&omega; </span>as discussed before. Let <img 
+src="index28x.png" alt="&#x02C6;&mu;"  class="circ" > and <img 
+src="index29x.png" alt="&#x02C6;&omega;"  class="circ" > be their respective maximum
+     likelihood estimates.
+     </li>
+     <li 
+  class="enumerate" id="x1-6011x2">For each <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>, compute the probability <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> that <span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&tau;</span><span 
+class="cmsy-10">| </span><span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">&minus;</span><img 
+src="index30x.png" alt="&#x02C6;&mu;"  class="circ" ><span 
+class="cmsy-10">| </span>for
+
+     <center class="par-math-display" >
+     <img 
+src="index31x.png" alt="            2      2   2
+&tau; &sim; N (&mu; = 0,&sigma; = s[ti] + &#x02C6;&omega; )
+     " class="par-math-display" ></center>
+     <!--l. 661--><p class="nopar" >
+     </li>
+     <li 
+  class="enumerate" id="x1-6013x3">Proceed as before.</li></ol>
+<!--l. 665--><p class="indent" >   If the analytical uncertainties are small compared to the scatter between the dates (i.e., if <span 
+class="cmmi-10">&omega; </span><span 
+class="cmsy-10">&#x226B; </span><span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>] for all <span 
+class="cmmi-10">i</span>),
+then this generalised algorithm reduces to the conventional Chauvenet criterion. If, on the other hand, the analytical
+uncertainties are large and the data do not exhibit any overdispersion, then the heuristic outlier detection method is
+similar to <a 
+href="#Xludwig2003">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig2003">2003a</a>)&#8217;s &#8216;modified 2-sigma&#8217; approach.<br 
+class="newline" />
+<!--l. 673--><p class="indent" >   The weighted mean calculation is accompanied by a diagram that consists of a number of rectangular boxes (one
+for each date) whose vertical position and height reflect the ages and their analytical uncertainties, respectively
+(Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.b). Outliers are marked in a different colour if so requested. The weighted mean plot offers an effective
+way, although arguably not <span 
+class="cmti-10">the </span>most effective way, to assess the dispersion of geochronological data. Some better
+alternatives are discussed in Section&#x00A0;<a 
+href="#x1-80008">8<!--tex4ht:ref: sec:density --></a>.
+<!--l. 682--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Confidence intervals</h3>
+<!--l. 685--><p class="noindent" >By default, <span 
+class="cmtt-10">IsoplotR </span>requires that the analytical uncertainties of the input data are provided as standard errors
+(<span 
+class="cmti-10">sensu</span>&#x00A0;<a 
+href="#Xkenney1954">Kenney and Keeping</a>,&#x00A0;<a 
+href="#Xkenney1954">1954</a>, p.187). The analytical uncertainties for the output are reported as paired
+standard errors and confidence intervals. In the limit of infinite sample size, the width of a 95% confidence interval
+for the mean, slope and many other statistical estimates may be obtained by simply multiplying the standard error
+with a factor of 1.96. This forms the rationale for the common practice in geochronology to quote analytical
+uncertainty on a &#8216;two sigma&#8217; level. But for smaller sample sizes, this simple method is usually not
+accurate.<br 
+class="newline" />
+<!--l. 697--><p class="indent" >   To obtain confidence intervals for model-1 and -2 regression (Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:regression --></a>), the propagated uncertainty must be
+augmented by the corresponding percentile of a t-distribution with the appropriate degrees of freedom (<a 
+href="#Xludwig1994">Ludwig and
+Titterington</a>,&#x00A0;<a 
+href="#Xludwig1994">1994</a>). For model-1 regression of overdispersed datasets, <span 
+class="cmtt-10">IsoplotR </span>reports the results as <span 
+class="cmmi-10">t </span><span 
+class="cmsy-10">&plusmn; </span><span 
+class="cmmi-10">x</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">y</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span>
+where <span 
+class="cmmi-10">t </span>stands for the isochron age, <span 
+class="cmmi-10">x </span>is the standard error, <span 
+class="cmmi-10">y </span>is the (95%) confidence interval without and <span 
+class="cmmi-10">z </span>with
+overdispersion.<br 
+class="newline" />
+<!--l. 706--><p class="indent" >   The studentised confidence intervals do not generally apply to model-3 regression, weighted means and mixture
+models. In those cases, <span 
+class="cmtt-10">IsoplotR </span>uses the profile log-likelihood method (<a 
+href="#Xgalbraith2005">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>, p.&#x00A0;200). For
+example, in the case of the weighted mean, the log-likelihood corresponding to Equation&#x00A0;<a 
+href="#x1-6001r5">5<!--tex4ht:ref: eq:weightedmean --></a> is given
+by:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index32x.png" alt="              n [                     2 ]
+L = const.&minus; 1 &sum;   ln (s[ti]2 + &omega;2)+-(ti &minus;-&mu;)-
+           2 i=1               s[ti]2 + &omega;2
+" class="math-display" ></center></td></tr></table>
+<!--l. 722--><p class="nopar" >
+<!--l. 724--><p class="indent" >   For any value of <span 
+class="cmmi-10">&omega;</span>, the profile log-likelihood is given by maximising <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /> </span>over all possible values of <span 
+class="cmmi-10">&mu;</span>. Let
+<span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub>max</sub> 
+be the overall maximum likelihood estimate. Then
+<span class="cmtt-10">IsoplotR</span> obtains a 100(1-<span 
+class="cmmi-10">&alpha;</span>)% confidence interval for
+<span 
+class="cmmi-10">&omega; </span>by collecting all the <span 
+class="cmmi-10">&omega;</span>-values whose profile log-likelihoods exceed <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub>max</sub> <span 
+class="cmsy-10">&minus;</span> p(<span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmr-7">2</span></sup><span 
+class="cmmi-10">,</span>1 <span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">&alpha;</span>)/2, where
+p(<span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmr-7">2</span></sup><span 
+class="cmmi-10">,</span>1 <span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">&alpha;</span>)/2 represents the 100(1 <span 
+class="cmsy-10">&minus; </span><span 
+class="cmmi-10">&alpha;</span>) percentile of a chi-square distribution with one degree of freedom.
+For example, if <span 
+class="cmmi-10">&alpha; </span>= 0 then p(<span 
+class="cmmi-10">&chi;</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmr-7">2</span></sup><span 
+class="cmmi-10">,</span>0<span 
+class="cmmi-10">.</span>95) = 3<span 
+class="cmmi-10">.</span>85. The resulting confidence intervals are generally
+asymmetric.<br 
+class="newline" />
+<!--l. 736--><p class="indent" >   A final point worth mentioning is that <span 
+class="cmtt-10">IsoplotR </span>enforces a consistent level of confidence for all numerical and
+graphical results. In this spirit, the program plots confidence ellipses at a 95% (or any other desired) level of
+confidence, rather than the &#8216;2-sigma&#8217; ellipses used elsewhere. The latter only cover 86% of a bivariate
+Normal distribution (<a 
+href="#Xhorstwood2016">Horstwood et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhorstwood2016">2016</a>), which may confuse some users. Those who insist on using
+&#8216;2-sigma&#8217; error ellipses can easily do so by reducing the desired confidence level from 0.05 to 0.14 in the
+preferences.
+<!--l. 746--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>Frequency distributions and radial plots</h3>
+<!--l. 749--><p class="noindent" >Empirical cumulative distribution functions or &#8217;Cumulative Age Distributions&#8217; (CADs) are the most straightforward
+way to visualise the frequency distribution of multiple dates. A CAD is a step function that sets out the rank order
+of the dates against their numerical value:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index33x.png" alt="         &sum;n
+CAD (t) =   1(t &#x003C; ti)&#x2215;n
+         i=1
+" class="math-display" ></center></td></tr></table>
+<!--l. 758--><p class="nopar" >
+<!--l. 760--><p class="noindent" >where 1(<span 
+class="cmsy-10">&lowast;</span>) = 1 if <span 
+class="cmsy-10">&lowast; </span>is true and 1(<span 
+class="cmsy-10">&lowast;</span>) = 0 if <span 
+class="cmsy-10">&lowast; </span>is false. CADs have two desirable properties (<a 
+href="#Xvermeesch2007a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2007a">2007</a>). First,
+they do not require any pre-treatment or smoothing of the data. This Section will show that this is not the case for
+all data visualisation methods. Second, it is easy to superimpose several CADs on the same plot. This facilitates the
+intercomparison of multiple samples.<br 
+class="newline" />
+<!--l. 768--><p class="indent" >   The interpretation of CADs is straightforward but not very intuitive. The prominence of individual age
+components is proportional to the steepness of the CAD (Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.c). This is different from probability density
+estimates such as histograms, in which such components stand out as peaks (Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.d). Peaks are arguably easier
+
+to identify than inflection points and this is probably why CADs are not more widely used as a data
+visualisation tool. But the ease of interpretation of density estimates comes at a cost, as they require
+smoothing and cannot as easily be combined as CADs. <span 
+class="cmtt-10">IsoplotR </span>implements two kinds of density
+estimates.<br 
+class="newline" />
+<!--l. 779--><p class="indent" >   Histograms smooth data by binning. <span 
+class="cmtt-10">IsoplotR </span>uses Sturges&#8217; Rule (log <sub><span 
+class="cmr-7">2</span></sub>[<span 
+class="cmmi-10">n</span>] + 1, where <span 
+class="cmmi-10">n </span>is the number of data
+points) to determine the default number of histogram bins, but this can be changed to any other positive integer by
+the user. Alternatively, kernel density estimates (KDEs&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>) smooth data by applying a (Gaussian)
+kernel:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8001r6"></a>
+   <center class="math-display" >
+<img 
+src="index34x.png" alt="         n
+KDE (t) = &sum;  N (t|&mu; = ti,&sigma;2 = h2i)&#x2215;n
+         i=1
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 790--><p class="nopar" >
+<!--l. 792--><p class="noindent" >where <span 
+class="cmmi-10">h</span><sub><span 
+class="cmmi-7">i</span></sub> is the smoothing parameter or &#8216;bandwidth&#8217; of the kernel density estimate. Using a constant value for <span 
+class="cmmi-10">h</span><sub><span 
+class="cmmi-7">i</span></sub>
+across the entire range of measurements produces a &#8216;fixed&#8217; bandwidth estimator. If <span 
+class="cmmi-10">h</span><sub><span 
+class="cmmi-7">i</span></sub> varies between the sample
+points, then KDE(<span 
+class="cmmi-10">t</span>) is known as an &#8216;adaptive&#8217; KDE.<br 
+class="newline" />
+<!--l. 798--><p class="indent" >   The rationale behind adaptive kernel density estimation is to use a narrower bandwidth near the peaks of the
+sampling distribution (where the ordered dates are closely spaced in time), and a wider bandwidth in the
+distribution&#8217;s sparsely sampled troughs. Thus, the resolution of the density estimate is optimised according to data
+availability.<br 
+class="newline" />
+<!--l. 805--><p class="indent" >   The default bandwidth used by <span 
+class="cmtt-10">IsoplotR </span>is calculated using the algorithm of <a 
+href="#Xbotev2010">Botev et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xbotev2010">2010</a>) and
+modulated by the adaptive smoothing approach of <a 
+href="#Xabramson1982">Abramson</a>&#x00A0;(<a 
+href="#Xabramson1982">1982</a>), whereby:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index35x.png" alt="     &#x2218; ---------
+hi = h G &#x2215;kde(ti)
+" class="math-display" ><a 
+ id="x1-80008"></a></center></td></tr></table>
+<!--l. 812--><p class="nopar" >
+
+<!--l. 814--><p class="noindent" >in which <span 
+class="cmmi-10">kde</span>(<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>) is the &#8216;pilot density&#8217; using a fixed bandwidth (<span 
+class="cmmi-10">h</span>) evaluated at <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>, and <span 
+class="cmmi-10">G </span>is the geometric mean of
+the pilot density over all the sample points (<a 
+href="#Xkerm2003">Van&#x00A0;Kerm</a>,&#x00A0;<a 
+href="#Xkerm2003">2003</a>).<br 
+class="newline" />
+<!--l. 818--><p class="indent" >   Kernel density estimates are not to be confused with <span 
+class="cmtt-10">Isoplot</span>&#8217;s &#8216;probability density plots&#8217; (PDPs). The
+mathematical definition of a PDP closely resembles that of the KDE, the only difference being the substitution of
+the bandwidth <span 
+class="cmmi-10">h</span><sub><span 
+class="cmmi-7">i</span></sub> by the analytical uncertainty <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>] in Equation&#x00A0;<a 
+href="#x1-8001r6">6<!--tex4ht:ref: eq:KDE --></a>. This similarity in appearance and definition is
+the source of much confusion.<br 
+class="newline" />
+<!--l. 826--><p class="indent" >   The rationale behind PDPs is to emphasise the &#8216;good&#8217; data (the most precise measurements stand out as peaks),
+and to reduce the prominence of &#8216;bad&#8217; data (imprecise measurements are smoothed out by a broad kernel).
+Reasonable though that might seem at first glance, this procedure does not stand up to further scrutiny. For
+example, when applied to high precision datasets, where <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>] is very small compared to the range of <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>-values, the
+PDP breaks down into a sequence of spikes. Further examples and a more complete discussion of the case against
+PDPs are presented by <a 
+href="#Xvermeesch2012b">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2012b">2012</a>,&#x00A0;<a 
+href="#Xvermeesch2018b">2018b</a>).<br 
+class="newline" />
+<!--l. 837--><p class="indent" >   This discussion leaves us with one question: if PDPs are not a valid data visualisation tool, then how should one
+account for the heteroscedasticity of geochronological data? <span 
+class="cmtt-10">IsoplotR </span>implements two alternative
+options. The first of these is the weighted mean plot (Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:averaging --></a>). Although this diagram does show both
+the individual age estimates and their analytical uncertainties, it is not very effective at revealing
+components of clustered ages, especially in large (<span 
+class="cmmi-10">n &#x003E; </span>50, say) datasets. The second option is the radial
+plot.<br 
+class="newline" />
+<!--l. 847--><p class="indent" >   The radial plot is a graphical device that was specifically designed to display heteroscedastic data, and is
+constructed as follows. Consider the usual set of dates <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub> and uncertainties <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>] (for 1 <span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">n</span>); define <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">z</span>(<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>) to
+be a transformation of <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub> (e.g., <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> = ln[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>]); and let <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub>] be its propagated analytical uncertainty (i.e., <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub>] = <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>]<span 
+class="cmmi-10">&#x2215;t</span><sub><span 
+class="cmmi-7">i</span></sub>
+in the case of a logarithmic transformation). Create a scatter plot of (<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmmi-7">i</span></sub>) values, where <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> = 1<span 
+class="cmmi-10">&#x2215;s</span>[<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub>] and
+<span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub> = (<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">&minus;</span><span 
+class="cmmi-10">z</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>)<span 
+class="cmmi-10">&#x2215;s</span>[<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub>], in which <span 
+class="cmmi-10">z</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is some reference value such as the mean. The slope of a line connecting the origin
+of this scatter plot with any of the (<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmmi-7">i</span></sub>)s is proportional to <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> and, hence, a function of the date
+<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub>.<br 
+class="newline" />
+<!--l. 860--><p class="indent" >   It is helpful to draw a radial scale at some convenient distance from the origin and annotating it with labelled
+ticks at the appropriate angles. While the angular position of each data point represents the date, its horizontal
+distance from the origin is proportional to the precision. Imprecise measurements plot on the left-hand side of the
+radial plot, whereas precise age determinations are found further towards the right. Thus, radial plots
+allow the observer to assess both the magnitude and the precision of quantitative data in one glance
+(Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.e).<br 
+class="newline" />
+<!--l. 870--><p class="indent" >   Radial plots are widely used in fission track and luminescence dating (<a 
+href="#Xgalbraith1990a">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith1990a">1990</a>;&#x00A0;<a 
+href="#Xgalbraith1999">Galbraith et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgalbraith1999">1999</a>),
+but are yet to find their way into other branches of geochronology. <span 
+class="cmtt-10">IsoplotR </span>generalises this valuable tool to all
+types of geochronological data. In addition to being an effective way to visualise heteroscedastic data, the radial plot
+also represents a convenient vehicle for further data interpretation and modelling, as will be discussed in the next
+section.
+<!--l. 879--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
+ id="x1-90009"></a>Mixture modelling</h3>
+<!--l. 882--><p class="noindent" >The weighted mean algorithm outlined in Section&#x00A0;<a 
+href="#x1-80008">8<!--tex4ht:ref: sec:density --></a> and formalised by Equation&#x00A0;<a 
+href="#x1-6001r5">5<!--tex4ht:ref: eq:weightedmean --></a> assumes that geochronological
+data obey Normal statistics. This assumption may be approximately correct for high precision datasets but must
+inevitably be incorrect for low precision ones.<br 
+class="newline" />
+<!--l. 888--><p class="indent" >   Geologic time is a strictly positive quantity that is incompatible with the symmetric Gaussian bell
+
+curve, which is defined over the range of values from <span 
+class="cmsy-10">&minus;&infin; </span>to +<span 
+class="cmsy-10">&infin;</span>. Because geochronological datasets
+must be strictly positive, their uncertainty distributions must be asymmetric, with skewness being
+inversely proportional to precision. This asymmetry is removed by the logarithmic transformation that is
+used to construct radial plots. We can reformulate Equation&#x00A0;<a 
+href="#x1-6001r5">5<!--tex4ht:ref: eq:weightedmean --></a> in terms of the transformed variables
+<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r7"></a>
+   <center class="math-display" >
+<img 
+src="index36x.png" alt="            (   2      2    2)
+p(zi|&mu;,&omega;) = N &mu;,&sigma;  = s[zi]+ &omega;
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 902--><p class="nopar" >
+<!--l. 904--><p class="noindent" >which can be solved by the method of maximum likelihood as before, yielding two estimates <img 
+src="index37x.png" alt="&mu;&#x02C6;"  class="circ" > and <img 
+src="index38x.png" alt="&#x02C6;&omega;"  class="circ" >. The <span 
+class="cmti-10">central</span>
+<span 
+class="cmti-10">age </span>is defined as exp(<img 
+src="index39x.png" alt="&#x02C6;&mu;"  class="circ" >), and <img 
+src="index40x.png" alt="&#x02C6;&omega;"  class="circ" > represents the (over)dispersion of the data. This is a relative quantity
+(due to the log-transform) that estimates the coefficient of variation of the true ages. The difference
+between the central age and the weighted mean age is usually small unless the data are imprecise
+and/or strongly overdispersed. In those cases, the central age yields the geologically most meaningful
+value.<br 
+class="newline" />
+<!--l. 914--><p class="indent" >   The model represented by Equation&#x00A0;<a 
+href="#x1-9001r7">7<!--tex4ht:ref: eq:central --></a> is referred to as a <span 
+class="cmti-10">continuous mixture </span>model. It assumes that the
+overdispersion of the data is caused by a continuous process that yields a (log)normal distribution of
+true ages. One example of such a process is the fractional crystallisation of plutons, which may take
+hundreds of thousands of years, resulting in a range of zircon U-Pb ages (<a 
+href="#Xrioux2012">Rioux et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xrioux2012">2012</a>;&#x00A0;<a 
+href="#Xmatzel2006">Matzel
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmatzel2006">2006</a>).<br 
+class="newline" />
+<!--l. 922--><p class="indent" >   A second example is the gradual cooling of tectonic blocks during exhumation, which may cause the fission
+track system in compositionally heterogeneous apatite populations to &#8216;close&#8217; at different times (<a 
+href="#Xgreen1986">Green
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgreen1986">1986</a>). However, such continuous processes are by no means the only cause of overdispersion in
+geochronology.<br 
+class="newline" />
+<!--l. 928--><p class="indent" >   Consider, for instance, a detrital mixture originating from two or more differently aged sources. Such a <span 
+class="cmti-10">discrete</span>
+<span 
+class="cmti-10">mixture </span>is more adequately described by the following equation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r8"></a>
+   <center class="math-display" >
+<img 
+src="index41x.png" alt="            k
+p(z|&mu;,&omega;) = &sum;  &pi; N (z|&mu; ,s[z ]2)
+   i       j=1  j   i  j   j
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 936--><p class="nopar" >
+<!--l. 938--><p class="noindent" >where <span 
+class="cmmi-10">k </span>is the number of components, <span 
+class="cmmi-10">&mu;</span><sub><span 
+class="cmmi-7">j</span></sub> is the mean of the <span 
+class="cmmi-10">j</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> component (so that exp[<span 
+class="cmmi-10">&mu;</span><sub><span 
+class="cmmi-7">j</span></sub>] is the corresponding
+age), and <span 
+class="cmmi-10">&pi;</span><sub><span 
+class="cmmi-7">j</span></sub> is the proportion of the population that belongs to the <span 
+class="cmmi-10">j</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> component. Equation&#x00A0;<a 
+href="#x1-9002r8">8<!--tex4ht:ref: eq:mixture --></a> comprises <span 
+class="cmmi-10">n</span>
+measurements and 2<span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">&minus; </span>1 unknowns (<span 
+class="cmmi-10">&mu;</span><sub><span 
+class="cmmi-7">j</span></sub> and <span 
+class="cmmi-10">&pi;</span><sub><span 
+class="cmmi-7">j</span></sub> for 1 <span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">j </span><span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">k </span>with <span 
+class="cmmi-10">&pi;</span><sub><span 
+class="cmmi-7">k</span></sub> = 1 <span 
+class="cmsy-10">&minus;</span><span 
+class="cmex-10">&sum;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">k</span><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">1</span></sup><span 
+class="cmmi-10">&pi;</span><sub><span 
+class="cmmi-7">j</span></sub>). It can be solved by the
+method of maximum likelihood.<br 
+class="newline" />
+<!--l. 947--><p class="indent" >   Choosing the right number of components (<span 
+class="cmmi-10">k</span>) is a problem that merits further discussion. <span 
+class="cmtt-10">IsoplotR </span>implements
+the Bayes Information Criterion (BIC) as a way to automatically pick the &#8216;optimal&#8217; value of <span 
+class="cmmi-10">k </span>for any given
+dataset (Section&#x00A0;5.6 of&#x00A0;<a 
+href="#Xgalbraith2005">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>). But this option should be used with caution because, for
+real datasets, the number of components always increases with sample size. This happens because
+the power of Equation&#x00A0;<a 
+href="#x1-9002r8">8<!--tex4ht:ref: eq:mixture --></a> to resolve even the smallest degree of overdispersion increases with sample
+size.<br 
+class="newline" />
+<!--l. 957--><p class="indent" >   Suppose that one uses the youngest component produced by the BIC algorithm to estimate the maximum
+depositional age of a sedimentary sequence. Then the resulting value would never converge to a specific
+value. Instead, one would find this minimum age to drift to ever younger values until a point where the
+youngest age component in a large dataset becomes younger than the actual depositional age (Figure&#x00A0;3
+of&#x00A0;<a 
+href="#Xvermeesch2018">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2018">2018a</a>). In most cases it is, therefore, best to resist the temptation to use the automatic peak
+fitting option. It is better to choose a specific number of components instead, based on geological
+considerations.<br 
+class="newline" />
+<!--l. 968--><p class="indent" >   If one is mainly interested in the youngest age component, then it is more productive to use an alternative
+parameterisation, in which all grains are assumed to come from one of two components, whereby the first component
+is a single discrete age peak (exp[<span 
+class="cmmi-10">m</span>], say) and the second component is a continuous distribution such
+as Equation&#x00A0;<a 
+href="#x1-9001r7">7<!--tex4ht:ref: eq:central --></a>, but truncated at this discrete value (<a 
+href="#Xtouw1997">van der Touw et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtouw1997">1997</a>;&#x00A0;<a 
+href="#Xgalbraith2005">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>,
+p.107).<br 
+class="newline" />
+<!--l. 976--><p class="indent" >   One caveat is that, if this minimum age model is applied to relatively small and/or high precision datasets such
+as most U-Pb measurements, then the minimum age estimate will simply be equal to the youngest date. It is only
+for large and/or low precision datasets (such as fission tracks), that the minimum age estimate will be older than
+then youngest grain. Crucially, this value will not drift to smaller values with increasing sample size, but will
+converge to a distinct minimum age (Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.e).
+<!--l. 985--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">10   </span> <a 
+ id="x1-1000010"></a>Simple parent-daughter pairs</h3>
+<!--l. 988--><p class="noindent" >Let P be a radioactive parent nuclide that decays to a single stable nuclide D with a decay constant <span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmmi-7">P</span></sub>, and let [<span 
+class="cmmi-10">P</span>]
+and [<span 
+class="cmmi-10">D</span>] be the amounts of P and D that were measured in a sample. Then we can estimate the time (<span 
+class="cmmi-10">t</span>) elapsed
+since the isotopic closure of the system as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10001r9"></a>
+
+   <center class="math-display" >
+<img 
+src="index42x.png" alt="        (             )
+t =-1-ln  1+ [D]&minus;-[D]&#x2218;
+   &lambda;P           [P]
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 997--><p class="nopar" >
+<!--l. 999--><p class="noindent" >where [<span 
+class="cmmi-10">D</span>]<sub><span 
+class="cmsy-7">&#x2218;</span></sub> is the non-radiogenic daughter component, i.e. the amount of D that was already present at <span 
+class="cmmi-10">t </span>= 0, which
+is also known as the &#8216;common&#8217;, &#8216;excess&#8217; or &#8216;inherited&#8217; component. This generic age equation applies to a large
+number of geochronometers, including Rb-Sr (P = <sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Rb, D = <sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Sr), Sm-Nd (P = <sup class="textsuperscript"><span 
+class="cmr-9">147</span></sup>Sm, D = <sup class="textsuperscript"><span 
+class="cmr-9">143</span></sup>Nd), Re-Os (P =
+<sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Re, D = <sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Os) and Lu-Hf (P = <sup class="textsuperscript"><span 
+class="cmr-9">176</span></sup>Lu, D = <sup class="textsuperscript"><span 
+class="cmr-9">176</span></sup>Hf), which all behave similarly from a mathematical-statistical
+point of view.<br 
+class="newline" />
+<!--l. 1010--><p class="indent" >   In most cases, the non-radiogenic component is unknown and must be estimated from the data. This can be done
+by jointly considering multiple (<span 
+class="cmmi-10">n</span>) aliquots and recasting Equation&#x00A0;<a 
+href="#x1-10001r9">9<!--tex4ht:ref: eq:PD --></a> as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10002r10"></a>
+   <center class="math-display" >
+<img 
+src="index43x.png" alt="[  ]   [  ]    [  ] (      )
+ D-  =   D-  +  P-  e&lambda;Pt &minus; 1 for 1 &le; i &le; n aliquots
+  d i    d &#x2218;    d  i
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 1019--><p class="nopar" >
+<!--l. 1021--><p class="noindent" >where <span 
+class="cmmi-10">d </span>is the amount of a non-radiogenic isotope of the daughter element such as <sup class="textsuperscript"><span 
+class="cmr-9">86</span></sup>Sr (for the Rb-Sr method),
+<sup class="textsuperscript"><span 
+class="cmr-9">144</span></sup>Nd (for Sm-Nd dating), <sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup>Os (for Re-Os) and <sup class="textsuperscript"><span 
+class="cmr-9">177</span></sup>Hf (for Lu-Hf).<br 
+class="newline" />
+<!--l. 1027--><p class="indent" >   If all <span 
+class="cmmi-10">n </span>aliquots are cogenetic, then Equation&#x00A0;<a 
+href="#x1-10002r10">10<!--tex4ht:ref: eq:D_0 --></a> defines an isochron whose slope and intercept are given by
+(exp[<span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmmi-7">P</span></sub><span 
+class="cmmi-10">t</span>] <span 
+class="cmsy-10">&minus; </span>1) and [<span 
+class="cmmi-10">D&#x2215;d</span>]<sub><span 
+class="cmsy-7">&#x2218;</span></sub>, respectively (Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.a). These two parameters and their uncertainties may be
+estimated by linear regression using the methods described in Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:regression --></a>.<br 
+class="newline" />
+<!--l. 1034--><p class="indent" >   The residuals of the linear fit can be inspected on a radial plot, a weighted mean diagram, a CAD or a KDE.
+<span 
+class="cmtt-10">IsoplotR </span>does this by taking the non-radiogenic component obtained from the isochron intercept, and plugging it
+into Equation&#x00A0;<a 
+href="#x1-10001r9">9<!--tex4ht:ref: eq:PD --></a> to calculate the ages of the different aliquots.
+<!--l. 1040--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">11   </span> <a 
+ id="x1-1100011"></a><sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar dating</h3>
+<!--l. 1043--><p class="noindent" >The <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-method is slightly more complex than the simple parent-daughter pairs of Section&#x00A0;<a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:PD --></a> in two ways.
+First, it is based on the branched decay of <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>K to <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca (by beta decay) and <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar (by electron capture), where only
+the latter isotope is used for the age calculation. Second, the radioactive parent nuclide (<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>K) is not measured
+directly but by proxy, using synthetic <sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar that is produced by neutron activation of <sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>K. The age equation can
+then be written as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11001r11"></a>
+
+   <center class="math-display" >
+<img 
+src="index44x.png" alt="        (                             )
+   -1-         [40Ar&#x2215;36Ar]&minus;-[40Ar&#x2215;36Ar]&#x2218;-
+t = &lambda;40 ln 1+ J       [39Ar &#x2215;36Ar ]
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 1060--><p class="nopar" >
+<!--l. 1062--><p class="noindent" >where <span 
+class="cmmi-10">J </span>is a calibration constant that relates the <sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar signal to the <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>K content of the sample, and incorporates the
+<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca/<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar branching ratio. Equation&#x00A0;<a 
+href="#x1-11001r11">11<!--tex4ht:ref: eq:ArAr --></a> can be rearranged like Equation&#x00A0;<a 
+href="#x1-10002r10">10<!--tex4ht:ref: eq:D_0 --></a>, forming a [<sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span>] vs
+[<sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span>]-isochron whose slope is proportional to the age and whose y-intercept yields the non-radiogenic
+(&#8216;excess&#8217;) argon composition.<br 
+class="newline" />
+<!--l. 1072--><p class="indent" >   Alternatively, an &#8216;inverse&#8217; isochron is obtained by plotting [<sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span>] against [<sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar&#x2215;</span><sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span>]. In this case the
+y-intercept yields the excess <sup class="textsuperscript"><span 
+class="cmr-9">36</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar-component and the x-intercept is inversely proportional to the radiogenic
+<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-ratio and, hence, the age. One advantage of the inverse isochron is that it exhibits much weaker sample
+point error correlations than the conventional isochron. This is because the <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar-signal tends to be orders of
+magnitude larger than the <sup class="textsuperscript"><span 
+class="cmr-9">36</span></sup>Ar-signal. <span 
+class="cmtt-10">IsoplotR </span>automatically computes and converts these error correlations from
+the input data.<br 
+class="newline" />
+<!--l. 1085--><p class="indent" >   Because argon is a noble gas, it can be released from the sample in steps by incremental heating. Thus, it is
+possible to quantify the degree of isotopic heterogeneity within a sample, which encodes valuable thermal history
+information (<a 
+href="#Xmcdougall1999">McDougall and Harrison</a>,&#x00A0;<a 
+href="#Xmcdougall1999">1999</a>). The <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-age spectrum is a useful tool to visualise
+stepwise heating measurements. Its appearance is based on the weighted mean plot of Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:averaging --></a>, with
+the different heating steps arranged in order of increasing degree of degassing along the horizontal
+axis, and the width of the different sample boxes proportional to the corresponding amounts of <sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar
+(Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.g).<br 
+class="newline" />
+<!--l. 1097--><p class="indent" >   <span 
+class="cmtt-10">IsoplotR </span>defines the &#8216;plateau age&#8217; as the weighted mean age of the longest sequence (in terms of cumulative
+<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar content) of consecutive heating steps that pass the modified Chauvenet criterion of Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:averaging --></a>. Note that this
+definition is different (and simpler) than the one used by <span 
+class="cmtt-10">Isoplot </span>(<a 
+href="#Xludwig2003">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003">2003a</a>). However, it is important to
+mention that all definitions of an age plateau are heuristic by nature and should not be used for quantitative
+inference.
+<!--l. 1106--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-110021"></a>
+
+<table><tr><td>
+<!--l. 1108--><p class="noindent" ><a href="fig1.png"><img 
+src="fig1.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="index45x.png" src="fig1.pdf"  
+-->
+</td>
+<td width=50>
+</td>
+<td> 
+<div class="caption"><span class="id">Figure&#x00A0;1: </span><span  
+class="content">a. &#8216;model-1&#8217; isochron of Rb-Sr data from <a 
+href="#Xcompston1971">Compston et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xcompston1971">1971</a>), with error ellipses and regression
+envelope shown at 95% confidence and uncertainties stated as &#8216;<span 
+class="cmmi-10">x</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x00A0;y</span>&#8217; where <span 
+class="cmmi-10">x </span>stands for the standard
+error and <span 
+class="cmmi-10">y </span>for the studentised 95% confidence interval; b. weighted mean of synthetic U-Pb data from
+<a 
+href="#Xludwig2003">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig2003">2003a</a>), with the 95% confidence interval shown as a grey band and the dispersion (also evaluated
+at 95% confidence) shown as dotted lines; c. cumulative age distribution (CAD) of a synthetic U-Pb dataset
+from <a 
+href="#Xludwig2003">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig2003">2003a</a>); d. kernel density estimate (KDE) and histogram of the same dataset; e. radial plot
+of an artificial mixture of U-Pb data from <a 
+href="#Xludwig2003">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig2003">2003a</a>), with the minimum age estimate marked as a
+line and the (asymmetric) confidence limits for the dispersion shown at 95% confidence; f. age spectrum
+of a <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar dataset from Skye provided by S. Sherlock (Open University), with plateau steps shown in
+green and the 95% confidence interval for the weighted mean shown in grey. See Appendix&#x00A0;B for <span 
+class="cmtt-10">R</span>-code to
+reproduce these plots.</span></div><!--tex4ht:label?: x1-110021 -->
+</td></tr></table>
+
+
+<!--l. 1129--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">12   </span> <a 
+ id="x1-1200012"></a>U-Pb and Pb-Pb</h3>
+<!--l. 1134--><p class="noindent" >Uranium has two long-lived isotopes (<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U) that occur at a nearly constant ratio of 137.818 <span 
+class="cmsy-10">&plusmn; </span>0.045
+in igneous accessory minerals (<a 
+href="#Xhiess2012">Hiess et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhiess2012">2012</a>). The nuclei of both isotopes undergo a chain of
+radioactive (<span 
+class="cmmi-10">&alpha;</span>, <span 
+class="cmmi-10">&beta; </span>and <span 
+class="cmmi-10">&gamma;</span>) decay events to different isotopes of lead. <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U decays to <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb with a half-life
+of 4.468 billion years, whereas <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U decays to <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb with a half-life of 703.8 million years (<a 
+href="#Xjaffey1971">Jaffey
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xjaffey1971">1971</a>).<br 
+class="newline" />
+<!--l. 1144--><p class="indent" >   During its radioactive decay, uranium produces numerous short-lived intermediate daughters that
+form the basis of U-series disequilibrium dating (Section&#x00A0;<a 
+href="#x1-1300013">13<!--tex4ht:ref: sec:ThU --></a>). It also produces seven (for <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U) or
+eight (for <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U) helium atoms, forming the basis of yet another geochronometer (Section&#x00A0;<a 
+href="#x1-1400014">14<!--tex4ht:ref: sec:UThHe --></a>). If a
+sufficiently long time (<span 
+class="cmmi-10">&#x003E; </span>2 million years, say) has elapsed since isotopic closure, allowing the decay chains to
+settle into a state of secular equilibrium, then the intermediate daughters can be ignored and the
+<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U- and <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U-systems can be safely treated like the simple parent-daughter pairs of
+Section&#x00A0;<a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:PD --></a>.<br 
+class="newline" />
+<!--l. 1158--><p class="indent" >   The great power of the U-Pb method lies in the fact that it is based on the simultaneous decay of two isotopes of
+the same radioactive parent (U) to two isotopes of the same stable daughter (Pb). This provides the U-Pb clock
+with an internal consistency check that is absent from most other geochronometers. This consistency check can be
+visualised by plotting the <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ratio measurements against the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U-measurements on a &#8216;Wetherill
+concordia&#8217; diagram (<a 
+href="#Xwetherill1956">Wetherill</a>,&#x00A0;<a 
+href="#Xwetherill1956">1956</a>).<br 
+class="newline" />
+<!--l. 1169--><p class="indent" >   Alternatively, a &#8216;Tera-Wasserburg concordia&#8217; diagram plots the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratios against the
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratios (<a 
+href="#Xtera1972">Tera and Wasserburg</a>,&#x00A0;<a 
+href="#Xtera1972">1972</a>). The subspace of all compositions that yield consistent ages
+between both clocks is called the &#8216;concordia line&#8217;. Samples that plot on or near this line represent the gold standard
+in geochronological reliability (Figure&#x00A0;<a 
+href="#x1-160012">2<!--tex4ht:ref: fig:2 --></a>.a).<br 
+class="newline" />
+<!--l. 1177--><p class="indent" >   Samples that plot further away from the concordia line can do so for several reasons: (1) the existence of an
+inherited non-radiogenic component; (2) the partial loss of radiogenic lead during metamorphism; (3) initial
+daughter disequilibrium; and (4) the mixture of different growth zones of different age during isotopic analysis. Only
+the first three mechanisms can be corrected for by <span 
+class="cmti-10">a posteriori </span>mathematical procedures (<a 
+href="#Xmclean2011">McLean
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmclean2011">2011</a>).<br 
+class="newline" />
+<!--l. 1185--><p class="indent" >   <span 
+class="cmtt-10">IsoplotR </span>implements six different methods to correct for the presence of non-radiogenic (&#8216;common&#8217;) lead. This
+includes three strategies tailored to datasets that include <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb measurements and a further three strategies for
+datasets that do not. <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb is the only one of lead&#8217;s four stable isotopes that does not have a naturally occurring
+radioactive parent. This makes it very useful for common-Pb correction:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12001r12"></a>
+   <center class="math-display" >
+<img 
+src="index46x.png" alt="[206|7Pb]    [206|7Pb]    [206|7Pb]
+ -204---   =  -204---   &minus;  -204---
+    P b r       Pb  m       P b &#x2218;
+
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 1198--><p class="nopar" >
+<!--l. 1200--><p class="noindent" >where [<sup><span 
+class="cmr-7">206</span><span 
+class="cmsy-7">|</span><span 
+class="cmr-7">7</span></sup><span 
+class="cmmi-10">Pb&#x2215;</span><sup><span 
+class="cmr-7">204</span></sup><span 
+class="cmmi-10">Pb</span>]<sub><span 
+class="cmmi-7">r</span></sub> marks the radiogenic <sup><span 
+class="cmr-7">206</span></sup>Pb or <sup><span 
+class="cmr-7">207</span></sup>Pb component; [<sup><span 
+class="cmr-7">206</span><span 
+class="cmsy-7">|</span><span 
+class="cmr-7">7</span></sup><span 
+class="cmmi-10">Pb&#x2215;</span><sup><span 
+class="cmr-7">204</span></sup><span 
+class="cmmi-10">Pb</span>]<sub><span 
+class="cmmi-7">m</span></sub> is the measured ratio; and
+[<sup><span 
+class="cmr-7">206</span><span 
+class="cmsy-7">|</span><span 
+class="cmr-7">7</span></sup><span 
+class="cmmi-10">Pb&#x2215;</span><sup><span 
+class="cmr-7">204</span></sup><span 
+class="cmmi-10">Pb</span>]<sub><span 
+class="cmsy-7">&#x2218;</span></sub> is the non-radiogenic component.<br 
+class="newline" />
+<!--l. 1205--><p class="indent" >   <span 
+class="cmtt-10">IsoplotR </span>offers three different ways to determine [<sup><span 
+class="cmr-7">206</span><span 
+class="cmsy-7">|</span><span 
+class="cmr-7">7</span></sup><span 
+class="cmmi-10">Pb&#x2215;</span><sup><span 
+class="cmr-7">204</span></sup><span 
+class="cmmi-10">Pb</span>]<sub><span 
+class="cmsy-7">&#x2218;</span></sub>. The first and easiest option is to simply use a
+nominal value such as the <sup><span 
+class="cmr-7">206</span><span 
+class="cmsy-7">|</span><span 
+class="cmr-7">7</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-ratio of a cogenetic feldspar, assuming that this is representative for the
+common-Pb composition of the entire sample (e.g.,&#x00A0;<a 
+href="#Xchew2014">Chew et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xchew2014">2014</a>). A second method is to determine the
+non-radiogenic isotope composition by fitting an isochron line through multiple aliquots of the same sample, using
+the 3-dimensional regression algorithm of <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>).<br 
+class="newline" />
+<!--l. 1216--><p class="indent" >   Unfortunately, neither of these two methods is applicable to detrital samples, which generally lack identifiable
+cogenetic minerals and aliquots. For such samples, <span 
+class="cmtt-10">IsoplotR </span>infers the common-Pb composition from the two-stage
+crustal evolution model of <a 
+href="#Xstacey1975">Stacey and Kramers</a>&#x00A0;(<a 
+href="#Xstacey1975">1975</a>). The second stage of this model is described
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12002r13"></a>
+   <center class="math-display" >
+<img 
+src="index47x.png" alt="[206  ]   [ 206   ]      [ 238  ]  (              )
+ 20P4-b  =   204P-b     +  204U-    e&lambda;238[3.7Ga&minus; t] &minus; 1
+   P b &#x2218;      P b 3.7Ga      Pb sk
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 1228--><p class="nopar" >
+<!--l. 1230--><p class="noindent" >where <img 
+src="index48x.png" alt="[          ]
+ 206P b&#x2215;204Pb"  class="left" align="middle"><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">.</span><span 
+class="cmr-7">7</span><span 
+class="cmmi-7">Ga</span></sub> = 11<span 
+class="cmmi-10">.</span>152 and <img 
+src="index49x.png" alt="[         ]
+ 238U&#x2215;204Pb"  class="left" align="middle"><sub><span 
+class="cmmi-7">sk</span></sub> = 9<span 
+class="cmmi-10">.</span>74. Equations&#x00A0;<a 
+href="#x1-12001r12">12<!--tex4ht:ref: eq:common-Pb --></a> and <a 
+href="#x1-12002r13">13<!--tex4ht:ref: eq:stacey-kramers --></a> can be solved iteratively for <span 
+class="cmmi-10">t</span>
+and <img 
+src="index50x.png" alt="[          ]
+ 206P b&#x2215;204P b"  class="left" align="middle"><sub><span 
+class="cmsy-7">&#x2218;</span></sub> (<a 
+href="#Xchew2014">Chew et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xchew2014">2014</a>). The <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-ratio is corrected in exactly the same way, using
+<img 
+src="index51x.png" alt="[          ]
+207Pb&#x2215;204P b"  class="left" align="middle"><sub><span 
+class="cmr-7">3</span><span 
+class="cmmi-7">.</span><span 
+class="cmr-7">7</span><span 
+class="cmmi-7">Ga</span></sub> = 12<span 
+class="cmmi-10">.</span>998.<br 
+class="newline" />
+<!--l. 1239--><p class="indent" >   Unfortunately, it is not always possible to measure <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb, which is a rare and therefore hard to detect nuclide,
+especially on single collector mass spectrometers and in the presence of isobaric interferences such as <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Hg that
+often occur in ICPMS instruments. In the absence of <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb measurements, <span 
+class="cmtt-10">IsoplotR </span>applies a <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb-based
+common lead correction:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index52x.png" alt="[207  ]      [207   ]         [207  ]
+ ---Pb   = f  --P-b  + (1&minus; f) ---Pb
+ 206Pb m      206P b &#x2218;         204Pb r
+
+" class="math-display" ></center></td></tr></table>
+<!--l. 1252--><p class="nopar" >
+<!--l. 1254--><p class="noindent" >where <span 
+class="cmmi-10">f </span>is the fraction of common lead, and [<sup><span 
+class="cmr-7">207</span></sup><span 
+class="cmmi-10">Pb&#x2215;</span><sup><span 
+class="cmr-7">206</span></sup><span 
+class="cmmi-10">Pb</span>]<sub><span 
+class="cmmi-7">r</span></sub> is obtained by projecting the U-Pb measurements on
+the concordia line in Tera-Wasserburg space. Like before, the initial lead composition [<sup><span 
+class="cmr-7">207</span></sup><span 
+class="cmmi-10">Pb&#x2215;</span><sup><span 
+class="cmr-7">206</span></sup><span 
+class="cmmi-10">Pb</span>]<sub><span 
+class="cmsy-7">&#x2218;</span></sub> can be
+obtained in three possible ways: by analysing a cogenetic mineral, by isochron regression through multiple aliquots,
+or from the <a 
+href="#Xstacey1975">Stacey and Kramers</a>&#x00A0;(<a 
+href="#Xstacey1975">1975</a>) model.<br 
+class="newline" />
+<!--l. 1262--><p class="indent" >   Besides the common-Pb problem, a second reason for U-Pb discordance is radiogenic Pb-loss during igneous
+and metamorphic activity. This moves the data away from the concordia line along a linear array,
+forming an isochron or &#8216;discordia&#8217; line. <span 
+class="cmtt-10">IsoplotR </span>fits this line using the <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>) algorithm. If
+the data are plotted on a Wetherill concordia diagram, the program will not only report the usual
+lower intercept with the concordia line, but the upper intercept as well. Both values are geologically
+meaningful as they constrain both the initial igneous age as well as the timing of the partial resetting
+event.<br 
+class="newline" />
+<!--l. 1273--><p class="indent" >   Initial daughter disequilibrium is the third and final correctable mechanism for U-Pb discordance. It occurs
+because the partition coefficients for U, Th (and Pa) may differ significantly between the magma and the dated
+mineral. Th-disequilibrium correction requires the measurement of <sup class="textsuperscript"><span 
+class="cmr-9">208</span></sup>Th, which is not currently accommodated by
+any of <span 
+class="cmtt-10">IsoplotR</span>&#8217;s input formats. This may change in future versions of the program. In the meanwhile, the user
+is advised to apply the disequilibrium correction before entering their data into <span 
+class="cmtt-10">IsoplotR </span>(<a 
+href="#Xmclean2011">McLean
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmclean2011">2011</a>).<br 
+class="newline" />
+<!--l. 1283--><p class="indent" >   The Pb-Pb method is based on the same radioactive decay scheme as the U-Pb method but only
+involves the isotopic ratios of one element, Pb (assuming that the <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ratio is independently
+known):
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index53x.png" alt="[207  ]   [ 235  ] &lambda;235t
+ --P-b  =   --U- e----&minus;-1
+ 206P b r    238U  e&lambda;238t &minus; 1
+" class="math-display" ></center></td></tr></table>
+<!--l. 1293--><p class="nopar" >
+<!--l. 1295--><p class="indent" >   In this respect the Pb-Pb method is similar to the <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-method. This similarity extends to the
+construction of isochrons which, like for the <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-method, come in two forms. The &#8216;normal&#8217; isochron
+plots the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-ratio against the <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb-ratio, the slope of which yields the radiogenic
+<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratio.<br 
+class="newline" />
+<!--l. 1305--><p class="indent" >   The &#8216;inverse&#8217; isochron plots the <sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratio against the <sup class="textsuperscript"><span 
+class="cmr-9">204</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratio, yielding the radiogenic
+<sup class="textsuperscript"><span 
+class="cmr-9">207</span></sup>Pb/<sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb-ratio as the intercept. Again, the error correlations are smaller for the inverse isochron than they are
+for the conventional one (<a 
+href="#Xconnelly2017">Connelly et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xconnelly2017">2017</a>).
+
+<!--l. 1313--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">13   </span> <a 
+ id="x1-1300013"></a><sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th-U</h3>
+<!--l. 1316--><p class="noindent" ><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">206</span></sup>Pb are part of a decay chain that comprises seven intermediate daughters. The half lives of all these
+daughters are more than four orders of magnitude shorted than that of <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U, with <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U (<span 
+class="cmmi-10">t</span><sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">&#x2215;</span><span 
+class="cmr-7">2</span></sub> = 246&#x00A0;ka) and <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th
+(<span 
+class="cmmi-10">t</span><sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">&#x2215;</span><span 
+class="cmr-7">2</span></sub> = 76&#x00A0;ka) being the least radioactive among them (<a 
+href="#Xcheng2013">Cheng et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xcheng2013">2013</a>).<br 
+class="newline" />
+<!--l. 1323--><p class="indent" >   Samples whose age exceeds <span 
+class="cmsy-10">&sim;</span>2&#x00A0;Ma enter a state of secular equilibrium whereby the <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U- and
+<sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-activity ratios approach unity. Such samples are amenable to U-Pb dating as described in Section&#x00A0;<a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:UPb --></a>.
+For younger samples, the degree to which an initially disrupted <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-decay chain has restored secular equilibrium
+forms the basis of a separate class of geochronometers that are collectively referred to as U-series
+dating.<br 
+class="newline" />
+<!--l. 1333--><p class="indent" >   U and Th have contrasting chemical properties and are easily fractionated during chemical processes such as
+crystallisation. This fractionation disrupts any pre-existing state of secular equilibrium between <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th and its
+parent nuclide <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U. Additionally, the secular equilibrium between <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U and its parent <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U may be
+disturbed by the physical processes of alpha-recoil, which can dislodge <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U from the original <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U site
+(<a 
+href="#Xmoore1967">Moore</a>,&#x00A0;<a 
+href="#Xmoore1967">1967</a>).<br 
+class="newline" />
+<!--l. 1343--><p class="indent" >   The first mechanism occurs in young volcanic rocks, which are often enriched (and occasionally depleted) in Th
+relative to U with respect to the magma from which they were derived, but whose <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ratio remains in
+secular equilibrium. In contrast with this, carbonates can be out of equilibrium in both their <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U- and
+<sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-activity ratios, due to the low solubility of Th in water and the enrichment of <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U relative to <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U in
+rivers, lakes, seas, caves and other geologic environments. In this general case, the evolution of the
+<sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th-<sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U-<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-system with time is described by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13001r14"></a>
+   <center class="math-display" >
+<img 
+src="index54x.png" alt="  230       230                (   234     ) (          ) (            )
+A[--Th]&minus;23A8-[--Th]&#x2218;= 1 &minus; e&lambda;230t &minus;  A[23U8-]&minus; 1   ---&lambda;230---   1&minus; e[&lambda;234&minus;&lambda;230]t
+     A [  U]                    A[  U ]      &lambda;234 &minus; &lambda;230
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 1365--><p class="nopar" >
+<!--l. 1367--><p class="noindent" >where <span 
+class="cmmi-10">A</span>[<span 
+class="cmsy-10">&lowast;</span>] is the activity of <span 
+class="cmsy-10">&lowast; </span>and <span 
+class="cmmi-10">A</span>[<sup><span 
+class="cmr-7">230</span></sup><span 
+class="cmmi-10">Th</span>]<sub><span 
+class="cmsy-7">&#x2218;</span></sub> is the &#8216;detrital&#8217; <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th component, i.e. the <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th that was already
+present in the sample at the time of its formation (<a 
+href="#Xkaufman1965">Kaufman and Broecker</a>,&#x00A0;<a 
+href="#Xkaufman1965">1965</a>;&#x00A0;<a 
+href="#Xludwig2003b">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003b">2003b</a>). This
+component is unknown but can be estimated by isochron regression using long-lived <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th as a normalising
+factor.<br 
+class="newline" />
+<!--l. 1375--><p class="indent" >   For igneous samples, in which <span 
+class="cmmi-10">A</span>[<sup><span 
+class="cmr-7">234</span></sup><span 
+class="cmmi-10">U</span>]<span 
+class="cmmi-10">&#x2215;A</span>[<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] = 1, the second term on the right-hand side of Equation&#x00A0;<a 
+href="#x1-13001r14">14<!--tex4ht:ref: eq:Th-U --></a>
+vanishes and we can write:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13002r15"></a>
+
+   <center class="math-display" >
+<img 
+src="index55x.png" alt="(        )   (         )   (        )
+ A-[230Th]      A[230T-h]      A-[238U]-  (    &minus;&lambda;230t)
+ A [232Th] i =  A[232T h] &#x2218; +  A[232T h] i 1&minus; e
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+<!--l. 1385--><p class="nopar" >
+<!--l. 1387--><p class="noindent" >for 1 <span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">n</span>, which can be solved for <span 
+class="cmmi-10">t </span>and <img 
+src="index56x.png" alt="(A[230Th]&#x2215;A[232Th ])"  class="left" align="middle"><sub><span 
+class="cmsy-7">&#x2218;</span></sub> using the least squares method of <a 
+href="#Xyork2004">York
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xyork2004">2004</a>). Equation&#x00A0;<a 
+href="#x1-13002r15">15<!--tex4ht:ref: eq:Th-U-volcanic --></a> forms a &#8216;Rosholt&#8217;-type isochron, which is akin to a &#8216;normal&#8217; isochron in Rb-Sr
+or Ar-Ar geochronology (<a 
+href="#Xrosholt1976">Rosholt</a>,&#x00A0;<a 
+href="#Xrosholt1976">1976</a>). Using <span 
+class="cmmi-10">A</span>[<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] as the normalising factor instead yields an
+&#8216;Osmond&#8217;-type isochron, which is akin to an &#8216;inverse&#8217; isochron in Ar-Ar or Pb-Pb geochronology (<a 
+href="#Xosmond1970">Osmond
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xosmond1970">1970</a>;&#x00A0;<a 
+href="#Xludwig2003b">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig2003b">2003b</a>).<br 
+class="newline" />
+<!--l. 1396--><p class="indent" >   For carbonate samples, in which <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U generally are not in secular equilibrium, three
+activity ratios are needed to determine the detrital <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th (and initial <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U) component. This in turn
+requires three dimensional isochron regression of the <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-, <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U- and <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-activity
+ratios. <span 
+class="cmtt-10">IsoplotR </span>performs this calculation with the maximum likelihood algorithm of <a 
+href="#Xludwig1994">Ludwig and
+Titterington</a>&#x00A0;(<a 
+href="#Xludwig1994">1994</a>).<br 
+class="newline" />
+<!--l. 1407--><p class="indent" >   In addition to (Rosholt and Osmond) isochrons and the usual weighted mean, radial, CAD and KDE plots,
+U-series data can also be visualised on Th-U evolution diagrams. For carbonate data, these consist of a
+scatter plot that sets out the <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-activity ratios against the <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-activity ratios as
+error ellipses, and displays the initial <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-activity ratios and ages as a set of intersecting lines
+(Figure&#x00A0;<a 
+href="#x1-160012">2<!--tex4ht:ref: fig:2 --></a>.b).<br 
+class="newline" />
+<!--l. 1417--><p class="indent" >   The Th-U evolution diagram has a similar purpose and appearance as the U-Pb concordia diagram, which also
+displays compositions and dates simultaneously. An alternative way of doing so for carbonate samples is by plotting
+the initial <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ratios against the <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th-<sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U-<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-ages (Figure&#x00A0;<a 
+href="#x1-160012">2<!--tex4ht:ref: fig:2 --></a>.c). In both types of evolution diagrams,
+<span 
+class="cmtt-10">IsoplotR </span>provides the option to project the raw measurements along the best fitting isochron line and thereby
+remove the detrital <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th-component. This procedure allows a visual assessment of the degree of homogeneity
+within a dataset, as is quantified by the MSWD.<br 
+class="newline" />
+<!--l. 1430--><p class="indent" >   Neither the U-series evolution diagram nor the <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U vs. age plot is applicable to igneous datasets, in which
+<sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U are in secular equilibrium. For such datasets, <span 
+class="cmtt-10">IsoplotR </span>produces an Osmond-style regression plot
+that is decorated with a fanning set of isochron lines.
+<!--l. 1437--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">14   </span> <a 
+ id="x1-1400014"></a>U-Th-(Sm)-He</h3>
+<!--l. 1440--><p class="noindent" >The radioactive decay of uranium produces not only lead (Section&#x00A0;<a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:UPb --></a>) and short-lived <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U and <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th (Section&#x00A0;<a 
+href="#x1-1300013">13<!--tex4ht:ref: sec:ThU --></a>),
+but seven (for <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U) or eight (for <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U) <span 
+class="cmmi-10">&alpha;</span>-particles as well. When these <span 
+class="cmmi-10">&alpha;</span>-particles acquire electrons, they turn
+into helium atoms, forming the basis of yet another geological clock. <span 
+class="cmmi-10">&alpha;</span>-decay of <sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th and <sup class="textsuperscript"><span 
+class="cmr-9">147</span></sup>Sm
+provides additional sources of radiogenic helium. The ingrowth of helium with time is thus described
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-14001r16"></a>
+
+   <center class="math-display" >
+<img 
+src="index57x.png" alt="       (       )         (        )
+4He  = 8 e&lambda;238t &minus; 1 [238U]+ 7 e&lambda;235t &minus; 1 [235U]+
+      6(e&lambda;232t &minus; 1)[232Th]+ (e&lambda;247t &minus; 1)[147Sm ]
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 1458--><p class="nopar" >
+<!--l. 1460--><p class="indent" >   Because Sm (1) produces only one <span 
+class="cmmi-10">&alpha;</span>-particle per decay event; (2) has a very long half-life; and (3) its radioactive
+isotope 147 only accounts for 14.99% of total samarium, Sm can be ignored as a parent in all but
+the most Sm-rich samples. For this reason, some laboratories do not measure Sm at all and hence
+we will refer to the helium dating method as the &#8216;U-Th-(Sm)-He&#8217; method in the remainder of this
+text.<br 
+class="newline" />
+<!--l. 1468--><p class="indent" >   Equation&#x00A0;<a 
+href="#x1-14001r16">16<!--tex4ht:ref: eq:UThHe --></a> can be solved for <span 
+class="cmmi-10">t </span>iteratively. Like argon, helium is a noble gas that is lost to the environment
+(and eventually to space) at high temperatures by volume diffusion. Additional complication is added
+by the physical separation of the parent and daughter nuclides in the U-Th-(Sm)-He system. This
+separation results from the energy released during <span 
+class="cmmi-10">&alpha;</span>-decay, which displaces the <span 
+class="cmmi-10">&alpha;</span>-particles by up to
+16 <span 
+class="tcrm-1000">&mu;</span>m and may result in the ejection of helium produced by parent atoms that are sited near the
+edges of the host mineral (<a 
+href="#Xfarley1996">Farley et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfarley1996">1996</a>). That lost helium must be taken into account when
+interpreting the thermal history of a sample (<a 
+href="#Xmeesters2002b">Meesters and Dunai</a>,&#x00A0;<a 
+href="#Xmeesters2002b">2002</a>). For rapidly cooled samples,
+this can be done by applying a geometric correction to the U, Th and Sm-measurements (<a 
+href="#Xketcham2011">Ketcham
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xketcham2011">2011</a>). <span 
+class="cmtt-10">IsoplotR </span>assumes that such an &#8216;<span 
+class="cmmi-10">&alpha;</span>-ejection correction&#8217; has been applied to the data prior to age
+calculation.<br 
+class="newline" />
+<!--l. 1484--><p class="indent" >   More often than not, and more often than for other geochronometers, U-Th-(Sm)-He data are overdispersed
+with respect to the analytical uncertainties (<a 
+href="#Xfitzgerald2006">Fitzgerald et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfitzgerald2006">2006</a>). Several mechanisms have been
+invoked to explain this overdispersion, including compositional effects (<a 
+href="#Xdjimbi2015">Djimbi et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xdjimbi2015">2015</a>), radiation
+damage (<a 
+href="#Xflowers2009">Flowers et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xflowers2009">2009</a>;&#x00A0;<a 
+href="#Xguenthner2013">Guenthner et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xguenthner2013">2013</a>), and breakage during mineral separation (<a 
+href="#Xbrown2013">Brown
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xbrown2013">2013</a>).<br 
+class="newline" />
+<!--l. 1492--><p class="indent" >   <span 
+class="cmtt-10">IsoplotR </span>implements four different ways to visualise and quantify the overdispersion. The first
+two of these are the weighted mean and radial plot, which were discussed in Sections&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:averaging --></a> and <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:density --></a>. The
+third way is the isochron plot and age. This uses a first order approximation of the U-Th-(Sm)-He age
+equation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-14002r17"></a>
+   <center class="math-display" >
+<img 
+src="index58x.png" alt="    [4  ] {     238         235         232          147   }
+t &asymp;  He  &#x2215; 8&lambda;238[  U]+ 7&lambda;235[  U]+ 6&lambda;232[  T h]+ &lambda;147[  Sm ]
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 1505--><p class="nopar" >
+<!--l. 1507--><p class="noindent" >which is accurate to better than 1 % for ages less than 100&#x00A0;Ma (<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>). A U-Th-(Sm)-He isochron is
+constructed by plotting the numerator of the right-hand side of Equation&#x00A0;<a 
+href="#x1-14002r17">17<!--tex4ht:ref: eq:t=HeP --></a> against the denominator and fitting a
+straight line through several aliquots of the same sample. Because the parent and daughter nuclides are
+analysed separately on different mass spectrometers, their uncertainties are uncorrelated with each
+other. Therefore, the isochron regression can be done using the simple least squares fitting method of
+<a 
+href="#Xyork1966">York</a>&#x00A0;(<a 
+href="#Xyork1966">1966</a>).<br 
+class="newline" />
+<!--l. 1517--><p class="indent" >   The fourth and final way to visualise and average U-Th-(Sm)-He data is based on the fact that U, Th, Sm and
+He are <span 
+class="cmti-10">compositional </span>data. This means that it is not so much the absolute concentrations of these elements that
+bear the chronological information, but rather their relative proportions. Equation&#x00A0;<a 
+href="#x1-14001r16">16<!--tex4ht:ref: eq:UThHe --></a> can be recast in terms
+of the elemental ratios U/He, Th/He and Sm/He, which take on strictly positive values. The space
+of all possible U-Th-He compositions fits within the constraints of a ternary diagram or &#8216;helioplot&#8217;
+(<a 
+href="#Xvermeesch2010a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>). If Sm is included as well, then this expands to a three-dimensional tetrahedral space
+(<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>).<br 
+class="newline" />
+<!--l. 1529--><p class="indent" >   Conventional statistical analysis of data that fit within these constrained spaces is fraught with theoretical and
+practical problems. For example, the arithmetic mean of compositional data may yield meaningless values, and
+their &#8216;2-sigma&#8217; confidence bounds may include physically impossible negative values (Figures&#x00A0;3 and 5
+of&#x00A0;<a 
+href="#Xvermeesch2006b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2006b">2006</a>).<br 
+class="newline" />
+<!--l. 1536--><p class="indent" >   Geologists had been aware of these problems for many decades (e.g.,&#x00A0;<a 
+href="#Xchayes1956">Chayes</a>,&#x00A0;<a 
+href="#Xchayes1956">1956</a>). But it was not until the
+1980s that a solution was found to the compositional data conundrum, when <a 
+href="#Xaitchison1982">Aitchison</a>&#x00A0;(<a 
+href="#Xaitchison1982">1982</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>) showed that all
+the problems caused by the constant sum constraint can be solved by applying a simple logratio transformation.
+This idea is similar to the log-transformation that was used for the mixture models of Section&#x00A0;<a 
+href="#x1-90009">9<!--tex4ht:ref: sec:mixtures --></a>. In the case of
+the U-Th-He-(Sm)-He system, the logratio analysis is achieved by first defining two (or three) new
+variables:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index59x.png" alt="u &equiv; ln[U/He ],v &equiv; ln[Th/He ](,w &equiv; ln[Sm/He ])
+" class="math-display" ></center></td></tr></table>
+<!--l. 1551--><p class="nopar" >
+<!--l. 1553--><p class="noindent" >and then performing the desired statistical analysis (averaging, uncertainty propagation, ...) on the transformed
+data (<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>,&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>,&#x00A0;<a 
+href="#Xvermeesch2015b">2015</a>). Upon completion of the mathematical operations, the results can then be
+mapped back to U-Th-(Sm)-He space using an inverse logratio transformation:
+   <table 
+class="equation-star"><tr><td>
+
+   <center class="math-display" >
+<img 
+src="index60x.png" alt="[He ] = 1/[eu + ev + (ew)+ 1] , [U] = eu/[eu + ev + (ew)+ 1],
+[Th] = ev/ [eu + ev + (ew)+ 1](, [Sm] = ew/ [eu + ev + (ew )+ 1])
+" class="math-display" ></center></td></tr></table>
+<!--l. 1568--><p class="nopar" >
+<!--l. 1570--><p class="noindent" >where [<span 
+class="cmmi-10">He</span>] + [<span 
+class="cmmi-10">U</span>] + [<span 
+class="cmmi-10">Th</span>](+[<span 
+class="cmmi-10">Sm</span>]) = 1. In the context of U-Th-(Sm)-He dating, the central age is defined as the age
+that corresponds to the arithmetic mean composition in logratio space, which is equivalent to the geometric mean in
+compositional dataspace (<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>). <span 
+class="cmtt-10">IsoplotR</span>&#8217;s <span 
+class="cmtt-10">helioplot </span>function performs this calculation using the
+same algorithm that is used to obtain the weighted mean U-Pb composition for the concordia age calculation
+(Section&#x00A0;<a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:UPb --></a>).<br 
+class="newline" />
+<!--l. 1579--><p class="indent" >   Overdispersion is treated similarly as in a regression context (Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:regression --></a>). Thus, there are options to
+augment the uncertainties with a factor <img 
+src="index61x.png" alt="&radic; --------
+  M SW D"  class="sqrt" > (model-1); to ignore the analytical uncertainties
+altogether (model-2); or to add a constant overdispersion term to the analytical uncertainties (model-3).
+The <span 
+class="cmtt-10">helioplot </span>function visualises U-Th-(Sm)-He data on either a ternary diagram or a bivariate
+ln[<span 
+class="cmmi-10">Th&#x2215;U</span>] vs. ln[<span 
+class="cmmi-10">U&#x2215;He</span>] contour plot (Figures&#x00A0;<a 
+href="#x1-160012">2<!--tex4ht:ref: fig:2 --></a>.d and e). These diagrams provide a convenient way
+to simultaneously display the isotopic composition of samples and their chronological meaning. In
+this respect, they fulfil the same purpose as the U-Pb concordia diagram and the U-series evolution
+plot.
+<!--l. 1592--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">15   </span> <a 
+ id="x1-1500015"></a>Fission tracks</h3>
+<!--l. 1595--><p class="noindent" ><sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U is the heaviest naturally occurring nuclide in the Solar System, and the only one that undergoes spontaneous
+fission. On average only 1 spontaneous fission event occurs for every 1.8 million <span 
+class="cmmi-10">&alpha;</span>-decay events (<a 
+href="#Xholden2000">Holden and
+Hoffman</a>,&#x00A0;<a 
+href="#Xholden2000">2000</a>), and so the number of fission tracks that accumulate over geologic time is small enough to be
+counted by a human observer, using a petrographic microscope. The fission track age is then given
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-15001r18"></a>
+   <center class="math-display" >
+<img 
+src="index62x.png" alt="     1    (    &lambda;     2N    )
+t = ----ln  1 + -238-238--s---
+    &lambda;238        &lambda;f  [ U ]AsL
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 1609--><p class="nopar" >
+
+<!--l. 1611--><p class="noindent" >where <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> is the number of spontaneous fission tracks measured over an area <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">s</span></sub>, [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] is the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentration in
+atoms per unit volume, <span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmmi-7">f</span></sub> is the fission decay constant (8<span 
+class="cmmi-10">.</span>5 <span 
+class="cmsy-10">&#x00D7;</span> 10<sup><span 
+class="cmsy-7">&minus;</span><span 
+class="cmr-7">17</span></sup> yr<sup class="textsuperscript"><span 
+class="cmr-9">-1</span></sup>,&#x00A0;<a 
+href="#Xholden2000">Holden and Hoffman</a>,&#x00A0;<a 
+href="#Xholden2000">2000</a>), <span 
+class="cmmi-10">L </span>is the
+etchable fission track length, and the factor 2 is a geometric factor accounting for the fact that etching reveals tracks
+from both above and below the internal crystal surface.<br 
+class="newline" />
+<!--l. 1620--><p class="indent" >   Two analytical approaches are used to measure [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>]: neutron activation and LAICPMS. The first approach
+estimates the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentration indirectly, using the induced fission of neutron-irradiated <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U as a
+proxy for the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U. In the most common implementation of this approach, the induced fission tracks
+are recorded by an external detector made of mica or plastic that is attached to the polished grain
+surface (<a 
+href="#Xfleischer1972">Fleischer and Hart</a>,&#x00A0;<a 
+href="#Xfleischer1972">1972</a>;&#x00A0;<a 
+href="#Xhurford1983">Hurford and Green</a>,&#x00A0;<a 
+href="#Xhurford1983">1983</a>). The fission track age equation then
+becomes:
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index63x.png" alt="         (              )
+t =--1-ln  1+ &lambda;238&zeta;&rho;dNs-
+   &lambda;238          2   Ni
+" class="math-display" ></center></td></tr></table>
+<!--l. 1636--><p class="nopar" >
+<!--l. 1638--><p class="noindent" >where <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub> is the number of induced fission tracks counted in the external detector over the same area as the
+spontaneous tracks, <span 
+class="cmmi-10">&zeta; </span>is a &#8216;zeta&#8217;-calibration factor that incorporates both the fission decay constant and the etchable
+fission track length, and <span 
+class="cmmi-10">&rho;</span><sub><span 
+class="cmmi-7">d</span></sub> is the number of induced fission tracks per unit area counted in a co-irradiated glass of
+known U-concentration. <span 
+class="cmmi-10">&rho;</span><sub><span 
+class="cmmi-7">d</span></sub> allows the <span 
+class="cmmi-10">&zeta;</span>-factor to be &#8216;recycled&#8217; between irradiations. The appeal of the external
+detector method (EDM) lies in the fact that it imposes a &#8216;paired experimental design&#8217; on the fission track method,
+which makes it insensitive to uranium zoning, and greatly simplifies subsequent statistical analysis
+(<a 
+href="#Xgalbraith2010b">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2010b">2010</a>).<br 
+class="newline" />
+<!--l. 1650--><p class="indent" >   Despite the elegance of the EDM, a growing number of laboratories are adopting LAICPMS as an alternative
+means of determining the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-content of fission track samples (<a 
+href="#Xhasebe2004">Hasebe et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhasebe2004">2004</a>;&#x00A0;<a 
+href="#Xchew2012">Chew and Donelick</a>,&#x00A0;<a 
+href="#Xchew2012">2012</a>).
+The main reasons for this change are the increased throughput achieved by not having to irradiate samples and the
+ease of double-dating apatite and zircon with the U-Pb method. Unfortunately, abandoning the EDM in favour of
+LAICPMS also removes the paired experimental design and causes problems in dealing with U-zoning an zero-track
+grains. <a 
+href="#Xvermeesch2017">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2017">2017</a>) proposes four different strategies to deal with these problems, all of which are
+implemented in <span 
+class="cmtt-10">IsoplotR</span>.<br 
+class="newline" />
+<!--l. 1662--><p class="indent" >   A first option is to only count the spontaneous fission tracks that are located within the laser ablation spot, and
+to plug the resulting track counts, areas and <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentrations into Equation <a 
+href="#x1-15001r18">18<!--tex4ht:ref: eq:FT --></a>. Matching the areas over which
+<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> and [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] are measured reduces the detrimental effect of (lateral) U-zoning on the fission track age accuracy.
+The main limitation of matching the areas is a reduction in precision due to the low number of spontaneous tracks
+counted within the outline of a small ablation pit. This problem can be circumvented by acquiring multiple
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-measurements per grain.<br 
+class="newline" />
+<!--l. 1673--><p class="indent" >   In a second approach to LAICPMS-based fission track dating, <span 
+class="cmtt-10">IsoplotR </span>then jointly considers
+all the grains that have been analysed multiple times to quantify the degree of U-zoning within the
+grains.<br 
+class="newline" />
+<!--l. 1678--><p class="indent" >   The accuracy of the two &#8216;absolute dating&#8217; approaches discussed thus far is fundamentally limited by
+the accuracy of the U-concentration measurements, the fission track decay constant and the etching
+and counting efficiencies. Unfortunately, all these factors are potentially affected by unquantifiable
+biases.<br 
+class="newline" />
+<!--l. 1684--><p class="indent" >   The third (using a single laser spot per grain) and fourth (using multiple spots) approach to LAICPMS-based
+fission track dating remove these systematic errors by normalising to a standard of known fission track age and
+defining a new &#8216;zeta&#8217; calibration constant <span 
+class="cmmi-10">&zeta;</span><sub><span 
+class="cmmi-7">icp</span></sub>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-15002r19"></a>
+   <center class="math-display" >
+<img 
+src="index64x.png" alt="         (                  )
+t =-1--ln 1 + &lambda;238&zeta;icp-23N8s----
+   &lambda;238          2   [  U]As
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 1694--><p class="nopar" >
+<!--l. 1696--><p class="noindent" >where [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] may either stand for the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentration (in ppm) <span 
+class="cmti-10">or </span>for the U/Ca (for apatite) or U/Si (for
+zircon) ratio measurement, and <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">s</span></sub> is the spontaneous track counting area. <span 
+class="cmtt-10">IsoplotR </span>implements the four
+approaches to LAICPMS-based fission track dating by giving the user the choice between an &#8216;absolute&#8217; and
+&#8216;<span 
+class="cmmi-10">&zeta;</span>-calibration&#8217; option, and between one or more U-measurements per grain.<br 
+class="newline" />
+<!--l. 1704--><p class="indent" >   The zero track problem is solved by converting the U-concentration measurements into a &#8216;virtual&#8217; induced track
+density (<img 
+src="index65x.png" alt="&#x02C6;N"  class="circ" ><sub><span 
+class="cmmi-7">i</span></sub>) by replacing [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>]<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">s</span></sub> with <img 
+src="index66x.png" alt="N&#x02C6;"  class="circ" ><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">&#x2215;&rho;</span><sub><span 
+class="cmmi-7">icp</span></sub> in Equation&#x00A0;<a 
+href="#x1-15002r19">19<!--tex4ht:ref: eq:tICPzeta --></a>, so that the Poisson uncertainty of <img 
+src="index67x.png" alt="&#x02C6;N"  class="circ" ><sub><span 
+class="cmmi-7">i</span></sub> matches the
+uncertainty of the U-concentration measurement (<a 
+href="#Xvermeesch2017">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2017">2017</a>).
+<!--l. 1711--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">16   </span> <a 
+ id="x1-1600016"></a>Detrital geochronology</h3>
+<!--l. 1714--><p class="noindent" >The principal aim of the methods and graphical devices discussed thus far has been to extract geologically
+meaningful information from multiple aliquots of a single sample. However, most geochronological applications
+nowadays involve multiple samples, and the differences between these samples often has greater scientific significance
+than any individual date. <span 
+class="cmtt-10">IsoplotR </span>implements a number of graphical devices to facilitate the interpretation of such
+multi-sample datasets.<br 
+class="newline" />
+<!--l. 1723--><p class="indent" >   As was discussed in Section&#x00A0;<a 
+href="#x1-80008">8<!--tex4ht:ref: sec:density --></a>, the CAD is the easiest way to simultaneously visualise multiple age distributions
+on a single plot. In contrast, KDEs are better presented in a multi-panel format. To facilitate the intercomparison
+of multiple age distributions, <span 
+class="cmtt-10">IsoplotR </span>offers the option to force all panels to use the same kernel
+bandwidth, to normalise the area under each KDE to a common value, and to plot them all on the same
+timescale.<br 
+class="newline" />
+<!--l. 1731--><p class="indent" >   Visual comparison of CADs or KDEs can be an effective way to spot general trends and groupings in simple
+datasets. But this approach becomes impractical when the inter-sample differences are subtle or the datasets are
+large (<span 
+class="cmmi-10">&#x003E; </span>10 samples, say). Such cases call for an additional layer of statistical simplification to emphasise the
+
+geologically significant differences whilst removing the less informative similarities. Multi-dimensional scaling (MDS)
+is one way to achieve this goal.<br 
+class="newline" />
+<!--l. 1740--><p class="indent" >   MDS is a dimension-reducting technique that takes a matrix of pairwise &#8216;dissimilarities&#8217; between objects (in our
+case age distributions) as input and produces a &#8216;map&#8217; as output, on which similar samples cluster closely together
+and dissimilar samples plot far apart (Figure&#x00A0;<a 
+href="#x1-160012">2<!--tex4ht:ref: fig:2 --></a>.f). In the context of detrital geochronology, the dissimilarity between
+samples is given by the statistical distance between age distributions. There are many ways to define this
+statistical distance (<a 
+href="#Xvermeesch2018b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2018b">2018b</a>). <span 
+class="cmtt-10">IsoplotR </span>uses the Kolmogorov-Smirnov (KS) statistic due to its
+simplicity and the fact that it behaves like a true distance in the mathematical sense of the word
+(<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>,&#x00A0;<a 
+href="#Xvermeesch2018b">2018b</a>).<br 
+class="newline" />
+<!--l. 1752--><p class="indent" >   The KS-distance is closely related to the CAD-plot that was discussed in Section&#x00A0;<a 
+href="#x1-80008">8<!--tex4ht:ref: sec:density --></a>. It is given by the maximum
+vertical difference between two CAD step functions. Calculating the KS-distance between samples two at a time
+populates a symmetric dissimilarity matrix with positive values and a zero diagonal. <span 
+class="cmtt-10">IsoplotR </span>implements two
+algorithms to convert this matrix into an MDS configuration. The first (&#8216;classical&#8217; or &#8216;metric&#8217;) approach uses a
+sequence of basic matrix manipulations developed by <a 
+href="#Xyoung1938">Young and Householder</a>&#x00A0;(<a 
+href="#Xyoung1938">1938</a>) and <a 
+href="#Xtorgerson1952">Torgerson</a>&#x00A0;(<a 
+href="#Xtorgerson1952">1952</a>) to
+achieve a linear fit between the KS-distances and the fitted distances in the MDS configuration. The second, more
+sophisticated (&#8216;nonmetric&#8217;) approach subjects the input distances to a transformation <span 
+class="cmmi-10">f </span>prior to fitting a
+configuration:
+   <center class="par-math-display" >
+<img 
+src="index68x.png" alt="&delta;i,j = f(KSij)
+" class="par-math-display" ></center>
+<!--l. 1768--><p class="nopar" >
+<!--l. 1770--><p class="noindent" >where <span 
+class="cmmi-10">KS</span><sub><span 
+class="cmmi-7">i,j</span></sub> is the KS-distance between samples <span 
+class="cmmi-10">i </span>and <span 
+class="cmmi-10">j </span>(for 1 <span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">i</span><span 
+class="cmmi-10">&ne;</span><span 
+class="cmmi-10">j </span><span 
+class="cmsy-10">&le; </span><span 
+class="cmmi-10">n</span>) and <span 
+class="cmmi-10">&delta;</span><sub><span 
+class="cmmi-7">i,j</span></sub> is the &#8216;disparity&#8217; (<a 
+href="#Xkruskal1978">Kruskal and
+Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>). Fitting an MDS configuration then involves finding the disparity transformation that maximises the
+goodness of fit (or minimises the &#8216;stress&#8217;) between the disparities and the fitted distances. The latter two
+quantities can also be plotted against each other as a &#8216;Shepard plot&#8217;. Additional options and higher order
+alternatives to these MDS algorithms are provided in a separate <span 
+class="cmtt-10">R</span>-package called <span 
+class="cmtt-10">provenance </span>(<a 
+href="#Xvermeesch2016a">Vermeesch
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch2016a">2016</a>).
+<!--l. 1781--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a id="x1-160012"></a>
+
+<table><tr><td>
+<!--l. 1783--><p class="noindent" ><a href="fig2.png"><img 
+src="fig2.png" alt="PIC" class="graphics"></a><!--tex4ht:graphics  
+name="index69x.png" src="fig2.pdf"  
+-->
+</td>
+<td width=50></td>
+<td>
+<div class="caption" 
+><span class="id">Figure&#x00A0;2:  </span><span  
+class="content">a.  Wetherill  concordia  diagram  of  U-Pb  data  from  <a 
+href="#Xludwig2003">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig2003">2003a</a>)  that  were  common-Pb
+corrected using an isochron intercept obtained with the regression algorithm of <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>), including
+decay constant uncertainties; the three MSWD- and p-values quantify the goodness-of-fit for equivalence,
+for concordance and for their combination; b. <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th-U evolution diagram of example data from <a 
+href="#Xludwig1994">Ludwig and
+Titterington</a>&#x00A0;(<a 
+href="#Xludwig1994">1994</a>), with the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">232</span></sup>Th-ratios shown as fill colours for the 95% confidence ellipses; c. the
+same <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th-U data projected along the isochron line on the initial <sup class="textsuperscript"><span 
+class="cmr-9">234</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U vs. <sup class="textsuperscript"><span 
+class="cmr-9">230</span></sup>Th-U age plane; d.
+U-Th-Sm-He data of <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>) shown on a logratio plot with the Sm-content (log <sub><span 
+class="cmr-7">10</span></sub>[<span 
+class="cmmi-10">Sm</span>]) represented
+by colours and the central age and composition (white ellipse) calculated from a &#8216;model-3&#8217; type fit; e. the same
+U-Th-Sm-He data shown on a ternary diagram, with the central age computed using a &#8216;model-1&#8217; type fit,
+and results shown as &#8216;<span 
+class="cmmi-10">t</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">&plusmn;</span><span 
+class="cmmi-10">&#x00A0;x</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x00A0;y</span><span 
+class="cmmi-10">&#x00A0;</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x00A0;z</span>&#8217;, where <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y </span>are as in Figure&#x00A0;<a 
+href="#x1-110021">1<!--tex4ht:ref: fig:1 --></a>.a and <span 
+class="cmmi-10">z </span>represents the studentised
+95% confidence interval augmented by a factor <img 
+src="index70x.png" alt="&radic;M--SW-D--"  class="sqrt" >; f. non-metric multidimensional scaling (MDS)
+configuration of a detrital zircon U-Pb dataset from <a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>&#x00A0;(<a 
+href="#Xvermeesch2015">2015</a>). See Appendix&#x00A0;B for
+the <span 
+class="cmtt-10">R </span>code corresponding to these plots.</span></div><!--tex4ht:label?: x1-160012 -->
+</td></tr></table>
+
+
+<!--l. 1809--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">17   </span> <a 
+ id="x1-1700017"></a>Future developments</h3>
+<!--l. 1814--><p class="noindent" ><span 
+class="cmtt-10">IsoplotR </span>is, and always will be, a work in progress. The program will continue to evolve because geochronology
+itself continues to evolve. Future additions may include techniques such as K-Ar, K-Ca, luminescence- and
+cosmogenic nuclide dating. New approaches to existing methods, such as LAICPMS-based fission track dating or
+in-situ U-Th-He geochronology may prompt the addition of new input formats or novel approaches to data
+visualisation. Additional user interfaces are planned to facilitate the integration of <span 
+class="cmtt-10">IsoplotR </span>with existing
+workflows in other programming environments. One example of this is the planned development of an
+<span 
+class="cmtt-10">IsoplotR4Excel </span>add-in that will aim to provide the same user experience as K. Ludwig&#8217;s original <span 
+class="cmtt-10">Isoplot</span>
+program.
+<!--l. 1827--><p class="indent" >   As was discussed in Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:input --></a>, rigorous error propagation requires statistical models that keep track of the error
+correlations between isotopic ratio measurements. The regression algorithms of <a 
+href="#Xyork1969">York</a>&#x00A0;(<a 
+href="#Xyork1969">1969</a>), <a 
+href="#Xludwig1994">Ludwig and
+Titterington</a>&#x00A0;(<a 
+href="#Xludwig1994">1994</a>) and <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>) take into account the covariant data structure that is embedded <span 
+class="cmti-10">within </span>each
+aliquot of a multi-aliquot set of mass spectrometer measurements. But they do not take into account the uncertainty
+correlations that may exist <span 
+class="cmti-10">between </span>aliquots. These correlations can be very significant due to the
+detector calibrations and fractionation factors that are shared by all measurements made on the same
+instrument.<br 
+class="newline" />
+<!--l. 1839--><p class="indent" >   For example, <a 
+href="#Xvermeesch2015b">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2015b">2015</a>) showed that error correlations between subsequent heating steps within a
+<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar-age spectrum can be as high as <span 
+class="cmmi-10">&rho; &#x003E; </span>0<span 
+class="cmmi-10">.</span>9. Ignoring these correlations when calculating isochrons or
+weighted means results in imprecise and potentially inaccurate dates. The mathematical solution to this problem is
+fairly straightforward. <a 
+href="#Xludwig1998">Ludwig</a>&#x00A0;(<a 
+href="#Xludwig1998">1998</a>)&#8217;s maximum likelihood approach to U-Pb isochron regression with decay
+constant uncertainties can serve as a template for a generalised approach to linear regression and
+averaging.<br 
+class="newline" />
+<!--l. 1850--><p class="indent" >   This approach would require a new class of input formats in which all the isotopic ratio measurements are
+assembled into one large covariance structure along with all the parameters and calibration constants.
+Similar methods have already been implemented in lower level data acquisition and processing software
+such as <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>(<a 
+href="#Xvermeesch2015b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2015b">2015</a>) and <span 
+class="cmtt-10">U-Pb</span><span 
+class="cmtt-10">_Redux</span>/<span 
+class="cmtt-10">ET</span><span 
+class="cmtt-10">_Redux </span>(<a 
+href="#Xbowring2011">Bowring et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xbowring2011">2011</a>;&#x00A0;<a 
+href="#Xmclean2016">McLean
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmclean2016">2016</a>). At the moment there is a disconnect between these programs and <span 
+class="cmtt-10">IsoplotR</span>. Fortunately,
+both <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>and <span 
+class="cmtt-10">U-Pb</span><span 
+class="cmtt-10">_Redux</span>/<span 
+class="cmtt-10">ET</span><span 
+class="cmtt-10">_Redux </span>are open source software. It is therefore possible to
+extend their code base with functions to export processed data in a format that can be imported into
+<span 
+class="cmtt-10">IsoplotR</span>.
+<!--l. 1864--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-1800017"></a>Acknowledgments</h3>
+<!--l. 1866--><p class="noindent" >The author would like to thank Chris Spencer and Noah McLean for exceptionally insightful reviews which greatly
+improved the manuscript and software. This work was not funded. The author would like to thank his
+family for their patience during the many evening and weekend hours spent on the development of
+<span 
+class="cmtt-10">IsoplotR</span>.
+<!--l. 1874--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-1900017"></a>Appendix A: the graphical user interface (GUI)</h3>
+<!--l. 1876--><p class="noindent" >The GUI can either be accessed online or installed offline following instructions that can be found on
+<span 
+class="cmtt-10">http://isoplotr.london-geochron.com</span>.
+
+<!--l. 1880--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-190011"></a>
+
+<center>
+<!--l. 1882--><p class="noindent" ><a href="IsoplotR.png"><img
+src="IsoplotR.png" class="graphics" alt="PIC"></a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;A.1: </span><span  
+class="content">The GUI has four components: a top bar with selection menus for the various chronometers
+and plot devices, optional settings and documentation; an input table into which data can be pasted from
+spreadsheet applications; an output window displaying the graphical or numerical results; and a lower bar
+to import and export data and results.</span></div><!--tex4ht:label?: x1-190011 -->
+
+<!--l. 1890--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 1892--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-190022"></a>
+
+<center>
+<a href="InputFormats.png">
+<!--l. 1894--><p class="noindent" ><img 
+src="InputFormats.png" class="graphics" alt="PIC"></a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;A.2: </span><span  
+class="content">Alternative input formats (shown here for the U-Pb method) are available through the <span 
+class="cmtt-10">Options</span>
+menu.</span></div><!--tex4ht:label?: x1-190022 -->
+
+<!--l. 1898--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 1900--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a id="x1-190033"></a>
+
+<center>
+<a href="ContextualHelp.png">
+<!--l. 1902--><p class="noindent" ><img 
+src="ContextualHelp.png" class="graphics" alt="PIC">
+</a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;A.3: </span><span  
+class="content">Contextual help (shown here for U-Th-He data) can be accessed by clicking on any text within
+the <span 
+class="cmtt-10">Options </span>menu.</span></div><!--tex4ht:label?: x1-190033 -->
+
+<!--l. 1907--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 1909--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a id="x1-190044"></a>
+
+<center>
+<a href="Help.png">
+<!--l. 1911--><p class="noindent"><img src="Help.png" class="graphics" alt="PIC">
+</a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;A.4: </span><span  
+class="content">Further documentation (shown here for the weighted mean of U-Pb data) is provided under
+the <span 
+class="cmtt-10">Help </span>menu. This includes information about the input and output parameters, and a brief summary of
+the theoretical background with essential references.</span></div><!--tex4ht:label?: x1-190044 -->
+
+<!--l. 1917--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 1919--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a id="x1-190055"></a>
+
+<center>
+<a href="json.png">
+<!--l. 1921--><p class="noindent" ><img src="json.png" class="graphics" alt="PIC">
+</a>
+</center>
+<br /> <div class="caption"><span class="id">Figure&#x00A0;A.5: </span><span  
+class="content">Data and settings can be saved in a <span 
+class="cmtt-10">.json </span>database format for future use.</span></div><!--tex4ht:label?: x1-190055 -->
+
+<!--l. 1925--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="likesectionHead"><a 
+ id="x1-2000017"></a>Appendix B: command-line functionality</h3>
+<!--l. 1929--><p class="noindent" >Running the following commands at the <span 
+class="cmtt-10">R </span>command prompt reproduces all the figures in this paper. Everything
+that follows the hashtag (&#8216;#&#8217;) is a comment and is ignored during execution:
+
+   <div class="verbatim" id="verbatim-1">
+#&#x00A0;load&#x00A0;the&#x00A0;IsoplotR&#x00A0;package:
+&#x00A0;<br />library(IsoplotR)
+&#x00A0;<br />#&#x00A0;for&#x00A0;this&#x00A0;tutorial&#x00A0;we&#x00A0;will&#x00A0;navigate&#x00A0;to&#x00A0;the&#x00A0;system
+&#x00A0;<br />#&#x00A0;directory&#x00A0;that&#x00A0;stores&#x00A0;the&#x00A0;built-in&#x00A0;data&#x00A0;files:
+&#x00A0;<br />setwd(system.file(package='IsoplotR'))
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;1.a
+&#x00A0;<br />RbSr&#x00A0;&#x003C;-&#x00A0;read.data('RbSr1.csv',method='Rb-Sr',format=1)
+&#x00A0;<br />isochron(RbSr)
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;1.b
+&#x00A0;<br />meandat&#x00A0;&#x003C;-&#x00A0;read.data('LudwigMean.csv',method='other')
+&#x00A0;<br />weightedmean(meandat)
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;1.c
+&#x00A0;<br />densdat&#x00A0;&#x003C;-&#x00A0;read.data('LudwigKDE.csv',method='other')
+&#x00A0;<br />cad(densdat)
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;1.d
+&#x00A0;<br />mixture&#x00A0;&#x003C;-&#x00A0;read.data('LudwigMixture.csv',method='other')
+&#x00A0;<br />kde(densdat,pch='|')
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;1.e
+&#x00A0;<br />radialplot(mixture,k='min',bg='yellow')
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;1.f
+&#x00A0;<br />ArAr&#x00A0;&#x003C;-&#x00A0;read.data('ArAr3.csv',method='Ar-Ar',format=3)
+&#x00A0;<br />agespectrum(ArAr)
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;2.a
+&#x00A0;<br />UPb&#x00A0;&#x003C;-&#x00A0;read.data('UPb6.csv',method='U-Pb',format=6)
+&#x00A0;<br />concordia(UPb,common.Pb=2,show.age=1,exterr=TRUE)
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;2.b
+&#x00A0;<br />ThU&#x00A0;&#x003C;-&#x00A0;read.data('ThU1.csv',method='Th-U',format=1)
+&#x00A0;<br />evolution(ThU,levels=ThU$x[,'U238Th232'],
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;clabel=expression(paste(""^"238","U/"^"232","Th")))
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;2.c
+&#x00A0;<br />evolution(ThU,transform=TRUE,detrital=TRUE,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;ellipse.col=rgb(1,0,0,0.2),
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;show.numbers=TRUE,isochron=TRUE)
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;2.d
+&#x00A0;<br />UThSmHe&#x00A0;&#x003C;-&#x00A0;read.data('UThSmHe.csv',method='U-Th-He')
+&#x00A0;<br />helioplot(UThSmHe,model=3,
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;levels=log10(UThSmHe[,'Sm']),
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;clabel=expression("log[Sm]"))
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;2.e
+&#x00A0;<br />helioplot(UThSmHe,model=1,logratio=FALSE,ellipse.col='lightblue')
+&#x00A0;<br />#&#x00A0;Fig&#x00A0;2.f
+&#x00A0;<br />DZ&#x00A0;&#x003C;-&#x00A0;read.data('DZ.csv',method='detritals')
+&#x00A0;<br />mds(DZ)
+</div>
+<!--l. 1977--><p class="nopar" >
+<!--l. 1983--><p class="noindent" >
+
+   <h3 class="likesectionHead"><a 
+ id="x1-2100017"></a>References</h3>
+<!--l. 1983--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xabramson1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Abramson, I.&#x00A0;S. On bandwidth variation in kernel estimates &#8211; a square root law. <span 
+class="cmti-10">The Annals of Statistics</span>,
+  pages 1217&#8211;1223, 1982.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J. The statistical analysis of compositional data. <span 
+class="cmti-10">Journal of the Royal Statistical Society</span>, 44:
+  139&#8211;177, 1982.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J. <span 
+class="cmti-10">The statistical analysis of compositional data</span>. London, Chapman and Hall, 1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbotev2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Botev, Z.&#x00A0;I., Grotowski, J.&#x00A0;F., and Kroese, D.&#x00A0;P.  Kernel density estimation via diffusion.  <span 
+class="cmti-10">Annals of</span>
+  <span 
+class="cmti-10">Statistics</span>, 38:2916&#8211;2957, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbowring2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bowring, J., McLean, N., and Bowring, S.  Engineering cyber infrastructure for U-Pb geochronology:
+  Tripoli and U-Pb_Redux. <span 
+class="cmti-10">Geochemistry, Geophysics, Geosystems</span>, 12(6), 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbrown2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Brown, R.&#x00A0;W., Beucher, R., Roper, S., Persano, C., Stuart, F., and Fitzgerald, P. Natural age dispersion
+  arising from the analysis of broken crystals, Part I. Theoretical basis and implications for the apatite
+  (U-Th)/He thermochronometer. <span 
+class="cmti-10">Geochimica et Cosmochimica Acta</span>, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchang2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chang, W., Cheng, J., Allaire, J., Xie, Y., and McPherson, J. <span 
+class="cmti-10">shiny: Web Application Framework for R</span>,
+  2017. URL <span 
+class="cmtt-10">https://CRAN.R-project.org/package=shiny</span>. R package version 1.0.5.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchayes1956"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chayes, F. <span 
+class="cmti-10">Petrographic modal analysis: an elementary statistical appraisal</span>. Wiley New York, 1956.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchen2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chen, Z.-Q. and Benton, M.&#x00A0;J.  The timing and pattern of biotic recovery following the end-Permian
+  mass extinction. <span 
+class="cmti-10">Nature Geoscience</span>, 5(6):375, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcheng2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cheng, H., Edwards, R.&#x00A0;L., Shen, C.-C., Polyak, V.&#x00A0;J., Asmerom, Y., Woodhead, J., Hellstrom, J.,
+  Wang, Y., Kong, X., Sp&ouml;tl, C., et&#x00A0;al. Improvements in <sup><span 
+class="cmr-7">230</span></sup>Th dating, <sup><span 
+class="cmr-7">230</span></sup>Th and <sup><span 
+class="cmr-7">234</span></sup>U half-life values, and
+  U&#8211;Th isotopic measurements by multi-collector inductively coupled plasma mass spectrometry. <span 
+class="cmti-10">Earth and</span>
+  <span 
+class="cmti-10">Planetary Science Letters</span>, 371:82&#8211;91, 2013.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chew, D.&#x00A0;M. and Donelick, R.&#x00A0;A. Combined apatite fission track and U-Pb dating by LA-ICP-MS and
+  its application in apatite provenance analysis.  <span 
+class="cmti-10">Quantitative Mineralogy and Microanalysis of Sediments</span>
+  <span 
+class="cmti-10">and Sedimentary Rocks: Mineralogical Association of Canada, Short Course</span>, 42:219&#8211;247, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chew, D., Petrus, J., and Kamber, B. U&#8211;Pb LA&#8211;ICPMS dating using accessory mineral standards with
+  variable common Pb. <span 
+class="cmti-10">Chemical Geology</span>, 363:185&#8211;199, 2014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcompston1971"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Compston, W., Berry, H., Vernon, M., Chappell, B., and Kaye, M.  Rubidium-strontium chronology
+  and chemistry of lunar material from the Ocean of Storms.  In <span 
+class="cmti-10">Lunar and Planetary Science Conference</span>
+  <span 
+class="cmti-10">Proceedings</span>, volume&#x00A0;2, page 1471, 1971.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xconnelly2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Connelly, J., Bollard, J., and Bizzarro, M. Pb&#8211;Pb chronometry and the early solar system. <span 
+class="cmti-10">Geochimica</span>
+  <span 
+class="cmti-10">et Cosmochimica Acta</span>, 201:345&#8211;363, 2017.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdjimbi2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Djimbi, D.&#x00A0;M., Gautheron, C., Roques, J., Tassan-Got, L., Gerin, C., and Simoni, E. Impact of apatite
+  chemical composition on (U-Th)/He thermochronometry: An atomistic point of view.   <span 
+class="cmti-10">Geochimica et</span>
+  <span 
+class="cmti-10">Cosmochimica Acta</span>, 167:162&#8211;176, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfarley1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Farley, K.&#x00A0;A., Wolf, R.&#x00A0;A., and Silver, L.&#x00A0;T. The effects of long alpha-stopping distances on (U-Th)/He
+  ages. <span 
+class="cmti-10">Geochimica et Cosmochimica Acta</span>, 60:4223&#8211;4229, 1996. doi: 10.1016/S0016-7037(96)00193-7.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfitzgerald2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fitzgerald, P.&#x00A0;G., Baldwin, S.&#x00A0;L., Webb, L.&#x00A0;E., and O&#8217;Sullivan, P.&#x00A0;B.   Interpretation of (U-Th)/He
+  single grain ages from slowly cooled crustal terranes: A case study from the Transantarctic Mountains of
+  southern Victoria Land. <span 
+class="cmti-10">Chemical Geology</span>, 225:91&#8211;120, 2006.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfleischer1972"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fleischer, R. and Hart, H. Fission track dating: techniques and problems. In Bishop, W., Miller, J., and
+  Cole, S., editors, <span 
+class="cmti-10">Calibration of Hominoid Evolution</span>, pages 135&#8211;170. Scottish Academic Press Edinburgh,
+  1972.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xflowers2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Flowers,   R.&#x00A0;M.,   Ketcham,   R.&#x00A0;A.,   Shuster,   D.&#x00A0;L.,   and   Farley,   K.&#x00A0;A.      Apatite   (U&#8211;Th)/He
+  thermochronometry  using  a  radiation  damage  accumulation  and  annealing  model.    <span 
+class="cmti-10">Geochimica  et</span>
+  <span 
+class="cmti-10">Cosmochimica Acta</span>, 73(8):2347&#8211;2365, 2009.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgplv3"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Free&#x00A0;Software&#x00A0;Foundation.               GNU     General      Public      License,      2007.               URL
+  <span 
+class="cmtt-10">http://www.gnu.org/licenses/gpl.html</span>.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2010b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R. Statistics for LA-ICPMS fission track dating. <span 
+class="cmti-10">Thermo2010 - 12th International Conference</span>
+  <span 
+class="cmti-10">on Thermochronology, Glasgow</span>, page 175, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. The radial plot: graphical assessment of spread in ages. <span 
+class="cmti-10">Nuclear Tracks and Radiation</span>
+  <span 
+class="cmti-10">Measurements</span>, 17:207&#8211;214, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. <span 
+class="cmti-10">Statistics for fission track analysis</span>. CRC Press, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F., Roberts, R.&#x00A0;G., Laslett, G.&#x00A0;M., Yoshida, H., and Olley, J.&#x00A0;M. Optical dating of single
+  and multiple grains of quartz from Jinmium rock shelter, northern Australia: Part I, experimental design
+  and statistical models. <span 
+class="cmti-10">Archaeometry</span>, 41(2):339&#8211;364, 1999.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgradstein2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gradstein, F.&#x00A0;M., Ogg, J.&#x00A0;G., Schmitz, M.&#x00A0;D., Ogg, G., et&#x00A0;al. <span 
+class="cmti-10">The geologic time scale 2012</span>. Walthman:
+  Elsevier, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreen1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Green, P., Duddy, I., Gleadow, A., Tingate, P., and Laslett, G.  Thermal annealing of fission tracks in
+  apatite: 1. A qualitative description. <span 
+class="cmti-10">Chemical Geology: Isotope Geoscience section</span>, 59:237&#8211;253, 1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xguenthner2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Guenthner,  W.&#x00A0;R.,  Reiners,  P.&#x00A0;W.,  Ketcham,  R.&#x00A0;A.,  Nasdala,  L.,  and  Giester,  G.     Helium
+  diffusion in natural zircon: Radiation damage, anisotropy, and the interpretation of zircon (U-Th)/He
+  thermochronology. <span 
+class="cmti-10">American Journal of Science</span>, 313(3):145&#8211;198, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhasebe2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hasebe, N., Barbarand, J., Jarvis, K., Carter, A., and Hurford, A.&#x00A0;J. Apatite fission-track chronometry
+  using laser ablation icp-ms. <span 
+class="cmti-10">Chemical Geology</span>, 207(3):135&#8211;145, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhiess2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hiess,  J.,  Condon,  D.&#x00A0;J.,  McLean,  N.,  and  Noble,  S.&#x00A0;R.    <sup><span 
+class="cmr-7">238</span></sup>U/<sup><span 
+class="cmr-7">235</span></sup>U  systematics  in  terrestrial
+  uranium-bearing minerals. <span 
+class="cmti-10">Science</span>, 335(6076):1610&#8211;1614, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xholden2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Holden, N.&#x00A0;E. and Hoffman, D.&#x00A0;C.  Spontaneous fission half-lives for ground-state nuclide (Technical
+  report). <span 
+class="cmti-10">Pure and applied chemistry</span>, 72(8):1525&#8211;1562, 2000.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhorstwood2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Horstwood, M.&#x00A0;S., Ko&#353;ler, J., Gehrels, G., Jackson, S.&#x00A0;E., McLean, N.&#x00A0;M., Paton, C., Pearson, N.&#x00A0;J.,
+  Sircombe, K., Sylvester, P., Vermeesch, P., et&#x00A0;al. Community-Derived Standards for LA-ICP-MS U-(Th-)
+
+  Pb Geochronology&#8211;Uncertainty Propagation, Age Interpretation and Data Reporting. <span 
+class="cmti-10">Geostandards and</span>
+  <span 
+class="cmti-10">Geoanalytical Research</span>, 40(3):311&#8211;332, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hurford, A.&#x00A0;J. and Green, P.&#x00A0;F. The zeta age calibration of fission-track dating. <span 
+class="cmti-10">Chemical Geology</span>, 41:
+  285 &#8211; 317, 1983. ISSN 0009-2541. doi: 10.1016/S0009-2541(83)80026-6.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjaffey1971"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Jaffey, A., Flynn, K., Glendenin, L., Bentley, W., and Essling, A.  Precision measurement of half-lives
+  and specific activities of u235 and u238. <span 
+class="cmti-10">Physical Review C</span>, 4(5):1889, 1971.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkaufman1965"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kaufman, A. and Broecker, W.  Comparison of Th<sup><span 
+class="cmr-7">230</span></sup> and C<sup><span 
+class="cmr-7">14</span></sup> ages for carbonate materials from Lakes
+  Lahontan and Bonneville. <span 
+class="cmti-10">Journal of geophysical Research</span>, 70(16):4039&#8211;4054, 1965.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkenney1954"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kenney, J. and Keeping, E.   <span 
+class="cmti-10">Mathematics of statistics</span>, volume&#x00A0;1 of <span 
+class="cmti-10">Mathematics of Statistics</span>.   Van
+  Nostrand company, 1954.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ketcham,  R.&#x00A0;A.,  Gautheron,  C.,  and  Tassan-Got,  L.   Accounting  for  long  alpha-particle  stopping
+  distances in (U&#8211;Th&#8211;Sm)/He geochronology: refinement of the baseline case. <span 
+class="cmti-10">Geochimica et Cosmochimica</span>
+  <span 
+class="cmti-10">Acta</span>, 75(24):7779&#8211;7791, 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1978"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J.&#x00A0;B. and Wish, M.  <span 
+class="cmti-10">Multidimensional scaling</span>, volume 07-011 of <span 
+class="cmti-10">Sage University Paper series</span>
+  <span 
+class="cmti-10">on Quantitative Application in the Social Sciences</span>. Sage Publications, Beverly Hills and London, 1978.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R.  ISOPLOT for MS-DOS, a plotting and regression program for radiogenic isotope data
+  for IBM-PC compatible computers, version 1.00. <span 
+class="cmti-10">USGS Open-File Report OF-88-0557</span>, 1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R. On the treatment of concordant uranium-lead ages. <span 
+class="cmti-10">Geochimica et Cosmochimica Acta</span>,
+  62:665&#8211;676, feb 1998. doi: 10.1016/S0016-7037(98)00059-3.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R.  Using Isoplot/EX, version 2, a geochronological toolkit for Microsoft Excel.  <span 
+class="cmti-10">Berkeley</span>
+  <span 
+class="cmti-10">Geochronological Center Special Publication</span>, 1a, 1999.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R.  User&#8217;s manual for Isoplot 3.00: a geochronological toolkit for Microsoft Excel.  <span 
+class="cmti-10">Berkeley</span>
+  <span 
+class="cmti-10">Geochronology Center Special Publication 4</span>, 4, 2003a.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig2003b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig,  K.&#x00A0;R.   Mathematical&#8211;statistical  treatment  of  data  and  errors  for  <sup><span 
+class="cmr-7">230</span></sup>Th/U  geochronology.
+  <span 
+class="cmti-10">Reviews in Mineralogy and Geochemistry</span>, 52(1):631&#8211;656, 2003b.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R. User&#8217;s manual for Isoplot version 3.75&#8211;4.15: a geochronological toolkit for Microsoft Excel.
+  <span 
+class="cmti-10">Berkeley Geochronological Center Special Publication</span>, 5, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1994"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R. and Titterington, D.  Calculation of <sup><span 
+class="cmr-7">230</span></sup>Th-U isochrons, ages, and errors.  <span 
+class="cmti-10">Geochimica et</span>
+  <span 
+class="cmti-10">Cosmochimica Acta</span>, 58(22):5031&#8211;5042, 1994.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmatzel2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Matzel, J.&#x00A0;E., Bowring, S.&#x00A0;A., and Miller, R.&#x00A0;B. Time scales of pluton construction at differing crustal
+  levels: Examples from the Mount Stuart and Tenpeak intrusions, North Cascades, Washington. <span 
+class="cmti-10">Geological</span>
+  <span 
+class="cmti-10">Society of America Bulletin</span>, 118(11-12):1412&#8211;1430, 2006.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcdougall1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McDougall, I. and Harrison, T.&#x00A0;M.  <span 
+class="cmti-10">Geochronology and Thermochronology by the</span> <sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmti-10">Ar/</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmti-10">Ar method</span>.
+  Oxford University Press, New York, 1999.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcintyre1966"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McIntyre,  G.&#x00A0;A.,  Brooks,  C.,  Compston,  W.,  and  Turek,  A.   The  Statistical  Assessment  of  Rb-Sr
+  Isochrons. <span 
+class="cmti-10">Journal of Geophysical Research</span>, 71:5459&#8211;5468, 1966.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmclean2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McLean, N., Bowring, J., and Bowring, S.  An algorithm for U-Pb isotope dilution data reduction and
+  uncertainty propagation. <span 
+class="cmti-10">Geochemistry, Geophysics, Geosystems</span>, 12(6), 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmclean2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McLean,  N.,  Bowring,  J.,  and  Gehrels,  G.    Algorithms  and  software  for  U-Pb  geochronology  by
+  LA-ICPMS. <span 
+class="cmti-10">Geochemistry, Geophysics, Geosystems</span>, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmeesters2002b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Meesters, A. and Dunai, T.  Solving the production&#8211;diffusion equation for finite diffusion domains of
+  various shapes: Part ii. application to cases with <span 
+class="cmmi-10">&alpha;</span>-ejection and nonhomogeneous distribution of the source.
+  <span 
+class="cmti-10">Chemical Geology</span>, 186(3):347&#8211;363, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmoore1967"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Moore, W.&#x00A0;S. Amazon and Mississippi River concentrations of uranium, thorium, and radium isotopes.
+  <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 2(3):231&#8211;234, 1967.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnicolaysen1961"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nicolaysen, L. Graphic interpretation of discordant age measurements on metamorphic rocks. <span 
+class="cmti-10">Annals of</span>
+  <span 
+class="cmti-10">the New York Academy of Sciences</span>, 91(1):198&#8211;206, 1961.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xosmond1970"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Osmond, J., May, J.&#x00A0;P., and Tanner, W. Age of the Cape Kennedy Barrier-and-Lagoon Complex. <span 
+class="cmti-10">Journal</span>
+  <span 
+class="cmti-10">of Geophysical Research</span>, 75(2):469&#8211;479, 1970.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrioux2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Rioux, M., Lissenberg, C.&#x00A0;J., McLean, N.&#x00A0;M., Bowring, S.&#x00A0;A., MacLeod, C.&#x00A0;J., Hellebrand, E., and
+  Shimizu, N. Protracted timescales of lower crustal growth at the fast-spreading East Pacific Rise. <span 
+class="cmti-10">Nature</span>
+  <span 
+class="cmti-10">Geoscience</span>, 5(4):275&#8211;278, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrosholt1976"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Rosholt, J. <sup><span 
+class="cmr-7">230</span></sup>Th/<sup><span 
+class="cmr-7">234</span></sup>U dating of travertine and caliche rinds. In <span 
+class="cmti-10">Geological Society of America Abstracts</span>
+  <span 
+class="cmti-10">with Programs</span>, volume&#x00A0;8, page 1076, 1976.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstacey1975"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stacey, J. and Kramers, J.  Approximation of terrestrial lead isotope evolution by a two-stage model.
+  <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 26(2):207&#8211;221, 1975.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtera1972"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Tera, F. and Wasserburg, G. U-Th-Pb systematics in three Apollo 14 basalts and the problem of initial
+  Pb in lunar rocks. <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 14(3):281&#8211;304, 1972.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtitterington1979"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Titterington, D.&#x00A0;M. and Halliday, A.&#x00A0;N. On the fitting of parallel isochrons and the method of maximum
+  likelihood. <span 
+class="cmti-10">Chemical Geology</span>, 26:183&#8211;195, 1979.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtorgerson1952"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Torgerson, W.&#x00A0;S. Multidimensional scaling: I. Theory and method. <span 
+class="cmti-10">Psychometrika</span>, 17(4):401&#8211;419, 1952.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtouw1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>van  der  Touw,  J.,  Galbraith,  R.,  and  Laslett,  G.   A  logistic  truncated  normal  mixture  model  for
+  overdispersed binomial data. <span 
+class="cmti-10">Journal of Statistical Computation and Simulation</span>, 59(4):349&#8211;373, 1997.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkerm2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Van&#x00A0;Kerm, P. Adaptive kernel density estimation. <span 
+class="cmti-10">The Stata Journal</span>, 3(2):148&#8211;156, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2006b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Tectonic discrimination diagrams revisited.  <span 
+class="cmti-10">Geochemistry, Geophysics, Geosystems</span>, 7,
+  2006. doi: 10.1029/2005GC001092.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Quantitative geomorphology of the White Mountains (California) using detrital apatite
+  fission track thermochronology.  <span 
+class="cmti-10">Journal of Geophysical Research (Earth Surface)</span>, 112(F11):3004, 2007.
+  doi: 10.1029/2006JF000671.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2008a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Three new ways to calculate average (U-Th)/He ages.  <span 
+class="cmti-10">Chemical Geology</span>, 249:339&#8211;347,
+  2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2010a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  HelioPlot, and the treatment of overdispersed (U-Th-Sm)/He data.  <span 
+class="cmti-10">Chemical Geology</span>,
+  271(3-4):108 &#8211; 111, 2010. doi: DOI: 10.1016/j.chemgeo.2010.01.002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  On the visualisation of detrital age distributions.  <span 
+class="cmti-10">Chemical Geology</span>, 312-313:190&#8211;194,
+  2012. doi: 10.1016/j.chemgeo.2012.04.021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Multi-sample comparison of detrital age distributions.  <span 
+class="cmti-10">Chemical Geology</span>, 341:140&#8211;146,
+  2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.   Revised  error  propagation  of  <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar  data,  including  covariances.   <span 
+class="cmti-10">Geochimica et</span>
+  <span 
+class="cmti-10">Cosmochimica Acta</span>, 171:325&#8211;337, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. Statistics for LA-ICP-MS based fission track dating. <span 
+class="cmti-10">Chemical Geology</span>, 456:19&#8211;27, 2017.
+  doi: https://doi.org/10.1016/j.chemgeo.2017.03.002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.   Statistics for fission tracks.   In Malus&agrave;, M. and Fitzgerald, P., editors, <span 
+class="cmti-10">Fission track</span>
+  <span 
+class="cmti-10">thermochronology and its application to geology</span>. Springer, 2018a.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P.  Dissimilarity measures in detrital geochronology.  <span 
+class="cmti-10">Earth-Science Reviews</span>, 178:310&#8211;321,
+  2018b. doi: 10.1016/j.earscirev.2017.11.027.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. and Garzanti, E. Making geological sense of &#8216;Big Data&#8217; in sedimentary provenance analysis.
+  <span 
+class="cmti-10">Chemical Geology</span>, 409:20&#8211;27, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2016a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.,  Resentini,  A.,  and  Garzanti,  E.   An  R  package  for  statistical  provenance  analysis.
+  <span 
+class="cmti-10">Sedimentary Geology</span>, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwetherill1956"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wetherill, G.&#x00A0;W. Discordant Uranium-Lead ages, I. <span 
+class="cmti-10">Transactions, American Geophysical Union</span>, 37(3):
+  320&#8211;326, 1956.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyork1966"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>York, D. Least-squares fitting of a straight line. <span 
+class="cmti-10">Canadian Journal of Physics</span>, 44(5):1079&#8211;1086, 1966.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyork1969"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>York, D.  Least squares fitting of a straight line with correlated errors.  <span 
+class="cmti-10">Earth and Planetary Science</span>
+  <span 
+class="cmti-10">Letters</span>, 5:320&#8211;324, 1969.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyork2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>York, D., Evensen, N.&#x00A0;M., Mart<img 
+src="cmr10-10.png" alt="i" class="10x-x-10" />nez, M.&#x00A0;L., and De&#x00A0;Basabe&#x00A0;Delgado, J. Unified equations for the slope,
+  intercept, and standard errors of the best straight line. <span 
+class="cmti-10">American Journal of Physics</span>, 72(3):367&#8211;375, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyoung1938"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Young, G. and Householder, A.&#x00A0;S.  Discussion of a set of points in terms of their mutual distances.
+  <span 
+class="cmti-10">Psychometrika</span>, 3(1):19&#8211;22, 1938.
+</p>
+  </div>
+
+</td></tr></table>
+
+</body></html>

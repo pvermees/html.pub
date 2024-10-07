@@ -1,0 +1,24 @@
+#font-resize {
+display: none;
+}
+
+.label, p.para {
+width: 50%;
+}
+span.view_app_text {
+margin-left: 25%;
+}
+p.para, div.label, #print_title {
+display: block;
+margin-left: 1%;
+}
+.pre_question_text {
+margin-left: 0px !important;
+}
+.print_app_row {
+padding: 5px;
+padding-left: 0px;
+}
+div#column1 {
+border-top: 0px;
+}

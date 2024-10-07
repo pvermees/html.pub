@@ -1,0 +1,66 @@
+\begin{thebibliography}{11}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Aitchison(1986)}]{aitchison1986}
+Aitchison, J., 1986. The statistical analysis of compositional data. London,
+  Chapman and Hall.
+
+\bibitem[{{Campbell} et~al.(2005){Campbell}, {Reiners}, {Allen}, {Nicolescu},
+  and {Upadhyay}}]{campbell2005}
+{Campbell}, I.~H., {Reiners}, P.~W., {Allen}, C.~M., {Nicolescu}, S.,
+  {Upadhyay}, R., Sep. 2005. {He-Pb double dating of detrital zircons from the
+  Ganges and Indus Rivers: Implication for quantifying sediment recycling and
+  provenance studies}. Earth and Planetary Science Letters 237, 402--432.
+
+\bibitem[{Fitzgerald et~al.(2006)Fitzgerald, Baldwin, Webb, and
+  O'Sullivan}]{fitzgerald2006}
+Fitzgerald, P.~G., Baldwin, S.~L., Webb, L.~E., O'Sullivan, P.~B., 2006.
+  {Interpretation of (U-Th)/He single grain ages from slowly cooled crustal
+  terranes: A case study from the Transantarctic Mountains of southern Victoria
+  Land.} Chemical Geology 225, 91--120.
+
+\bibitem[{Galbraith and Green(1990)}]{galbraith1990b}
+Galbraith, R.~F., Green, P.~F., 1990. Estimating the component ages in a finite
+  mixture. Nuclear Tracks and Radiation Measurements 17, 197--206.
+
+\bibitem[{{House} et~al.(2000){House}, {Farley}, and {Stockli}}]{house2000}
+{House}, M.~A., {Farley}, K.~A., {Stockli}, D., Dec. 2000. {Helium chronometry
+  of apatite and titanite using Nd-YAG laser heating}. Earth and Planetary
+  Science Letters 183, 365--368.
+
+\bibitem[{Ketcham(2009)}]{ketcham2009}
+Ketcham, R., 2009. Refinements for alpha stopping distances and {FT}
+  corrections. OnTrack, the electronic newsletter of the international
+  thermochronology community 16.
+
+\bibitem[{{Ludwig}(1998)}]{ludwig1998}
+{Ludwig}, K.~R., Feb. 1998. {On the treatment of concordant uranium-lead ages}.
+  Geochimica et Cosmochimica Acta 62, 665--676.
+
+\bibitem[{{McIntyre} et~al.(1966){McIntyre}, {Brooks}, {Compston}, and
+  {Turek}}]{mcintyre1966}
+{McIntyre}, G.~A., {Brooks}, C., {Compston}, W., {Turek}, A., 1966. {The
+  Statistical Assessment of Rb-Sr Isochrons}. Journal of Geophysical Research
+  71, 5459--5468.
+
+\bibitem[{{Shuster} et~al.(2006){Shuster}, {Flowers}, and
+  {Farley}}]{shuster2006}
+{Shuster}, D.~L., {Flowers}, R.~M., {Farley}, K.~A., Sep. 2006. {The influence
+  of natural radiation damage on helium diffusion kinetics in apatite}. Earth
+  and Planetary Science Letters 249, 148--161.
+
+\bibitem[{Vermeesch(2008)}]{vermeesch2008a}
+Vermeesch, P., 2008. Three new ways to calculate average ({U}-{T}h)/{H}e ages.
+  Chemical Geology 249, 339--347.
+
+\bibitem[{{Vermeesch} et~al.(2007){Vermeesch}, {Seward}, {Latkoczy}, {Wipf},
+  {G{\"u}nther}, and {Baur}}]{vermeesch2007b}
+{Vermeesch}, P., {Seward}, D., {Latkoczy}, C., {Wipf}, M., {G{\"u}nther}, D.,
+  {Baur}, H., 2007. {{$\alpha$}-Emitting mineral inclusions in apatite, their
+  effect on (U-Th)/He ages, and how to reduce it}. Geochimica et Cosmochimica
+  Acta 71, 1737--1746.
+
+\end{thebibliography}

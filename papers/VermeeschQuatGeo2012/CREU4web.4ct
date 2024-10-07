@@ -1,0 +1,21 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{3}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-2}{Standard material}}{5}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-3}{Analytical methods}}{7}\relax 
+\doTocEntry\tocsubsection{3.1}{\csname a:TocLink\endcsname{1}{x1-40003.1}{QQ2-1-4}{BGC}}{7}\relax 
+\doTocEntry\tocsubsection{3.2}{\csname a:TocLink\endcsname{1}{x1-50003.2}{QQ2-1-5}{CRPG}}{9}\relax 
+\doTocEntry\tocsubsection{3.3}{\csname a:TocLink\endcsname{1}{x1-60003.3}{QQ2-1-6}{ETH}}{11}\relax 
+\doTocEntry\tocsubsection{3.4}{\csname a:TocLink\endcsname{1}{x1-70003.4}{QQ2-1-7}{GFZ}}{12}\relax 
+\doTocEntry\tocsubsection{3.5}{\csname a:TocLink\endcsname{1}{x1-80003.5}{QQ2-1-8}{SUERC}}{14}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-90004}{QQ2-1-9}{Results}}{16}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-90011}{}{\ignorespaces Neon three-isotope plots of (a) all the individual heating steps and (b) the total released gas for each analyzed CREU-1 aliquot. The data fit a spallation line with a slope of 1.108 $\pm $ 0.014 (2$\sigma $, MSWD = 3.4). Error symbols are 1$\sigma $.}}{figure}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-90032}{}{\ignorespaces Overview of all the reported $^{21}$Ne concentrations and 2$\sigma $ uncertainties, with indication of the error-weighted means for each participating laboratory. White bars are considered outliers and were not used to calculate the averages. Left and middle panels: coarse and fine fractions of CREU-1; right panel: CRONUS-A. Gray band marks the average and 2$\sigma $ uncertainty of CREU-1.}}{figure}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-100005}{QQ2-1-12}{Comparison with CRONUS-A}}{25}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-110006}{QQ2-1-13}{Discussion}}{26}\relax 
+\doTocEntry\tocsection{7}{\csname a:TocLink\endcsname{1}{x1-120007}{QQ2-1-14}{Conclusion}}{27}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-130007}{QQ2-1-15}{Acknowledgments}}{28}\relax 
+\doTocEntry\toclot{1}{\csname a:TocLink\endcsname{1}{x1-130011}{}{\ignorespaces Summary table of the coarse fraction of CREU-1. `21/20' and `22/20' are the $^{21}Ne/^{20}Ne$ and $^{22}Ne/^{20}Ne$ ratios, $^{21}$Ne$^*$ is excess $^{21}$Ne. Temperatures of ETH-4-7 (marked by an asterisk) and SUERC-8-9 (omitted) were set when the crucible was really full causing samples to be degassed at positions where the temperature was lower than the nominal crucible temperature. GFZ-6-7 were crushed to small grain size ($\sim $50$\mu $m) before loading, while GFZ-8 was degassed by in vacuo crushing instead of heating. These samples were not included in Figures 1\hbox {} and 2\hbox {}.}}{table}\relax 
+\doTocEntry\toclot{2}{\csname a:TocLink\endcsname{1}{x1-130022}{}{\ignorespaces Same as Table 1\hbox {}, but for the fine fraction of CREU-1.}}{table}\relax 
+\doTocEntry\toclot{3}{\csname a:TocLink\endcsname{1}{x1-130033}{}{\ignorespaces Same as Tables 1\hbox {} and 2\hbox {}, but for CRONUS-A.}}{table}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-140007}{QQ2-1-19}{References}}{39}\relax 
+\par 

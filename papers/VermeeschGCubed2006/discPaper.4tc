@@ -1,0 +1,73 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{4}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-2}{Discriminant analysis}}{5}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-3}{The compositional data problem}}{7}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-40004}{QQ2-1-4}{Aitchison's solution to the compositional data problem}}{8}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-50005}{QQ2-1-5}{Revisiting a few popular discrimination diagrams}}{9}\relax 
+\doTocEntry\tocsubsection{5.1}{\csname a:TocLink\endcsname{1}{x1-60005.1}{QQ2-1-6}{Binary discrimination diagrams}}{11}\relax 
+\doTocEntry\tocsubsection{5.2}{\csname a:TocLink\endcsname{1}{x1-70005.2}{QQ2-1-7}{Ternary discrimination diagrams}}{11}\relax 
+\doTocEntry\tocsubsection{5.3}{\csname a:TocLink\endcsname{1}{x1-80005.3}{QQ2-1-8}{Multi-element discriminant function analysis}}{12}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-90006}{QQ2-1-9}{An exhaustive exploration of binary and ternary discriminant analyses}}{14}\relax 
+\doTocEntry\tocsubsection{6.1}{\csname a:TocLink\endcsname{1}{x1-100006.1}{QQ2-1-10}{Binary discrimination diagrams}}{14}\relax 
+\doTocEntry\tocsubsection{6.2}{\csname a:TocLink\endcsname{1}{x1-110006.2}{QQ2-1-11}{Ternary discrimination diagrams}}{14}\relax 
+\doTocEntry\tocsection{7}{\csname a:TocLink\endcsname{1}{x1-120007}{QQ2-1-12}{Testing the results}}{15}\relax 
+\doTocEntry\tocsection{8}{\csname a:TocLink\endcsname{1}{x1-130008}{QQ2-1-13}{Conclusions}}{17}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-140008}{QQ2-1-14}{Acknowledgments}}{18}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-150008}{QQ2-1-15}{References}}{18}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-160008}{QQ2-1-16}{List of Tables}}{21}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-170008}{QQ2-1-17}{Tables}}{23}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-17002}{}{\numberline {1}{\ignorespaces The 100 best ternary linear discrimination diagrams}}}{23}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-17004}{}{\numberline {2}{\ignorespaces The best ternary linear discrimination diagrams using only incompatible elements}}}{28}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-17006}{}{\numberline {3}{\ignorespaces The 100 best ternary quadratic discrimination diagrams}}}{32}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-17008}{}{\numberline {4}{\ignorespaces The best ternary quadratic discrimination diagrams using only incompatible elements}}}{37}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-17010}{}{\numberline {5}{\ignorespaces Misclassification estimates}}}{41}\relax 
+\doTocEntry\toclot{6}{\csname a:TocLink\endcsname{1}{x1-170116}{}{\ignorespaces Anchor points for selected linear discriminant analyses.}}{table}\relax 
+\doTocEntry\toclot{7}{\csname a:TocLink\endcsname{1}{x1-170127}{}{\ignorespaces Comparison between the old and new decision boundaries}}{table}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-180007}{QQ2-1-20}{List of Figures}}{52}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-190007}{QQ2-1-21}{Figures}}{54}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-190011}{}{\ignorespaces Linear discriminant analysis}}{figure}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-190022}{}{\ignorespaces The difference between PCA and LDA}}{figure}\relax 
+\doTocEntry\toclof{3}{\csname a:TocLink\endcsname{1}{x1-190033}{}{\ignorespaces The consequences of the constant-sum constraint}}{figure}\relax 
+\doTocEntry\toclof{4}{\csname a:TocLink\endcsname{1}{x1-190044}{}{\ignorespaces Spurious correlation of ratios}}{figure}\relax 
+\doTocEntry\toclof{5}{\csname a:TocLink\endcsname{1}{x1-190055}{}{\ignorespaces The dangers of using ``traditional'' statistics on the simplex}}{figure}\relax 
+\doTocEntry\toclof{6}{\csname a:TocLink\endcsname{1}{x1-190066}{}{\ignorespaces Mapping compositional data from $\Delta _2$ to $\mathbb  {R}^2$}}{figure}\relax 
+\doTocEntry\toclof{7}{\csname a:TocLink\endcsname{1}{x1-190077}{}{\ignorespaces Linear discriminant analysis done the wrong way}}{figure}\relax 
+\doTocEntry\toclof{8}{\csname a:TocLink\endcsname{1}{x1-190088}{}{\ignorespaces Linear discriminant analysis done the right way}}{figure}\relax 
+\doTocEntry\toclof{9}{\csname a:TocLink\endcsname{1}{x1-190099}{}{\ignorespaces Results of the linear discriminant analysis mapped back to the simplex}}{figure}\relax 
+\doTocEntry\toclof{10}{\csname a:TocLink\endcsname{1}{x1-1901010}{}{\ignorespaces Geographical locations of the training data}}{figure}\relax 
+\doTocEntry\toclof{11}{\csname a:TocLink\endcsname{1}{x1-1901111}{}{\ignorespaces Linear discriminant analysis of the Ti-V system of Shervais (1982)}}{figure}\relax 
+\doTocEntry\toclof{12}{\csname a:TocLink\endcsname{1}{x1-1901212}{}{\ignorespaces Quadratic discriminant analysis of the Ti-V system}}{figure}\relax 
+\doTocEntry\toclof{13}{\csname a:TocLink\endcsname{1}{x1-1901313}{}{\ignorespaces Linear discriminant analysis of the Ti-Zr system of Pearce and Cann (1973)}}{figure}\relax 
+\doTocEntry\toclof{14}{\csname a:TocLink\endcsname{1}{x1-1901414}{}{\ignorespaces Quadratic discriminant analysis of the Ti-Zr system}}{figure}\relax 
+\doTocEntry\toclof{15}{\csname a:TocLink\endcsname{1}{x1-1901515}{}{\ignorespaces Linear discriminant analysis of the Ti-Zr-Y system of Pearce and Cann (1973)}}{figure}\relax 
+\doTocEntry\toclof{16}{\csname a:TocLink\endcsname{1}{x1-1901616}{}{\ignorespaces Quadratic discriminant analysis of the Ti-Zr-Y system}}{figure}\relax 
+\doTocEntry\toclof{17}{\csname a:TocLink\endcsname{1}{x1-1901717}{}{\ignorespaces Linear discriminant analysis of the Zr-Y-Nb system of Meschede (1986)}}{figure}\relax 
+\doTocEntry\toclof{18}{\csname a:TocLink\endcsname{1}{x1-1901818}{}{\ignorespaces Quadratic discriminant analysis of the Zr-Y-Nb system}}{figure}\relax 
+\doTocEntry\toclof{19}{\csname a:TocLink\endcsname{1}{x1-1901919}{}{\ignorespaces Linear discriminant analysis of the Th-Ta-Hf system of Wood (1980)}}{figure}\relax 
+\doTocEntry\toclof{20}{\csname a:TocLink\endcsname{1}{x1-1902020}{}{\ignorespaces Quadratic discriminant analysis of the Th-Ta-Hf system}}{figure}\relax 
+\doTocEntry\toclof{21}{\csname a:TocLink\endcsname{1}{x1-1902121}{}{\ignorespaces Linear discriminant analysis using Ti, Zr, Y and Sr}}{figure}\relax 
+\doTocEntry\toclof{22}{\csname a:TocLink\endcsname{1}{x1-1902222}{}{\ignorespaces Linear discriminant analysis using major element data}}{figure}\relax 
+\doTocEntry\toclof{23}{\csname a:TocLink\endcsname{1}{x1-1902323}{}{\ignorespaces Exhaustive exploration of all bivariate linear discriminant analyses using only major elements}}{figure}\relax 
+\doTocEntry\toclof{24}{\csname a:TocLink\endcsname{1}{x1-1902424}{}{\ignorespaces Same as Figure \o:ref {fig:major2lin}, but for quadratic discriminant analysis}}{figure}\relax 
+\doTocEntry\toclof{25}{\csname a:TocLink\endcsname{1}{x1-1902525}{}{\ignorespaces Matrices showing the performance of all possible bivariate discriminant analyses using combinations of 45 elements}}{figure}\relax 
+\doTocEntry\toclof{26}{\csname a:TocLink\endcsname{1}{x1-1902626}{}{\ignorespaces Same as Figure \o:ref {fig:trace2lin}, but for quadratic discriminant analysis}}{figure}\relax 
+\doTocEntry\toclof{27}{\csname a:TocLink\endcsname{1}{x1-1902727}{}{\ignorespaces Performance analysis of all possible ternary discriminant analyses using TiO$_2$ and other major element oxides}}{figure}\relax 
+\doTocEntry\toclof{28}{\csname a:TocLink\endcsname{1}{x1-1902828}{}{\ignorespaces Same as Figure \o:ref {fig:major3lin}, but using quadratic discriminant analysis}}{figure}\relax 
+\doTocEntry\toclof{29}{\csname a:TocLink\endcsname{1}{x1-1902929}{}{\ignorespaces Performance analysis of all possible ternary discriminant analyses using Ti and other elements}}{figure}\relax 
+\doTocEntry\toclof{30}{\csname a:TocLink\endcsname{1}{x1-1903030}{}{\ignorespaces Same as Figure \o:ref {fig:trace3lin}, but using quadratic discriminant analysis}}{figure}\relax 
+\doTocEntry\toclof{31}{\csname a:TocLink\endcsname{1}{x1-1903131}{}{\ignorespaces Best ternary linear discriminant analysis (using Si, Ti, and Sr)}}{figure}\relax 
+\doTocEntry\toclof{32}{\csname a:TocLink\endcsname{1}{x1-1903232}{}{\ignorespaces Linear discriminant analysis using Eu, Lu, and Sr}}{figure}\relax 
+\doTocEntry\toclof{33}{\csname a:TocLink\endcsname{1}{x1-1903333}{}{\ignorespaces Linear discriminant analysis using Ti, V and Sc}}{figure}\relax 
+\doTocEntry\toclof{34}{\csname a:TocLink\endcsname{1}{x1-1903434}{}{\ignorespaces Quadratic discriminant analysis using Na, Nb and Sr}}{figure}\relax 
+\doTocEntry\toclof{35}{\csname a:TocLink\endcsname{1}{x1-1903535}{}{\ignorespaces Quadratic discriminant analysis using Ti, V and Sm}}{figure}\relax 
+\doTocEntry\toclof{36}{\csname a:TocLink\endcsname{1}{x1-1903636}{}{\ignorespaces Illustration of the bias-variance tradeoff in a regression context}}{figure}\relax 
+\doTocEntry\toclof{37}{\csname a:TocLink\endcsname{1}{x1-1903737}{}{\ignorespaces The test data plotted on various versions of the Ti-V diagram}}{figure}\relax 
+\doTocEntry\toclof{38}{\csname a:TocLink\endcsname{1}{x1-1903838}{}{\ignorespaces The test data plotted on the Ti-Zr diagram}}{figure}\relax 
+\doTocEntry\toclof{39}{\csname a:TocLink\endcsname{1}{x1-1903939}{}{\ignorespaces The test data plotted on the Ti-Zr-Y diagram}}{figure}\relax 
+\doTocEntry\toclof{40}{\csname a:TocLink\endcsname{1}{x1-1904040}{}{\ignorespaces The test data plotted on the Nb-Zr-Y diagram}}{figure}\relax 
+\doTocEntry\toclof{41}{\csname a:TocLink\endcsname{1}{x1-1904141}{}{\ignorespaces The test data plotted on the Th-Ta-Hf diagram}}{figure}\relax 
+\doTocEntry\toclof{42}{\csname a:TocLink\endcsname{1}{x1-1904242}{}{\ignorespaces The test data plotted on the Si-Ti-Sr diagram}}{figure}\relax 
+\doTocEntry\toclof{43}{\csname a:TocLink\endcsname{1}{x1-1904343}{}{\ignorespaces The test data plotted on the Eu-Lu-Sr diagram}}{figure}\relax 
+\doTocEntry\toclof{44}{\csname a:TocLink\endcsname{1}{x1-1904444}{}{\ignorespaces The test data plotted on the Ti-V-Sc diagram}}{figure}\relax 
+\doTocEntry\toclof{45}{\csname a:TocLink\endcsname{1}{x1-1904545}{}{\ignorespaces The test data plotted on the Na-Nb-Sr diagram}}{figure}\relax 
+\doTocEntry\toclof{46}{\csname a:TocLink\endcsname{1}{x1-1904646}{}{\ignorespaces The test data plotted on the Ti-V-Sm diagram}}{figure}\relax 

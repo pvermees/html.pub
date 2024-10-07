@@ -1,0 +1,2226 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" 
+"http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd" > 
+<?xml-stylesheet type="text/css" href="MLEpaper3.css"?> 
+<html  
+xmlns="http://www.w3.org/1999/xhtml"  
+><head><title>HelioPlot, and the treatment of
+overdispersed (U-Th-Sm)/He data</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,mozilla,html --> 
+<meta name="src" content="MLEpaper3.tex" /> 
+<meta name="date" content="2010-01-08 16:04:00" /> 
+<link rel="stylesheet" type="text/css" href="MLEpaper3.css" /> 
+</head><body 
+>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">HelioPlot, and the treatment of<br />
+overdispersed (U-Th-Sm)/He data</h2>
+<div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span><span class="thank-mark"><a 
+href="#tk-1"><!--l. 10--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mo 
+class="MathClass-bin">&#x2217;</mo></math></a></span></div><br />
+<div class="date" ></div>
+   <div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><!--l. 10--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mo 
+class="MathClass-bin">&#x2217;</mo></math></span>School of
+Earth Sciences; Birkbeck, University of London</div></div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 12--><p class="noindent" >
+</p><!--l. 12--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></p></div>
+     <!--l. 13--><p class="indent" >    <span 
+class="cmr-9">More often that not, (U-Th-Sm)/He ages are overdispersed with respect to the formal analytical</span>
+     <span 
+class="cmr-9">uncertainty. The Mean Square of the Weighted Deviates (MSWD) is a useful tool for assessing the</span>
+     <span 
+class="cmr-9">amount of overdispersion. If the MSWD is significantly greater than one, the ages can be parameterised</span>
+     <span 
+class="cmr-9">by a (log)normal distribution with two sources of variance, which can be iteratively solved using the</span>
+     <span 
+class="cmr-9">method of maximum likelihood. The overdispersion of replicate (U-Th-Sm)/He ages is caused by the</span>
+     <span 
+class="cmr-9">overdispersion of the underlying U-Th-Sm-He compositions, the geometric mean of which gives rise</span>
+     <span 
+class="cmr-9">to the so-called &#x2018;central age&#x2019;. These compositions can be normalised to unity and parameterised by a</span>
+     <span 
+class="cmr-9">multivariate logistic normal distribution with two sources of variance, which can be iteratively solved</span>
+     <span 
+class="cmr-9">by a multivariate generalisation of the aforementioned age-averaging algorithm. Exact and asymmetric</span>
+     <span 
+class="cmr-9">confidence intervals for the central age are obtained using a deterministic Bayesian algorithm. </span><span 
+class="cmtt-9">HelioPlot</span>
+     <span 
+class="cmr-9">is a Java application developed for the purpose of plotting U-Th-(Sm)-He data on ternary diagrams</span>
+     <span 
+class="cmr-9">and  logratio  plots  that  implements  all  these  calculations.  The  program  can  be  downloaded  from</span>
+     <span 
+class="cmtt-9">http://pvermees.andropov.org/helioplot</span><span 
+class="cmr-9">.</span>
+</p>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 36--><p class="noindent" >Measuring several single grain U-Th-(Sm)-He aliquots per sample is not only possible, thanks to the development
+of laser heating (<a 
+href="#Xhouse2000">House et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhouse2000">2000</a>), but also desirable, because U-Th-(Sm)-He data are generally
+overdispersed with respect to the formal analytical uncertainty and this overdispersion can only be
+quantified by analysing a representative number of mineral grains. The question then arises how to average
+these measurements. Traditionally, this is done by simply averaging the single grain age estimates, an
+<span 
+class="cmti-10">ad hoc </span>solution that lacks a proper theoretical justification and does not make full use of the data.
+
+Potentially valuable information is lost when the chemical composition of samples is ignored, and
+compositional controls on thermochronological models may go unnoticed. The most natural way to
+study U-Th-(Sm)-He data is as a geochemical composition on a ternary diagram or in logratio space
+(<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>).<br 
+class="newline" />
+</p><!--l. 51--><p class="indent" >   <span 
+class="cmtt-10">HelioPlot </span>is a data visualisation tool that plots U-Th-(Sm)-He data on ternary diagrams and logratio plots.
+The program also calculates the so-called &#x2018;central age&#x2019;, which is the age corresponding to the geometric mean
+U-Th-(Sm)-He composition. To this end, it applies a weighted mean algorithm taking into account both the
+analytical uncertainty and any possible overdispersion simultaneously, in contrast with <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>)&#x2019;s web
+calculator, which propagated them separately. U-Th-(Sm)-He data are often overdispersed with respect to the
+analytical uncertainty, for reasons that have been discussed elsewhere (<a 
+href="#Xfitzgerald2006">Fitzgerald et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfitzgerald2006">2006</a>;&#x00A0;<a 
+href="#Xshuster2006">Shuster
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xshuster2006">2006</a>). The amount of overdispersion can be quantified using the Mean Square of the Weighted Deviates
+(MSWD, &#x00A0;<a 
+href="#Xmcintyre1966">McIntyre et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcintyre1966">1966</a>). Given a dataset of n age measurements, or the logarithms thereof
+(t<!--l. 63--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msub><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></math>, for
+1<!--l. 63--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x2264;</mo></math>i<!--l. 63--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x2264;</mo></math>n),
+the MSWD is a measure of the ratio of the observed scatter of the data points
+(t<!--l. 65--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msub><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></math>) around the mean value
+(<!--l. 65--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>t</mi></mrow><mo 
+class="MathClass-op">&#x0304;</mo></mover></math>) to the expected scatter
+from the assigned errors (<!--l. 66--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msub><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+></math>):
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-1001r1"></a>
+<!--l. 68--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                              <mi 
+>M</mi><mi 
+>S</mi><mi 
+>W</mi><mi 
+>D</mi> <mo 
+class="MathClass-rel">=</mo>    <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><mi 
+>n</mi> <mo 
+class="MathClass-bin">&#x2212;</mo> <mn>1</mn></mrow></mfrac><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+><mfrac><mrow 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>t</mi></mrow><mo>&#x0304;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow>
+     <mrow 
+><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+></mrow></mfrac>
+</math></td><td class="eq-no">(1)</td></tr></table>
+<!--l. 73--><p class="indent" >   If the assigned errors are the only cause of scatter, the MSWD will tend to be near unity. MSWD values much
+less than unity indicate either overestimated analytical errors or unrecognized error-correlations. MSWD values
+much greater than unity generally indicate either underestimated analytical errors, or the presence of non-analytical
+scatter. <span 
+class="cmtt-10">HelioPlot </span>implements methods to deal with the latter situation.<br 
+class="newline" />
+</p><!--l. 81--><p class="indent" >   Although there is no formally agreed convention for calculating the average of multiple (U-Th)/He ages, this is
+either done by computing the unweighted arithmetic mean, ignoring the analytical precision, or by
+calculating the error-weighted mean, ignoring overdispersion. Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a> introduces a one-dimensional
+weighted mean algorithm that deals with analytical precision and overdispersion simultaneously, using the
+method of maximum likelihood. Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositions --></a> generalises this method to compositional data space, so as to
+calculate the best estimate for the central age, taking into account both the internal and external
+reproducibilities of the data, as well as their full covariance structure. &#x2018;Conventional&#x2019; propagation
+of uncertainty for the central age, as implemented by <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>), involves linearisation by a
+first-order Maclaurin series expansion, which may be inaccurate. Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:ci --></a> proposes a deterministic
+algorithm to avoid this problem, yielding exact confidence intervals for the central age. Finally, Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:helioplot --></a>
+provides further details about <span 
+class="cmtt-10">HelioPlot </span>and illustrates its usefulness with a number of real world
+examples.
+
+</p><!--l. 101--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Overdispersed ages</h3>
+<!--l. 103--><p class="noindent" >Assume that the ages (or the logarithm of the ages) come from a normal distribution of the form
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-2001r2"></a>
+<!--l. 106--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                                     <msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-rel">&#x223C;</mo> <mi 
+>N</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>&#x03BC;</mi><mo 
+class="MathClass-punc">,</mo><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow>
+</math></td><td class="eq-no">(2)</td></tr></table>
+<!--l. 111--><p class="indent" >   where <!--l. 111--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>&#x03BC;</mi></math> denotes
+the mean and <!--l. 111--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math> is
+the amount of <span 
+class="cmti-10">overdispersion</span>, i.e. the excess scatter that cannot be explained by the analytical uncertainty alone. Unbiased
+estimates <!--l. 113--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>
+and <!--l. 114--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math> for
+these two parameters can be obtained by maximising the likelihood l:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-2002r3"></a>
+<!--l. 117--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                                <mi 
+>l</mi> <mo 
+class="MathClass-rel">&#x2261;</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x220F;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+><mfrac><mrow 
+><mi 
+>e</mi><mi 
+>x</mi><mi 
+>p</mi> <mfenced separators="" 
+open="("  close=")" ><mrow><mo 
+class="MathClass-bin">&#x2212;</mo> <mfrac><mrow 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow> 
+<mrow 
+><mn>2</mn><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+><mo 
+class="MathClass-bin">+</mo><mover 
+accent="true"><mrow 
+><msubsup><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+></mrow><mo> &#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac></mrow></mfenced> </mrow>
+ <mrow 
+><msqrt><mrow><mn>2</mn><mi 
+>&#x03C0;</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi> </mrow> <mrow 
+>  <mn>2</mn> </mrow> </msubsup 
+> <mo 
+class="MathClass-bin">+</mo><msup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo> &#x0302;</mo> </mover> </mrow><mrow 
+><mn>2</mn> </mrow> </msup 
+> </mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></msqrt></mrow></mfrac>
+</math></td><td class="eq-no">(3)</td></tr></table>
+<!--l. 125--><p class="noindent" >or, more conveniently, the log-likelihood L <!--l. 125--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x2261;</mo></math>
+log(l):
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-2003r4"></a>
+
+<!--l. 127--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                      <mi 
+>L</mi> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-bin">&#x2212;</mo><mfrac><mrow 
+><mn>1</mn></mrow>
+<mrow 
+><mn>2</mn></mrow></mfrac><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+> <mfenced separators="" 
+open="["  close="]" ><mrow><mfrac><mrow 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow>
+<mrow 
+><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-bin">+</mo><msup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow></mfrac>  <mo 
+class="MathClass-bin">+</mo> <mi 
+>l</mi><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-bin">+</mo><msup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-bin">+</mo> <mi 
+>l</mi><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>2</mn><mi 
+>&#x03C0;</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfenced>
+</math></td><td class="eq-no">(4)</td></tr></table>
+<!--l. 136--><p class="noindent" >Calculating the derivatives of L with respect to <!--l. 136--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>
+and <!--l. 137--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math> and
+setting them to zero to find the maximum likelihood:
+</p><!--l. 139--><p class="indent" >
+</p><!--tex4ht:inline--><!--l. 147--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" ><mtable 
+columnalign="left" class="align">
+                            <mtr><mtd 
+columnalign="right" class="align-odd"></mtd>                            <mtd 
+class="align-even"> <mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>L</mi></mrow>
+<mrow 
+><mi 
+>&#x2202;</mi><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow></mfrac> <mo 
+class="MathClass-rel">=</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+> &#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+>  <mfrac><mrow 
+><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo>&#x0302;</mo></mover></mrow>
+<mrow 
+><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-bin">+</mo><msup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow></mfrac> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mspace width="2em"/></mtd>                                                                       <mtd 
+columnalign="right" class="align-label"><mstyle 
+   id="x1-2004r5"  class="label" ></mstyle><!--endlabel--><!--mstyle 
+class="maketag"--><mtext  >&#x00A0;(5)</mtext><!--/mstyle-->
+                            </mtd></mtr><mtr><mtd 
+columnalign="right" class="align-odd"></mtd>                            <mtd 
+class="align-even">  <mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>L</mi></mrow>
+<mrow 
+><mi 
+>&#x2202;</mi><msup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow></mfrac> <mo 
+class="MathClass-rel">=</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+> &#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+> <mfenced separators="" 
+open="["  close="]" ><mrow>  <mfrac><mrow 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msub><mrow 
+><mi 
+>t</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msub 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow>
+<mrow 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-bin">+</mo><msup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow></mfrac> <mo 
+class="MathClass-bin">&#x2212;</mo>   <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-bin">+</mo><msup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow></mfrac></mrow></mfenced> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mspace width="2em"/></mtd>                                                        <mtd 
+columnalign="right" class="align-label"><mstyle 
+   id="x1-2005r6"  class="label" ></mstyle><!--endlabel--><!--mstyle 
+class="maketag"--><mtext  >&#x00A0;(6)</mtext><!--/mstyle-->
+   </mtd></mtr></mtable></math>
+<!--l. 149--><p class="indent" >   which can be solved iteratively for <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>
+and <!--l. 149--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></math>. The variance
+<!--l. 150--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msubsup><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+></math> of the weighted
+mean <!--l. 150--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math> is given by
+the inverse of the Fisher Information, i.e. the negative expected value of the second derivative of the log-likelihood function
+with respect to <!--l. 153--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-2006r7"></a>
+<!--l. 155--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation"><msubsup><mrow 
+>
+                                <mover 
+accent="true"><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow><mrow 
+><mi 
+>&#x03BC;</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-rel">=</mo>              <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+><mn>1</mn><mo 
+class="MathClass-bin">&#x2215;</mo><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mi 
+>i</mi></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+> <mo 
+class="MathClass-bin">+</mo><msup><mrow 
+> <mover 
+accent="true"><mrow 
+><mi 
+>&#x03BE;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msup 
+></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfrac>
+</math></td><td class="eq-no">(7)</td></tr></table>
+
+<!--l. 164--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Overdispersed compositions</h3>
+<!--l. 167--><p class="noindent" >U, Th and He form a ternary system, can be plotted on a ternary diagram, and are subject to the
+peculiar mathematics of the ternary dataspace. The &#x2018;central age&#x2019; is calculated from the geometric mean
+composition of a U-Th-(Sm)-He dataset and is a more accurate estimator of the true age than the
+arithmetic mean (<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>). This concept can be easily generalised to four dimensions and this
+section will, therefore, discuss the case of (U-Th-Sm)/He dating. Given n single grain measurements
+[U<!--l. 174--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></math>,
+Th<!--l. 174--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></math>,
+Sm<!--l. 174--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></math>,
+He<!--l. 174--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></math>]
+(1<!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x2264;</mo></math>i<!--l. 175--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x2264;</mo></math>n),
+the calculation of a central age involves a bijection from the four-dimensional &#x2018;simplex&#x2019; to a three-dimensional
+Euclidean logratio-space (<a 
+href="#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>;&#x00A0;<a 
+href="#Xvermeesch2008a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2008a">2008</a>):
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3001r8"></a>
+<!--l. 179--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                          <msup><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo> <mi 
+>l</mi><mi 
+>n</mi> <mfenced separators="" 
+open="("  close=")" ><mrow> <mfrac><mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><msup><mrow 
+><mi 
+>U</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow>
+<mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><mi 
+>H</mi><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow></mfrac></mrow></mfenced><mo 
+class="MathClass-punc">,</mo><mspace width="1em" class="nbsp" /><msup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo> <mi 
+>l</mi><mi 
+>n</mi> <mfenced separators="" 
+open="("  close=")" ><mrow><mfrac><mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><mi 
+>T</mi><msup><mrow 
+><mi 
+>h</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow>
+<mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><mi 
+>H</mi><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow></mfrac></mrow></mfenced><mo 
+class="MathClass-punc">,</mo><mspace width="1em" class="nbsp" /><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-rel">=</mo> <mi 
+>l</mi><mi 
+>n</mi> <mfenced separators="" 
+open="("  close=")" ><mrow><mfrac><mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><mi 
+>S</mi><msup><mrow 
+><mi 
+>m</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow>
+<mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><mi 
+>H</mi><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow></mfrac> </mrow></mfenced>
+</math></td><td class="eq-no">(8)</td></tr></table>
+<!--l. 186--><p class="indent" >   The central age is obtained by calculating the average logratio composition
+(<!--l. 187--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></math>,
+<!--l. 187--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></math>,
+<!--l. 187--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></math>) and
+converting it to a geometric mean composition using the inverse logratio transformation:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3002r9"></a>
+
+<!--l. 191--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+   <mtable 
+class="equation"><mtr><mtd>
+   <mtable  
+columnalign="right left" class="split">
+<mtr class="split-mtr"><mtd 
+class="split-mtd"> </mtd><mtd 
+class="split-mtd"><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>U</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover> <mo 
+class="MathClass-rel">=</mo>           <mfrac><mrow 
+><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+></mrow> 
+<mrow 
+><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn></mrow></mfrac><mo 
+class="MathClass-punc">,</mo><mspace width="1em" class="nbsp" /><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>T</mi><mi 
+>h</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover> <mo 
+class="MathClass-rel">=</mo>           <mfrac><mrow 
+><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+></mrow> 
+<mrow 
+><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn></mrow></mfrac></mtd>
+</mtr><mtr class="split-mtr"><mtd 
+class="split-mtd"> </mtd><mtd 
+class="split-mtd"><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>S</mi><mi 
+>m</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover> <mo 
+class="MathClass-rel">=</mo>           <mfrac><mrow 
+><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+></mrow> 
+<mrow 
+><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn></mrow></mfrac><mo 
+class="MathClass-punc">,</mo><mspace width="1em" class="nbsp" /><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>H</mi><mi 
+>e</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover> <mo 
+class="MathClass-rel">=</mo>            <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <msup><mrow 
+><mi 
+>e</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mn>1</mn></mrow></mfrac></mtd>
+   </mtr></mtable>                                                                                       </mtd><mtd>
+   </mtd></mtr></mtable>
+</math></td><td class="eq-no">(9)</td></tr></table>
+<!--l. 201--><p class="indent" >   This result is then plugged into the U-Th-(Sm)-He age equation. <br 
+class="newline" />
+</p><!--l. 204--><p class="indent" >   The problem of averaging the compositions is very similar to the problem of
+averaging the ages discussed in the previous section. Given n logratio measurements
+X<!--l. 206--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></math> and their
+(co)variances <!--l. 206--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></math>
+(1 <!--l. 207--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x2264;</mo></math> i
+<!--l. 207--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x2264;</mo></math>
+n):
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3003r10"></a>
+<!--l. 209--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation"><msup><mrow 
+>
+<mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-rel">&#x2261;</mo><mrow><mo class="MathClass-open" fence="true" mathsize="2.45em" >[</mo><mrow> <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"><msup><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"><msup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mtd> </mtr> <!--c--></mtable>                                                                                                                                            </mrow><mo class="MathClass-close" fence="true" mathsize="2.45em" >]</mo></mrow><!--mstyle 
+class="mbox"--><mtext  >&#x00A0;&#x00A0;and&#x00A0;</mtext><!--/mstyle--><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-rel">&#x2261;</mo><mrow><mo class="MathClass-open" fence="true" mathsize="2.45em" >[</mo><mrow> <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+>  </mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow></msub 
+></mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+>   </mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow></msub 
+></mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>w</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center">   <msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><msup><mrow 
+><mi 
+>x</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+>   </mtd> </mtr> <!--ccc--></mtable>                                                                                                                                        </mrow><mo class="MathClass-close" fence="true" mathsize="2.45em" >]</mo></mrow>
+</math></td><td class="eq-no">(10)</td></tr></table>
+<!--l. 230--><p class="noindent" >our aim is to develop an algorithm to calculate the weighted mean M and its covariance matrix
+<!--l. 231--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>&#x03A3;</mi></math>:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3004r11"></a>
+
+<!--l. 233--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+<mi 
+>M</mi> <mo 
+class="MathClass-rel">&#x2261;</mo><mrow><mo class="MathClass-open" fence="true" mathsize="2.45em" >[</mo><mrow> <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mtd> </mtr> <mtr><mtd 
+class="array"  columnalign="center"><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi> </mrow><mo 
+accent="true">&#x00AF;</mo></mover> </mtd> </mtr> <mtr><mtd 
+class="array"  columnalign="center"><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi> </mrow><mo 
+accent="true">&#x00AF;</mo></mover></mtd> </mtr>  <!--c--></mtable>                                                                                                                    </mrow><mo class="MathClass-close" fence="true" mathsize="2.45em" >]</mo></mrow><!--mstyle 
+class="mbox"--><mtext  >&#x00A0;&#x00A0;and&#x00A0;</mtext><!--/mstyle--><mi 
+>&#x03A3;</mi> <mo 
+class="MathClass-rel">&#x2261;</mo><mrow><mo class="MathClass-open" fence="true" mathsize="2.45em" >[</mo><mrow> <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+>  </mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover><mo 
+class="MathClass-punc">,</mo><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover><mo 
+class="MathClass-punc">,</mo><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msub 
+></mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover><mo 
+class="MathClass-punc">,</mo><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+>  </mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover><mo 
+class="MathClass-punc">,</mo><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msub 
+></mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>v</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover><mo 
+class="MathClass-punc">,</mo><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center"><mi 
+>c</mi><mi 
+>o</mi><msub><mrow 
+><mi 
+>v</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>w</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover><mo 
+class="MathClass-punc">,</mo><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow></msub 
+></mtd><mtd 
+class="array"  columnalign="center">  <msubsup><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mrow 
+><mover accent="false" 
+class="mml-overline"><mrow><mi 
+>x</mi></mrow><mo 
+accent="true">&#x00AF;</mo></mover></mrow><mrow 
+><mn>2</mn></mrow></msubsup 
+>   </mtd> </mtr> <mtr><mtd 
+class="array"  columnalign="center">  </mtd> </mtr> <!--ccc--></mtable>                                                                                                                                             </mrow><mo class="MathClass-close" fence="true" mathsize="2.45em" >]</mo></mrow>
+</math></td><td class="eq-no">(11)</td></tr></table>
+<!--l. 254--><p class="indent" >   In principle, the logratio covariances (E<!--l. 254--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></math>)
+could be directly determined from the raw mass spectrometer measurements. In practice, however, they are
+calculated from the individual concentrations by linear approximation, using Equation 21 of <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>),
+which assumes that the errors on the individual concentrations are Normal and independently distributed. Rather
+than propagating the internal and external uncertainties separately, as done by <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>), this section
+introduces a weighted mean algorithm that considers both factors simultaneously, using a multivariate generalisation
+of the one-dimensional maximum likelihood algorithm developed in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a>. First, redefine the MSWD in matrix
+form:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3005r12"></a>
+<!--l. 267--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                        <mi 
+>M</mi><mi 
+>S</mi><mi 
+>W</mi><mi 
+>D</mi> <mo 
+class="MathClass-rel">=</mo>  <mfrac><mrow 
+><mn>1</mn></mrow> 
+<mrow 
+><mi 
+>d</mi><mi 
+>f</mi></mrow></mfrac><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo> <mi 
+>M</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo> <mi 
+>M</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>
+</math></td><td class="eq-no">(12)</td></tr></table>
+<!--l. 273--><p class="noindent" >where df = d <!--l. 273--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mo 
+class="MathClass-bin">&#x00D7;</mo></math>
+(n - 1) is the number of degrees of freedom of the problem, with d = 2 for (U-Th)/He and d = 3 for (U-Th-Sm)/He
+dating. Note that, because the variability of Sm does not contribute as much to the age dispersion as that
+of U and Th, it is better to use only the latter two elements for the MSWD calculation. If MSWD
+<!--l. 277--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" > <mo 
+class="MathClass-rel">&#x226B;</mo></math> 1, the
+data are overdispersed and, in analogy with Equation <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:norm1 --></a>, we will assume that the observations come from a
+multivariate normal distribution of the form
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3006r13"></a>
+<!--l. 282--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                                    <msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-rel">&#x223C;</mo> <mi 
+>N</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mi 
+>M</mi><mo 
+class="MathClass-punc">,</mo><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mi 
+>&#x039E;</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow>
+</math></td><td class="eq-no">(13)</td></tr></table>
+<!--l. 287--><p class="noindent" >where M denotes the mean and <!--l. 287--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>&#x039E;</mi></math>
+is the overdispersion. The log-likelihood is given by:
+
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3007r14"></a>
+<!--l. 290--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+            <mi 
+>L</mi> <mo 
+class="MathClass-rel">=</mo> <mo 
+class="MathClass-bin">&#x2212;</mo><mfrac><mrow 
+><mn>1</mn></mrow>
+<mrow 
+><mn>2</mn></mrow></mfrac><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+> <mfenced separators="" 
+open="("  close=")" ><mrow><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">]</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow> <mo 
+class="MathClass-bin">+</mo> <mi 
+>l</mi><mi 
+>n</mi><mo 
+class="MathClass-rel">|</mo><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo>&#x0302;</mo></mover><mo 
+class="MathClass-rel">|</mo> <mo 
+class="MathClass-bin">+</mo> <mn>3</mn><mspace width="1em" class="nbsp" /><mi 
+>l</mi><mi 
+>n</mi><mrow ><mo 
+class="MathClass-open">(</mo><mrow><mn>2</mn><mi 
+>&#x03C0;</mi></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow></mfenced>
+</math></td><td class="eq-no">(14)</td></tr></table>
+<!--l. 299--><p class="noindent" ><!--l. 299--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math> and
+<!--l. 299--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math> can be
+found by solving the following system of non-linear equations:
+</p><!--l. 302--><p class="indent" >
+</p><!--tex4ht:inline--><!--l. 310--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" ><mtable 
+columnalign="left" class="align">
+               <mtr><mtd 
+columnalign="right" class="align-odd"></mtd>               <mtd 
+class="align-even">  <mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>L</mi></mrow>
+<mrow 
+><mi 
+>&#x2202;</mi><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow></mfrac> <mo 
+class="MathClass-rel">=</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+> &#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mo 
+class="MathClass-close">]</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mspace width="2em"/></mtd>                                                               <mtd 
+columnalign="right" class="align-label"><mstyle 
+   id="x1-3008r15"  class="label" ></mstyle><!--endlabel--><!--mstyle 
+class="maketag"--><mtext  >&#x00A0;(15)</mtext><!--/mstyle-->
+               </mtd></mtr><mtr><mtd 
+columnalign="right" class="align-odd"></mtd>               <mtd 
+class="align-even"> <mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>L</mi></mrow>
+<mrow 
+><mi 
+>&#x2202;</mi><mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow></mfrac> <mo 
+class="MathClass-rel">=</mo><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+> &#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+><mrow ><mo 
+class="MathClass-open">[</mo><mrow><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>X</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+> <mo 
+class="MathClass-bin">&#x2212;</mo> <msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+></mrow><mo 
+class="MathClass-close">]</mo></mrow> <mo 
+class="MathClass-rel">=</mo> <mn>0</mn><mspace width="2em"/></mtd>                              <mtd 
+columnalign="right" class="align-label"><mstyle 
+   id="x1-3009r16"  class="label" ></mstyle><!--endlabel--><!--mstyle 
+class="maketag"--><mtext  >&#x00A0;(16)</mtext><!--/mstyle-->
+   </mtd></mtr></mtable></math>
+<!--l. 312--><p class="indent" >   The covariance matrix <!--l. 312--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03A3;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>
+of the weighted mean <!--l. 312--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>
+is obtained by inverting the Fisher Information matrix, i.e. the matrix of the negative expected values of the second
+derivatives of the log-likelihood function:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-3010r17"></a>
+
+<!--l. 317--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                               <mover 
+accent="true"><mrow 
+><mi 
+>&#x03A3;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover> <mo 
+class="MathClass-rel">=</mo><msup><mrow 
+><mrow><mo class="MathClass-open" fence="true" mathsize="2.45em" >[</mo><mrow><munderover accentunder="false" accent="false"><mrow  
+><mo mathsize="big" 
+>&#x2211;</mo>
+  </mrow><mrow 
+><mi 
+>i</mi><mo 
+class="MathClass-rel">=</mo><mn>1</mn></mrow><mrow 
+><mi 
+>n</mi></mrow></munderover 
+><msup><mrow 
+><mrow ><mo 
+class="MathClass-open">(</mo><mrow><msup><mrow 
+><mi 
+>E</mi></mrow><mrow 
+><mi 
+>i</mi></mrow></msup 
+> <mo 
+class="MathClass-bin">+</mo> <mover 
+accent="true"><mrow 
+><mi 
+>&#x039E;</mi></mrow><mo>&#x0302;</mo></mover></mrow><mo 
+class="MathClass-close">)</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+></mrow><mo class="MathClass-close" fence="true" mathsize="2.45em" >]</mo></mrow></mrow><mrow 
+><mo 
+class="MathClass-bin">&#x2212;</mo><mn>1</mn></mrow></msup 
+>
+</math></td><td class="eq-no">(17)</td></tr></table>
+<!--l. 326--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Confidence intervals</h3>
+<!--l. 328--><p class="noindent" >Using the covariance matrix of the logratio average (<!--l. 328--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03A3;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>),
+and performing a linear error propagation, it is straightforward to calculate the covariance matrix of the geometric mean
+composition (<!--l. 331--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x0393;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>),
+evaluated at <!--l. 331--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4001r18"></a>
+<!--l. 333--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+                                       <mover 
+accent="true"><mrow 
+><mi 
+>&#x0393;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover> <mo 
+class="MathClass-rel">=</mo> <msup><mrow 
+><mi 
+>A</mi></mrow><mrow 
+><mi 
+>&#x2032;</mi></mrow></msup 
+><mover 
+accent="true"><mrow 
+><mi 
+>&#x03A3;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover><mi 
+>A</mi>
+</math></td><td class="eq-no">(18)</td></tr></table>
+<!--l. 338--><p class="indent" >   where A is the matrix of first derivatives of Equation <a 
+href="#x1-3002r9">9<!--tex4ht:ref: eq:inverse-transform --></a>:
+</p>
+   <table class="equation"><tr><td> <a 
+ id="x1-4002r19"></a>
+<!--l. 340--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="equation">
+<mi 
+>A</mi> <mo 
+class="MathClass-rel">=</mo><msub><mrow 
+><mrow><mo class="MathClass-open" fence="true" mathsize="2.45em" >[</mo><mrow> <mtable  style="text-align:axis;"  
+equalrows="false" columnlines="none none none" equalcolumns="false" class="array"><mtr><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>U</mi></mrow>
+<mrow 
+><mi 
+>&#x2202;</mi><mi 
+>v</mi></mrow></mfrac> </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>T</mi><mi 
+>h</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>v</mi></mrow></mfrac> </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>S</mi><mi 
+>m</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>v</mi></mrow></mfrac>  </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>H</mi><mi 
+>e</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>v</mi></mrow></mfrac> </mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"> <mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>U</mi></mrow> 
+<mrow 
+><mi 
+>&#x2202;</mi><mi 
+>w</mi></mrow></mfrac> </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>T</mi><mi 
+>h</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>w</mi></mrow></mfrac> </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>S</mi><mi 
+>m</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>w</mi></mrow></mfrac> </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>H</mi><mi 
+>e</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>w</mi></mrow></mfrac> </mtd>
+ </mtr><mtr><mtd 
+class="array"  columnalign="center"> <mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>U</mi></mrow> 
+<mrow 
+><mi 
+>&#x2202;</mi><mi 
+>x</mi></mrow></mfrac> </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>T</mi><mi 
+>h</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>x</mi></mrow></mfrac> </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>S</mi><mi 
+>m</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>x</mi></mrow></mfrac>  </mtd><mtd 
+class="array"  columnalign="center"><mfrac><mrow 
+><mi 
+>&#x2202;</mi><mi 
+>H</mi><mi 
+>e</mi></mrow>
+ <mrow 
+><mi 
+>&#x2202;</mi><mi 
+>x</mi></mrow></mfrac> </mtd> </mtr> <mtr><mtd 
+class="array"  columnalign="center">  </mtd> </mtr> <!--cccc--></mtable>                                                                                                                          </mrow><mo class="MathClass-close" fence="true" mathsize="2.45em" >]</mo></mrow></mrow><mrow 
+><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></mrow></msub 
+>
+</math></td><td class="eq-no">(19)</td></tr></table>
+
+<!--l. 354--><p class="indent" >   Equation <a 
+href="#x1-4001r18">18<!--tex4ht:ref: eq:gamma --></a> contains an expression for the covariances of the geometric mean composition, which were
+omitted by <a 
+href="#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2008a">2008</a>) but are required for a full propagation of age uncertainty. However,
+even the complete error propagation may be inaccurate because it is based on a first order Maclaurin
+series expansion of Equation <a 
+href="#x1-3002r9">9<!--tex4ht:ref: eq:inverse-transform --></a>, which is highly non-linear. This problem can be circumvented using
+numerical techniques, such as the following deterministic algorithm. First, build a regular grid across
+the two (for U-Th-He) or three (for U-Th-Sm-He) dimensions of logratio space (Figure <a 
+href="#x1-90011">1<!--tex4ht:ref: fig:ci --></a>.a). Second,
+for each of these grid points, calculate (a) its likelihood under a normal distribution with mean
+<!--l. 365--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>M</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math> and covariance
+matrix <!--l. 366--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mover 
+accent="true"><mrow 
+><mi 
+>&#x03C3;</mi></mrow><mo 
+class="MathClass-op">&#x0302;</mo></mover></math>,
+and (b) the corresponding age. Third, calculate the Bayesian cumulative posterior distribution by ranking the
+numerical data in order of increasing age and computing the running sum of the likelihoods. Fourth, obtain an
+asymmetrical 95% confidence interval from the 2.5 and 97.5 percentiles of the posterior distribution (Figure
+<a 
+href="#x1-90011">1<!--tex4ht:ref: fig:ci --></a>.b).
+</p><!--l. 373--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Applications</h3>
+<!--l. 375--><p class="noindent" ><span 
+class="cmtt-10">HelioPlot </span>is a computer program for visualising U-Th-(Sm)-He data on ternary diagrams and logratio
+plots that implements all the above calculations, including the computation of central ages and 95%
+confidence intervals. Equations <a 
+href="#x1-2005r6">6<!--tex4ht:ref: eq:Lxi1 --></a> and <a 
+href="#x1-3009r16">16<!--tex4ht:ref: eq:Lxi --></a> are solved using Newton&#x2019;s method. <span 
+class="cmtt-10">HelioPlot </span>was written
+in Java and is, therefore, perfectly platform independent. The program and its source code can be
+downloaded free of charge from <span 
+class="cmtt-10">http://pvermees.andropov.org/helioplot</span>. Data can be copied and
+pasted to-and-from Microsoft Excel, or entered directly using the built-in editing tools. Data files are
+saved in a comma-separated-variable (<span 
+class="cmtt-10">.csv</span>) format. Samarium is an optional input parameter and the
+complete functionality of the program is still available when Sm is missing. If Sm is absent, it will be
+assumed to be zero, and the data naturally reduce to their two dimensions in compositional datapace. If
+Sm is present, the geometric mean Sm composition is used as a common reference for the ternary
+diagrams and logratio plots. Colour is used to visualise the Sm content of aliquots, or any other numerical
+quantity, such as sample number (Figure <a 
+href="#x1-90022">2<!--tex4ht:ref: fig:helioplot --></a>.a), grain size (Figure <a 
+href="#x1-90022">2<!--tex4ht:ref: fig:helioplot --></a>.b), elevation, or, for the case of
+double-dated grains, a U-Pb or fission track age (<a 
+href="#Xcampbell2005">Campbell et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xcampbell2005">2005</a>). <span 
+class="cmtt-10">HelioPlot </span>is capable of
+saving the graphical output as either bitmap or vector images, in a <span 
+class="cmtt-10">.png </span>or <span 
+class="cmtt-10">.pdf </span>format, respectively.
+<br 
+class="newline" />
+</p><!--l. 401--><p class="indent" >   Example input files are provided on the website for testing purposes. Figure <a 
+href="#x1-90022">2<!--tex4ht:ref: fig:helioplot --></a>.b shows the output
+for one of these files, based on a published (U-Th)/He dataset (<a 
+href="#Xvermeesch2007b">Vermeesch et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch2007b">2007</a>), which was
+<!--l. 404--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>&#x03B1;</mi></math>-ejection
+corrected according to the guidelines of <a 
+href="#Xketcham2009">Ketcham</a>&#x00A0;(<a 
+href="#Xketcham2009">2009</a>). The output includes the arithmetic and geometric
+mean ages and their standard errors, calculated using the methods of Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a>, in addition to the
+central age, its standard error and 95% confidence interval, calculated according to the algorithm of
+Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositions --></a>. Three separate MSWDs are given, reflecting the overdispersion of the ages and the U-Th-He
+compositions.
+</p><!--l. 413--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Conclusions</h3>
+<!--l. 415--><p class="noindent" >The aim of this paper was to bring the statistical treatment of U-Th-(Sm)-He
+data on an equal footing with more established geochronometers such as U-Pb,
+<!--l. 417--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mn>4</mn><mn>0</mn></mrow></msup 
+></math>Ar/<!--l. 417--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><msup><mrow 
+></mrow><mrow 
+><mn>3</mn><mn>9</mn></mrow></msup 
+></math>Ar,
+
+or fission tracks. Weighted least squares algorithms similar to the maximum likelihood methods of Sections <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:ages --></a> and <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:compositions --></a>
+have been used in U-Pb (<a 
+href="#Xludwig1998">Ludwig</a>,&#x00A0;<a 
+href="#Xludwig1998">1998</a>) and fission track dating (<a 
+href="#Xgalbraith1990b">Galbraith and Green</a>,&#x00A0;<a 
+href="#Xgalbraith1990b">1990</a>). Visual aids
+such as the U-Pb concordia diagram, the Rb-Sr isochron, or the fission track radial plot can be very
+useful for the exploratory analysis of geochronological data. The ternary diagram and logratio plot
+play the same role for helium thermochronology, as they bring out the full information content of
+U-Th-(Sm)-He data, and can help to reveal patterns between aliquots and samples that may not be seen
+otherwise.
+</p><!--l. 429--><p class="noindent" >
+</p>
+   <h3 class="likesectionHead"><a 
+ id="x1-70006"></a>Acknowledgments</h3>
+<!--l. 431--><p class="noindent" >John Rudge formulated equation <a 
+href="#x1-3006r13">13<!--tex4ht:ref: eq:norm2 --></a>, from which the rest of the calculations followed naturally. He and an
+anonymous reviewer are gratefully acknowledged for this and other constructive comments.
+</p><!--l. 438--><p class="noindent" >
+</p>
+   <h3 class="likesectionHead"><a 
+ id="x1-80006"></a>References</h3>
+<!--l. 438--><p class="noindent" >
+  </p><div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1986. The statistical analysis of compositional data. London, Chapman and Hall.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcampbell2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Campbell, I.&#x00A0;H., Reiners, P.&#x00A0;W., Allen, C.&#x00A0;M., Nicolescu, S., Upadhyay, R., Sep. 2005. He-Pb double
+  dating of detrital zircons from the Ganges and Indus Rivers: Implication for quantifying sediment recycling
+  and provenance studies. Earth and Planetary Science Letters 237, 402&#x2013;432.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfitzgerald2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fitzgerald, P.&#x00A0;G., Baldwin, S.&#x00A0;L., Webb, L.&#x00A0;E., O&#x2019;Sullivan, P.&#x00A0;B., 2006. Interpretation of (U-Th)/He
+  single grain ages from slowly cooled crustal terranes: A case study from the Transantarctic Mountains of
+  southern Victoria Land. Chemical Geology 225, 91&#x2013;120.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F., Green, P.&#x00A0;F., 1990. Estimating the component ages in a finite mixture. Nuclear Tracks
+  and Radiation Measurements 17, 197&#x2013;206.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhouse2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>House, M.&#x00A0;A., Farley, K.&#x00A0;A., Stockli, D., Dec. 2000. Helium chronometry of apatite and titanite using
+  Nd-YAG laser heating. Earth and Planetary Science Letters 183, 365&#x2013;368.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ketcham, R., 2009. Refinements for alpha stopping distances and FT corrections. OnTrack, the electronic
+  newsletter of the international thermochronology community 16.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig,  K.&#x00A0;R.,  Feb.  1998.  On  the  treatment  of  concordant  uranium-lead  ages.  Geochimica  et
+  Cosmochimica Acta 62, 665&#x2013;676.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcintyre1966"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McIntyre, G.&#x00A0;A., Brooks, C., Compston, W., Turek, A., 1966. The Statistical Assessment of Rb-Sr
+  Isochrons. Journal of Geophysical Research 71, 5459&#x2013;5468.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xshuster2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Shuster, D.&#x00A0;L., Flowers, R.&#x00A0;M., Farley, K.&#x00A0;A., Sep. 2006. The influence of natural radiation damage on
+  helium diffusion kinetics in apatite. Earth and Planetary Science Letters 249, 148&#x2013;161.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2008a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2008. Three new ways to calculate average (U-Th)/He ages. Chemical Geology 249,
+  339&#x2013;347.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,   P.,   Seward,   D.,   Latkoczy,   C.,   Wipf,   M.,   G&#x00FC;nther,   D.,   Baur,   H.,   2007.
+  <!--l. 499--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>&#x03B1;</mi></math>-Emitting
+  mineral  inclusions  in  apatite,  their  effect  on  (U-Th)/He  ages,  and  how  to  reduce  it.  Geochimica  et
+  Cosmochimica Acta 71, 1737&#x2013;1746.
+</p>
+  </div>
+
+   <h3 class="likesectionHead"><a 
+ id="x1-90006"></a>Figures</h3>
+   <hr class="figure" /><div class="figure" 
+><a 
+ id="x1-90011"></a>                   a.<img 
+src="MLEpaper30x.png" alt="PIC" class="graphics" width="234.8775pt" height="194.40195pt"  /><!--tex4ht:graphics  
+name="MLEpaper30x.png" src="Bayes2.pdf"  
+-->
+b.<img 
+src="MLEpaper31x.png" alt="PIC" class="graphics" width="211.38832pt" height="191.62152pt"  /><!--tex4ht:graphics  
+name="MLEpaper31x.png" src="CI2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">a. the deterministic Bayesian algorithm collects a large number of ages across a regular grid in
+logratio space (crosses), and records the corresponding logistic normal likelihood of the data (ellipse); b. 95%
+confidence intervals are then simply calculated by looking up the 2.5 and 97.5 percentiles of the resulting
+&#x2018;posterior distribution&#x2019;.</span></div><!--tex4ht:label?: x1-90011 -->
+   </div><hr class="endfigure" />
+
+   <hr class="figure" /><div class="figure" 
+><a 
+ id="x1-90022"></a>                      a.<img 
+src="MLEpaper32x.png" alt="PIC" class="graphics" width="211.38832pt" height="176.03343pt"  /><!--tex4ht:graphics  
+name="MLEpaper32x.png" src="ternaryplot.pdf"  
+-->
+b.<img 
+src="MLEpaper33x.png" alt="PIC" class="graphics" width="211.38832pt" height="205.36728pt"  /><!--tex4ht:graphics  
+name="MLEpaper33x.png" src="logratioplot.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Two diagrams produced by <span 
+class="cmtt-10">HelioPlot</span>. (a) Ternary diagram with two synthetic U-Th-He samples
+(<!--l. 529--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>U</mi><mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+><mi 
+>U</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn><mn>6</mn><mn>1</mn><mn>1</mn></mrow> 
+   <mrow 
+><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>3</mn><mn>6</mn><mn>2</mn></mrow></mfrac>   </math>,
+<!--l. 529--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>T</mi><mi 
+>h</mi><mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+><mi 
+>T</mi><mi 
+>h</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>5</mn><mn>7</mn><mn>4</mn></mrow> 
+   <mrow 
+><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>3</mn><mn>6</mn><mn>2</mn></mrow></mfrac>    </math>,
+<!--l. 529--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML" display="inline" ><mi 
+>H</mi><mi 
+>e</mi><mo 
+class="MathClass-bin">&#x2217;</mo> <mo 
+class="MathClass-rel">=</mo> <mfrac><mrow 
+><mi 
+>H</mi><mi 
+>e</mi><mo 
+class="MathClass-bin">&#x2212;</mo><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>0</mn><mn>0</mn><mn>4</mn><mn>1</mn></mrow> 
+    <mrow 
+><mn>0</mn><mo 
+class="MathClass-punc">.</mo><mn>3</mn><mn>6</mn><mn>2</mn></mrow></mfrac>    </math>).
+(b) Logratio plot of U-Th-He data from Naxos (<a 
+href="#Xvermeesch2007b">Vermeesch et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch2007b">2007</a>), colour-coded according to grain
+size. The geometric mean composition is shown as a white ellipse.</span></div><!--tex4ht:label?: x1-90022 -->
+   </div><hr class="endfigure" />
+    
+</body> 
+</html> 
+
+
+

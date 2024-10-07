@@ -1,0 +1,2974 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Revised error propagation of 40Ar/39Ar data, including covariances</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="Ar-Ar_Redux_v10.tex"> 
+<meta name="date" content="2015-10-02 16:28:00"> 
+<link rel="stylesheet" type="text/css" href="Ar-Ar_Redux_v10.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body >
+<table class="main" width="800"><tr><td>
+   <div class="maketitle">
+
+<h2 class="titleHead">Revised error propagation of <sup>40</sup>Ar/<sup>39</sup>Ar data, <br>including covariances</h2>
+<div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">&lowast;</span></a></span></div><br />
+   <div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10">&lowast;</span></span>Department of Earth Sciences, University College London, <span 
+class="cmtt-10">p.vermeesch [at] ucl.ac.uk</span></div></div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 15--><p class="noindent" >
+<!--l. 15--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 16--><p class="indent" >    <span 
+class="cmr-9">The main advantage of the</span> <sup><span 
+class="cmr-6">40</span></sup><span 
+class="cmr-9">Ar/</span><sup><span 
+class="cmr-6">39</span></sup><span 
+class="cmr-9">Ar method over conventional K-Ar dating is that it does not</span>
+     <span 
+class="cmr-9">depend on any absolute abundance or concentration measurements, but only uses the relative ratios</span>
+     <span 
+class="cmr-9">between five isotopes of the same element &#8211;argon&#8211; which can be measured with great precision on a</span>
+     <span 
+class="cmr-9">noble gas mass spectrometer. The relative abundances of the argon isotopes are subject to a constant</span>
+     <span 
+class="cmr-9">sum constraint, which imposes a covariant structure on the data: the relative amount of any of the five</span>
+     <span 
+class="cmr-9">isotopes can always be obtained from that of the other four. Thus, the</span> <sup><span 
+class="cmr-6">40</span></sup><span 
+class="cmr-9">Ar/</span><sup><span 
+class="cmr-6">39</span></sup><span 
+class="cmr-9">Ar method is a classic</span>
+     <span 
+class="cmr-9">example of a &#8216;compositional data problem&#8217;. In addition to the constant sum constraint, covariances are</span>
+     <span 
+class="cmr-9">introduced by a host of other processes, including data acquisition, blank correction, detector calibration,</span>
+     <span 
+class="cmr-9">mass fractionation, decay correction, interference correction, atmospheric argon correction, interpolation</span>
+     <span 
+class="cmr-9">of the irradiation parameter, and age calculation. The myriad of correlated errors arising during the</span>
+     <span 
+class="cmr-9">data reduction are best handled by casting the</span> <sup><span 
+class="cmr-6">40</span></sup><span 
+class="cmr-9">Ar/</span><sup><span 
+class="cmr-6">39</span></sup><span 
+class="cmr-9">Ar data reduction protocol in a matrix form.</span>
+     <span 
+class="cmr-9">The completely revised workflow presented in this paper is implemented in a new software platform,</span>
+     <span 
+class="cmtt-9">Ar-Ar</span><span 
+class="cmtt-9">_Redux</span><span 
+class="cmr-9">,  which  takes  raw  mass  spectrometer  data  as  input  and  generates  accurate</span>  <sup><span 
+class="cmr-6">40</span></sup><span 
+class="cmr-9">Ar/</span><sup><span 
+class="cmr-6">39</span></sup><span 
+class="cmr-9">Ar</span>
+     <span 
+class="cmr-9">ages and their (co-)variances as output. </span><span 
+class="cmtt-9">Ar-Ar</span><span 
+class="cmtt-9">_Redux </span><span 
+class="cmr-9">accounts for all sources of analytical uncertainty,</span>
+     <span 
+class="cmr-9">including those associated with decay constants and the air ratio. Knowing the covariance matrix of</span>
+     <span 
+class="cmr-9">the ages removes the need to consider &#8216;internal&#8217; and &#8216;external&#8217; uncertainties separately when calculating</span>
+     <span 
+class="cmr-9">(weighted) mean ages. </span><span 
+class="cmtt-9">Ar-Ar</span><span 
+class="cmtt-9">_Redux </span><span 
+class="cmr-9">is built on the same principles as its sibling program in the U-Pb</span>
+     <span 
+class="cmr-9">community  (</span><span 
+class="cmtt-9">U-Pb</span><span 
+class="cmtt-9">_Redux</span><span 
+class="cmr-9">),  thus  improving  the  intercomparability  of  the  two  methods  with  tangible</span>
+     <span 
+class="cmr-9">benefits to the accuracy of the geologic time scale. The program can be downloaded free of charge from</span>
+     <span 
+class="cmtt-9">http://redux.london-geochron.com</span><span 
+class="cmr-9">.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 52--><p class="noindent" >Let z be a function f of two variables x and y:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1001r1"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v100x.png" alt="z = f (x,y)
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 57--><p class="nopar" >
+<!--l. 59--><p class="indent" >   then standard error propagation of z by first order Taylor expansion yields:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1002r2"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v101x.png" alt="     (   )      (   )
+  2    &part;f-2  2    &part;f- 2 2   &part;f-&part;f-
+&sigma; z =  &part;x   &sigma;x +  &part;y   &sigma;y + 2&part;x &part;ycov(x,y)
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 67--><p class="nopar" >
+<!--l. 69--><p class="indent" >   where cov(x,y) is the &#8216;covariance of x and y&#8217;. Current practice in <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar geochronology generally assumes
+that the third term of Equation <a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:s2z --></a> can be safely neglected. For example, consider the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar age
+equation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1003r3"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v102x.png" alt="T = -1-ln(1+ JR )
+    &lambda;40
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 77--><p class="nopar" >
+<!--l. 79--><p class="indent" >   with <span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmr-7">40</span></sub> the decay constant of <sup><span 
+class="cmr-7">40</span></sup>K, J the neutron irradiation parameter (see Section <a 
+href="#x1-1100011">11<!--tex4ht:ref: sec:J --></a>) and R the
+<sup><span 
+class="cmr-7">40</span></sup>Ar<sup><span 
+class="cmsy-7">&lowast;</span></sup>/<sup><span 
+class="cmr-7">39</span></sup>Ar<sub><span 
+class="cmmi-7">K</span></sub>-ratio (where <sup><span 
+class="cmr-7">40</span></sup>Ar<sup><span 
+class="cmsy-7">&lowast;</span></sup> is the radiogenic argon component and <sup><span 
+class="cmr-7">39</span></sup>Ar<sub><span 
+class="cmmi-7">K</span></sub> is derived from neutron reactions on
+<sup><span 
+class="cmr-7">39</span></sup>K). Then the age uncertainty is currently calculated as (<a 
+href="#Xberger1970">Berger and York</a>,&#x00A0;<a 
+href="#Xberger1970">1970</a>;&#x00A0;<a 
+href="#Xmcdougall1999">McDougall and
+Harrison</a>,&#x00A0;<a 
+href="#Xmcdougall1999">1999</a>;&#x00A0;<a 
+href="#Xkoppers2002">Koppers</a>,&#x00A0;<a 
+href="#Xkoppers2002">2002</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1004r4"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v103x.png" alt=" 2   J2&sigma;2R +-R2&sigma;2J
+&sigma;T =  &lambda;240(1 + RJ)
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 89--><p class="nopar" >
+<!--l. 91--><p class="indent" >   which assumes that cov(R,J) = 0. This assumption cannot be correct because both R and J are calculated using
+the same mass fractionation corrections, detector calibrations, interference corrections and radioactive decay
+corrections. The analytical uncertainty associated with each of these factors results in correlated errors between R
+and J. Ignoring these error correlations affects both the precision and accuracy of the resulting <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar
+ages.<br 
+class="newline" />
+<!--l. 99--><p class="indent" >   The problem of correlated errors is not limited to R and J alone. It crops up literally everywhere in the
+<sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method. In fact, a covariant structure is deeply engrained into the very DNA of the method, which is
+based on five isotopes (36-40) of a single element (Ar). This paper will show that, because the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method is
+based on ratios rather than absolute abundances, it is subject to the peculiar mathematics of &#8216;compositional data&#8217;
+(Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:logratios --></a>). Correlated errors are created during mass spectrometry, when the ion detector signals are extrapolated
+to &#8216;time zero&#8217; and blank corrections are made (Sections <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MC --></a> and <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:PH --></a>). They occur as a result of mass fractionation
+corrections and detector inter-calibrations (Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:calibration --></a>). They arise when accounting for the effect of
+radioactive decay on <sup><span 
+class="cmr-7">39</span></sup>Ar (from K), <sup><span 
+class="cmr-7">36</span></sup>Ar (from Cl) and <sup><span 
+class="cmr-7">37</span></sup>Ar (from Ca) (Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:decay --></a>), or whenever an
+interference correction is made (Section <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:interference --></a>). Error correlations occur when calculating J-factors (Section <a 
+href="#x1-1100011">11<!--tex4ht:ref: sec:J --></a>)
+and, as we have already seen at the beginning of this section, when applying the J-factor to solve
+the age equation (Section <a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:age-calculation --></a>). Error correlations must also be taken into account when calculating
+the weighted mean of several <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar age analyses (Section <a 
+href="#x1-1300013">13<!--tex4ht:ref: sec:mean --></a>). Finally, the methods presented
+in this paper provide a simple and elegant way to account for the systematic biases that occur as a
+result of the uncertainty in the <sup><span 
+class="cmr-7">40</span></sup>K decay constant and the atmospheric <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">36</span></sup>Ar ratio (Section
+<a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:age-calculation --></a>).<br 
+class="newline" />
+<!--l. 126--><p class="indent" >   Thus, the existence of correlated errors affects every aspect of the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method. The paper at hand
+presents an analytical solution to this problem as an alternative to the numerical approximations proposed elsewhere
+(<a 
+href="#Xscaillet2000">Scaillet</a>,&#x00A0;<a 
+href="#Xscaillet2000">2000</a>). A new computer code called <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>was developed with the aim to facilitate the
+adoption of the rigorous data reduction and error propagation methods presented herein (Section
+<a 
+href="#x1-1400014">14<!--tex4ht:ref: sec:Ar-Ar_Redux --></a>).
+<!--l. 134--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a><sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar as a compositional data problem</h3>
+<!--l. 137--><p class="noindent" >As mentioned in Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>, the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-age calculation is based on the <sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span><sup><span 
+class="cmsy-7">&lowast;</span></sup><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span><sub><span 
+class="cmmi-7">K</span></sub>-ratio (R, see Equation <a 
+href="#x1-1003r3">3<!--tex4ht:ref: eq:t --></a>),
+which can be calculated as follows:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2001r5"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v104x.png" alt="    1 &minus; a+ b+ c
+R = ----------- &minus; f
+        d&minus; e
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 144--><p class="nopar" >
+<!--l. 146--><p class="indent" >   with
+<!--l. 148--><p class="indent" >
+<table 
+class="align">
+                               <tr><td 
+class="align-odd"><span 
+class="cmmi-10">a </span>=</td>                               <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v105x.png" alt="[40  ]
+ --Ar
+ 36Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v106x.png" alt="[36  ]
+ --Ar
+ 40Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                                       <td 
+class="align-label"><a 
+ id="x1-2002r6"></a>(6)
+                               </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">b </span>=</td>                               <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v107x.png" alt="[40Ar]
+ 36Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v108x.png" alt="[36Ar]
+ 37Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">ca</span></sub><img 
+src="Ar-Ar_Redux_v109x.png" alt="[ 37Ar-]
+  40Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                              <td 
+class="align-label"><a 
+ id="x1-2003r7"></a>(7)
+                               </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">c </span>=</td>                               <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v1010x.png" alt="[40  ]
+ 36Ar
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v1011x.png" alt="[36  ]
+ 38Ar
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">cl</span></sub><img 
+src="Ar-Ar_Redux_v1012x.png" alt="[38   ]
+ 40Ar
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                              <td 
+class="align-label"><a 
+ id="x1-2004r8"></a>(8)
+                               </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">d </span>=</td>                               <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v1013x.png" alt="[    ]
+ 39Ar
+ 40Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                                               <td 
+class="align-label"><a 
+ id="x1-2005r9"></a>(9)
+                               </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">e </span>=</td>                               <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v1014x.png" alt="[39Ar]
+ 37Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">ca</span></sub><img 
+src="Ar-Ar_Redux_v1015x.png" alt="[37Ar ]
+ 40Ar-"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                                      <td 
+class="align-label"><a 
+ id="x1-2006r10"></a>(10)
+                               </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">f </span>=</td>                               <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v1016x.png" alt="[40  ]
+ --Ar
+ 39Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">k</span></sub></td>                                                                               <td 
+class="align-label"><a 
+ id="x1-2007r11"></a>(11)                               </td></tr></table>
+<!--l. 163--><p class="indent" >   in which &#8216;a&#8217; stands for &#8216;air&#8217;, &#8216;ca&#8217; for &#8216;Ca-salt&#8217;, &#8216;k&#8217; for &#8216;K-glass&#8217;, and &#8216;cl&#8217; for &#8216;Cl decay products&#8217;. The subscript &#8216;m&#8217;
+stands for either &#8216;sample&#8217; or &#8216;fluence monitor&#8217;. The meaning of this equation and the significance of the subscripts
+will be elaborated in later sections of this paper. The important point which needs to be made here is that
+Equations <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:defa --></a>-<a 
+href="#x1-2007r11">11<!--tex4ht:ref: eq:deff --></a> only contain ratios, and do not depend on the absolute abundances of the different argon
+isotopes. In statistical terms, <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-measurements are said to be &#8216;compositional data&#8217; and are
+subject to the peculiar mathematics of the compositional dataspace or &#8216;simplex&#8217; (<a 
+href="#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>). To
+illustrate the profound implications of this point, consider the simple situation of a K-bearing sample
+containing neither Ca nor Cl. In this case, terms b, c and e in Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a> disappear, which leaves us with a
+simple three component system comprised of <sup><span 
+class="cmr-7">36</span></sup>Ar, <sup><span 
+class="cmr-7">39</span></sup>Ar and <sup><span 
+class="cmr-7">40</span></sup>Ar. Because we are only interested in
+
+the relative abundances of these three isotopes, they can be normalised to unity and plotted on a
+ternary diagram (Figure <a 
+href="#x1-20081">1<!--tex4ht:ref: fig:ternary --></a>). It is well known that common summary statistics such as the arithmetic
+mean and standard deviation are unreliable in this data space. This is because the ternary diagram
+occupies a narrowly restricted subspace of the realm of real numbers. These restrictions cause problems
+because standard data reduction methods commonly assume that the data follow a Normal distribution,
+which requires support from -<span 
+class="cmsy-10">&infin; </span>to +<span 
+class="cmsy-10">&infin;</span>. The solution to this conundrum is to transform the data
+from the simplex to a Euclidean &#8216;logratio space&#8217;, in which standard Normal theory can be safely used
+(<a 
+href="#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>;&#x00A0;<a 
+href="#Xvermeesch2010a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>).<br 
+class="newline" />
+<!--l. 191--><p class="indent" >   In addition to opening compositional data to standard statistical analysis, the logratio transformation also
+simplifies the algebra of <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar data reduction. This is because many of the calculations required for processing
+<sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-data involve multiplication and exponentiation, which reduce to simple addition and multiplication after
+taking logs. The next sections of this paper will show how the raw mass spectrometric data can be cast into a
+logratio covariance structure for further processing, for both multi-collector (Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MC --></a>) and single collector (Section
+<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:PH --></a>) instruments.
+<!--l. 202--><p class="indent" >   <hr class="figure"><div class="figure" 
+><a id="x1-20081"></a>
+<a href="fig1.png">
+<img 
+src="fig1.png" alt="PIC" class="snapshot"><!--tex4ht:graphics  
+name="Ar-Ar_Redux_v1017x.png" src="ternary.eps"  
+-->
+</a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content"><sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-data are compositional data, in which only the ratios between components matter, and
+not their absolute abundances. This is reflected in the fact that <sup><span 
+class="cmr-7">40</span></sup>Ar-<sup><span 
+class="cmr-7">39</span></sup>Ar-<sup><span 
+class="cmr-7">36</span></sup>Ar data can be renormalised to
+unity and plotted on a ternary diagram (left). There is a one-to-one mapping between this so-called &#8216;simplex&#8217;
+and Euclidean logratio space (right).</span></div><!--tex4ht:label?: x1-20081 -->
+<!--l. 212--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 214--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Multi-collector data</h3>
+<!--l. 217--><p class="noindent" >To illustrate the calculations in the remainder of this paper, consider the following sequence of analyses: b<sub><span 
+class="cmr-7">1</span></sub> (first
+blank), u<sub><span 
+class="cmr-7">1</span></sub> (first sample), s<sub><span 
+class="cmr-7">1</span></sub> (first age standard), u<sub><span 
+class="cmr-7">2</span></sub> (second sample), b<sub><span 
+class="cmr-7">2</span></sub> (second blank), s<sub><span 
+class="cmr-7">2</span></sub> (second standard), s<sub><span 
+class="cmr-7">3</span></sub>
+(third standard) and b<sub><span 
+class="cmr-7">3</span></sub> (third blank). In a multicollector mass spectrometer, each of the five argon isotopes
+appearing in Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a> are monitored simultaneously through time (t) and can be cast into an [n <span 
+class="cmsy-10">&#x00D7; </span>5] matrix
+format, with n the number of integrations (i.e. t = <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">t</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,t</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,...,t</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">}</span>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r12"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1018x.png" alt="         &lfloor;                                                       &rfloor;
+           36Ar(x,t1) 37Ar(x,t1) 38Ar(x,t1) 39Ar(x,t1) 40Ar(x,t1)
+         || 36Ar(x,t2) 37Ar(x,t2) 38Ar(x,t2) 39Ar(x,t2) 40Ar(x,t2)||
+M (x,t) = |&lceil;     ..          ..          ..          ..          ..    |&rceil;
+           36   .     37   .     38   .     39   .     40   .
+             Ar(x,tn)   Ar(x,tn)   Ar(x,tn)   Ar(x,tn)   Ar(x,tn)
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 241--><p class="nopar" >
+<!--l. 243--><p class="indent" >   where &#8216;x&#8217; stands for &#8216;blank&#8217;, &#8216;sample&#8217; or &#8216;standard&#8217;. The same formulation can be used for the interference
+monitors (particularly Ca) but further discussion of these will be deferred to Section <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:interference --></a> and Appendix A. Because the
+measurements are done simultaneously on all five detectors, any random variation in, say, the filament voltage or
+trap current will simultaneously affect all signals, resulting in correlated residuals. The blank correction is made by
+subtracting the time-resolved signal of the nearest blank measurement (b) from that of the analysis (x), resulting in
+a new matrix B(x,b,t):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3002r13"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1019x.png" alt="          &lfloor; 36  b       37  b       38   b      39  b       40  b      &rfloor;
+          | 36Arb(x,t1)  3A7r b(x,t1)  38Ar (bx,t1) 39Arb(x,t1)  40Arb(x,t1) |
+B(x,b,t) = ||   Ar (.x,t2)   Ar .(x,t2)   Ar (.x,t2)   Ar (.x,t2)    Ar (.x,t2) ||
+          &lceil;      ..          ..           ..           ..           ..     &rceil;
+            36Arb(x,tn)  37Arb(x,tn)  38Arb(x,tn) 39Arb(x,tn)  40Arb(x,tn)
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 268--><p class="nopar" >
+<!--l. 270--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3003r14"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1020x.png" alt="iArb(x,tj) = iAr(x,tj) &minus; iAr(b,tj)
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+
+<!--l. 275--><p class="nopar" >
+<!--l. 277--><p class="indent" >   for i = <span 
+class="cmsy-10">{</span>36, 37, 38, 39, 40<span 
+class="cmsy-10">} </span>and j = <span 
+class="cmsy-10">{</span>1, ..., n<span 
+class="cmsy-10">}</span>. Our goal is to extract 4-element vectors of logratios from these
+[n<span 
+class="cmsy-10">&#x00D7;</span>5] matrices of blank corrected mass spectrometer signals, taking into account any correlated errors. The easiest
+but by no means only way to achieve this is by forming the logratios prior to regression, yielding an [n<span 
+class="cmsy-10">&#x00D7;</span>4] matrix for
+each analysis:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3004r15"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1021x.png" alt="          &lfloor;  [36Arb(x,t)]   [37Arb(x,t )]   [38Arb(x,t )]   [ 39Arb(x,t )]&rfloor;
+          | l[40Arb(x,t11)]  l[40Arb(x,t11)]  l[40Arb(x,t11)]  l[ 40Arb(x,t11)]|
+          || l 36Arb(x,t2)   l 37Arb(x,t2)  l 38Arb(x,t2)  l  39Arb(x,t2) ||
+L (x,b,t) = ||  40Arb(x,t2)     40Arb(x,t2)    40Arb(x,t2)     40Arb(x,t2) ||
+          |&lceil;      ...             ...            ...            ...     |&rceil;
+            l[36Arb(x,tn)]  l[37Arb(x,tn)]  l[38Arb(x,tn)] l[39Arb(x,tn)]
+              40Arb(x,tn)    40Arb(x,tn)    40Arb(x,tn)    40Arb(x,tn)
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+<!--l. 304--><p class="nopar" >
+<!--l. 306--><p class="indent" >   where &#8216;l&#8217; stands for &#8216;natural log&#8217; and <sup><span 
+class="cmr-7">40</span></sup>Ar is used as a common denominator for all the ratios denoted by &#8216;m&#8217; in
+Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a>. We thus obtain five time-resolved logratio matrices, one for each run in the analysis sequence. These five
+matrices can be assembled into one [n <span 
+class="cmsy-10">&#x00D7; </span>20] matrix, which is naturally partitioned into three groups by the
+blanks.
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3005r16"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1022x.png" alt="G(t) = [L (u1,b1,t) L(s1,b1,t) | L(u2,b2,t) L(s2,b2) | L (s3,b3,t)] = [g1|g2|g3]
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 318--><p class="nopar" >
+<!--l. 320--><p class="indent" >   where the first group (<span 
+class="cmmi-10">g</span><sub><span 
+class="cmr-7">1</span></sub>) consists of sample <span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">1</span></sub> and standard <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">1</span></sub>, which share blank <span 
+class="cmmi-10">b</span><sub><span 
+class="cmr-7">1</span></sub>; the second group (<span 
+class="cmmi-10">g</span><sub><span 
+class="cmr-7">2</span></sub>)
+consists of sample <span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">2</span></sub> and standard <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">2</span></sub>, which share blank <span 
+class="cmmi-10">b</span><sub><span 
+class="cmr-7">2</span></sub>; and the third group consists of standard <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">3</span></sub>, which is
+the only analysis using blank <span 
+class="cmmi-10">b</span><sub><span 
+class="cmr-7">3</span></sub>. It is reasonable to expect the blank-corrected logratio signals to be correlated
+within each group, but uncorrelated between groups. We therefore extrapolate the logratio signals to
+t=0 (&#8216;time zero&#8217;) in blocks, and concatenate the resulting logratio intercepts into a single 20-element
+vector:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3006r17"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1023x.png" alt="X = [X(g1) X (g2) X (g3)]
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 333--><p class="nopar" >
+<!--l. 335--><p class="indent" >   with <span 
+class="cmmi-10">X</span>(<span 
+class="cmmi-10">g</span><sub><span 
+class="cmmi-7">i</span></sub>) the vector of logratio intercepts of the i<sup><span 
+class="cmmi-7">th</span></sup> group, obtained by joint (non)linear regression. The [20 <span 
+class="cmsy-10">&#x00D7;</span>
+20] covariance matrix of X is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3007r18"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1024x.png" alt="      &lfloor;               &rfloor;
+        &Sigma;g1  08,8  08,4
+&Sigma;X  = &lceil; 08,8  &Sigma;g2  08,4 &rceil;
+        04,8  04,8  &Sigma;g3
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 349--><p class="nopar" >
+<!--l. 351--><p class="indent" >   where &Sigma;<sub><span 
+class="cmmi-7">g</span><sub><span 
+class="cmmi-5">i</span></sub></sub> is the covariance matrix of the i<sup><span 
+class="cmmi-7">th</span></sup> group&#8217;s intercepts and 0<sub><span 
+class="cmmi-7">i,j</span></sub> denotes a zero matrix of size [<span 
+class="cmmi-10">i</span><span 
+class="cmsy-10">&#x00D7;</span><span 
+class="cmmi-10">j</span>]. One
+well known problem with the logratio transformation is the handling of zero or negative values. In the context of
+argon mass spectrometry, this occurs in one of two situations: (a) <sup><span 
+class="cmr-7">36</span></sup>Ar (and <sup><span 
+class="cmr-7">38</span></sup>Ar) in the atmospheric correction of
+extremely clean samples and (b) <sup><span 
+class="cmr-7">37</span></sup>Ar in the Ca-interference correction of &#8216;expired&#8217; samples. The zero value
+problem can be avoided by performing generalised linear regression of the ratios (using a logarithmic link
+function to ensure positive intercepts,&#x00A0;<a 
+href="#Xnelder1972">Nelder and Wedderburn</a>,&#x00A0;<a 
+href="#Xnelder1972">1972</a>), or to cast the regression problem
+into a more sophisticated maximum likelihood form (<a 
+href="#Xwood2015">Wood</a>,&#x00A0;<a 
+href="#Xwood2015">2015</a>). A comprehensive discussion of
+these alternative methods falls outside the scope of the present paper and will be deferred to a future
+publication.
+<!--l. 366--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>&#8216;Peak-hopping&#8217; data</h3>
+<!--l. 369--><p class="noindent" >In single collector mass spectrometers, the various argon isotopes cannot be monitored simultaneously, but must be
+measured separately. This is achieved by separately scanning (&#8216;hopping&#8217;) over the mass range of the argon isotopes
+by varying the field strength of the mass analyser. Thus, each mass has its own time scale <span 
+class="cmmi-10">t</span><sup><span 
+class="cmmi-7">i</span></sup>, for i
+= 36, 37, 38, 39 and 40, resulting in a set of five time resolved data vectors M(x,i,t<sup><span 
+class="cmmi-7">i</span></sup>) for each run
+x:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r19"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1025x.png" alt="           &lfloor;          &rfloor;
+             iAr(x,ti1)
+           || iAr(x,ti2) ||
+M (x,i,ti) = |&lceil;     ..    |&rceil;
+             i   . i
+              Ar(x,tn)
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 388--><p class="nopar" >
+<!--l. 390--><p class="indent" >   Because the five isotope signals are measured at different times, we can safely assume their residual noise to be
+uncorrelated. Again, blank correction is done in time-resolved mode, but separately for each isotope. This results in
+five (one for each run) times five (for each isotope) n-element ratio vectors:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4002r20"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1026x.png" alt="            &lfloor;  [i     i   i     i ] &rfloor;
+            | l[iAr(x,t1i)&minus; iAr(b,t1i)] |
+L(x,b,i,ti) = || l  Ar(x,t2)&minus;.  Ar(b,t2)  ||
+            &lceil;  [        ..         ] &rceil;
+              l iAr (x,tin)&minus; iAr(b,tin)
+" class="math-display" ></center></td><td class="equation-label">(20)</td></tr></table>
+<!--l. 407--><p class="nopar" >
+<!--l. 409--><p class="indent" >   These vectors are assembled into five [n <span 
+class="cmsy-10">&#x00D7; </span>5] matrices, each of which is partitioned into three groups according to
+the shared blank corrections:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4003r21"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1027x.png" alt="         [                                                          ]
+G (i,ti) = L (u1,b1,i,ti) L(s1,b1,i,ti) | L (u2,b2,i,ti) L(s2,b2,i,ti) | L (s3,b3,i,ti) = [gi1|gi2|g3i]
+" class="math-display" ></center></td><td class="equation-label">(21)</td></tr></table>
+
+<!--l. 417--><p class="nopar" >
+<!--l. 419--><p class="indent" >   Joint regression to t=0 yields a 5-element vector of log-intercepts for each isotope:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4004r22"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1028x.png" alt="Z(i) = [Z(g1,i) Z (g2,i) Z (g3,i)]
+" class="math-display" ></center></td><td class="equation-label">(22)</td></tr></table>
+<!--l. 425--><p class="nopar" >
+<!--l. 427--><p class="indent" >   with [5 <span 
+class="cmsy-10">&#x00D7; </span>5] covariance matrices
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4005r23"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1029x.png" alt="       &lfloor;  &Sigma;i  02,2 02,1&rfloor;
+&Sigma;    = &lceil;  02g,12 &Sigma;i   02,1&rceil;
+  Z(i)     01,2 01g,22 &Sigma;i
+                     g3
+" class="math-display" ></center></td><td class="equation-label">(23)</td></tr></table>
+<!--l. 439--><p class="nopar" >
+<!--l. 441--><p class="indent" >   where &Sigma;<sub><span 
+class="cmmi-7">g</span><sub><span 
+class="cmmi-5">j</span></sub></sub><sup><span 
+class="cmmi-7">i</span></sup> is the covariance matrix of the <span 
+class="cmmi-10">j</span><sup><span 
+class="cmmi-7">th</span></sup> group&#8217;s <sup><span 
+class="cmmi-7">i</span></sup>Ar intercepts. Next, we bring the ratio-intercept data for
+all five isotopes together into a single 25-element vector
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4006r24"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1030x.png" alt="Z = [Z (36) Z(37) Z (38) Z(39) Z(40)]
+" class="math-display" ></center></td><td class="equation-label">(24)</td></tr></table>
+<!--l. 448--><p class="nopar" >
+
+<!--l. 450--><p class="indent" >   with [25 <span 
+class="cmsy-10">&#x00D7; </span>25] covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4007r25"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1031x.png" alt="     &lfloor;                                    &rfloor;
+     | &Sigma;Z (36)  05,5    05,5    05,5    05,5  |
+     ||  05,5   &Sigma;Z (37)   05,5    05,5    05,5  ||
+&Sigma;Z = |&lceil;  05,5    05,5  &Sigma;Z (38)   05,5    05,5  |&rceil;
+        05,5    05,5    05,5   &Sigma;Z(39)   05,5
+        05,5    05,5    05,5    05,5   &Sigma;Z(40)
+" class="math-display" ></center></td><td class="equation-label">(25)</td></tr></table>
+<!--l. 464--><p class="nopar" >
+<!--l. 466--><p class="indent" >   Finally, we form 20 logratios with the following matrix operation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4008r26"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1032x.png" alt="X = Z JX
+" class="math-display" ></center></td><td class="equation-label">(26)</td></tr></table>
+<!--l. 471--><p class="nopar" >
+<!--l. 473--><p class="indent" >   The associated [20 <span 
+class="cmsy-10">&#x00D7; </span>20] covariance matrix is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4009r27"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1033x.png" alt="&Sigma;   = J&prime; &Sigma;  J
+  X    X  Z  X
+" class="math-display" ></center></td><td class="equation-label">(27)</td></tr></table>
+<!--l. 478--><p class="nopar" >
+<!--l. 480--><p class="indent" >   with <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">X</span></sub> the [25 <span 
+class="cmsy-10">&#x00D7; </span>20] Jacobian matrix of the subtraction operation and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">X</span></sub><span 
+class="cmsy-10">&prime; </span>its transpose:
+
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4010r28"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1034x.png" alt="     &lfloor;                          &rfloor;
+     | 15,5  05,5  05,5  05,5  &minus; 15,5 |
+J&prime;X = |&lceil; 05,5  15,5  05,5  05,5  &minus; 15,5 |&rceil;
+       05,5  05,5  15,5  05,5  &minus; 15,5
+       05,5  05,5  05,5  15,5  &minus; 15,5
+" class="math-display" ></center></td><td class="equation-label">(28)</td></tr></table>
+<!--l. 494--><p class="nopar" >
+<!--l. 496--><p class="indent" >   where 1<sub><span 
+class="cmmi-7">i,i</span></sub> is an [<span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x00D7; </span><span 
+class="cmmi-10">i</span>] identity matrix. We have now cast the raw mass spectrometer data in a
+common logratio format X (through either Equation <a 
+href="#x1-3006r17">17<!--tex4ht:ref: eq:XMC --></a> or <a 
+href="#x1-4008r26">26<!--tex4ht:ref: eq:XPH --></a>) and associated covariance structure &Sigma;<sub><span 
+class="cmmi-7">X</span></sub>
+(Equation <a 
+href="#x1-3007r18">18<!--tex4ht:ref: eq:sigmaXMC --></a> or <a 
+href="#x1-4009r27">27<!--tex4ht:ref: eq:sigmaXPH --></a>). From here on, multicollector and peak-hopping data can be treated on an equal
+footing.
+<!--l. 503--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Detector calibration</h3>
+<!--l. 506--><p class="noindent" >The different ion detectors in a multicollector mass spectrometer do not necessarily respond equally to ion beams of
+equal mass and size. The measured ratio of the beam intensities at t=0 will therefore not necessarily equal the true
+isotopic ratio. This issue obviously does not occur in single collector instruments. Although the latest generation of
+multicollector noble gas mass spectrometers quantify the relative sensitivities internally through an electronic
+detector intercalibration, this section describes a data reduction protocol for a conventional (&#8216;analog&#8217;) detector
+calibration. Suppose that there are five detectors, one for each argon isotope, and denote these by d[36],
+d[37], d[38], d[39] and d[40]. The relative sensitivities of detectors d[36] and d[40] can be quantified by
+comparing the measured <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">36</span></sup>Ar intensity ratio of an air shot with the known atmospheric ratio,
+as part of the mass fractionation correction (Section <a 
+href="#x1-60006">6<!--tex4ht:ref: sec:fractionation --></a>). The relative sensitivities of the remaining
+detectors, d[37]-d[40], on the other hand, are calibrated by steering a fixed <sup><span 
+class="cmr-7">40</span></sup>Ar beam from an air
+tank across them. The resulting signals of this &#8216;peak hopping&#8217; experiment are extrapolated to t=0
+using the methods described in Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:PH --></a>, resulting in four log-intercepts and their variances. No blank
+corrections are needed because we are only interested in the total amount of gas present in the mass
+spectrometer and not in the air composition itself. If the calibration experiment is repeated multiple
+times, then the measurements can be combined by taking the arithmetic mean of the logs (Section <a 
+href="#x1-1300013">13<!--tex4ht:ref: sec:mean --></a>).
+To apply the detector calibration correction, we simply add the difference of the log-intercepts to
+the data, in matrix form. First, we append the log-intercepts of the calibration data to the sample
+vector.
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5001r29"></a>
+   <center class="math-display" >
+
+<img 
+src="Ar-Ar_Redux_v1035x.png" alt=" &lowast;
+X  = [X  Z(d[37]) Z (d[38]) Z(d[39]) Z (d[40])]
+" class="math-display" ></center></td><td class="equation-label">(29)</td></tr></table>
+<!--l. 538--><p class="nopar" >
+<!--l. 540--><p class="indent" >   with [24 <span 
+class="cmsy-10">&#x00D7; </span>24] covariance matrix &Sigma;<sub><span 
+class="cmmi-7">X</span></sub><sup><span 
+class="cmsy-7">&lowast;</span></sup>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5002r30"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1036x.png" alt="     &lfloor;  &Sigma;X      020,1        020,1        020,1        020,1    &rfloor;
+     |  01,20 &sigma;[Z(d[37])]2       0          0           0      |
+&Sigma;&lowast; = ||  01,20      0      &sigma;[Z(d[38])]2      0           0      ||
+ X   |&lceil;  01,20      0           0      &sigma;[Z(d[39])]2      0      |&rceil;
+        01,20      0           0          0       &sigma;[Z(d[40])]2
+" class="math-display" ></center></td><td class="equation-label">(30)</td></tr></table>
+<!--l. 554--><p class="nopar" >
+<!--l. 556--><p class="indent" >   where X is a 20-element vector of sample and standard measurements (Equation <a 
+href="#x1-3006r17">17<!--tex4ht:ref: eq:XMC --></a>) and &Sigma;<sub><span 
+class="cmmi-7">X</span></sub> its covariance
+matrix (Equation <a 
+href="#x1-3007r18">18<!--tex4ht:ref: eq:sigmaXMC --></a>), Z(d[i]) indicates the log intercept of <sup><span 
+class="cmr-7">40</span></sup>Ar measured by detector d[i] at &#8216;time zero&#8217;, and
+<span 
+class="cmmi-10">&sigma;</span>[<span 
+class="cmmi-10">Z</span>(<span 
+class="cmmi-10">d</span>[<span 
+class="cmmi-10">i</span>])] is its standard error. Then the detector calibrated data (C) and their [20 <span 
+class="cmsy-10">&#x00D7; </span>20] covariance matrix (&Sigma;<sub><span 
+class="cmmi-7">C</span></sub>) are
+obtained by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5003r31"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1037x.png" alt="C = X&lowast; J
+        C
+" class="math-display" ></center></td><td class="equation-label">(31)</td></tr></table>
+<!--l. 567--><p class="nopar" >
+<!--l. 569--><p class="indent" >   and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5004r32"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1038x.png" alt="&Sigma;C = J&prime; &Sigma;&lowast; JC
+      C  X
+" class="math-display" ></center></td><td class="equation-label">(32)</td></tr></table>
+<!--l. 574--><p class="nopar" >
+<!--l. 576--><p class="indent" >   respectively, where J<sub><span 
+class="cmmi-7">C</span></sub> is the [24 <span 
+class="cmsy-10">&#x00D7; </span>20] Jacobian matrix of the detector calibration and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">C</span></sub><span 
+class="cmsy-10">&prime; </span>is its
+transpose:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5005r33"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1039x.png" alt="     &lfloor;                             &rfloor;
+       14,4 04,4 04,4  04,4  04,4  J&lowast;C
+  &prime;  || 04,4 14,4 04,4  04,4  04,4  J&lowast;C ||
+JC = || 04,4 04,4 14,4  04,4  04,4  J&lowast;C ||
+     &lceil; 04,4 04,4 04,4  14,4  04,4  J&lowast;C &rceil;
+       04,4 04,4 04,4  04,4  14,4  J&lowast;C
+" class="math-display" ></center></td><td class="equation-label">(33)</td></tr></table>
+<!--l. 591--><p class="nopar" >
+<!--l. 593--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5006r34"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1040x.png" alt="     &lfloor;                &rfloor;
+        0   0   0   0
+J&lowast;C = || &minus; 1  0   0   1 ||
+     &lceil;  0  &minus; 1  0   1 &rceil;
+        0   0   &minus; 1 1
+" class="math-display" ></center></td><td class="equation-label">(34)</td></tr></table>
+<!--l. 606--><p class="nopar" >
+
+<!--l. 608--><p class="indent" >   Note that, if all the measurements (samples, age standards and interference monitors) use the same detector
+calibration, then the associated analytical uncertainties cancel out in the age calculation (Section <a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:age-calculation --></a>) and we can set
+<span 
+class="cmmi-10">&sigma;</span>[<span 
+class="cmmi-10">Z</span>(<span 
+class="cmmi-10">d</span>[<span 
+class="cmmi-10">i</span>])]<sup><span 
+class="cmr-7">2</span></sup> = 0 <span 
+class="cmsy-10">&forall; </span>i in Equation <a 
+href="#x1-5002r30">30<!--tex4ht:ref: eq:sigmaX* --></a>.
+<!--l. 614--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Mass fractionation</h3>
+<!--l. 617--><p class="noindent" >The five argon isotopes of interest span a mass range of 10%. The sensitivity of both single- and multicollector
+instruments varies with atomic mass, and significant errors can occur if the resulting &#8216;mass fractionation&#8217; is
+uncorrected for. The mass fractionation factor can be quantified by comparing the measured signal ratios of an air
+shot with its known isotopic ratio (298.56 <span 
+class="cmsy-10">&plusmn; </span>0.31,&#x00A0;<a 
+href="#Xlee2006">Lee et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xlee2006">2006</a>). For multicollector instruments, each detector
+has its own mass fractionation correction factor. For detectors d[37], d[38] and d[39], these are obtained by peak
+hopping between masses 36 and 40. For d[40] and d[36], we can quantify the fractionation by directly
+monitoring the <sup><span 
+class="cmr-7">36</span></sup>Ar/<sup><span 
+class="cmr-7">40</span></sup>Ar-ratio in multicollection mode. The exponential form of the kinetic isotope
+fractionation correction (<a 
+href="#Xyoung2002">Young et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xyoung2002">2002</a>) conveniently reduces to a linear equation in a logratio
+context:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6001r35"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1041x.png" alt=" [iAr ]   [ iAr |d[i]]    l[i]&minus; l[j] (       [40Ar ] )
+l jAr- = l jAr|d[j]  + l[40]&minus;-l[36] A (j)+ l 36Ar
+                                               a
+" class="math-display" ></center></td><td class="equation-label">(35)</td></tr></table>
+<!--l. 636--><p class="nopar" >
+<!--l. 638--><p class="indent" >   where <sup><span 
+class="cmmi-7">i</span></sup><span 
+class="cmmi-10">Ar</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">d</span>[<span 
+class="cmmi-10">j</span>] stands for the <sup><span 
+class="cmmi-7">i</span></sup><span 
+class="cmmi-10">Ar </span>signal measured on detector j and A(j) is the &#8216;time zero&#8217; intercept of
+<span 
+class="cmmi-10">l</span><img 
+src="Ar-Ar_Redux_v1042x.png" alt="[36Ar|d[j]]
+ 40Ar|d[j]"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub>, except if j = 40 on a multicollector instrument, in which case A(j) is the &#8216;time zero&#8217; intercept of
+<span 
+class="cmmi-10">l</span><img 
+src="Ar-Ar_Redux_v1043x.png" alt="[36Ar|d[36]]
+ 40Ar|d[40]"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub>. To apply Equation <a 
+href="#x1-6001r35">35<!--tex4ht:ref: eq:fractionation --></a>, we append the air shot data and the true air ratio to the calibration-corrected
+logratio intercepts:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6002r36"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1044x.png" alt="     [         [40Ar ] ]
+C &lowast; = C A (40) l 36--
+                 Ar  a
+" class="math-display" ></center></td><td class="equation-label">(36)</td></tr></table>
+<!--l. 650--><p class="nopar" >
+
+<!--l. 652--><p class="indent" >   whose [22 <span 
+class="cmsy-10">&#x00D7; </span>22] covariance matrix &Sigma;<sub><span 
+class="cmmi-7">C</span></sub><sup><span 
+class="cmsy-7">&lowast;</span></sup> can be written as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6003r37"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1045x.png" alt="     &lfloor;                      &rfloor;
+ &lowast;   &lceil;  &Sigma;C     020,1 2  020,1 &rceil;
+&Sigma;C =   01,20  &sigma;[A(40)]   0
+       01,20      0      0
+" class="math-display" ></center></td><td class="equation-label">(37)</td></tr></table>
+<!--l. 665--><p class="nopar" >
+<!--l. 667--><p class="indent" >   Note that Equation <a 
+href="#x1-6003r37">37<!--tex4ht:ref: eq:sigmaC* --></a> does not specify the analytical uncertainty of the atmospheric reference ratio. This is
+because any uncertainty resulting from an incorrect air-ratio at this point will cancel out during the atmospheric
+argon correction (Section <a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:40Ar*/39ArK --></a>). Recasting Equation <a 
+href="#x1-6001r35">35<!--tex4ht:ref: eq:fractionation --></a> in matrix form, the fractionation correction of the sample and
+fluence measurements can be written as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6004r38"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1046x.png" alt="     &lowast;
+F = C  JF
+" class="math-display" ></center></td><td class="equation-label">(38)</td></tr></table>
+<!--l. 678--><p class="nopar" >
+<!--l. 680--><p class="indent" >   with [20 <span 
+class="cmsy-10">&#x00D7; </span>20] covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6005r39"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1047x.png" alt="&Sigma;  = J&prime; &Sigma;&lowast; J
+ F    F  C  F
+" class="math-display" ></center></td><td class="equation-label">(39)</td></tr></table>
+<!--l. 685--><p class="nopar" >
+
+<!--l. 687--><p class="indent" >   where <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">F</span></sub> is the [22 <span 
+class="cmsy-10">&#x00D7; </span>20] Jacobian matrix of the mass fractionation correction and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">F</span></sub><span 
+class="cmsy-10">&prime; </span>is its transpose:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6006r40"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1048x.png" alt="     &lfloor;                           &lowast; &rfloor;
+     | 14,4 04,4 04,4  04,4  04,4  JF&lowast; |
+  &prime;  || 04,4 14,4 04,4  04,4  04,4  JF&lowast; ||
+JF = |&lceil; 04,4 04,4 14,4  04,4  04,4  JF&lowast; |&rceil;
+       04,4 04,4 04,4  14,4  04,4  JF&lowast;
+       04,4 04,4 04,4  04,4  14,4  JF
+" class="math-display" ></center></td><td class="equation-label">(40)</td></tr></table>
+<!--l. 702--><p class="nopar" >
+<!--l. 704--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6007r41"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1049x.png" alt="     &lfloor; &minus; 1.000  &minus; 1.000 &rfloor;
+     | &minus; 0.740  &minus; 0.740 |
+J&lowast;F = |&lceil; &minus; 0.487  &minus; 0.487 |&rceil;
+       &minus; 0.240  &minus; 0.240
+" class="math-display" ></center></td><td class="equation-label">(41)</td></tr></table>
+<!--l. 717--><p class="nopar" >
+<!--l. 719--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Decay corrections</h3>
+<!--l. 722--><p class="noindent" >Two of the five argon isotopes of interest are radioactive: <sup><span 
+class="cmr-7">37</span></sup>Ar (t<sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">&#x2215;</span><span 
+class="cmr-7">2</span></sub> = 34.95 <span 
+class="cmsy-10">&plusmn; </span>0.08 days,&#x00A0;<a 
+href="#Xrenne2001">Renne and
+Norman</a>,&#x00A0;<a 
+href="#Xrenne2001">2001</a>) and <sup><span 
+class="cmr-7">39</span></sup>Ar (t<sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">&#x2215;</span><span 
+class="cmr-7">2</span></sub> = 269 <span 
+class="cmsy-10">&plusmn; </span>3 years,&#x00A0;<a 
+href="#Xstoenner1965">Stoenner et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstoenner1965">1965</a>). A correction is required for the loss of these
+isotopes during the time elapsed between irradiation and analysis:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7001r42"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1050x.png" alt="l[iAr ]&#x2218; = l[iAr](&tau;)+ r(&lambda;i,&tau;)
+" class="math-display" ></center></td><td class="equation-label">(42)</td></tr></table>
+<!--l. 731--><p class="nopar" >
+<!--l. 733--><p class="indent" >   where <span 
+class="cmmi-10">l</span>[<sup><span 
+class="cmmi-7">i</span></sup><span 
+class="cmmi-10">Ar</span>]<sub><span 
+class="cmsy-7">&#x2218;</span></sub> is the total amount of isotope i formed during irradiation, <span 
+class="cmmi-10">l</span>[<sup><span 
+class="cmmi-7">i</span></sup><span 
+class="cmmi-10">Ar</span>](<span 
+class="cmmi-10">&tau;</span>) is the amount remaining at a
+time <span 
+class="cmmi-10">&tau; </span>after the end of the irradiation and <span 
+class="cmmi-10">r</span>(<span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,&tau;</span>) is the amount lost due to radioactivity when the decay
+constant is <span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmmi-7">i</span></sub>. Using a similar approach to <a 
+href="#Xwijbrans1986">Wijbrans and McDougall</a>&#x00A0;(<a 
+href="#Xwijbrans1986">1986</a>), <span 
+class="cmmi-10">r</span>(<span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,&tau;</span>) can be calculated
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7002r43"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1051x.png" alt="          &lfloor;        &rfloor;    &lfloor;                           &rfloor;
+           &sum;             &sum;  Pj (  1          1    )
+r(&lambda;i,&tau;) = l&lceil;   Pj&Delta;tj&rceil; &minus; l&lceil;   &lambda;-- e&lambda;i&Delta;&tau;j &minus; e&lambda;i[&Delta;&tau;j+&Delta;tj] &rceil;
+            j             j  i
+" class="math-display" ></center></td><td class="equation-label">(43)</td></tr></table>
+<!--l. 746--><p class="nopar" >
+<!--l. 748--><p class="indent" >   where <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">j</span></sub> is the power and &Delta;<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">j</span></sub> the duration of the j<sup><span 
+class="cmmi-7">th</span></sup> irradiation interval and &Delta;<span 
+class="cmmi-10">&tau;</span><sub><span 
+class="cmmi-7">j</span></sub> is the time
+elapsed between the end of the j<sup><span 
+class="cmmi-7">th</span></sup> irradiation segment and <span 
+class="cmmi-10">&tau;</span>. At this point it is important to merge
+the data reduction pathways for the samples and fluence monitors with those of any co-irradiated
+K-glass and Ca-salt. This is because they are all affected by the same decay constant uncertainties,
+resulting in correlated errors. However, in this Section we will, for the sake of simplicity, assume that
+<img 
+src="Ar-Ar_Redux_v1052x.png" alt="[        ]
+36Ar&#x2215;37Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">ca</span></sub>, <img 
+src="Ar-Ar_Redux_v1053x.png" alt="[         ]
+ 39Ar&#x2215;37Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">ca</span></sub> and <img 
+src="Ar-Ar_Redux_v1054x.png" alt="[         ]
+ 39Ar&#x2215;40Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">k</span></sub> have been obtained from elsewhere and do not need to be
+corrected for radioactive decay. For completeness, further details about the joint analysis of co-irradiated
+interference monitors with the sample are given in Appendix A. To apply the decay correction to
+the samples and fluence monitors, we first concatenate all the decay corrections into one 5-element
+vector:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7003r44"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1055x.png" alt="r(i) = [r(&lambda;i,&tau;[u1]) r(&lambda;i,&tau;[s1]) r(&lambda;i,&tau;[u2]) r(&lambda;i,&tau;[s2]) r(&lambda;i,&tau;[s3])]
+" class="math-display" ></center></td><td class="equation-label">(44)</td></tr></table>
+<!--l. 771--><p class="nopar" >
+<!--l. 773--><p class="indent" >   The [5 <span 
+class="cmsy-10">&#x00D7; </span>5] covariance matrix of which is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7004r45"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1056x.png" alt="        &prime;       2
+&Sigma;r (i) = Jr(i) &sigma;(&lambda;i) Jr(i)
+" class="math-display" ></center></td><td class="equation-label">(45)</td></tr></table>
+<!--l. 778--><p class="nopar" >
+<!--l. 780--><p class="indent" >   where <span 
+class="cmmi-10">&sigma;</span>(<span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmmi-7">i</span></sub>) is the standard error of the <sup><span 
+class="cmmi-7">i</span></sup><span 
+class="cmmi-10">Ar </span>decay constant, and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">r</span><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> is the Jacobian matrix:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7005r46"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1057x.png" alt="    [                                                       ]
+     &part;r(&lambda;i,&tau;[u1]) &part;r(&lambda;i,&tau;[s1]) &part;r(&lambda;i,&tau;[u2])-&part;r(&lambda;i,&tau;[s2]) &part;r(&lambda;i,&tau;[s3])
+Jr =     &part;&lambda;i        &part;&lambda;i        &part; &lambda;i        &part;&lambda;i        &part;&lambda;i
+" class="math-display" ></center></td><td class="equation-label">(46)</td></tr></table>
+<!--l. 793--><p class="nopar" >
+<!--l. 795--><p class="indent" >   with the partial derivatives given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7006r47"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1058x.png" alt="                  [                               ]&#x2215;       [                      ]
+&part;r(&lambda;i,&tau;-[x])  &sum;   Pj-1-+-&lambda;i&Delta;&tau;j[x]   1+-&lambda;i(&Delta;-&tau;j[x]+-&Delta;tj)-   &sum;     ---1---   -----1------
+   &part;&lambda;i    =     &lambda;i   e&lambda;i&Delta;&tau;j[x]  &minus;   e&lambda;i(&Delta; &tau;j[x]+&Delta;tj)         Pj e&lambda;i&Delta;&tau;j[x] &minus; e&lambda;i(&Delta;&tau;j[x]+&Delta;tj)
+             j                                         j
+
+" class="math-display" ></center></td><td class="equation-label">(47)</td></tr></table>
+<!--l. 816--><p class="nopar" >
+<!--l. 818--><p class="indent" >   Next, we append the vector of 10 decay corrections to the 20 fractionation-corrected logratio intercepts:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7007r48"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1059x.png" alt=" &lowast;
+F  = [F r(37) r(39)]
+" class="math-display" ></center></td><td class="equation-label">(48)</td></tr></table>
+<!--l. 824--><p class="nopar" >
+<!--l. 826--><p class="indent" >   with [30 <span 
+class="cmsy-10">&#x00D7; </span>30] covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7008r49"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1060x.png" alt="     &lfloor;  &Sigma;F    020,5  020,5  &rfloor;
+&Sigma;&lowast; = &lceil; 05,20  &Sigma;r(37)    0   &rceil;
+ F     05,20    0    &Sigma;r(39)
+" class="math-display" ></center></td><td class="equation-label">(49)</td></tr></table>
+<!--l. 838--><p class="nopar" >
+<!--l. 840--><p class="indent" >   The decay correction can then be cast into matrix form as
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7009r50"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1061x.png" alt="D = F&lowast; J
+        D
+" class="math-display" ></center></td><td class="equation-label">(50)</td></tr></table>
+<!--l. 845--><p class="nopar" >
+
+<!--l. 847--><p class="indent" >   yielding a 20-element vector with covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7010r51"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1062x.png" alt="       &prime;  &lowast;
+&Sigma;D  = JD &Sigma;F JD
+" class="math-display" ></center></td><td class="equation-label">(51)</td></tr></table>
+<!--l. 852--><p class="nopar" >
+<!--l. 854--><p class="indent" >   using the [30 <span 
+class="cmsy-10">&#x00D7; </span>20] Jacobian matrix <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">D</span></sub> and its transpose <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">D</span></sub><span 
+class="cmsy-10">&prime;</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7011r52"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1063x.png" alt="  &prime;         &lowast;     &lowast;
+J D = [120,20 JD(37) JD(39)]
+" class="math-display" ></center></td><td class="equation-label">(52)</td></tr></table>
+<!--l. 860--><p class="nopar" >
+<!--l. 862--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7012r53"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1064x.png" alt="      &lfloor;                               &rfloor;
+         J&lowast;D&lowast;(i)  04,1   04,1  04,1   04,1
+      ||  04,1   J&lowast;D&lowast;(i)  04,1  04,1   04,1 ||
+J&lowast;  = ||  04,1   04,1   J&lowast;&lowast;   04,1   04,1 ||
+ D(i)  |&lceil;  0     0     0D(i)  J&lowast;&lowast;    0   |&rceil;
+         04,1   04,1   04,1  0D(i)  J4&lowast;,&lowast;1
+          4,1    4,1    4,1   4,1   D(i)
+" class="math-display" ></center></td><td class="equation-label">(53)</td></tr></table>
+<!--l. 875--><p class="nopar" >
+<!--l. 877--><p class="indent" >   where
+
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7013r54"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1065x.png" alt="        &lfloor;   &rfloor;             &lfloor;   &rfloor;
+        | 0 |             | 0 |
+J&lowast;D&lowast;(37) = |&lceil; 1 |&rceil; and J&lowast;D&lowast;(39) = |&lceil; 0 |&rceil;
+          0                 0
+          0                 1
+" class="math-display" ></center></td><td class="equation-label">(54)</td></tr></table>
+<!--l. 900--><p class="nopar" >
+<!--l. 902--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>Interference corrections</h3>
+<!--l. 905--><p class="noindent" >The <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-method pairs the natural radioactive decay of <sup><span 
+class="cmr-7">40</span></sup>K to <sup><span 
+class="cmr-7">40</span></sup>Ar with the synthetic activation of <sup><span 
+class="cmr-7">39</span></sup>K to
+<sup><span 
+class="cmr-7">39</span></sup>Ar. Unfortunately, neutron activation produces not only <sup><span 
+class="cmr-7">39</span></sup>Ar but a host of other Ar-isotopes as well. The most
+important reactions are (<a 
+href="#Xmcdougall1999">McDougall and Harrison</a>,&#x00A0;<a 
+href="#Xmcdougall1999">1999</a>):
+<!--l. 911--><p class="indent" >
+<table 
+class="align-star">
+                                <tr><td 
+class="align-odd"><span 
+class="cmmi-10">K </span>: <span 
+class="cmmi-10">&#x00A0;</span></td>                                 <td 
+class="align-even"><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">K</span>(<span 
+class="cmmi-10">n,p</span>)<sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span></td>                                         <td 
+class="align-label"></td>                                <td 
+class="align-label">
+                                </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">&#x00A0;</span></td>                                    <td 
+class="align-even"><sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">K</span>(<span 
+class="cmmi-10">n,p</span>)<sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span></td>                                         <td 
+class="align-label"></td>                                <td 
+class="align-label">
+                                </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">Ca </span>: <span 
+class="cmmi-10">&#x00A0;</span></td>                                <td 
+class="align-even"><sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ca</span>(<span 
+class="cmmi-10">n,n&alpha;</span>)<sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span></td>                                       <td 
+class="align-label"></td>                                <td 
+class="align-label">
+                                </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">&#x00A0;</span></td>                                    <td 
+class="align-even"><sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ca</span>(<span 
+class="cmmi-10">n,&alpha;</span>)<sup><span 
+class="cmr-7">37</span></sup><span 
+class="cmmi-10">Ar</span></td>                                        <td 
+class="align-label"></td>                                <td 
+class="align-label">
+                                </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">&#x00A0;</span></td>                                    <td 
+class="align-even"><sup><span 
+class="cmr-7">42</span></sup><span 
+class="cmmi-10">Ca</span>(<span 
+class="cmmi-10">n,&alpha;</span>)<sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span></td>                                        <td 
+class="align-label"></td>                                <td 
+class="align-label">
+                                </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">Cl </span>: <span 
+class="cmmi-10">&#x00A0;</span></td>                                 <td 
+class="align-even"><sup><span 
+class="cmr-7">35</span></sup><span 
+class="cmmi-10">Cl</span>(<span 
+class="cmmi-10">n,&gamma;</span>)<sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Cl</span><img 
+src="Ar-Ar_Redux_v1066x.png" alt=" &beta;&minus;
+&minus;&minus;&rarr;"  class="" ><sup><span 
+class="cmr-7">36</span></sup><span 
+class="cmmi-10">Ar</span></td>                                <td 
+class="align-label"></td>                                <td 
+class="align-label">
+                                </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">&#x00A0;</span></td>                                    <td 
+class="align-even"><sup><span 
+class="cmr-7">37</span></sup><span 
+class="cmmi-10">Cl</span>(<span 
+class="cmmi-10">n,&gamma;</span>)<sup><span 
+class="cmr-7">38</span></sup><span 
+class="cmmi-10">Cl</span><img 
+src="Ar-Ar_Redux_v1067x.png" alt="  &minus;
+&minus;&beta;&minus;&rarr;"  class="" ><sup><span 
+class="cmr-7">38</span></sup><span 
+class="cmmi-10">Ar</span></td>                                <td 
+class="align-label"></td>                                <td 
+class="align-label"></td></tr></table>
+
+<!--l. 921--><p class="indent" >   The first five of these reactions can be characterised by mass spectrometric analysis of K-glass (<sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar ratio)
+and Ca-salt (<sup><span 
+class="cmr-7">36</span></sup>Ar/<sup><span 
+class="cmr-7">37</span></sup>Ar and <sup><span 
+class="cmr-7">39</span></sup>Ar/<sup><span 
+class="cmr-7">37</span></sup>Ar ratios). These ratios are directly incorporated into Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a>
+(parameters a, b and f). The chlorine decay products, on the other hand, are generally calculated from the
+independently determined and reactor-specific <sup><span 
+class="cmr-7">36</span></sup>Cl/<sup><span 
+class="cmr-7">38</span></sup>Cl-production ratio and will be discussed in Section <a 
+href="#x1-90009">9<!--tex4ht:ref: sec:Cl --></a>. If
+the K- and Ca-interference corrections are based on externally determined values, then we compile
+these with the decay-corrected sample and fluence measurements for further processing in Section
+<a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:40Ar*/39ArK --></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8001r55"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1068x.png" alt="I = [D  D(ca) D (k )]
+" class="math-display" ></center></td><td class="equation-label">(55)</td></tr></table>
+<!--l. 936--><p class="nopar" >
+<!--l. 938--><p class="indent" >   where, using the notation of Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:decay --></a>, D(ca) is a 2-element vector containing the decay-corrected <sup><span 
+class="cmr-7">36</span></sup>Ar/<sup><span 
+class="cmr-7">37</span></sup>Ar-
+and <sup><span 
+class="cmr-7">39</span></sup>Ar/<sup><span 
+class="cmr-7">37</span></sup>Ar-logratios of neutron-activated Ca, and D(k) is the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-logratio of neutron-activated K. The
+corresponding [23 <span 
+class="cmsy-10">&#x00D7; </span>23] covariance matrix is given by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8002r56"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1069x.png" alt="     &lfloor;  &Sigma;D    020,2   020,1  &rfloor;
+&Sigma;  = &lceil; 02,20  &Sigma;D(ca)  02,1  &rceil;
+  I    01,20   01,2   &sigma;2
+                     D (k)
+" class="math-display" ></center></td><td class="equation-label">(56)</td></tr></table>
+<!--l. 953--><p class="nopar" >
+<!--l. 955--><p class="indent" >   After which we can proceed to Section <a 
+href="#x1-90009">9<!--tex4ht:ref: sec:Cl --></a> of this paper. If, on the other hand, Ca and K interferences are
+quantified by co-irradiated Ca-salts and K-glass, then we can explicitly include the resulting mass spectrometer
+uncertainties into the error propagation. Further details of this are provided in Appendix A. In summary, the vector
+I, obtained from either Equation <a 
+href="#x1-8001r55">55<!--tex4ht:ref: eq:Ib --></a> or Appendix A, contains all the information required to solve Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a> except
+for factor &#8216;c&#8217;, which is discussed next.
+
+<!--l. 964--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
+ id="x1-90009"></a>Cl-decay</h3>
+<!--l. 967--><p class="noindent" >In contrast with the K- and Ca-interferences, which can be directly characterised by mass spectrometric analysis of
+co-irradiated materials, the Cl-interference on <sup><span 
+class="cmr-7">36</span></sup>Ar is generally calculated from an independently determined and
+reactor-specific <sup><span 
+class="cmr-7">36</span></sup>Cl/<sup><span 
+class="cmr-7">38</span></sup>Cl-production ratio (<a 
+href="#Xfoland1993">Foland et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfoland1993">1993</a>;&#x00A0;<a 
+href="#Xrenne2008">Renne et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xrenne2008">2008</a>). Let <span 
+class="cmmi-10">G</span>(<span 
+class="cmmi-10">x</span>) be the
+logratio of the chlorine decay products (i.e., <span 
+class="cmmi-10">l</span><img 
+src="Ar-Ar_Redux_v1070x.png" alt="[         ]
+ 36Ar&#x2215;38Ar"  class="left" align="middle">) in sample (or fluence monitor) x. Using the
+approach of <a 
+href="#Xwijbrans1986">Wijbrans and McDougall</a>&#x00A0;(<a 
+href="#Xwijbrans1986">1986</a>) to account for the radioactive decay of Cl to Ar, we
+obtain:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r57"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1071x.png" alt="       [36  ]
+G(x) = l 38Cl + g(&tau;[x])
+          Cl
+" class="math-display" ></center></td><td class="equation-label">(57)</td></tr></table>
+<!--l. 981--><p class="nopar" >
+<!--l. 983--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r58"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1072x.png" alt="       [   &sum;     ( &minus;&lambda; [&Delta;&tau;+&Delta;t ]   &minus;&lambda; &Delta;&tau; )]
+g(&tau;) = l 1+--j-Pj-e--36-&sum;-j--j-&minus;-e--36--j-
+                    &lambda;36  jPj&Delta;tj
+" class="math-display" ></center></td><td class="equation-label">(58)</td></tr></table>
+<!--l. 992--><p class="nopar" >
+<!--l. 994--><p class="indent" >   where <span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmr-7">36</span></sub> is the <sup><span 
+class="cmr-7">36</span></sup>Cl decay constant and <span 
+class="cmmi-10">&tau;</span>, &Delta;<span 
+class="cmmi-10">&tau;</span><sub><span 
+class="cmmi-7">i</span></sub> and &Delta;<span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">i</span></sub> are as defined in Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:decay --></a>. The decay corrections can
+be compiled into a single five-element vector
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9003r59"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1073x.png" alt="G = [G (u1) G(s1) G (u2) G(s2) G (s3)]
+" class="math-display" ></center></td><td class="equation-label">(59)</td></tr></table>
+<!--l. 1002--><p class="nopar" >
+<!--l. 1004--><p class="indent" >   whose [5 <span 
+class="cmsy-10">&#x00D7; </span>5] covariance matrix is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9004r60"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1074x.png" alt="       [  ( [36Cl])2       ]
+&Sigma;G = J&prime;G  &sigma; l 38Cl     0    JG
+              0    &sigma; (&lambda;36)2
+" class="math-display" ></center></td><td class="equation-label">(60)</td></tr></table>
+<!--l. 1015--><p class="nopar" >
+<!--l. 1017--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9005r61"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1075x.png" alt="    [                                                                ]
+J =        1            1            1           1            1
+ G    &part;G (u1)&#x2215;&part;&lambda;36  &part;G (s1)&#x2215;&part;&lambda;36  &part;G(u2)&#x2215;&part;&lambda;36 &part;G (s2)&#x2215;&part;&lambda;36  &part;G (s3)&#x2215;&part;&lambda;36
+" class="math-display" ></center></td><td class="equation-label">(61)</td></tr></table>
+<!--l. 1032--><p class="nopar" >
+<!--l. 1034--><p class="indent" >   where the partial derivatives are given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9006r62"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1076x.png" alt="        &sum;     [                                                       ]
+&part;G-(x)  --j-Pj-(1-+-&lambda;36&Delta;-&tau;j[x])e&minus;-&lambda;36&Delta;&tau;j &minus;-(1+-&lambda;36[&Delta;-&tau;j[x]+-&Delta;tj])e&minus;&lambda;36(&Delta;-&tau;j[x]+&Delta;tj)
+ &part;&lambda;36 =           &lambda;36&sum;j Pj [&lambda;36&Delta;tj +e&minus; &lambda;36(&Delta; &tau;j[x]+&Delta;tj) &minus; e&minus; &lambda;36&Delta;&tau;j[x]]
+
+" class="math-display" ></center></td><td class="equation-label">(62)</td></tr></table>
+<!--l. 1044--><p class="nopar" >
+<!--l. 1046--><p class="indent" >   Note that the Cl-interference correction implemented in Equation <a 
+href="#x1-2004r8">8<!--tex4ht:ref: eq:defc --></a> does not account for the presence of
+atmospheric <sup><span 
+class="cmr-7">38</span></sup>Ar and the production of <sup><span 
+class="cmr-7">38</span></sup>Ar from K. Doing so is straightforward but adds considerably more
+complexity to Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a> (Appendix B).
+<!--l. 1052--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">10   </span> <a 
+ id="x1-1000010"></a><sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span><sup><span 
+class="cmsy-7">&lowast;</span></sup><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span><sub><span 
+class="cmmi-7">K</span></sub></h3>
+<!--l. 1055--><p class="noindent" >After all the preprocessing discussed in the previous sections, we have finally gathered all the ratios required to
+solve Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a>. To this end, we compile all the information obtained thus far into a single vector of
+logratios
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10001r63"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1077x.png" alt="    [   [40Ar]    ]
+U =  I l 36Ar   G
+              a
+" class="math-display" ></center></td><td class="equation-label">(63)</td></tr></table>
+<!--l. 1063--><p class="nopar" >
+<!--l. 1065--><p class="indent" >   and its [29 <span 
+class="cmsy-10">&#x00D7; </span>29] covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10002r64"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1078x.png" alt="     &lfloor;  &Sigma;        0         0    &rfloor;
+     |    I    ( [2403,1] )2   23,5 |
+&Sigma;U = &lceil; 01,23  &sigma;  l 36AArr-a    01,5 &rceil;
+       05,23       05,1       &Sigma;G
+" class="math-display" ></center></td><td class="equation-label">(64)</td></tr></table>
+<!--l. 1076--><p class="nopar" >
+<!--l. 1078--><p class="indent" >   To simplify the notation in the remainder of this Section, it is useful to permute U and &Sigma;<sub><span 
+class="cmmi-7">U</span></sub> so that the
+Cl-interference data (G) are interspersed with the samples and fluence monitors:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10003r65"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1079x.png" alt="U&lowast; = U P and &Sigma; &lowast; = P U P
+              U
+" class="math-display" ></center></td><td class="equation-label">(65)</td></tr></table>
+<!--l. 1085--><p class="nopar" >
+<!--l. 1087--><p class="indent" >   where P is the [29 <span 
+class="cmsy-10">&#x00D7; </span>29] permutation matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10004r66"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1080x.png" alt="    &lfloor;                                                       &rfloor;
+      14,4 04,1  04,4  04,1  04,4  04,1  04,4  04,1  04,4  04,1  04,4
+    || 04,4 04,1  14,4  04,1  04,4  04,1  04,4  04,1  04,4  04,1  04,4 ||
+    || 04,4 04,1  04,4  04,1  14,4  04,1  04,4  04,1  04,4  04,1  04,4 ||
+    || 04,4 04,1  04,4  04,1  04,4  04,1  14,4  04,1  04,4  04,1  04,4 ||
+    || 04,4 04,1  04,4  04,1  04,4  04,1  04,4  04,1  14,4  04,1  04,4 ||
+P = || 04,4 04,1  04,4  04,1  04,4  04,1  04,4  04,1  04,4  04,1  14,4 ||
+    || 01,4  1   01,4   0   01,4   0   01,4   0   01,4   0   01,4 ||
+    || 01,4  0   01,4   1   01,4   0   01,4   0   01,4   0   01,4 ||
+    || 01,4  0   01,4   0   01,4   1   01,4   0   01,4   0   01,4 ||
+    &lceil; 01,4  0   01,4   0   01,4   0   01,4   1   01,4   0   01,4 &rceil;
+      01,4  0   01,4   0   01,4   0   01,4   0   01,4   1   01,4
+" class="math-display" ></center></td><td class="equation-label">(66)</td></tr></table>
+<!--l. 1106--><p class="nopar" >
+<!--l. 1108--><p class="indent" >   Next we convert the logratio vector <span 
+class="cmmi-10">U</span><sup><span 
+class="cmsy-7">&lowast;</span></sup> into a vector of 30 ratios
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10005r67"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1081x.png" alt="W  = [V (u1) V (s1) V (u2) V (s2) V (s3)]
+" class="math-display" ></center></td><td class="equation-label">(67)</td></tr></table>
+<!--l. 1113--><p class="nopar" >
+
+<!--l. 1115--><p class="indent" >   where
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10006r68"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1082x.png" alt="V(x) = [a(x ) b(x ) c(x) d(x) e(x) f(x)]
+" class="math-display" ></center></td><td class="equation-label">(68)</td></tr></table>
+<!--l. 1120--><p class="nopar" >
+<!--l. 1122--><p class="indent" >   with a-f as defined in Equations <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:defa --></a>-<a 
+href="#x1-2007r11">11<!--tex4ht:ref: eq:deff --></a>. f(x) is the same for all analyses in this example but may vary between
+samples when combining different irradiations. W is calculated in matrix form by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10007r69"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1083x.png" alt="          &lowast;
+W  = exp[U  JV]
+" class="math-display" ></center></td><td class="equation-label">(69)</td></tr></table>
+<!--l. 1130--><p class="nopar" >
+<!--l. 1132--><p class="indent" >   with <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">V</span> </sub> the [29 <span 
+class="cmsy-10">&#x00D7; </span>30] Jacobian matrix:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10008r70"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1084x.png" alt="     &lfloor;                         &rfloor;
+        J&lowast;V   05,6 05,6 05,6 05,6
+     ||  05,6  J&lowast;V  05,6 05,6 05,6 ||
+     ||  05,6  05,6  J&lowast;V  05,6 05,6 ||
+JV = ||  05,6  05,6 05,6  J&lowast;V  05,6 ||
+     &lceil;  05,6  05,6 05,6 05,6  J&lowast;V &rceil;
+        J&lowast;V&lowast;  J&lowast;V&lowast;  J&lowast;V&lowast; J &lowast;&lowast;V  JV&lowast;&lowast;
+" class="math-display" ></center></td><td class="equation-label">(70)</td></tr></table>
+
+<!--l. 1146--><p class="nopar" >
+<!--l. 1148--><p class="indent" >   where
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10009r71"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1085x.png" alt="     &lfloor;                  &rfloor;          &lfloor;                 &rfloor;
+     | 1  0  0  0  0  0 |            0  1  0  0  0  0
+  &lowast;  || 0  1  0  0  1  0 ||      &lowast;&lowast;  || 0  0  0  0  1  0||
+JV = |&lceil; 0  0  1  0  0  0 |&rceil; and JV = &lceil; 0  0  0  0  0  1&rceil;
+       0  0  0  1  0  0              1  1  1  0  0  0
+       0  0  1  0  0  0
+" class="math-display" ></center></td><td class="equation-label">(71)</td></tr></table>
+<!--l. 1169--><p class="nopar" >
+<!--l. 1171--><p class="indent" >   The [30 <span 
+class="cmsy-10">&#x00D7; </span>30] covariance matrix of W is obtained by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10010r72"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1086x.png" alt="       &prime;  &lowast;
+&Sigma;W  = JW &Sigma;U JW
+" class="math-display" ></center></td><td class="equation-label">(72)</td></tr></table>
+<!--l. 1176--><p class="nopar" >
+<!--l. 1178--><p class="indent" >   where the [29 <span 
+class="cmsy-10">&#x00D7; </span>30] Jacobian <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">W</span></sub> is given by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10011r73"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1087x.png" alt="      &lfloor;  &lowast;                     &rfloor;
+      | JW   05,&lowast;6  05,6  05,6  05,6|
+      || 05,6  JW   05,&lowast;6  05,6  05,6||
+JW  = || 05,6  05,6  JW   05,&lowast;6  05,6||
+      |&lceil; 05,6  05,6  05,6  JW   05,&lowast;6|&rceil;
+        05&lowast;,6&lowast;  05,&lowast;6&lowast;  05,&lowast;6&lowast;  05,&lowast;6&lowast;  JW&lowast;&lowast;
+        JW   JW   JW   JW   JW
+" class="math-display" ></center></td><td class="equation-label">(73)</td></tr></table>
+<!--l. 1192--><p class="nopar" >
+<!--l. 1194--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10012r74"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1088x.png" alt="     &lfloor;  a 0  0  0  0  0 &rfloor;          &lfloor;                  &rfloor;
+     |  0 b  0  0  e  0 |            0  b  0  0  0  0
+ &lowast;   ||  0 0  c  0  0  0 ||      &lowast;&lowast;  || 0  0  0  0  e  0 ||
+JW = |&lceil;  0 0  0  d  0  0 |&rceil; and JW = &lceil; 0  0  0  0  0  f &rceil;
+        0 0  c  0  0  0              a  b  c  0  0  0
+" class="math-display" ></center></td><td class="equation-label">(74)</td></tr></table>
+<!--l. 1215--><p class="nopar" >
+<!--l. 1217--><p class="indent" >   The five element vector R of <sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span><sup><span 
+class="cmsy-7">&lowast;</span></sup><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span><sub><span 
+class="cmmi-7">K</span></sub>-ratios is calculated with Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10013r75"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1089x.png" alt="R = [R (u1) R(s1) R (u2) R(s2) R(s3)]
+" class="math-display" ></center></td><td class="equation-label">(75)</td></tr></table>
+<!--l. 1223--><p class="nopar" >
+<!--l. 1225--><p class="indent" >   and its [5 <span 
+class="cmsy-10">&#x00D7; </span>5] covariance matrix is obtained by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10014r76"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1090x.png" alt="&Sigma;R  = J&prime; &Sigma;W JR
+       R
+" class="math-display" ></center></td><td class="equation-label">(76)</td></tr></table>
+<!--l. 1230--><p class="nopar" >
+<!--l. 1232--><p class="indent" >   where <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">R</span></sub> is the [30 <span 
+class="cmsy-10">&#x00D7; </span>5] Jacobian matrix and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">R</span></sub><span 
+class="cmsy-10">&prime; </span>is its transpose
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10015r77"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1091x.png" alt="     &lfloor;                                      &rfloor;
+       J&lowast;R(u1)   01,6     01,6    01,6     01,6
+ &prime;   ||  01,6   J&lowast;R(s1)   01,6    01,6     01,6  ||
+JR = ||  01,6    01,6   J&lowast;R(u2)   01,6     01,6  ||
+     &lceil;  01,6    01,6     01,6   J&lowast;R(s2)   01,6  &rceil;
+        01,6    01,6     01,6    01,6   J&lowast;R (s3)
+" class="math-display" ></center></td><td class="equation-label">(77)</td></tr></table>
+<!--l. 1246--><p class="nopar" >
+<!--l. 1248--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10016r78"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1092x.png" alt="        [   &minus; 1        1          1     a(x)&minus; b(x)&minus; c(x) &minus; 1 1 &minus; a(x)+ b(x)+ c(x)   ]
+J&lowast;R(x) =  -------------------- ------------------------2------------------2---- &minus; 1
+         d(x)&minus; e(x) d(x)&minus; e(x) d(x) &minus; e(x)     [d(x)&minus; e(x)]         [d(x) &minus; e(x)]
+" class="math-display" ></center></td><td class="equation-label">(78)</td></tr></table>
+<!--l. 1255--><p class="nopar" >
+
+<!--l. 1257--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">11   </span> <a 
+ id="x1-1100011"></a>J-factors</h3>
+<!--l. 1260--><p class="noindent" >The parameter J quantifying the production of <sup><span 
+class="cmr-7">39</span></sup>Ar from <sup><span 
+class="cmr-7">39</span></sup>K in the age equation is determined by
+analysing the argon composition of a co-irradiated fluence monitor with accurately known K-Ar age
+(T<sub><span 
+class="cmmi-7">s</span></sub>). This composition may vary across the irradiation stack due to neutron flux gradients in the
+reactor, which can be quantified by analysing several fluence monitors interspersed with the samples at
+known positions. The most appropriate J-factor for each sample is then obtained by simple linear
+interpolation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11001r79"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1093x.png" alt="       &lambda;40Ts
+J(x) = e----&minus;-1-
+        R(s|x)
+" class="math-display" ></center></td><td class="equation-label">(79)</td></tr></table>
+<!--l. 1272--><p class="nopar" >
+<!--l. 1274--><p class="indent" >   where <span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">s</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">x</span>) denotes the <sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span><sup><span 
+class="cmsy-7">&lowast;</span></sup><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span><sub><span 
+class="cmmi-7">K</span></sub>-ratio of the fluence monitors interpolated to the position of
+sample x (which is henceforth referred to as p[x]). Applying this procedure to our two sample - three
+monitor case study, we form a four-element vector of sample ratios and interpolated fluence monitor
+ratios:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11002r80"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1094x.png" alt="Y = [R(u1) R (u2) R(s|u1) R(s|u2)] = R JY
+" class="math-display" ></center></td><td class="equation-label">(80)</td></tr></table>
+<!--l. 1283--><p class="nopar" >
+<!--l. 1285--><p class="indent" >   with [4 <span 
+class="cmsy-10">&#x00D7; </span>4] covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11003r81"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1095x.png" alt="      &prime;
+&Sigma;Y = JY &Sigma;R JY
+" class="math-display" ></center></td><td class="equation-label">(81)</td></tr></table>
+<!--l. 1290--><p class="nopar" >
+<!--l. 1292--><p class="indent" >   where R is the vector of <sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span><sup><span 
+class="cmsy-7">&lowast;</span></sup><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span><sub><span 
+class="cmmi-7">K</span></sub>-ratios for the samples and fluence monitors (Equation <a 
+href="#x1-10013r75">75<!--tex4ht:ref: eq:Rvec --></a>), <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">Y</span> </sub> is the [5 <span 
+class="cmsy-10">&#x00D7;</span>
+4] Jacobian matrix and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">Y</span> </sub><span 
+class="cmsy-10">&prime; </span>is its transpose. Suppose that sample <span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">1</span></sub> sits between monitors <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">2</span></sub> in the
+irradiation stack, and <span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">2</span></sub> sits between monitors <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">2</span></sub> and <span 
+class="cmmi-10">s</span><sub><span 
+class="cmr-7">3</span></sub>. Then
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11004r82"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1096x.png" alt="     &lfloor; 1     0      0     0       0     &rfloor;
+     | 0     0      1     0       0     |
+J&prime;Y = || 0  p[u1]&minus;-p[s1]  0  p[s2]&minus;p[u1]   0     ||
+     &lceil;    p[s2]&minus; p[s1]     pp[s[u22]&minus;]&minus;pp[[s1s2]]p[s3]&minus;p[u2] &rceil;
+       0     0      0  p[s3]&minus;p[s2]p[s3]&minus;p[s2]
+" class="math-display" ></center></td><td class="equation-label">(82)</td></tr></table>
+<!--l. 1309--><p class="nopar" >
+<!--l. 1311--><p class="indent" >   Finally, we use Equation <a 
+href="#x1-11001r79">79<!--tex4ht:ref: eq:J --></a> to generate a five-element vector of sample <sup><span 
+class="cmr-7">40</span></sup><span 
+class="cmmi-10">Ar</span><sup><span 
+class="cmsy-7">&lowast;</span></sup><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span><sub><span 
+class="cmmi-7">K</span></sub>-ratios, their respective
+J-factors, and the <sup><span 
+class="cmr-7">40</span></sup>K decay constant:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11005r83"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1097x.png" alt="Q = [R (u1) R(u2) J (u1) J(u2) &lambda;40]
+" class="math-display" ></center></td><td class="equation-label">(83)</td></tr></table>
+<!--l. 1318--><p class="nopar" >
+<!--l. 1320--><p class="indent" >   with [5 <span 
+class="cmsy-10">&#x00D7; </span>5] covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11006r84"></a>
+   <center class="math-display" >
+
+<img 
+src="Ar-Ar_Redux_v1098x.png" alt="         &lfloor;                    &rfloor;
+       &prime; &lceil; &Sigma;Y    20       0   &rceil;
+&Sigma;Q  = JQ    0   &sigma; (&lambda;40)   20     JQ
+            0     0     &sigma; (Ts)
+" class="math-display" ></center></td><td class="equation-label">(84)</td></tr></table>
+<!--l. 1331--><p class="nopar" >
+<!--l. 1333--><p class="indent" >   where <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">Q</span></sub> is the [6 <span 
+class="cmsy-10">&#x00D7; </span>5] Jacobian matrix and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">Q</span></sub><span 
+class="cmsy-10">&prime; </span>is its transpose:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11007r85"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v1099x.png" alt="     &lfloor; 1  0   0      0      0      0    &rfloor;
+     | 0  1   0      0      0      0    |
+ &prime;   ||     1&minus;e&lambda;40Ts       Tse&lambda;40Ts-&lambda;40e&lambda;40Ts ||
+JQ = || 0  0R (s|u1)2   0&lambda; Ts R(s&lambda;|u1)Ts  R(s|u&lambda;1)Ts ||
+     &lceil; 0  0   0   1R&minus;e(s|u402)2 TsRe(s4|0u2)-&lambda;40Re(s|u402) &rceil;
+       0  0   0      0      1      0
+" class="math-display" ></center></td><td class="equation-label">(85)</td></tr></table>
+<!--l. 1351--><p class="nopar" >
+<!--l. 1353--><p class="indent" >   The decay constant <span 
+class="cmmi-10">&lambda;</span><sub><span 
+class="cmr-7">40</span></sub> is included into Equation <a 
+href="#x1-11005r83">83<!--tex4ht:ref: eq:Q --></a> because this parameter appears in both the expression for J
+(Equation <a 
+href="#x1-11001r79">79<!--tex4ht:ref: eq:J --></a>) and the age equation (Equation <a 
+href="#x1-1003r3">3<!--tex4ht:ref: eq:t --></a>), resulting in correlated errors.
+<!--l. 1358--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">12   </span> <a 
+ id="x1-1200012"></a>Solving the age equation</h3>
+<!--l. 1361--><p class="noindent" >The <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-ages of samples <span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">2</span></sub> are calculated by plugging the relevant items of vector Q into Equation <a 
+href="#x1-1003r3">3<!--tex4ht:ref: eq:t --></a>,
+resulting in a 2-element vector T
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12001r86"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10100x.png" alt="T = [T (u1) T(u2)]
+" class="math-display" ></center></td><td class="equation-label">(86)</td></tr></table>
+<!--l. 1368--><p class="nopar" >
+<!--l. 1370--><p class="indent" >   with [2 <span 
+class="cmsy-10">&#x00D7; </span>2] covariance matrix
+
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12002r87"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10101x.png" alt="      &prime;
+&Sigma;T = JT &Sigma;Q JT
+" class="math-display" ></center></td><td class="equation-label">(87)</td></tr></table>
+<!--l. 1375--><p class="nopar" >
+<!--l. 1377--><p class="indent" >   where <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">T</span></sub> is the [5 <span 
+class="cmsy-10">&#x00D7; </span>2] Jacobian matrix:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12003r88"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10102x.png" alt="     [ -----J(u1)----      0       ----R(u1)-----      0      &minus; l[1+J-(u1)R-(u1)]-]
+J&prime;T =   &lambda;40[1+J (u1)R (u1)]     J(u2)     &lambda;40[1+J(u1)R(u1)]    R (u2)      l[1+J &lambda;(u2420)R (u2)]
+             0      &lambda;40[1+J(u2)R(u2)]      0      &lambda;40[1+J-(u2)R-(u2)]&minus; ----&lambda;240-----
+" class="math-display" ></center></td><td class="equation-label">(88)</td></tr></table>
+<!--l. 1391--><p class="nopar" >
+<!--l. 1393--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">13   </span> <a 
+ id="x1-1300013"></a>(weighted) mean ages</h3>
+<!--l. 1396--><p class="noindent" >Given a vector of N age measurements (T = [T(<span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">1</span></sub>)&#x00A0;T(<span 
+class="cmmi-10">u</span><sub><span 
+class="cmr-7">2</span></sub>)&#x00A0;...&#x00A0;T(<span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">N</span></sub>)]), we can calculate the arithmetic mean age <span class="bar-css"><span 
+class="cmmi-10">T</span></span><sub><span 
+class="cmmi-7">a</span></sub>
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13001r89"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10103x.png" alt="T¯a = (T 1N,1)&#x2215;N
+" class="math-display" ></center></td><td class="equation-label">(89)</td></tr></table>
+
+<!--l. 1403--><p class="nopar" >
+<!--l. 1405--><p class="indent" >   with standard error
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13002r90"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10104x.png" alt=" 2
+&sigma; (¯Ta) = (11,N &Sigma;T 1N,1)&#x2215;N
+" class="math-display" ></center></td><td class="equation-label">(90)</td></tr></table>
+<!--l. 1410--><p class="nopar" >
+<!--l. 1412--><p class="indent" >   Alternatively, to calculate the error-weighted mean <span class="bar-css"><span 
+class="cmmi-10">T</span></span><sub><span 
+class="cmmi-7">w</span></sub>, first calculate its variance:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13003r91"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10105x.png" alt=" 2 ¯    (     &minus; 1    )&minus; 1
+&sigma; (Tw ) = 11,N &Sigma;T  1N,1
+" class="math-display" ></center></td><td class="equation-label">(91)</td></tr></table>
+<!--l. 1418--><p class="nopar" >
+<!--l. 1420--><p class="indent" >   then
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13004r92"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10106x.png" alt="T¯w = &sigma;2(¯Tw)(T &Sigma; &minus;T11N,1)
+" class="math-display" ></center></td><td class="equation-label">(92)</td></tr></table>
+<!--l. 1425--><p class="nopar" >
+
+<!--l. 1427--><p class="indent" >   The MSWD (&#8216;Mean Square of the Weighted Deviates&#8217;, also known as &#8216;reduced Chi-square statistic&#8217; outside
+geology) is a measure of the ratio of the observed scatter of the data points (T[<span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">i</span></sub>]) around the mean value (<span class="bar-css"><span 
+class="cmmi-10">T</span></span>) to
+the expected scatter from the assigned errors (&Sigma;<sub><span 
+class="cmmi-7">T</span></sub>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13005r93"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10107x.png" alt="            1
+M SW  D = -----[T &minus; ¯T] &Sigma;&minus;T 1[T &minus; T¯]&prime;
+          N &minus; 1
+" class="math-display" ></center></td><td class="equation-label">(93)</td></tr></table>
+<!--l. 1436--><p class="nopar" >
+<!--l. 1438--><p class="indent" >   If MSWD<span 
+class="cmmi-10">&#x003E;</span>1, then the samples are said to be &#8216;overdispersed&#8217; with respect to the analytical uncertainty. This
+commonly occurs in very precise datasets, which have sufficient power to resolve minute levels of sample
+heterogeneity. In this case, the geologically meaningful levels of heterogeneity can be quantified using a &#8216;mixed
+effects&#8217; model with two sources of analytical uncertainty:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13006r94"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10108x.png" alt="                   2    2
+T[ui] &sim; N [T¯,&sigma;(T[ui]) + &zeta;]
+" class="math-display" ></center></td><td class="equation-label">(94)</td></tr></table>
+<!--l. 1448--><p class="nopar" >
+<!--l. 1450--><p class="indent" >   where <span 
+class="cmsy-10"><img 
+src="cmsy10-4e.png" alt="N" class="10x-x-4e" /></span>[a,b] stands for &#8220;the Normal distribution with mean a and variance b&#8221;, and <span 
+class="cmmi-10">&zeta;</span><sup><span 
+class="cmr-7">2</span></sup> is the &#8216;overdispersion&#8217;
+(<a 
+href="#Xvermeesch2010a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>). Equation <a 
+href="#x1-13006r94">94<!--tex4ht:ref: eq:mixedeffects --></a> can be solved by the method of maximum likelihood, which simultaneously
+estimates the average, its standard error, and the overdispersion.
+<!--l. 1456--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">14   </span> <a 
+ id="x1-1400014"></a><span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux</span></h3>
+<!--l. 1459--><p class="noindent" >The revised data reduction procedure outlined in this paper revisits every aspect of the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method.
+Unfortunately, the matrix format of the calculations is incompatible with existing data reduction platforms such as
+<span 
+class="cmtt-10">ArArCalc </span>(<a 
+href="#Xkoppers2002">Koppers</a>,&#x00A0;<a 
+href="#Xkoppers2002">2002</a>). A new computer code named <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>was developed to solve this problem and
+facilitate the adoption of the methods described herein. A prototype version of <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>currently exists as a
+package in the <span 
+class="cmtt-10">R </span>programming environment, which is an increasingly popular open source alternative to <span 
+class="cmtt-10">Matlab</span>,
+available free of charge on any operating system at <span 
+class="cmtt-10">http://r-project.org</span>. A standalone program with graphical
+user interface is in development for future release. &#8216;<span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux</span>&#8217; derives its name from &#8216;<span 
+class="cmtt-10">U-Pb</span><span 
+class="cmtt-10">_Redux</span>&#8217;, which is a
+
+similar program developed by the U-Pb dating community (<a 
+href="#Xmclean2011">McLean et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmclean2011">2011</a>;&#x00A0;<a 
+href="#Xbowring2011">Bowring et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xbowring2011">2011</a>). Both
+programs use a similar matrix formulation and, although <span 
+class="cmtt-10">U-Pb</span><span 
+class="cmtt-10">_Redux </span>currently does not employ a logratio
+transformation, future versions of it will. The <span 
+class="cmtt-10">R</span>-version of <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>can be downloaded free of charge from the
+&#8216;Comprehensive R-Archive Network&#8217; (CRAN, <span 
+class="cmtt-10">http://cran.r-project.org</span>). Appendix C gives a brief introduction
+to <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux</span>, with further details provided at <span 
+class="cmtt-10">http://redux.london-geochron.com</span>. The latter website
+will also host the standalone version of the program when it is ready for public release. Currently,
+<span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>accepts input files that are compatible with the ARGUS-VI multicollector instrument, but other
+input formats can easily be implemented as well. <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>is intended to be a community-driven
+software platform, which can evolve to accommodate the demands and expectations of <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar
+practitioners, and the reader is invited to contact the author with any questions or requests. The program is
+bundled with a real dataset, which was kindly provided by Prof. David Phillips of the University of
+Melbourne.
+<!--l. 1491--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">15   </span> <a 
+ id="x1-1500015"></a>Discussion and conclusions</h3>
+<!--l. 1494--><p class="noindent" >One might wonder how much difference the revised data reduction workflow makes compared to currently used
+procedures. The answer to this question depends on the particular details of the sample of interest. For
+example:
+     <ul class="itemize1">
+     <li class="itemize">Error correlations are stronger when several samples share the same blank than when each sample has
+     its own blank.
+     </li>
+     <li class="itemize">Large interference corrections result in strong error correlations.
+     </li>
+     <li class="itemize">Multicollector data are more strongly correlated than &#8216;peak hopping&#8217; data.
+     </li>
+     <li class="itemize">Analysing co-irradiated interference monitors yields stronger error correlations than using externally
+     provided interference corrections.</li></ul>
+<!--l. 1511--><p class="indent" >   Regarding the latter two examples, it is important to note that correlated errors should not necessarily be
+considered undesirable, as long as they are properly quantified. It is only when covariances are ignored that
+uncertainties are overestimated, potentially significant age differences are blurred out and geologically meaningful
+information is lost. Experience tells that the covariance terms can be very substantial. For the test data provided
+with <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux</span>, error correlations (defined as <span 
+class="cmmi-10">&rho;</span>(<span 
+class="cmmi-10">x,y</span>) = cov(x,y)/[<span 
+class="cmmi-10">&sigma;</span>(<span 
+class="cmmi-10">x</span>)<span 
+class="cmmi-10">&sigma;</span>(<span 
+class="cmmi-10">y</span>)]) between aliquots of the same sample
+are on the order of 0.9.<br 
+class="newline" />
+<!--l. 1522--><p class="indent" >   <a 
+href="#Xrenne1998">Renne et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xrenne1998">1998</a>) make the distinction between &#8216;internal&#8217; and &#8216;external&#8217; errors. &#8216;internal errors&#8217; can be
+conceptually defined as the natural variability that would arise if the same sample were dated multiple times under
+the same experimental conditions. &#8216;external&#8217; errors include the systematic effects of decay constant
+uncertainty, the K/Ar ratio of the age standard, the air ratio etc. <a 
+href="#Xrenne1998">Renne et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xrenne1998">1998</a>) point out that
+&#8220;comparison of two different <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar dates based on the same standard may legitimately ignore
+uncertainties in K-Ar data, decay constants, as well as all intercalibration factors common to both
+dates&#8221;. However, when comparing a <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar-age with, say, a zircon U/Pb age, &#8220;it is important to
+consider all sources of systematic error in data from both radioisotopic systems&#8221;. Thus, great care must
+be taken which sources of uncertainty should or should not be included in the error propagation. In
+practical terms, this results in different analytical forms of the error propagation depending on the
+situation. This added complexity disappears entirely when using the methods presented in this paper. By
+
+processing the data in matrix form and explicitly taking into account covariances, the internal and
+external errors are jointly considered, with the latter corresponding to the off-diagonal terms of the
+covariance matrix. Revisiting <a 
+href="#Xrenne1998">Renne et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xrenne1998">1998</a>)&#8217;s two scenarios, we find that the difference between two
+<sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar dates based on the same standard may appear to be statistically insignificant compared to their
+respective variances, but statistically significant when the covariance terms are considered (Figure
+<a 
+href="#x1-150012">2<!--tex4ht:ref: fig:errorellipse --></a>).<br 
+class="newline" />
+<!--l. 1549--><p class="indent" >   This paper has revisited many but not all aspects of <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar data reduction. For example, it has not discussed
+isochrons, in which linear regression is used to deconvolve the radiogenic and inherited argon components without
+the need to assume an atmospheric composition for the latter. Although the least squares algorithms which are
+currently used for this purpose do take into account error correlations between the x- and y-variables
+(e.g.,&#x00A0;<a 
+href="#Xyork1969">York</a>,&#x00A0;<a 
+href="#Xyork1969">1969</a>), they ignore the covariance between different samples. Similarly, thermal modelling is done by
+jointly considering multiple analyses and finding best-fitting (&#8216;Arrhenius&#8217;) trends to them. Current fitting algorithms
+do not account for the significant error correlations that exist between subsequent heating steps in a diffusion
+experiment. The covariant structure of linear regression naturally follows from the covariant age structure
+represented by Equations <a 
+href="#x1-12001r86">86<!--tex4ht:ref: eq:T --></a> and <a 
+href="#x1-12002r87">87<!--tex4ht:ref: eq:sigmaT --></a>, but a detailed discussion of this will be deferred to a forthcoming
+publication.<br 
+class="newline" />
+<!--l. 1567--><p class="indent" >   <hr class="figure"><div class="figure" 
+><a 
+ id="x1-150012"></a> <div class="minipage">
+<a href="errorellipse.png">
+<img src="errorellipse.png" alt="PIC" class="snapshot" ><!--tex4ht:graphics  
+name="Ar-Ar_Redux_v10109x.png" src="errorellipse.eps"  
+--></a>
+</div>                    <div class="minipage"> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">A synthetic yet realistic example of two replicate
+age estimates of the same sample (T<sub><span 
+class="cmr-7">1</span></sub> = 99 Ma and T<sub><span 
+class="cmr-7">2</span></sub> = 101
+Ma) plotted against each other as an error ellipse. Ignoring
+the covariances, the two dates appear to agree within two
+standard errors. Taking into account the off-diagonal terms
+of the covariance matrix (&Sigma;<sub><span 
+class="cmmi-7">T</span></sub>), however, reveals that the
+two samples are overdispersed with respect to the analytical
+uncertainties.</span></div><!--tex4ht:label?: x1-150012 -->
+</div>
+</div><hr class="endfigure">
+<!--l. 1583--><p class="indent" >   In summary, this paper presented a fresh look at the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method, by recasting every aspect of it into a
+matrix form and rigorously keeping track of all covariances. Thus, the methods outlined in this paper
+put the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method on an equal footing with the U-Pb method (<a 
+href="#Xmclean2011">McLean et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmclean2011">2011</a>). Using
+the same data reduction framework for both methods will improve their intercomparability, which
+in turn will benefit the accuracy and precision of the geologic time scale (<a 
+href="#Xmin2000">Min et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmin2000">2000</a>;&#x00A0;<a 
+href="#Xkuiper2008">Kuiper
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xkuiper2008">2008</a>).
+
+<!--l. 1592--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-1600015"></a>Acknowledgments</h3>
+<!--l. 1594--><p class="noindent" >The author would like to thank David Phillips and Erin Matchan (Melbourne) for providing pilot data which have
+greatly accelerated the development of <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux</span>. The manuscript benefited from discussions with James
+Schwanethal and Noah McLean, and constructive reviews by Chris Hall and three anonymous reviewers. The
+research leading to these results has received funding from the European Research Council under the
+European Union&#8217;s Seventh Framework Programme (FP7/2007-2013) / ERC grant agreement n<sup><span 
+class="cmsy-7">&#x2218;</span></sup>259504
+(&#8216;KArSD&#8217;).
+<!--l. 1605--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-1700015"></a>Appendix A: calculation of interference corrections by mass spectrometric analysis of co-irradiated monitor
+materials</h3>
+<!--l. 1608--><p class="noindent" >Neutron reactions on Ca produce interferences on <sup><span 
+class="cmr-7">36</span></sup>Ar and <sup><span 
+class="cmr-7">39</span></sup>Ar, which can be corrected for by monitoring the
+<sup><span 
+class="cmr-7">36</span></sup>Ar/<sup><span 
+class="cmr-7">37</span></sup>Ar- and <sup><span 
+class="cmr-7">39</span></sup>Ar/<sup><span 
+class="cmr-7">37</span></sup>Ar-ratios of co-irradiated Ca-salts (Section <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:interference --></a>). In this Section, we will use the same
+simplified regression methods as in Sections 3 and 4. If the three Ar-isotopes of interest are measured in
+multicollector mode, then their time resolved and blank corrected signals can be cast into the following [n <span 
+class="cmsy-10">&#x00D7; </span>2]
+logratio matrix:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17001r95"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10110x.png" alt="           &lfloor;  [36Arb(ca,t1)]   [39Arb(ca,t1)] &rfloor;
+           | l[337A6rbb(ca,t1)]  l[3739Arbb(ca,t1)] |
+           || l 3A7Arrb((caca,,t2t))   l 37AArrb(c(caa,t,t2)) ||
+L (ca,b,t) = ||       .  2         .   2  ||
+           |&lceil;  [    ..    ]   [   ..     ]|&rceil;
+             l 336A7Arrbb((caca,,tnt))   l 3937AArrbb(c(caa,t,tn))
+                      n             n
+" class="math-display" ></center></td><td class="equation-label">(95)</td></tr></table>
+<!--l. 1631--><p class="nopar" >
+<!--l. 1633--><p class="indent" >   resulting in a vector of logratio intercepts X(ca) and covariance matrix &Sigma;<sub><span 
+class="cmmi-7">X</span><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">ca</span><span 
+class="cmr-7">)</span></sub>. For the detector calibration, we
+replace Equation <a 
+href="#x1-5001r29">29<!--tex4ht:ref: eq:X* --></a> with:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17002r96"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10111x.png" alt="  &lowast;
+X  (ca) = [X (ca) Z(d[37]) Z(d[39] Z (d[40])]
+
+" class="math-display" ></center></td><td class="equation-label">(96)</td></tr></table>
+<!--l. 1640--><p class="nopar" >
+<!--l. 1642--><p class="indent" >   with covariance matrix &Sigma;<sub><span 
+class="cmmi-7">X</span><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">ca</span><span 
+class="cmr-7">)</span></sub><sup><span 
+class="cmsy-7">&lowast;</span></sup>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17003r97"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10112x.png" alt="        &lfloor;                                           &rfloor;
+        | &Sigma;X (ca)     02,1   2     02,1         02,1    |
+&Sigma;&lowast;X(ca) = |&lceil; 01,2   &sigma; [Z (d[37])]       0   2       0     |&rceil;
+           01,2        0      &sigma;[Z(d[39])]       0   2
+           01,2        0           0      &sigma;[Z(d[40])]
+" class="math-display" ></center></td><td class="equation-label">(97)</td></tr></table>
+<!--l. 1655--><p class="nopar" >
+<!--l. 1657--><p class="indent" >   where, for the sake of notational simplicity, we have assumed that only a single Ca-salt measurement was made
+(accommodating duplicate analyses is trivial). Note that Equations <a 
+href="#x1-17002r96">96<!--tex4ht:ref: eq:X*ca --></a> and <a 
+href="#x1-17003r97">97<!--tex4ht:ref: eq:sigmaX*ca --></a> use Z(d[40]) instead of Z(d[36]),
+implying equal sensitivities of detectors d[36] and d[40]. This assumption is valid because the sensitivity difference
+between said detectors is accounted for by the mass fractionation correction. Equations <a 
+href="#x1-5003r31">31<!--tex4ht:ref: eq:calibration --></a> and <a 
+href="#x1-5004r32">32<!--tex4ht:ref: eq:sigmaC --></a> remain the same
+but use the following Jacobian matrix:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17004r98"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10113x.png" alt="        [ 1 0  1   0   &minus; 1 ]
+J&prime;C(ca) =   0 1  1  &minus; 1  0
+" class="math-display" ></center></td><td class="equation-label">(98)</td></tr></table>
+<!--l. 1676--><p class="nopar" >
+<!--l. 1678--><p class="indent" >   We thus obtain a two-element vector of sensitivity-corrected logratio intercepts C(ca) and its covariance matrix
+&Sigma;<sub><span 
+class="cmmi-7">C</span><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">ca</span><span 
+class="cmr-7">)</span></sub>. For the mass fractionation correction, we first append the air shot data to the calibration-corrected logratio
+intercepts:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17005r99"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10114x.png" alt="        [            [    ] ]
+ &lowast;                    40Ar
+C (ca) = C (ca) A (37) l 36Ar a
+" class="math-display" ></center></td><td class="equation-label">(99)</td></tr></table>
+<!--l. 1686--><p class="nopar" >
+<!--l. 1688--><p class="indent" >   with [4 <span 
+class="cmsy-10">&#x00D7; </span>4] covariance matrix &Sigma;<sub><span 
+class="cmmi-7">C</span><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">ca</span><span 
+class="cmr-7">)</span></sub><sup><span 
+class="cmsy-7">&lowast;</span></sup>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17006r100"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10115x.png" alt="        &lfloor;                      &rfloor;
+          &Sigma;C (ca)    02,1    02,1
+&Sigma; &lowast;C(ca) = &lceil;  01,2   &sigma;[A (37)]2   0 &rceil;
+            01,2      0       0
+" class="math-display" ></center></td><td class="equation-label">(100)</td></tr></table>
+<!--l. 1700--><p class="nopar" >
+<!--l. 1702--><p class="indent" >   Recasting in matrix form, the fractionation-corrected Ca-salt measurements and their covariances are given
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17007r101"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10116x.png" alt="F (ca) = C&lowast;(ca) JF(ca)
+" class="math-display" ></center></td><td class="equation-label">(101)</td></tr></table>
+<!--l. 1708--><p class="nopar" >
+<!--l. 1710--><p class="indent" >   and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17008r102"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10117x.png" alt="&Sigma;F (ca) = J&prime;   &Sigma;&lowast;    JF(ca)
+         F(ca)  C(ca)
+" class="math-display" ></center></td><td class="equation-label">(102)</td></tr></table>
+<!--l. 1715--><p class="nopar" >
+<!--l. 1717--><p class="indent" >   respectively, where <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">F</span><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">ca</span><span 
+class="cmr-7">)</span></sub> is the Jacobian matrix of the mass fractionation calibration and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">F</span><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">ca</span><span 
+class="cmr-7">)</span></sub><span 
+class="cmsy-10">&prime; </span>its
+transpose:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17009r103"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10118x.png" alt="        [                     ]
+J&prime;    =   1  0 &minus; 0.240  &minus; 0.240
+ F(ca)     0  1  0.487   0.487
+" class="math-display" ></center></td><td class="equation-label">(103)</td></tr></table>
+<!--l. 1729--><p class="nopar" >
+<!--l. 1731--><p class="indent" >   For &#8216;peak hopping&#8217; data, Equation <a 
+href="#x1-17001r95">95<!--tex4ht:ref: eq:LMCa --></a> can be replaced with three vectors containing the logs of the time-resolved
+<sup><span 
+class="cmr-7">36</span></sup>Ar, <sup><span 
+class="cmr-7">37</span></sup>Ar and <sup><span 
+class="cmr-7">39</span></sup>Ar signals, which may be processed as in Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:PH --></a> to calculate the logratio intercepts.
+Since detector calibration does not apply to single collector instruments, Equations <a 
+href="#x1-17002r96">96<!--tex4ht:ref: eq:X*ca --></a>-<a 
+href="#x1-17009r103">103<!--tex4ht:ref: eq:JFca --></a> can be
+safely skipped. Next, we apply the decay correction which, as explained in Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:decay --></a>, affects both
+<sup><span 
+class="cmr-7">37</span></sup>Ar and <sup><span 
+class="cmr-7">39</span></sup>Ar. At this point the data reduction of the Ca and K-interference monitors is merged
+with that of the samples and fluence monitors. This is achieved by collating their respective decay
+corrections:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17010r104"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10119x.png" alt="r(i) = [r(&lambda;i,&tau;[u1]) r(&lambda;i,&tau; [s1]) r(&lambda;i,&tau;[u2]) r(&lambda;i,&tau;[s2]) r(&lambda;i,&tau;[s3]) r(&lambda;i,&tau;[ca]) r(&lambda;i,&tau;[k])]
+" class="math-display" ></center></td><td class="equation-label">(104)</td></tr></table>
+<!--l. 1749--><p class="nopar" >
+<!--l. 1751--><p class="indent" >   the covariance matrices of which are given by Equation <a 
+href="#x1-7004r45">45<!--tex4ht:ref: eq:sigmad --></a> with
+
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17011r105"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10120x.png" alt="      [ &part;r(&lambda; ,&tau;[u]) &part;r(&lambda;,&tau;[s ]) &part;r(&lambda;,&tau;[u ]) &part;r(&lambda; ,&tau; [s ]) &part;r(&lambda; ,&tau;[s ]) &part;r(&lambda; ,&tau;[ca])&part;r(&lambda; ,&tau;[k]&
+Jr(i) =  ---i----1------i---1- ----i---2------i---2- ----i---3- ----i----------i-----
+           &part;&lambda;i        &part;&lambda;i         &part;&lambda;i        &part;&lambda;i        &part;&lambda;i        &part;&lambda;i        &part;&lambda;i
+" class="math-display" ></center></td><td class="equation-label">(105)</td></tr></table>
+<!--l. 1766--><p class="nopar" >
+<!--l. 1768--><p class="indent" >   To apply these decay corrections, we append them to the fractionation-corrected logratios:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17012r106"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10121x.png" alt=" &lowast;
+F  = [F F (ca) F(k) r(37) r(39)]
+" class="math-display" ></center></td><td class="equation-label">(106)</td></tr></table>
+<!--l. 1774--><p class="nopar" >
+<!--l. 1776--><p class="indent" >   with [37 <span 
+class="cmsy-10">&#x00D7; </span>37] covariance matrix
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17013r107"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10122x.png" alt="     &lfloor;                                  &rfloor;
+        &Sigma;F    020,2   020,1   020,7   020,7
+     || 02,20  &Sigma;F (ca)  02,1    02,7    02,7  ||
+&Sigma;&lowast;F = || 01,20   01,2   &Sigma;F (k)   01,7    01,7  ||
+     &lceil; 07,20   07,2    07,1   &Sigma;r(37)   07,7  &rceil;
+       07,20   07,2    07,1    07,7   &Sigma;r(39)
+" class="math-display" ></center></td><td class="equation-label">(107)</td></tr></table>
+<!--l. 1790--><p class="nopar" >
+<!--l. 1792--><p class="indent" >   These values are then simply plugged into Equations <a 
+href="#x1-7009r50">50<!--tex4ht:ref: eq:D --></a> and <a 
+href="#x1-7010r51">51<!--tex4ht:ref: eq:sigmaD --></a>:
+
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17014r108"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10123x.png" alt="     &lowast;
+I = F  JD
+" class="math-display" ></center></td><td class="equation-label">(108)</td></tr></table>
+<!--l. 1798--><p class="nopar" >
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17015r109"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10124x.png" alt="      &prime;  &lowast;
+&Sigma;I = JD &Sigma;F JD
+" class="math-display" ></center></td><td class="equation-label">(109)</td></tr></table>
+<!--l. 1803--><p class="nopar" >
+<!--l. 1805--><p class="indent" >   where <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">D</span></sub> is the [37 <span 
+class="cmsy-10">&#x00D7; </span>23] Jacobian matrix and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">D</span></sub><span 
+class="cmsy-10">&prime; </span>its transpose:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17016r110"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10125x.png" alt="J &prime;D = [123,23 J&lowast;D(37) J&lowast;D(39)]
+" class="math-display" ></center></td><td class="equation-label">(110)</td></tr></table>
+<!--l. 1811--><p class="nopar" >
+<!--l. 1813--><p class="indent" >   with
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17017r111"></a>
+
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10126x.png" alt="        &lfloor;                                             &rfloor;
+          J&lowast;D&lowast;(37)   04,1    04,1    04,1    04,1   04,1  04,1
+        ||  04,1   J&lowast;D&lowast;(37)   04,1    04,1    04,1   04,1  04,1 ||
+        ||  04,1    04,1   J&lowast;&lowast;     04,1    04,1   04,1  04,1 ||
+        ||  0      0      D0(37)  J&lowast;&lowast;     0     0    0   ||
+J&lowast;D(37) = ||   4,1     4,1     4,1    D(37)   &lowast;4&lowast;,1    4,1   4,1 ||
+        ||  04,1    04,1    04,1    04,1   JD(37)  04,1  04,1 ||
+        |&lceil;   0      0      0      0      0    &minus; 1   0  |&rceil;
+            0      0      0      0      0    &minus; 1   0
+            0      0      0      0      0     0    0
+" class="math-display" ></center></td><td class="equation-label">(111)</td></tr></table>
+<!--l. 1829--><p class="nopar" >
+<!--l. 1831--><p class="indent" >   and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17018r112"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10127x.png" alt="        &lfloor;  &lowast;&lowast;                                         &rfloor;
+        | JD(39)   0&lowast;4&lowast;,1    04,1    04,1    04,1   04,1  04,1 |
+        ||  04,1   JD(39)   0&lowast;4&lowast;,1    04,1    04,1   04,1  04,1 ||
+        ||  04,1    04,1   JD(39)   04,1    04,1   04,1  04,1 ||
+J&lowast;    = ||  04,1    04,1    04,1   J&lowast;D&lowast;(39)   04,1   04,1  04,1 ||
+ D(39)   ||  04,1    04,1    04,1    04,1   J&lowast;D&lowast;(39)  04,1  04,1 ||
+        ||   0      0      0      0      0     0    0  ||
+        &lceil;   0      0      0      0      0     1    0  &rceil;
+            0      0      0      0      0     0    1
+" class="math-display" ></center></td><td class="equation-label">(112)</td></tr></table>
+<!--l. 1847--><p class="nopar" >
+<!--l. 1849--><p class="indent" >   with <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">D</span><span 
+class="cmr-7">(37)</span></sub><sup><span 
+class="cmsy-7">&lowast;&lowast;</span></sup> and <span 
+class="cmmi-10">J</span><sub><span 
+class="cmmi-7">D</span><span 
+class="cmr-7">(39)</span></sub><sup><span 
+class="cmsy-7">&lowast;&lowast;</span></sup> as in Equation <a 
+href="#x1-7013r54">54<!--tex4ht:ref: eq:JD** --></a>. This completes the Ca-interference correction. The K-interference
+on <sup><span 
+class="cmr-7">40</span></sup>Ar and (as discussed in Appendix B) <sup><span 
+class="cmr-7">38</span></sup>Ar, can be corrected in a very similar manner by monitoring <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar
+and <sup><span 
+class="cmr-7">38</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar in K-glass.
+<!--l. 1856--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-1800015"></a>Appendix B: Cl-interference correction accounting for all sources of <sup><span 
+class="cmr-7">38</span></sup>Ar</h3>
+<!--l. 1858--><p class="noindent" >As mentioned at the end of Section <a 
+href="#x1-90009">9<!--tex4ht:ref: sec:Cl --></a>, the Cl-intereference correction on <sup><span 
+class="cmr-7">36</span></sup>Ar implemented in Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a> does not
+account for the presence of atmospheric <sup><span 
+class="cmr-7">38</span></sup>Ar or the production of <sup><span 
+class="cmr-7">38</span></sup>Ar from K. Doing so is straightforward but
+requires a reformulation of Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a>:
+
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18001r113"></a>
+   <center class="math-display" >
+<img 
+src="Ar-Ar_Redux_v10128x.png" alt="     1&minus; a+ b+ c &minus; g&minus; h+ i
+R =  ---------------------&minus; f
+         d &minus; e&minus; j + k
+" class="math-display" ></center></td><td class="equation-label">(113)</td></tr></table>
+<!--l. 1867--><p class="nopar" >
+<!--l. 1869--><p class="indent" >   with a-f as defined in Equations <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:defa --></a>-<a 
+href="#x1-2007r11">11<!--tex4ht:ref: eq:deff --></a> and
+<!--l. 1871--><p class="indent" >
+<table 
+class="align">
+                       <tr><td 
+class="align-odd"><span 
+class="cmmi-10">g </span>=</td>                       <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v10129x.png" alt="[38   ]
+ --Ar
+ 36Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v10130x.png" alt="[36   ]
+ --Ar
+ 38Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">cl</span></sub></td>                                                                       <td 
+class="align-label"><a 
+ id="x1-18002r114"></a>(114)
+                       </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">h </span>=</td>                       <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v10131x.png" alt="[40Ar ]
+ 36Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v10132x.png" alt="[36Ar ]
+ 38Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">cl</span></sub><img 
+src="Ar-Ar_Redux_v10133x.png" alt="[ 38Ar-]
+  39Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">k</span></sub><img 
+src="Ar-Ar_Redux_v10134x.png" alt="[ 39Ar-]
+  40Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                       <td 
+class="align-label"><a 
+ id="x1-18003r115"></a>(115)
+                       </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">i </span>=</td>                        <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v10135x.png" alt="[40   ]
+ 36Ar
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v10136x.png" alt="[36   ]
+ 38Ar
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">cl</span></sub><img 
+src="Ar-Ar_Redux_v10137x.png" alt="[ 38   ]
+  39Ar-
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">k</span></sub><img 
+src="Ar-Ar_Redux_v10138x.png" alt="[ 39   ]
+  37Ar-
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">ca</span></sub><img 
+src="Ar-Ar_Redux_v10139x.png" alt="[37   ]
+ 40Ar
+   Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                              <td 
+class="align-label"><a 
+ id="x1-18004r116"></a>(116)
+                       </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">j </span>=</td>                       <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v10140x.png" alt="[     ]
+ 38Ar
+ 36Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v10141x.png" alt="[     ]
+ 36Ar
+ 38Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">cl</span></sub><img 
+src="Ar-Ar_Redux_v10142x.png" alt="[     ]
+  39Ar-
+  40Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                               <td 
+class="align-label"><a 
+ id="x1-18005r117"></a>(117)
+                       </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-10">k </span>=</td>                       <td 
+class="align-even"><img 
+src="Ar-Ar_Redux_v10143x.png" alt="[38Ar ]
+ 36Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">a</span></sub><img 
+src="Ar-Ar_Redux_v10144x.png" alt="[36Ar ]
+ 38Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">cl</span></sub><img 
+src="Ar-Ar_Redux_v10145x.png" alt="[ 39Ar ]
+  37Ar-"  class="left" align="middle"><sub><span 
+class="cmmi-7">ca</span></sub><img 
+src="Ar-Ar_Redux_v10146x.png" alt="[37Ar ]
+ 40Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">m</span></sub></td>                                                      <td 
+class="align-label"><a 
+ id="x1-18006r118"></a>(118)                       </td></tr></table>
+<!--l. 1894--><p class="indent" >   This formulation requires adjustment of Sections <a 
+href="#x1-1000010">10<!--tex4ht:ref: sec:40Ar*/39ArK --></a> and <a 
+href="#x1-1100011">11<!--tex4ht:ref: sec:J --></a> and the addition of the <img 
+src="Ar-Ar_Redux_v10147x.png" alt="[38Ar]
+ 39Ar"  class="left" align="middle"><sub><span 
+class="cmmi-7">k</span></sub> to Section <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:interference --></a>, which
+is omitted here for brevity.
+
+<!--l. 1899--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-1900015"></a>Appendix C: A brief introduction to <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux</span></h3>
+<!--l. 1901--><p class="noindent" >In its present form, <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>exists as a package in a statistical programming environment called <span 
+class="cmtt-10">R</span>. After
+installing <span 
+class="cmtt-10">R </span>from <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">http://r-project.org</span></span></span>, <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>can be installed by typing
+
+   <div class="verbatim" id="verbatim-1">
+install.packages(&#8217;ArArRedux&#8217;)
+</div>
+<!--l. 1908--><p class="nopar" >
+<!--l. 1910--><p class="noindent" >Once installed, the package can be loaded by typing
+
+   <div class="verbatim" id="verbatim-2">
+library(ArArRedux)
+</div>
+<!--l. 1914--><p class="nopar" >
+<!--l. 1916--><p class="noindent" >The first step in the data reduction procedure is to load the time resolved mass spectrometer signals and turn them
+into a vector of logratio intercepts with associated covariance matrix. The <span 
+class="cmtt-10">read </span>function groups the calculations
+listed in Sections <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MC --></a>, <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:PH --></a> and <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:calibration --></a>:
+
+   <div class="verbatim" id="verbatim-3">
+X&#x00A0;&#x003C;-&#x00A0;read(xfile="Samples.csv",&#x00A0;masses=c("Ar37","Ar38","Ar39","Ar40","Ar36"),
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;blabel="BLANK#",&#x00A0;Jpos=c(3,15),&#x00A0;kfile="K-glass.csv",&#x00A0;cafile="Ca-salt.csv",
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;dfile="Calibration.csv",&#x00A0;dlabels=c("H1","AX","L1","L2"))
+</div>
+<!--l. 1926--><p class="nopar" >
+<!--l. 1928--><p class="noindent" >where <span 
+class="cmtt-10">xfile </span>is the name of a file containing the time resolved mass spectrometer data of all the samples, fluence
+monitors and blanks; <span 
+class="cmtt-10">masses </span>is a vector specifying the order in which the argon isotopes are listed within <span 
+class="cmtt-10">xfile</span>;
+<span 
+class="cmtt-10">blabel </span>is the prefix of the blanks listed in <span 
+class="cmtt-10">xfile</span>; <span 
+class="cmtt-10">Jpos </span>is a vector with the positions of the fluence monitors within
+the irradiation stack; <span 
+class="cmtt-10">kfile </span>is the name of a file containing the time resolved mass spectrometer signals of
+co-irradiated K-bearing monitor glass, formatted in the same way as <span 
+class="cmtt-10">xfile</span>; <span 
+class="cmtt-10">cafile </span>contains the same information
+for the co-irradiated Ca-bearing salts; <span 
+class="cmtt-10">dfile </span>contains the detector intercalibration data and <span 
+class="cmtt-10">dlabels </span>is a
+list specifying the order in which the detectors are listed within <span 
+class="cmtt-10">dfile</span>. Next, we form a list of two
+fractionation corrections, one for each denominator isotope used in Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:R --></a> (i.e. <sup><span 
+class="cmr-7">37</span></sup>Ar, <sup><span 
+class="cmr-7">39</span></sup>Ar and
+<sup><span 
+class="cmr-7">40</span></sup>Ar):
+
+   <div class="verbatim" id="verbatim-4">
+fract&#x00A0;&#x003C;-&#x00A0;list(fractionation("AirL2.csv",detector="L2",PH=TRUE),
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;fractionation("AirAX.csv",detector="AX",PH=TRUE),
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;fractionation("AirH1.csv",detector="H1",PH=FALSE))
+</div>
+<!--l. 1948--><p class="nopar" >
+<!--l. 1950--><p class="noindent" >where the <span 
+class="cmtt-10">fractionation </span>function performs the calculations outlined in Section <a 
+href="#x1-60006">6<!--tex4ht:ref: sec:fractionation --></a> and Appendix A; <span 
+class="cmtt-10">detector</span>
+specifies the name of the detector of interest; and <span 
+class="cmtt-10">PH </span>is a boolean flag indicating whether the data are collected in
+multicollector or &#8216;peak hopping&#8217; mode. The last file that needs to be loaded contains the neutron irradiation
+schedule:
+
+   <div class="verbatim" id="verbatim-5">
+irr&#x00A0;&#x003C;-&#x00A0;loadirradiations("irradiations.csv")
+</div>
+<!--l. 1959--><p class="nopar" >
+<!--l. 1961--><p class="noindent" >The <span 
+class="cmtt-10">process </span>function carries out the fractionation, decay and interference corrections (Sections <a 
+href="#x1-60006">6<!--tex4ht:ref: sec:fractionation --></a>, <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:decay --></a>, <a 
+href="#x1-80008">8<!--tex4ht:ref: sec:interference --></a> and <a 
+href="#x1-90009">9<!--tex4ht:ref: sec:Cl --></a>),
+interpolates the J-factors and calculates the ages (Sections <a 
+href="#x1-1100011">11<!--tex4ht:ref: sec:J --></a> and <a 
+href="#x1-1200012">12<!--tex4ht:ref: sec:age-calculation --></a>):
+
+   <div class="verbatim" id="verbatim-6">
+ages&#x00A0;&#x003C;-&#x00A0;process(X,irr,fract)
+</div>
+<!--l. 1969--><p class="nopar" >
+<!--l. 1971--><p class="noindent" >The following three lines are used to tabulate the results, view the covariance structure as a coloured correlation
+matrix, and calculate the weighted mean age of a subset (in this example samples <span 
+class="cmtt-10">S1-5</span>) of the data,
+respectively:
+
+   <div class="verbatim" id="verbatim-7">
+summary(ages)
+&#x00A0;<br />corrplot(ages)
+&#x00A0;<br />weightedmean(ages,c("S1","S2","S3","S4","S5"))
+</div>
+<!--l. 1980--><p class="nopar" >
+<!--l. 1982--><p class="noindent" ><span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux </span>is very flexible. For example, all but the first four arguments to the <span 
+class="cmtt-10">read </span>function are optional. If, for
+instance, no co-irradiated K-glass or Ca-salt were analysed, then it is possible to specify the interference corrections
+explicitly. A comprehensive overview of all the options falls outside the scope if this short Appendix. A more
+extensive tutorial is provided on <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">http://redux.london-geochron.com</span></span></span>. Contextual help within the <span 
+class="cmtt-10">R </span>environment
+can be obtained from <span 
+class="cmtt-10">Ar-Ar</span><span 
+class="cmtt-10">_Redux</span>&#8217;s built-in documentation. For example, to learn more about the <span 
+class="cmtt-10">read </span>function, it
+suffices to type <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">?read</span></span></span> at the command prompt.
+<!--l. 1--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-2000015"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1986. The statistical analysis of compositional data. London, Chapman and Hall.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xberger1970"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Berger, G.W., York, D., 1970. Precision of the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar dating technique. Earth and Planetary Science
+  Letters 9, 39&#8211;44.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbowring2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bowring, J., McLean, N., Bowring, S., 2011.  Engineering cyber infrastructure for U-Pb geochronology:
+  Tripoli and U-Pb_Redux. Geochemistry, Geophysics, Geosystems 12.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfoland1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Foland, K., Fleming, T., Heimann, A., Elliot, D., 1993.  Potassium-argon dating of fine-grained basalts
+  with massive Ar loss: Application of the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar technique to plagioclase and glass from the Kirkpatrick
+  Basalt, Antarctica. Chemical Geology 107, 173&#8211;190.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkoppers2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Koppers, A.A., 2002. ArArCALC &#8211; software for <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar age calculations. Computers &amp; Geosciences
+  28, 605&#8211;619.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkuiper2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kuiper, K.F., Deino, A., Hilgen, F.J., Krijgsman, W., Renne, P.R., Wijbrans, J.R., 2008. Synchronizing
+  Rock Clocks of Earth History. Science 320, 500&#8211;504. doi:10.1126/science.1154339.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlee2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Lee,  J.Y.,  Marti,  K.,  Severinghaus,  J.P.,  Kawamura,  K.,  Yoo,  H.S.,  Lee,  J.B.,  Kim,  J.S.,  2006.   A
+  redetermination of the isotopic abundances of atmospheric Ar.  Geochimica et Cosmochimica Acta 70,
+  4507&#8211;4512.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcdougall1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McDougall, I., Harrison, T.M., 1999. Geochronology and Thermochronology by the <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar method.
+  Oxford University Press, New York.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmclean2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McLean, N., Bowring, J., Bowring, S., 2011. An algorithm for U-Pb isotope dilution data reduction and
+  uncertainty propagation. Geochemistry, Geophysics, Geosystems 12.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmin2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Min, K., Mundil, R., Renne, P.R., Ludwig, K.R., 2000.   A test for systematic errors in <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup><span 
+class="cmmi-10">Ar</span>
+  geochronology through comparison with U/Pb analysis of a 1.1-Ga rhyolite. Geochimica et Cosmochimica
+  Acta 64, 73&#8211;98.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnelder1972"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nelder, J.A., Wedderburn, R.W.M., 1972.  Generalized linear models.  Journal of the Royal Statistical
+  Society. Series A (General) 135, pp. 370&#8211;384.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrenne2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Renne, P.R., Norman, E.B., 2001. Determination of the half-life of <sup><span 
+class="cmr-7">37</span></sup>Ar by mass spectrometry. Physical
+  Review C 63, 047302.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrenne2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Renne, P.R., Sharp, Z.D., Heizler, M.T., 2008. Cl-derived argon isotope production in the CLICIT facility
+  of OSTR reactor and the effects of the Cl-correction in <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar geochronology. Chemical Geology 255,
+  463&#8211;466.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrenne1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Renne, P.R., Swisher, C.C., Deino, A.L., Karner, D.B., Owens, T.L., DePaolo, D.J., 1998. Intercalibration
+  of standards, absolute ages and uncertainties in <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar dating. Chemical Geology 145, 117&#8211;152.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xscaillet2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Scaillet, S., 2000. Numerical error analysis in <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar dating. Chemical Geology 162, 269&#8211;298.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstoenner1965"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stoenner, R., Schaeffer, O., Katcoff, S., 1965.  Half-lives of argon-37, argon-39, and argon-42.  Science
+  148, 1325&#8211;1328.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2010a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2010.   HelioPlot, and the treatment of overdispersed (U-Th-Sm)/He data.   Chemical
+  Geology 271, 108 &#8211; 111. doi:DOI: 10.1016/j.chemgeo.2010.01.002.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwijbrans1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wijbrans, J.R., McDougall, I., 1986.  <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar dating of white micas from an Alpine high-pressure
+  metamorphic  belt  on  Naxos  (Greece):  the  resetting  of  the  argon  isotopic  system.   Contributions  to
+  Mineralogy and Petrology 93, 187&#8211;194.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwood2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wood, S.N., 2015. Core Statistics. 1 ed., Cambridge University Press.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyork1969"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>York, D., 1969. Least squares fitting of a straight line with correlated errors. Earth and Planetary Science
+  Letters 5, 320&#8211;324.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyoung2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Young, E.D., Galy, A., Nagahara, H., 2002. Kinetic and equilibrium mass-dependent isotope fractionation
+  laws in nature and their geochemical and cosmochemical significance. Geochimica et Cosmochimica Acta
+  66, 1095&#8211;1104.
+</p>
+  </div>
+</td></tr>
+</table>    
+</body></html> 
+
+
+

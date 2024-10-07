@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>RadialPlotter</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+<body>
+<table class="main"><tr><td>
+<center>
+<h3>RadialPlotter: a Java application for <br>fission track, luminescence and other radial plots</h3>
+</center>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<center style="background-color: white; color: #5d5d5d; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 16px; line-height: 20px;">
+<a href="RadialPlotter.png" imageanchor="1" style="background-color: transparent; 
+margin-left: 1em; margin-right: 1em;"><img border="0" height="392" 
+src="RadialPlotter.png" width="640" /></a></center>
+<center style="background-color: white; color: #5d5d5d; font-family: Verdana, Arial, Helvetica, sans-serif; 
+font-size: 16px; line-height: 20px;">
+</center>
+<table align="CENTER" border="0" style="width: 600px;"><tbody>
+<tr bgcolor="FFcccc"><td align="center" colspan="2"><b>downloads</b></td>
+</tr>
+<tr bgcolor="FFcccc"><td align="center" valign="top" width="50%"><a href="http://ucl.ac.uk/~ucfbpve/software/RadialPlotter.jar">RadialPlotter.jar</a><br />
+Version 9.0 of the program <br />
+<a href="updates.html">earlier versions</a>
+    </td>
+    <td align="center" valign="top"><!--<br>-->
+Example input files<br />
+<a href="http://ucl.ac.uk/~ucfbpve/software/FTdata.csv">FTdata.csv</a>: Fission Tracks<br />
+<a href="http://ucl.ac.uk/~ucfbpve/software/OSLdata.csv">OSLdata.csv</a>: OSL dose rates</td>
+</tr>
+</tbody></table>
+<br />
+Single-grain dating has become common practice in fission track,<sup>40</sup>Ar/<sup>39</sup>Ar, U-Pb and luminescence dating. Because single-grain signals are smaller, the measurement uncertainties of single-grain ages are typically larger and more variable than those of multi-grain aliquots of the same sample. Invented by Rex Galbraith in 1988, the radial plot is a graphical method for comparing several estimates that have different precisions.&nbsp;RadialPlotter is a user-friendly application for generating radial plots, which was written in Java (version 6) and is, therefore, perfectly platform independent. In addition to fission track radial plots, RadialPlotter also offers the possibility to generate radial plots for luminescence dating, or any other kind of data such as (U-Th)/He or U-Pb ages. Hopefully, this will give the radial plot the wider user base it deserves. Since version 3.0, the program also provides basic functionality for finite mixture modelling and kernel density estimation.<br />
+<br />
+<a href="../papers/VermeeschRadMeas2009" style="color: #73b2d0; text-decoration: none;">Citeable reference</a>:<br />
+<a href="../papers/VermeeschRadMeas2009" style="text-decoration: none;">
+<i>Vermeesch, P., 2009, RadialPlotter: a Java application for fission track, luminescence and other radial plots, 
+Radiation Measurements, 44, 4, 409-410</i>
+</a>
+
+<script type="text/javascript" language="javascript">
+var sc_project=2277130; 
+var sc_invisible=1; 
+var sc_partition=20; 
+var sc_security="1b48b58b"; 
+</script>
+
+<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script>
+
+<noscript><a href="http://www.statcounter.com/" target="_blank">
+<img src="http://c21.statcounter.com/counter.php?sc_project=2277130&amp;java=0&amp;security=1b48b58b&amp;invisible=1" alt="free stats" border="0"></a></noscript>
+</td></table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+ <div class="verbatim" id="verbatim-8">
+<span 
+class="cmtt-10x-x-109">LL</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;exp(</span><span 
+class="cmtt-10x-x-109">&#x00A0;mean(logAB)</span><span 
+class="cmtt-10x-x-109">&#x00A0;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;2*sd(logAB)</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">UL</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;exp(</span><span 
+class="cmtt-10x-x-109">&#x00A0;mean(logAB)</span><span 
+class="cmtt-10x-x-109">&#x00A0;+</span><span 
+class="cmtt-10x-x-109">&#x00A0;2*sd(logAB)</span><span 
+class="cmtt-10x-x-109">&#x00A0;)</span>
+</div>
+<!--l. 324--><p class="nopar" >                                                                               

@@ -1,0 +1,69 @@
+<p></p>
+
+&nbsp;<help id="help_PbPb_formats"><translate class="input"></translate></help>
+<select id="PbPb-formats" onchange="$.chooseFormat('#PbPb-formats','Pb-Pb');">
+  <option class="translate" id="PbPb_format_1" value=1></option>
+  <option class="translate" id="PbPb_format_2" value=2></option>
+  <option class="translate" id="PbPb_format_3" value=3></option>
+</select>
+
+<p></p>
+
+&nbsp;<help class="translate" id="help_ierr"></help>
+<select id="ierr" onchange="$.switchErr();">
+  <option class="translate" id="1se_abs" value=1></option>
+  <option class="translate" id="2se_abs" value=2></option>
+  <option class="translate" id="1se_rel" value=3></option>
+  <option class="translate" id="2se_rel" value=4></option>
+</select>
+
+<p></p>
+
+<div class="hide4kde hide4cad">
+  &nbsp;<help class="translate" id="help_oerr"></help>
+  <select id="oerr">
+    <option class="translate" id="1se_abs" value=1></option>
+    <option class="translate" id="2se_abs" value=2></option>
+    <option class="translate" id="ci_abs" value=3></option>
+    <option class="translate" id="1se_rel" value=4></option>
+    <option class="translate" id="2se_rel" value=5></option>
+    <option class="translate" id="ci_rel" value=6></option>
+  </select>
+  <p></p>
+  &nbsp;<help class="translate" id="help_alpha"></help>
+  <input id="alpha">
+  <p></p>
+</div>
+
+<div class="hide4isochron">
+  &nbsp;<help class="translate" id="help_common_Pb_option"></help>
+  <select id="common-Pb-option" onchange="$.register();">
+    <option class="translate" id="common_Pb_correction_none" value=0></option>
+    <option class="translate" id="common_Pb_correction_nominal" value=1></option>
+    <option class="translate" id="common_Pb_correction_isochron" value=2></option>
+  </select>
+  <p></p>
+</div>
+
+<table>
+  <tr>
+    <td>&nbsp;<help class="translate" id="help_LambdaU238"></help></td>
+    <td><input type="text" id="LambdaU238"> &plusmn;</td>
+    <td><input type="text" id="errLambdaU238">Myr<sup>-1</sup></td>
+  </tr><tr>
+    <td>&nbsp;<help class="translate" id="help_LambdaU235"></help></td>
+    <td><input type="text" id="LambdaU235"> &plusmn;</td>
+    <td><input type="text" id="errLambdaU235">Myr<sup>-1</sup></td>
+  <tr><td>&nbsp;<help class="translate" id="help_U238U235"></help></td>
+    <td><input type="text" id="U238U235"> &plusmn;</td>
+    <td><input type="text" id="errU238U235"></td>
+  </tr><tr class="hidden show4nominalCommonPb">
+    <td>&nbsp;<help class="translate" id="help_Pb206Pb204"></help></td>
+    <td><input type="text" id="Pb206Pb204"> &plusmn;</td>
+    <td><input type="text" id="errPb206Pb204"></td>
+  </tr><tr class="hidden show4nominalCommonPb show4ianchor">
+    <td>&nbsp;<help class="translate" id="help_Pb207Pb204"></help></td>
+    <td><input type="text" id="Pb207Pb204"> &plusmn;</td>
+    <td><input type="text" id="errPb207Pb204"></td>
+  </tr>
+</table>

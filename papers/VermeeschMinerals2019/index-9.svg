@@ -1,0 +1,12 @@
+ <div class="verbatim" id="verbatim-10">
+<span 
+class="cmtt-10x-x-109">mu</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;colMeans(ACNK)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">sig</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;apply(ACNK,MARGIN=2,FUN='sd')</span>
+</div>
+<!--l. 392--><p class="nopar" >                                                                               

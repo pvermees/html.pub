@@ -1,0 +1,26 @@
+What proportion of the rock does mineral A make up?
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />5%
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />10%
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Yes, there is about 20% plagioclase in this rock';" />20% 
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again." />30% 
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />45% 
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />50% 
+</form>
+<p></p>
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'plagproportion.html\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'plagproportionxpl.html\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+<p></p>
+<div id="description">
+</div>

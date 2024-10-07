@@ -1,0 +1,1198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Making geological sense of &#8216;Big Data&#8217;
+in sedimentary provenance analysis</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<meta name="date" content="2015-05-09 13:28:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body>
+<table class="main" width="800"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Making geological sense of &#8216;Big Data&#8217;<br />
+in sedimentary provenance analysis</h2>
+                 <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span><span 
+class="cmmi-8">a</span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">*</span></a></span> <span 
+class="cmr-12">and Eduardo Garzanti</span><span 
+class="cmmi-8">b</span>
+<br />                                     <span 
+class="cmr-12">&#x00A0;</span>
+<br /><span 
+class="cmmi-8">a</span><span 
+class="cmr-12">London Geochronology Centre, University College London, United Kingdom</span>
+<br />   <span 
+class="cmmi-8">b</span><span 
+class="cmr-12">Laboratory for Provenance Studies, Universit</span><span 
+class="cmr-12">&agrave; di Milano-Bicocca, Italy</span></div>
+<br />
+<a id="tk-1"></a><span class="thank-mark"><span class="cmsy-10">*</span></span>
+corresponding author, email: <span class="cmtt-10">p.vermeesch@ucl.ac.uk</span>, tel: +44 (0)20 7679 2428
+</div>
+   <div class="abstract" >
+<div class="center" 
+>
+<!--l. 14--><p class="noindent" >
+<!--l. 14--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 15--><p class="indent" >    <span 
+class="cmr-9">Sedimentary  provenance  studies  increasingly  apply  multiple  chemical,  mineralogical  and  isotopic</span>
+     <span 
+class="cmr-9">proxies to many samples. The resulting datasets are often so large (containing thousands of numerical</span>
+     <span 
+class="cmr-9">values)  and  complex  (comprising  multiple  dimensions)  that  it  is  warranted  to  use  the  internet-era</span>
+     <span 
+class="cmr-9">term &#8216;Big Data&#8217; to describe them. This paper introduces Multidimensional Scaling (MDS), Generalised</span>
+     <span 
+class="cmr-9">Procrustes  Analysis  (GPA)  and  Individual  Differences  Scaling  (INDSCAL,  a  type  of  &#8216;3-way  MDS&#8217;</span>
+     <span 
+class="cmr-9">algorithm) as simple yet powerful tools to extract geological insights from &#8216;Big Data&#8217; in a provenance</span>
+     <span 
+class="cmr-9">context. Using a dataset from the Namib Sand Sea as a test case, we show how MDS can be used to</span>
+     <span 
+class="cmr-9">visualise the similarities and differences between 16 fluvial and aeolian sand samples for five different</span>
+     <span 
+class="cmr-9">provenance proxies, resulting in five different &#8216;configurations&#8217;. These configurations can be fed into a</span>
+     <span 
+class="cmr-9">GPA algorithm, which translates, rotates, scales and reflects them to extract a &#8216;consensus view&#8217; for</span>
+     <span 
+class="cmr-9">all the data considered together. Alternatively, the five proxies can be jointly analysed by INDSCAL,</span>
+     <span 
+class="cmr-9">which fits the data with not one but two sets of coordinates: the &#8216;group configuration&#8217;, which strongly</span>
+     <span 
+class="cmr-9">resembles the graphical output produced by GPA, and the &#8216;source weights&#8217;, which can be used to attach</span>
+     <span 
+class="cmr-9">geological meaning to the group configuration. For the Namib study, the three methods paint a detailed</span>
+     <span 
+class="cmr-9">and self-consistent picture of a sediment routing system in which sand composition is determined by the</span>
+     <span 
+class="cmr-9">combination of provenance and hydraulic sorting effects.</span>
+</div>
+<div class="center" 
+>
+<!--l. 40--><p class="noindent" >
+<!--l. 41--><p class="noindent" ><span 
+class="cmti-10">keywords: provenance &#8211; statistics &#8211; sediments &#8211; U-Pb &#8211; zircon &#8211; heavy minerals</span></div>
+
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 46--><p class="noindent" >Some 65% of Earth&#8217;s surface is covered by siliclastic sediments and sedimentary rocks. Unravelling the provenance of
+these materials is of key importance to understanding modern sedimentary environments and their ancient
+counterparts, with important applications for geomorphology, paleotectonic and paleogeographic reconstructions,
+hydrocarbon exploration and reservoir characterization, and even forensic science (e.g.,&#x00A0;<a 
+href="#Xpye2007">Pye</a>,&#x00A0;<a 
+href="#Xpye2007">2007</a>;&#x00A0;<a 
+href="#Xvermeesch2010b">Vermeesch
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch2010b">2010</a>;&#x00A0;<a 
+href="#Xgarzanti2012">Garzanti et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2012">2012</a>,&#x00A0;<a 
+href="#Xgarzanti2014b">2014a</a>,<a 
+href="#Xgarzanti2014c">b</a>;&#x00A0;<a 
+href="#Xstevens2013">Stevens et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstevens2013">2013</a>;&#x00A0;<a 
+href="#Xnie2014">Nie et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnie2014">2014</a>;&#x00A0;<a 
+href="#Xscott2014">Scott et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xscott2014">2014</a>). Over the
+years, thousands of studies have used a plethora of chemical, mineralogical and isotopic indicators to trace
+sedimentary provenance. The complexity of the resulting datasets can be organised on a number of hierarchical
+levels:
+<!--l. 59--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1002x1">A single sample
+     <!--l. 63--><p class="noindent" >Siliclastic sediments are made of grains, and on the most basic level, geological provenance analysis
+     extracts  certain  properties  from  these  grains.  These  properties  can  either  be  categorical  (e.g,
+     mineralogy) or continuous (e.g., age). In rare cases, analysing just a single grain can already yield
+     important insight into the provenance of a sediment. For example, a single grain of alluvial diamond
+     confirms the existence of kimberlitic lithologies in the hinterland. In general, however, provenance
+     studies require not just one but many grains to be analysed. The provenance information contained
+     in a representative collection of grains can be visualised with graphical aids such as histograms, pie
+     charts or kernel density estimates (<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>).
+     </li>
+     <li 
+  class="enumerate" id="x1-1004x2">Multiple samples
+     <!--l. 78--><p class="noindent" >Subjective comparison of detrital zircon U-Pb age distributions or heavy mineral compositions reveals
+     the salient similarities and differences between two samples. Things become more complicated when
+     more than two samples need to be compared simultaneously. For example, a dataset comprising n =
+     10 age distributions presents the observer with n(n-1)/2 = 45 pairwise comparisons. If n = 100, this
+     increases quadratically to 4,950 pairwise comparisons, which is clearly too much for the human brain
+     to process. Multi-Dimensional Scaling (MDS) is a technique aimed to simplify this exercise (Section
+     <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>). Originating from the field of psychology, the method is commonly used in ecology (<a 
+href="#Xkenkel1986">Kenkel and
+     Orl&oacute;ci</a>,&#x00A0;<a 
+href="#Xkenkel1986">1986</a>) and palaeontology (e.g.,&#x00A0;<a 
+href="#Xdunkley2008">Dunkley&#x00A0;Jones et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xdunkley2008">2008</a>;&#x00A0;<a 
+href="#Xschneider2011">Schneider et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xschneider2011">2011</a>). MDS was
+     introduced to the provenance community by <a 
+href="#Xvermeesch2013">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2013">2013</a>), and has instantly proved its value for
+     the interpretation of large datasets (e.g.,&#x00A0;<a 
+href="#Xstevens2013">Stevens et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstevens2013">2013</a>;&#x00A0;<a 
+href="#Xnie2014">Nie et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnie2014">2014</a>).
+     </li>
+     <li 
+  class="enumerate" id="x1-1006x3">Multiple methods
+     <!--l. 96--><p class="noindent" >Several provenance methods are in use today which can be broadly categorised into two groups. Each
+     of these tells a different part of the provenance story:
+     <!--l. 100--><p class="noindent" >
+         <ol  class="enumerate2" >
+         <li 
+  class="enumerate" id="x1-1008x1"><span 
+class="cmbx-10">Multi-mineral  </span>techniques  such  as  heavy  mineral  analysis  and  bulk  geochemistry  provide
+         arguably the richest source of provenance information, but are susceptible to hydraulic sorting
+         effects during deposition as well as chemical dissolution by diagenesis and weathering (<a 
+href="#Xgarzanti2009">Garzanti
+         et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2009">2009</a>;&#x00A0;<a 
+href="#Xando2012">And&ograve; et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xando2012">2012</a>). These effects obscure the provenance signal and can be hard to
+         correct.
+         </li>
+         <li 
+  class="enumerate" id="x1-1010x2"><span 
+class="cmbx-10">Single  mineral </span>techniques  such  as  detrital  zircon  U-Pb  geochronology  are  less  sensitive  to
+         hydraulic sorting effects and, in the case of zircon, scarcely affected by secondary processes as
+
+         well. However, zircon is &#8216;blind&#8217; to sediment sources such as mafic volcanic rocks and carbonates.
+         Furthermore, the robustness of zircon comes at a price, as it is difficult to account for the effect
+         of sediment recycling (<a 
+href="#Xgarzanti2013">Garzanti et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2013">2013</a>).</li></ol>
+
+<p></p>
+
+     <!--l. 117--><p class="noindent" >Great benefits arise when these two types of methods are used in tandem. A string of recent studies combining
+     conventional bulk and heavy mineral petrography techniques with detrital geochronology have shown
+     that this provides a very powerful way to trace provenance (e.g,&#x00A0;<a 
+href="#Xstevens2013">Stevens et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstevens2013">2013</a>;&#x00A0;<a 
+href="#Xgarzanti2012">Garzanti
+     et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2012">2012</a>,&#x00A0;<a 
+href="#Xgarzanti2014b">2014a</a>,<a 
+href="#Xgarzanti2014c">b</a>). Combining multiple methods adds another level of complexity which requires an
+     additional layer of statistical simplification. The datasets resulting from these multi-sample, multi-method
+     studies are so large and complex that it is warranted to use the internet-era term &#8216;Big Data&#8217; to
+     describe them. This paper introduces Procrustes analysis (Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:procrustes --></a>) and 3-way MDS (Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:indscal --></a>) as
+     valuable tools to help make geological sense of &#8216;Big Data&#8217;. These methods will be applied to a
+     large dataset from the Namib Sand Sea, which combines 16 samples analysed by 5 different
+     methods (Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:data --></a>). Although the use of some mathematical equations was inevitable in this paper,
+     we have made the text as accessible as possible by reducing the algorithms to their simplest
+     possible form. The formulas given in Sections <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>-<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:indscal --></a> should therefore be considered as conceptual
+     summaries rather than practical recipes, with further implementational details deferred to the
+     Appendices.
+     </li></ol>
+<!--l. 141--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>The Namib dataset</h3>
+<!--l. 144--><p class="noindent" >The statistical methods introduced in this paper will be illustrated with a large dataset from Namibia. The dataset
+comprises fourteen aeolian samples from the Namib Sand Sea and two fluvial samples from the Orange River
+(Figure <a 
+href="#x1-20111">1<!--tex4ht:ref: fig:data --></a>). These samples were analysed using five different analytical methods:
+<!--l. 150--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-2002x1">Geochronology: <span 
+class="cmsy-10">~</span>100 zircon U-Pb ages were obtained per sample by LA-ICP-MS. For samples N1-N13,
+     this was done using methods described by <a 
+href="#Xvermeesch2010b">Vermeesch et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xvermeesch2010b">2010</a>). N14, T8 and T13 are new samples
+     which were analysed at the London Geochronology Centre using an Agilent 7700x ICP-MS coupled to
+     a New Wave NWR193 excimer laser with standard two volume ablation cell.
+     </li>
+     <li 
+  class="enumerate" id="x1-2004x2">Heavy minerals: a full description of samples N1-N14 was given by <a 
+href="#Xgarzanti2012">Garzanti et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xgarzanti2012">2012</a>). Samples T8
+     and T13 were reported (as samples S4328 and S4332) by <a 
+href="#Xgarzanti2014b">Garzanti et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xgarzanti2014b">2014a</a>,<a 
+href="#Xgarzanti2014c">b</a>).
+     </li>
+     <li 
+  class="enumerate" id="x1-2006x3">Bulk petrography: is also taken from <a 
+href="#Xgarzanti2012">Garzanti et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xgarzanti2012">2012</a>,&#x00A0;<a 
+href="#Xgarzanti2014b">2014a</a>,<a 
+href="#Xgarzanti2014c">b</a>).
+     </li>
+     <li 
+  class="enumerate" id="x1-2008x4">Major element composition: 10 major elements were measured by acid dissolution (Aqua Regia) ICP-ES
+     at AcmeLabs Inc. in Vancouver, Canada (protocol 4A/B).
+     </li>
+     <li 
+  class="enumerate" id="x1-2010x5">Trace element composition: 27 trace elements were measured by acid dissolution (Aqua Regia) ICP-ES
+     and ICP-MS at AcmeLabs (protocol 4A/B).</li></ol>
+<!--l. 170--><p class="indent" >   The complete dataset is available as an Online Supplement in a tabular form that can be imported into the
+software discussed later in this paper. Taken altogether, the entire dataset contains 16,125 physical measurements
+covering a variety of ordinal and compositional spaces. This is a prime example of &#8216;Big Data&#8217; in a provenance
+
+context. A lot can be learned by a simple qualitative analysis of the measurements. For example, the zircon age
+distributions reveal prominent peaks at <span 
+class="cmsy-10">~</span>600 and <span 
+class="cmsy-10">~</span>1,000 Ma, consistent with a hinterland affected by
+Damara and Namaqua orogenesis, while the widespread occurrence of pyroxene and basaltic rock
+fragments indicates the existence of a volcanic sediment source (<a 
+href="#Xgarzanti2012">Garzanti et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgarzanti2012">2012</a>,&#x00A0;<a 
+href="#Xgarzanti2014b">2014a</a>). But it is
+difficult to go beyond these general observations without statistical assistance because there is simply
+&#8216;too much&#8217; data. In the following sections, we will follow the hierarchical organisation of Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a> to
+gain a better understanding of the multivariate dataset in different steps. First, we will integrate the
+different age distributions and compositions into five MDS maps (Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>). Then, we will integrate
+these MDS maps into a single &#8216;Procrustes analysis&#8217; (Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:procrustes --></a>). Finally, we will jointly analyse the
+five datasets using &#8216;3-way MDS&#8217; to gain further insight into the sediment routing system (Section
+<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:indscal --></a>).
+<!--l. 193--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20111"></a>
+
+<!--l. 194--><p class="noindent" >
+<center><a href="NamData.png"><img 
+width=400 src="NamData.png" alt="PIC"></a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">The Namib dataset comprises of 1,533 detrital zircon U-Pb ages (shown as kernel density estimates
+with a bandwidth of 30 Ma,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>), 3,600 heavy mineral counts (&#8216;HM&#8217;), 6,400 petrographic point
+counts (&#8216;QFL&#8217;), and chemical concentration measurements for 10 major and 27 trace elements. &#8216;opx&#8217; =
+orthopyroxene, &#8216;cpx&#8217; = clinopyroxene, &#8216;am&#8217; = amphibole, &#8216;gt&#8217; = garnet, &#8216;ep&#8217; = epidote, &#8216;oth1&#8217; = zircon +
+tourmaline + rutile + Ti-oxides + sphene + apatite + staurolite; &#8216;Q&#8217; = quartz, &#8216;KF&#8217; = K-feldspar, &#8216;P&#8217;
+= plagioclase, &#8216;Lm&#8217;, &#8216;Lv&#8217; and &#8216;Ls&#8217; are lithic fragments of metamorphic, volcanic and sedimentary origin,
+respectively; &#8216;oth2&#8217; = TiO<sub><span 
+class="cmr-7">2</span></sub> + P<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">5</span></sub> + MnO; &#8216;oth3&#8217; = Sc + Y + La + Ce + Pr + Nd + Sm + Gd + Dy +
+Er + Yb + Th + U, and &#8216;oth4&#8217; = Cr + Co + Ni + Cu + Zn + Ga + Pb. This figure makes the point that
+an objective interpretation of a large database like this is impossible without the help of statistical aids.</span></div><!--tex4ht:label?: x1-20111 -->
+
+<!--l. 211--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Multidimensional Scaling</h3>
+<!--l. 216--><p class="noindent" >The Namib study contains 16 samples, which can be visualised as kernel density estimates (for the U-Pb data)
+or pie charts/histograms (for the compositional datasets). For each of the five provenance proxies,
+we have 16<span 
+class="cmsy-10">&#x00D7;</span>15/2 = 120 pairwise comparisons, which is clearly too much to handle for an unaided
+human observer (Figure <a 
+href="#x1-20111">1<!--tex4ht:ref: fig:data --></a>). Multidimensional Scaling (MDS) is a technique aimed to simplify the
+interpretation of such large datasets by producing a simple two-dimensional map in which &#8216;similar&#8217;
+samples plot close together and &#8216;dissimilar&#8217; samples plot far apart. The technique is rooted in the field of
+psychology, in which human observers are frequently asked to make a subjective assessment of the
+dissimilarity between &#8216;stimuli&#8217; such as shapes, sounds, flavours etc. A classic example of this is the
+colour-vision experiment of <a 
+href="#Xhelm1964">Helm</a>&#x00A0;(<a 
+href="#Xhelm1964">1964</a>), which recorded the perceived differences between 10 colours by a
+human observer, resulting in a 9<span 
+class="cmsy-10">&#x00D7;</span>9 dissimilarity matrix. Let <span 
+class="cmmi-10">&#x03B4;</span><sub><span 
+class="cmmi-7">i,j</span></sub> be the &#8216;dissimilarity&#8217; between two
+colours i and j (&#8216;red&#8217; and &#8216;blue&#8217;, say). Then MDS aims to find a monotone &#8216;disparity transformation&#8217;
+f
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r1"></a>
+   <center class="math-display" >
+<img 
+src="index0x.png" alt="        &#x2032;
+f(&#x03B4;ij) = &#x03B4;ij
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 238--><p class="nopar" >
+<!--l. 240--><p class="indent" >   and a configuration<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-3002f1"></a>
+X
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3003r2"></a>
+   <center class="math-display" >
+<img 
+src="index1x.png" alt="    [                               ]
+      x1  x2  &#x22C5;&#x22C5;&#x22C5; xi  &#x22C5;&#x22C5;&#x22C5; xj &#x22C5;&#x22C5;&#x22C5;  xn
+X =   y1  y2  &#x22C5;&#x22C5;&#x22C5; yi  &#x22C5;&#x22C5;&#x22C5; yj&#x22C5;&#x22C5;&#x22C5;  yn
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 253--><p class="nopar" >
+
+<!--l. 255--><p class="indent" >   so as to minimise the (&#8216;raw&#8217;) stress S
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3004r3"></a>
+   <center class="math-display" >
+<img 
+src="index2x.png" alt="       [     &#x2218;-------------------]2
+S = &#x2211;   &#x03B4;&#x2032; -  (xi - xj)2 + (yi - yj)2
+    i&#x003C;j  ij
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 260--><p class="nopar" >
+<!--l. 262--><p class="indent" >   The (x,y)-coordinates resulting from Equation <a 
+href="#x1-3003r2">2<!--tex4ht:ref: eq:X --></a> can be plotted as a map which, in the case of the <a 
+href="#Xhelm1964">Helm</a>&#x00A0;(<a 
+href="#Xhelm1964">1964</a>)
+dataset, reveals the well-known colour circle (Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>a). Exactly the same principle can be used for geological data
+with, of course, dissimilarities not based on subjective perceptions but analytical data. There is a rich literature
+documenting ways to quantify the dissimilarity between petrographic or geochemical datasets. Further details about
+this are provided in Appendix A.<br 
+class="newline" />
+<!--l. 271--><p class="indent" >   Applying these methods to the Namib dataset, we can convert the raw input data (Figure <a 
+href="#x1-20111">1<!--tex4ht:ref: fig:data --></a>) into five
+dissimilarity matrices. For the purpose of this exercise, we have used the Kolmogorov-Smirnov statistic for the U-Pb
+data, the Bray-Curtis dissimilarity for the heavy mineral and bulk petrography data, and the Aitchison distance
+for the major and trace element compositions (see Appendix A for a justification of these choices).
+Each of the resulting dissimilarity matrices can then be fed into an MDS algorithm to produce five
+configurations (Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>). Note that, because the Bray-Curtis dissimilarity does not fulfil the triangle
+inequality, the petrographic and heavy mineral datasets cannot be analysed by means of classical MDS
+(<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). The MDS maps of Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a> were therefore constructed using a nonmetric algorithm
+(see&#x00A0;<a 
+href="#Xkruskal1978">Kruskal and Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>;&#x00A0;<a 
+href="#Xborg2005">Borg and Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>;&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>, for further details). It
+is important to note that nonmetric MDS merely aims to reproduce the &#8216;rank order&#8217; of the input
+data, rather than the actual dissimilarities themselves (<a 
+href="#Xkruskal1964">Kruskal</a>,&#x00A0;<a 
+href="#Xkruskal1964">1964</a>;&#x00A0;<a 
+href="#Xborg2005">Borg and Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>).
+Bearing this in mind, the five MDS maps representing the Namib dataset reveal some clear trends in the
+data.<br 
+class="newline" />
+<!--l. 291--><p class="indent" >   A first observation is that the coastal samples (N1, N2, N11, N12, T8 and T13) plot close together in all five
+MDS maps, with the easternmost samples (N4, N5, N8 and N9) plotting elsewhere. Second, the Orange River
+samples (N13 and N14) tend to plot closer to the coastal samples than to the inland samples. And third, within the
+eastern group, the northern samples (N4 and N5) are generally found in a different direction from the southern
+samples (N8 and N9), relative to the coastal group. But in addition to these commonalities, there also exist notable
+differences between the five maps. Specific examples of this are the odd position of N14 in the bulk
+petrography configuration (Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>d), the different orientation of the major and trace element configurations
+(Figures <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>e and <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>f) and countless other minor differences in the absolute and relative inter-sample
+distances. Also note that not all five datasets fit their respective MDS configuration equally well. A
+&#8216;goodness of fit&#8217; measure called &#8216;Stress-1&#8217; can be obtained by normalising the &#8216;raw&#8217; stress (Equation <a 
+href="#x1-3004r3">3<!--tex4ht:ref: eq:stress --></a>)
+to the sum of the squared fitted distances (<a 
+href="#Xkruskal1964">Kruskal</a>,&#x00A0;<a 
+href="#Xkruskal1964">1964</a>;&#x00A0;<a 
+href="#Xkruskal1978">Kruskal and Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>). The resulting
+Stress-1 values range from 0.02 to 0.07, indicating &#8216;excellent&#8217; fits to some and &#8216;fair&#8217; fits to other datasets
+(Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>b-f). The five MDS maps, then, present us with a multi-comparison problem similar to the one
+presented by Figure <a 
+href="#x1-20111">1<!--tex4ht:ref: fig:data --></a>, with the only difference being that it does not involve multiple KDEs or pie
+charts, but multiple MDS maps. Making this multi-sample comparison more objective requires an
+
+additional layer of statistical simplification, in which all the data are pooled to produce a &#8216;consensus&#8217;
+view.
+<!--l. 319--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30052"></a>
+
+<!--l. 321--><p class="noindent" >
+<center>
+<a href="2way3.png">
+<img width=400 src="2way3.png" alt="PIC">
+</a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Nonmetric (2-way) MDS analyses of (a) <a 
+href="#Xhelm1964">Helm</a>&#x00A0;(<a 
+href="#Xhelm1964">1964</a>)&#8217;s colour-vision data (for a single observer,
+&#8216;N1&#8217;) and (b)-(f) the five Namib datasets. The &#8216;stress&#8217; values indicate &#8216;excellent&#8217; (<span 
+class="cmmi-10">&#x003C; </span>0<span 
+class="cmmi-10">.</span>025) to &#8216;fair&#8217; (<span 
+class="cmmi-10">&#x003C;</span>0.1) fits
+(<a 
+href="#Xkruskal1978">Kruskal and Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>;&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). Axes are plotted on a one-to-one scale with omitted labels to
+reflect the fact that non-metric MDS aims to preserve the ranks rather than the values of the dissimilarities.
+The MDS maps for the Namib dataset all paint a consistent picture in which (i) the coastal dune and Orange
+river samples (N1, N2, N11, N12, T8 and T13) plot close together and the inland samples (N4, N5, N8
+and N9) plot elsewhere; and (ii) the northeastern samples (N4 and N5) are generally found in a different
+direction from the southeastern samples (N8 and N9), relative to the coastal group. However, there are also
+some distinct differences between the five configurations. The Procrustes and 3-way MDS analysis presented
+in Figures <a 
+href="#x1-40053">3<!--tex4ht:ref: fig:procrustes --></a> and <a 
+href="#x1-50044">4<!--tex4ht:ref: fig:3-way --></a> make an abstraction of these differences.</span></div><!--tex4ht:label?: x1-30052 -->
+
+<!--l. 340--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Procrustes analysis</h3>
+<!--l. 345--><p class="noindent" >According to Greek mythology, Procrustes was an inn keeper who managed to fit all travellers to a single bed,
+regardless of their size or length, by stretching or amputation. Similarly, in a statistical context, a
+Procrustes arrangement can be found that resembles each of several MDS maps by a combination of
+stretching, translation, reflection and rotation. In mathematical terms, Generalised Procrustes Analysis
+(GPA,&#x00A0;<a 
+href="#Xgower1975">Gower</a>,&#x00A0;<a 
+href="#Xgower1975">1975</a>;&#x00A0;<a 
+href="#Xgower2004">Gower and Dijksterhuis</a>,&#x00A0;<a 
+href="#Xgower2004">2004</a>;&#x00A0;<a 
+href="#Xborg2005">Borg and Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>) proceeds in a similar manner to the
+method laid out for MDS in Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>. Given <span 
+class="cmmi-10">K </span>sets of two-dimensional MDS configurations <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">k</span></sub> (for 1
+<span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">K</span>)
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r4"></a>
+   <center class="math-display" >
+<img 
+src="index3x.png" alt="     [ x1k  x2k  &#x22C5;&#x22C5;&#x22C5;  xik &#x22C5;&#x22C5;&#x22C5;  xnk ]
+Xk =   y1k  y2k  &#x22C5;&#x22C5;&#x22C5;  yik &#x22C5;&#x22C5;&#x22C5;  ynk
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 364--><p class="nopar" >
+<!--l. 366--><p class="indent" >   GPA aims to find a transformation g constituting of a combination of scale factors <span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">k</span></sub>, orthonormal
+transformation matrices <span 
+class="cmmi-10">T</span><sub><span 
+class="cmmi-7">k</span></sub> and translation matrices <span 
+class="cmmi-10">t</span><sub><span 
+class="cmmi-7">k</span></sub> (<a 
+href="#Xborg2005">Borg and Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4002r5"></a>
+   <center class="math-display" >
+<img 
+src="index4x.png" alt="                         [ x&#x2032;   x&#x2032;   &#x22C5;&#x22C5;&#x22C5;  x&#x2032;   &#x22C5;&#x22C5;&#x22C5;  x&#x2032;  ]
+g(Xk) = skXkTk + tk = X &#x2032;k = y1&#x2032;k y2&#x2032;k  &#x22C5;&#x22C5;&#x22C5;  yi&#x2032;k  &#x22C5;&#x22C5;&#x22C5;  yn&#x2032;k
+                            1k   2k       ik       nk
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 378--><p class="nopar" >
+<!--l. 380--><p class="indent" >   and a &#8216;group configuration&#8217; <span class="bar-css"><span 
+class="cmmi-10">X</span></span>
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4003r6"></a>
+
+   <center class="math-display" >
+<img 
+src="index5x.png" alt="    [                                 ]
+ ¯    ¯x1  ¯x2  &#x22C5;&#x22C5;&#x22C5;  ¯xi &#x22C5;&#x22C5;&#x22C5;  ¯xj &#x22C5;&#x22C5;&#x22C5;  ¯xn
+X =   y¯1  ¯y2  &#x22C5;&#x22C5;&#x22C5;  ¯yi &#x22C5;&#x22C5;&#x22C5;  ¯yj &#x22C5;&#x22C5;&#x22C5;  ¯yn
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 390--><p class="nopar" >
+<!--l. 392--><p class="indent" >   so as to minimise the least squares misfit SS:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4004r7"></a>
+   <center class="math-display" >
+<img 
+src="index6x.png" alt="     &#x2211;K &#x2211;n
+SS =       (x&#x2032;ik - ¯xi)2 + (y&#x2032;ik - ¯yi)2
+     k=1i=1
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 397--><p class="nopar" >
+<!--l. 399--><p class="indent" >   Applying this method to the five (i.e., K=5) Namib MDS maps of Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a> produces a Procrustes map (Figure
+<a 
+href="#x1-40053">3<!--tex4ht:ref: fig:procrustes --></a>) confirming the salient points raised in Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>. The GPA analysis shows the dichotomy between the
+coastal and eastern sands, as well as the similarity of the coastal sands with the Orange River, and
+it does so more clearly than any of the five original MDS maps (Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>). It also emphasises the
+significance of the differences between the northeastern and southeastern samples, which plot at right
+angles from each other relative to the coastal samples. The GPA map, then, paints a detailed picture
+of the sediment routing system in the Namib Sand Sea, which would have been difficult to obtain
+from a simple visual inspection of the raw data. However, GPA weighs all five MDS configurations
+equally and does not readily take into account the significant differences in &#8216;goodness of fit&#8217; (&#8216;Stress-1,
+Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>) between them. Also, although the trends and groupings among samples are clear from the
+GPA map, the underlying reasons for these features are not. The next section introduces a method
+aiming to solve this problem and thus yields additional insight into the sediment routing system of
+Namibia.
+<!--l. 419--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40053"></a>
+
+<!--l. 421--><p class="noindent" >
+<center>
+<a href="procrustes3.png">
+<img width=400 src="procrustes3.png" alt="PIC">
+</a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Generalised Procrustes Analysis (GPA) of the Namib dataset, pooling together all five MDS maps
+of Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a> into a single &#8216;average&#8217; configuration. This confirms the strong similarities between sand samples
+collected along the Atlantic coast (N1, N2, N11, N12, T8, T13) and the Orange River (N13 and N14) as
+opposed to samples collected further inland (N4 through N10).</span></div><!--tex4ht:label?: x1-40053 -->
+
+<!--l. 429--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>3-way MDS</h3>
+<!--l. 434--><p class="noindent" >As we saw in Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:procrustes --></a>, Procrustes analysis is a two-step process. First, the various datasets are analysed by MDS.
+Then, the resulting MDS configurations are amalgamated into a single Procrustes map. The question then arises
+whether it is possible to skip the first step and go straight from the input data to a &#8216;group configuration&#8217;. Such
+methods exist under the umbrella of &#8216;3-way MDS&#8217;. In this paper, we will discuss the oldest and still most widely
+used technique of this kind, which is known as INdividual Differences SCALing (INDSCAL,&#x00A0;<a 
+href="#Xcarroll1970">Carroll and
+Chang</a>,&#x00A0;<a 
+href="#Xcarroll1970">1970</a>). The method is formulated as a natural extension of the basic MDS model outlined in Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>.
+Given K dissimilarity matrices <span 
+class="cmmi-10">&#x03B4;</span><sub><span 
+class="cmmi-7">ij,k</span></sub> (1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i,j </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">n </span>and 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">K</span>), INDSCAL aims to find K disparity
+transformations <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">k</span></sub>
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5001r8"></a>
+   <center class="math-display" >
+<img 
+src="index7x.png" alt=" &#x2032;                &#x2211;   &#x2032;2
+&#x03B4;ij,k = fk(&#x03B4;ij,k) (with   &#x03B4;ij,k = constant &#x2200; k),
+                   i&#x003C;j
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 452--><p class="nopar" >
+<!--l. 454--><p class="indent" >   a group configuration <span class="bar-css"><span 
+class="cmmi-10">X</span></span> (defined as in Equation <a 
+href="#x1-4003r6">6<!--tex4ht:ref: eq:Xbar --></a>), and a set of dimension weights W
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5002r9"></a>
+   <center class="math-display" >
+<img 
+src="index8x.png" alt="     [ wx1  wx2  &#x22C5;&#x22C5;&#x22C5; wxk  &#x22C5;&#x22C5;&#x22C5;  wxK  ]
+W  =   wy1  wy2  &#x22C5;&#x22C5;&#x22C5; wyk  &#x22C5;&#x22C5;&#x22C5;  wyK
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 465--><p class="nopar" >
+<!--l. 467--><p class="indent" >   so as to minimise a modified stress parameter <span 
+class="cmmi-10">S</span><span 
+class="cmsy-10">&#x2032;</span>
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5003r10"></a>
+
+   <center class="math-display" >
+<img 
+src="index9x.png" alt="    &#x2211;K &#x2211;  [      &#x2218; -------------------------]2
+S&#x2032; =       &#x03B4;&#x2032;ij,k -  wxk(xi - xj)2 + wyk(yi - yj)2
+    k=1i&#x003C;j
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 473--><p class="nopar" >
+<!--l. 475--><p class="indent" >   To illustrate the application of INDSCAL to real data, it is instructive to revisit the colour-vision example of
+Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a>. In addition to test subject &#8216;N1&#8217; shown in Figure <a 
+href="#x1-30052">2<!--tex4ht:ref: fig:2way --></a>a, the study by <a 
+href="#Xhelm1964">Helm</a>&#x00A0;(<a 
+href="#Xhelm1964">1964</a>) involved thirteen more
+participants. Each of these people produced one (or two, for subjects N6 and CD2) dissimilarity matrix(es),
+resulting in a total of sixteen MDS maps, which could in principle be subjected to a Procrustes analysis (Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:procrustes --></a>).
+Alternatively, the sixteen dissimilarity matrices can also be fed into the INDSCAL algorithm. The resulting &#8216;group
+configuration&#8217; (<span class="bar-css"><span 
+class="cmmi-10">X</span></span>) is a map that fits the perceived differences of all fourteen observers by stretching
+and shrinking (but not rotating) in the x- and y-direction (Figure <a 
+href="#x1-50044">4<!--tex4ht:ref: fig:3-way --></a>.a). The degree of stretching or
+shrinking associated with each observer is given by the &#8216;source weights&#8217; (W), which can be plotted as a
+second piece of graphical output (Figure <a 
+href="#x1-50044">4<!--tex4ht:ref: fig:3-way --></a>.b). For the colour-vision experiment, the group configuration
+shows the familiar colour circle, and the source weights express the degree to which this colour circle is
+distorted in the perception of the colour deficient test subjects (prefix &#8216;CD&#8217;) relative to those subjects
+with normal colour vision (prefix &#8216;N&#8217;). The latter all plot together in the northwest quadrant of the
+diagram, whereas the former plot in the southeast quadrant. Multiplying the x-y coordinates of the group
+configuration with the respective dimensions of the source weights yields sixteen &#8216;private spaces&#8217;, which are
+approximate MDS maps for each test subject. For the colour deficient subjects, these private spaces
+will have an oblate shape, emphasising the reduced sensitivity of the colour deficient test subjects
+to the red-green colour axis relative to the blue-yellow axis. In summary, whereas an ordinary MDS
+configuration can be rotated by an arbitrary angle without loss of information, this is not the case
+for an INDSCAL group configuration. The principal axes of the latter generally have an interpretive
+meaning, which is one of the most appealing aspects of the method (<a 
+href="#Xarabie1987">Arabie et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xarabie1987">1987</a>;&#x00A0;<a 
+href="#Xborg2005">Borg and
+Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>).<br 
+class="newline" />
+<!--l. 509--><p class="indent" >   The five datasets of the Namibian study can be analysed in exactly the same manner as <a 
+href="#Xhelm1964">Helm</a>&#x00A0;(<a 
+href="#Xhelm1964">1964</a>)&#8217;s colour
+data, producing the same two pieces of graphical output as before. The resulting &#8216;group configuration&#8217; (Figure <a 
+href="#x1-50044">4<!--tex4ht:ref: fig:3-way --></a>c)
+looks remarkably similar to the GPA map of Figure <a 
+href="#x1-40053">3<!--tex4ht:ref: fig:procrustes --></a>. It shows the same separation between samples collected from
+the eastern and western parts of the desert, and the same 90<sup><span 
+class="cmsy-7">&#x2218;</span></sup> angle between the northeastern and southeastern
+sampling locations. But whereas the GPA map did not offer any explanation for these observations, the source
+weights of the INDSCAL analysis do provide some important clues (Figure <a 
+href="#x1-50044">4<!--tex4ht:ref: fig:3-way --></a>d). The provenance proxies based on
+the analysis of bulk materials (chemistry and petrography) attach stronger weights to the horizontal
+dimension. The proxies based on density separates (U-Pb ages and heavy minerals), on other hand,
+weigh the vertical dimension more heavily. Because the former proxies are more sensitive to hydraulic
+sorting effects and comparatively less sensitive to provenance than the latter proxies (see Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>),
+this observation leads to the interpretation that hydraulic sorting (predominantly) separates samples
+along the x-dimension, whereas the provenance signal (predominantly) separates samples along the
+y-dimension.
+<!--l. 531--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50044"></a>
+
+<!--l. 533--><p class="noindent" >
+<center>
+<a href="3-way3.png">
+<img width=400 src="3-way3.png" alt="PIC">
+</a>
+</center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">3-way MDS analysis of the colour-vision experiment by <a 
+href="#Xhelm1964">Helm</a>&#x00A0;(<a 
+href="#Xhelm1964">1964</a>, (a)-(b)) and the Namib
+dataset [(c)-(d)]. The left panels [(a) and (c)] show the &#8216;group configurations&#8217;, whereas the right panels [(b)
+and (e)] show the &#8216;source weights&#8217;. For the Namib dataset, the former shows essentially the same picture
+as the Procrustes analysis (Figure <a 
+href="#x1-40053">3<!--tex4ht:ref: fig:procrustes --></a>). The map of &#8216;source weights&#8217; (d) shows the degree of importance each
+of the five proxies attach to the horizontal and vertical dimension of the group configuration. An intuitive
+interpretation of these two dimensions suggests that the y-axis shows the provenance signal (which dominates
+the proxies based on density separates, see Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>), whereas the hydraulic sorting effect dominates the
+x-axis (and the bulk analysis proxies).</span></div><!--tex4ht:label?: x1-50044 -->
+
+<!--l. 548--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Discussion, caveats and conclusions</h3>
+<!--l. 553--><p class="noindent" >Until recently, large multi-proxy provenance studies like the Namib case study presented in this paper were
+prohibitively expensive and time consuming. However, continued technological advances in mass spectrometry (<a 
+href="#Xfrei2009">Frei
+and Gerdes</a>,&#x00A0;<a 
+href="#Xfrei2009">2009</a>) and petrography/geochemistry (<a 
+href="#Xallen2012">Allen et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xallen2012">2012</a>) promise to change this picture. In
+anticipation of the impending flood of provenance data resulting from these advances, this paper borrowed some
+simple yet powerful &#8216;data mining&#8217; techniques from other scientific disciplines, which help to make geological sense of
+complex datasets. Some readers will be familiar with Principal Components Analysis (PCA), which is a
+dimension-reducing procedure that is commonly used to interpret geochemical, petrographic and other
+compositional data (<a 
+href="#Xaitchison1983">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1983">1983</a>;&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). Multidimensional Scaling is a flexible and powerful
+superset of PCA which allows geologists to extend PCA-like interpretation to isotopic data such as U-Pb ages
+(<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). Generalised Procrustes Analysis and Individual Differences Scaling are higher
+order supersets of MDS which can be used to integrate multiple proxies in a single comprehensive
+analysis.<br 
+class="newline" />
+<!--l. 573--><p class="indent" >   The application to the Namib Sand Sea has yielded results that are broadly consistent with previous
+interpretations by visual inspection of the age distributions, petrographic diagrams etc. The statistical tools
+presented in this paper offer two key advantages over the traditional approach. First, they are far more objective
+and easy to use. Expert knowledge of mineralogy, petrography and isotope geochemistry, while still desirable,
+becomes less crucial because the statistical tools automatically extract geologically meaningful differences between
+the datasets. Second, the methods introduced in this paper provide a way to compare datasets of very different
+nature in a common framework. Thus the new approach to data interpretation makes it much easier to combine
+petrographic and isotopic provenance proxies.<br 
+class="newline" />
+<!--l. 587--><p class="indent" >   Despite the intuitive appeal of INDSCAL and its apparent success in the Namib study, it is important to
+mention a few caveats. Whereas the group configuration is quite robust (as exemplified by the similarity of Figures <a 
+href="#x1-40053">3<!--tex4ht:ref: fig:procrustes --></a>
+and <a 
+href="#x1-50044">4<!--tex4ht:ref: fig:3-way --></a>d), the same cannot be said about the source weights. Consider, for example, the INDSCAL analysis of the
+Namib data, which used a combination of Kolmogorov-Smirnov (for the U-Pb data), Bray-Curtis (for the
+mineralogical data) and Aitchison (for the bulk chemistry) measures. Replacing the Kolmogorov-Smirnov statistic
+with (<a 
+href="#Xsircombe2004a">Sircombe and Hazelton</a>,&#x00A0;<a 
+href="#Xsircombe2004a">2004</a>)&#8217;s L2-norm, say, results in a similar group configuration but in significantly
+different source weights with a less clear interpretation (although the bulk and density separated proxies still plot in
+opposite corners). The instability of the source weights may easily lead to over-interpretation, causing some
+(e.g.,&#x00A0;<a 
+href="#Xborg2005">Borg and Groenen</a>,&#x00A0;<a 
+href="#Xborg2005">2005</a>) to recommend abandoning INDSCAL in favour of GPA or similar
+techniques.<br 
+class="newline" />
+<!--l. 604--><p class="indent" >   Thanks to the widespread acceptance of MDS, GPA and INDSCAL in other fields of science, several software
+options are available (see Appendix B for details). These tools can be combined with other types of inferential
+techniques such as cluster analysis, regression, bootstrapping etc. This paper barely scratches the surface of the vast
+field of MDS-related research. We refer the user to the reference works by <a 
+href="#Xarabie1987">Arabie et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xarabie1987">1987</a>);&#x00A0;<a 
+href="#Xborg2005">Borg and
+Groenen</a>&#x00A0;(<a 
+href="#Xborg2005">2005</a>);&#x00A0;<a 
+href="#Xborg2012">Borg et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xborg2012">2012</a>);&#x00A0;<a 
+href="#Xgower2004">Gower and Dijksterhuis</a>&#x00A0;(<a 
+href="#Xgower2004">2004</a>) for further details and ideas and hope that our
+paper will encourage others to explore these extension in order to address a new class of geological
+problems.
+<!--l. 615--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-70006"></a>Acknowledgments</h3>
+<!--l. 617--><p class="noindent" >We would like to thank Ingwer Borg, Jan de Leeuw, Patrick Mair, Patrick Groenen, Christian Hennig and two
+anonymous reviewers for feedback and statistical advice. This research was funded by NERC grant #NE/1009248/1
+
+and ERC grant 259505 (&#8216;KArSD&#8217;).
+<!--l. 622--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-80006"></a>Appendix A: dissimilarity measures</h3>
+<!--l. 624--><p class="noindent" >This section provides a few examples of dissimilarity measures to compare two sediment samples (A and B, say). Let
+us first consider the case of categorical data (A = <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmr-7">1</span></sub>, <span 
+class="cmmi-10">A</span><sub><span 
+class="cmr-7">2</span></sub>, <img 
+src="index10x.png" alt="&#x22C5;&#x22C5;&#x22C5;"  class="@cdots" ><span style="margin-left:0.3em" class="thinspace"></span>, <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">} </span>and B = <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">1</span></sub>, <span 
+class="cmmi-10">B</span><sub><span 
+class="cmr-7">2</span></sub>, <img 
+src="index11x.png" alt="&#x22C5;&#x22C5;&#x22C5;"  class="@cdots" ><span style="margin-left:0.3em" class="thinspace"></span>, <span 
+class="cmmi-10">B</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">}</span>, where <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">i</span></sub>
+represents the number of observations of class <span 
+class="cmmi-10">i</span>, etc.) such as heavy mineral counts. <a 
+href="#Xvermeesch2013">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2013">2013</a>) used
+Aitchisons central logratio distance:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8001r11"></a>
+   <center class="math-display" >
+<img 
+src="index12x.png" alt="      &#x250C;&#x2502; -n-[--(-----)-----(-----)]2
+&#x03B4;ait = &#x2502;&#x2218; &#x2211;   ln  -Ai-  - ln  -Bi-
+ AB     i=1     g(A)       g(B )
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 636--><p class="nopar" >
+<!--l. 638--><p class="indent" >   where &#8216;g(x) stands for &#8216;the geometric mean of x (<a 
+href="#Xaitchison1986">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>;&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). Note that the same
+distance is obtained irrespective of whether the input data are expressed as fractions or percents. The Aitchison
+distance breaks down for datasets comprising &#8216;zero counts&#8217; (<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">i</span></sub> = 0 or <span 
+class="cmmi-10">B</span><sub><span 
+class="cmmi-7">i</span></sub>=0 for any <span 
+class="cmmi-10">i</span>). This problem can be solved
+by pooling several categories together, or by using a different dissimilarity measure such as the Bray-Curtis
+dissimilarity:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8002r12"></a>
+   <center class="math-display" >
+<img 
+src="index13x.png" alt="       n&#x2211;
+      i=1|Ai - Bi|
+&#x03B4;bAcB = &#x2211;n---------
+         (Ai + Bi)
+      i=1
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 650--><p class="nopar" >
+<!--l. 652--><p class="indent" >   where <span 
+class="cmsy-10">|&#x22C5;| </span>stands for the absolute value. Note that the Bray-Curtis dissimilarity does not fulfil the triangle
+inequality. It can therefore not be used for &#8216;classical&#8217; MDS (in which the disparity transformation is the identity
+matrix,&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). However, this is not an issue for nonmetric MDS (as well as certain classes of metric
+MDS). For ordinal data such as U-Pb ages, it is useful to define the empirical cumulative distribution functions
+
+(CDFs):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8003r13"></a>
+   <center class="math-display" >
+<img 
+src="index14x.png" alt="        1                    1
+FA (t) = -(#ai &#x2264; t) and FB (t) =--(#bi &#x2264; t)
+        n                    m
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 664--><p class="nopar" >
+<!--l. 666--><p class="indent" >   where n and m are the sample sizes of A and B, respectively and &#8216;#<span 
+class="cmmi-10">x </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">t</span>&#8217; stands for &#8220;the number
+of items in x that are smaller than or equal to t&#8221;. The simplest CDF-based statistic was developed
+by Kolmogorov and Smirnov and uses the maximum absolute difference between <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">A</span></sub>(<span 
+class="cmmi-10">t</span>) and <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">B</span></sub>(<span 
+class="cmmi-10">t</span>)
+(<a 
+href="#Xfeller1948">Feller</a>,&#x00A0;<a 
+href="#Xfeller1948">1948</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8004r14"></a>
+   <center class="math-display" >
+<img 
+src="index15x.png" alt=" ks
+&#x03B4;AB = maxt |FA (t) - FB (t)|
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 675--><p class="nopar" >
+<!--l. 677--><p class="indent" >   The Kolmogorov-Smirnov (KS) statistic takes on discrete values in steps of <span 
+class="cmsy-10">|</span><img 
+src="index16x.png" alt="1
+n"  class="frac" align="middle"> <span 
+class="cmsy-10">-</span><img 
+src="index17x.png" alt="1-
+m"  class="frac" align="middle"><span 
+class="cmsy-10">| </span>and may therefore yield
+dissimilarity measures with duplicate values, which in turn may cause problems in certain MDS algorithms.
+Furthermore, the KS-statistic is most sensitive to the region near the modes of the sample distribution, and less
+sensitive to the tails. Finally, when <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">A</span></sub>(<span 
+class="cmmi-10">t</span>) and <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">B</span></sub>(<span 
+class="cmmi-10">t</span>) cross each other multiple times, the maximum deviation
+between them is reduced. Therefore, the KS-statistic (or variants thereof such as the Kuiper statistic) cannot &#8216;see&#8217;
+the difference between a uniform distribution and a &#8216;comb&#8217;-like distribution. Although alternative statistics such as
+Cram&eacute;r-von Mises and Anderson-Darling solve any or all of these problems, they generally exhibit an undesirable
+dependence on sample size. One promising alternative which does not suffer from this problem is the L2-norm
+proposed by <a 
+href="#Xsircombe2004a">Sircombe and Hazelton</a>&#x00A0;(<a 
+href="#Xsircombe2004a">2004</a>). This measure explicitly takes into account the analytical
+uncertainties and may therefore be the preferred option when combining samples from different analytical
+sources.
+
+<!--l. 696--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-90006"></a>Appendix B: software</h3>
+<!--l. 698--><p class="noindent" >The methods introduced in this paper are widely used in a variety of research fields, and several software options are
+available, including <span 
+class="cmtt-10">Matlab </span>(<a 
+href="#Xtrendafilov2012">Trendafilov</a>,&#x00A0;<a 
+href="#Xtrendafilov2012">2012</a>), <span 
+class="cmtt-10">SPSS </span>(<span 
+class="cmtt-10">PROXSCAL</span>,&#x00A0;<a 
+href="#Xbusing1997">Busing et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xbusing1997">1997</a>), <span 
+class="cmtt-10">PAST </span>(<a 
+href="#Xhammer2008">Hammer and
+Harper</a>,&#x00A0;<a 
+href="#Xhammer2008">2008</a>) and <span 
+class="cmtt-10">R </span>(<a 
+href="#Xdeleeuw2011">De&#x00A0;Leeuw and Mair</a>,&#x00A0;<a 
+href="#Xdeleeuw2011">2011</a>). This section contains the shortest workable example of <span 
+class="cmtt-10">R </span>code
+needed to reproduce the figures in this paper. The <span 
+class="cmtt-10">BigData.Rdata </span>input file and a more general purpose code can
+be downloaded from <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">http://mudisc.london-geochron.com</span></span></span>.
+
+   <div class="verbatim" id="verbatim-1">
+library(MASS)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;performs&#x00A0;nonmetric&#x00A0;MDS
+&#x00A0;<br />library(smacof)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;performs&#x00A0;INDSCAL
+&#x00A0;<br />library(shapes)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;performs&#x00A0;GPA
+&#x00A0;<br />library(robCompositions)&#x00A0;#&#x00A0;supplies&#x00A0;the&#x00A0;Aitchison&#x00A0;distance
+&#x00A0;<br />library(vegan)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;supplies&#x00A0;the&#x00A0;Bray-Curtis&#x00A0;distance
+&#x00A0;<br />
+&#x00A0;<br />load("BigData.Rdata")&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;load&#x00A0;the&#x00A0;raw&#x00A0;input&#x00A0;data&#x00A0;(DZ,&#x00A0;HM,&#x00A0;QFL,&#x00A0;Major&#x00A0;and&#x00A0;Trace)
+&#x00A0;<br />snames&#x00A0;&#x003C;-&#x00A0;names(d$DZ)&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;extract&#x00A0;the&#x00A0;list&#x00A0;of&#x00A0;sample&#x00A0;names
+&#x00A0;<br />n&#x00A0;&#x003C;-&#x00A0;length(snames)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;n&#x00A0;=&#x00A0;the&#x00A0;number&#x00A0;of&#x00A0;samples
+&#x00A0;<br />m&#x00A0;&#x003C;-&#x00A0;length(d)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;m&#x00A0;=&#x00A0;the&#x00A0;number&#x00A0;of&#x00A0;datasets
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;this&#x00A0;function&#x00A0;calculates&#x00A0;the&#x00A0;dissimilarity&#x00A0;between&#x00A0;age&#x00A0;distributions
+&#x00A0;<br />getDZdist&#x00A0;&#x003C;-&#x00A0;function(dat,labels)&#x00A0;{
+&#x00A0;<br />&#x00A0;n&#x00A0;&#x003C;-&#x00A0;length(dat)
+&#x00A0;<br />&#x00A0;diss&#x00A0;&#x003C;-&#x00A0;matrix(nrow=n,ncol=n,dimnames=list(labels,labels))
+&#x00A0;<br />&#x00A0;for&#x00A0;(i&#x00A0;in&#x00A0;1:n){&#x00A0;for&#x00A0;(j&#x00A0;in&#x00A0;1:n){&#x00A0;#&#x00A0;loop&#x00A0;through&#x00A0;the&#x00A0;rows&#x00A0;and&#x00A0;columns
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;diss[i,j]&#x00A0;&#x003C;-&#x00A0;ks.test(dat[[i]],dat[[j]])$statistic&#x00A0;}}
+&#x00A0;<br />&#x00A0;return&#x00A0;(as.dist(diss))&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;convert&#x00A0;to&#x00A0;a&#x00A0;&#8217;distance&#8217;&#x00A0;object
+&#x00A0;<br />}
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;calculate&#x00A0;the&#x00A0;dissimilarity&#x00A0;matrices&#x00A0;for&#x00A0;each&#x00A0;of&#x00A0;the&#x00A0;five&#x00A0;datasets
+&#x00A0;<br />DZdist&#x00A0;&#x003C;-&#x00A0;getDZdist(d$DZ,labels=snames)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;U-Pb&#x00A0;data:&#x00A0;KS&#x00A0;statistic
+&#x00A0;<br />QFLdist&#x00A0;&#x003C;-&#x00A0;vegdist(d$QFL,&#8217;bray&#8217;,labels=snames)&#x00A0;#&#x00A0;bulk&#x00A0;petrography:&#x00A0;Bray-Curtis
+&#x00A0;<br />HMdist&#x00A0;&#x003C;-&#x00A0;vegdist(d$HM,&#8217;bray&#8217;,labels=snames)&#x00A0;&#x00A0;&#x00A0;#&#x00A0;heavy&#x00A0;minerals:&#x00A0;Bray-Curtis
+&#x00A0;<br />MajorDist&#x00A0;&#x003C;-&#x00A0;dist(cenLR(d$Major)$x.clr)&#x00A0;#&#x00A0;major&#x00A0;elements:&#x00A0;Aitchison&#x00A0;distance
+&#x00A0;<br />TraceDist&#x00A0;&#x003C;-&#x00A0;dist(cenLR(d$Trace)$x.clr)&#x00A0;#&#x00A0;trace&#x00A0;elements:&#x00A0;Aitchison&#x00A0;distance
+&#x00A0;<br />distlist&#x00A0;&#x003C;-&#x00A0;list(DZ=DZdist,QFL=QFLdist,HM=HMdist,Major=MajorDist,Trace=TraceDist)
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;the&#x00A0;following&#x00A0;lines&#x00A0;produce&#x00A0;a&#x00A0;GPA&#x00A0;map
+&#x00A0;<br />X&#x00A0;&#x003C;-&#x00A0;array(dim=c(n,2,m))&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;initialise&#x00A0;the&#x00A0;3-way&#x00A0;matrix&#x00A0;of&#x00A0;MDS&#x00A0;configurations
+&#x00A0;<br />for&#x00A0;(i&#x00A0;in&#x00A0;1:m)&#x00A0;{&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;loop&#x00A0;through&#x00A0;all&#x00A0;the&#x00A0;datasets
+&#x00A0;<br />&#x00A0;X[,,i]&#x00A0;&#x003C;-&#x00A0;isoMDS(distlist[[i]],k=2)$points}&#x00A0;#&#x00A0;perform&#x00A0;a&#x00A0;nonmetric&#x00A0;MDS&#x00A0;analysis
+&#x00A0;<br />pfit&#x00A0;&#x003C;-&#x00A0;procGPA(X)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;perform&#x00A0;a&#x00A0;GPA&#x00A0;analysis
+&#x00A0;<br />xp&#x00A0;&#x003C;-&#x00A0;pfit$mshape[,1]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;x-coordinates&#x00A0;of&#x00A0;the&#x00A0;procrustes&#x00A0;configuration
+&#x00A0;<br />yp&#x00A0;&#x003C;-&#x00A0;pfit$mshape[,2]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;y-coordinates&#x00A0;of&#x00A0;the&#x00A0;procrustes&#x00A0;configuration
+&#x00A0;<br />plot(xp,yp,type="n",asp=1)&#x00A0;#&#x00A0;create&#x00A0;an&#x00A0;empty&#x00A0;plot&#x00A0;(replace&#x00A0;"n"&#x00A0;with&#x00A0;"p"&#x00A0;to&#x00A0;show&#x00A0;points)
+&#x00A0;<br />text(xp,yp,snames)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;plot&#x00A0;the&#x00A0;procrustes&#x00A0;configuration
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;perform&#x00A0;an&#x00A0;INDSCAL&#x00A0;analysis
+&#x00A0;<br />ifit&#x00A0;&#x003C;-&#x00A0;smacofIndDiff(distlist,&#x00A0;constraint="indscal",&#x00A0;type="ordinal")
+&#x00A0;<br />dev.new()&#x00A0;#&#x00A0;open&#x00A0;a&#x00A0;new&#x00A0;graphics&#x00A0;window&#x00A0;for&#x00A0;the&#x00A0;group&#x00A0;configuration
+&#x00A0;<br />plot(ifit,plot.type="confplot",asp=1)&#x00A0;#&#x00A0;plot&#x00A0;the&#x00A0;group&#x00A0;configuration
+&#x00A0;<br />dev.new()&#x00A0;#&#x00A0;open&#x00A0;a&#x00A0;new&#x00A0;graphics&#x00A0;window&#x00A0;for&#x00A0;the&#x00A0;source&#x00A0;weights
+&#x00A0;<br />weights&#x00A0;&#x003C;-&#x00A0;unlist(ifit$cweights)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;extract&#x00A0;the&#x00A0;source&#x00A0;weights
+&#x00A0;<br />xw&#x00A0;&#x003C;-&#x00A0;weights[4*seq(m)-3]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;weights&#x00A0;of&#x00A0;the&#x00A0;horizontal&#x00A0;axis
+&#x00A0;<br />yw&#x00A0;&#x003C;-&#x00A0;weights[4*seq(m)]&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;weights&#x00A0;of&#x00A0;the&#x00A0;vertical&#x00A0;axis
+&#x00A0;<br />plot(xw,yw,type="n",asp=1)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;create&#x00A0;an&#x00A0;empty&#x00A0;plot
+&#x00A0;<br />text(xw,yw,names(d))&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;plot&#x00A0;the&#x00A0;source&#x00A0;weights
+</div>
+<!--l. 756--><p class="nopar" >
+<!--l. 761--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-100006"></a>References</h3>
+<!--l. 761--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison,  J.,  1983.    Principal  component  analysis  of  compositional  data.    Biometrika  70,  57&#8211;65.
+  doi:10.1093/biomet/70.1.57.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1986. The statistical analysis of compositional data. London, Chapman and Hall.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xallen2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Allen,  J.L.,  Johnson,  C.L.,  Heumann,  M.J.,  Gooley,  J.,  Gallin,  W.,  2012.    New  technology  and
+  methodology for assessing sandstone composition: A preliminary case study using a quantitative electron
+  microscope scanner (QEMScan). Geological Society of America Special Papers 487, 177&#8211;194.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xando2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>And&ograve;, S., Garzanti, E., Padoan, M., Limonta, M., 2012. Corrosion of heavy minerals during weathering
+  and diagenesis: A catalog for optical analysis. Sedimentary geology 280, 165&#8211;178.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xarabie1987"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Arabie, P., Carroll, J.D., DeSarbo, W.S., 1987. Three Way Scaling: A Guide to Multidimensional Scaling
+  and Clustering. volume&#x00A0;65. Sage.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xborg2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Borg, I., Groenen, P.J., 2005. Modern multidimensional scaling: Theory and applications. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xborg2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Borg, I., Groenen, P.J., Mair, P., 2012. Applied multidimensional scaling. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbusing1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Busing,  F.,  Commandeur,  J.J.,  Heiser,  W.J.,  Bandilla,  W.,  Faulbaum,  F.,  1997.     Proxscal:  A
+  multidimensional scaling program for individual differences scaling with constraints. Softstat 97, 67&#8211;74.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcarroll1970"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Carroll, J.D., Chang, J.J., 1970.  Analysis of individual differences in multidimensional scaling via an
+  N-way generalization of Eckart-Young decomposition. Psychometrika 35, 283&#8211;319.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdeleeuw2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>De&#x00A0;Leeuw, J., Mair, P., 2011. Multidimensional scaling using majorization: SMACOF in R. Department
+  of Statistics, UCLA .
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdunkley2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dunkley&#x00A0;Jones, T., Bown, P.R., Pearson, P.N., Wade, B.S., Coxall, H.K., Lear, C.H., 2008. Major shifts
+  in calcareous phytoplankton assemblages through the Eocene-Oligocene transition of Tanzania and their
+  implications for low-latitude primary production. Paleoceanography 23.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfeller1948"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Feller, W., 1948. On the Kolmogorov-Smirnov limit theorems for empirical distributions. The Annals of
+  Mathematical Statistics 19, 177&#8211;189.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfrei2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Frei, D., Gerdes, A., 2009. Precise and accurate <span 
+class="cmti-10">in situ </span>U&#8211;Pb dating of zircon with high sample throughput
+  by automated LA-SF-ICP-MS. Chemical Geology 261, 261&#8211;270.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti,  E.,  And&ograve;,  S.,  Vezzoli,  G.,  2009.    Grain-size  dependence  of  sediment  composition  and
+  environmental  bias  in  provenance  studies.     Earth  and  Planetary  Science  Letters  277,  422&#8211;432.
+  doi:10.1016/j.epsl.2008.11.007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., And&ograve;, S., Vezzoli, G., Lustrino, M., Boni, M., Vermeesch, P., 2012. Petrology of the Namib
+  Sand Sea: Long-distance transport and compositional variability in the wind-displaced Orange Delta.
+  Earth-Science Reviews 112, 173 &#8211; 189. doi:10.1016/j.earscirev.2012.02.008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2014b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., Resentini, A., And&ograve;, S., Vezzoli, G., Pereira, A., Vermeesch, P., 2014a.  Physical controls
+  on sand composition and relative durability of detrital minerals during ultra-long distance littoral and
+  aeolian transport (Namibia and southern Angola). Sedimentology doi:10.1111/sed.12169.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2014c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., Vermeesch, P., And&ograve;, S., Lustrino, M., Padoan, M., Vezzoli, G., 2014b. Ultra-long distance
+  littoral transport of Orange sand and provenance of the Skeleton Coast Erg (Namibia).  Marine Geology
+  357, 25&#8211;36.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarzanti2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Garzanti, E., Vermeesch, P., And&ograve;, S., Vezzoli, G., Valagussa, M., Allen, K., Kadi, K.A., Al-Juboury,
+  A.I., 2013. Provenance and recycling of Arabian desert sand. Earth-Science Reviews .
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgower1975"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gower, J.C., 1975. Generalized procrustes analysis. Psychometrika 40, 33&#8211;51.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgower2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gower, J.C., Dijksterhuis, G.B., 2004. Procrustes problems. volume&#x00A0;3. Oxford University Press Oxford.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhammer2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hammer, &Oslash;., Harper, D.A., 2008. Paleontological data analysis. John Wiley &amp; Sons.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhelm1964"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Helm, C.E., 1964. Multidimensional ratio scaling analysis of perceived color relations. JOSA 54, 256&#8211;260.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkenkel1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kenkel, N.C., Orl&oacute;ci, L., 1986.  Applying metric and nonmetric multidimensional scaling to ecological
+  studies: some new results. Ecology , 919&#8211;928.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1964"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J., 1964.  Multidimensional scaling by optimizing goodness of fit to a nonmetric hypothesis.
+  Psychometrika 29, 1&#8211;27.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1978"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J.B., Wish, M., 1978. Multidimensional scaling. volume 07-011 of <span 
+class="cmti-10">Sage University Paper series</span>
+  <span 
+class="cmti-10">on Quantitative Application in the Social Sciences</span>. Sage Publications, Beverly Hills and London.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnie2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Nie,  J.,  Peng,  W.,  M&ouml;ller,  A.,  Song,  Y.,  Stockli,  D.F.,  Stevens,  T.,  Horton,  B.K.,  Liu,  S.,  Bird,
+  A.,  Oalmann,  J.,  Gong,  H.,  Fang,  X.,  2014.     Provenance  of  the  upper  Miocene-Pliocene  Red
+  Clay  deposits  of  the  Chinese  loess  plateau.    Earth  and  Planetary  Science  Letters  407,  35  &#8211;  47.
+  doi:http://dx.doi.org/10.1016/j.epsl.2014.09.026.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpye2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pye, K., 2007. Geological and soil evidence: Forensic applications. CRC Press.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xschneider2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Schneider, L.J., Bralower, T.J., Kump, L.R., 2011.  Response of nannoplankton to early Eocene ocean
+  destratification. Palaeogeography, Palaeoclimatology, Palaeoecology 310, 152&#8211;162.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xscott2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Scott, R.A., Smyth, H.R., Morton, A.C., Richardson, N. (Eds.), 2014.  Sediment Provenance Studies in
+  Hydrocarbon Exploration and Production. volume 386 of <span 
+class="cmti-10">Geological Society, London, Special Publications</span>.
+  Geological Society of London.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsircombe2004a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sircombe, K.N., Hazelton, M.L., 2004. Comparison of detrital zircon age distributions by kernel functional
+  estimation. Sedimentary Geology 171, 91&#8211;111. doi:10.1016/j.sedgeo.2004.05.012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstevens2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stevens, T., Carter, A., Watson, T., Vermeesch, P., And&ograve;, S., Bird, A., Lu, H., Garzanti, E., Cottam,
+  M., Sevastjanova, I., 2013.  Genetic linkage between the yellow River, the Mu Us desert and the Chinese
+  Loess Plateau. Quaternary Science Reviews 78, 355&#8211;368.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtrendafilov2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Trendafilov, N.T., 2012. Dindscal: direct INDSCAL. Statistics and Computing 22, 445&#8211;454.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2012.   On the visualisation of detrital age distributions.   Chemical Geology 312-313,
+  190&#8211;194. doi:10.1016/j.chemgeo.2012.04.021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2013.  Multi-sample comparison of detrital age distributions.  Chemical Geology 341,
+  140&#8211;146.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2010b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., Fenton, C.R., Kober, F., Wiggs, G.F.S., Bristow, C.S., Xu, S., 2010. Sand residence times
+  of one million years in the Namib Sand Sea from cosmogenic nuclides.  Nature Geoscience 3, 862&#8211;865.
+  doi:10.1038/ngeo985.
+</p>
+  </div>
+</td></tr>
+</table>
+</body></html> 

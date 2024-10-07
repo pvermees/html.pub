@@ -1,0 +1,2785 @@
+htfcss: cmtt font-family: monospace,monospace;
+htfcss: cmmi font-style: italic;
+htfcss: cmmib font-style: italic; font-weight: bold;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: cmti  font-style: italic;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: cmbxti  font-weight: bold; font-style: italic;
+htfcss: cmtt font-family: monospace,monospace;
+htfcss: cmtt font-family: monospace,monospace;
+File: geostats.html
+File: geostats.css
+File: geostats.tmp
+File: geostats2.html
+File: geostats3.html
+File: geostats4.html
+File: geostats5.html
+File: geostats6.html
+File: geostats7.html
+File: geostats8.html
+File: geostats9.html
+File: geostats10.html
+File: geostats11.html
+File: geostats12.html
+File: geostats13.html
+File: geostats14.html
+File: geostats15.html
+File: geostats16.html
+File: geostats17.html
+File: geostats.tmp
+File: geostats18.html
+File: geostats19.html
+File: geostats20.html
+File: geostats21.html
+File: geostats22.html
+File: geostats23.html
+File: geostats24.html
+File: geostats25.html
+File: geostats26.html
+File: geostats27.html
+Css: p{margin-top:0;margin-bottom:0}
+Css: p.indent{text-indent:0;}
+Css: p + p{margin-top:1em;}
+Css: p + div, p + pre {margin-top:1em;}
+Css: div + p, pre + p {margin-top:1em;}
+Css: a { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; }
+Css: @media print {div.crosslinks {visibility:hidden;}}
+Css: table.tabular{border-collapse: collapse; border-spacing: 0;}
+Css: a img { border-top: 0; border-left: 0; border-right: 0; }
+Font_Css("4"): .small-caps{font-variant: small-caps; }
+Font_Css("10"): .htf-cmbx {font-weight: bold; font-style:normal;}
+Font_Css("12"): .htf-calligraphy {font-family:cursive}
+Font_Css("14"): .htf-italic {font-style: italic;}
+Font_Css("16"): .htf-bold {font-weight: bold;}
+Font_Css("12"): .htf-calligraphy-bold {font-family:cursive ; font-weight: bold; }
+Css: center { margin-top:1em; margin-bottom:1em; }
+Css: td center { margin-top:0em; margin-bottom:0em; }
+Css: .Canvas { position:relative; }
+Css: img.math{vertical-align:middle;}
+Css: div.par-math-display, div.math-display{text-align:center;}
+Css: li p.indent { text-indent: 0em }
+Css: li p:first-child{ margin-top:0em; }
+Css: li p:last-child, li div:last-child { margin-bottom:0.5em; }
+Css: li p:first-child{ margin-bottom:0; }
+Css: li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+Css: .enumerate1 {list-style-type:decimal;}
+Css: .enumerate2 {list-style-type:lower-alpha;}
+Css: .enumerate3 {list-style-type:lower-roman;}
+Css: .enumerate4 {list-style-type:upper-alpha;}
+Css: div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+Css: div.newtheorem .head{font-weight: bold;}
+Css: .obeylines-h,.obeylines-v {white-space: nowrap; }
+Css: div.obeylines-v p { margin-top:0; margin-bottom:0; }
+Css: .overline{ text-decoration:overline; }
+Css: .overline img{ border-top: 1px solid black; }
+Css: td.displaylines {text-align:center; white-space:nowrap;}
+Css: .centerline {text-align:center;}
+Css: .rightline {text-align:right;}
+Css: pre.verbatim {font-family: monospace,monospace; text-align:left; clear:both; }
+Css: .fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.fbox {display:table}
+Css: div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.minipage{width:100%;}
+Css: div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+Css: div.center div {text-align: left;}
+Css: div.flushright, div.flushright div.flushright {text-align: right;}
+Css: div.flushright div {text-align: left;}
+Css: div.flushleft {text-align: left;}
+Css: .underline{ text-decoration:underline; }
+Css: .underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+Css: .framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: .framebox-c {text-align:center;}
+Css: .framebox-l {text-align:left;}
+Css: .framebox-r {text-align:right;}
+Css: span.thank-mark{ vertical-align: super }
+Css: span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+Css: div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+Css: table.tabular td p{margin-top:0em;}
+Css: table.tabular {margin-left: auto; margin-right: auto;}
+Css: td p:first-child{ margin-top:0em; }
+Css: td p:last-child{ margin-bottom:0em; }
+Css: div.td00{ margin-left:0pt; margin-right:0pt; }
+Css: div.td01{ margin-left:0pt; margin-right:5pt; }
+Css: div.td10{ margin-left:5pt; margin-right:0pt; }
+Css: div.td11{ margin-left:5pt; margin-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: td.td00{ padding-left:0pt; padding-right:0pt; }
+Css: td.td01{ padding-left:0pt; padding-right:5pt; }
+Css: td.td10{ padding-left:5pt; padding-right:0pt; }
+Css: td.td11{ padding-left:5pt; padding-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: .hline hr, .cline hr{ height : 0px; margin:0px; }
+Css: .hline td, .cline td{ padding: 0; }
+Css: .hline hr, .cline hr{border:none;border-top:1px solid black;}
+Css: .hline {border-top: 1px solid black;}
+Css: .tabbing-right {text-align:right;}
+Css: div.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: div.float img {text-align:center;}
+Css: div.figure img {text-align:center;}
+Css: .marginpar,.reversemarginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+Css: .marginpar p,.reversemarginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+Css: .reversemarginpar{float:left;}
+Css: table.equation {width:100%;}
+Css: .equation td{text-align:center; }
+Css: td.equation { margin-top:1em; margin-bottom:1em; } 
+Css: td.equation-label { width:5%; text-align:center; }
+Css: td.eqnarray4 { width:5%; white-space: normal; }
+Css: td.eqnarray2 { width:5%; }
+Css: table.eqnarray-star, table.eqnarray {width:100%;}
+Css: div.eqnarray{text-align:center;}
+Css: div.array {text-align:center;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.pmatrix img{vertical-align:middle;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.bar-css {text-decoration:overline;}
+Css: img.cdots{vertical-align:middle;}
+Css: .partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+Css: .chapterToc a, .chapterToc, .likechapterToc a, .likechapterToc, .appendixToc a, .appendixToc {line-height: 200%; font-weight:bold;}
+Css: .index-item, .index-subitem, .index-subsubitem {display:block}
+Css: div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+Css: div.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: h1.partHead{text-align: center}
+Css: p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: .paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+Css: .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+Css: .verse{white-space:nowrap; margin-left:2em}
+Css: div.maketitle {text-align:center;}
+Css: h2.titleHead{text-align:center;}
+Css: div.maketitle{ margin-bottom: 2em; }
+Css: div.author, div.date {text-align:center;}
+Css: div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+Css: div.author{white-space: nowrap;}
+Font_Size: 11
+Css: h1.partHead{text-align: center}
+Css:  .chapterToc, .likechapterToc {margin-left:0em;}
+Css:  .chapterToc ~ .likesectionToc, .chapterToc ~ .sectionToc, .likechapterToc ~ .likesectionToc, .likechapterToc ~ .sectionToc {margin-left:2em;}
+Css:  .chapterToc ~ .likesectionToc ~ .likesubsectionToc, .chapterToc ~ .likesectionToc ~ .subsectionToc, .chapterToc ~ .sectionToc ~ .likesubsectionToc, .chapterToc ~ .sectionToc ~ .subsectionToc, .likechapterToc ~ .likesectionToc ~ .likesubsectionToc, .likechapterToc ~ .likesectionToc ~ .subsectionToc, .likechapterToc ~ .sectionToc ~ .likesubsectionToc, .likechapterToc ~ .sectionToc ~ .subsectionToc {margin-left:4em;}
+Css: .chapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .chapterToc ~ .likesectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .likesectionToc ~ .subsectionToc ~ .subsubsectionToc, .chapterToc ~ .sectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .sectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .chapterToc ~ .sectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .chapterToc ~ .sectionToc ~ .subsectionToc ~ .subsubsectionToc, .likechapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .likechapterToc ~ .likesectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .likechapterToc ~ .likesectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .likechapterToc ~ .likesectionToc ~ .subsectionToc ~ .subsubsectionToc, .likechapterToc ~ .sectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .likechapterToc ~ .sectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .likechapterToc ~ .sectionToc ~ .subsectionToc ~ .likesubsubsectionToc .likechapterToc ~ .sectionToc ~ .subsectionToc ~ .subsubsectionToc {margin-left:6em;}
+Css:  .likesectionToc , .sectionToc {margin-left:0em;}
+Css:  .likesectionToc ~ .likesubsectionToc, .likesectionToc ~ .subsectionToc, .sectionToc ~ .likesubsectionToc, .sectionToc ~ .subsectionToc {margin-left:2em;}
+Css: .likesectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .likesectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .likesectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .likesectionToc ~ .subsectionToc ~ .subsubsectionToc, .sectionToc ~ .likesubsectionToc ~ .likesubsubsectionToc, .sectionToc ~ .likesubsectionToc ~ .subsubsectionToc, .sectionToc ~ .subsectionToc ~ .likesubsubsectionToc, .sectionToc ~ .subsectionToc ~ .subsubsectionToc {margin-left:4em;}
+Css:  .likesubsectionToc, .subsectionToc {margin-left:0em;}
+Css:  .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc {margin-left:2em;}
+Css: figure.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: figure.figure {text-align:center;}
+Css: figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
+Css: figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: p + figcaption, img + figcaption{margin-top: 1em;}
+Css: .equation td{text-align:center; }
+Css: .equation-star td{text-align:center; }
+Css: table.equation-star { width:100%; }
+Css: table.equation { width:100%; }
+Css: table.align, table.alignat, table.xalignat, table.xxalignat, table.flalign {width:95%; margin-left:5%; white-space: nowrap;}
+Css: table.align-star, table.alignat-star, table.xalignat-star, table.flalign-star {margin-left:auto; margin-right:auto; white-space: nowrap;}
+Css: td.align-label { width:5%; text-align:center; }
+Css: td.align-odd { text-align:right; padding-right:0.3em;}
+Css: td.align-even { text-align:left; padding-right:0.6em;}
+Css: table.multline, table.multline-star {width:100%;}
+Css: td.gather {text-align:center; }
+Css: table.gather {width:100%;}
+Css: div.gather-star {text-align:center;}
+Css: .rotatebox{display: inline-block;}
+Css: dt.enumerate-enumitem{float:left; clear:left; margin-left:1em; margin-right:1em;}
+Css: pre.fancyvrb {white-space: pre-wrap; margin:0em;font-family:monospace,monospace;}
+Css: #TBL-1-2{border-right:1px solid black;}
+Css: #TBL-1-4{border-right:1px solid black;}
+Css: #TBL-1-6{border-right:1px solid black;}
+l. 52 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/anscombe-.png" "../figures/anscombe.pdf" " ---
+File: ../figures/anscombe-.png
+Css: #TBL-2-1{border-right:1px solid black;}
+l. 132 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/discrete-.png" "../figures/discrete.pdf" " ---
+File: ../figures/discrete-.png
+l. 174 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/continuous-.png" "../figures/continuous.pdf" " ---
+File: ../figures/continuous-.png
+l. 205 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binwidth-.png" "../figures/binwidth.pdf" " ---
+File: ../figures/binwidth-.png
+--- needs --- geostats.idv[2] ==> geostats0x.svg ---
+--- needs --- geostats.idv[4] ==> geostats1x.svg ---
+l. 240 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binpos-.png" "../figures/binpos.pdf" " ---
+File: ../figures/binpos-.png
+l. 266 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/rectKDE-.png" "../figures/rectKDE.pdf" " ---
+File: ../figures/rectKDE-.png
+--- needs --- geostats.idv[6] ==> geostats2x.svg ---
+--- needs --- geostats.idv[8] ==> geostats3x.svg ---
+l. 299 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/pHrectKDE-.png" "../figures/pHrectKDE.pdf" " ---
+File: ../figures/pHrectKDE-.png
+--- needs --- geostats.idv[10] ==> geostats4x.svg ---
+l. 321 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/gaussKDE-.png" "../figures/gaussKDE.pdf" " ---
+File: ../figures/gaussKDE-.png
+l. 334 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/pHgaussKDE-.png" "../figures/pHgaussKDE.pdf" " ---
+File: ../figures/pHgaussKDE-.png
+l. 351 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/bandwidth-.png" "../figures/bandwidth.pdf" " ---
+File: ../figures/bandwidth-.png
+l. 377 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/negativeKDE-.png" "../figures/negativeKDE.pdf" " ---
+File: ../figures/negativeKDE-.png
+--- needs --- geostats.idv[12] ==> geostats5x.svg ---
+--- needs --- geostats.idv[14] ==> geostats6x.svg ---
+--- needs --- geostats.idv[15] ==> geostats7x.svg ---
+l. 403 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/logKDE-.png" "../figures/logKDE.pdf" " ---
+File: ../figures/logKDE-.png
+l. 421 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/vegetationKDE-.png" "../figures/vegetationKDE.pdf" " ---
+File: ../figures/vegetationKDE-.png
+--- needs --- geostats.idv[17] ==> geostats8x.svg ---
+--- needs --- geostats.idv[19] ==> geostats9x.svg ---
+l. 450 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/logitKDE-.png" "../figures/logitKDE.pdf" " ---
+File: ../figures/logitKDE-.png
+l. 476 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/KDE2D-.png" "../figures/KDE2D.pdf" " ---
+File: ../figures/KDE2D-.png
+--- needs --- geostats.idv[21] ==> geostats10x.svg ---
+l. 529 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/ECDFs-.png" "../figures/ECDFs.pdf" " ---
+File: ../figures/ECDFs-.png
+--- needs --- geostats.idv[23] ==> geostats11x.svg ---
+--- needs --- geostats.idv[25] ==> geostats12x.svg ---
+--- needs --- geostats.idv[27] ==> geostats13x.svg ---
+l. 84 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/pHlocation-.png" "../figures/pHlocation.pdf" " ---
+File: ../figures/pHlocation-.png
+l. 98 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/CaMglocation-.png" "../figures/CaMglocation.pdf" " ---
+File: ../figures/CaMglocation-.png
+l. 111 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/vegetationlocation-.png" "../figures/vegetationlocation.pdf" " ---
+File: ../figures/vegetationlocation-.png
+l. 112 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/eruptionslocation-.png" "../figures/eruptionslocation.pdf" " ---
+File: ../figures/eruptionslocation-.png
+--- needs --- geostats.idv[29] ==> geostats14x.svg ---
+--- needs --- geostats.idv[31] ==> geostats15x.svg ---
+Css: #TBL-3-1{border-right:1px solid black;}
+--- needs --- geostats.idv[33] ==> geostats16x.svg ---
+--- needs --- geostats.idv[35] ==> geostats17x.svg ---
+Css: #TBL-4-1{border-right:1px solid black;}
+Css: #TBL-4-6{border-right:1px solid black;}
+Css: #TBL-4-11{border-right:1px solid black;}
+Css: #TBL-4-16{border-right:1px solid black;}
+l. 244 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/IQRpH-.png" "../figures/IQRpH.pdf" " ---
+File: ../figures/IQRpH-.png
+--- needs --- geostats.idv[37] ==> geostats18x.svg ---
+l. 268 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/skewness-.png" "../figures/skewness.pdf" " ---
+File: ../figures/skewness-.png
+l. 296 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/boxplot-.png" "../figures/boxplot.pdf" " ---
+File: ../figures/boxplot-.png
+--- needs --- geostats.idv[39] ==> geostats19x.svg ---
+--- needs --- geostats.idv[41] ==> geostats20x.svg ---
+--- needs --- geostats.idv[42] ==> geostats21x.svg ---
+--- needs --- geostats.idv[44] ==> geostats22x.svg ---
+--- needs --- geostats.idv[46] ==> geostats23x.svg ---
+--- needs --- geostats.idv[48] ==> geostats24x.svg ---
+--- needs --- geostats.idv[49] ==> geostats25x.svg ---
+--- needs --- geostats.idv[51] ==> geostats26x.svg ---
+--- needs --- geostats.idv[53] ==> geostats27x.svg ---
+--- needs --- geostats.idv[54] ==> geostats28x.svg ---
+--- needs --- geostats.idv[56] ==> geostats29x.svg ---
+--- needs --- geostats.idv[58] ==> geostats30x.svg ---
+--- needs --- geostats.idv[60] ==> geostats31x.svg ---
+--- needs --- geostats.idv[61] ==> geostats32x.svg ---
+--- needs --- geostats.idv[63] ==> geostats33x.svg ---
+--- needs --- geostats.idv[64] ==> geostats34x.svg ---
+--- needs --- geostats.idv[65] ==> geostats35x.svg ---
+--- needs --- geostats.idv[66] ==> geostats36x.svg ---
+--- needs --- geostats.idv[68] ==> geostats37x.svg ---
+--- needs --- geostats.idv[69] ==> geostats38x.svg ---
+--- needs --- geostats.idv[70] ==> geostats39x.svg ---
+--- needs --- geostats.idv[72] ==> geostats40x.svg ---
+--- needs --- geostats.idv[74] ==> geostats41x.svg ---
+--- needs --- geostats.idv[76] ==> geostats42x.svg ---
+--- needs --- geostats.idv[78] ==> geostats43x.svg ---
+--- needs --- geostats.idv[80] ==> geostats44x.svg ---
+--- needs --- geostats.idv[82] ==> geostats45x.svg ---
+--- needs --- geostats.idv[84] ==> geostats46x.svg ---
+--- needs --- geostats.idv[86] ==> geostats47x.svg ---
+--- needs --- geostats.idv[87] ==> geostats48x.svg ---
+--- needs --- geostats.idv[89] ==> geostats49x.svg ---
+--- needs --- geostats.idv[91] ==> geostats50x.svg ---
+--- needs --- geostats.idv[92] ==> geostats51x.svg ---
+--- needs --- geostats.idv[93] ==> geostats52x.svg ---
+--- needs --- geostats.idv[94] ==> geostats53x.svg ---
+l. 55 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/goldbarplot-.png" "../figures/goldbarplot.pdf" " ---
+File: ../figures/goldbarplot-.png
+--- needs --- geostats.idv[96] ==> geostats54x.svg ---
+--- needs --- geostats.idv[98] ==> geostats55x.svg ---
+l. 83 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/goldCDF-.png" "../figures/goldCDF.pdf" " ---
+File: ../figures/goldCDF-.png
+--- needs --- geostats.idv[100] ==> geostats56x.svg ---
+--- needs --- geostats.idv[102] ==> geostats57x.svg ---
+--- needs --- geostats.idv[103] ==> geostats58x.svg ---
+--- needs --- geostats.idv[104] ==> geostats59x.svg ---
+--- needs --- geostats.idv[105] ==> geostats60x.svg ---
+--- needs --- geostats.idv[107] ==> geostats61x.svg ---
+--- needs --- geostats.idv[108] ==> geostats62x.svg ---
+--- needs --- geostats.idv[110] ==> geostats63x.svg ---
+--- needs --- geostats.idv[112] ==> geostats64x.svg ---
+--- needs --- geostats.idv[113] ==> geostats65x.svg ---
+l. 267 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/1sidedbinomialrejection5-.png" "../figures/1sidedbinomialrejection5.pdf" " ---
+File: ../figures/1sidedbinomialrejection5-.png
+--- needs --- geostats.idv[115] ==> geostats66x.svg ---
+l. 360 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/2sidedbinomialrejection5-.png" "../figures/2sidedbinomialrejection5.pdf" " ---
+File: ../figures/2sidedbinomialrejection5-.png
+--- needs --- geostats.idv[117] ==> geostats67x.svg ---
+--- needs --- geostats.idv[119] ==> geostats68x.svg ---
+l. 423 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/1sidedbinomialrejection15-.png" "../figures/1sidedbinomialrejection15.pdf" " ---
+File: ../figures/1sidedbinomialrejection15-.png
+--- needs --- geostats.idv[121] ==> geostats69x.svg ---
+l. 475 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/2sidedbinomialrejection15-.png" "../figures/2sidedbinomialrejection15.pdf" " ---
+File: ../figures/2sidedbinomialrejection15-.png
+l. 495 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binomialrejection30-.png" "../figures/binomialrejection30.pdf" " ---
+File: ../figures/binomialrejection30-.png
+Css: #TBL-11-1{border-right:1px solid black;}
+Css: #TBL-12-1{border-right:1px solid black;}
+--- needs --- geostats.idv[123] ==> geostats70x.svg ---
+l. 629 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binompower1-.png" "../figures/binompower1.pdf" " ---
+File: ../figures/binompower1-.png
+l. 658 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binompower2-.png" "../figures/binompower2.pdf" " ---
+File: ../figures/binompower2-.png
+l. 761 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binompvsn-.png" "../figures/binompvsn.pdf" " ---
+File: ../figures/binompvsn-.png
+--- needs --- geostats.idv[125] ==> geostats71x.svg ---
+--- needs --- geostats.idv[127] ==> geostats72x.svg ---
+--- needs --- geostats.idv[128] ==> geostats73x.svg ---
+l. 864 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binomcik2n5-.png" "../figures/binomcik2n5.pdf" " ---
+File: ../figures/binomcik2n5-.png
+--- needs --- geostats.idv[130] ==> geostats74x.svg ---
+l. 883 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binomcik4n5-.png" "../figures/binomcik4n5.pdf" " ---
+File: ../figures/binomcik4n5-.png
+--- needs --- geostats.idv[132] ==> geostats75x.svg ---
+l. 902 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binomcik12n30-.png" "../figures/binomcik12n30.pdf" " ---
+File: ../figures/binomcik12n30-.png
+l. 918 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/binomcivsn-.png" "../figures/binomcivsn.pdf" " ---
+File: ../figures/binomcivsn-.png
+--- needs --- geostats.idv[134] ==> geostats76x.svg ---
+--- needs --- geostats.idv[136] ==> geostats77x.svg ---
+l. 12 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/declusteredquakes-.png" "../figures/declusteredquakes.pdf" " ---
+File: ../figures/declusteredquakes-.png
+l. 23 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/declusteredquakesperyear-.png" "../figures/declusteredquakesperyear.pdf" " ---
+File: ../figures/declusteredquakesperyear-.png
+l. 46 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/zircons-.png" "../figures/zircons.pdf" " ---
+File: ../figures/zircons-.png
+l. 54 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/zirconcounts-.png" "../figures/zirconcounts.pdf" " ---
+File: ../figures/zirconcounts-.png
+l. 62 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/zirconhist-.png" "../figures/zirconhist.pdf" " ---
+File: ../figures/zirconhist-.png
+--- needs --- geostats.idv[138] ==> geostats78x.svg ---
+l. 109 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/increasinglambda-.png" "../figures/increasinglambda.pdf" " ---
+File: ../figures/increasinglambda-.png
+Css: #TBL-13-1{border-right:1px solid black;}
+--- needs --- geostats.idv[140] ==> geostats79x.svg ---
+--- needs --- geostats.idv[142] ==> geostats80x.svg ---
+--- needs --- geostats.idv[144] ==> geostats81x.svg ---
+--- needs --- geostats.idv[146] ==> geostats82x.svg ---
+--- needs --- geostats.idv[148] ==> geostats83x.svg ---
+--- needs --- geostats.idv[150] ==> geostats84x.svg ---
+--- needs --- geostats.idv[152] ==> geostats85x.svg ---
+l. 266 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/poishyp-.png" "../figures/poishyp.pdf" " ---
+File: ../figures/poishyp-.png
+l. 354 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/poisci-.png" "../figures/poisci.pdf" " ---
+File: ../figures/poisci-.png
+l. 369 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/poiserrbars-.png" "../figures/poiserrbars.pdf" " ---
+File: ../figures/poiserrbars-.png
+--- needs --- geostats.idv[154] ==> geostats86x.svg ---
+--- needs --- geostats.idv[156] ==> geostats87x.svg ---
+--- needs --- geostats.idv[158] ==> geostats88x.svg ---
+--- needs --- geostats.idv[160] ==> geostats89x.svg ---
+--- needs --- geostats.idv[162] ==> geostats90x.svg ---
+l. 77 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/quakerug-.png" "../figures/quakerug.pdf" " ---
+File: ../figures/quakerug-.png
+l. 96 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/CLTfaithful1-.png" "../figures/CLTfaithful1.pdf" " ---
+File: ../figures/CLTfaithful1-.png
+l. 111 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/CLTfaithful2-.png" "../figures/CLTfaithful2.pdf" " ---
+File: ../figures/CLTfaithful2-.png
+l. 124 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/CLTfaithful3-.png" "../figures/CLTfaithful3.pdf" " ---
+File: ../figures/CLTfaithful3-.png
+l. 137 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/CLTfaithful10-.png" "../figures/CLTfaithful10.pdf" " ---
+File: ../figures/CLTfaithful10-.png
+--- needs --- geostats.idv[164] ==> geostats91x.svg ---
+l. 171 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/galtonsbeanmachine-.png" "../figures/galtonsbeanmachine.pdf" " ---
+File: ../figures/galtonsbeanmachine-.png
+l. 208 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/pop2d-.png" "../figures/pop2d.pdf" " ---
+File: ../figures/pop2d-.png
+l. 218 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/rand2d-.png" "../figures/rand2d.pdf" " ---
+File: ../figures/rand2d-.png
+l. 230 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/rand2dsum-.png" "../figures/rand2dsum.pdf" " ---
+File: ../figures/rand2dsum-.png
+--- needs --- geostats.idv[166] ==> geostats92x.svg ---
+l. 275 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/norm2dmarginal-.png" "../figures/norm2dmarginal.pdf" " ---
+File: ../figures/norm2dmarginal-.png
+l. 306 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/musigma-.png" "../figures/musigma.pdf" " ---
+File: ../figures/musigma-.png
+l. 320 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/2sigma-.png" "../figures/2sigma.pdf" " ---
+File: ../figures/2sigma-.png
+l. 334 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/cov-.png" "../figures/cov.pdf" " ---
+File: ../figures/cov-.png
+--- needs --- geostats.idv[168] ==> geostats93x.svg ---
+--- needs --- geostats.idv[170] ==> geostats94x.svg ---
+--- needs --- geostats.idv[172] ==> geostats95x.svg ---
+--- needs --- geostats.idv[174] ==> geostats96x.svg ---
+--- needs --- geostats.idv[176] ==> geostats97x.svg ---
+--- needs --- geostats.idv[178] ==> geostats98x.svg ---
+--- needs --- geostats.idv[180] ==> geostats99x.svg ---
+l. 22 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/accuracyvsprecision-.png" "../figures/accuracyvsprecision.pdf" " ---
+File: ../figures/accuracyvsprecision-.png
+--- needs --- geostats.idv[182] ==> geostats100x.svg ---
+--- needs --- geostats.idv[184] ==> geostats101x.svg ---
+--- needs --- geostats.idv[186] ==> geostats102x.svg ---
+l. 77 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/errorprop2d-.png" "../figures/errorprop2d.pdf" " ---
+File: ../figures/errorprop2d-.png
+--- needs --- geostats.idv[188] ==> geostats103x.svg ---
+--- needs --- geostats.idv[190] ==> geostats104x.svg ---
+--- needs --- geostats.idv[192] ==> geostats105x.svg ---
+--- needs --- geostats.idv[194] ==> geostats106x.svg ---
+--- needs --- geostats.idv[196] ==> geostats107x.svg ---
+--- needs --- geostats.idv[198] ==> geostats108x.svg ---
+l. 180 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/errorprop3d-.png" "../figures/errorprop3d.pdf" " ---
+File: ../figures/errorprop3d-.png
+--- needs --- geostats.idv[200] ==> geostats109x.svg ---
+--- needs --- geostats.idv[201] ==> geostats110x.svg ---
+--- needs --- geostats.idv[202] ==> geostats111x.svg ---
+--- needs --- geostats.idv[204] ==> geostats112x.svg ---
+--- needs --- geostats.idv[205] ==> geostats113x.svg ---
+--- needs --- geostats.idv[206] ==> geostats114x.svg ---
+--- needs --- geostats.idv[208] ==> geostats115x.svg ---
+--- needs --- geostats.idv[210] ==> geostats116x.svg ---
+--- needs --- geostats.idv[211] ==> geostats117x.svg ---
+--- needs --- geostats.idv[212] ==> geostats118x.svg ---
+--- needs --- geostats.idv[214] ==> geostats119x.svg ---
+--- needs --- geostats.idv[216] ==> geostats120x.svg ---
+--- needs --- geostats.idv[217] ==> geostats121x.svg ---
+--- needs --- geostats.idv[219] ==> geostats122x.svg ---
+--- needs --- geostats.idv[220] ==> geostats123x.svg ---
+--- needs --- geostats.idv[221] ==> geostats124x.svg ---
+--- needs --- geostats.idv[222] ==> geostats125x.svg ---
+--- needs --- geostats.idv[224] ==> geostats126x.svg ---
+--- needs --- geostats.idv[225] ==> geostats127x.svg ---
+--- needs --- geostats.idv[226] ==> geostats128x.svg ---
+--- needs --- geostats.idv[227] ==> geostats129x.svg ---
+--- needs --- geostats.idv[228] ==> geostats130x.svg ---
+--- needs --- geostats.idv[230] ==> geostats131x.svg ---
+--- needs --- geostats.idv[232] ==> geostats132x.svg ---
+--- needs --- geostats.idv[233] ==> geostats133x.svg ---
+--- needs --- geostats.idv[235] ==> geostats134x.svg ---
+--- needs --- geostats.idv[237] ==> geostats135x.svg ---
+--- needs --- geostats.idv[238] ==> geostats136x.svg ---
+--- needs --- geostats.idv[239] ==> geostats137x.svg ---
+--- needs --- geostats.idv[240] ==> geostats138x.svg ---
+--- needs --- geostats.idv[242] ==> geostats139x.svg ---
+--- needs --- geostats.idv[243] ==> geostats140x.svg ---
+--- needs --- geostats.idv[245] ==> geostats141x.svg ---
+--- needs --- geostats.idv[247] ==> geostats142x.svg ---
+--- needs --- geostats.idv[249] ==> geostats143x.svg ---
+--- needs --- geostats.idv[251] ==> geostats144x.svg ---
+--- needs --- geostats.idv[252] ==> geostats145x.svg ---
+--- needs --- geostats.idv[254] ==> geostats146x.svg ---
+--- needs --- geostats.idv[256] ==> geostats147x.svg ---
+--- needs --- geostats.idv[258] ==> geostats148x.svg ---
+--- needs --- geostats.idv[259] ==> geostats149x.svg ---
+--- needs --- geostats.idv[260] ==> geostats150x.svg ---
+--- needs --- geostats.idv[262] ==> geostats151x.svg ---
+--- needs --- geostats.idv[264] ==> geostats152x.svg ---
+--- needs --- geostats.idv[266] ==> geostats153x.svg ---
+--- needs --- geostats.idv[268] ==> geostats154x.svg ---
+--- needs --- geostats.idv[270] ==> geostats155x.svg ---
+--- needs --- geostats.idv[271] ==> geostats156x.svg ---
+--- needs --- geostats.idv[272] ==> geostats157x.svg ---
+--- needs --- geostats.idv[274] ==> geostats158x.svg ---
+--- needs --- geostats.idv[276] ==> geostats159x.svg ---
+--- needs --- geostats.idv[277] ==> geostats160x.svg ---
+--- needs --- geostats.idv[278] ==> geostats161x.svg ---
+--- needs --- geostats.idv[280] ==> geostats162x.svg ---
+--- needs --- geostats.idv[281] ==> geostats163x.svg ---
+--- needs --- geostats.idv[283] ==> geostats164x.svg ---
+--- needs --- geostats.idv[284] ==> geostats165x.svg ---
+--- needs --- geostats.idv[286] ==> geostats166x.svg ---
+--- needs --- geostats.idv[287] ==> geostats167x.svg ---
+--- needs --- geostats.idv[289] ==> geostats168x.svg ---
+--- needs --- geostats.idv[291] ==> geostats169x.svg ---
+--- needs --- geostats.idv[293] ==> geostats170x.svg ---
+--- needs --- geostats.idv[294] ==> geostats171x.svg ---
+--- needs --- geostats.idv[296] ==> geostats172x.svg ---
+--- needs --- geostats.idv[297] ==> geostats173x.svg ---
+l. 29 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/qqfaithful1-.png" "../figures/qqfaithful1.pdf" " ---
+File: ../figures/qqfaithful1-.png
+l. 45 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/qqfaithful2-.png" "../figures/qqfaithful2.pdf" " ---
+File: ../figures/qqfaithful2-.png
+l. 57 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/qqfaithful10-.png" "../figures/qqfaithful10.pdf" " ---
+File: ../figures/qqfaithful10-.png
+l. 79 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/qqfaithful12-.png" "../figures/qqfaithful12.pdf" " ---
+File: ../figures/qqfaithful12-.png
+Css: #TBL-16-1{border-right:1px solid black;}
+--- needs --- geostats.idv[299] ==> geostats174x.svg ---
+--- needs --- geostats.idv[301] ==> geostats175x.svg ---
+--- needs --- geostats.idv[303] ==> geostats176x.svg ---
+--- needs --- geostats.idv[305] ==> geostats177x.svg ---
+Css: #TBL-17-1{border-right:1px solid black;}
+Css: #TBL-18-1{border-right:1px solid black;}
+l. 216 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/1samplettest-.png" "../figures/1samplettest.pdf" " ---
+File: ../figures/1samplettest-.png
+Css: #TBL-19-1{border-right:1px solid black;}
+--- needs --- geostats.idv[307] ==> geostats178x.svg ---
+--- needs --- geostats.idv[309] ==> geostats179x.svg ---
+Css: #TBL-20-1{border-right:1px solid black;}
+Css: #TBL-21-1{border-right:1px solid black;}
+l. 343 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/2samplettest-.png" "../figures/2samplettest.pdf" " ---
+File: ../figures/2samplettest-.png
+--- needs --- geostats.idv[311] ==> geostats180x.svg ---
+--- needs --- geostats.idv[312] ==> geostats181x.svg ---
+--- needs --- geostats.idv[314] ==> geostats182x.svg ---
+--- needs --- geostats.idv[315] ==> geostats183x.svg ---
+--- needs --- geostats.idv[316] ==> geostats184x.svg ---
+--- needs --- geostats.idv[317] ==> geostats185x.svg ---
+--- needs --- geostats.idv[319] ==> geostats186x.svg ---
+l. 434 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/tdof-.png" "../figures/tdof.pdf" " ---
+File: ../figures/tdof-.png
+Css: #TBL-22-1{border-right:1px solid black;}
+--- needs --- geostats.idv[321] ==> geostats187x.svg ---
+l. 470 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/normconf-.png" "../figures/normconf.pdf" " ---
+File: ../figures/normconf-.png
+Css: #TBL-23-1{border-right:1px solid black;}
+Css: #TBL-24-1{border-right:1px solid black;}
+Css: #TBL-25-1{border-right:1px solid black;}
+--- needs --- geostats.idv[323] ==> geostats188x.svg ---
+--- needs --- geostats.idv[325] ==> geostats189x.svg ---
+Css: #TBL-26-1{border-right:1px solid black;}
+Css: #TBL-27-1{border-right:1px solid black;}
+l. 640 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/chi2-.png" "../figures/chi2.pdf" " ---
+File: ../figures/chi2-.png
+Css: #TBL-28-1{border-right:1px solid black;}
+Css: #TBL-29-1{border-right:1px solid black;}
+Css: #TBL-29-5{border-right:1px solid black;}
+--- needs --- geostats.idv[327] ==> geostats190x.svg ---
+--- needs --- geostats.idv[329] ==> geostats191x.svg ---
+Css: #TBL-30-1{border-right:1px solid black;}
+--- needs --- geostats.idv[331] ==> geostats192x.svg ---
+Css: #TBL-31-1{border-right:1px solid black;}
+Css: #TBL-32-1{border-right:1px solid black;}
+l. 783 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/chi22-.png" "../figures/chi22.pdf" " ---
+File: ../figures/chi22-.png
+l. 829 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/cherrypicking-.png" "../figures/cherrypicking.pdf" " ---
+File: ../figures/cherrypicking-.png
+Css: #TBL-33-1{border-right:1px solid black;}
+Css: #TBL-34-1{border-right:1px solid black;}
+Css: #TBL-34-5{border-right:1px solid black;}
+Css: #TBL-35-1{border-right:1px solid black;}
+--- needs --- geostats.idv[333] ==> geostats193x.svg ---
+Css: #TBL-36-1{border-right:1px solid black;}
+Css: #TBL-37-1{border-right:1px solid black;}
+--- needs --- geostats.idv[335] ==> geostats194x.svg ---
+Css: #TBL-38-1{border-right:1px solid black;}
+Css: #TBL-39-2{border-right:1px solid black;}
+Css: #TBL-40-2{border-right:1px solid black;}
+Css: #TBL-41-1{border-right:1px solid black;}
+Css: #TBL-42-1{border-right:1px solid black;}
+--- needs --- geostats.idv[337] ==> geostats195x.svg ---
+Css: #TBL-43-1{border-right:1px solid black;}
+--- needs --- geostats.idv[338] ==> geostats196x.svg ---
+Css: #TBL-44-1{border-right:1px solid black;}
+Css: #TBL-45-1{border-right:1px solid black;}
+--- needs --- geostats.idv[340] ==> geostats197x.svg ---
+Css: #TBL-46-1{border-right:1px solid black;}
+Css: #TBL-47-1{border-right:1px solid black;}
+l. 1214 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/wilcox-.png" "../figures/wilcox.pdf" " ---
+File: ../figures/wilcox-.png
+--- needs --- geostats.idv[342] ==> geostats198x.svg ---
+--- needs --- geostats.idv[343] ==> geostats199x.svg ---
+l. 1255 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/KS-.png" "../figures/KS.pdf" " ---
+File: ../figures/KS-.png
+Css: #TBL-48-1{border-right:1px solid black;}
+Css: #TBL-49-1{border-right:1px solid black;}
+l. 1321 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/KSdens-.png" "../figures/KSdens.pdf" " ---
+File: ../figures/KSdens-.png
+l. 1341 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/KSnorm-.png" "../figures/KSnorm.pdf" " ---
+File: ../figures/KSnorm-.png
+--- needs --- geostats.idv[345] ==> geostats200x.svg ---
+--- needs --- geostats.idv[347] ==> geostats201x.svg ---
+Css: #TBL-50-1{border-right:1px solid black;}
+l. 54 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/RbSr-.png" "../figures/RbSr.pdf" " ---
+File: ../figures/RbSr-.png
+--- needs --- geostats.idv[349] ==> geostats202x.svg ---
+--- needs --- geostats.idv[351] ==> geostats203x.svg ---
+--- needs --- geostats.idv[353] ==> geostats204x.svg ---
+--- needs --- geostats.idv[354] ==> geostats205x.svg ---
+l. 119 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/r-.png" "../figures/r.pdf" " ---
+File: ../figures/r-.png
+--- needs --- geostats.idv[356] ==> geostats206x.svg ---
+--- needs --- geostats.idv[358] ==> geostats207x.svg ---
+Css: #TBL-51-1{border-right:1px solid black;}
+Css: #TBL-52-1{border-right:1px solid black;}
+l. 216 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/tr-.png" "../figures/tr.pdf" " ---
+File: ../figures/tr-.png
+--- needs --- geostats.idv[360] ==> geostats208x.svg ---
+Css: #TBL-53-1{border-right:1px solid black;}
+l. 268 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/tryRbSr-.png" "../figures/tryRbSr.pdf" " ---
+File: ../figures/tryRbSr-.png
+--- needs --- geostats.idv[362] ==> geostats209x.svg ---
+--- needs --- geostats.idv[364] ==> geostats210x.svg ---
+Css: #TBL-54-1{border-right:1px solid black;}
+Css: #TBL-54-9{border-right:1px solid black;}
+--- needs --- geostats.idv[366] ==> geostats211x.svg ---
+--- needs --- geostats.idv[368] ==> geostats212x.svg ---
+--- needs --- geostats.idv[369] ==> geostats213x.svg ---
+--- needs --- geostats.idv[371] ==> geostats214x.svg ---
+--- needs --- geostats.idv[373] ==> geostats215x.svg ---
+--- needs --- geostats.idv[375] ==> geostats216x.svg ---
+--- needs --- geostats.idv[377] ==> geostats217x.svg ---
+--- needs --- geostats.idv[379] ==> geostats218x.svg ---
+--- needs --- geostats.idv[381] ==> geostats219x.svg ---
+l. 454 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/envelope-.png" "../figures/envelope.pdf" " ---
+File: ../figures/envelope-.png
+--- needs --- geostats.idv[383] ==> geostats220x.svg ---
+l. 487 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/prediction-interval-.png" "../figures/prediction-interval.pdf" " ---
+File: ../figures/prediction-interval-.png
+l. 512 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/regression-p-hacking-.png" "../figures/regression-p-hacking.pdf" " ---
+File: ../figures/regression-p-hacking-.png
+l. 527 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/regression-outlier-.png" "../figures/regression-outlier.pdf" " ---
+File: ../figures/regression-outlier-.png
+l. 548 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/spurious-.png" "../figures/spurious.pdf" " ---
+File: ../figures/spurious-.png
+--- needs --- geostats.idv[385] ==> geostats221x.svg ---
+--- needs --- geostats.idv[387] ==> geostats222x.svg ---
+--- needs --- geostats.idv[389] ==> geostats223x.svg ---
+--- needs --- geostats.idv[391] ==> geostats224x.svg ---
+--- needs --- geostats.idv[393] ==> geostats225x.svg ---
+Css: #TBL-55-1{border-right:1px solid black;}
+Css: #TBL-55-3{border-right:1px solid black;}
+l. 734 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/errorfit-.png" "../figures/errorfit.pdf" " ---
+File: ../figures/errorfit-.png
+--- needs --- geostats.idv[395] ==> geostats226x.svg ---
+--- needs --- geostats.idv[397] ==> geostats227x.svg ---
+l. 793 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/yorkfit-.png" "../figures/yorkfit.pdf" " ---
+File: ../figures/yorkfit-.png
+l. 12 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/recentquakes-.png" "../figures/recentquakes.pdf" " ---
+File: ../figures/recentquakes-.png
+l. 35 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/recentlogquakes-.png" "../figures/recentlogquakes.pdf" " ---
+File: ../figures/recentlogquakes-.png
+l. 63 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/gutenberg-.png" "../figures/gutenberg.pdf" " ---
+File: ../figures/gutenberg-.png
+--- needs --- geostats.idv[399] ==> geostats228x.svg ---
+--- needs --- geostats.idv[401] ==> geostats229x.svg ---
+--- needs --- geostats.idv[403] ==> geostats230x.svg ---
+--- needs --- geostats.idv[404] ==> geostats231x.svg ---
+Css: #TBL-56-1{border-right:1px solid black;}
+File: ../figures/Finland.png
+l. 149 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Finland-.png" "../figures/Finland.pdf" " ---
+File: ../figures/Finland-.png
+l. 175 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/britain-.png" "../figures/britain.pdf" " ---
+File: ../figures/britain-.png
+l. 188 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/loglogbritain-.png" "../figures/loglogbritain.pdf" " ---
+File: ../figures/loglogbritain-.png
+l. 209 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/fractaldimbritain-.png" "../figures/fractaldimbritain.pdf" " ---
+File: ../figures/fractaldimbritain-.png
+File: ../figures/Britainboxes.png
+l. 241 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Britainboxcounts-.png" "../figures/Britainboxcounts.pdf" " ---
+File: ../figures/Britainboxcounts-.png
+File: ../figures/Corsica.png
+l. 267 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Corsicaboxcounts-.png" "../figures/Corsicaboxcounts.pdf" " ---
+File: ../figures/Corsicaboxcounts-.png
+l. 286 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/koch1-.png" "../figures/koch1.pdf" " ---
+File: ../figures/koch1-.png
+l. 299 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/koch2-.png" "../figures/koch2.pdf" " ---
+File: ../figures/koch2-.png
+l. 311 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/koch3-.png" "../figures/koch3.pdf" " ---
+File: ../figures/koch3-.png
+l. 323 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/koch6-.png" "../figures/koch6.pdf" " ---
+File: ../figures/koch6-.png
+File: ../figures/koch.png
+l. 353 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/kochboxcounts-.png" "../figures/kochboxcounts.pdf" " ---
+File: ../figures/kochboxcounts-.png
+l. 370 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/sierpinski-.png" "../figures/sierpinski.pdf" " ---
+File: ../figures/sierpinski-.png
+l. 394 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/sierpinskiboxcounts-.png" "../figures/sierpinskiboxcounts.pdf" " ---
+File: ../figures/sierpinskiboxcounts-.png
+--- needs --- geostats.idv[406] ==> geostats232x.svg ---
+--- needs --- geostats.idv[408] ==> geostats233x.svg ---
+l. 446 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/cantor-.png" "../figures/cantor.pdf" " ---
+File: ../figures/cantor-.png
+l. 460 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/cantorloglog-.png" "../figures/cantorloglog.pdf" " ---
+File: ../figures/cantorloglog-.png
+l. 477 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/pendulum-.png" "../figures/pendulum.pdf" " ---
+File: ../figures/pendulum-.png
+l. 495 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/3magnets1-.png" "../figures/3magnets1.pdf" " ---
+File: ../figures/3magnets1-.png
+l. 514 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/3magnets2-.png" "../figures/3magnets2.pdf" " ---
+File: ../figures/3magnets2-.png
+File: ../figures/3magnets.png
+--- needs --- geostats.idv[410] ==> geostats234x.svg ---
+l. 40 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/PCA2Ddata-.png" "../figures/PCA2Ddata.pdf" " ---
+File: ../figures/PCA2Ddata-.png
+--- needs --- geostats.idv[412] ==> geostats235x.svg ---
+--- needs --- geostats.idv[414] ==> geostats236x.svg ---
+--- needs --- geostats.idv[416] ==> geostats237x.svg ---
+--- needs --- geostats.idv[418] ==> geostats238x.svg ---
+l. 158 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/PCA2D1-.png" "../figures/PCA2D1.pdf" " ---
+File: ../figures/PCA2D1-.png
+--- needs --- geostats.idv[420] ==> geostats241x.svg ---
+--- needs --- geostats.idv[421] ==> geostats242x.svg ---
+l. 175 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/PCA2D2-.png" "../figures/PCA2D2.pdf" " ---
+File: ../figures/PCA2D2-.png
+l. 202 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/PCA2D3-.png" "../figures/PCA2D3.pdf" " ---
+File: ../figures/PCA2D3-.png
+--- needs --- geostats.idv[423] ==> geostats244x.svg ---
+Css: #TBL-57-1{border-right:1px solid black;}
+--- needs --- geostats.idv[425] ==> geostats245x.svg ---
+--- needs --- geostats.idv[426] ==> geostats246x.svg ---
+--- needs --- geostats.idv[427] ==> geostats247x.svg ---
+--- needs --- geostats.idv[428] ==> geostats248x.svg ---
+--- needs --- geostats.idv[429] ==> geostats249x.svg ---
+l. 256 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/USArrests-.png" "../figures/USArrests.pdf" " ---
+File: ../figures/USArrests-.png
+--- needs --- geostats.idv[431] ==> geostats250x.svg ---
+--- needs --- geostats.idv[433] ==> geostats251x.svg ---
+--- needs --- geostats.idv[435] ==> geostats252x.svg ---
+Css: #TBL-58-1{border-right:1px solid black;}
+--- needs --- geostats.idv[437] ==> geostats253x.svg ---
+--- needs --- geostats.idv[438] ==> geostats254x.svg ---
+--- needs --- geostats.idv[439] ==> geostats255x.svg ---
+--- needs --- geostats.idv[440] ==> geostats256x.svg ---
+--- needs --- geostats.idv[441] ==> geostats257x.svg ---
+--- needs --- geostats.idv[442] ==> geostats258x.svg ---
+--- needs --- geostats.idv[443] ==> geostats259x.svg ---
+--- needs --- geostats.idv[444] ==> geostats260x.svg ---
+l. 363 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/eurodist-.png" "../figures/eurodist.pdf" " ---
+File: ../figures/eurodist-.png
+l. 385 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Shepard-.png" "../figures/Shepard.pdf" " ---
+File: ../figures/Shepard-.png
+--- needs --- geostats.idv[446] ==> geostats261x.svg ---
+Css: #TBL-59-1{border-right:1px solid black;}
+--- needs --- geostats.idv[448] ==> geostats262x.svg ---
+l. 476 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/DZmds-.png" "../figures/DZmds.pdf" " ---
+File: ../figures/DZmds-.png
+l. 499 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/kmeans1-.png" "../figures/kmeans1.pdf" " ---
+File: ../figures/kmeans1-.png
+l. 515 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/kmeans2-.png" "../figures/kmeans2.pdf" " ---
+File: ../figures/kmeans2-.png
+l. 528 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/kmeans3-.png" "../figures/kmeans3.pdf" " ---
+File: ../figures/kmeans3-.png
+l. 541 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/kmeans4-.png" "../figures/kmeans4.pdf" " ---
+File: ../figures/kmeans4-.png
+l. 557 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/kmeans5-.png" "../figures/kmeans5.pdf" " ---
+File: ../figures/kmeans5-.png
+l. 584 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Iris-.png" "../figures/Iris.pdf" " ---
+File: ../figures/Iris-.png
+Css: #TBL-60-1{border-right:1px solid black;}
+--- needs --- geostats.idv[450] ==> geostats263x.svg ---
+l. 657 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/hierarchical1-.png" "../figures/hierarchical1.pdf" " ---
+File: ../figures/hierarchical1-.png
+--- needs --- geostats.idv[452] ==> geostats264x.svg ---
+l. 685 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/hierarchical2-.png" "../figures/hierarchical2.pdf" " ---
+File: ../figures/hierarchical2-.png
+l. 688 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/tree1-.png" "../figures/tree1.pdf" " ---
+File: ../figures/tree1-.png
+--- needs --- geostats.idv[454] ==> geostats265x.svg ---
+--- needs --- geostats.idv[455] ==> geostats266x.svg ---
+l. 718 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/hierarchical3-.png" "../figures/hierarchical3.pdf" " ---
+File: ../figures/hierarchical3-.png
+l. 721 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/tree2-.png" "../figures/tree2.pdf" " ---
+File: ../figures/tree2-.png
+--- needs --- geostats.idv[457] ==> geostats267x.svg ---
+l. 745 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/hierarchical4-.png" "../figures/hierarchical4.pdf" " ---
+File: ../figures/hierarchical4-.png
+l. 748 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/tree3-.png" "../figures/tree3.pdf" " ---
+File: ../figures/tree3-.png
+l. 761 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/hierarchicaltree-.png" "../figures/hierarchicaltree.pdf" " ---
+File: ../figures/hierarchicaltree-.png
+l. 775 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/irishtree-.png" "../figures/irishtree.pdf" " ---
+File: ../figures/irishtree-.png
+l. 786 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/irishtreecut-.png" "../figures/irishtreecut.pdf" " ---
+File: ../figures/irishtreecut-.png
+Css: #TBL-61-1{border-right:1px solid black;}
+--- needs --- geostats.idv[459] ==> geostats268x.svg ---
+--- needs --- geostats.idv[461] ==> geostats269x.svg ---
+--- needs --- geostats.idv[463] ==> geostats270x.svg ---
+--- needs --- geostats.idv[465] ==> geostats271x.svg ---
+l. 77 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/QDA-.png" "../figures/QDA.pdf" " ---
+File: ../figures/QDA-.png
+--- needs --- geostats.idv[467] ==> geostats272x.svg ---
+l. 106 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/LDA-.png" "../figures/LDA.pdf" " ---
+File: ../figures/LDA-.png
+l. 124 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/PCAvsLDA-.png" "../figures/PCAvsLDA.pdf" " ---
+File: ../figures/PCAvsLDA-.png
+l. 148 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/LDAiris-.png" "../figures/LDAiris.pdf" " ---
+File: ../figures/LDAiris-.png
+l. 169 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/LDAnewiris-.png" "../figures/LDAnewiris.pdf" " ---
+File: ../figures/LDAnewiris-.png
+l. 208 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/CARTdata-.png" "../figures/CARTdata.pdf" " ---
+File: ../figures/CARTdata-.png
+--- needs --- geostats.idv[469] ==> geostats273x.svg ---
+l. 239 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Qtries-.png" "../figures/Qtries.pdf" " ---
+File: ../figures/Qtries-.png
+l. 254 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Q2-.png" "../figures/Q2.pdf" " ---
+File: ../figures/Q2-.png
+l. 271 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/overfittedCARTscatter-.png" "../figures/overfittedCARTscatter.pdf" " ---
+File: ../figures/overfittedCARTscatter-.png
+--- needs --- geostats.idv[471] ==> geostats274x.svg ---
+--- needs --- geostats.idv[473] ==> geostats275x.svg ---
+l. 333 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/cvCART-.png" "../figures/cvCART.pdf" " ---
+File: ../figures/cvCART-.png
+l. 352 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/optimalCART-.png" "../figures/optimalCART.pdf" " ---
+File: ../figures/optimalCART-.png
+l. 367 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/irisCART-.png" "../figures/irisCART.pdf" " ---
+File: ../figures/irisCART-.png
+Css: #TBL-63-1{border-right:1px solid black;}
+Css: #TBL-64-1{border-right:1px solid black;}
+Css: #TBL-65-1{border-right:1px solid black;}
+Css: #TBL-66-1{border-right:1px solid black;}
+Css: #TBL-66-11{border-right:1px solid black;}
+--- needs --- geostats.idv[475] ==> geostats276x.svg ---
+Css: #TBL-67-1{border-right:1px solid black;}
+Css: #TBL-68-1{border-right:1px solid black;}
+Css: #TBL-68-11{border-right:1px solid black;}
+--- needs --- geostats.idv[477] ==> geostats277x.svg ---
+--- needs --- geostats.idv[478] ==> geostats278x.svg ---
+l. 144 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/ACNK-.png" "../figures/ACNK.pdf" " ---
+File: ../figures/ACNK-.png
+--- needs --- geostats.idv[480] ==> geostats279x.svg ---
+l. 179 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/ACNKarithmeticmean-.png" "../figures/ACNKarithmeticmean.pdf" " ---
+File: ../figures/ACNKarithmeticmean-.png
+--- needs --- geostats.idv[482] ==> geostats280x.svg ---
+--- needs --- geostats.idv[484] ==> geostats281x.svg ---
+l. 228 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/ACNKnaive-.png" "../figures/ACNKnaive.pdf" " ---
+File: ../figures/ACNKnaive-.png
+--- needs --- geostats.idv[486] ==> geostats282x.svg ---
+--- needs --- geostats.idv[488] ==> geostats283x.svg ---
+--- needs --- geostats.idv[490] ==> geostats284x.svg ---
+Css: #TBL-69-1{border-right:1px solid black;}
+--- needs --- geostats.idv[492] ==> geostats285x.svg ---
+--- needs --- geostats.idv[493] ==> geostats286x.svg ---
+--- needs --- geostats.idv[494] ==> geostats287x.svg ---
+--- needs --- geostats.idv[495] ==> geostats288x.svg ---
+--- needs --- geostats.idv[496] ==> geostats289x.svg ---
+--- needs --- geostats.idv[497] ==> geostats290x.svg ---
+--- needs --- geostats.idv[498] ==> geostats291x.svg ---
+--- needs --- geostats.idv[499] ==> geostats292x.svg ---
+--- needs --- geostats.idv[500] ==> geostats293x.svg ---
+--- needs --- geostats.idv[501] ==> geostats294x.svg ---
+--- needs --- geostats.idv[502] ==> geostats295x.svg ---
+--- needs --- geostats.idv[504] ==> geostats296x.svg ---
+l. 371 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/abc-.png" "../figures/abc.pdf" " ---
+File: ../figures/abc-.png
+l. 387 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/alraxes-.png" "../figures/alraxes.pdf" " ---
+File: ../figures/alraxes-.png
+--- needs --- geostats.idv[506] ==> geostats297x.svg ---
+--- needs --- geostats.idv[508] ==> geostats298x.svg ---
+--- needs --- geostats.idv[510] ==> geostats299x.svg ---
+--- needs --- geostats.idv[511] ==> geostats300x.svg ---
+--- needs --- geostats.idv[513] ==> geostats301x.svg ---
+--- needs --- geostats.idv[514] ==> geostats302x.svg ---
+--- needs --- geostats.idv[515] ==> geostats303x.svg ---
+--- needs --- geostats.idv[516] ==> geostats304x.svg ---
+l. 512 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/clrPCA-.png" "../figures/clrPCA.pdf" " ---
+File: ../figures/clrPCA-.png
+l. 528 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/majorPCA-.png" "../figures/majorPCA.pdf" " ---
+File: ../figures/majorPCA-.png
+l. 557 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/links-.png" "../figures/links.pdf" " ---
+File: ../figures/links-.png
+l. 589 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/AFM-.png" "../figures/AFM.pdf" " ---
+File: ../figures/AFM-.png
+l. 606 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/lrAFM-.png" "../figures/lrAFM.pdf" " ---
+File: ../figures/lrAFM-.png
+l. 625 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/LDAAFM-.png" "../figures/LDAAFM.pdf" " ---
+File: ../figures/LDAAFM-.png
+--- needs --- geostats.idv[518] ==> geostats305x.svg ---
+--- needs --- geostats.idv[520] ==> geostats306x.svg ---
+--- needs --- geostats.idv[522] ==> geostats307x.svg ---
+Css: #TBL-70-1{border-right:1px solid black;}
+l. 707 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/cath-.png" "../figures/cath.pdf" " ---
+File: ../figures/cath-.png
+l. 27 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/circle1-.png" "../figures/circle1.pdf" " ---
+File: ../figures/circle1-.png
+l. 41 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/circle2-.png" "../figures/circle2.pdf" " ---
+File: ../figures/circle2-.png
+--- needs --- geostats.idv[524] ==> geostats308x.svg ---
+--- needs --- geostats.idv[526] ==> geostats309x.svg ---
+--- needs --- geostats.idv[528] ==> geostats310x.svg ---
+l. 92 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/circle3-.png" "../figures/circle3.pdf" " ---
+File: ../figures/circle3-.png
+--- needs --- geostats.idv[530] ==> geostats311x.svg ---
+l. 113 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/vectorsum-.png" "../figures/vectorsum.pdf" " ---
+File: ../figures/vectorsum-.png
+--- needs --- geostats.idv[532] ==> geostats312x.svg ---
+l. 139 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/lowconcentration-.png" "../figures/lowconcentration.pdf" " ---
+File: ../figures/lowconcentration-.png
+--- needs --- geostats.idv[534] ==> geostats313x.svg ---
+l. 167 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/vonMises-.png" "../figures/vonMises.pdf" " ---
+File: ../figures/vonMises-.png
+--- needs --- geostats.idv[536] ==> geostats314x.svg ---
+l. 188 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/R2K-.png" "../figures/R2K.pdf" " ---
+File: ../figures/R2K-.png
+l. 204 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/kappastriations-.png" "../figures/kappastriations.pdf" " ---
+File: ../figures/kappastriations-.png
+--- needs --- geostats.idv[538] ==> geostats315x.svg ---
+--- needs --- geostats.idv[540] ==> geostats316x.svg ---
+--- needs --- geostats.idv[542] ==> geostats317x.svg ---
+l. 266 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/wulffschmidt-.png" "../figures/wulffschmidt.pdf" " ---
+File: ../figures/wulffschmidt-.png
+--- needs --- geostats.idv[544] ==> geostats318x.svg ---
+--- needs --- geostats.idv[546] ==> geostats319x.svg ---
+--- needs --- geostats.idv[548] ==> geostats320x.svg ---
+l. 317 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/Africa-.png" "../figures/Africa.pdf" " ---
+File: ../figures/Africa-.png
+Css: #TBL-72-1{border-right:1px solid black;}
+l. 336 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/palaeomag-.png" "../figures/palaeomag.pdf" " ---
+File: ../figures/palaeomag-.png
+Css: #TBL-73-1{border-right:1px solid black;}
+l. 354 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/fault-.png" "../figures/fault.pdf" " ---
+File: ../figures/fault-.png
+--- needs --- geostats.idv[550] ==> geostats321x.svg ---
+--- needs --- geostats.idv[552] ==> geostats322x.svg ---
+--- needs --- geostats.idv[554] ==> geostats323x.svg ---
+--- needs --- geostats.idv[556] ==> geostats324x.svg ---
+--- needs --- geostats.idv[558] ==> geostats325x.svg ---
+--- needs --- geostats.idv[560] ==> geostats326x.svg ---
+l. 443 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/sphericalmean-.png" "../figures/sphericalmean.pdf" " ---
+File: ../figures/sphericalmean-.png
+l. 478 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/pebbles-.png" "../figures/pebbles.pdf" " ---
+File: ../figures/pebbles-.png
+l. 498 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/inertia-.png" "../figures/inertia.pdf" " ---
+File: ../figures/inertia-.png
+--- needs --- geostats.idv[562] ==> geostats327x.svg ---
+--- needs --- geostats.idv[564] ==> geostats328x.svg ---
+--- needs --- geostats.idv[566] ==> geostats329x.svg ---
+Css: #TBL-75-1{border-right:1px solid black;}
+l. 614 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/subhorizontal-.png" "../figures/subhorizontal.pdf" " ---
+File: ../figures/subhorizontal-.png
+Css: #TBL-76-1{border-right:1px solid black;}
+--- needs --- geostats.idv[568] ==> geostats330x.svg ---
+--- needs --- geostats.idv[569] ==> geostats331x.svg ---
+--- needs --- geostats.idv[570] ==> geostats332x.svg ---
+--- needs --- geostats.idv[571] ==> geostats333x.svg ---
+--- needs --- geostats.idv[572] ==> geostats334x.svg ---
+--- needs --- geostats.idv[573] ==> geostats335x.svg ---
+--- needs --- geostats.idv[574] ==> geostats336x.svg ---
+--- needs --- geostats.idv[575] ==> geostats337x.svg ---
+l. 52 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/meusepoints-.png" "../figures/meusepoints.pdf" " ---
+File: ../figures/meusepoints-.png
+Css: #TBL-77-1{border-right:1px solid black;}
+--- needs --- geostats.idv[577] ==> geostats338x.svg ---
+--- needs --- geostats.idv[578] ==> geostats339x.svg ---
+--- needs --- geostats.idv[579] ==> geostats340x.svg ---
+Css: #TBL-78-1{border-right:1px solid black;}
+--- needs --- geostats.idv[580] ==> geostats341x.svg ---
+--- needs --- geostats.idv[581] ==> geostats342x.svg ---
+--- needs --- geostats.idv[582] ==> geostats343x.svg ---
+--- needs --- geostats.idv[583] ==> geostats344x.svg ---
+--- needs --- geostats.idv[584] ==> geostats345x.svg ---
+--- needs --- geostats.idv[585] ==> geostats346x.svg ---
+--- needs --- geostats.idv[586] ==> geostats347x.svg ---
+--- needs --- geostats.idv[587] ==> geostats348x.svg ---
+--- needs --- geostats.idv[588] ==> geostats349x.svg ---
+--- needs --- geostats.idv[589] ==> geostats350x.svg ---
+--- needs --- geostats.idv[590] ==> geostats351x.svg ---
+--- needs --- geostats.idv[591] ==> geostats352x.svg ---
+Css: #TBL-79-1{border-right:1px solid black;}
+--- needs --- geostats.idv[593] ==> geostats353x.svg ---
+--- needs --- geostats.idv[594] ==> geostats354x.svg ---
+--- needs --- geostats.idv[595] ==> geostats355x.svg ---
+--- needs --- geostats.idv[596] ==> geostats356x.svg ---
+--- needs --- geostats.idv[597] ==> geostats357x.svg ---
+--- needs --- geostats.idv[598] ==> geostats358x.svg ---
+--- needs --- geostats.idv[599] ==> geostats359x.svg ---
+--- needs --- geostats.idv[600] ==> geostats360x.svg ---
+--- needs --- geostats.idv[601] ==> geostats361x.svg ---
+--- needs --- geostats.idv[602] ==> geostats362x.svg ---
+--- needs --- geostats.idv[603] ==> geostats363x.svg ---
+--- needs --- geostats.idv[604] ==> geostats364x.svg ---
+--- needs --- geostats.idv[605] ==> geostats365x.svg ---
+--- needs --- geostats.idv[607] ==> geostats366x.svg ---
+--- needs --- geostats.idv[609] ==> geostats367x.svg ---
+Css: #TBL-80-1{border-right:1px solid black;}
+--- needs --- geostats.idv[610] ==> geostats368x.svg ---
+--- needs --- geostats.idv[611] ==> geostats369x.svg ---
+--- needs --- geostats.idv[612] ==> geostats370x.svg ---
+--- needs --- geostats.idv[613] ==> geostats371x.svg ---
+--- needs --- geostats.idv[614] ==> geostats372x.svg ---
+--- needs --- geostats.idv[615] ==> geostats373x.svg ---
+--- needs --- geostats.idv[616] ==> geostats374x.svg ---
+--- needs --- geostats.idv[617] ==> geostats375x.svg ---
+--- needs --- geostats.idv[618] ==> geostats376x.svg ---
+--- needs --- geostats.idv[619] ==> geostats377x.svg ---
+--- needs --- geostats.idv[620] ==> geostats378x.svg ---
+--- needs --- geostats.idv[621] ==> geostats379x.svg ---
+--- needs --- geostats.idv[622] ==> geostats380x.svg ---
+--- needs --- geostats.idv[624] ==> geostats381x.svg ---
+l. 200 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/semivariogram-.png" "../figures/semivariogram.pdf" " ---
+File: ../figures/semivariogram-.png
+--- needs --- geostats.idv[626] ==> geostats382x.svg ---
+--- needs --- geostats.idv[628] ==> geostats383x.svg ---
+--- needs --- geostats.idv[630] ==> geostats384x.svg ---
+l. 248 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/semivariogramfit-.png" "../figures/semivariogramfit.pdf" " ---
+File: ../figures/semivariogramfit-.png
+l. 275 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/snr-.png" "../figures/snr.pdf" " ---
+File: ../figures/snr-.png
+--- needs --- geostats.idv[632] ==> geostats385x.svg ---
+--- needs --- geostats.idv[634] ==> geostats386x.svg ---
+--- needs --- geostats.idv[636] ==> geostats387x.svg ---
+--- needs --- geostats.idv[638] ==> geostats388x.svg ---
+--- needs --- geostats.idv[640] ==> geostats389x.svg ---
+l. 424 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/meusecontour-.png" "../figures/meusecontour.pdf" " ---
+File: ../figures/meusecontour-.png
+--- needs --- geostats.idv[642] ==> geostats390x.svg ---
+--- needs --- geostats.idv[644] ==> geostats391x.svg ---
+--- needs --- geostats.idv[645] ==> geostats392x.svg ---
+l. 457 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/meusecontourerr-.png" "../figures/meusecontourerr.pdf" " ---
+File: ../figures/meusecontourerr-.png
+Css: pre#fancyvrb1{border-width:1.13809pt;}
+Css: pre#fancyvrb1{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb1{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb1{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb1{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb2{border-width:1.13809pt;}
+Css: pre#fancyvrb2{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb2{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb2{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb2{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb3{border-width:1.13809pt;}
+Css: pre#fancyvrb3{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb3{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb3{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb3{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb4{border-width:1.13809pt;}
+Css: pre#fancyvrb4{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb4{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb4{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb4{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb5{border-width:1.13809pt;}
+Css: pre#fancyvrb5{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb5{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb5{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb5{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb6{border-width:1.13809pt;}
+Css: pre#fancyvrb6{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb6{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb6{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb6{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb7{border-width:1.13809pt;}
+Css: pre#fancyvrb7{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb7{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb7{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb7{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb8{border-width:1.13809pt;}
+Css: pre#fancyvrb8{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb8{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb8{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb8{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb9{border-width:1.13809pt;}
+Css: pre#fancyvrb9{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb9{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb9{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb9{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb10{border-width:1.13809pt;}
+Css: pre#fancyvrb10{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb10{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb10{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb10{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb11{border-width:1.13809pt;}
+Css: pre#fancyvrb11{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb11{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb11{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb11{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb12{border-width:1.13809pt;}
+Css: pre#fancyvrb12{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb12{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb12{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb12{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb13{border-width:1.13809pt;}
+Css: pre#fancyvrb13{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb13{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb13{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb13{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb14{border-width:1.13809pt;}
+Css: pre#fancyvrb14{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb14{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb14{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb14{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb15{border-width:1.13809pt;}
+Css: pre#fancyvrb15{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb15{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb15{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb15{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb16{border-width:1.13809pt;}
+Css: pre#fancyvrb16{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb16{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb16{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb16{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb17{border-width:1.13809pt;}
+Css: pre#fancyvrb17{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb17{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb17{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb17{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb18{border-width:1.13809pt;}
+Css: pre#fancyvrb18{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb18{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb18{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb18{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb19{border-width:1.13809pt;}
+Css: pre#fancyvrb19{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb19{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb19{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb19{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb20{border-width:1.13809pt;}
+Css: pre#fancyvrb20{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb20{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb20{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb20{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb21{border-width:1.13809pt;}
+Css: pre#fancyvrb21{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb21{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb21{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb21{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb22{border-width:1.13809pt;}
+Css: pre#fancyvrb22{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb22{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb22{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb22{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb23{border-width:1.13809pt;}
+Css: pre#fancyvrb23{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb23{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb23{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb23{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb24{border-width:1.13809pt;}
+Css: pre#fancyvrb24{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb24{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb24{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb24{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb25{border-width:1.13809pt;}
+Css: pre#fancyvrb25{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb25{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb25{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb25{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb26{border-width:1.13809pt;}
+Css: pre#fancyvrb26{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb26{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb26{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb26{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb27{border-width:1.13809pt;}
+Css: pre#fancyvrb27{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb27{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb27{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb27{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb28{border-width:1.13809pt;}
+Css: pre#fancyvrb28{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb28{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb28{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb28{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb29{border-width:1.13809pt;}
+Css: pre#fancyvrb29{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb29{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb29{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb29{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb30{border-width:1.13809pt;}
+Css: pre#fancyvrb30{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb30{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb30{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb30{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb31{border-width:1.13809pt;}
+Css: pre#fancyvrb31{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb31{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb31{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb31{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb32{border-width:1.13809pt;}
+Css: pre#fancyvrb32{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb32{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb32{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb32{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb33{border-width:1.13809pt;}
+Css: pre#fancyvrb33{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb33{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb33{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb33{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb34{border-width:1.13809pt;}
+Css: pre#fancyvrb34{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb34{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb34{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb34{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb35{border-width:1.13809pt;}
+Css: pre#fancyvrb35{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb35{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb35{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb35{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb36{border-width:1.13809pt;}
+Css: pre#fancyvrb36{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb36{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb36{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb36{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb37{border-width:1.13809pt;}
+Css: pre#fancyvrb37{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb37{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb37{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb37{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb38{border-width:1.13809pt;}
+Css: pre#fancyvrb38{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb38{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb38{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb38{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb39{border-width:1.13809pt;}
+Css: pre#fancyvrb39{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb39{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb39{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb39{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb40{border-width:1.13809pt;}
+Css: pre#fancyvrb40{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb40{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb40{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb40{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb41{border-width:1.13809pt;}
+Css: pre#fancyvrb41{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb41{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb41{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb41{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb42{border-width:1.13809pt;}
+Css: pre#fancyvrb42{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb42{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb42{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb42{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb43{border-width:1.13809pt;}
+Css: pre#fancyvrb43{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb43{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb43{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb43{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb44{border-width:1.13809pt;}
+Css: pre#fancyvrb44{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb44{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb44{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb44{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb45{border-width:1.13809pt;}
+Css: pre#fancyvrb45{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb45{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb45{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb45{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb46{border-width:1.13809pt;}
+Css: pre#fancyvrb46{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb46{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb46{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb46{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb47{border-width:1.13809pt;}
+Css: pre#fancyvrb47{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb47{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb47{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb47{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb48{border-width:1.13809pt;}
+Css: pre#fancyvrb48{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb48{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb48{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb48{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb49{border-width:1.13809pt;}
+Css: pre#fancyvrb49{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb49{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb49{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb49{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb50{border-width:1.13809pt;}
+Css: pre#fancyvrb50{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb50{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb50{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb50{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb51{border-width:1.13809pt;}
+Css: pre#fancyvrb51{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb51{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb51{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb51{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb52{border-width:1.13809pt;}
+Css: pre#fancyvrb52{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb52{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb52{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb52{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb53{border-width:1.13809pt;}
+Css: pre#fancyvrb53{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb53{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb53{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb53{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb54{border-width:1.13809pt;}
+Css: pre#fancyvrb54{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb54{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb54{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb54{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb55{border-width:1.13809pt;}
+Css: pre#fancyvrb55{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb55{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb55{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb55{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb56{border-width:1.13809pt;}
+Css: pre#fancyvrb56{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb56{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb56{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb56{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb57{border-width:1.13809pt;}
+Css: pre#fancyvrb57{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb57{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb57{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb57{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb58{border-width:1.13809pt;}
+Css: pre#fancyvrb58{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb58{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb58{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb58{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb59{border-width:1.13809pt;}
+Css: pre#fancyvrb59{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb59{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb59{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb59{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb60{border-width:1.13809pt;}
+Css: pre#fancyvrb60{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb60{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb60{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb60{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb61{border-width:1.13809pt;}
+Css: pre#fancyvrb61{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb61{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb61{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb61{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb62{border-width:1.13809pt;}
+Css: pre#fancyvrb62{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb62{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb62{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb62{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb63{border-width:1.13809pt;}
+Css: pre#fancyvrb63{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb63{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb63{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb63{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb64{border-width:1.13809pt;}
+Css: pre#fancyvrb64{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb64{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb64{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb64{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb65{border-width:1.13809pt;}
+Css: pre#fancyvrb65{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb65{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb65{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb65{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb66{border-width:1.13809pt;}
+Css: pre#fancyvrb66{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb66{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb66{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb66{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb67{border-width:1.13809pt;}
+Css: pre#fancyvrb67{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb67{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb67{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb67{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb68{border-width:1.13809pt;}
+Css: pre#fancyvrb68{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb68{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb68{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb68{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb69{border-width:1.13809pt;}
+Css: pre#fancyvrb69{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb69{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb69{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb69{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[647] ==> geostats393x.svg ---
+Css: pre#fancyvrb70{border-width:1.13809pt;}
+Css: pre#fancyvrb70{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb70{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb70{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb70{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb71{border-width:1.13809pt;}
+Css: pre#fancyvrb71{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb71{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb71{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb71{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb72{border-width:1.13809pt;}
+Css: pre#fancyvrb72{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb72{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb72{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb72{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb73{border-width:1.13809pt;}
+Css: pre#fancyvrb73{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb73{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb73{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb73{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb74{border-width:1.13809pt;}
+Css: pre#fancyvrb74{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb74{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb74{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb74{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb75{border-width:1.13809pt;}
+Css: pre#fancyvrb75{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb75{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb75{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb75{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb76{border-width:1.13809pt;}
+Css: pre#fancyvrb76{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb76{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb76{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb76{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb77{border-width:1.13809pt;}
+Css: pre#fancyvrb77{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb77{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb77{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb77{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb78{border-width:1.13809pt;}
+Css: pre#fancyvrb78{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb78{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb78{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb78{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb79{border-width:1.13809pt;}
+Css: pre#fancyvrb79{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb79{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb79{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb79{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb80{border-width:1.13809pt;}
+Css: pre#fancyvrb80{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb80{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb80{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb80{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb81{border-width:1.13809pt;}
+Css: pre#fancyvrb81{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb81{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb81{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb81{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb82{border-width:1.13809pt;}
+Css: pre#fancyvrb82{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb82{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb82{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb82{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[649] ==> geostats394x.svg ---
+Css: pre#fancyvrb83{border-width:1.13809pt;}
+Css: pre#fancyvrb83{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb83{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb83{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb83{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb84{border-width:1.13809pt;}
+Css: pre#fancyvrb84{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb84{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb84{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb84{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb85{border-width:1.13809pt;}
+Css: pre#fancyvrb85{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb85{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb85{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb85{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb86{border-width:1.13809pt;}
+Css: pre#fancyvrb86{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb86{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb86{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb86{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb87{border-width:1.13809pt;}
+Css: pre#fancyvrb87{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb87{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb87{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb87{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb88{border-width:1.13809pt;}
+Css: pre#fancyvrb88{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb88{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb88{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb88{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb89{border-width:1.13809pt;}
+Css: pre#fancyvrb89{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb89{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb89{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb89{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb90{border-width:1.13809pt;}
+Css: pre#fancyvrb90{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb90{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb90{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb90{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb91{border-width:1.13809pt;}
+Css: pre#fancyvrb91{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb91{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb91{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb91{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb92{border-width:1.13809pt;}
+Css: pre#fancyvrb92{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb92{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb92{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb92{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[651] ==> geostats395x.svg ---
+Css: pre#fancyvrb93{border-width:1.13809pt;}
+Css: pre#fancyvrb93{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb93{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb93{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb93{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb94{border-width:1.13809pt;}
+Css: pre#fancyvrb94{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb94{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb94{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb94{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[653] ==> geostats396x.svg ---
+Css: pre#fancyvrb95{border-width:1.13809pt;}
+Css: pre#fancyvrb95{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb95{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb95{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb95{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb96{border-width:1.13809pt;}
+Css: pre#fancyvrb96{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb96{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb96{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb96{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[655] ==> geostats397x.svg ---
+Css: pre#fancyvrb97{border-width:1.13809pt;}
+Css: pre#fancyvrb97{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb97{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb97{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb97{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb98{border-width:1.13809pt;}
+Css: pre#fancyvrb98{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb98{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb98{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb98{ border-right: solid 1.13809pt; }
+l. 1089 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/LLpois-.png" "../figures/LLpois.pdf" " ---
+File: ../figures/LLpois-.png
+Css: pre#fancyvrb99{border-width:1.13809pt;}
+Css: pre#fancyvrb99{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb99{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb99{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb99{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb100{border-width:1.13809pt;}
+Css: pre#fancyvrb100{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb100{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb100{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb100{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb101{border-width:1.13809pt;}
+Css: pre#fancyvrb101{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb101{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb101{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb101{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb102{border-width:1.13809pt;}
+Css: pre#fancyvrb102{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb102{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb102{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb102{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb103{border-width:1.13809pt;}
+Css: pre#fancyvrb103{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb103{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb103{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb103{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb104{border-width:1.13809pt;}
+Css: pre#fancyvrb104{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb104{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb104{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb104{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb105{border-width:1.13809pt;}
+Css: pre#fancyvrb105{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb105{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb105{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb105{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb106{border-width:1.13809pt;}
+Css: pre#fancyvrb106{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb106{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb106{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb106{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb107{border-width:1.13809pt;}
+Css: pre#fancyvrb107{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb107{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb107{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb107{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[657] ==> geostats398x.svg ---
+Css: pre#fancyvrb108{border-width:1.13809pt;}
+Css: pre#fancyvrb108{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb108{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb108{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb108{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb109{border-width:1.13809pt;}
+Css: pre#fancyvrb109{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb109{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb109{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb109{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb110{border-width:1.13809pt;}
+Css: pre#fancyvrb110{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb110{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb110{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb110{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb111{border-width:1.13809pt;}
+Css: pre#fancyvrb111{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb111{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb111{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb111{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb112{border-width:1.13809pt;}
+Css: pre#fancyvrb112{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb112{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb112{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb112{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb113{border-width:1.13809pt;}
+Css: pre#fancyvrb113{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb113{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb113{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb113{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb114{border-width:1.13809pt;}
+Css: pre#fancyvrb114{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb114{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb114{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb114{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb115{border-width:1.13809pt;}
+Css: pre#fancyvrb115{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb115{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb115{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb115{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb116{border-width:1.13809pt;}
+Css: pre#fancyvrb116{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb116{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb116{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb116{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb117{border-width:1.13809pt;}
+Css: pre#fancyvrb117{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb117{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb117{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb117{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb118{border-width:1.13809pt;}
+Css: pre#fancyvrb118{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb118{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb118{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb118{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb119{border-width:1.13809pt;}
+Css: pre#fancyvrb119{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb119{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb119{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb119{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb120{border-width:1.13809pt;}
+Css: pre#fancyvrb120{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb120{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb120{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb120{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb121{border-width:1.13809pt;}
+Css: pre#fancyvrb121{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb121{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb121{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb121{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb122{border-width:1.13809pt;}
+Css: pre#fancyvrb122{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb122{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb122{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb122{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb123{border-width:1.13809pt;}
+Css: pre#fancyvrb123{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb123{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb123{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb123{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb124{border-width:1.13809pt;}
+Css: pre#fancyvrb124{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb124{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb124{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb124{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb125{border-width:1.13809pt;}
+Css: pre#fancyvrb125{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb125{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb125{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb125{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb126{border-width:1.13809pt;}
+Css: pre#fancyvrb126{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb126{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb126{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb126{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb127{border-width:1.13809pt;}
+Css: pre#fancyvrb127{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb127{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb127{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb127{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb128{border-width:1.13809pt;}
+Css: pre#fancyvrb128{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb128{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb128{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb128{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb129{border-width:1.13809pt;}
+Css: pre#fancyvrb129{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb129{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb129{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb129{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb130{border-width:1.13809pt;}
+Css: pre#fancyvrb130{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb130{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb130{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb130{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb131{border-width:1.13809pt;}
+Css: pre#fancyvrb131{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb131{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb131{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb131{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb132{border-width:1.13809pt;}
+Css: pre#fancyvrb132{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb132{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb132{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb132{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb133{border-width:1.13809pt;}
+Css: pre#fancyvrb133{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb133{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb133{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb133{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb134{border-width:1.13809pt;}
+Css: pre#fancyvrb134{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb134{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb134{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb134{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb135{border-width:1.13809pt;}
+Css: pre#fancyvrb135{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb135{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb135{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb135{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb136{border-width:1.13809pt;}
+Css: pre#fancyvrb136{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb136{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb136{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb136{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb137{border-width:1.13809pt;}
+Css: pre#fancyvrb137{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb137{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb137{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb137{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb138{border-width:1.13809pt;}
+Css: pre#fancyvrb138{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb138{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb138{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb138{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb139{border-width:1.13809pt;}
+Css: pre#fancyvrb139{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb139{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb139{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb139{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb140{border-width:1.13809pt;}
+Css: pre#fancyvrb140{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb140{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb140{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb140{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb141{border-width:1.13809pt;}
+Css: pre#fancyvrb141{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb141{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb141{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb141{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb142{border-width:1.13809pt;}
+Css: pre#fancyvrb142{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb142{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb142{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb142{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb143{border-width:1.13809pt;}
+Css: pre#fancyvrb143{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb143{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb143{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb143{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb144{border-width:1.13809pt;}
+Css: pre#fancyvrb144{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb144{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb144{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb144{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb145{border-width:1.13809pt;}
+Css: pre#fancyvrb145{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb145{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb145{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb145{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb146{border-width:1.13809pt;}
+Css: pre#fancyvrb146{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb146{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb146{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb146{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb147{border-width:1.13809pt;}
+Css: pre#fancyvrb147{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb147{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb147{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb147{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb148{border-width:1.13809pt;}
+Css: pre#fancyvrb148{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb148{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb148{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb148{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb149{border-width:1.13809pt;}
+Css: pre#fancyvrb149{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb149{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb149{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb149{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb150{border-width:1.13809pt;}
+Css: pre#fancyvrb150{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb150{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb150{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb150{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb151{border-width:1.13809pt;}
+Css: pre#fancyvrb151{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb151{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb151{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb151{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb152{border-width:1.13809pt;}
+Css: pre#fancyvrb152{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb152{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb152{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb152{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb153{border-width:1.13809pt;}
+Css: pre#fancyvrb153{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb153{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb153{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb153{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb154{border-width:1.13809pt;}
+Css: pre#fancyvrb154{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb154{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb154{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb154{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb155{border-width:1.13809pt;}
+Css: pre#fancyvrb155{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb155{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb155{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb155{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb156{border-width:1.13809pt;}
+Css: pre#fancyvrb156{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb156{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb156{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb156{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb157{border-width:1.13809pt;}
+Css: pre#fancyvrb157{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb157{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb157{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb157{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb158{border-width:1.13809pt;}
+Css: pre#fancyvrb158{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb158{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb158{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb158{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb159{border-width:1.13809pt;}
+Css: pre#fancyvrb159{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb159{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb159{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb159{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb160{border-width:1.13809pt;}
+Css: pre#fancyvrb160{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb160{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb160{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb160{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb161{border-width:1.13809pt;}
+Css: pre#fancyvrb161{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb161{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb161{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb161{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb162{border-width:1.13809pt;}
+Css: pre#fancyvrb162{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb162{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb162{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb162{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb163{border-width:1.13809pt;}
+Css: pre#fancyvrb163{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb163{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb163{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb163{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb164{border-width:1.13809pt;}
+Css: pre#fancyvrb164{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb164{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb164{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb164{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb165{border-width:1.13809pt;}
+Css: pre#fancyvrb165{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb165{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb165{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb165{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb166{border-width:1.13809pt;}
+Css: pre#fancyvrb166{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb166{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb166{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb166{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb167{border-width:1.13809pt;}
+Css: pre#fancyvrb167{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb167{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb167{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb167{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb168{border-width:1.13809pt;}
+Css: pre#fancyvrb168{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb168{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb168{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb168{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb169{border-width:1.13809pt;}
+Css: pre#fancyvrb169{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb169{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb169{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb169{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb170{border-width:1.13809pt;}
+Css: pre#fancyvrb170{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb170{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb170{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb170{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb171{border-width:1.13809pt;}
+Css: pre#fancyvrb171{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb171{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb171{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb171{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb172{border-width:1.13809pt;}
+Css: pre#fancyvrb172{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb172{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb172{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb172{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb173{border-width:1.13809pt;}
+Css: pre#fancyvrb173{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb173{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb173{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb173{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb174{border-width:1.13809pt;}
+Css: pre#fancyvrb174{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb174{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb174{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb174{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb175{border-width:1.13809pt;}
+Css: pre#fancyvrb175{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb175{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb175{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb175{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb176{border-width:1.13809pt;}
+Css: pre#fancyvrb176{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb176{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb176{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb176{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb177{border-width:1.13809pt;}
+Css: pre#fancyvrb177{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb177{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb177{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb177{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb178{border-width:1.13809pt;}
+Css: pre#fancyvrb178{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb178{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb178{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb178{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb179{border-width:1.13809pt;}
+Css: pre#fancyvrb179{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb179{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb179{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb179{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb180{border-width:1.13809pt;}
+Css: pre#fancyvrb180{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb180{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb180{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb180{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb181{border-width:1.13809pt;}
+Css: pre#fancyvrb181{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb181{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb181{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb181{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb182{border-width:1.13809pt;}
+Css: pre#fancyvrb182{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb182{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb182{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb182{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb183{border-width:1.13809pt;}
+Css: pre#fancyvrb183{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb183{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb183{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb183{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb184{border-width:1.13809pt;}
+Css: pre#fancyvrb184{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb184{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb184{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb184{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb185{border-width:1.13809pt;}
+Css: pre#fancyvrb185{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb185{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb185{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb185{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb186{border-width:1.13809pt;}
+Css: pre#fancyvrb186{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb186{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb186{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb186{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb187{border-width:1.13809pt;}
+Css: pre#fancyvrb187{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb187{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb187{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb187{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb188{border-width:1.13809pt;}
+Css: pre#fancyvrb188{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb188{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb188{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb188{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb189{border-width:1.13809pt;}
+Css: pre#fancyvrb189{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb189{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb189{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb189{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb190{border-width:1.13809pt;}
+Css: pre#fancyvrb190{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb190{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb190{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb190{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb191{border-width:1.13809pt;}
+Css: pre#fancyvrb191{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb191{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb191{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb191{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[659] ==> geostats399x.svg ---
+--- needs --- geostats.idv[660] ==> geostats400x.svg ---
+l. 190 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/e-.png" "../figures/e.pdf" " ---
+File: ../figures/e-.png
+l. 193 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/e-.png" "../figures/e.pdf" " ---
+File: ../figures/e-.png
+l. 199 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/e-.png" "../figures/e.pdf" " ---
+File: ../figures/e-.png
+--- needs --- geostats.idv[662] ==> geostats401x.svg ---
+--- needs --- geostats.idv[663] ==> geostats402x.svg ---
+--- needs --- geostats.idv[665] ==> geostats403x.svg ---
+Css: #TBL-82-1{border-right:1px solid black;}
+--- needs --- geostats.idv[667] ==> geostats404x.svg ---
+--- needs --- geostats.idv[668] ==> geostats405x.svg ---
+Css: pre#fancyvrb192{border-width:1.13809pt;}
+Css: pre#fancyvrb192{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb192{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb192{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb192{ border-right: solid 1.13809pt; }
+Css: #TBL-83-1{border-right:1px solid black;}
+Css: #TBL-84-1{border-right:1px solid black;}
+Css: #TBL-85-1{border-right:1px solid black;}
+--- needs --- geostats.idv[670] ==> geostats406x.svg ---
+Css: #TBL-87-1{border-right:1px solid black;}
+Css: #TBL-88-1{border-right:1px solid black;}
+Css: #TBL-88-5{border-right:1px solid black;}
+Css: td#TBL-88-1-5{border-right:solid black 0.4pt;}
+Css: td#TBL-88-1-5{border-right:solid black 0.4pt;}
+Css: pre#fancyvrb193{border-width:1.13809pt;}
+Css: pre#fancyvrb193{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb193{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb193{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb193{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb194{border-width:1.13809pt;}
+Css: pre#fancyvrb194{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb194{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb194{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb194{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb195{border-width:1.13809pt;}
+Css: pre#fancyvrb195{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb195{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb195{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb195{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb196{border-width:1.13809pt;}
+Css: pre#fancyvrb196{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb196{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb196{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb196{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb197{border-width:1.13809pt;}
+Css: pre#fancyvrb197{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb197{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb197{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb197{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb198{border-width:1.13809pt;}
+Css: pre#fancyvrb198{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb198{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb198{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb198{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb199{border-width:1.13809pt;}
+Css: pre#fancyvrb199{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb199{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb199{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb199{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb200{border-width:1.13809pt;}
+Css: pre#fancyvrb200{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb200{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb200{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb200{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb201{border-width:1.13809pt;}
+Css: pre#fancyvrb201{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb201{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb201{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb201{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb202{border-width:1.13809pt;}
+Css: pre#fancyvrb202{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb202{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb202{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb202{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb203{border-width:1.13809pt;}
+Css: pre#fancyvrb203{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb203{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb203{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb203{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb204{border-width:1.13809pt;}
+Css: pre#fancyvrb204{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb204{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb204{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb204{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb205{border-width:1.13809pt;}
+Css: pre#fancyvrb205{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb205{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb205{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb205{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb206{border-width:1.13809pt;}
+Css: pre#fancyvrb206{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb206{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb206{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb206{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb207{border-width:1.13809pt;}
+Css: pre#fancyvrb207{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb207{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb207{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb207{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb208{border-width:1.13809pt;}
+Css: pre#fancyvrb208{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb208{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb208{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb208{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb209{border-width:1.13809pt;}
+Css: pre#fancyvrb209{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb209{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb209{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb209{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb210{border-width:1.13809pt;}
+Css: pre#fancyvrb210{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb210{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb210{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb210{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb211{border-width:1.13809pt;}
+Css: pre#fancyvrb211{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb211{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb211{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb211{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb212{border-width:1.13809pt;}
+Css: pre#fancyvrb212{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb212{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb212{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb212{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb213{border-width:1.13809pt;}
+Css: pre#fancyvrb213{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb213{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb213{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb213{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb214{border-width:1.13809pt;}
+Css: pre#fancyvrb214{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb214{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb214{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb214{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb215{border-width:1.13809pt;}
+Css: pre#fancyvrb215{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb215{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb215{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb215{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb216{border-width:1.13809pt;}
+Css: pre#fancyvrb216{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb216{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb216{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb216{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[672] ==> geostats407x.svg ---
+--- needs --- geostats.idv[673] ==> geostats408x.svg ---
+--- needs --- geostats.idv[674] ==> geostats409x.svg ---
+--- needs --- geostats.idv[675] ==> geostats410x.svg ---
+Css: pre#fancyvrb217{border-width:1.13809pt;}
+Css: pre#fancyvrb217{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb217{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb217{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb217{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[676] ==> geostats411x.svg ---
+--- needs --- geostats.idv[678] ==> geostats412x.svg ---
+Css: pre#fancyvrb218{border-width:1.13809pt;}
+Css: pre#fancyvrb218{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb218{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb218{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb218{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb219{border-width:1.13809pt;}
+Css: pre#fancyvrb219{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb219{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb219{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb219{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[679] ==> geostats413x.svg ---
+--- needs --- geostats.idv[681] ==> geostats414x.svg ---
+Css: pre#fancyvrb220{border-width:1.13809pt;}
+Css: pre#fancyvrb220{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb220{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb220{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb220{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb221{border-width:1.13809pt;}
+Css: pre#fancyvrb221{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb221{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb221{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb221{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb222{border-width:1.13809pt;}
+Css: pre#fancyvrb222{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb222{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb222{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb222{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb223{border-width:1.13809pt;}
+Css: pre#fancyvrb223{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb223{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb223{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb223{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb224{border-width:1.13809pt;}
+Css: pre#fancyvrb224{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb224{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb224{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb224{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb225{border-width:1.13809pt;}
+Css: pre#fancyvrb225{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb225{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb225{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb225{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb226{border-width:1.13809pt;}
+Css: pre#fancyvrb226{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb226{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb226{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb226{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb227{border-width:1.13809pt;}
+Css: pre#fancyvrb227{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb227{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb227{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb227{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb228{border-width:1.13809pt;}
+Css: pre#fancyvrb228{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb228{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb228{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb228{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[683] ==> geostats415x.svg ---
+--- needs --- geostats.idv[684] ==> geostats416x.svg ---
+--- needs --- geostats.idv[686] ==> geostats417x.svg ---
+Css: pre#fancyvrb229{border-width:1.13809pt;}
+Css: pre#fancyvrb229{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb229{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb229{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb229{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[687] ==> geostats418x.svg ---
+--- needs --- geostats.idv[688] ==> geostats419x.svg ---
+Css: pre#fancyvrb230{border-width:1.13809pt;}
+Css: pre#fancyvrb230{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb230{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb230{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb230{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb231{border-width:1.13809pt;}
+Css: pre#fancyvrb231{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb231{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb231{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb231{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb232{border-width:1.13809pt;}
+Css: pre#fancyvrb232{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb232{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb232{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb232{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb233{border-width:1.13809pt;}
+Css: pre#fancyvrb233{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb233{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb233{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb233{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb234{border-width:1.13809pt;}
+Css: pre#fancyvrb234{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb234{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb234{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb234{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb235{border-width:1.13809pt;}
+Css: pre#fancyvrb235{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb235{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb235{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb235{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb236{border-width:1.13809pt;}
+Css: pre#fancyvrb236{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb236{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb236{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb236{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb237{border-width:1.13809pt;}
+Css: pre#fancyvrb237{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb237{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb237{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb237{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb238{border-width:1.13809pt;}
+Css: pre#fancyvrb238{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb238{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb238{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb238{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb239{border-width:1.13809pt;}
+Css: pre#fancyvrb239{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb239{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb239{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb239{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb240{border-width:1.13809pt;}
+Css: pre#fancyvrb240{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb240{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb240{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb240{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[690] ==> geostats420x.svg ---
+--- needs --- geostats.idv[692] ==> geostats421x.svg ---
+--- needs --- geostats.idv[693] ==> geostats422x.svg ---
+--- needs --- geostats.idv[694] ==> geostats423x.svg ---
+--- needs --- geostats.idv[695] ==> geostats424x.svg ---
+--- needs --- geostats.idv[696] ==> geostats425x.svg ---
+--- needs --- geostats.idv[697] ==> geostats426x.svg ---
+--- needs --- geostats.idv[699] ==> geostats427x.svg ---
+Css: pre#fancyvrb241{border-width:1.13809pt;}
+Css: pre#fancyvrb241{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb241{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb241{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb241{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb242{border-width:1.13809pt;}
+Css: pre#fancyvrb242{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb242{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb242{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb242{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb243{border-width:1.13809pt;}
+Css: pre#fancyvrb243{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb243{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb243{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb243{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb244{border-width:1.13809pt;}
+Css: pre#fancyvrb244{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb244{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb244{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb244{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[701] ==> geostats428x.svg ---
+Css: pre#fancyvrb245{border-width:1.13809pt;}
+Css: pre#fancyvrb245{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb245{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb245{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb245{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb246{border-width:1.13809pt;}
+Css: pre#fancyvrb246{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb246{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb246{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb246{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[702] ==> geostats429x.svg ---
+--- needs --- geostats.idv[704] ==> geostats430x.svg ---
+--- needs --- geostats.idv[705] ==> geostats431x.svg ---
+--- needs --- geostats.idv[706] ==> geostats432x.svg ---
+--- needs --- geostats.idv[707] ==> geostats433x.svg ---
+--- needs --- geostats.idv[709] ==> geostats434x.svg ---
+--- needs --- geostats.idv[710] ==> geostats435x.svg ---
+--- needs --- geostats.idv[711] ==> geostats436x.svg ---
+--- needs --- geostats.idv[712] ==> geostats437x.svg ---
+--- needs --- geostats.idv[714] ==> geostats438x.svg ---
+Css: pre#fancyvrb247{border-width:1.13809pt;}
+Css: pre#fancyvrb247{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb247{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb247{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb247{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[715] ==> geostats439x.svg ---
+--- needs --- geostats.idv[716] ==> geostats440x.svg ---
+Css: pre#fancyvrb248{border-width:1.13809pt;}
+Css: pre#fancyvrb248{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb248{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb248{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb248{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[718] ==> geostats441x.svg ---
+--- needs --- geostats.idv[719] ==> geostats442x.svg ---
+--- needs --- geostats.idv[720] ==> geostats443x.svg ---
+--- needs --- geostats.idv[722] ==> geostats444x.svg ---
+--- needs --- geostats.idv[723] ==> geostats445x.svg ---
+--- needs --- geostats.idv[724] ==> geostats446x.svg ---
+--- needs --- geostats.idv[725] ==> geostats447x.svg ---
+--- needs --- geostats.idv[727] ==> geostats448x.svg ---
+--- needs --- geostats.idv[728] ==> geostats449x.svg ---
+--- needs --- geostats.idv[729] ==> geostats450x.svg ---
+Css: pre#fancyvrb249{border-width:1.13809pt;}
+Css: pre#fancyvrb249{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb249{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb249{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb249{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[731] ==> geostats451x.svg ---
+--- needs --- geostats.idv[732] ==> geostats452x.svg ---
+Css: pre#fancyvrb250{border-width:1.13809pt;}
+Css: pre#fancyvrb250{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb250{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb250{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb250{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb251{border-width:1.13809pt;}
+Css: pre#fancyvrb251{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb251{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb251{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb251{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb252{border-width:1.13809pt;}
+Css: pre#fancyvrb252{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb252{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb252{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb252{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[734] ==> geostats453x.svg ---
+--- needs --- geostats.idv[735] ==> geostats454x.svg ---
+--- needs --- geostats.idv[736] ==> geostats455x.svg ---
+--- needs --- geostats.idv[737] ==> geostats456x.svg ---
+Css: pre#fancyvrb253{border-width:1.13809pt;}
+Css: pre#fancyvrb253{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb253{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb253{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb253{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[739] ==> geostats457x.svg ---
+Css: pre#fancyvrb254{border-width:1.13809pt;}
+Css: pre#fancyvrb254{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb254{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb254{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb254{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb255{border-width:1.13809pt;}
+Css: pre#fancyvrb255{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb255{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb255{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb255{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb256{border-width:1.13809pt;}
+Css: pre#fancyvrb256{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb256{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb256{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb256{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb257{border-width:1.13809pt;}
+Css: pre#fancyvrb257{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb257{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb257{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb257{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb258{border-width:1.13809pt;}
+Css: pre#fancyvrb258{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb258{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb258{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb258{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb259{border-width:1.13809pt;}
+Css: pre#fancyvrb259{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb259{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb259{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb259{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb260{border-width:1.13809pt;}
+Css: pre#fancyvrb260{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb260{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb260{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb260{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb261{border-width:1.13809pt;}
+Css: pre#fancyvrb261{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb261{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb261{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb261{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb262{border-width:1.13809pt;}
+Css: pre#fancyvrb262{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb262{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb262{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb262{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb263{border-width:1.13809pt;}
+Css: pre#fancyvrb263{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb263{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb263{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb263{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb264{border-width:1.13809pt;}
+Css: pre#fancyvrb264{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb264{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb264{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb264{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb265{border-width:1.13809pt;}
+Css: pre#fancyvrb265{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb265{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb265{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb265{ border-right: solid 1.13809pt; }
+--- needs --- geostats.idv[741] ==> geostats458x.svg ---
+Css: pre#fancyvrb266{border-width:1.13809pt;}
+Css: pre#fancyvrb266{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb266{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb266{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb266{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb267{border-width:1.13809pt;}
+Css: pre#fancyvrb267{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb267{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb267{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb267{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb268{border-width:1.13809pt;}
+Css: pre#fancyvrb268{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb268{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb268{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb268{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb269{border-width:1.13809pt;}
+Css: pre#fancyvrb269{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb269{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb269{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb269{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb270{border-width:1.13809pt;}
+Css: pre#fancyvrb270{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb270{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb270{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb270{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb271{border-width:1.13809pt;}
+Css: pre#fancyvrb271{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb271{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb271{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb271{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb272{border-width:1.13809pt;}
+Css: pre#fancyvrb272{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb272{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb272{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb272{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb273{border-width:1.13809pt;}
+Css: pre#fancyvrb273{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb273{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb273{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb273{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb274{border-width:1.13809pt;}
+Css: pre#fancyvrb274{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb274{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb274{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb274{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb275{border-width:1.13809pt;}
+Css: pre#fancyvrb275{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb275{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb275{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb275{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb276{border-width:1.13809pt;}
+Css: pre#fancyvrb276{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb276{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb276{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb276{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb277{border-width:1.13809pt;}
+Css: pre#fancyvrb277{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb277{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb277{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb277{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb278{border-width:1.13809pt;}
+Css: pre#fancyvrb278{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb278{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb278{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb278{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb279{border-width:1.13809pt;}
+Css: pre#fancyvrb279{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb279{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb279{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb279{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb280{border-width:1.13809pt;}
+Css: pre#fancyvrb280{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb280{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb280{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb280{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb281{border-width:1.13809pt;}
+Css: pre#fancyvrb281{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb281{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb281{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb281{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb282{border-width:1.13809pt;}
+Css: pre#fancyvrb282{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb282{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb282{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb282{ border-right: solid 1.13809pt; }
+l. 1435 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/PCAiris-.png" "../figures/PCAiris.pdf" " ---
+File: ../figures/PCAiris-.png
+Css: pre#fancyvrb283{border-width:1.13809pt;}
+Css: pre#fancyvrb283{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb283{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb283{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb283{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb284{border-width:1.13809pt;}
+Css: pre#fancyvrb284{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb284{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb284{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb284{ border-right: solid 1.13809pt; }
+l. 1478 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/elbow-.png" "../figures/elbow.pdf" " ---
+File: ../figures/elbow-.png
+Css: pre#fancyvrb285{border-width:1.13809pt;}
+Css: pre#fancyvrb285{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb285{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb285{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb285{ border-right: solid 1.13809pt; }
+l. 1499 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/DZtree-.png" "../figures/DZtree.pdf" " ---
+File: ../figures/DZtree-.png
+Css: pre#fancyvrb286{border-width:1.13809pt;}
+Css: pre#fancyvrb286{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb286{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb286{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb286{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb287{border-width:1.13809pt;}
+Css: pre#fancyvrb287{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb287{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb287{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb287{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb288{border-width:1.13809pt;}
+Css: pre#fancyvrb288{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb288{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb288{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb288{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb289{border-width:1.13809pt;}
+Css: pre#fancyvrb289{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb289{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb289{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb289{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb290{border-width:1.13809pt;}
+Css: pre#fancyvrb290{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb290{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb290{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb290{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb291{border-width:1.13809pt;}
+Css: pre#fancyvrb291{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb291{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb291{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb291{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb292{border-width:1.13809pt;}
+Css: pre#fancyvrb292{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb292{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb292{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb292{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb293{border-width:1.13809pt;}
+Css: pre#fancyvrb293{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb293{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb293{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb293{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb294{border-width:1.13809pt;}
+Css: pre#fancyvrb294{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb294{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb294{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb294{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb295{border-width:1.13809pt;}
+Css: pre#fancyvrb295{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb295{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb295{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb295{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb296{border-width:1.13809pt;}
+Css: pre#fancyvrb296{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb296{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb296{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb296{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb297{border-width:1.13809pt;}
+Css: pre#fancyvrb297{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb297{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb297{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb297{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb298{border-width:1.13809pt;}
+Css: pre#fancyvrb298{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb298{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb298{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb298{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb299{border-width:1.13809pt;}
+Css: pre#fancyvrb299{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb299{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb299{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb299{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb300{border-width:1.13809pt;}
+Css: pre#fancyvrb300{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb300{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb300{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb300{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb301{border-width:1.13809pt;}
+Css: pre#fancyvrb301{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb301{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb301{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb301{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb302{border-width:1.13809pt;}
+Css: pre#fancyvrb302{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb302{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb302{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb302{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb303{border-width:1.13809pt;}
+Css: pre#fancyvrb303{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb303{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb303{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb303{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb304{border-width:1.13809pt;}
+Css: pre#fancyvrb304{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb304{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb304{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb304{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb305{border-width:1.13809pt;}
+Css: pre#fancyvrb305{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb305{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb305{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb305{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb306{border-width:1.13809pt;}
+Css: pre#fancyvrb306{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb306{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb306{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb306{ border-right: solid 1.13809pt; }
+l. 1721 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/testPCA-.png" "../figures/testPCA.pdf" " ---
+File: ../figures/testPCA-.png
+Css: pre#fancyvrb307{border-width:1.13809pt;}
+Css: pre#fancyvrb307{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb307{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb307{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb307{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb308{border-width:1.13809pt;}
+Css: pre#fancyvrb308{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb308{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb308{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb308{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb309{border-width:1.13809pt;}
+Css: pre#fancyvrb309{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb309{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb309{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb309{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb310{border-width:1.13809pt;}
+Css: pre#fancyvrb310{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb310{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb310{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb310{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb311{border-width:1.13809pt;}
+Css: pre#fancyvrb311{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb311{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb311{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb311{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb312{border-width:1.13809pt;}
+Css: pre#fancyvrb312{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb312{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb312{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb312{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb313{border-width:1.13809pt;}
+Css: pre#fancyvrb313{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb313{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb313{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb313{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb314{border-width:1.13809pt;}
+Css: pre#fancyvrb314{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb314{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb314{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb314{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb315{border-width:1.13809pt;}
+Css: pre#fancyvrb315{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb315{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb315{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb315{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb316{border-width:1.13809pt;}
+Css: pre#fancyvrb316{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb316{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb316{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb316{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb317{border-width:1.13809pt;}
+Css: pre#fancyvrb317{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb317{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb317{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb317{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb318{border-width:1.13809pt;}
+Css: pre#fancyvrb318{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb318{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb318{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb318{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb319{border-width:1.13809pt;}
+Css: pre#fancyvrb319{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb319{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb319{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb319{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb320{border-width:1.13809pt;}
+Css: pre#fancyvrb320{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb320{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb320{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb320{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb321{border-width:1.13809pt;}
+Css: pre#fancyvrb321{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb321{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb321{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb321{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb322{border-width:1.13809pt;}
+Css: pre#fancyvrb322{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb322{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb322{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb322{ border-right: solid 1.13809pt; }
+l. 1901 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/hills-.png" "../figures/hills.pdf" " ---
+File: ../figures/hills-.png
+Css: pre#fancyvrb323{border-width:1.13809pt;}
+Css: pre#fancyvrb323{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb323{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb323{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb323{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb324{border-width:1.13809pt;}
+Css: pre#fancyvrb324{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb324{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb324{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb324{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb325{border-width:1.13809pt;}
+Css: pre#fancyvrb325{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb325{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb325{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb325{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb326{border-width:1.13809pt;}
+Css: pre#fancyvrb326{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb326{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb326{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb326{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb327{border-width:1.13809pt;}
+Css: pre#fancyvrb327{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb327{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb327{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb327{ border-right: solid 1.13809pt; }
+Css: pre#fancyvrb328{border-width:1.13809pt;}
+Css: pre#fancyvrb328{ border-top: solid 1.13809pt; }
+Css: pre#fancyvrb328{ border-left: solid 1.13809pt; }
+Css: pre#fancyvrb328{ border-bottom: solid 1.13809pt; }
+Css: pre#fancyvrb328{ border-right: solid 1.13809pt; }
+l. 1971 --- needs --- "rungs -q -dNOPAUSE -dBATCH -dusecropbox -sDEVICE=pngalpha -r300  -sOutputFile="../figures/sphvsexp-.png" "../figures/sphvsexp.pdf" " ---
+File: ../figures/sphvsexp-.png
+--- characters ---
+Font("cmr","10","10","100")
+Font("cmr","10","10","109")
+Font("cmr","17","17","143")
+Font("cmr","12","12","100")
+Font("cmr","12","12","120")
+Font("cmtt","12","12","100")
+Font("cmtt","10","10","109")
+Font("cmr","8","8","100")
+Font("cmr","6","6","100")
+Font("cmmi","10","10","109")
+Font("cmmi","8","8","100")
+Font("cmmi","6","6","100")
+Font("cmsy","10","10","109")
+Font("cmsy","8","8","100")
+Font("cmsy","6","6","100")
+Font("cmex","10","10","109")
+Font("cmex","8","8","100")
+Font("cmti","10","10","109")
+Font("cmbxti","10","10","109")
+Font("cmbx","10","10","109")
+Font("cmr","9","9","100")
+Font("cmti","9","9","100")
+Font("cmmi","9","9","100")
+Font("cmsy","9","9","100")
+Font("cmbx","8","8","100")
+Font("ifsym","10","10","109")
+Font("cmmib","10","10","109")
+Font("cmtt","9","9","100")

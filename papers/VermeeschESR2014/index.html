@@ -1,0 +1,1595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Thermal history modelling: HeFTy vs. QTQt</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="HEFTYvsQTQt4web.tex"> 
+<meta name="date" content="2014-09-22 17:01:00"> 
+<link rel="stylesheet" type="text/css" href="HEFTYvsQTQt4web.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body >
+<table class="main" ><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Thermal history modelling: HeFTy vs. QTQt</h2>
+<div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span><span 
+class="cmsy-8">*</span> <span 
+class="cmr-12">and Yuntao Tian</span>
+<br />                 <span 
+class="cmr-12">&#x00A0;</span>
+<br />   <span 
+class="cmr-12">London Geochronology Centre</span>
+<br />   <span 
+class="cmti-12">Department of Earth Sciences</span>
+<br />     <span 
+class="cmr-12">University College London</span></div><br />
+<div class="date" ></div>
+   </div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 15--><p class="noindent" >
+<!--l. 15--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 16--><p class="indent" >    <span 
+class="cmtt-9">HeFTy </span><span 
+class="cmr-9">is a popular thermal history modelling program which is named after a brand of trash bags as a</span>
+     <span 
+class="cmr-9">reminder of the &#8216;garbage in, garbage out&#8217; principle. </span><span 
+class="cmtt-9">QTQt </span><span 
+class="cmr-9">is an alternative program whose name refers to its</span>
+     <span 
+class="cmr-9">ability to extract visually appealing (&#8216;cute&#8217;) time-temperature paths from complex thermochronological</span>
+     <span 
+class="cmr-9">datasets. This paper compares and contrasts the two programs and aims to explain the algorithmic</span>
+     <span 
+class="cmr-9">underpinnings of these &#8216;black boxes&#8217; with some simple examples. Both codes consist of &#8216;forward&#8217; and</span>
+     <span 
+class="cmr-9">&#8216;inverse&#8217; modelling functionalities. The &#8216;forward model&#8217; allows the user to predict the expected data</span>
+     <span 
+class="cmr-9">distribution  for  any  given  thermal  history.  The  &#8216;inverse  model&#8217;  finds  the  thermal  history  that  best</span>
+     <span 
+class="cmr-9">matches some input data. </span><span 
+class="cmtt-9">HeFTy </span><span 
+class="cmr-9">and </span><span 
+class="cmtt-9">QTQt </span><span 
+class="cmr-9">are based on the same physical principles and their forward</span>
+     <span 
+class="cmr-9">modelling functionalities are therefore nearly identical. In contrast, their inverse modelling algorithms</span>
+     <span 
+class="cmr-9">are fundamentally different, with important consequences. </span><span 
+class="cmtt-9">HeFTy </span><span 
+class="cmr-9">uses a &#8216;Frequentist&#8217; approach, in which</span>
+     <span 
+class="cmr-9">formalised statistical hypothesis tests assess the goodness-of-fit between the input data and the thermal</span>
+     <span 
+class="cmr-9">model predictions. </span><span 
+class="cmtt-9">QTQt </span><span 
+class="cmr-9">uses a Bayesian &#8216;Markov Chain Monte Carlo&#8217; (MCMC) algorithm, in which a</span>
+     <span 
+class="cmr-9">random walk through model space results in an assemblage of &#8216;most likely&#8217; thermal histories. In principle,</span>
+     <span 
+class="cmr-9">the main advantage of the Frequentist approach is that it contains a built-in quality control mechanism</span>
+     <span 
+class="cmr-9">which detects bad data (&#8216;garbage&#8217;) and protects the novice user against applying inappropriate models.</span>
+     <span 
+class="cmr-9">In practice, however, this quality-control mechanism does not work for small or imprecise datasets due</span>
+     <span 
+class="cmr-9">to an undesirable sensitivity of the Frequentist algorithm to sample size, which causes </span><span 
+class="cmtt-9">HeFTy </span><span 
+class="cmr-9">to &#8216;break&#8217;</span>
+     <span 
+class="cmr-9">when datasets are sufficiently large or precise. </span><span 
+class="cmtt-9">QTQt </span><span 
+class="cmr-9">does not suffer from this problem, as its performance</span>
+     <span 
+class="cmr-9">improves with increasing sample size in the form of tighter credibility intervals. However, the robustness</span>
+     <span 
+class="cmr-9">of the MCMC approach also carries a risk, as </span><span 
+class="cmtt-9">QTQt </span><span 
+class="cmr-9">will accept physically impossible datasets and come</span>
+     <span 
+class="cmr-9">up with &#8216;best fitting&#8217; thermal histories for them. This can be dangerous in the hands of novice users. In</span>
+     <span 
+class="cmr-9">conclusion, the name &#8216;</span><span 
+class="cmtt-9">HeFTy</span><span 
+class="cmr-9">&#8217; would have been more appropriate for </span><span 
+class="cmtt-9">QTQt</span><span 
+class="cmr-9">, and vice versa.</span>
+</div>
+<!--l. 54--><p class="indent" >   <span 
+class="cmti-10">keywords: thermochronology; modelling; statistics; software; fission tracks; (U-Th)/He</span>
+
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 59--><p class="noindent" >Thermal history modelling is an integral part of dozens of tectonic studies published each year [e.g., (<a 
+href="#Xtian2014">1</a>;&#x00A0;<a 
+href="#Xkarlstrom2014">2</a>;&#x00A0;<a 
+href="#Xcochrane2014">3</a>)]. Over
+the years, a number of increasingly sophisticated software packages have been developed to extract
+time-temperature paths from fission track, U-Th-He, <sup><span 
+class="cmr-7">4</span></sup>He/<sup><span 
+class="cmr-7">3</span></sup>He and vitrinite reflectance data [e.g., (<a 
+href="#Xcorrigan1991">4</a>;&#x00A0;<a 
+href="#Xgallagher1995">5</a>;&#x00A0;<a 
+href="#Xwillett1997">6</a>;&#x00A0;<a 
+href="#Xketcham2000">7</a>)]. The
+current &#8216;market leaders&#8217; in inverse modelling are <span 
+class="cmtt-10">HeFTy </span>(<a 
+href="#Xketcham2005">8</a>) and <span 
+class="cmtt-10">QTQt </span>(<a 
+href="#Xgallagher2012">9</a>). Like most well written software, <span 
+class="cmtt-10">HeFTy </span>and
+<span 
+class="cmtt-10">QTQt </span>hide all their implementation details behind a user friendly graphical interface. This paper has two goals. First,
+it provides a &#8216;glimpse under the bonnet&#8217; of these two &#8216;black boxes&#8217; and second, it presents an objective and
+independent comparison of both programs. We show that the differences between <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>are significant
+and explain why it is important for the user to be aware of them. To make the text accessible to a wide readership,
+the main body of this paper uses little or no algebra (further theoretical background is deferred to
+the appendices). Instead, we illustrate the strengths and weaknesses of both programs by example.
+The first half of the paper applies the two inverse modelling approaches to a simple problem of linear
+regression. Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a> shows that both algorithms give identical results for well behaved datasets of
+moderate size (Section <a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:linear --></a>). However, increasing the sample size makes the &#8216;Frequentist&#8217; approach used by
+<span 
+class="cmtt-10">HeFTy </span>increasingly sensitive to even small deviations from linearity (Section <a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:nonlinear --></a>). In contrast, the
+&#8216;MCMC&#8217; method used by <span 
+class="cmtt-10">QTQt </span>is insensitive to violations of the model assumptions, so that even a
+strongly non-linear dataset will produce a &#8216;best fitting&#8217; straight line (Section <a 
+href="#x1-50002.3">2.3<!--tex4ht:ref: sec:polynomial --></a>). The second part of
+the paper demonstrates that the same two observations also apply to multivariate thermal history
+inversions. Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a> uses real thermochonological data to illustrate how one can easily &#8216;break&#8217; <span 
+class="cmtt-10">HeFTy</span>
+by simply feeding it with too much high quality data (Section <a 
+href="#x1-70003.1">3.1<!--tex4ht:ref: sec:breakingbad --></a>), and how <span 
+class="cmtt-10">QTQt </span>manages to come
+up with a tightly constrained thermal history for physically impossible datasets (Section <a 
+href="#x1-80003.2">3.2<!--tex4ht:ref: sec:garbage --></a>). Thus,
+<span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>are perfectly complementary to each other in terms of their perceived strengths and
+weaknesses.
+<!--l. 99--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Part I: linear regression</h3>
+<!--l. 102--><p class="noindent" >Before venturing into the complex multivariate world of thermochronology, we will first discuss the issues of inverse
+modelling in the simpler context of linear regression. The bivariate data in this problem [<span 
+class="cmsy-10">{</span>x,y<span 
+class="cmsy-10">} </span>where
+x=<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,x</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,...,x</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">} </span>and y=<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">y</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,...,y</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,...,y</span><sub><span 
+class="cmmi-7">n</span></sub><span 
+class="cmsy-10">}</span>] will be generated using a polynomial function of the
+form:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="HEFTYvsQTQt4web0x.png" alt="              2
+yi = a + bxi +cxi + &#x03F5;i
+" class="math-display" ><a 
+ id="x1-2001r1"></a></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 112--><p class="nopar" >
+<!--l. 114--><p class="indent" >   where a, b and c are constants and <span 
+class="cmmi-10">&#x03F5;</span><sub><span 
+class="cmmi-7">i</span></sub> are the &#8216;residuals&#8217;, which are drawn at random from a Normal distribution
+with zero mean and standard deviation <span 
+class="cmmi-10">&#x03C3;</span>. We will try to fit these data using a two-parameter linear
+model:
+   <table 
+class="equation"><tr><td>
+
+   <center class="math-display" >
+<img 
+src="HEFTYvsQTQt4web1x.png" alt="y = A + Bx
+" class="math-display" ><a 
+ id="x1-2002r2"></a></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 122--><p class="nopar" >
+<!--l. 124--><p class="indent" >   On an abstract level, <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>are two-way maps between the &#8216;data space&#8217; <span 
+class="cmsy-10">{</span>x,y<span 
+class="cmsy-10">} </span>and &#8216;model space&#8217;
+<span 
+class="cmsy-10">{</span>A,B<span 
+class="cmsy-10">}</span>. Both programs comprise a &#8216;forward model&#8217;, which predicts the expected data distribution for any given set
+or parameter values, and an &#8216;inverse model&#8217;, which achieves the opposite end (Figure <a 
+href="#x1-20031">1<!--tex4ht:ref: fig:mapping --></a>). Both <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>use a
+probabilistic approach to finding the set of models <span 
+class="cmsy-10">{</span>A,B<span 
+class="cmsy-10">} </span>that best fit the data <span 
+class="cmsy-10">{</span>x,y<span 
+class="cmsy-10">}</span>, but they do so in very
+different ways, as discussed next.
+<!--l. 133--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20031"></a>
+
+<!--l. 135--><p class="center" ><a href="fig1.png"><img src="fig1.png" width=800 alt="PICT" ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content"><span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>are &#8216;two-way maps&#8217; between the &#8216;data space&#8217; on the left and the &#8216;model space&#8217; on
+the right. Inverse modelling is a two-step process. It involves (a) generating some random models from which
+synthetic data can be predicted and (b) comparing these &#8216;forward models&#8217; with the actual measurements.
+<span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>fundamentally differ in both steps (Section <a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:linear --></a>).</span></div><!--tex4ht:label?: x1-20031 -->
+
+<!--l. 170--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a>Linear regression of linear data</h4>
+<!--l. 175--><p class="noindent" >For the first case study, consider a synthetic dataset of n=10 data points drawn from Equation <a 
+href="#x1-2001r1">1<!--tex4ht:ref: eq:data --></a> with a=5, b=2,
+c=0 and <span 
+class="cmmi-10">&#x03C3;</span>=1 (Figure <a 
+href="#x1-30042">2<!--tex4ht:ref: fig:linear1 --></a>(i)). It is easy to fit a straight line model through these data and determine parameters
+A and B of Equation <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:model --></a> analytically by ordinary least squares regression. However, for the sake of
+illustrating the algorithms used by <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt</span>, it is useful to do the same exercise by numerical
+modelling. In the following, the words &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; and &#8216;<span 
+class="cmtt-10">QTQt</span>&#8217; will be placed in inverted commas when
+reference is made to the underlying methods, rather than the actual computer programs by (<a 
+href="#Xketcham2005">8</a>) and
+(<a 
+href="#Xgallagher2012">9</a>).<br 
+class="newline" />
+<!--l. 187--><p class="indent" >   &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; explores the &#8216;model space&#8217; by generating a large number (N) of independent random intercepts and
+slopes (A<sub><span 
+class="cmmi-7">j</span></sub>,B<sub><span 
+class="cmmi-7">j</span></sub> for j=1<span 
+class="cmsy-10">&#x2192;</span>N), drawn from a joint uniform distribution (Figure <a 
+href="#x1-30042">2<!--tex4ht:ref: fig:linear1 --></a>(ii)). Each of these pairs corresponds to
+a straight line model, resulting in a set of residuals (y<sub><span 
+class="cmmi-7">i</span></sub> - A<sub><span 
+class="cmmi-7">j</span></sub> - B<sub><span 
+class="cmmi-7">j</span></sub> x<sub><span 
+class="cmmi-7">i</span></sub>) which can be combined into a least-squares
+goodness-of-fit statistic:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="HEFTYvsQTQt4web3x.png" alt=" 2     &#x2211;n (yi --Aj --Bjxi)2
+&#x03C7;stat =          &#x03C3;2
+        i
+" class="math-display" ><a 
+ id="x1-3001r3"></a></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 198--><p class="nopar" >
+<!--l. 200--><p class="indent" >   Low and high <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup>-values correspond to good and bad data fits, respectively. Under the
+&#8216;Frequentist&#8217; paradigm of statistics (see Appendix A), <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> can be used to formally test the
+hypothesis (&#8216;<span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub>&#8217;) that the data were drawn from a straight line model with a=A<sub><span 
+class="cmmi-7">j</span></sub>, b=B<sub><span 
+class="cmmi-7">j</span></sub> and c=0.
+Under this hypothesis, <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> is predicted to follow a &#8216;Chi-square distribution with n-2 degrees of
+freedom&#8217;<span class="footnote-mark"><a 
+href="HEFTYvsQTQt4web2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-3002f1"></a>:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="HEFTYvsQTQt4web4x.png" alt="                  2         2
+P (x,y|Aj,Bj) = P (&#x03C7;stat|H0 ) ~ &#x03C7;n-2
+
+" class="math-display" ><a 
+ id="x1-3003r4"></a></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 213--><p class="nopar" >
+<!--l. 215--><p class="indent" >   Where &#8216;P(X<span 
+class="cmsy-10">|</span>Y)&#8217; stands for &#8220;the probability of X given Y&#8221;. The &#8216;likelihood function&#8217; <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">x,y</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub>) allows us to
+test how &#8216;likely&#8217; the data are under the proposed model. The probability of observing a value at least as extreme as
+<span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> under the proposed (Chi-square) distribution is called the &#8216;p-value&#8217;. <span 
+class="cmtt-10">HeFTy </span>uses cutoff-values of 0.05 and 0.5
+to indicate &#8216;acceptable&#8217; and &#8216;good&#8217; model fits. Out of N=1000 models tested in Figure <a 
+href="#x1-30042">2<!--tex4ht:ref: fig:linear1 --></a>(i-ii), 50 fall in the first, and
+180 in the second category.<br 
+class="newline" />
+<!--l. 225--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30042"></a>
+
+<a href="fig2.png"><img width=800 src="fig2.png"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">(i) &#8211; white circles show 10 data points drawn from a linear model (black line) with Normal
+residuals (<span 
+class="cmmi-10">&#x03C3;</span>=1). Red and green lines show the linear trends that best fit the data according to the Chi-square
+test; (ii) &#8211; the &#8216;Frequentist&#8217; Monte Carlo algorithm (&#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217;) makes 1000 independent random guesses for
+the intercept (A) and slope (B) drawn from a joint uniform distribution. A Chi-square goodness-of-fit test
+is done for each of these guesses. p-values <span 
+class="cmmi-10">&#x003E;</span>0.05 and and <span 
+class="cmmi-10">&#x003E;</span>0.5 are marked as green (&#8216;acceptable&#8217;) and red
+(&#8216;good&#8217;), respectively. (iii) &#8211; white circles and black line are the same as in (i). The colour of the pixels
+(ranging from blue to red) is proportional to the number of &#8216;acceptable&#8217; linear fits passing through them using
+the &#8216;Bayesian&#8217; algorithm (&#8216;<span 
+class="cmtt-10">QTQt</span>&#8217;). (iv) &#8211; &#8216;<span 
+class="cmtt-10">QTQt</span>&#8217;makes a random walk (&#8216;Markov Chain&#8217;) through parameter
+space, sampling the &#8216;posterior distribution&#8217; and yielding an &#8216;assemblage&#8217; of best fitting slopes and intercepts
+(black dots and lines).</span></div><!--tex4ht:label?: x1-30042 -->
+
+<!--l. 247--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 249--><p class="indent" >   <span 
+class="cmtt-10">QTQt </span>also explores the &#8216;model space&#8217; by random sampling, but it goes about this in a very different way than
+<span 
+class="cmtt-10">HeFTy</span>. Instead of &#8216;carpet bombing&#8217; the parameter space with uniformly distributed independent values, <span 
+class="cmtt-10">QTQt</span>
+performs a random walk of <span 
+class="cmti-10">serially dependent </span>random values. Starting from a random guess anywhere in the
+parameter space, this &#8216;Markov Chain&#8217; of random models systematically samples the model space so that models
+with high <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">x,y</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub>) are more likely to be accepted than those with low values. Thus, <span 
+class="cmtt-10">QTQt </span>bases the decision
+whether or not to accept or reject the <span 
+class="cmmi-10">j</span><sup><span 
+class="cmmi-7">th</span></sup> model not on the absolute value of <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">x,y</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub>), but on the ratio of
+<span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">x,y</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub>) / <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">x,y</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>). See Appendix B for further details about Markov Chain Monte Carlo (MCMC)
+modelling. The important thing to note at this point is that in well behaved systems like our linear
+dataset, <span 
+class="cmtt-10">QTQt</span>&#8217;s MCMC approach yields identical results to <span 
+class="cmtt-10">HeFTy</span>&#8217;s Frequentist algorithm (Figure
+<a 
+href="#x1-30042">2<!--tex4ht:ref: fig:linear1 --></a>(ii)-(iv)).
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a>Linear regression of weakly non-linear data</h4>
+<!--l. 270--><p class="noindent" >The physical models which geologists use to describe the diffusion of helium or the annealing of fission tracks are but
+approximations of reality. To simulate this fact in our linear regression example, we will now try to fit
+a linear model to a weakly non-linear dataset generated using Equation <a 
+href="#x1-2001r1">1<!--tex4ht:ref: eq:data --></a> with a=5, b=2, c=0.02
+and <span 
+class="cmmi-10">&#x03C3;</span>=1. First, we consider a small sample of n=10 samples from this distribution (Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:linear2 --></a>(i)). The
+quadratic term (i.e., c) is so small that the naked eye cannot spot the non-linearity of these data, and
+neither can &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217;. Using the same number of N=1000 random guesses as before, &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; finds 41
+acceptable and 186 good fits using the <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup>-test (Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:linear2 --></a>(ii)). In other words, with a sample size of
+n=10, the non-linearity of the input data is &#8216;statistically insignificant&#8217; relative to the data scatter
+<span 
+class="cmmi-10">&#x03C3;</span>.<br 
+class="newline" />
+<!--l. 285--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40013"></a>
+
+<a href="fig3.png"><img src="fig3.png" width=800></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">(i) &#8211; as Figure <a 
+href="#x1-30042">2<!--tex4ht:ref: fig:linear1 --></a>(i) but using slightly non-linear input. (ii) &#8211; as Figure <a 
+href="#x1-30042">2<!--tex4ht:ref: fig:linear1 --></a>(ii): with a sample size of
+just 10 and relatively noisy data (<span 
+class="cmmi-10">&#x03C3;</span>=1) &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; has no trouble finding best fitting linear models, and neither
+does &#8216;<span 
+class="cmtt-10">QTQt</span>&#8217; (not shown). </span></div><!--tex4ht:label?: x1-40013 -->
+
+<!--l. 294--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 296--><p class="indent" >   The situation is very different when we increase the sample size to n=100 (Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:linear3 --></a>(i)-(ii)). In this case, &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217;
+fails to find even a single linear model yielding a p-value greater than 0.05. The reason for this is
+that the &#8216;power&#8217; of statistical tests such as Chi-square increases with sample size (see Appendix C
+for further details). Even the smallest deviation from linearity becomes &#8216;statistically significant&#8217; if a
+sufficiently large dataset is available. This is important for thermochronology, as will be illustrated in
+Section <a 
+href="#x1-70003.1">3.1<!--tex4ht:ref: sec:breakingbad --></a>. Similarly, the statistical significance also increases with analytical precision. Reducing
+<span 
+class="cmmi-10">&#x03C3; </span>from 1 to 0.2 has the same effect as increasing the sample size, as &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; again fails to find any
+&#8216;good&#8217; solutions (Figure <a 
+href="#x1-50015">5<!--tex4ht:ref: fig:linear4 --></a>(i)-(ii)). &#8216;<span 
+class="cmtt-10">QTQt</span>&#8217;, on the other hand, handles the large (Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:linear3 --></a>(iii)-(iv)) and
+precise (Figure <a 
+href="#x1-50015">5<!--tex4ht:ref: fig:linear4 --></a>(iii)-(iv)) datasets much better. In fact, increasing the quantity (sample size) or quality
+(precision) of the data only has beneficial effects as it tightens the solution space (Figure <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:linear3 --></a>(iv) vs.
+<a 
+href="#x1-50015">5<!--tex4ht:ref: fig:linear4 --></a>(iv)).
+<!--l. 316--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40024"></a>
+
+<a href="fig4.png"><img src="fig4.png" width=800></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">(i)-(ii) as Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:linear2 --></a>(i)-(ii) but with a sample size of 100: &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; does not manage to find even a
+single &#8216;acceptable&#8217; linear fit to the data. (iii)-(iv) &#8211; the same data analysed by &#8216;<span 
+class="cmtt-10">QTQt</span>&#8217;, which has no problems
+in finding a tight fit.</span></div><!--tex4ht:label?: x1-40024 -->
+
+<!--l. 327--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-50002.3"></a>Linear regression of strongly non-linear data</h4>
+<!--l. 332--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50015"></a>
+
+<a href="fig5.png"><img src="fig5.png" width=800></a> <br>
+
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">(i)-(ii) &#8211; as Figures <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:linear2 --></a>(i)-(ii) and <a 
+href="#x1-40024">4<!--tex4ht:ref: fig:linear3 --></a>(i)-(ii) but with higher precision data (<span 
+class="cmmi-10">&#x03C3;</span>=0.2 instead of 1).
+Again, &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; fails to find any &#8216;acceptable&#8217; solutions. (iii)-(iv) &#8211; the same data analysed by &#8216;<span 
+class="cmtt-10">QTQt</span>&#8217;, which
+works fine.</span></div><!--tex4ht:label?: x1-50015 -->
+
+<!--l. 343--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 345--><p class="indent" >   For the third and final case study of our linear regression exercise, consider a pathological dataset produced by
+setting a=26, b=-10, c=1 and <span 
+class="cmmi-10">&#x03C3;</span>=1. The resulting data points fall on a parabolic line, which is far removed from
+the 2-parameter linear model of Equation <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:model --></a>. Needless to say, the &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; algorithm does not find any
+&#8216;acceptable&#8217; models. Nevertheless, the <span 
+class="cmtt-10">QTQt</span>-like MCMC algorithm has no trouble fitting a straight line
+through these data. Although the resulting likelihoods are orders of magnitude below those of Figure <a 
+href="#x1-30042">2<!--tex4ht:ref: fig:linear1 --></a>,
+their actual values are not used to assess the goodness-of-fit, because the algorithm only evaluates the
+relative ratios of the likelihood for adjacent models in the Markov Chain (Appendix B). It is up to the
+subjective judgement of the user to decide whether to accept or reject the proposed inverse models.
+This is very easy to do in the simple regression example of this section, but may be significantly more
+complcated for high-dimensional problems such as the thermal history modelling discussed in the
+next section. In conclusion, the simple linear regression toy example has taught us that (a) the ability
+of a Frequentist algorithm such as <span 
+class="cmtt-10">HeFTy </span>to find a suitable inverse model critically depends on the
+quality <span 
+class="cmti-10">and </span>quantity of the input data; while (b) the opposite is true for a Bayesian algorithm like <span 
+class="cmtt-10">QTQt</span>,
+which always finds a suite of suitable models, regardless how large or bad a dataset is fed into it.
+The next section of this paper will show that the same principles apply in exactly the same way to
+thermochronology.
+<!--l. 371--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50026"></a>
+
+<a href="fig6.png"><img src="fig6.png" width=800></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6: </span><span  
+class="content">(i) &#8211; white circles show 10 data points drawn from a strongly non-linear model (black line). (ii)
+&#8211; although it clearly does not make any sense to fit a straight line through these data, &#8216;<span 
+class="cmtt-10">QTQt</span>&#8217; nevertheless
+manages to do exactly that. &#8216;<span 
+class="cmtt-10">HeFTy</span>&#8217; (not shown), of course, does not.</span></div><!--tex4ht:label?: x1-50026 -->
+
+<!--l. 380--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-60003"></a>Part II: thermal history modelling</h3>
+<!--l. 385--><p class="noindent" >The previous section revealed significant differences between &#8216;<span 
+class="cmtt-10">HeFTy</span>-like&#8217; and &#8216;<span 
+class="cmtt-10">QTQt</span>-like&#8217; inverse modelling
+approaches to a simple two-dimensional problem of linear regression. Both algorithms were shown to yield identical
+results in the presence of small and well-behaved datasets. However, their response differed in response to
+large or poorly behaved datasets. We will now show that exactly the same phenomenon manifests
+itself in the multi-dimensional context of thermal history modelling. First, we will use a geologically
+straightforward thermochronological dataset to &#8216;break&#8217; <span 
+class="cmtt-10">HeFTy </span>(Section <a 
+href="#x1-70003.1">3.1<!--tex4ht:ref: sec:breakingbad --></a>). Then, we will use a physically
+impossible dataset to demonstrate that it is impossible to break <span 
+class="cmtt-10">QTQt </span>even when we want to (Section
+<a 
+href="#x1-80003.2">3.2<!--tex4ht:ref: sec:garbage --></a>).
+<!--l. 398--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-70003.1"></a>Large datasets &#8216;break&#8217; <span 
+class="cmtt-10">HeFTy</span></h4>
+<!--l. 401--><p class="noindent" >We will investigate <span 
+class="cmtt-10">HeFTy </span>with a large but otherwise unremarkable sample and using generic software settings like
+those used by the majority of published <span 
+class="cmtt-10">HeFTy </span>applications. The sample (&#8216;KL29&#8217;) was collected from a Mesozoic
+granite located in the central Tibetan Plateau (GPS: 33.87N, 95.33E). It is characterised by a 102 <span 
+class="cmsy-10">&plusmn;</span>
+7 Ma AFT age and a mean (unprojected) track length of <span 
+class="cmsy-10">~</span>12.1 <span 
+class="cmmi-10">&#x03BC;</span>m, which was calculated from a
+dataset of 821 horizontally confined fission tracks. It is the large size of our dataset that allows us to
+push <span 
+class="cmtt-10">HeFTy </span>to its limits. In addition to the AFT data, we also measured five apatite U-Th-He (AHe)
+ages, ranging from 47-66 Ma. AFT and AHe analyses were done at the University of Melbourne and
+University College London using procedures outlined by (<a 
+href="#Xtian2014">1</a>) and (<a 
+href="#Xcarter2014">10</a>), respectively. For the thermal history
+modelling, we used the multi-kinetic annealing model of (<a 
+href="#Xketcham2007">11</a>), employing Dpar as a kinetic parameter.
+Helium diffusion in apatite was modelled with the Radiation Damage Accumulation and Annealing
+Model (RDAAM) of (<a 
+href="#Xflowers2009">12</a>). Goodness-of-fit requirements for &#8216;good&#8217; and &#8216;acceptable&#8217; thermal paths were
+defined as 0.5 and 0.05 (see Section <a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:linear --></a>) and the present-day mean surface temperature was set to 15 <span 
+class="cmsy-10">&plusmn;</span>
+15<sup><span 
+class="cmsy-7">&#x2218;</span></sup>C. To speed up the inverse modelling, it was necessary to specify a number of &#8216;bounding boxes&#8217; in
+time-temperature (t-T) space. The first of these t-T constraints was set at 140<sup><span 
+class="cmsy-7">&#x2218;</span></sup>C/200Ma &#8211; 20<sup><span 
+class="cmsy-7">&#x2218;</span></sup>C/180Ma, i.e.
+slightly before the oldest AFT age. Five more equally broad boxes were used to guide the thermal
+history modelling (Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>). The issue of &#8216;bounding boxes&#8217; will be discussed in more detail in Section
+<a 
+href="#x1-100005">5<!--tex4ht:ref: sec:boxes --></a>.<br 
+class="newline" />
+<!--l. 430--><p class="indent" >   In a first experiment, we modelled a small subset of our data comprising just the first 100 track length
+measurements. After one million iterations, <span 
+class="cmtt-10">HeFTy </span>returned 39 &#8216;good&#8217; and 1,373 &#8216;acceptable&#8217; thermal histories,
+featuring a poorly resolved phase prior to 120 Ma, followed by rapid cooling to <span 
+class="cmsy-10">~</span>60<sup><span 
+class="cmsy-7">&#x2218;</span></sup>C, a protracted isothermal
+residence in the upper part of the AFT partial annealing zone from 120-40 Ma, and ending with a phase of more
+rapid cooling from 60 to 15<sup><span 
+class="cmsy-7">&#x2218;</span></sup>C since 40 Ma. This is in every way an unremarkable thermal history, which correctly
+reproduces the negatively skewed (c-axis projected) track length distribution, and predicts AFT and AHe ages of
+102 and 59 Ma, respectively, well within the range of the input data (Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>(i)). Next, we move on to a
+larger dataset, which was generated using the same AFT and AHe ages as before, but measuring an
+extra 269 confined fission tracks in the same slide as the previously measured 100 tracks. Despite the
+addition of so many extra measurements, the resulting length distribution looks very similar to the
+smaller dataset. Nevertheless, <span 
+class="cmtt-10">HeFTy </span>struggles to find suitable thermal histories. In fact, the program
+fails to find a single &#8216;good&#8217; t-T path even after a million iterations, and only comes up with a measly
+109 &#8216;acceptable&#8217; solutions. A closer look at the model predictions reveals that <span 
+class="cmtt-10">HeFTy </span>does a decent
+job at modelling the track length distribution, but that this comes at the expense of the AFT and
+AHe age predictions, which are further removed from the measured values than in the small dataset
+(Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>(ii)). In a final experiment, we prepared a second fission track slide for sample KL29, yielding a
+
+further 452 fission track length measurements. This brings the total tally of the length distribution
+to an unprecedented 821 measurements, allowing us to push <span 
+class="cmtt-10">HeFTy </span>to its breaking point. After one
+million iterations, <span 
+class="cmtt-10">HeFTy </span>does not manage to find even a single &#8216;acceptable&#8217; t-T path (Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>(iii)).
+<br 
+class="newline" />
+<!--l. 463--><p class="indent" >   It is troubling that <span 
+class="cmtt-10">HeFTy </span>performs worse for large datasets than it does for small ones. It seems unfair that the
+user should be penalised for the addition of extra data. The reasons for this behaviour will be discussed in Section <a 
+href="#x1-90004">4<!--tex4ht:ref: sec:discussion --></a>.
+But first, we shall have a closer look at <span 
+class="cmtt-10">QTQt</span>, which has no problem fitting the large dataset (Figure <a 
+href="#x1-80018">8<!--tex4ht:ref: fig:Anti-QTQt --></a>(i)) but poses
+some completely different challenges.
+<!--l. 471--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-70017"></a>
+
+<a href="fig7.png"><img src="fig7.png" width=800></a>
+
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7: </span><span  
+class="content">Data (left column) and inverse model solutions (right column) produced by <span 
+class="cmtt-10">HeFTy </span>[v1.8.2, (<a 
+href="#Xketcham2005">8</a>)] for
+sample KL29. (c-axis projected) track length distributions are shown as histograms. Bounding boxes (blue)
+were used to reduce the model space and speed up the inverse modelling (Section <a 
+href="#x1-100005">5<!--tex4ht:ref: sec:boxes --></a>). (i) &#8211; red and green
+time temperature (t-T) paths mark &#8216;good&#8217; and &#8216;acceptable&#8217; fits to the data, corresponding to p-values of 0.5
+and 0.05, respectively. (ii) &#8211; as the number of track length measurements (n) increases, p-values decrease
+(for reasons given in Appendix C) and <span 
+class="cmtt-10">HeFTy </span>struggles to find acceptable solutions. (iii) &#8211; eventually, when
+n=821, the program &#8216;breaks&#8217;.</span></div><!--tex4ht:label?: x1-70017 -->
+
+<!--l. 487--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-80003.2"></a>&#8216;garbage in, garbage out&#8217; with <span 
+class="cmtt-10">QTQt</span></h4>
+<!--l. 492--><p class="noindent" >Contrary to <span 
+class="cmtt-10">HeFTy</span>, <span 
+class="cmtt-10">QTQt </span>does not mind large datasets. In fact, its inverse modelling results improve with the
+addition of more data. This is because large datasets allow the &#8216;reversible jump MCMC&#8217; algorithm (Appendix B) to
+add more anchor points to the candidate models, thereby improving the resolution of the t-T history. Thus, <span 
+class="cmtt-10">QTQt</span>
+does not punish but reward the user for adding data. For the full 821-length dataset of KL29, this results in a
+thermal history similar to the <span 
+class="cmtt-10">HeFTy </span>model of Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>(i). We therefore conclude that <span 
+class="cmtt-10">QTQt </span>is much more robust
+than <span 
+class="cmtt-10">HeFTy </span>in handling large and possible complex datasets. However, this greater robustness also carries a danger
+with it, as will be shown next. We now apply <span 
+class="cmtt-10">QTQt </span>to a semi-synthetic dataset generated by arbitrarily
+changing the AHe age of sample KL29 from 55 <span 
+class="cmsy-10">&plusmn; </span>5 Ma to 102 <span 
+class="cmsy-10">&plusmn; </span>7 Ma, i.e. identical to its AFT age. As
+discussed in Section <a 
+href="#x1-70003.1">3.1<!--tex4ht:ref: sec:breakingbad --></a>, the sample has a short (<span 
+class="cmsy-10">~</span>12.1 <span 
+class="cmmi-10">&#x03BC;</span>m) mean (unprojected) fission track length,
+indicating slow cooling through the AFT partial annealing zone. The identical AFT and AHe ages,
+however, imply infinitely rapid cooling. The combination of the AFT and AHe data is therefore physically
+impossible and, not surprisingly, <span 
+class="cmtt-10">HeFTy </span>fails to find a single &#8216;acceptable&#8217; fit even for a moderate sized
+dataset of 100 track lengths. <span 
+class="cmtt-10">QTQt</span>, however, has no problem finding a &#8216;most likely&#8217; solution (Figure
+<a 
+href="#x1-80018">8<!--tex4ht:ref: fig:Anti-QTQt --></a>(ii)).<br 
+class="newline" />
+<!--l. 516--><p class="indent" >   The resulting assemblage of models is characterised by a long period of isothermal holding at the base of the
+AFT partial annealing zone (<span 
+class="cmsy-10">~</span>120 <sup><span 
+class="cmsy-7">&#x2218;</span></sup>C), followed by rapid cooling at 100Ma, gentle heating to the AHe partial
+retention zone (<span 
+class="cmsy-10">~</span>60 <sup><span 
+class="cmsy-7">&#x2218;</span></sup>C) until 20 Ma and rapid cooling to the surface thereafter (Figure <a 
+href="#x1-80018">8<!--tex4ht:ref: fig:Anti-QTQt --></a>(ii)). This assemblage of
+thermal history models is largely unremarkable and does not, in itself, indicate any problems with the input data.
+These problems only become clear when we compare the measured with the modelled data. While the fit
+to the track length measurements is good, the AFT and AHe ages are off by 20%. It is then up to
+the user to decide whether or not this is &#8216;significant&#8217; enough to reject the model results. This is not
+necessarily as straightforward as it may seem. For instance, the original <span 
+class="cmtt-10">QTQt </span>paper by [Figure 7, (<a 
+href="#Xgallagher2012">9</a>)]
+presents a dataset in which the measured and modelled values for the kinetic parameter DPar differ by
+25%. In this case, the author has made a subjective decision to attach less credibility to the DPar
+measurement. This may very well be (and probably is) justified, but nevertheless requires expert knowledge of
+thermochronology while remaining, once again, subjective. This subjectivity is the price of Bayesian MCMC
+modelling.
+<!--l. 537--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-80018"></a>
+
+<a href="fig8.png"><img src="fig8.png" width=800></a>
+
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8: </span><span  
+class="content">Data (left) and models (right) produced by <span 
+class="cmtt-10">QTQt </span>[v4.5, (<a 
+href="#Xgallagher2012">9</a>)], after a &#8216;burn-in&#8217; period of 500,000
+iterations, followed by another 500,000 &#8216;post-burn-in&#8217; iterations. No time or temperature constraints were
+given apart from a broad search limit of 102 <span 
+class="cmsy-10">&plusmn; </span>102 Ma and 70 <span 
+class="cmsy-10">&plusmn; </span>70 <sup><span 
+class="cmsy-7">&#x2218;</span></sup>C. (i) &#8211; <span 
+class="cmtt-10">QTQt </span>has no trouble fitting the
+large dataset that broke <span 
+class="cmtt-10">HeFTy </span>in Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>. (ii) &#8211; neither does <span 
+class="cmtt-10">QTQt </span>complain when a physically impossible
+dataset with short fission tracks and identical AFT and AHe ages is fed into it. Note that the &#8216;measured&#8217;
+mean track lengths reported in this table are slightly different from those of Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>, despite being based
+on exactly the same data. This is because <span 
+class="cmtt-10">QTQt </span>calculates the c-axis projected values using an average Dpar
+for all lengths, whereas <span 
+class="cmtt-10">HeFTy </span>uses the relevant Dpar for each length.</span></div><!--tex4ht:label?: x1-80018 -->
+
+<!--l. 556--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-90004"></a>Discussion</h3>
+<!--l. 561--><p class="noindent" >The behaviour shown by <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>in a thermochronological context (Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a>) is identical to the toy
+example of linear regression (Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a>). <span 
+class="cmtt-10">HeFTy </span>is &#8216;too picky&#8217; when it comes to large datasets and <span 
+class="cmtt-10">QTQt </span>is &#8216;not picky
+enough&#8217; when it comes to bad datasets. These opposite types of behaviour are a direct consequence of the statistical
+underpinnings of the two programs. The sample size dependence of <span 
+class="cmtt-10">HeFTy </span>is caused by the fact that it
+judges the merits of the trial models by means of formalised statistical hypothesis tests, notably the
+Kolmogorov-Smirnov (K-S) and <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup>-tests. These tests are designed to make a black or white decision as to whether
+the hypothesis is right or wrong. However, as stated in Section <a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:nonlinear --></a>, the physical models produced by Science
+(including Geology) are &#8220;but approximations of reality&#8221; and are therefore always &#8216;somewhat wrong&#8217;.
+This should be self-evident from a brief look at the Settings menu of <span 
+class="cmtt-10">HeFTy</span>, which offers the user
+the choice between, for example, the kinetic annealing model of (<a 
+href="#Xlaslett1987">13</a>) or (<a 
+href="#Xketcham2007">11</a>). Surely it is logically
+impossible for both models to be correct. Yet for sufficiently small samples, <span 
+class="cmtt-10">HeFTy </span>will find plenty of
+&#8216;good&#8217; t-T paths in both cases. The truth of the matter is that both the (<a 
+href="#Xlaslett1987">13</a>) and the (<a 
+href="#Xketcham2007">11</a>) models are
+incorrect, albeit to different degrees. As sample size increases, the &#8216;power&#8217; of statistical tests such as K-S
+and <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup> to detect the &#8216;wrongness&#8217; of the annealing models increases as well (Appendix C). Thus, as
+we keep adding fission track length measurements to our dataset, <span 
+class="cmtt-10">HeFTy </span>will find it more and more
+difficult to find &#8216;acceptable&#8217; t-T paths. Suppose, for the sake of the argument, that the (<a 
+href="#Xlaslett1987">13</a>) annealing
+model is &#8216;more wrong&#8217; than the (<a 
+href="#Xketcham2007">11</a>) model. This will manifest itself in the fact that beyond a critical
+sample size, <span 
+class="cmtt-10">HeFTy </span>will fail to find even a single &#8216;acceptable&#8217; model using the (<a 
+href="#Xlaslett1987">13</a>) model, while the (<a 
+href="#Xketcham2007">11</a>)
+model will still yield a small number of &#8216;non-disprovable&#8217; t-T paths. However, if we further increase the
+sample size beyond this point, then even the (<a 
+href="#Xketcham2007">11</a>) model will eventually fail to yield any &#8216;acceptable&#8217;
+solutions.<br 
+class="newline" />
+<!--l. 598--><p class="indent" >   The problem is that Geology itself imposes unrealistic assumptions on our thermal modelling efforts. Our
+understanding of diffusion and annealing kinetics is based on short term experiments carried out in completely
+different environments than the geological processes which we aim to understand. For example, helium diffusion
+experiments are done under ultra-high vacuum at temperatures of hundreds of degrees over a duration of at most a
+few weeks. These are very different conditions than those found in the natural environment, where diffusion takes
+place under hydrostatic pressure at a few tens of degrees over millions of years (<a 
+href="#Xvilla2006">14</a>). But even if we
+disregard this problem, and imagine a utopian scenario in which our annealing and diffusion models are an
+exact description of reality, the p-value conundrum would persist, because there are dozens of other
+experimental factors that can go wrong, resulting in dozens of reasons for K-S and <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup> to reject the data.
+Examples are observer bias in AFT analysis (<a 
+href="#Xketcham2009">15</a>) or inaccurate <span 
+class="cmmi-10">&#x03B1;</span>-ejection correction due to undetected
+U-Th-zonation in AHe dating (<a 
+href="#Xhourigan2005">16</a>). Given a large enough data set, K-S and <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup> will be able to &#8216;see&#8217; these
+effects.<br 
+class="newline" />
+<!--l. 618--><p class="indent" >   One apparent solution to this problem is to adjust the p-value cutoffs for &#8216;good&#8217; and &#8216;acceptable&#8217; models from
+their default values of 0.5 and 0.05 to another value, in order to account for differences in sample size. Thus, large
+datasets would require lower p-values than small ones. The aim of such a procedure would be to objectively accept
+or reject models based on a sample-independent &#8216;effect size&#8217; (see Appendix C). Although this sounds easy enough in
+theory, the implementation details are not straightforward. The problem is that <span 
+class="cmtt-10">HeFTy </span>is very flexible in
+accepting many different types of data and it is unclear how these can be normalised in a common
+reference frame. For example, one data set might include only AFT data, a second AFT as well as AHe
+data, while a third might throw some vitrinite reflectance data into the mix as well. Each of these
+different types of data is evaluated by a different statistical test, and it is unclear how to consistently
+account for sample size in this situation. On a related note, it is important to discuss the current way in
+which <span 
+class="cmtt-10">HeFTy </span>combines the p-values for each of the previously mentioned hypothesis tests. Sample
+KL29 of Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a>, for example, yields three different p-values: one for the fission track lengths, one
+
+for the AFT ages and one for the AHe ages. <span 
+class="cmtt-10">HeFTy </span>bases the decision whether to reject or accept a
+t-T path based on the lowest of these three values (<a 
+href="#Xketcham2005">8</a>). This causes a second level of problems, as the
+chance of erroneously rejecting a correct null hypothesis (a so-called &#8216;Type-I error&#8217;) increases with
+the number of simultaneous hypothesis tests. In this case we recommend that the user adjust the
+p-value cutoff by dividing it by the number of datasets (i.e., use a cutoff of 0.5/3 = 0.17 for &#8216;good&#8217;
+and 0.05/3 = 0.017 for &#8216;acceptable&#8217; models). This is called the &#8216;Bonferroni correction&#8217; [e.g., p.424 of
+(<a 
+href="#Xrice1995">17</a>)].<br 
+class="newline" />
+<!--l. 649--><p class="indent" >   In summary, the very idea to use statistical hypothesis tests to evaluate the model space is problematic.
+Unfortunately, we cannot use p-values to make a reliable decision to find out whether a model is &#8216;good&#8217; or
+&#8216;acceptable&#8217;, independent of sample size. <span 
+class="cmtt-10">QTQt </span>avoids this problem by <span 
+class="cmti-10">ranking </span>the models from &#8216;bad&#8217; to &#8216;worse&#8217;, and
+then selecting the &#8216;most likely&#8217; ones according to the posterior probability (Appendix A). Because the MCMC
+algorithm employed by <span 
+class="cmtt-10">QTQt </span>only determines the posterior probability up to a multiplicative constant, it does not
+care &#8216;how bad&#8217; the fit to the data is. The advantage of this approach is that it always produces approximately the
+same number of solutions, regardless of sample size. The disadvantage is that the ability to automatically detect and
+reject faulty datasets is lost. This may not be a problem, one might think, if sufficient care is taken to ensure
+that the analytical data are sound and correct. However, that does not exclude the possibility that
+there are flaws in the forward modelling routines. For example, recall the two fission track annealing
+models previously mentioned in Section <a 
+href="#x1-90004">4<!--tex4ht:ref: sec:discussion --></a>. Although the (<a 
+href="#Xketcham2007">11</a>) model may be a better representation of
+reality than the (<a 
+href="#Xlaslett1987">13</a>) model and, therefore, yield more &#8216;good&#8217; fits in <span 
+class="cmtt-10">HeFTy</span>, the difference would be
+invisible to <span 
+class="cmtt-10">QTQt </span>users. The program will always yield an assemblage of t-T models, regardless of the
+annealing model used. As a second example, consider the poor age reproducibility that characterises
+many U-Th-He datasets and which has long puzzled geochronologists (<a 
+href="#Xfitzgerald2006">18</a>). A number of explanations
+have been proposed to explain this dispersion over the years, ranging from invisible and insoluble
+actinide-rich mineral inclusions (<a 
+href="#Xvermeesch2007b">19</a>), <span 
+class="cmmi-10">&#x03B1;</span>-implantation by &#8216;bad neighbours&#8217; (<a 
+href="#Xspiegel2009">20</a>), fragmentation during mineral
+separation (<a 
+href="#Xbrown2013">21</a>) and radiation damage due to <span 
+class="cmmi-10">&#x03B1;</span>-recoil (<a 
+href="#Xflowers2009">12</a>). The latter two hypotheses are linked to precise
+forward models which can easily be incorporated into inverse modelling software such as <span 
+class="cmtt-10">HeFTy </span>and
+<span 
+class="cmtt-10">QTQt</span>. Some have argued that dispersed data are to be preferred over non-dispersed measurements
+because they offer more leverage for t-T modelling (<a 
+href="#Xbeucher2013">22</a>). However, all this assumes that the physical
+models are correct, which, given the fact that there are so many competing &#8216;schools of thought&#8217;, is
+unlikely to be true in all situations. Nevertheless, <span 
+class="cmtt-10">QTQt </span>will take whatever assumption specified by
+the user and run with it. It is important to note that <span 
+class="cmtt-10">HeFTy </span>is not immune to these problems either.
+Because sophisticated physical models such as RDAAM comprise many additional parameters and,
+hence, &#8216;degrees of freedom&#8217;, the statistical tests used by <span 
+class="cmtt-10">HeFTy </span>are easily underpowered (Appendix
+C), yielding many &#8216;good&#8217; solutions and producing a false sense of confidence in the inverse modelling
+results.<br 
+class="newline" />
+<!--l. 696--><p class="indent" >   In conclusion, the evaluation of whether an inverse model is physically sound is more subjective in <span 
+class="cmtt-10">QTQt </span>than it
+is in <span 
+class="cmtt-10">HeFTy</span>. There is no easy way to detect analytical errors or invalid model assumptions other than by subjectively
+comparing the predicted data with the input measurements. Note that it is possible to &#8216;fix&#8217; this limitation of <span 
+class="cmtt-10">QTQt</span>
+by explicitly evaluating the multiplicative constant given by the denominator in Bayes&#8217; Theorem (Appendix A). We
+could then set a cutoff value for the posterior probability to define &#8216;good&#8217; and &#8216;acceptable&#8217; models, just
+like in <span 
+class="cmtt-10">HeFTy</span>. However, this would cause exactly the same problems of sample size dependency as
+we saw earlier. Conversely, <span 
+class="cmtt-10">HeFTy </span>could be modified in the spirit of <span 
+class="cmtt-10">QTQt</span>, by using the p-values to
+<span 
+class="cmti-10">rank </span>models from &#8216;bad&#8217; to &#8216;worst&#8217;, and then simply plotting the &#8216;most likely&#8217; ones. Unfortunately,
+the problem with this approach is the sensitivity of <span 
+class="cmtt-10">HeFTy </span>to the dimensionality of the model space.
+In order to be able to objectively compare two samples using the proposed ranking algorithm, the
+parameter space should be devoid of &#8216;bounding boxes&#8217;, and be fixed to a constant search range in
+time and temperature. This would make <span 
+class="cmtt-10">HeFTy </span>unreasonably slow, for reasons explained in Section
+<a 
+href="#x1-100005">5<!--tex4ht:ref: sec:boxes --></a>.
+
+<!--l. 718--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-100005"></a>On the selection of time-temperature constraints</h3>
+<!--l. 721--><p class="noindent" >As we saw in Section <a 
+href="#x1-70003.1">3.1<!--tex4ht:ref: sec:breakingbad --></a>, <span 
+class="cmtt-10">HeFTy </span>allows, and generally even requires, the user to constrain the search space
+by means of &#8216;bounding boxes&#8217;. Often these boxes are chosen to correspond to geological constraints,
+such as known phases of surface exposure inferred from independently dated unconformities. But even
+when no formal geological constraints are available, the program often still requires bounding boxes to
+speed up the modelling. This is a manifestation of the so-called &#8216;curse of dimensionality&#8217;, which is a
+problem caused by the exponential increase in &#8216;volume&#8217; associated with adding extra dimensions to a
+mathematical space. Consider, for example, a unit interval. The average nearest neighbour distance
+between 10 random samples from this interval will be 0.1. To achieve the same sampling density for a
+unit square requires not 10 but 100 samples, and for a unit cube 1000 samples. The parameter space
+explored by <span 
+class="cmtt-10">HeFTy </span>comprises not two or three but commonly dozens of parameters (i.e., anchor points in
+time-temperature space), requiring tens of thousands of uniformly distributed random sets to be explored in
+order to find the tiny subset of statistically plausible models. Furthermore, the &#8216;sampling density&#8217; of
+<span 
+class="cmtt-10">HeFTy</span>&#8217;s randomly selected t-T paths also depends on the allowed range of time and temperature. For
+example, keeping the temperature range equal, it takes twice as long to sample a t-T space spanning 200
+Myr than one spanning 100 Myr. Thus, old samples tend to take much longer to model than young
+ones. The only way for <span 
+class="cmtt-10">HeFTy </span>to get around this problem is by shrinking the search space. One way to
+do this is to only permit monotonically rising t-T paths. Another is to use &#8216;bounding boxes&#8217;, like in
+Section <a 
+href="#x1-70003.1">3.1<!--tex4ht:ref: sec:breakingbad --></a> and Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>. It is important not to make these boxes too small, especially when they
+are derived from geological constraints. Otherwise the set of &#8216;acceptable&#8217; inverse models may simply
+connect one box to the next, mimicking the geological constraints without adding any new geological
+insight.<br 
+class="newline" />
+<!--l. 754--><p class="indent" >   The curse of dimensionality affects <span 
+class="cmtt-10">QTQt </span>in a different way than <span 
+class="cmtt-10">HeFTy</span>. As explained in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a>, <span 
+class="cmtt-10">QTQt </span>does not
+explore the multi-dimensional parameter space by means of independent random uniform guesses, but by performing
+a random walk which explores just a small subset of that space. Thus, an increase in dimensionality does not
+significantly slow down <span 
+class="cmtt-10">QTQt</span>. However, this does not mean that <span 
+class="cmtt-10">QTQt </span>is insensitive to the dimensionality of the
+search space. The &#8216;reversible jump MCMC&#8217; algorithm allows the number of parameters to vary from
+one trial model to the next (Appendix B). To prevent spurious overfitting of the data, this number
+of parameters is usually quite low. Whereas <span 
+class="cmtt-10">HeFTy </span>commonly uses ten or more anchor points (i.e.
+<span 
+class="cmmi-10">&#x003E;</span>20 parameters) to define a t-T path, <span 
+class="cmtt-10">QTQt </span>uses far fewer than that. For example, the maximum
+likelihood models in Figure <a 
+href="#x1-80018">8<!--tex4ht:ref: fig:Anti-QTQt --></a> use just three and six t-T anchor points for the datasets comprising 100
+and 821 track lengths, respectively. The crudeness of these models is masked by averaging, either
+through the graphical trick of colour-coding the number of intersecting t-T paths, or by integrating the
+model assemblages into &#8216;maximum mode&#8217; and &#8216;expected&#8217; models (<a 
+href="#Xsambridge2006">23</a>;&#x00A0;<a 
+href="#Xgallagher2012">9</a>). It is not entirely clear how
+these averaged models relate to physical reality, but a thorough discussion of this subject falls outside
+the scope of this paper. Instead, we would like to redirect our attention to the subject of &#8216;bounding
+boxes&#8217;.<br 
+class="newline" />
+<!--l. 779--><p class="indent" >   Although <span 
+class="cmtt-10">QTQt </span>does allow the incorporation of geological constraints, we would urge the user to refrain from
+using this facility for the following reason. As we saw in Sections <a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:nonlinear --></a> and <a 
+href="#x1-80003.2">3.2<!--tex4ht:ref: sec:garbage --></a>, <span 
+class="cmtt-10">QTQt </span>always finds a &#8216;most likely&#8217;
+thermal history, even when the data are physically impossible. Thus, in contrast with <span 
+class="cmtt-10">HeFTy</span>, <span 
+class="cmtt-10">QTQt </span>cannot
+be used to <span 
+class="cmti-10">disprove </span>the geological constraints. We would argue that this, in itself, is reason enough
+not to use &#8216;bounding boxes&#8217; in <span 
+class="cmtt-10">QTQt</span>. Incidentally, we would also like to make the point that, to our
+knowledge, no thermal history model has ever been shown to independently reproduce known geological
+constraints such as a well dated unconformity followed by burial. Such empirical validation is badly
+needed to justify the degree of faith many users seem to have in interpreting subtle details of thermal
+history models. This point becomes ever more important as thermochronology is increasingly being used
+outside the academic community, and is affecting business decisions in, for example, the hydrocarbon
+industry.
+
+<!--l. 797--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-110006"></a>Conclusions</h3>
+<!--l. 799--><p class="noindent" >There are three differences between the methodology used by <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt</span>:
+<!--l. 802--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-11002x1"><span 
+class="cmtt-10">HeFTy </span>is a &#8216;Frequentist&#8217; algorithm which evaluates the likelihood P(x,y<span 
+class="cmsy-10">|</span>A,B) of the data (<span 
+class="cmsy-10">{</span>x,y<span 
+class="cmsy-10">}</span>, e.g.
+     two-dimensional plot coordinates in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a> or AFT and AHe data in Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a>) given the model
+     (<span 
+class="cmsy-10">{</span>A,B<span 
+class="cmsy-10">}</span>, e.g., slopes and intercepts in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a> or anchor points of t-T paths in Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a>). <span 
+class="cmtt-10">QTQt</span>, on the
+     other hand, follows a &#8216;Bayesian&#8217; paradigm in which inferences are based on the posterior probability
+     P(A,B<span 
+class="cmsy-10">|</span>x,y) of the model given the data (Appendix A).
+     </li>
+     <li 
+  class="enumerate" id="x1-11004x2"><span 
+class="cmtt-10">HeFTy </span>evaluates the model space (i.e., the set of all possible slopes in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a>, or all possible t-T paths
+     in Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a>) using mutually independent random uniform draws. In contrast, <span 
+class="cmtt-10">QTQt </span>explores the model
+     space by collecting an assemblage of serially dependent random models over the course of a random
+     walk (Appendix B).
+     </li>
+     <li 
+  class="enumerate" id="x1-11006x3"><span 
+class="cmtt-10">HeFTy </span>accepts or rejects candidate models based on the actual value of the likelihood, via a derived
+     quantity  called  the  &#8216;p-value&#8217;  (Appendix  C).  <span 
+class="cmtt-10">QTQt </span>simply  ranks  the  models  in  decreasing  order  of
+     posterior probability and plots the most likely ones.</li></ol>
+<!--l. 825--><p class="indent" >   Of these three differences, the first one (&#8216;Frequentist&#8217; vs. &#8216;Bayesian&#8217;) is actually the least important. In fact, one
+could easily envisage a Bayesian algorithm which behaves identical to <span 
+class="cmtt-10">HeFTy</span>, by explicitly evaluating the posterior
+probability, as discussed in Section <a 
+href="#x1-90004">4<!--tex4ht:ref: sec:discussion --></a>. Conversely, in the regression example of Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a>, the posterior probability is
+proportional to the likelihood, so that one would be justified in calling the resulting MCMC model &#8216;Frequentist&#8217;.
+The second and third difference between <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>are much more important. Even though <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt</span>
+produce similar looking assemblages of t-T paths, the statistical meaning of these assemblages is fundamentally
+different. The output of <span 
+class="cmtt-10">HeFTy </span>comprises <span 
+class="cmti-10">&#8220;all those t-T paths which cannot be rejected with the available evidence&#8221;</span>.
+In contrast, the assemblages of t-T paths generated by <span 
+class="cmtt-10">QTQt </span>contain <span 
+class="cmti-10">&#8220;the most likely t-T paths, assuming</span>
+<span 
+class="cmti-10">that the data are good and the model assumptions are appropriate&#8221;</span>. The difference between these two
+definitions goes much deeper than mere semantics. It reveals a fundamental difference in the way the
+model results of both programs ought to be interpreted. In the case of <span 
+class="cmtt-10">HeFTy</span>, a &#8216;successful&#8217; inversion
+yielding many &#8216;good&#8217; and &#8216;acceptable&#8217; t-T paths may simply indicate that there is insufficient evidence to
+extract meaningful thermal history information from the data. As for <span 
+class="cmtt-10">QTQt</span>, its t-T reconstructions
+are effectively meaningless unless they are plotted alongside the input data and model predictions.
+<br 
+class="newline" />
+<!--l. 851--><p class="indent" >   <span 
+class="cmtt-10">HeFTy </span>is named after a well known brand of waste disposal bags, as a welcome reminder of the &#8216;garbage in,
+garbage out&#8217; principle. <span 
+class="cmtt-10">QTQt</span>, on the other hand derives its name from the ability of thermal history modelling
+software to extract colourful and easily interpretable time-temperature histories from complex analytical
+datasets<span class="footnote-mark"><a 
+href="HEFTYvsQTQt4web3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-11007f2"></a>. In
+light of the observations made in this paper, it appears that the two programs have been &#8216;exchanged at birth&#8217;, and
+that their names should have been swapped. First, <span 
+class="cmtt-10">HeFTy </span>is an arguably easier to use and visually more appealing
+(&#8216;cute&#8217;) piece of software than <span 
+class="cmtt-10">QTQt</span>. Second, and more importantly, <span 
+class="cmtt-10">QTQt </span>is more prone to the &#8216;garbage in, garbage
+out&#8217; problem than <span 
+class="cmtt-10">HeFTy</span>. By using p-values, <span 
+class="cmtt-10">HeFTy </span>contains a built-in quality control mechanism which can protect
+the user from the worst kinds of &#8216;garbage&#8217; data. For example, the physically impossible dataset of Section <a 
+href="#x1-80003.2">3.2<!--tex4ht:ref: sec:garbage --></a>
+
+was &#8216;blocked&#8217; by this safety mechanism and yielded no &#8216;acceptable&#8217; thermal history models in <span 
+class="cmtt-10">HeFTy</span>.
+However, in normal to small datasets, the statistical tests used by <span 
+class="cmtt-10">HeFTy </span>are often underpowered and the
+&#8216;garbage in, garbage out&#8217; principle remains a serious concern. Nevertheless, <span 
+class="cmtt-10">HeFTy </span>is less susceptible to
+overinterpretation than <span 
+class="cmtt-10">QTQt</span>, which lacks an &#8216;objective&#8217; quality control mechanism. It is up to the expertise of the
+analist to make a subjective comparison between the input data and the model predictions made by
+<span 
+class="cmtt-10">QTQt</span>.<br 
+class="newline" />
+<!--l. 877--><p class="indent" >   Unfortunately, and this is perhaps the most important conclusion of our paper, <span 
+class="cmtt-10">HeFTy</span>&#8217;s efforts in dealing with
+the &#8216;garbage&#8217; data come at a high cost. In its attempt to make an &#8216;objective&#8217; evaluation of candidate models, <span 
+class="cmtt-10">HeFTy</span>
+acquires an undesirable sensitivity to sample size. <span 
+class="cmtt-10">HeFTy</span>&#8217;s power to resolve even the tiniest violations of the model
+assumptions increases with the amount and the precision of the input data. Thus, as was shown in a
+regression context (Section <a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:nonlinear --></a> and Figure <a 
+href="#x1-40013">3<!--tex4ht:ref: fig:linear2 --></a>) as well as thermochronology (Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a> and Figure <a 
+href="#x1-70017">7<!--tex4ht:ref: fig:Anti-HeFTy --></a>),
+<span 
+class="cmtt-10">HeFTy </span>will fail to come up with even a single &#8216;acceptable&#8217; model if the analytical precision is very high
+or the sample size is very large. Put in another way, the ability of <span 
+class="cmtt-10">HeFTy </span>extract thermal histories
+from AFT and AHe (<a 
+href="#Xtian2014">1</a>), apatite U-Pb (<a 
+href="#Xcochrane2014">3</a>) or <sup><span 
+class="cmr-7">4</span></sup>He/<sup><span 
+class="cmr-7">3</span></sup>He data (<a 
+href="#Xkarlstrom2014">2</a>) only exists by virtue of the relative
+sparsity and low analytical precision of the input data. It is counter-intuitive and unfair that the user
+should be penalised for acquiring large and precise datasets. In this respect, the MCMC approach
+taken by <span 
+class="cmtt-10">QTQt </span>is more sensible, as it does not punish but reward large and precise datasets, in the
+form of more detailed and tightly constrained thermal histories. Although the inherent subjectivity
+of <span 
+class="cmtt-10">QTQt</span>&#8217;s approach may be perceived as a negative feature, it merely reflects the fact that thermal
+history models should always be interpreted in a wider geological context. What is &#8216;significant&#8217; in one
+geological setting may not necessarily be so in another, and no computer algorithm can reliably make that
+call on behalf of the geologist. As George Box famously said, &#8220;all models are wrong, but some are
+useful&#8221;.
+   <h3 class="likesectionHead"><a 
+ id="x1-120006"></a>Appendix A: Frequentist vs. Bayesian inference</h3>
+<!--l. 908--><p class="noindent" ><span 
+class="cmtt-10">HeFTy </span>uses a &#8216;Frequentist&#8217; approach to statistics, which means that all inferences about the unknown model <span 
+class="cmsy-10">{</span>A,B<span 
+class="cmsy-10">}</span>
+are based on the known data <span 
+class="cmsy-10">{</span>x,y<span 
+class="cmsy-10">} </span>via the likelihood function P(x,y<span 
+class="cmsy-10">|</span>A,B). In contrast, <span 
+class="cmtt-10">QTQt </span>follows the &#8216;Bayesian&#8217;
+paradigm, in which inferences are based on the so-called &#8216;posterior probability&#8217; P(A,B<span 
+class="cmsy-10">|</span>x,y). The two quantities are
+related through Bayes&#8217; Rule:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="HEFTYvsQTQt4web23x.png" alt="P (A,B|x,y) &#x221D; P (x,y|A,B ) P(A,B )
+" class="math-display" ><a 
+ id="x1-12001r5"></a></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 918--><p class="nopar" >
+<!--l. 920--><p class="indent" >   where P(A,B) is the &#8216;prior probability&#8217; of the model <span 
+class="cmsy-10">{</span>A,B<span 
+class="cmsy-10">}</span>. If the latter follows a Uniform distribution (i.e.,
+P(A,B)=constant for all A,B), then <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">A,B</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">x,y</span>) <span 
+class="cmsy-10">&#x221D; </span><span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">x,y</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A,B</span>) and the posterior is proportional to the likelihood
+(as in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a>). Note that the constant of proportionality is not specified, reflecting the fact that the absolute
+values of the posterior probability are not evaluated. Bayesian <span 
+class="cmti-10">credible intervals </span>comprise those models yielding the
+(typically 95%) highest posterior probabilities, without specifying exactly <span 
+class="cmti-10">how </span>high these should be. How this is
+
+done in practice is discussed in Appendix B.
+<!--l. 932--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-130006"></a>Appendix B: A few words about MCMC modelling</h3>
+<!--l. 934--><p class="noindent" >Appendix A explained that <span 
+class="cmtt-10">HeFTy </span>evaluates the likelihood P(x,y<span 
+class="cmsy-10">|</span>A,B) whereas <span 
+class="cmtt-10">QTQt </span>evaluates the posterior
+P(A,B<span 
+class="cmsy-10">|</span>x,y). A more important difference is <span 
+class="cmti-10">how </span>this evaluation is done. As explained in Section <a 
+href="#x1-30002.1">2.1<!--tex4ht:ref: sec:linear --></a>,
+<span 
+class="cmtt-10">HeFTy </span>considers a large number of <span 
+class="cmti-10">independent </span>random models and judges whether or not the data
+could have been derived from these based on the <span 
+class="cmti-10">actual value </span>of P(x,y<span 
+class="cmsy-10">|</span>A,B). <span 
+class="cmtt-10">QTQt</span>, on the other hand,
+generates a &#8216;Markov Chain&#8217; of <span 
+class="cmti-10">serially dependent </span>models in which the j<sup><span 
+class="cmmi-7">th</span></sup> candidate model is generated
+by randomly modifying the (j-1)<sup><span 
+class="cmmi-7">th</span></sup> model, and is accepted or rejected at random with probability
+<span 
+class="cmmi-10">&#x03B1;</span>:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="HEFTYvsQTQt4web24x.png" alt="       (   P (Aj,Bj |x,y) P (Aj,Bj|Aj -1,Bj-1)  )
+&#x03B1; = min  P-(A---,B----|x,y) P-(A--,B---|A--,B--),1
+             j- 1  j- 1        j-1  j-1  j  j
+" class="math-display" ><a 
+ id="x1-13001r6"></a></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 950--><p class="nopar" >
+<!--l. 952--><p class="indent" >   where <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>) and <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub>) are the &#8216;proposal probabilities&#8217; expressing the likelihood
+of the transition from model state j-1 to model state j and vice versa. It can be shown that, after a sufficiently large
+number of iterations, this routine assembles a representative collection of models from the posterior distribution so
+that those areas of the parameter space for which P(A,B<span 
+class="cmsy-10">|</span>x,y) is high are more densely sampled than those areas
+where P(A,B<span 
+class="cmsy-10">|</span>x,y) is low. The collection of models covering the 95% highest posterior probabilities comprise a 95%
+&#8216;credible interval&#8217;. For the thermochronological applications of Section <a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a>, <span 
+class="cmtt-10">QTQt </span>uses a generalised version
+of Equation <a 
+href="#x1-13001r6">6<!--tex4ht:ref: eq:acceptancecriterion --></a> which allows a variable number of model parameters. This is called &#8216;reversible jump
+MCMC&#8217; (<a 
+href="#Xgreen1995">24</a>). For the linear regression problem of Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a>, the proposal probabilities are symmetric so
+that (<span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub>) = <span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,B</span><sub><span 
+class="cmmi-7">j</span></sub>)) and the prior probabilities are constant (see
+Appendix A) so that Equation <a 
+href="#x1-13001r6">6<!--tex4ht:ref: eq:acceptancecriterion --></a> reduces to a ratio of likelihoods. The crucial point to note here is
+that the MCMC algorithm does not use the actual value of the posterior, only relative differences.
+This is the main reason behind the different behaviour of <span 
+class="cmtt-10">HeFTy </span>and <span 
+class="cmtt-10">QTQt </span>exhibited in Sections <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:regression --></a> and
+<a 
+href="#x1-60003">3<!--tex4ht:ref: sec:tTmodelling --></a>.
+<!--l. 977--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-140006"></a>Appendix C: A power primer for thermochronologists</h3>
+<!--l. 979--><p class="noindent" >Sections <a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:nonlinear --></a> and <a 
+href="#x1-70003.1">3.1<!--tex4ht:ref: sec:breakingbad --></a> showed how <span 
+class="cmtt-10">HeFTy </span>inevitably &#8216;breaks&#8217; when it is fed with too much data. This is because (a) no
+physical model of Nature is ever 100% accurate and (b) the power of statistical tests such as Chi-square to resolve
+even the tiniest violation of the model assumptions monotonically increases with sample size. To illustrate the latter
+point in more detail, consider the linear regression exercise of Section <a 
+href="#x1-40002.2">2.2<!--tex4ht:ref: sec:nonlinear --></a>, which tested a second order polynomial
+dataset against a linear null hypothesis. Under this null hypothesis, the Chi-square statistic (Equation <a 
+href="#x1-3001r3">3<!--tex4ht:ref: eq:chi2 --></a>) was
+predicted to follow a Chi-square distribution with n-2 degrees of freedom. Under this &#8216;null distribution&#8217;, <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> is
+
+95% likely to take on a value of <span 
+class="cmmi-10">&#x003C;</span>15.5 for n=10 and of <span 
+class="cmmi-10">&#x003C; </span>122 for n=100. If the null hypothesis were correct,
+and we were to accidently observe a value greater than these, then this would have amounted to a
+so-called &#8216;Type I&#8217; error. In reality, however, we know that the null hypothesis is false due to the fact that
+c=0.02<span 
+class="cmmi-10">&#x2260;</span>0 in Equation <a 
+href="#x1-2001r1">1<!--tex4ht:ref: eq:data --></a>. It turns out that in the simple case of linear regression, we can actually predict
+the expected distribution of <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> under this &#8216;alternative hypothesis&#8217;. It can be shown that in this
+case, the statistic does not follow an ordinary (&#8216;central&#8217;) Chi-square distribution, but a &#8216;non-central&#8217;
+Chi-square distribution (<a 
+href="#Xcohen1977">25</a>) with n-2 degrees of freedom and a &#8216;noncentrality parameter&#8217; (<span 
+class="cmmi-10">&#x03BB;</span>) given
+by:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="HEFTYvsQTQt4web25x.png" alt="    n            2          2
+&#x03BB; = &#x2211;  (a-+-bxi-+cxi---A--Bxi-)-
+   i=1           &#x03C3;2
+" class="math-display" ><a 
+ id="x1-14001r7"></a></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 1007--><p class="nopar" >
+<!--l. 1009--><p class="indent" >   Using this &#8216;alternative distribution&#8217;, it is easy to show that <span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup> is 50.1% likely to fall below the cutoff value of 15.5
+for n=10, thus failing to reject the wrong null hypothesis and thereby committing a &#8216;Type II error&#8217;. By increasing
+the sample size to n=100, the probability (<span 
+class="cmmi-10">&#x03B2;</span>) of committing a Type II error decreases to a mere 0.32% (Table <a 
+href="#x1-140021">1<!--tex4ht:ref: tab:power --></a>).
+The &#8216;power&#8217; of a statistical test is defined as 1-<span 
+class="cmmi-10">&#x03B2;</span>. It is a universal property of statistical tests that this number
+increases with sample size. As a second example, the case of the t-test is discussed in Appendix B of
+(<a 
+href="#Xvermeesch2013">26</a>). Because Frequentist algorithms such as <span 
+class="cmtt-10">HeFTy </span>are intimately linked to statistical tests, their
+power to resolve even the tiniest deviation from linearity, the slightest inaccuracy in our annealing
+models, or any bias in the <span 
+class="cmmi-10">&#x03B1;</span>-ejection correction will eventually result in a failure to find any &#8216;acceptable&#8217;
+solution.
+   <div class="table">
+
+<!--l. 1025--><p class="indent" >   <a 
+ id="x1-140021"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-1"  
+class="td11"> <span 
+class="cmmi-10">&#x03B2; </span>(%)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11"><span 
+class="cmmi-10">&#x03BB; </span><span 
+class="cmsy-10">&#x2248;</span>0 (c<span 
+class="cmsy-10">&#x2248;</span>0)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11"><span 
+class="cmmi-10">&#x03BB;</span>=200 (c=0.01)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11"><span 
+class="cmmi-10">&#x03BB;</span>=800 (c=0.02)</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-1"  
+class="td11">  n=10</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11">    95      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11">     86.4        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11">     50.1        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-1"  
+class="td11"> n=100</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11">    95      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11">     61.2        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11">     0.32        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-1"  
+class="td11">n=1000</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11">    95      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11">     0.72        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">     0.00        </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Power calculation (listing the probability of committing a &#8216;Type II error&#8217;, <span 
+class="cmmi-10">&#x03B2;</span>) for the noncentral
+Chi-square distribution with n-2 degrees of freedom and noncentrality parameter <span 
+class="cmmi-10">&#x03BB; </span>(corresponding to specified
+values for the polynomial parameter c of Equation <a 
+href="#x1-2001r1">1<!--tex4ht:ref: eq:data --></a>).</span></div><!--tex4ht:label?: x1-140021 -->
+
+   </div><hr class="endfloat" />
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-150006"></a>Acknowledgments</h3>
+<!--l. 1043--><p class="noindent" >The authors would like to thank James Schwanethal and Martin Rittner (UCL) for assistance with the U-Th-He
+measurements, Guangwei Li (Melbourne) for measuring some of sample KL29&#8217;s fission track lengths, and Ed Sobel
+and an anonymous reviewer for feedback on the submitted manuscript. This research was funded by ERC grant
+#259505 and NERC grant #NE/K003232/1.
+<!--l. 1053--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-160006"></a>References</h3>
+<!--l. 1053--><p class="noindent" >
+    <div class="thebibliography">
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xtian2014"></a>[1] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Y.&#x00A0;Tian,  B.&#x00A0;P.  Kohn,  A.&#x00A0;J.  Gleadow,  S.&#x00A0;Hu,  A  thermochronological  perspective  on  the
+    morphotectonic evolution of the southeastern Tibetan Plateau, Journal of Geophysical Research: Solid
+    Earth.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xkarlstrom2014"></a>[2] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>K.&#x00A0;E. Karlstrom, J.&#x00A0;P. Lee, S.&#x00A0;A. Kelley, R.&#x00A0;S. Crow, L.&#x00A0;J. Crossey, R.&#x00A0;A. Young, G.&#x00A0;Lazear, L.&#x00A0;S.
+    Beard, J.&#x00A0;W. Ricketts, M.&#x00A0;Fox, et&#x00A0;al., Formation of the grand canyon 5 to 6 million years ago through
+    integration of older palaeocanyons, Nature Geoscience.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xcochrane2014"></a>[3] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;Cochrane, R.&#x00A0;A. Spikings, D.&#x00A0;Chew, J.-F. Wotzlaw, M.&#x00A0;Chiaradia, S.&#x00A0;Tyrrell, U.&#x00A0;Schaltegger,
+    R.&#x00A0;Van&#x00A0;der Lelij, High temperature (<span 
+class="cmmi-10">&#x003E; </span>350 <sup><span 
+class="cmsy-7">&#x2218;</span></sup>C) thermochronology and mechanisms of Pb loss in apatite,
+    Geochimica et Cosmochimica Acta 127 (2014) 39&#8211;56.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xcorrigan1991"></a>[4] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;Corrigan,  Inversion  of  apatite  fission  track  data  for  thermal  history  information,  Journal  of
+    Geophysical Research 96&#x00A0;(B6) (1991) 10347&#8211;10.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xgallagher1995"></a>[5] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>K.&#x00A0;Gallagher, Evolving temperature histories from apatite fission-track data, Earth and Planetary
+    Science Letters 136&#x00A0;(3) (1995) 421&#8211;435.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xwillett1997"></a>[6] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>S.&#x00A0;D. Willett, Inverse modeling of annealing of fission tracks in apatite; 1, A controlled random
+    search method, American Journal of Science 297&#x00A0;(10) (1997) 939&#8211;969.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xketcham2000"></a>[7] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;A. Ketcham, R.&#x00A0;A. Donelick, M.&#x00A0;B. Donelick, et&#x00A0;al., AFTSolve: A program for multi-kinetic
+    modeling of apatite fission-track data, Geological Materials Research 2&#x00A0;(1) (2000) 1&#8211;32.
+
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xketcham2005"></a>[8] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;A.  Ketcham,  Forward  and  inverse  modeling  of  low-temperature  thermochronometry  data,
+    Reviews in Mineralogy and Geochemistry 58&#x00A0;(1) (2005) 275&#8211;314.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ <a 
+ id="Xgallagher2012"></a>[9] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>K.&#x00A0;Gallagher,                                                                                         Transdimensional
+    inverse thermal history modeling for quantitative thermochronology, Journal of Geophysical Research:
+    Solid Earth (1978&#8211;2012) 117&#x00A0;(B2).
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcarter2014"></a>[10] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>A.&#x00A0;Carter,        M.&#x00A0;Curtis,        J.&#x00A0;Schwanethal,        Cenozoic        tectonic        history        of
+    the South Georgia microcontinent and potential as a barrier to Pacific-Atlantic through flow, Geology
+    doi:10.1130/G35091.1.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2007"></a>[11] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;A. Ketcham, A.&#x00A0;Carter, R.&#x00A0;A. Donelick, J.&#x00A0;Barbarand, A.&#x00A0;J. Hurford, Improved modeling of
+    fission-track annealing in apatite, American Mineralogist 92&#x00A0;(5-6) (2007) 799&#8211;810.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xflowers2009"></a>[12] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;M.        Flowers,        R.&#x00A0;A.        Ketcham,        D.&#x00A0;L.        Shuster,        K.&#x00A0;A.        Farley,
+    Apatite (U&#8211;Th)/He thermochronometry using a radiation damage accumulation and annealing model,
+    Geochimica et Cosmochimica Acta 73&#x00A0;(8) (2009) 2347&#8211;2365.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlaslett1987"></a>[13] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>G.&#x00A0;Laslett, P.&#x00A0;F. Green, I.&#x00A0;Duddy, A.&#x00A0;Gleadow, Thermal annealing of fission tracks in apatite 2. A
+    quantitative analysis, Chemical Geology: Isotope Geoscience Section 65&#x00A0;(1) (1987) 1&#8211;13.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvilla2006"></a>[14] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>I.&#x00A0;Villa, From nanometer to megameter: Isotopes, atomic-scale processes and continent-scale tectonic
+    models, Lithos 87 (2006) 155&#8211;173.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2009"></a>[15] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;A.  Ketcham,  R.&#x00A0;A.  Donelick,  M.&#x00A0;L.  Balestrieri,  M.&#x00A0;Zattin,  Reproducibility  of  apatite
+    fission-track  length  data  and  thermal  history  reconstruction,  Earth  and  Planetary  Science  Letters
+    284&#x00A0;(3) (2009) 504&#8211;515.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhourigan2005"></a>[16] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;K.                                                                                                              Hourigan,
+    P.&#x00A0;W. Reiners, M.&#x00A0;T. Brandon, U-Th zonation-dependent alpha-ejection in (U-Th)/He chronometry,
+    Geochimica et Cosmochimica Acta 69 (2005) 3349&#8211;3365. doi:10.1016/j.gca.2005.01.024.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrice1995"></a>[17] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;A. Rice, Mathematical Statistics and Data Analysis, Duxbury, Pacific Grove, California, 1995.
+
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfitzgerald2006"></a>[18] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;G. Fitzgerald, S.&#x00A0;L. Baldwin, L.&#x00A0;E. Webb, P.&#x00A0;B. O&#8217;Sullivan, Interpretation of (U-Th)/He single
+    grain ages from slowly cooled crustal terranes: A case study from the Transantarctic Mountains of
+    southern Victoria Land., Chemical Geology 225 (2006) 91&#8211;120.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007b"></a>[19] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;Vermeesch,  D.&#x00A0;Seward,  C.&#x00A0;Latkoczy,  M.&#x00A0;Wipf,  D.&#x00A0;G&uuml;nther,  H.&#x00A0;Baur,  <span 
+class="cmmi-10">&#x03B1;</span>-Emitting  mineral
+    inclusions in apatite, their effect on (U-Th)/He ages, and how to reduce it, Geochimica et Cosmochimica
+    Acta 71 (2007) 1737&#8211;1746. doi:10.1016/j.gca.2006.09.020.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xspiegel2009"></a>[20] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>C.&#x00A0;Spiegel,          B.&#x00A0;Kohn,          D.&#x00A0;Belton,          Z.&#x00A0;Berner,          A.&#x00A0;Gleadow,          Apatite
+    (U&#8211;Th&#8211;Sm)/He thermochronology of rapidly cooled samples: the effect of He implantation, Earth and
+    Planetary Science Letters 285&#x00A0;(1) (2009) 105&#8211;114.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbrown2013"></a>[21] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;W. Brown, R.&#x00A0;Beucher, S.&#x00A0;Roper, C.&#x00A0;Persano, F.&#x00A0;Stuart, P.&#x00A0;Fitzgerald, Natural age dispersion
+    arising from the analysis of broken crystals, Part I. Theoretical basis and implications for the apatite
+    (U-Th)/He thermochronometer, Geochimica et Cosmochimica Acta.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbeucher2013"></a>[22] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;Beucher, R.&#x00A0;W. Brown, S.&#x00A0;Roper, F.&#x00A0;Stuart, C.&#x00A0;Persano, Natural age dispersion arising from
+    the analysis of broken crystals: Part II. Practical application to apatite (U&#8211;Th)/He thermochronometry,
+    Geochimica et Cosmochimica Acta 120 (2013) 395&#8211;416.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsambridge2006"></a>[23] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>M.&#x00A0;Sambridge, K.&#x00A0;Gallagher, A.&#x00A0;Jackson, P.&#x00A0;Rickwood, Trans-dimensional inverse problems, model
+    comparison and the evidence, Geophysical Journal International 167&#x00A0;(2) (2006) 528&#8211;542.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreen1995"></a>[24] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;J.  Green,  Reversible  jump  Markov  chain  Monte  Carlo  computation  and  Bayesian  model
+    determination, Biometrika 82&#x00A0;(4) (1995) 711&#8211;732.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcohen1977"></a>[25] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;Cohen, Statistical power analysis for the behavioral sciences, Academic Press New York, 1977.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2013"></a>[26] <span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;Vermeesch, Multi-sample comparison of detrital age distributions, Chemical Geology 341 (2013)
+    140&#8211;146.
+</p>
+    </div>
+</td></tr></table>    
+</body></html> 
+
+
+

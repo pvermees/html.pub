@@ -1,0 +1,849 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Short communication: Inverse isochron regression for Re&#8211;Os, K&#8211;Ca and other
+chronometers</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body class="main">
+<!--l. 37--><p class="noindent" >
+
+   <div class="maketitle">
+<h2 class="titleHead">Short communication: Inverse isochron regression
+for Re&#8211;Os, K&#8211;Ca and other chronometers</h2>
+<div class="author" ><span 
+class="cmr-12">Yang Li</span>
+<br />           <span 
+class="cmr-12">Institute of Geology and Geophysics, Chinese Academy of Sciences, Beijing, China</span>
+<br />                                   <span 
+class="cmr-12">&#x00A0;</span>
+<br />                         <span 
+class="cmr-12">and Pieter Vermeesch</span>
+<br /><span 
+class="cmr-12">Department of Earth Sciences, University College London, London, UK </span></div><br />
+   </div>
+
+   </div>
+   <div 
+class="abstract" 
+>
+   <h3 class="abstracttitle">
+<span 
+class="cmbx-9">Abstract</span>
+</h3>
+     <!--l. 46--><p class="noindent" ><span 
+class="cmr-9">Conventional Re&#8211;Os isochrons are based on mass spectrometric estimates</span>
+     <span 
+class="cmr-9">of  </span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Re/</span><sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup><span 
+class="cmr-9">Os  and  </span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Os/</span><sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup><span 
+class="cmr-9">Os,  which  often  exhibit  strong  error</span>
+     <span 
+class="cmr-9">correlations that may obscure potentially important geological complexity.</span>
+     <span 
+class="cmr-9">Using  an  approach  that  is  widely  accepted  in  </span><sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup><span 
+class="cmr-9">Ar/</span><sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup><span 
+class="cmr-9">Ar  and  U&#8211;Pb</span>
+     <span 
+class="cmr-9">geochronology,  we  here  show  that  these  error  correlations  are  greatly</span>
+     <span 
+class="cmr-9">reduced  by  applying  a  simple  change  of  variables,  using  </span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Os  as  a</span>
+     <span 
+class="cmr-9">common denominator. Plotting </span><sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup><span 
+class="cmr-9">Os/</span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Os vs. </span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Re/</span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Os produces</span>
+     <span 
+class="cmr-9">an   &#8216;inverse   isochron&#8217;,   defining   a   binary   mixing   line   between   an</span>
+     <span 
+class="cmr-9">inherited Os-component whose </span><sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup><span 
+class="cmr-9">Os/</span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Os-ratio is given by the vertical</span>
+     <span 
+class="cmr-9">intercept, and the radiogenic </span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Re/</span><sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup><span 
+class="cmr-9">Os-ratio, which corresponds to</span>
+     <span 
+class="cmr-9">the horizontal intercept. Inverse isochrons facilitate the identification of</span>
+     <span 
+class="cmr-9">outliers and other sources of data dispersion. They can also be applied to</span>
+     <span 
+class="cmr-9">other geochronometers such as the K&#8211;Ca method and (with less dramatic</span>
+     <span 
+class="cmr-9">results) the Rb&#8211;Sr, Sm&#8211;Nd and Lu&#8211;Hf methods. Conventional and inverse</span>
+     <span 
+class="cmr-9">isochron ages are similar for precise datasets, but may significantly diverge</span>
+     <span 
+class="cmr-9">for imprecise ones. A semi-synthetic data simulation indicates that, in</span>
+     <span 
+class="cmr-9">the latter case, the inverse isochron age is more accurate. The generalised</span>
+     <span 
+class="cmr-9">inverse  isochron  method  has  been  added  to  the  </span><span 
+class="cmtt-9">IsoplotR </span><span 
+class="cmr-9">toolbox  for</span>
+     <span 
+class="cmr-9">geochronology, which automatically converts conventional isochron ratios</span>
+     <span 
+class="cmr-9">into inverse ratios and vice versa.</span>
+</div>
+
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction: the conventional Re&#8211;Os isochron</h3>
+<!--l. 80--><p class="noindent" >The [<sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Os/<sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup>Os]-budget of a <sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Re-bearing rock or mineral can be divided into an
+inherited component and a radiogenic component:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index0x.png" alt="[     ]  [     ]   [     ]
+ 187Os-     187Os-     187Re-
+ 188Os  =   188Os i +  188Os  (exp[&#x03BB;187t]- 1)
+" class="math-display" ><a 
+ id="x1-1001r1"></a></div>
+   </td><td class="equation-label">(1)</td></tr></table>
+<!--l. 89--><p class="nopar" >
+<!--l. 91--><p class="noindent" >where <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmr-7">187</span></sub> is the decay constant of <sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Re (= 1<span 
+class="cmmi-10">.</span>666 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>017<span 
+class="cmmi-10">&#x00A0;</span>yr<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">11</span></sup>,&#x00A0;<span class="cite"><a 
+href="#Xsmoliar1996">Smoliar
+et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xsmoliar1996">1996</a></span>) and <span 
+class="cmmi-10">t </span>is the time elapsed since isotopic closure. Equation&#x00A0;<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:conventional-isochron --></a> forms the
+equation of a line:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index1x.png" alt="y = a+ bx
+" class="math-display" ><a 
+ id="x1-1002r2"></a></div>
+   </td><td class="equation-label">(2)</td></tr></table>
+<!--l. 99--><p class="nopar" >
+<!--l. 101--><p class="noindent" >where <span 
+class="cmmi-10">x </span>= <img 
+src="index2x.png" alt="[187   188  ]
+   Re&#x2215;   Os"  class="left" align="middle"> <span 
+class="cmmi-10">y </span>= <img 
+src="index3x.png" alt="[187   188  ]
+    Os&#x2215;  Os"  class="left" align="middle">, <span 
+class="cmmi-10">a </span>= <img 
+src="index4x.png" alt="[187   188  ]
+    Os&#x2215;  Os"  class="left" align="middle"><sub><span 
+class="cmmi-7">i</span></sub> and
+<span 
+class="cmmi-10">b </span>= <img 
+src="index5x.png" alt="(exp[&#x03BB;187t]- 1)"  class="left" align="middle">. Both the independent variable (<span 
+class="cmmi-10">x</span>) and the dependent variable
+(<span 
+class="cmmi-10">y</span>) are measured quantities that are associated with analytical uncertainty.
+Therefore, linear regression of the isochron line is typically done by weighted least
+squares regression with uncertainty in both variables (<span class="cite"><a 
+href="#Xyork2004">York et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xyork2004">2004</a></span>).
+<!--l. 112--><p class="indent" >   One drawback of the conventional isochron definition of Equation&#x00A0;<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:conventional-isochron --></a> is that the
+rarest isotope, <sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup>Os, which is associated with the largest mass spectrometer
+uncertainties, appears in the denominator of both <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y</span>. This has the potential to
+
+produce strong error correlations (<span class="cite"><a 
+href="#Xstein2000">Stein et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xstein2000">2000</a></span>). For example, consider the
+following hypothetical (independent) abundance estimates and their standard
+errors:
+   <div class="math-display" >
+<img 
+src="index6x.png" alt="X &#x2261; 187Os = 2,000&plusmn;10 fmol; Y &#x2261; 187Re = 30,000&plusmn;50 fmol and Z &#x2261; 188Os = 10&plusmn;2 fmol
+" class="math-display" ></div>
+<!--l. 124--><p class="nopar" >
+<!--l. 126--><p class="noindent" >then, using the methods of <span class="cite"><a 
+href="#Xpearson1896">Pearson</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xpearson1896">1896</a></span>), the ratio correlation between
+[<sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Os/<sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup>Os] and [<sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Re/<sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup>Os] is
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index7x.png" alt="                     (   )2
+                      s[ZZ]                                 (2-)2
+&#x03C1;XZ-YZ &#x2248; &#x2218;-(---)---(----)-&#x2218;-(---)---(----)-=  &#x2218;-(----)-------10&#x2218;-(----)---------= 0.9997
+          s[Y] 2 +  s[Z] 2   s[X] 2 +  s[Z] 2      -50-- 2 + (2-)2   -10--2 + (2-)2
+           Y        Z       X        Z         30,000      10     2,000      10
+" class="math-display" ><a 
+ id="x1-1003r3"></a></div>
+   </td><td class="equation-label">(3)</td></tr></table>
+<!--l. 150--><p class="nopar" >
+<!--l. 152--><p class="indent" >   The strong error correlation between the two variables on the isochron diagram is
+manifested as narrow and steeply inclined error ellipses, which may graphically
+obscure any geologically significant trend.
+<!--l. 156--><p class="indent" >   As an example, consider the Re&#8211;Os dataset of <span class="cite"><a 
+href="#Xmorelli2007">Morelli et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xmorelli2007">2007</a></span>) (Figure&#x00A0;<a 
+href="#x1-10101">1<!--tex4ht:ref: fig:Morelli --></a>a),
+which represents a mixture of three samples. At first glance, this dataset appears to
+define an excellent isochron with a clear slope corresponding to an isochron age of
+287&#x00A0;Ma. However upon closer inspection, the interpretation of this fit is not so
+simple:
+<!--l. 163--><p class="indent" >
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-1005x1">
+     <!--l. 164--><p class="noindent" >The  error  ellipses  exhibit  a  tremendous  range  of  sizes.  The  plot  is
+     dominated by the least precise measurement (i.e. aliquot&#x00A0;14), and the
+     remaining aliquots are barely visible.
+
+     </li>
+<li 
+  class="enumerate" id="x1-1007x2">
+     <!--l. 167--><p class="noindent" >The error ellipses are nearly perfectly aligned with the isochron, which
+     makes it difficult to distinguish between geological and analytical sources
+     of correlation.
+     </li>
+<li 
+  class="enumerate" id="x1-1009x3">
+     <!--l. 170--><p class="noindent" >The isochon fit exhibits an MSWD of 2.5, which indicates the presence
+     of a moderate amount of overdispersion of the data with respect to the
+     formal analytical uncertainties. It is not immediately clear which aliquots
+     are responsible for the poor goodness-of-fit.</li></ol>
+<!--l. 177--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10101"></a>
+
+<!--l. 178--><p class="noindent" > <a href="Morelli2-.png"><img class="snapshot" src="Morelli2-.png" alt="PIC" width="467" height="467" ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">a) conventional isochron of the Re&#8211;Os data for <span class="cite"><a 
+href="#Xmorelli2007">Morelli et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xmorelli2007">2007</a></span>),
+with uncertainties shown as 95% confidence intervals without and with <img 
+src="index8x.png" alt="&#x221A;MSWD----"  class="sqrt" >
+overdispersion multiplier. b) and c) the inverse isochron diagram of the same
+data represents a mixing line between inherited and radiogenic components. The
+sample is highly radiogenic, allowing precise age estimation despite the presence
+of significant overdispersion, which is masked by the error correlations in the
+conventional isochron diagram. All error ellipses and confidence envelopes are
+shown at 95% confidence.</span></div><!--tex4ht:label?: x1-10101 -->
+
+<!--l. 190--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>The inverse Re&#8211;Os isochron</h3>
+<!--l. 194--><p class="noindent" >All three of these problems can be solved by a simple change of variables:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index9x.png" alt="[188   ]  [188  ] {    [187  ]             }
+ --Os- =  ---Os    1-  ---Re (exp[&#x03BB;187t]- 1)
+ 187Os     187Os i      187Os
+" class="math-display" ><a 
+ id="x1-2001r4"></a></div>
+   </td><td class="equation-label">(4)</td></tr></table>
+<!--l. 205--><p class="nopar" >
+<!--l. 207--><p class="noindent" >which defines an &#8216;inverse&#8217; isochron line:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index10x.png" alt="y&#x2032; = a&#x2032; + b&#x2032;x &#x2032;
+" class="math-display" ><a 
+ id="x1-2002r5"></a></div>
+   </td><td class="equation-label">(5)</td></tr></table>
+<!--l. 211--><p class="nopar" >
+<!--l. 213--><p class="noindent" >where <span 
+class="cmmi-10">x</span><span 
+class="cmsy-10">&#x2032; </span>= <img 
+src="index11x.png" alt="[187Re&#x2215;187Os]"  class="left" align="middle">, <span 
+class="cmmi-10">y</span><span 
+class="cmsy-10">&#x2032; </span>= <img 
+src="index12x.png" alt="[188Os&#x2215;187Os]"  class="left" align="middle">, <span 
+class="cmmi-10">a</span><span 
+class="cmsy-10">&#x2032; </span>= <img 
+src="index13x.png" alt="[188Os&#x2215;187Os]"  class="left" align="middle"><sub><span 
+class="cmmi-7">i</span></sub> and
+<span 
+class="cmmi-10">b</span><span 
+class="cmsy-10">&#x2032; </span>= <span 
+class="cmsy-10">-</span><img 
+src="index14x.png" alt="[188   187  ]
+   Os&#x2215;   Os"  class="left" align="middle"><sub><span 
+class="cmmi-7">i</span></sub><img 
+src="index15x.png" alt="(exp[&#x03BB;187t]- 1)"  class="left" align="middle">.
+<!--l. 219--><p class="indent" >   Equation&#x00A0;<a 
+href="#x1-2001r4">4<!--tex4ht:ref: eq:inverse-isochron --></a> defines a mixing line between the non-radiogenic <img 
+src="index16x.png" alt="[188   187  ]
+   Os&#x2215;  Os"  class="left" align="middle">-ratio
+(which marks the vertical intercept) and the radiogenic <img 
+src="index17x.png" alt="[187   187  ]
+   Re &#x2215;  Os"  class="left" align="middle">-ratio (which
+markes the horizontal intercept). By moving the least abundant nuclide to the
+numerator of the dependent variable, instead of the denominator of both the
+dependent and the independent variables, the inverse isochron reduces the error
+correlations. Revisiting the earlier hypothetical example yields an error correlation
+
+of:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index18x.png" alt="                     (   )                                (    )
+                      s[X-]2                                -10- 2
+&#x03C1;Y-Z-&#x2248; &#x2218;---------------X&#x2218;-----------------= &#x2218;--------------2,000&#x2218;----------------= 0.024
+ X X     (s[X-])2 + (s[Y])2  (s[X-])2 + (s[Y])2     (-10-)2 + (-50-)2  ( 10-)2 + (2)2
+           X        Y       X        Y         2,000      30,000      2,000      10
+" class="math-display" ><a 
+ id="x1-2003r6"></a></div>
+   </td><td class="equation-label">(6)</td></tr></table>
+<!--l. 254--><p class="nopar" >
+<!--l. 256--><p class="indent" >   Plotting the <span class="cite"><a 
+href="#Xmorelli2007">Morelli et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xmorelli2007">2007</a></span>) dataset on an inverse isochron diagram
+provides a much clearer picture of it (Figure&#x00A0;<a 
+href="#x1-10101">1<!--tex4ht:ref: fig:Morelli --></a>b and c):
+<!--l. 260--><p class="indent" >
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-2005x1">
+     <!--l. 261--><p class="noindent" >Although the error ellipses still exhibit a range of sizes, reflecting the
+     heteroscedasticity of the data, the imprecise measurements do no longer
+     dominate the plot to the extent where they obscure the precise ones.
+     </li>
+<li 
+  class="enumerate" id="x1-2007x2">
+     <!--l. 265--><p class="noindent" >The error ellipses are no longer aligned parallel to the isochron line, but
+     are oriented at an angle to it. This makes it easier to see the difference
+     between the geological and analytical sources of correlation.
+     </li>
+<li 
+  class="enumerate" id="x1-2009x3">
+     <!--l. 269--><p class="noindent" >The overdispersion is clearly visible and can be attributed to aliquots&#x00A0;1,
+     12 and 14, whose error ellipses exhibit the smallest overlap with the best
+     fit line. Most of the geochronologically valuable information is contained
+     in  the  highly  radiogenic  aliquots  7&#8211;11,  which  tightly  cluster  near  the
+     [<sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Re/<sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Os]-intercept.  Even  though  the  data  are  overdispersed,  the
+     overall composition is very radiogenic and can therefore be used to obtain
+
+     precise age constraints. The initial [<sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Os/<sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup>Os]-ratio, however, is poorly
+     constrained.</li></ol>
+<!--l. 282--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Application to other chronometers</h3>
+<!--l. 284--><p class="noindent" >Strong error correlations are commonly observed in other conventional isochron
+systems, where they may arise from a number of mechanisms including poor counting
+statistics (previous sections), blank correction (e.g.,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2015b">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2015b">2015</a></span>;&#x00A0;<span class="cite"><a 
+href="#Xconnelly2017">Connelly
+et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xconnelly2017">2017</a></span>) or fractionation (e.g.,&#x00A0;<span class="cite"><a 
+href="#Xludwig1980">Ludwig</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xludwig1980">1980</a></span>). Inverse isochron ratios, in which
+the radiogenic daughter isotope is used as a common denominator, are commonplace
+in <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar (<span class="cite"><a 
+href="#Xturner1971">Turner</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xturner1971">1971</a></span>) and U&#8211;Pb (<span class="cite"><a 
+href="#Xtera1972">Tera and Wasserburg</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xtera1972">1972</a></span>) geochronology.
+They are equally applicable to other dating methods, such as Rb&#8211;Sr ([<sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Sr/<sup class="textsuperscript"><span 
+class="cmr-9">86</span></sup>Sr] vs.
+[<sup class="textsuperscript"><span 
+class="cmr-9">87</span></sup>Rb/<sup class="textsuperscript"><span 
+class="cmr-9">86</span></sup>Sr]), Sm&#8211;Nd ([<sup class="textsuperscript"><span 
+class="cmr-9">144</span></sup>Nd/<sup class="textsuperscript"><span 
+class="cmr-9">143</span></sup>Nd] vs. [<sup class="textsuperscript"><span 
+class="cmr-9">147</span></sup>Sm/<sup class="textsuperscript"><span 
+class="cmr-9">143</span></sup>Nd]), Lu&#8211;Hf ([<sup class="textsuperscript"><span 
+class="cmr-9">177</span></sup>Hf/<sup class="textsuperscript"><span 
+class="cmr-9">176</span></sup>Hf] vs.
+[<sup class="textsuperscript"><span 
+class="cmr-9">176</span></sup>Lu/<sup class="textsuperscript"><span 
+class="cmr-9">176</span></sup>Hf]) and K&#8211;Ca ([<sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca/<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca] vs. [<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>K/<sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca]).
+<!--l. 303--><p class="indent" >   In the case of K&#8211;Ca dating, the inverse approach offers similar benefits as for the
+Re&#8211;Os method because <sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca is typically 100 times less abundant than <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca, thus
+making the conventional isochron plot prone to strong error correlations. Note that
+some K&#8211;Ca studies use <sup class="textsuperscript"><span 
+class="cmr-9">42</span></sup>Ca as a normalising isotope, which is even less abundant
+<sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca, and therefore further aggravates the problem. For other chronometers such as
+Rb&#8211;Sr, Sm&#8211;Nd and Lu&#8211;Hf, whose non-radiogenic isotopes are at least as abundant as
+the radiogenic daughter isotopes, the benefits of the inverse isochron approach are
+less obvious.
+<!--l. 315--><p class="indent" >   Given a data table of conventional isochron ratios (<span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y </span>in Equation&#x00A0;<a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:y=a+bx --></a>), it
+is possible to calculate the inverse ratios (<span 
+class="cmmi-10">x</span><span 
+class="cmsy-10">&#x2032; </span>and <span 
+class="cmmi-10">y</span><span 
+class="cmsy-10">&#x2032; </span>in Equation&#x00A0;<a 
+href="#x1-2002r5">5<!--tex4ht:ref: eq:y'=a'+b'x' --></a>), their
+uncertainties (<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">x</span><span 
+class="cmsy-10">&#x2032;</span>] and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">y</span><span 
+class="cmsy-10">&#x2032;</span>]) and error correlations (<span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">x</span><span 
+class="cmsy-7">&#x2032;</span><span 
+class="cmmi-7">y</span><span 
+class="cmsy-7">&#x2032;</span></sub>) using the following
+equations:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index19x.png" alt="      x     1( s[x&#x2032;])2  ( s[x ])2       (s[x]) ( s[y])  (s[y])2 (s[y&#x2032;])2   (s[y])2       (  x&#x2032; ) [(s[y])      ( s[x])]
+{x &#x2032; =-y&#x2032; = -- --&#x2032;-  =   ----  - 2&#x03C1;x,y ----   --- +  ---     --&#x2032;-   =  ---   &#x03C1;x&#x2032;y&#x2032; =  ---&#x2032;    ---  - &#x03C1;xy  ----
+      y     y   x         x            x      y      y       y         y            s[x ]     y           x
+" class="math-display" ><a 
+ id="x1-3001r7"></a></div>
+   </td><td class="equation-label">(7)</td></tr></table>
+<!--l. 337--><p class="nopar" >
+
+<!--l. 339--><p class="indent" >   This transformation is perfectly symmetric in the sense that it can also be used to
+convert inverse isochron ratios to conventional ones. To do this, it suffices to swap <span 
+class="cmmi-10">x</span><span 
+class="cmsy-10">&#x2032;</span>
+and <span 
+class="cmmi-10">y</span><span 
+class="cmsy-10">&#x2032; </span>for <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y </span>and vice versa.
+<!--l. 344--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>A semi-synthetic test of accuracy</h3>
+<!--l. 346--><p class="noindent" ><span class="cite"><a 
+href="#Xdalrymple1988">Dalrymple et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xdalrymple1988">1988</a></span>) assert that conventional and inverse isochron regression are
+mathematically equivalent in the context of <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar geochronology. This is indeed
+the case when the analytical uncertainties of the parent-daughter ratios
+are relatively small (<span 
+class="cmmi-10">&#x003C; </span>5%, say), as is the case for the Re&#8211;Os example of
+Figure&#x00A0;<a 
+href="#x1-10101">1<!--tex4ht:ref: fig:Morelli --></a>. However, this is no longer true when the analytical uncertainties are
+large, or when the data are significantly dispersed around the best fitting
+isochron line. In those cases the conventional and inverse isochrons can yield
+substantially different age estimates. This is because isotopic ratios are strictly
+positive quantities with skewed error distributions, and the weighted least
+squares algorithm of <span class="cite"><a 
+href="#Xyork2004">York et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xyork2004">2004</a></span>) does not take into account this
+skewness.
+<!--l. 360--><p class="indent" >   A full theoretical discussion of this phenomenon falls outside the scope of our
+short communication. Instead, we will compare and contrast the accuracy of
+conventional and inverse isochrons using a semi-synthetic dataset based on 30 K&#8211;Ca
+ion microprobe measurements published by <span class="cite"><a 
+href="#Xharrison2010">Harrison et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xharrison2010">2010</a></span>):
+<!--l. 366--><p class="indent" >
+     <ol  class="enumerate1" >
+<li 
+  class="enumerate" id="x1-4002x1">
+     <!--l. 367--><p class="noindent" >Let  <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>  be  the  <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup>  <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>K/<sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca  ratio  measurement,  and  let  <span 
+class="cmmi-10">&#x03C3;</span>[<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>],  <span 
+class="cmmi-10">&#x03C3;</span>[<span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>],
+     <span 
+class="cmmi-10">&#x03C1;</span>[<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,y</span><sub><span 
+class="cmmi-7">i</span></sub>] be the standard errors and error correlation of the corresponding
+     <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>K/<sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca and <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca/<sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca ratios.
+     </li>
+<li 
+  class="enumerate" id="x1-4004x2">
+     <!--l. 373--><p class="noindent" >Collect <span 
+class="cmmi-10">n </span>pairs of logratios <span 
+class="cmsy-10">{</span>ln[<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub>]<span 
+class="cmmi-10">,</span>ln[<span 
+class="cmmi-10">Y</span> <sub><span 
+class="cmmi-7">i</span></sub>]<span 
+class="cmsy-10">} </span>from a bivariate normal distribution
+     with means <span 
+class="cmsy-10">{</span>ln[<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub>]<span 
+class="cmmi-10">,</span>ln[<span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub>]<span 
+class="cmsy-10">} </span>and covariance matrix &#x03A3;<sub><span 
+class="cmmi-7">i</span></sub> where
+     <table 
+class="equation"><tr><td>
+<div class="math-display" >
+
+<img 
+src="index20x.png" alt="yi = y&#x2218; + 0.895xi(exp[&#x03BB;40t]- 1)
+" class="math-display" ><a 
+ id="x1-4005r8"></a></div>
+     </td><td class="equation-label">(8)</td></tr></table>
+     <!--l. 379--><p class="nopar" >
+     <!--l. 381--><p class="noindent" >in which <span 
+class="cmmi-10">y</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> = 66 is the initial <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca/<sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca ratio, <span 
+class="cmmi-10">t </span>= 800&#x00A0;Ma is the true K&#8211;Ca
+     age, and
+<div class="math-display" >
+<img 
+src="index21x.png" alt="     [-1 0] [        2                   ][ 1-0 ]
+&#x03A3;i =  xi 1-      &#x03C3;[xi]     &#x03C1;[xi,yi]&#x03C3; [xi2]&#x03C3; [yi]  xi-1
+      0  yi  &#x03C1;[xi,yi]&#x03C3;[xi]&#x03C3;[yi]     &#x03C3;[xi]        0 yi
+" class="math-display" ></div>
+     <!--l. 404--><p class="nopar" >
+     </li>
+<li 
+  class="enumerate" id="x1-4007x3">
+     <!--l. 405--><p class="noindent" >The semi-synthetic dataset is then given by <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">,Y</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmsy-10">} </span>(for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">n</span>) with
+     covariance matrices &#x03A3;<span 
+class="cmsy-10">&#x2032;</span><sub><span 
+class="cmmi-7">i</span></sub> that are computed as follows:
+<div class="math-display" >
+<img 
+src="index22x.png" alt="     [     ]  [     ]
+&#x03A3; &#x2032;=  Xi 0  &#x03A3;  Xi 0
+  i    0 Yi  i  0 Yi
+" class="math-display" ></div>
+     <!--l. 423--><p class="nopar" ></li></ol>
+<!--l. 426--><p class="indent" >   The logarithmic transformation is necessary to account for the inevitable
+skewness of the error distributions. Even though the semi-synthetic dataset is
+defined in terms of the conventional isochron equation (Eq.&#x00A0;<a 
+href="#x1-4005r8">8<!--tex4ht:ref: eq:KCa --></a>), Figure&#x00A0;<a 
+href="#x1-40082">2<!--tex4ht:ref: fig:Harrison --></a>
+shows that it is the inverse isochron that most accurately estimates the
+age. We therefore recommend that inverse isochrons replace conventional
+isochrons in Re&#8211;Os and K&#8211;Ca geochronology. The difference between the
+conventional and inverse isochron age may serve as a measure of robustness for the
+results.
+<!--l. 436--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40082"></a>
+
+<!--l. 437--><p class="noindent" ><a href="Harrison2-.png"><img class="snapshot" src="Harrison2-.png" alt="PIC" width="241" height="241" ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">a) conventional and b) inverse isochron for a representative outcome
+of the semi-synthetic K&#8211;Ca data generator. The true age is 800&#x00A0;Ma and the
+true initial <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca/<sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca ratio is 66. The inverse isochron better approximates
+these values than the conventional isochron. Uncertainties are shown as 95%
+confidence intervals.</span></div><!--tex4ht:label?: x1-40082 -->
+
+<!--l. 446--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Implementation in <span 
+class="cmtt-10">IsoplotR</span></h3>
+<!--l. 450--><p class="noindent" >Inverse isochrons have been added to all the relevant chronometers in the <span 
+class="cmtt-10">IsoplotR</span>
+toolbox for radiometric geochronology (<span class="cite"><a 
+href="#Xvermeesch2018c">Vermeesch</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xvermeesch2018c">2018</a></span>). This functionality can be
+used either from the graphical user interface (which can be accessed both online and
+offline, Figure&#x00A0;<a 
+href="#x1-50013">3<!--tex4ht:ref: fig:IsoplotR --></a>a), or from the command line, using the <span 
+class="cmtt-10">R </span>programming language
+and application programming interface (Figure&#x00A0;<a 
+href="#x1-50013">3<!--tex4ht:ref: fig:IsoplotR --></a>b and c). <span 
+class="cmtt-10">IsoplotR </span>automatically
+executes the ratio conversion of Equation&#x00A0;<a 
+href="#x1-3001r7">7<!--tex4ht:ref: eq:transformation --></a> in the background, so the user can
+supply their data as conventional ratios and still plot them on an inverse isochron
+diagram.
+<!--l. 462--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50013"></a>
+
+<!--l. 463--><p class="noindent" ><a href="IsoplotR-.png"><img class="snapshot" src="IsoplotR-.png" alt="PIC" width="345" height="345" ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3:  </span><span  
+class="content">Conventional  and  inverse  isochrons  can  be  constructed  with
+<span 
+class="cmtt-10">IsoplotR</span>, (a) either using its graphical user interface, (b&#8211;c) or from the <span 
+class="cmtt-10">R</span>
+command  prompt.  This  is  illustrated  here  for  a  Re&#8211;Os  dataset  of  <span class="cite"><a 
+href="#Xkendall2006">Kendall
+et&#x00A0;al.</a></span>&#x00A0;(<span class="cite"><a 
+href="#Xkendall2006">2006</a></span>)  that  exhibits  weaker  error  correlations  than  the  example  of
+Figure&#x00A0;<a 
+href="#x1-10101">1<!--tex4ht:ref: fig:Morelli --></a>.  The  normal  (a)  and  inverse  (c)  isochron  produce  nearly  identical
+results.</span></div><!--tex4ht:label?: x1-50013 -->
+
+<!--l. 472--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Conclusions</h3>
+<!--l. 477--><p class="noindent" >Conventional isochrons are straight line regressions between two ratios <span 
+class="cmmi-10">D&#x2215;d </span>and <span 
+class="cmmi-10">P&#x2215;d</span>,
+where <span 
+class="cmmi-10">P </span>and <span 
+class="cmmi-10">D </span>are the parent and daughter nuclides, and <span 
+class="cmmi-10">d </span>is a non-radiogenic
+isotope of the daughter element. This paper reviewed the phenomenon whereby
+strong error correlations arise when <span 
+class="cmmi-10">d </span>is less abundant than <span 
+class="cmmi-10">D</span>, and is therefore
+measured less precisely than <span 
+class="cmmi-10">D</span>. This is the case in Re&#8211;Os and K&#8211;Ca geochronology,
+which use <sup class="textsuperscript"><span 
+class="cmr-9">188</span></sup>Os and <sup class="textsuperscript"><span 
+class="cmr-9">44</span></sup>Ca as normalising isotopes, respectively. These isotopes are
+tens to hundreds of times less abundant than the radiogenic <sup class="textsuperscript"><span 
+class="cmr-9">187</span></sup>Os and <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ca, causing
+strong error correlations. Besides this &#8216;spurious&#8217; source of correlated uncertainties
+(<span 
+class="cmti-10">sensu</span>&#x00A0;<span class="cite"><a 
+href="#Xpearson1896">Pearson</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xpearson1896">1896</a></span>), additional sources of covariance may include blank
+corrections, calibrations and fractionation effects that apply to both variables in the
+isochron regression.
+<!--l. 493--><p class="indent" >   The error correlation between the isochron ratio measurements can be so strong
+(<span 
+class="cmmi-10">r &#x003E; </span>0<span 
+class="cmmi-10">.</span>99) that it outweighs and obscures the geochronological correlation. This is
+not only inconvenient from an esthetic point of view, but may also cause numerical
+problems. It is not uncommon for data tables to either not report error
+correlations at all, or to report them to only one significant digit. However, the
+difference between error correlations of <span 
+class="cmmi-10">r </span>= 0<span 
+class="cmmi-10">.</span>991 and <span 
+class="cmmi-10">r </span>= 0<span 
+class="cmmi-10">.</span>999, say, may
+have a large effect on the isochron age. All these problems can be solved
+by recasting the isochron regression into a new form, by plotting <span 
+class="cmmi-10">d&#x2215;D </span>vs.
+<span 
+class="cmmi-10">P&#x2215;D</span>. This produces a different type of linear trend, in which the vertical
+intercept yields the reciprocal daughter ratio, and the age is not proportional to
+the slope of the isochron line, but inversely proportional to its horizontal
+intercept.
+<!--l. 507--><p class="indent" >   Published datasets (which are usually tabulated in a conventional isochron
+format) can be re-evaluated by transforming them to inverse isochron ratios using
+Equation&#x00A0;<a 
+href="#x1-3001r7">7<!--tex4ht:ref: eq:transformation --></a>, either explicitly or internally within <span 
+class="cmtt-10">IsoplotR</span>. The two isochron
+formulations produce identical results (<span class="cite"><a 
+href="#Xdalrymple1988">Dalrymple et&#x00A0;al.</a></span>,&#x00A0;<span class="cite"><a 
+href="#Xdalrymple1988">1988</a></span>) if the relative
+uncertainties of the ratio measurements are reasonably small (<span 
+class="cmmi-10">&#x003C; </span>5%, say). In the
+presence of larger uncertainties, inverse isochrons produce the most accurate results.
+We therefore recommend that inverse isochrons are used instead of conventional
+isochrons for Re&#8211;Os and K&#8211;Ca geochronology, and any other datasets exhibiting
+strong error correlations.
+<!--l. 528--><p class="indent" >   Code and data availability: <span 
+class="cmtt-10">IsoplotR </span>is free software released under
+the GPL-3 license. The package and its source code are available from
+<span 
+class="cmtt-10">https://cran.r-project.org/package=IsoplotR</span>.
+<!--l. 552--><p class="indent" >   Author contributions: PV wrote the software and the paper. YL formulated the
+research question and contributed to the writing of the paper.
+<!--l. 554--><p class="indent" >   Competing interests: Pieter Vermeesch is an associate editor of <span 
+class="cmti-10">Geochronology</span>.
+
+<!--l. 558--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-70006"></a>Acknowledgements</h3>
+<!--l. 560--><p class="noindent" >We thank David Selby for feedback on an early version of the manuscript. This
+research was supported by National Key Research and Development Program of
+China grant #2018YFA0702600 and National Natural Science Foundation of China
+grant #42022022 awarded to YL; and by NERC standard grant #NE/T001518/1
+(&#8216;Beyond Isoplot&#8217;) awarded to PV. Donald Davis, Ryan Ickert and an anonymous
+reviewer are thanked for their constructive reviews, which prompted us to develop
+the semi-synthetic K&#8211;Ca model.
+<!--l. 576--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-80006"></a>References</h3>
+<!--l. 576--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xconnelly2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Connelly, J., Bollard, J., and Bizzarro, M.: Pb&#8211;Pb chronometry and the
+  early solar system, Geochimica et Cosmochimica Acta, 201, 345&#8211;363, 2017.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdalrymple1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dalrymple,  G.&#x00A0;B.,  Lanphere,  M.&#x00A0;A.,  and  Pringle,  M.&#x00A0;S.:  Correlation
+  diagrams  in  <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar  dating:  Is  there  a  correct  choice?,  Geophysical
+  Research Letters, 15, 589&#8211;591, 1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xharrison2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Harrison, T.&#x00A0;M., Heizler, M.&#x00A0;T., McKeegan, K.&#x00A0;D., and Schmitt, A.&#x00A0;K.: In
+  situ <sup><span 
+class="cmr-7">40</span></sup>K&#8211;<sup><span 
+class="cmr-7">40</span></sup>Ca &#8216;double-plus&#8217; SIMS dating resolves Klokken feldspar <sup><span 
+class="cmr-7">40</span></sup>K&#8211;<sup><span 
+class="cmr-7">40</span></sup>Ar
+  paradox, Earth and Planetary Science Letters, 299, 426&#8211;433, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkendall2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kendall,  B.,  Creaser,  R.&#x00A0;A.,  and  Selby,  D.:  Re&#8211;Os  geochronology  of
+  postglacial black shales in Australia: Constraints on the timing of &#8220;Sturtian&#8221;
+  glaciation, Geology, 34, 729&#8211;732, 2006.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xludwig1980"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ludwig, K.&#x00A0;R.: Calculation of uncertainties of U-Pb isotope data, Earth and
+  Planetary Science Letters, 46, 212&#8211;220, 1980.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmorelli2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Morelli, R., Creaser, R.&#x00A0;A., Seltmann, R., Stuart, F.&#x00A0;M., Selby, D., and
+  Graupner, T.: Age and source constraints for the giant Muruntau gold deposit,
+
+  Uzbekistan, from coupled Re-Os-He isotopes in arsenopyrite, Geology, 35,
+  795&#8211;798, 2007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpearson1896"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pearson, K.: Mathematical contributions to the theory of evolution.&#8211;on a
+  form of spurious correlation which may arise when indices are used in the
+  measurement  of  organs,  Proceedings  of  the  Royal  Society  of  London,  60,
+  489&#8211;498, 1896.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsmoliar1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Smoliar, M.&#x00A0;I., Walker, R.&#x00A0;J., and Morgan, J.&#x00A0;W.: Re-Os ages of group IIA,
+  IIIA, IVA, and IVB iron meteorites, Science, 271, 1099&#8211;1102, 1996.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstein2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stein, H.&#x00A0;J., Morgan, J.&#x00A0;W., and Scherst&eacute;n, A.: Re-Os dating of low-level
+  highly  radiogenic  (LLHR)  sulfides:  The  Harnas  gold  deposit,  southwest
+  Sweden,  records  continental-scale  tectonic  events,  Economic  Geology,  95,
+  1657&#8211;1671, 2000.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtera1972"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Tera, F. and Wasserburg, G.: U-Th-Pb systematics in three Apollo 14 basalts
+  and the problem of initial Pb in lunar rocks, Earth and Planetary Science
+  Letters, 14, 281&#8211;304, 1972.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xturner1971"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Turner,  G.:  <sup><span 
+class="cmr-7">40</span></sup>Ar&#8211;<sup><span 
+class="cmr-7">39</span></sup>Ar  ages  from  the  lunar  maria,  Earth  and  Planetary
+  Science Letters, 11, 169&#8211;191, 1971.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.:  Revised  error  propagation  of  <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar  data,  including
+  covariances, Geochimica et Cosmochimica Acta, 171, 325&#8211;337, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2018c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.:  <span 
+class="cmtt-10">IsoplotR</span>:  a  free  and  open  toolbox  for  geochronology,
+  Geoscience Frontiers, 9, 1479&#8211;1493, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xyork2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>York, D., Evensen, N.&#x00A0;M., Mart&iacute;nez, M.&#x00A0;L., and De&#x00A0;Basabe&#x00A0;Delgado, J.:
+  Unified equations for the slope, intercept, and standard errors of the best
+  straight line, American Journal of Physics, 72, 367&#8211;375, 2004.
+</p>
+
+  </div>
+    
+</body></html> 
+
+
+

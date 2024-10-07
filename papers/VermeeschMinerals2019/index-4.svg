@@ -1,0 +1,12 @@
+ <div class="verbatim" id="verbatim-5">
+<span 
+class="cmtt-10x-x-109">AB.mean</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;mean(A/B)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">inv.BA.mean</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;1/mean(B/A)</span>
+</div>
+<!--l. 269--><p class="nopar" >                                                                               

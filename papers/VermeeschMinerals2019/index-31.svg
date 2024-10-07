@@ -1,0 +1,8 @@
+ <div class="verbatim" id="verbatim-32">
+<span 
+class="cmtt-10x-x-109">plot(conf,type='n',asp=1)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">text(conf,labels=labels(eurodist))</span>
+</div>
+<!--l. 1095--><p class="nopar" >                                                                               

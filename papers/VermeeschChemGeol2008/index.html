@@ -1,0 +1,2080 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Three new ways to calculate average (U-Th)/He ages</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="ternaryhelium.tex"> 
+<meta name="date" content="2008-12-19 22:19:00"> 
+<link rel="stylesheet" type="text/css" href="ternaryhelium.css">
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body>
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Three new ways to calculate average
+(U-Th)/He ages</h2>
+<div class="author" ><span 
+class="ecrm-1440">Pieter Vermeesch</span></div>
+<br />
+   </div><table 
+class="abstract"><tr><td 
+>
+<div class="center" 
+>
+<!--l. 29--><p class="noindent" >
+<!--l. 29--><p class="noindent" ><span 
+class="ecbx-1095">Abstract</span></div>
+      <!--l. 30--><p class="indent" >    <span 
+class="ecrm-1095">Traditionally the &#8220;average&#8221; age of multiple (U-Th)/He analyses has</span>
+      <span 
+class="ecrm-1095">been calculated as the arithmetic mean age. This paper presents three</span>
+      <span 
+class="ecrm-1095">alternative methods: (a) in analogy with the fission track method,</span>
+      <span 
+class="ecrm-1095">the  </span><span 
+class="ecti-1095">pooled  age  </span><span 
+class="ecrm-1095">is  calculated  by  adding  the  respective  U,  Th  and</span>
+      <span 
+class="ecrm-1095">He  abundances  of  several  grains  together,  thereby  generating  one</span>
+      <span 
+class="ecrm-1095">&#8220;synthetic&#8221;  multi-grain  measurement;  (b)  the  </span><span 
+class="ecti-1095">isochron  age  </span><span 
+class="ecrm-1095">is  the</span>
+      <span 
+class="ecrm-1095">slope of helium-concentration versus present-day helium-production;</span>
+      <span 
+class="ecrm-1095">(c) the </span><span 
+class="ecti-1095">central age </span><span 
+class="ecrm-1095">is computed from the geometric mean U-Th-He</span>
+      <span 
+class="ecrm-1095">composition.  Each  of  these  methods  is  more  appropriate  than  the</span>
+      <span 
+class="ecrm-1095">arithmetic  mean  age  in  certain  applications.  The  pooled  age  is</span>
+      <span 
+class="ecrm-1095">useful for comparing single-grain with multi-grain analyses, whereas</span>
+      <span 
+class="ecrm-1095">the  isochron  age  can  be  used  to  detect  &#8220;parentless  helium&#8221;.  The</span>
+      <span 
+class="ecrm-1095">central  age  is  the  most  accurate  and  statistically  robust  way  to</span>
+      <span 
+class="ecrm-1095">calculate  a  sample  average  of  several  single-grain  analyses  because</span>
+
+      <span 
+class="ecrm-1095">U,  Th  and  He  form  a  ternary  system  and  only  the  central  age</span>
+      <span 
+class="ecrm-1095">adequately captures the statistics of this compositional data space.</span>
+      <span 
+class="ecrm-1095">Fortunately,  the  expected  difference  between  the  arithmetic  mean</span>
+      <span 
+class="ecrm-1095">age  and  the  central  age  is  relatively  small,  less  than  1%  if  the</span>
+      <span 
+class="ecrm-1095">external  age  reproducibility  is  better  than  15%  (1</span><span 
+class="cmmi-10x-x-109">&#x03C3;</span><span 
+class="ecrm-1095">).  Finally,  the</span>
+      <span 
+class="ecrm-1095">(U-Th)/He age equation is visualized on a ternary diagram to illustrate</span>
+      <span 
+class="ecrm-1095">that  the  </span><span 
+class="cmmi-10x-x-109">&#x03B1;</span><span 
+class="ecrm-1095">-ejection  correction  should  be  applied  before,  and  not</span>
+      <span 
+class="ecrm-1095">after age calculation, in order to avoid a partial linearization of the</span>
+      <span 
+class="ecrm-1095">age equation. Including Sm as a fourth parent element precludes a</span>
+      <span 
+class="ecrm-1095">straightforward visualization of the age equation on a two-dimensional</span>
+      <span 
+class="ecrm-1095">plot. Nevertheless, the pooled, isochron and central age methods can</span>
+      <span 
+class="ecrm-1095">be easily generalized to the case of (U-Th-Sm)/He dating. To facilitate</span>
+      <span 
+class="ecrm-1095">the calculation of the central age, a web-based calculator is provided</span>
+      <span 
+class="ecrm-1095">at </span><span 
+class="ectt-1095">http://pvermees.andropov.org/central</span>
+</td></tr></table>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 63--><p class="noindent" >Radiogenic helium-geochronology is based on a summed set of differential
+equations:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1001r1"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium0x.png" alt="d[He ]     &#x2211;n  d[Pi ]        d[Pi]
+------=  -     ----- with:  -----= - &#x03BB;i[Pi]
+  dt       i=1  dt           dt
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 67--><p class="nopar" >
+<!--l. 70--><p class="indent" >   where t = time, [He] = helium abundance, [P<sub><span 
+class="cmmi-8">i</span></sub>] = abundance of the i<sup><span 
+class="cmmi-8">th</span></sup> parent
+nuclide and <span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmmi-8">i</span></sub> = decay constant of this nuclide (for 1 <span 
+class="cmsy-10x-x-120">&#x2264; </span>i <span 
+class="cmsy-10x-x-120">&#x2264; </span>n). Despite the
+simplicity of Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:diff --></a>, there are several ways to solve it, three of which will be
+
+discussed in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:single --></a>. A linear approximation is accurate to better than 1% for
+ages up to 100Ma, which can be considered satisfactory in comparison with
+the external reproducibility of (U-Th)/He dating (20-30%; e.g., Stock
+et al., 2006). Nevertheless, most researchers rightly decide to calculate
+an exact age by numerical iteration. This paper raises the point that
+the accuracy gained by doing so is easily lost by two common practices:
+(1) performing the <span 
+class="cmmi-12">&#x03B1;</span>-ejection after, rather than before age calculation
+and (2) using the arithmetic mean age to summarize a dataset of several
+single-grain measurements. After Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:multiple --></a> presents two similarly biased
+alternatives to the arithmetic mean age that are appropriate for specific
+applications, Section <a 
+href="#x1-60004">4<!--tex4ht:ref: sec:ternary --></a> introduces the <span 
+class="ecti-1200">central age </span>as the most accurate way to
+compute average (U-Th)/He ages. The accuracy gained by using the central
+age instead of the arithmetic mean age is comparable to that gained by
+iteratively solving the (U-Th)/He age equation instead of using the linear
+approximation. The only cost of the new procedure is computational complexity.
+To facilitate the calculations, they are implemented in an online calculator
+(<span 
+class="ectt-1200">http://pvermees.andropov.org/central</span>) and illustrated on a published
+dataset of inclusion-bearing apatites. Finally, Section <a 
+href="#x1-100005">5<!--tex4ht:ref: sec:Sm --></a> presents a generalized
+method to calculate central ages for datasets that also include a fourth radioactive
+parent, <sup><span 
+class="cmr-8">147</span></sup>Sm.
+<!--l. 100--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Calculating single-grain ages:
+<br class="newline" />many ways to skin a cat</h3>
+<!--l. 104--><p class="noindent" >Ten naturally-occuring long-lived <span 
+class="cmmi-12">&#x03B1;</span>-emitting radionuclides exist on Earth: <sup><span 
+class="cmr-8">144</span></sup>Nd,
+<sup><span 
+class="cmr-8">148</span></sup>Sm, <sup><span 
+class="cmr-8">147</span></sup>Sm, <sup><span 
+class="cmr-8">152</span></sup>Gd, <sup><span 
+class="cmr-8">174</span></sup>Hf, <sup><span 
+class="cmr-8">186</span></sup>Os, <sup><span 
+class="cmr-8">190</span></sup>Pt, <sup><span 
+class="cmr-8">232</span></sup>Th, <sup><span 
+class="cmr-8">235</span></sup>U and <sup><span 
+class="cmr-8">238</span></sup>U. For the purpose of
+helium-thermochronology, all but the heaviest three of these nuclides can often be
+neglected because of their low abundance and low helium-yield. For example, only
+one <span 
+class="cmmi-12">&#x03B1;</span>-particle is produced per <sup><span 
+class="cmr-8">147</span></sup>Sm, whereas six to eight are formed in
+the Th and U decay series. Further simplification is possible because the
+present-day <sup><span 
+class="cmr-8">238</span></sup>U/<sup><span 
+class="cmr-8">235</span></sup>U-ratio is constant in the solar system (= 137.88; Steiger
+and J&auml;ger, 1977). Therefore, the ingrowth of helium with time (t) can
+be written as a function of the elemental U, Th and He abundances or
+concentrations:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2001r2"></a>
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium1x.png" alt="        (  137.88(         )      7   (         ))        (         )
+[He ] =  8 ------- e&#x03BB;238t - 1 + ------- e&#x03BB;235t - 1   [U] + 6 e&#x03BB;232t - 1 [T h]
+           138.88              138.88
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 118--><p class="nopar" >
+<!--l. 121--><p class="indent" >   with <span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmr-8">232</span></sub>, <span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmr-8">235</span></sub> and <span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmr-8">238</span></sub> the decay constants of <sup><span 
+class="cmr-8">232</span></sup>Th, <sup><span 
+class="cmr-8">235</span></sup>U and <sup><span 
+class="cmr-8">238</span></sup>U,
+respectively. Equation <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:exact --></a> has no analytical solution but is easy to solve iteratively.
+However, for young ages (t <span 
+class="cmsy-10x-x-120">&#x226A; </span>1/<span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmr-8">235</span></sub>), a reasonably accurate linear approximation
+also exists:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2002r3"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium2x.png" alt="    [He ]
+t = -----
+     P
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 128--><p class="nopar" >
+<!--l. 131--><p class="indent" >   with P the present-day helium production rate:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2003r4"></a>
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium3x.png" alt="     (                         )
+P =   8 137.88&#x03BB;   +  --7---&#x03BB;     [U ] + 6&#x03BB;  [Th ]
+        138.88 238   138.88  235          232
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 134--><p class="nopar" >
+<!--l. 137--><p class="indent" >   The accuracy of this solution will be discussed in Section <a 
+href="#x1-60004">4<!--tex4ht:ref: sec:ternary --></a>. Besides being easy
+to implement, the linear age equation is useful for illustrative purposes
+and opens up some new applications which will be discussed in Section
+<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:multiple --></a>.
+<br class="newline" />
+<!--l. 143--><p class="indent" >   Meesters and Dunai (2005) introduced an alternative direct solution to the
+(U-Th)/He age equation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2004r5"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium4x.png" alt="      1     (     &#x03BB;wm     )
+t = -----ln  1 +  ----[He ]
+    &#x03BB;wm            P
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 147--><p class="nopar" >
+<!--l. 150--><p class="indent" >   with <span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmmi-8">wm</span></sub> the weighted mean decay constant:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2005r6"></a>
+   <center class="math-display" >
+
+<img 
+src="ternaryhelium5x.png" alt="       (  137.88- 2    --7-- 2  )        2
+&#x03BB;    = -8-138.88&#x03BB;-238-+-138.88&#x03BB;235-[U]-+-6&#x03BB;232[T-h]
+ wm                       P
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 153--><p class="nopar" >
+<!--l. 156--><p class="indent" >   As shown by Meesters and Dunai (2005) and in Section <a 
+href="#x1-60004">4<!--tex4ht:ref: sec:ternary --></a>, this solution is
+remarkably accurate for all practical applications.
+<!--l. 160--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Multi-grain ages</h3>
+<!--l. 164--><p class="noindent" >Equations <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:exact --></a>-<a 
+href="#x1-2005r6">6<!--tex4ht:ref: eq:PL --></a> can be used to calculate (U-Th)/He ages from individual U, Th and
+He measurements, but do <span 
+class="ecti-1200">not </span>explain how to calculate the &#8220;average&#8221; value of
+multiple analyses. Traditionally, the average has been estimated by the arithmetic
+mean of the single grain ages. This section will introduce two alternative methods
+for calculating average ages, and the next section will add a third. Each of these
+new methods is more appropriate than the arithmetic mean age in specific
+applications.
+<!--l. 174--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-40003.1"></a>The pooled age</h4>
+<!--l. 176--><p class="noindent" >Helium can be extracted from the host grain either in a resistance furnace or by
+laser-heating in a micro-oven (House et al., 2000). In the former, but sometimes
+also in the latter case, it may be necessary to analyze multiple mineral grains
+together (e.g., Persano et al., 2007). &#8220;Pooling&#8221; several grains boosts the signal
+strength and sometimes averages out <span 
+class="cmmi-12">&#x03B1;</span>-ejection correction errors caused by zoning
+and mineral inclusions. Vermeesch et al. (2007) introduced the &#8220;pooled age&#8221; as
+the best way to compare multiple single-grain ages with one or more
+multi-grain ages, or to compare two sets of multi-grain ages with each other
+(Figure <a 
+href="#x1-140011">1<!--tex4ht:ref: fig:pooled --></a>). The pooled age is calculated by adding the respective U, Th
+and He abundances (in moles) of several measurements together, thereby
+generating one &#8220;synthetic&#8221; multi-grain measurement. The age of the pooled
+measurement can then be calculated using any of the equations given in Section
+
+<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:single --></a>.
+<br class="newline" />
+<!--l. 193--><p class="indent" >   An obvious disadvantage of pooling compositional data is that the
+resulting age is biased to the high U, Th or He compositions. Because
+such bias can be associated with anomalous grains affected by radiation
+damage or implanted helium, the pooled age may be wrong by effectively
+giving extra weight to outliers. However, all these objections are also
+true for standard multi-grain analyses, which cannot be avoided when
+dating small, young, or U-Th-poor grains (e.g., Persano et al., 2007). In
+short, the pooled age must be used for and only for averaging multi-grain
+aliquots.
+
+<!--l. 713--><p class="noindent" ><hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-140011"></a>
+
+<!--l. 714--><p class="noindent" >(a) <img 
+src="NAXlin.jpg" alt="PIC" class="graphics" width="300pt"><!--tex4ht:graphics  
+name="ternaryhelium28x.png" src="0C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_NAXlin.eps"  
+--> (b)
+<img 
+src="NAXpooled.jpg" alt="PIC" class="graphics" width="300pt"><!--tex4ht:graphics  
+name="ternaryhelium29x.png" src="1C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_NAXpooled.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;1: </td><td  
+class="content">Linearized (U-Th)/He diagram with a subset of the HF-treated
+inclusion-bearing apatite data of Vermeesch et al. (2007). 30% uncertainty
+(2<span 
+class="cmmi-12">&#x03C3;</span>) was added to the helium-abundances to account for <span 
+class="cmmi-12">&#x03B1;</span>-ejection correction
+induced scatter (Vermeesch et al., 2007). (a) According to the linear age
+equation, (U-Th)/He ages are given by the slopes of lines connecting each
+point (P,[He]) with the origin; (b) the &#8220;pooled&#8221; age is a &#8220;synthetic multi-grain
+age&#8221; calculated from the summed production rates and helium-abundances
+of all the measurements. The box in <a 
+href="#x1-140011">1<!--tex4ht:ref: fig:pooled --></a>.b marks the outline of <a 
+href="#x1-140011">1<!--tex4ht:ref: fig:pooled --></a>.a. The pooled
+age of the sample is 11.28 <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.14 Ma.</td></tr></table><!--tex4ht:label?: x1-140011 -->
+<!--l. 731--><p class="noindent" ></td></tr></table></div><hr class="endfigure">
+
+<!--l. 204--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-50003.2"></a>The (U-Th)/He isochron</h4>
+<!--l. 206--><p class="noindent" >The previous section showed that (U-Th)/He data can be visualized on a
+two-dimensional plot of helium abundance or concentration versus -production
+(Figure <a 
+href="#x1-140011">1<!--tex4ht:ref: fig:pooled --></a>). To calculate a pooled age, it is important that [U], [Th] and [He] are
+elemental <span 
+class="ecti-1200">abundances</span>, expressed in moles. If the data are recast in units
+of <span 
+class="ecti-1200">concentration</span>, some of the bias towards high U-Th-grains disappears
+and the He-P diagram can be used to define a (U-Th)/He <span 
+class="ecti-1200">isochron</span>. This
+is an unconstrained linear fit through a series of single-grain (P,[He])
+measurements.
+<br class="newline" />
+<!--l. 217--><p class="indent" >   For an application of the isochron method, consider the U-Th rich mineral
+inclusions in apatite which are often held responsible for erroneously old
+(U-Th)/He ages, because they produce &#8220;parentless&#8221; He. This problem can be
+detected with the (U-Th)/He isochron. In the absence of mineral inclusions, the
+isochron goes through the origin (P=[He]=0). However, in the presence of
+<span 
+class="cmmi-12">&#x03B1;</span>-emitting inclusions, the isochron is either not defined or does not go through
+the origin. For example, consider the worst-case scenario of an <span 
+class="cmmi-12">&#x03B1;</span>-emitting zircon
+inclusion contained in an apatite without U and Th. The inclusion ejects He into
+the surrounding apatite that is measured following degassing by heating with a
+laser or in a resistance furnace. However, the zircon inclusion will not dissolve in
+the concentrated HNO<sub><span 
+class="cmr-8">3</span></sub> that is commonly used to digest apatites prior to U-Th
+analysis. Therefore, the apparent (U-Th)-production of such a sample
+is zero, and its isochron does not go through the origin of the [He]-P
+
+diagram.
+<br class="newline" />
+<!--l. 234--><p class="indent" >   Vermeesch et al. (2007) solved the parentless helium problem by dissolution of
+the apatite and its inclusions in hot HF. The effectiveness of this technique is
+illustrated by comparing an inclusion-rich sample from Naxos using the
+traditional HNO<sub><span 
+class="cmr-8">3</span></sub> method with an HF-treated aliquot of the same sample. The
+latter defines a well-constrained (U-Th)/He isochron with zero intercept, whereas
+the former does not (Figure <a 
+href="#x1-140022">2<!--tex4ht:ref: fig:isochron --></a>). Calculation of the isochron age, including error
+propagation, can easily be done using the Isoplot Excel add-in (Ludwig,
+2003).
+
+<!--l. 735--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-140022"></a>
+
+<!--l. 736--><p class="noindent" >(a) <img 
+src="NAXochronMN2.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="ternaryhelium30x.png" src="2C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_NAXochronMN2.eps"  
+--> (b)
+<img 
+src="NAXochronMF2.jpg" alt="PIC" class="graphics" width="300pt" ><!--tex4ht:graphics  
+name="ternaryhelium31x.png" src="3C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_NAXochronMF2.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;2:  </td><td  
+class="content">(U-Th)/He  isochron  plots  for  inclusion-bearing  apatites  from
+Naxos, Greece (Vermeesch et al., 2007). (a) HNO<sub><span 
+class="cmr-8">3</span></sub>-treated apatites do not
+plot on a line, indicating &#8220;parentless helium&#8221; caused by undissolved mineral
+inclusions  containing  &#8220;missing&#8221;  U  and  Th;  (b)  HF-treated  apatites  from
+the  same  sample  do  form  a  well-defined  isochron  intersecting  the  origin,
+indicating  that  all  parent  and  daughter  nuclides  are  accounted  for.  The
+isochron age is 12.0 <span 
+class="cmsy-10x-x-120">&plusmn; </span>4.2 Ma.</td></tr></table><!--tex4ht:label?: x1-140022 -->
+
+<!--l. 749--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+
+<!--l. 245--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-60004"></a>U-Th-He as a ternary system</h3>
+<!--l. 249--><p class="noindent" >The age-equations <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:exact --></a>, <a 
+href="#x1-2002r3">3<!--tex4ht:ref: eq:linear --></a> and <a 
+href="#x1-2004r5">5<!--tex4ht:ref: eq:meesters --></a> do not specify the measurement units of [U],
+[Th] and [He]. These can be expressed in moles or moles/g, but they
+can also be non-dimensionalized by normalization to a constant sum:
+[U&#8217;] <span 
+class="cmsy-10x-x-120">&#x2261; </span>[U]/([U]+[Th]+[He]), [Th&#8217;] <span 
+class="cmsy-10x-x-120">&#x2261; </span>[Th]/([U]+[Th]+[He]) and [He&#8217;] <span 
+class="cmsy-10x-x-120">&#x2261;</span>
+[He]/([U]+[Th]+[He]) so that [U&#8217;] + [Th&#8217;] + [He&#8217;] = 1. Therefore, U, Th and He
+form a ternary system, can be plotted on a ternary diagram, and are subject to
+the peculiar mathematics of the ternary dataspace. In a three-component system
+(A+B+C=1), increasing one component (e.g., A) causes a decrease in the two
+other components (B and C). Another consequence of so-called data <span 
+class="ecti-1200">closure </span>is
+that the arithmetic mean of compositional data has no physical meaning (Weltje,
+2002).
+<br class="newline" />
+<!--l. 265--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-70004.1"></a>Plotting the (U-Th)/He age equation on ternary diagrams</h4>
+<!--l. 267--><p class="noindent" >Following the nomenclature of Aitchison (1986), the ternary diagram is a
+2-<span 
+class="ecti-1200">simplex </span>(<span 
+class="cmr-12">&#x0394;</span><sub><span 
+class="cmr-8">2</span></sub>) (also see Weltje, 2002). The very fact that it is possible to plot
+ternary data on a two-dimensional sheet of paper tells us that the sample space
+really has only two, and not three dimensions. As a solution to the compositional
+data problem, Aitchison (1986) suggested to transform the data from <span 
+class="cmr-12">&#x0394;</span><sub><span 
+class="cmr-8">2</span></sub>
+to <span 
+class="msbm-10x-x-120"><img 
+src="msbm10-c-52.png" alt="&#x211D;" class="10-120x-x-52" /></span><sup><span 
+class="cmr-8">2</span></sup> using the <span 
+class="ecti-1200">logratio transformation</span>. After performing the desired
+
+(&#8220;traditional&#8221;) statistical analysis on the transformed data in <span 
+class="msbm-10x-x-120"><img 
+src="msbm10-c-52.png" alt="&#x211D;" class="10-120x-x-52" /></span><sup><span 
+class="cmr-8">2</span></sup>, the results can
+be transformed back to <span 
+class="cmr-12">&#x0394;</span><sub><span 
+class="cmr-8">2</span></sub> using the inverse logratio transformation (Figure <a 
+href="#x1-140033">3<!--tex4ht:ref: fig:mapping --></a>).
+Implementation details about the logratio transformation will be given in Section
+<a 
+href="#x1-90004.3">4.3<!--tex4ht:ref: sec:example --></a>.
+<br class="newline" />
+<!--l. 281--><p class="indent" >   Ternary diagrams and logratio plots are useful tools for visualizing U-Th-He
+data and the (U-Th)/He age equation. Thus, it can be shown that the linear
+age-equation is accurate to better than 1% for ages up to 100 Ma (Figure <a 
+href="#x1-140044">4<!--tex4ht:ref: fig:misfit --></a>.a)
+whereas the equation of Meesters and Dunai (2005) reaches the same accuracy at
+1 Ga (Figure <a 
+href="#x1-140044">4<!--tex4ht:ref: fig:misfit --></a>.b). Figure <a 
+href="#x1-140044">4<!--tex4ht:ref: fig:misfit --></a>.c represents a warning against applying the
+<span 
+class="cmmi-12">&#x03B1;</span>-ejection correction after, rather than before the age-calculation. This
+causes a partial &#8220;linearization&#8221; of the age-equation and results in a loss of
+accuracy. For example, dividing an uncorrected (U-Th)/He age by an
+<span 
+class="cmmi-12">&#x03B1;</span>-retention factor F<sub><span 
+class="cmmi-8">t</span></sub> of 0.7 results in a misfit that is 30% of the linear age
+equation misfit. To take full advantage of the accuracy of the exact age
+equation, one must divide [He] by F<sub><span 
+class="cmmi-8">t</span></sub> <span 
+class="ecti-1200">before </span>calculating the (U-Th)/He
+age.
+
+<!--l. 753--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-140033"></a>
+
+<!--l. 754--><p class="noindent" ><img 
+src="MappingGray.jpg" alt="PIC" class="graphics" width="600pt"><!--tex4ht:graphics  
+name="ternaryhelium32x.png" src="4C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_MappingGray.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;3:  </td><td  
+class="content">Ternary  U-Th-He  data  can  be  mapped  to  two-dimensional
+logratio-space without loss of information.</td></tr></table><!--tex4ht:label?: x1-140033 -->
+
+<!--l. 761--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+
+<!--l. 297--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-80004.2"></a>The central age</h4>
+<!--l. 299--><p class="noindent" >The logratio transformation is useful for more than just the purpose of
+visualization. It provides a fourth and arguably best way to calculate the average
+age of a population of single-grain (U-Th)/He measurements. The <span 
+class="ecti-1200">central </span>age is
+calculated from the &#8220;average&#8221; U-Th-He composition of the dataset, where
+&#8220;average&#8221; is defined as the geometric mean of the single grain U, Th and He
+measurements. The geometric mean of compositional data equals the arithmetic
+mean of logratio transformed data.
+<br class="newline" />
+<!--l. 309--><p class="indent" >   How important is the difference between the arithmetic mean age and
+the central age? To simplify this question, consider the special case of
+a sample with only one radioactive parent, say Th. Assume that W =
+ln([He]/[Th]) is normally distributed with mean <span 
+class="cmmi-12">&#x03BC; </span>and standard deviation <span 
+class="cmmi-12">&#x03C3;</span>.
+Using the linearized age equation for clarity, the central age t<sub><span 
+class="cmmi-8">c</span></sub> is given
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8001r7"></a>
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium6x.png" alt="         &#x03BC;
+tc = C  e
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 317--><p class="nopar" >
+<!--l. 320--><p class="indent" >   with C = 1/(6<span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmr-8">232</span></sub>) for Th. Using the first raw moment of the lognormal
+distribution (Aitchison and Brown, 1957), the arithmetic mean age t<sub><span 
+class="cmmi-8">m</span></sub>
+is:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8002r8"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium7x.png" alt="tm = C  e&#x03BC;+&#x03C3;2&#x2215;2
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 325--><p class="nopar" >
+<!--l. 328--><p class="indent" >   so that the relative difference between t<sub><span 
+class="cmmi-8">m</span></sub> and t<sub><span 
+class="cmmi-8">c</span></sub> is:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8003r9"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium8x.png" alt="tm - tc    &#x03C3;2&#x2215;2
+------- = e    - 1
+  tc
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 331--><p class="nopar" >
+<!--l. 334--><p class="indent" >   Using the second central moment of the lognormal distribution (Aitchison and
+Brown, 1957), the variance of the single-grain ages is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8004r10"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium9x.png" alt="         (  2    )      2
+&#x03C3;2t = C2   e&#x03C3; -  1  e2&#x03BC;+ &#x03C3;
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 338--><p class="nopar" >
+<!--l. 341--><p class="indent" >   Plotting <span 
+class="cmr-12">(</span><span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">m</span></sub> <span 
+class="cmsy-10x-x-120">-</span><span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">c</span></sub><span 
+class="cmr-12">)</span><span 
+class="cmmi-12">&#x2215;t</span><sub><span 
+class="cmmi-8">c</span></sub> versus <span 
+class="cmmi-12">&#x03C3;</span><sub><span 
+class="cmmi-8">t</span></sub>/t<sub><span 
+class="cmmi-8">c</span></sub> reveals that the central age is systematically
+younger than the mean age. Fortunately, the difference is small. For example, for a
+typical external reproducibility of <span 
+class="cmsy-10x-x-120">~ </span>25% (e.g. <span 
+class="cmmi-12">&#x03C3;</span><sub><span 
+class="cmmi-8">t</span></sub><span 
+class="cmmi-12">&#x2215;t </span>= 11% for Stock et al., 2006),
+the expected difference is <span 
+class="cmmi-12">&#x003C; </span>1% (Figure <a 
+href="#x1-140055">5<!--tex4ht:ref: fig:centralError --></a>). Finally, it is interesting to note that
+the geometric mean of the log-normal distribution equals its median. Therefore,
+the central age asymptotically converges to the median age. However, typical
+numbers of replicate analyses are not sufficient for this approach to be truely
+beneficial.
+
+
+<!--l. 765--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-140044"></a>
+
+<!--l. 766--><p class="noindent" >(a) <img 
+src="linearMisfitGray.jpg" alt="PIC" class="graphics" width="200pt"><!--tex4ht:graphics  
+name="ternaryhelium33x.png" src="5C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_linearMisfitGray.eps"  
+--> (b) <img 
+src="meestersMisfitGray.jpg" alt="PIC" class="graphics" width="200pt"><!--tex4ht:graphics  
+name="ternaryhelium34x.png" src="6C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_meestersMisfitGray.eps"  
+--> (c)
+<img 
+src="FtMisfitGray.jpg" alt="PIC" class="graphics" width="200pt"><!--tex4ht:graphics  
+name="ternaryhelium35x.png" src="7C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_FtMisfitGray.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;4: </td><td  
+class="content">(a) Relative misfit of the linear approximation (Equation <a 
+href="#x1-2002r3">3<!--tex4ht:ref: eq:linear --></a>) to the
+exact age equation (Equation <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:exact --></a>); (b) misfit of the direct solution of Meesters
+and Dunai (2005) (Equation <a 
+href="#x1-2004r5">5<!--tex4ht:ref: eq:meesters --></a>); (c) misfit caused by making the <span 
+class="cmmi-12">&#x03B1;</span>-ejection
+correction <span 
+class="ecti-1200">after </span>the age calculation (with F<sub><span 
+class="cmmi-8">t</span></sub>=0.7).</td></tr></table><!--tex4ht:label?: x1-140044 -->
+
+<!--l. 778--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+
+<!--l. 782--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-140055"></a>
+
+<!--l. 783--><p class="noindent" ><img 
+src="centralError3.jpg" alt="PIC" class="graphics" width="300pt"><!--tex4ht:graphics  
+name="ternaryhelium36x.png" src="8C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_centralError3.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;5: </td><td  
+class="content">Expected difference between the mean age t<sub><span 
+class="cmmi-8">c</span></sub> and the central age
+t<sub><span 
+class="cmmi-8">m</span></sub> plotted against the relative spread of the single-grain ages.</td></tr></table><!--tex4ht:label?: x1-140055 -->
+
+<!--l. 791--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+
+<!--l. 353--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x1-90004.3"></a>Application to HF-treated Naxos apatites</h4>
+<!--l. 357--><p class="noindent" >We now return to the sample of HF-treated inclusion-bearing apatites from Naxos
+that was previously used to illustrate the pooled and isochron age (Figures <a 
+href="#x1-140011">1<!--tex4ht:ref: fig:pooled --></a> and
+<a 
+href="#x1-140022">2<!--tex4ht:ref: fig:isochron --></a>). The raw data and the different steps of the central age calculation are given in
+
+Table <a 
+href="#x1-140081">1<!--tex4ht:ref: tab:central --></a>. We will now walk through the different parts (labeled a, b and c) of this
+table.
+<br class="newline" />
+<!--l. 365--><p class="indent" >   (a) The upper left part of Table <a 
+href="#x1-140081">1<!--tex4ht:ref: tab:central --></a> lists the U, Th and He abundances of 11
+single-grain analyses. Their respective single-grain ages (t) were calculated using
+the exact age equation, although the linear age approximation (Equation <a 
+href="#x1-2002r3">3<!--tex4ht:ref: eq:linear --></a>)
+is accurate to better than 0.1% for such young ages (Figure <a 
+href="#x1-140044">4<!--tex4ht:ref: fig:misfit --></a>.a). The
+pooled U, Th and He abundances are obtained by simple summation of the
+constituent grains. Note that the helium abundances are corrected for
+<span 
+class="cmmi-12">&#x03B1;</span>-ejection <span 
+class="ecti-1200">prior </span>to being pooled. A nominal <span 
+class="cmmi-12">&#x03C3;</span>=15% statistical uncertainty is
+associated with F<sub><span 
+class="cmmi-8">t</span></sub>, assuming randomly distributed mineral inclusions
+(Vermeesch et al., 2007). The pooled abundances were normalized to
+unity to facilitate comparison with the geometric mean composition (see
+below).
+<br class="newline" />
+<!--l. 379--><p class="indent" >   (b) To calculate the isochron age, the abundances are first rescaled to units of
+concentration (e.g. in nmol/g). This removes the bias towards large grains, which
+can dominate the pooled age calculation. The <span 
+class="cmmi-12">&#x03B1;</span>-production rate P is given by
+Equation <a 
+href="#x1-2003r4">4<!--tex4ht:ref: eq:P --></a>. The linear regression (Figure <a 
+href="#x1-140022">2<!--tex4ht:ref: fig:isochron --></a>) was done using Isochron 3.0 (Ludwig,
+2003), yielding a slope of 12.0 <span 
+class="cmsy-10x-x-120">&plusmn; </span>4.2 Ma with an intercept of -0.05 <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.45 nmol/g
+He.
+<br class="newline" />
+<!--l. 388--><p class="indent" >   (c) Central ages are somewhat more complicated to calculate than arithmetic
+mean ages, pooled ages or isochron ages. Therefore, these calculations will be
+discussed in more detail. First, transform each of the n single grain analyses to
+logratio space:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r11"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium10x.png" alt="        (      )           (      )
+Vi = ln   [Ui]-  , Wi = ln   [T-hi]
+          [Hei ]              [Hei ]
+
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 394--><p class="nopar" >
+<!--l. 397--><p class="indent" >   For i = 1,...,n. Note that this transformation can be done irrespective of
+whether the U, Th and He measurements are expressed in abundance units or in
+units of concentration. Following standard error propagation, the (co)variances of
+these quantities are estimated by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r12"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium11x.png" alt="      (    )2   (     )2         (     )2   (     )2             (      )2
+&#x02C6;&#x03C3;2 =    &#x03C3;Ui-  +   &#x03C3;Hei-  , &#x02C6;&#x03C3;2  =   &#x03C3;Thi-  +   &#x03C3;Hei-  , cov     =   &#x03C3;Hei-
+ Vi     Ui        Hei       Wi     T hi       Hei         Vi,Wi     Hei
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 403--><p class="nopar" >
+<!--l. 406--><p class="indent" >   Next, calculate the arithmetic mean of the logratio transformed data:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9003r13"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium12x.png" alt="--   1 &#x2211;n     ---   1 &#x2211;n
+V  = --    Vi,W   = --    Wi,
+     n i=1          n i=1
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 409--><p class="nopar" >
+
+<!--l. 412--><p class="indent" >   With the following (co)variances:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9004r14"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium13x.png" alt="         &#x2211;n                &#x2211;n                    &#x2211;n
+&#x03C3;&#x02C6;2--= -1-    &#x02C6;&#x03C3;2 , &#x02C6;&#x03C3;2-=  1--   &#x03C3;&#x02C6;2  , cov----=  1--   covV ,W
+  V   n2  i=1  Vi   W    n2 i=1  Wi     V,W    n2 i=1     i  i
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 415--><p class="nopar" >
+<!--l. 418--><p class="indent" >   Note that equation <a 
+href="#x1-9004r14">14<!--tex4ht:ref: eq:logratio-mean-error --></a> only propagates the internal (i.e. analytical)
+uncertainty, and not the external error. Single grain (U-Th)/He ages tend to suffer
+from overdispersion with respect to the formal analytical precision for a number of
+reasons (Fitzgerald et al., 2006; Vermeesch et al., 2007). Therefore, it
+may be better to use an alternative equation propagating the external
+error:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9005r15"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium14x.png" alt="      &#x2211;          --         &#x2211;           ---             &#x2211;         --       ---
+ 2      ni=1(Vi - V)2   2       ni=1(Wi -  W )2     ----     ni=1(Vi - V )(Wi - W )
+&#x02C6;&#x03C3;V-=  ---n(n---1)---, &#x02C6;&#x03C3;W- = ----n(n---1)----, covV,W =  -------n(n---1)---------
+" class="math-display" ></center></td><td class="equation-label">(15)</td></tr></table>
+<!--l. 427--><p class="nopar" >
+
+<!--l. 430--><p class="indent" >   Error-weighting can be done by trivial generalizations of equations <a 
+href="#x1-9003r13">13<!--tex4ht:ref: eq:logratio-mean --></a>, <a 
+href="#x1-9004r14">14<!--tex4ht:ref: eq:logratio-mean-error --></a> and
+<a 
+href="#x1-9005r15">15<!--tex4ht:ref: eq:logratio-mean-error-external --></a>, which are implemented in the web-calculator. The geometric mean
+composition is given by the inverse logratio transformation (Aitchison, 1986;
+Weltje, 2002):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9006r16"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium15x.png" alt="            --                    --
+----       eV        -----      e W       -----        1
+[U ] = -V----W-----, [T h] = -V----W-----, [He ] =-V-----W----
+       e  + e  + 1          e  + e   + 1         e  +  e  + 1
+" class="math-display" ></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 437--><p class="nopar" >
+<!--l. 440--><p class="indent" >   With variances:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9007r17"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium16x.png" alt="(   -2 )    (   2   2      )  (     2-  )
+   &#x02C6;&#x03C3;U2          a2  b2  2ab         &#x02C6;&#x03C3;V2
+(  &#x02C6;&#x03C3;Th-)  = (  b   c   2bc )  (   &#x03C3;&#x02C6;W-  )
+   &#x02C6;&#x03C3;2He-        d2  e2  2de       covV,W-
+" class="math-display" ></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 452--><p class="nopar" >
+<!--l. 455--><p class="indent" >   where
+<!--l. 457--><p class="indent" >   <div class="eqnarray">
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium17x.png" alt="       V-  W-                    V-+W-
+a =  -e--(e--+-1-)-- b  =  ----- e--------
+     (e V + eW + 1)2        (eV + eW +  1)2
+       W-  V-                      V-
+c =  -e--(e--+-1-)-- d  =  -------e-------
+     (e V + eW + 1)2        (eV + eW +  1)2
+            W-
+e =  ------ e-------
+     (e V + eW + 1)2
+" class="math-display" ></center>
+</div>
+<!--l. 463--><p class="indent" >   The central age is then simply calculated by plugging <span class="overline"><span 
+class="cmr-12">[</span><span 
+class="cmmi-12">U</span><span 
+class="cmr-12">]</span></span>, <span class="overline"><span 
+class="cmr-12">[</span><span 
+class="cmmi-12">Th</span><span 
+class="cmr-12">]</span></span> and <span class="overline"><span 
+class="cmr-12">[</span><span 
+class="cmmi-12">He</span><span 
+class="cmr-12">]</span></span> and
+their uncertainties into equation <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:exact --></a>, <a 
+href="#x1-2002r3">3<!--tex4ht:ref: eq:linear --></a> or <a 
+href="#x1-2004r5">5<!--tex4ht:ref: eq:meesters --></a>.
+<br class="newline" />
+<!--l. 469--><p class="indent" >   As predicted (Figure <a 
+href="#x1-140055">5<!--tex4ht:ref: fig:centralError --></a>), the arithmetic mean age is older than the central age.
+There is less than 2% disagreement between the arithmetic mean age (<span 
+class="cmsy-10x-x-120">~ </span>11.58
+Ma) and the central age (<span 
+class="cmsy-10x-x-120">~ </span>11.38 Ma), and 7% difference between the pooled age
+(<span 
+class="cmsy-10x-x-120">~ </span>11.28 Ma) and the isochron age (<span 
+class="cmsy-10x-x-120">~ </span>12.0 Ma).
+
+<!--l. 795--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-140066"></a>
+
+<!--l. 796--><p class="noindent" >(a) <img 
+src="NaxTernaryGray.jpg" alt="PIC" width="300pt"> (b) <img 
+src="NaxLogRatioGray.jpg" alt="PIC" width="300pt">
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;6: </td><td  
+class="content">(a) Ternary diagram of the Naxos data (Table <a 
+href="#x1-140081">1<!--tex4ht:ref: tab:central --></a>). (b) The same
+data plotted in logratio-space. Error ellipes are 2<span 
+class="cmmi-12">&#x03C3;</span>.</td></tr></table><!--tex4ht:label?: x1-140066 -->
+
+<!--l. 804--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+
+<!--l. 476--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-100005"></a>Generalized equations for (U-Th-Sm)/He dating</h3>
+<!--l. 480--><p class="noindent" >For reasons given in the Introduction, <sup><span 
+class="cmr-8">147</span></sup>Sm is often neglected in helium
+thermochronometry. However, in rare cases it does happen that apatite contains
+high abundances of Sm, affecting the helium age on the percent level. This
+section will explain how to add a fourth radioactive parent to the methods
+described above. The exact age equation (equation <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:exact --></a>) and the present-day
+helium production rate (equation <a 
+href="#x1-2003r4">4<!--tex4ht:ref: eq:P --></a>) can easily be generalized to include
+Sm:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10001r18"></a>
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium18x.png" alt="       (  137.88 (         )      7   (         ))
+[He ] =  8------- e&#x03BB;238t - 1 + ------- e&#x03BB;235t - 1   [U]
+          138.88               138.88
+          +6 (e&#x03BB;232t - 1)[T h] + 0.1499 (e&#x03BB;147t - 1)[Sm ]
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 491--><p class="nopar" >
+<!--l. 494--><p class="indent" >   and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10002r19"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium19x.png" alt="     (                         )
+        137.88-      ---7---
+P  =   8138.88&#x03BB;238 + 138.88 &#x03BB;235  [U ] + 6&#x03BB;232[Th ] + 0.1499&#x03BB;147[Sm ]
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 497--><p class="nopar" >
+<!--l. 500--><p class="indent" >   With <span 
+class="cmmi-12">&#x03BB;</span><sub><span 
+class="cmr-8">147</span></sub> the decay constant of <sup><span 
+class="cmr-8">147</span></sup>Sm and all other parameters as in
+equations <a 
+href="#x1-2001r2">2<!--tex4ht:ref: eq:exact --></a> and <a 
+href="#x1-2003r4">4<!--tex4ht:ref: eq:P --></a>. Using equation <a 
+href="#x1-10002r19">19<!--tex4ht:ref: eq:P-Sm --></a>, calculating an isochron age for
+(U-Th-Sm)/He proceeds in exactly the same way as for the ordinary (U-Th)/He
+method, and the same is true for the pooled age. Calculating (U-Th-Sm)/He
+central ages is also very similar, although the equations are a bit longer. In
+addition to V<sub><span 
+class="cmmi-8">i</span></sub> and W<sub><span 
+class="cmmi-8">i</span></sub> (equation <a 
+href="#x1-9001r11">11<!--tex4ht:ref: eq:logratio-transform --></a>), we define a third logratio variable X<sub><span 
+class="cmmi-8">i</span></sub>
+(1<span 
+class="cmsy-10x-x-120">&#x2264;</span>i<span 
+class="cmsy-10x-x-120">&#x2264;</span>n):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10003r20"></a>
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium20x.png" alt="       (  [U  ])           ( [Th ])           ( [Sm  ])
+Vi = ln   ---i-  , Wi =  ln  ----i  , Xi =  ln   ----i-
+         [Hei]              [Hei]              [Hei ]
+" class="math-display" ></center></td><td class="equation-label">(20)</td></tr></table>
+<!--l. 510--><p class="nopar" >
+<!--l. 513--><p class="indent" >   Because there are three instead of two logratio variables, the (U-Th-Sm)/He
+age equation cannot be visualized on a straightforward bivariate diagram, but
+forms a set of hypersurfaces in trivariate logratio-space (Figure <a 
+href="#x1-140077">7<!--tex4ht:ref: fig:mapping-Sm --></a>). Likewise,
+(U-Th-Sm)/He data do not form a ternary, but a tetrahedral system in
+compositional dataspace (Figure <a 
+href="#x1-140077">7<!--tex4ht:ref: fig:mapping-Sm --></a>). Generalizing the (co)variances of equation
+<a 
+href="#x1-9002r12">12<!--tex4ht:ref: eq:logratio-error --></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10004r21"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium21x.png" alt="      (    )2   (      )2         (     )2   (      )2         (     )2    (     )2
+ 2      &#x03C3;Ui-      &#x03C3;Hei-      2      &#x03C3;Thi-      &#x03C3;Hei-      2      &#x03C3;Smi-       &#x03C3;Hei-
+&#x02C6;&#x03C3;Vi =   Ui    +   Hei     , &#x02C6;&#x03C3; Wi =  T hi   +    Hei    ,&#x03C3;&#x02C6;Xi =   Smi    +    Hei
+                               (     )2
+                                 &#x03C3;Hei-
+covVi,Wi = covVi,Xi = covWi,Xi =   Hei
+" class="math-display" ></center></td><td class="equation-label">(21)</td></tr></table>
+<!--l. 524--><p class="nopar" >
+<!--l. 527--><p class="indent" >   Calculating the arithmetic logratio-means:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10005r22"></a>
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium22x.png" alt="       &#x2211;n             &#x2211;n              &#x2211;n
+V- = 1-    Vi, W--= 1-    Wi, X--=  1-   Xi
+     n              n               n
+        i=1             i=1             i=1
+" class="math-display" ></center></td><td class="equation-label">(22)</td></tr></table>
+<!--l. 530--><p class="nopar" >
+<!--l. 533--><p class="indent" >   The (co-)variances of the logratio-means, propagating only the internal
+error:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10006r23"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium23x.png" alt="      1  &#x2211;n             1 &#x2211;n              1 &#x2211;n
+&#x02C6;&#x03C3;2V-=  ---   &#x02C6;&#x03C3;2Vi, &#x02C6;&#x03C3;2W- = ---    &#x02C6;&#x03C3;2Wi, &#x02C6;&#x03C3;2X- = ---    &#x02C6;&#x03C3;2Xi
+      n2 i=1           n2  i=1            n2 i=1
+             &#x2211;n                       &#x2211;n                        &#x2211;n
+cov----=  1--   covV ,W  , cov--- = -1-    covV,X , cov----=  1--   covW ,X
+   V,W    n2 i=1    i  i     V,X    n2 i=1     i i     W,X    n2 i=1      i i
+" class="math-display" ></center></td><td class="equation-label">(23)</td></tr></table>
+<!--l. 539--><p class="nopar" >
+<!--l. 542--><p class="indent" >   The (co-)variances of the logratio-means, propagating the external
+error:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10007r24"></a>
+
+   <center class="math-display" >
+<img 
+src="ternaryhelium24x.png" alt="      &#x2211;n         --2         &#x2211;n         --- 2        &#x2211;n         ---2
+&#x02C6;&#x03C3;2-=  --i=1(Vi---V-)-, &#x02C6;&#x03C3;2-=  --i=1(Wi---W--)-,&#x03C3;&#x02C6;2--=  --i=1-(Xi---X-)--
+ V       n(n - 1 )      W       n (n - 1)       X       n(n - 1)
+          &#x2211;n   (V  - V-)(W  - W--)           &#x2211;n   (V  - V-)(X  -  X-)
+covV-,W- = ---i=1---i--------i------, covV-,X = ---i=1--i--------i------
+                  n(n - 1)                          n (n--- 1)    ---
+                                            &#x2211;n   (Wi - W  )(Xi -  X )
+                                  covW,X-=  --i=1-------------------
+                                                    n(n - 1)
+" class="math-display" ></center></td><td class="equation-label">(24)</td></tr></table>
+<!--l. 549--><p class="nopar" >
+<!--l. 552--><p class="indent" >   The inverse logratio-transformation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10008r25"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium25x.png" alt="               --                        --
+----          eV         -----          eW
+[U ] = ------------------,[T h] = ------------------
+      eV + eW  +-eX + 1          eV + eW +  eX + 1
+-----          eX          -----           1
+[Sm  ] = -V----W-----X----, [He ] = -V----W----X------
+        e  + e  +  e  + 1          e  + e  + e   + 1
+" class="math-display" ></center></td><td class="equation-label">(25)</td></tr></table>
+<!--l. 557--><p class="nopar" >
+
+<!--l. 560--><p class="indent" >   Finally, calculating the standard error propagation of the geometric mean
+compositions:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10009r26"></a>
+   <center class="math-display" >
+<img 
+src="ternaryhelium26x.png" alt="                                             (      2   )
+(       )    (                             )      &#x03C3;&#x02C6;V-
+   &#x03C3;&#x02C6;2U-         a2  b2  c2  2ab  2ac   2bc   ||    &#x02C6;&#x03C3;2W-  ||
+|  &#x02C6;&#x03C3;2-- |    |  b2  d2  e2  2bd  2be   2de | |    &#x03C3;&#x02C6;2--  |
+|(  &#x02C6;&#x03C3;T2h- |) =  |(  c2  e2  f2  2ce  2cf   2ef |) ||  cov X-- ||
+    S2m-          2   2   2                   |(      V,W- |)
+   &#x02C6;&#x03C3;He          g   h   i   2gh  2gi   2hi       covV,X
+                                                covW-,X-
+" class="math-display" ></center></td><td class="equation-label">(26)</td></tr></table>
+<!--l. 578--><p class="nopar" >
+<!--l. 581--><p class="indent" >   with
+<!--l. 583--><p class="indent" >   <div class="eqnarray">
+   <center class="math-display" >
+<img 
+src="ternaryhelium27x.png" alt="       V- W-    X-                       V-+W-
+a = --e-(e---+-e--+-1)--  b  =  --------e-----------
+    (eV + eW  + eX + 1)2        (eV + eW  + eX + 1)2
+             V-+X-                 W-  V-   X-
+c = -------- e----------  d  =  --e--(e--+-e--+-1)--
+    (eV + eW  + eX + 1)2        (eV + eW  + eX + 1)2
+             W-+X-                 X- V-    W-
+e = --------e-----------  f  =  --e--(e--+--e--+-1)--
+    (eV + eW  + eX + 1)2        (eV + eW  + eX + 1)2
+               V-                          W-
+g = ----------e---------  h  =  ----------e---------
+    (eV + eW  + eX + 1)2        (eV + eW  + eX + 1)2
+               X-
+i = ----------e---------
+    (eV + eW  + eX + 1)2
+" class="math-display" ></center>
+</div>
+<!--l. 591--><p class="indent" >   An example of a well-behaved (U-Th-Sm)/He dataset from the Fish Lake
+Valley apatite standard (provided by Prof. Daniel Stockli, University of Kansas) is
+given in the web-calculator (<span 
+class="ectt-1200">http://pvermees.andropov.org/central</span>). The
+arithmetic mean of 28 single-grain ages is 6.36 <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.11 Ma, the pooled age 6.43 <span 
+class="cmsy-10x-x-120">&plusmn;</span>
+0.21 Ma, the isochron ages 6.44 <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.67 Ma (with an intercept of -0.005 <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.056
+fmol/<span 
+class="cmmi-12">&#x03BC;</span>g, and the central age 6.41 <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.14 Ma. Note that the central age is older
+and not younger than the arithmetic mean age. This indicates that random
+variations exceed the very small systematic difference between the arithmetic and
+geometric mean compositions. However, the central age probably still is
+more accurate than the arithmetic mean age because it is less sensitive to
+outliers.
+
+<!--l. 808--><p class="indent" >   <hr class="figure"><div class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+
+<a 
+ id="x1-140077"></a>
+
+<!--l. 809--><p class="noindent" ><img 
+src="SmMapping.jpg" alt="PIC" class="graphics" width="500pt"><!--tex4ht:graphics  
+name="ternaryhelium39x.png" src="11C__Documents_and_Settings_pvermees_My_Documents_ternaryHelium_html_SmMapping.eps"  
+-->
+<br /> <table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Figure&#x00A0;7: </td><td  
+class="content">The logratio-transformation can easily be generalized to the case
+of 3 radioactive parents but this precludes a straightforward visualization
+on  a  two-dimensional  diagram.  (a)  the  (U-Th-Sm)/He  age  equation  in
+compositional  dataspace.  (b)  two  hypersurfaces  representing  two  ages  in
+logratio-space.</td></tr></table><!--tex4ht:label?: x1-140077 -->
+
+<!--l. 819--><p class="indent" >   </td></tr></table></div><hr class="endfigure">
+
+<!--l. 605--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-110006"></a>Conclusions</h3>
+<!--l. 609--><p class="noindent" >This paper compared three ways to calculate an age from a single set of U, Th
+and He measurements and four ways to calculate the &#8220;average&#8221; of several aliquots
+of the same sample. U, Th and He form a ternary system, and the ternary
+diagram was introduced as an elegant way to make such a comparison. This
+reveals that the accuracy gained by the exact solution of the (U-Th)/He
+equation is easily lost if the average age of replicate measurements is
+
+calculated by the arithmetic mean. As a better alternative, the central
+age is calculated from the geometric mean composition of a dataset. In
+addition to the central age, the paper also introduced the pooled age and the
+isochron age as valuable alternatives to the arithmetic mean age in certain
+applications.
+<br class="newline" />
+<!--l. 622--><p class="indent" >   The pooled age is calculated by adding the U, Th, (Sm) and He contents of
+several single- and/or multi grain aliquots of the same sample. Pooled ages are
+biased to high U-Th-grains which may be affected by radiation damage, but are
+the only sensible way to average multi-grain aliquots. The isochron age is given by
+the slope of a linear fit of a diagram that plots helium content against
+present-day helium production rate. In order to reduce the bias towards
+large grains, it is a good idea to transform the input data to units of
+concentration, which can be done by dividing the atomic abundances by the
+estimated volume or mass of the component grains. Doing so will translate the
+datapoints along a straight line through the origin of the isochron plot
+and improves its power for detecting &#8220;parentless helium&#8221;. If there is no
+parentless helium, data must plot on a single line going through the origin.
+But if, instead, the data do not define a line, or this line does not go
+through the origin of the isochron diagram, parentless helium or a similar
+problem may be present. The isochron age is less well suited for ages
+older than 100Ma because it uses the linearized age-equation (Equation
+<a 
+href="#x1-2002r3">3<!--tex4ht:ref: eq:linear --></a>).
+<br class="newline" />
+<!--l. 642--><p class="indent" >   Although most (U-Th)/He geochronologists are probably already aware that
+some accuracy is lost by calculating the <span 
+class="cmmi-12">&#x03B1;</span>-ejection correction by simply dividing
+the uncorrected (U-Th)/He age by the <span 
+class="cmmi-12">&#x03B1;</span>-retention factor F<sub><span 
+class="cmmi-8">t</span></sub>, it bears repeating
+that instead, the measured helium concentration should be divided by F<sub><span 
+class="cmmi-8">t</span></sub> <span 
+class="ecti-1200">before</span>
+the age calculation. The effects discussed in this paper are relatively minor,
+affecting the calculated ages by at most a few percent. Nevertheless, the added
+computational cost of following the above recommendations pales in comparison
+with the cost of collecting, separating and analyzing samples. Therefore, there is
+no reason why not to gain the extra percent of accuracy. To facilitate
+the calculation of the central age, a web-based calculator is provided at
+<span 
+class="ectt-1200">http://pvermees.andropov.org/central</span>. It implements the calculations of
+central ages with or without Sm, and offers several options for propagating
+internal or external uncertainties. The web-calculator also allows the calculation of
+error-weighted central ages, and includes two dataset for testing purposes: the
+
+inclusion bearing (U-Th)/He data from Naxos which is also summarized in
+Table <a 
+href="#x1-140081">1<!--tex4ht:ref: tab:central --></a>, and (U-Th-Sm)/He data from a Fish Lake Valley apatite lab
+standard.
+
+ <div class="table">
+
+<!--l. 828--><p class="indent" >   <a 
+ id="x1-140081"></a><hr class="float"><div class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+
+<div class="tabular"><table class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"><col 
+id="TBL-2-6"><col 
+id="TBL-2-7"><col 
+id="TBL-2-8"><col 
+id="TBL-2-9"><col 
+id="TBL-2-10"><col 
+id="TBL-2-11"><col 
+id="TBL-2-12"><col 
+id="TBL-2-13"><col 
+id="TBL-2-14"><col 
+id="TBL-2-15"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-1"  
+class="td11">    <span 
+class="ecrm-1000">sample name</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-2"  
+class="td11">   <span 
+class="ecrm-1000">MF1</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-3"  
+class="td11">   <span 
+class="ecrm-1000">MF2</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-4"  
+class="td11">   <span 
+class="ecrm-1000">MF4</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-5"  
+class="td11">   <span 
+class="ecrm-1000">MF5</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-6"  
+class="td11">   <span 
+class="ecrm-1000">MF6</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-7"  
+class="td11">   <span 
+class="ecrm-1000">MF7</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-8"  
+class="td11">   <span 
+class="ecrm-1000">MF8</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-9"  
+class="td11">   <span 
+class="ecrm-1000">MF9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-10"  
+class="td11">  <span 
+class="ecrm-1000">MF10</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-11"  
+class="td11">  <span 
+class="ecrm-1000">MF11</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-12"  
+class="td11">  <span 
+class="ecrm-1000">MF12</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-13"  
+class="td11">  <span 
+class="ecrm-1000">pooled</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-14"  
+class="td11"><span 
+class="ecrm-1000">normalized</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-15"  
+class="td11"><span 
+class="ecrm-1000">geom mean</span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-1"  
+class="td11">       <span 
+class="ecrm-1000">U (fmol)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-2"  
+class="td11">   <span 
+class="ecrm-1000">588.2</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-3"  
+class="td11">   <span 
+class="ecrm-1000">874.4</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-4"  
+class="td11">   <span 
+class="ecrm-1000">294.3</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-5"  
+class="td11">   <span 
+class="ecrm-1000">595.9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-6"  
+class="td11">   <span 
+class="ecrm-1000">645.1</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-7"  
+class="td11">   <span 
+class="ecrm-1000">867.2</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-8"  
+class="td11">   <span 
+class="ecrm-1000">221.9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-9"  
+class="td11">   <span 
+class="ecrm-1000">225.9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-10"  
+class="td11">   <span 
+class="ecrm-1000">131.1</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-11"  
+class="td11">   <span 
+class="ecrm-1000">356.9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-12"  
+class="td11">   <span 
+class="ecrm-1000">107.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-13"  
+class="td11">  <span 
+class="ecrm-1000">4907.9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-14"  
+class="td11">  <span 
+class="ecrm-1000">0.614343</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-15"  
+class="td11">  <span 
+class="ecrm-1000">0.598444</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-2"  
+class="td11">     <span 
+class="ecrm-1000">6.9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-3"  
+class="td11">     <span 
+class="ecrm-1000">7.6</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-4"  
+class="td11">     <span 
+class="ecrm-1000">3.5</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-5"  
+class="td11">     <span 
+class="ecrm-1000">7.7</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-6"  
+class="td11">     <span 
+class="ecrm-1000">8.4</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-7"  
+class="td11">     <span 
+class="ecrm-1000">8.9</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-8"  
+class="td11">     <span 
+class="ecrm-1000">2.6</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-9"  
+class="td11">     <span 
+class="ecrm-1000">2.3</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-10"  
+class="td11">     <span 
+class="ecrm-1000">2.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-11"  
+class="td11">     <span 
+class="ecrm-1000">6.8</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-12"  
+class="td11">     <span 
+class="ecrm-1000">1.5</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-13"  
+class="td11">    <span 
+class="ecrm-1000">19.7</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-14"  
+class="td11">  <span 
+class="ecrm-1000">0.001663</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-15"  
+class="td11">  <span 
+class="ecrm-1000">0.001535</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-1"  
+class="td11">      <span 
+class="ecrm-1000">Th (fmol)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-2"  
+class="td11">   <span 
+class="ecrm-1000">451.3</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-3"  
+class="td11">   <span 
+class="ecrm-1000">628.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-4"  
+class="td11">   <span 
+class="ecrm-1000">156.4</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-5"  
+class="td11">   <span 
+class="ecrm-1000">260.3</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-6"  
+class="td11">   <span 
+class="ecrm-1000">370.2</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-7"  
+class="td11">   <span 
+class="ecrm-1000">374.2</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-8"  
+class="td11">   <span 
+class="ecrm-1000">163.5</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-9"  
+class="td11">   <span 
+class="ecrm-1000">136.3</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-10"  
+class="td11">   <span 
+class="ecrm-1000">130.3</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-11"  
+class="td11">   <span 
+class="ecrm-1000">203.5</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-12"  
+class="td11">   <span 
+class="ecrm-1000">126.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-13"  
+class="td11">  <span 
+class="ecrm-1000">3000.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-14"  
+class="td11">  <span 
+class="ecrm-1000">0.375517</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-15"  
+class="td11">  <span 
+class="ecrm-1000">0.391507</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-2"  
+class="td11">     <span 
+class="ecrm-1000">7.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-3"  
+class="td11">    <span 
+class="ecrm-1000">11.1</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-4"  
+class="td11">     <span 
+class="ecrm-1000">2.6</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-5"  
+class="td11">     <span 
+class="ecrm-1000">4.3</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-6"  
+class="td11">     <span 
+class="ecrm-1000">7.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-7"  
+class="td11">     <span 
+class="ecrm-1000">5.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-8"  
+class="td11">     <span 
+class="ecrm-1000">2.8</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-9"  
+class="td11">     <span 
+class="ecrm-1000">2.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-10"  
+class="td11">     <span 
+class="ecrm-1000">2.0</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-11"  
+class="td11">     <span 
+class="ecrm-1000">4.6</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-12"  
+class="td11">     <span 
+class="ecrm-1000">2.4</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-13"  
+class="td11">    <span 
+class="ecrm-1000">17.7</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-14"  
+class="td11">  <span 
+class="ecrm-1000">0.001667</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-15"  
+class="td11">  <span 
+class="ecrm-1000">0.001537</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-1"  
+class="td11">      <span 
+class="ecrm-1000">He (fmol)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-2"  
+class="td11">   <span 
+class="ecrm-1000">9.571</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-3"  
+class="td11">   <span 
+class="ecrm-1000">9.752</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-4"  
+class="td11">   <span 
+class="ecrm-1000">4.270</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-5"  
+class="td11">   <span 
+class="ecrm-1000">6.970</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-6"  
+class="td11">   <span 
+class="ecrm-1000">6.909</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-7"  
+class="td11">  <span 
+class="ecrm-1000">10.636</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-8"  
+class="td11">   <span 
+class="ecrm-1000">2.020</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-9"  
+class="td11">   <span 
+class="ecrm-1000">2.356</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-10"  
+class="td11">   <span 
+class="ecrm-1000">1.995</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-11"  
+class="td11">   <span 
+class="ecrm-1000">6.420</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-12"  
+class="td11">   <span 
+class="ecrm-1000">1.014</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-13"  
+class="td11">      <span 
+class="ecrm-1000">&#8211;</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-14"  
+class="td11">        <span 
+class="ecrm-1000">&#8211;</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-15"  
+class="td11">        <span 
+class="ecrm-1000">&#8211;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-2"  
+class="td11">   <span 
+class="ecrm-1000">0.086</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-3"  
+class="td11">   <span 
+class="ecrm-1000">0.091</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-4"  
+class="td11">   <span 
+class="ecrm-1000">0.069</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-5"  
+class="td11">   <span 
+class="ecrm-1000">0.104</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-6"  
+class="td11">   <span 
+class="ecrm-1000">0.088</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-7"  
+class="td11">   <span 
+class="ecrm-1000">0.108</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-8"  
+class="td11">   <span 
+class="ecrm-1000">0.065</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-9"  
+class="td11">   <span 
+class="ecrm-1000">0.066</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-10"  
+class="td11">   <span 
+class="ecrm-1000">0.065</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-11"  
+class="td11">   <span 
+class="ecrm-1000">0.082</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-12"  
+class="td11">   <span 
+class="ecrm-1000">0.061</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-13"  
+class="td11">      <span 
+class="ecrm-1000">&#8211;</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-14"  
+class="td11">        <span 
+class="ecrm-1000">&#8211;</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-15"  
+class="td11">        <span 
+class="ecrm-1000">&#8211;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-1"  
+class="td11">            <span 
+class="ecrm-1000">Ft</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-2"  
+class="td11">    <span 
+class="ecrm-1000">0.77</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-3"  
+class="td11">    <span 
+class="ecrm-1000">0.74</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-4"  
+class="td11">    <span 
+class="ecrm-1000">0.78</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-5"  
+class="td11">    <span 
+class="ecrm-1000">0.80</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-6"  
+class="td11">    <span 
+class="ecrm-1000">0.73</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-7"  
+class="td11">    <span 
+class="ecrm-1000">0.85</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-8"  
+class="td11">    <span 
+class="ecrm-1000">0.65</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-9"  
+class="td11">    <span 
+class="ecrm-1000">0.79</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-10"  
+class="td11">    <span 
+class="ecrm-1000">0.59</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-11"  
+class="td11">    <span 
+class="ecrm-1000">0.79</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-12"  
+class="td11">    <span 
+class="ecrm-1000">0.63</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-13"  
+class="td11">      <span 
+class="ecrm-1000">&#8211;</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-14"  
+class="td11">        <span 
+class="ecrm-1000">&#8211;</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-15"  
+class="td11">        <span 
+class="ecrm-1000">&#8211;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-1"  
+class="td11">  <span 
+class="ecrm-1000">He corr (fmol)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-2"  
+class="td11">  <span 
+class="ecrm-1000">12.484</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-3"  
+class="td11">  <span 
+class="ecrm-1000">13.229</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-4"  
+class="td11">   <span 
+class="ecrm-1000">5.472</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-5"  
+class="td11">   <span 
+class="ecrm-1000">8.728</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-6"  
+class="td11">   <span 
+class="ecrm-1000">9.462</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-7"  
+class="td11">  <span 
+class="ecrm-1000">12.441</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-8"  
+class="td11">   <span 
+class="ecrm-1000">3.099</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-9"  
+class="td11">   <span 
+class="ecrm-1000">2.993</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-10"  
+class="td11">   <span 
+class="ecrm-1000">3.383</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-11"  
+class="td11">   <span 
+class="ecrm-1000">8.113</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-12"  
+class="td11">   <span 
+class="ecrm-1000">1.604</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-13"  
+class="td11">  <span 
+class="ecrm-1000">81.008</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-14"  
+class="td11">  <span 
+class="ecrm-1000">0.010140</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-15"  
+class="td11">  <span 
+class="ecrm-1000">0.010049</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-2"  
+class="td11">   <span 
+class="ecrm-1000">0.113</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-3"  
+class="td11">   <span 
+class="ecrm-1000">0.123</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-4"  
+class="td11">   <span 
+class="ecrm-1000">0.089</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-5"  
+class="td11">   <span 
+class="ecrm-1000">0.130</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-6"  
+class="td11">   <span 
+class="ecrm-1000">0.120</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-7"  
+class="td11">   <span 
+class="ecrm-1000">0.126</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-8"  
+class="td11">   <span 
+class="ecrm-1000">0.099</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-9"  
+class="td11">   <span 
+class="ecrm-1000">0.084</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-10"  
+class="td11">   <span 
+class="ecrm-1000">0.110</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-11"  
+class="td11">   <span 
+class="ecrm-1000">0.104</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-12"  
+class="td11">   <span 
+class="ecrm-1000">0.096</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-13"  
+class="td11">   <span 
+class="ecrm-1000">0.363</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-14"  
+class="td11">  <span 
+class="ecrm-1000">0.000056</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-15"  
+class="td11">  <span 
+class="ecrm-1000">0.000084</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-1"  
+class="td11">       <span 
+class="ecrm-1000">age (Ma)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-2"  
+class="td11">   <span 
+class="ecrm-1000">14.04</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-3"  
+class="td11">   <span 
+class="ecrm-1000">10.11</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-4"  
+class="td11">   <span 
+class="ecrm-1000">12.90</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-5"  
+class="td11">   <span 
+class="ecrm-1000">10.37</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-6"  
+class="td11">   <span 
+class="ecrm-1000">10.09</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-7"  
+class="td11">   <span 
+class="ecrm-1000">10.17</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-8"  
+class="td11">    <span 
+class="ecrm-1000">9.30</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-9"  
+class="td11">    <span 
+class="ecrm-1000">9.06</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-10"  
+class="td11">   <span 
+class="ecrm-1000">16.34</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-11"  
+class="td11">   <span 
+class="ecrm-1000">15.64</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-12"  
+class="td11">    <span 
+class="ecrm-1000">9.18</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-13"  
+class="td11">   <span 
+class="ecrm-1000">11.28</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-15"  
+class="td11">     <span 
+class="ecrm-1000">11.38</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-2"  
+class="td11">    <span 
+class="ecrm-1000">0.21</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-3"  
+class="td11">    <span 
+class="ecrm-1000">0.14</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-4"  
+class="td11">    <span 
+class="ecrm-1000">0.26</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-5"  
+class="td11">    <span 
+class="ecrm-1000">0.21</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-6"  
+class="td11">    <span 
+class="ecrm-1000">0.19</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-7"  
+class="td11">    <span 
+class="ecrm-1000">0.15</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-8"  
+class="td11">    <span 
+class="ecrm-1000">0.32</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-9"  
+class="td11">    <span 
+class="ecrm-1000">0.27</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-10"  
+class="td11">    <span 
+class="ecrm-1000">0.59</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-11"  
+class="td11">    <span 
+class="ecrm-1000">0.36</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-12"  
+class="td11">    <span 
+class="ecrm-1000">0.57</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-13"  
+class="td11">    <span 
+class="ecrm-1000">0.07</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-14"  
+class="td11">       <span 
+class="ecrm-1000">(a)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-15"  
+class="td11">      <span 
+class="ecrm-1000">0.10</span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-1"  
+class="td11">     <span 
+class="ecrm-1000">U (nmol/g)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-2"  
+class="td11">   <span 
+class="ecrm-1000">66.02</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-3"  
+class="td11">  <span 
+class="ecrm-1000">138.51</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-4"  
+class="td11">   <span 
+class="ecrm-1000">33.89</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-5"  
+class="td11">   <span 
+class="ecrm-1000">52.26</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-6"  
+class="td11">   <span 
+class="ecrm-1000">94.01</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-7"  
+class="td11">   <span 
+class="ecrm-1000">26.67</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-8"  
+class="td11">   <span 
+class="ecrm-1000">84.36</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-9"  
+class="td11">   <span 
+class="ecrm-1000">23.33</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-10"  
+class="td11">   <span 
+class="ecrm-1000">86.29</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-11"  
+class="td11">   <span 
+class="ecrm-1000">34.22</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-12"  
+class="td11">   <span 
+class="ecrm-1000">55.25</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-13-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-14-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-2"  
+class="td11">    <span 
+class="ecrm-1000">0.77</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-3"  
+class="td11">    <span 
+class="ecrm-1000">1.20</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-4"  
+class="td11">    <span 
+class="ecrm-1000">0.40</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-5"  
+class="td11">    <span 
+class="ecrm-1000">0.67</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-6"  
+class="td11">    <span 
+class="ecrm-1000">1.22</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-7"  
+class="td11">    <span 
+class="ecrm-1000">0.27</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-8"  
+class="td11">    <span 
+class="ecrm-1000">0.99</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-9"  
+class="td11">    <span 
+class="ecrm-1000">0.24</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-10"  
+class="td11">    <span 
+class="ecrm-1000">1.30</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-11"  
+class="td11">    <span 
+class="ecrm-1000">0.65</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-12"  
+class="td11">    <span 
+class="ecrm-1000">0.78</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-14-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-15-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-1"  
+class="td11">    <span 
+class="ecrm-1000">Th (nmol/g)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-2"  
+class="td11">   <span 
+class="ecrm-1000">50.65</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-3"  
+class="td11">   <span 
+class="ecrm-1000">99.49</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-4"  
+class="td11">   <span 
+class="ecrm-1000">18.01</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-5"  
+class="td11">   <span 
+class="ecrm-1000">22.82</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-6"  
+class="td11">   <span 
+class="ecrm-1000">53.94</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-7"  
+class="td11">   <span 
+class="ecrm-1000">11.51</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-8"  
+class="td11">   <span 
+class="ecrm-1000">62.16</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-9"  
+class="td11">   <span 
+class="ecrm-1000">14.07</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-10"  
+class="td11">   <span 
+class="ecrm-1000">85.72</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-11"  
+class="td11">   <span 
+class="ecrm-1000">19.51</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-12"  
+class="td11">   <span 
+class="ecrm-1000">65.09</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-15-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-16-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-2"  
+class="td11">    <span 
+class="ecrm-1000">0.79</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-3"  
+class="td11">    <span 
+class="ecrm-1000">1.76</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-4"  
+class="td11">    <span 
+class="ecrm-1000">0.30</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-5"  
+class="td11">    <span 
+class="ecrm-1000">0.38</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-6"  
+class="td11">    <span 
+class="ecrm-1000">1.01</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-7"  
+class="td11">    <span 
+class="ecrm-1000">0.15</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-8"  
+class="td11">    <span 
+class="ecrm-1000">1.06</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-9"  
+class="td11">    <span 
+class="ecrm-1000">0.21</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-10"  
+class="td11">    <span 
+class="ecrm-1000">1.34</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-11"  
+class="td11">    <span 
+class="ecrm-1000">0.44</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-12"  
+class="td11">    <span 
+class="ecrm-1000">1.25</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-16-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-17-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-1"  
+class="td11"><span 
+class="ecrm-1000">He corr (nmol/g)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-2"  
+class="td11">   <span 
+class="ecrm-1000">1.401</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-3"  
+class="td11">   <span 
+class="ecrm-1000">2.096</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-4"  
+class="td11">   <span 
+class="ecrm-1000">0.630</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-5"  
+class="td11">   <span 
+class="ecrm-1000">0.765</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-6"  
+class="td11">   <span 
+class="ecrm-1000">1.379</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-7"  
+class="td11">   <span 
+class="ecrm-1000">0.383</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-8"  
+class="td11">   <span 
+class="ecrm-1000">1.178</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-9"  
+class="td11">   <span 
+class="ecrm-1000">0.309</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-10"  
+class="td11">   <span 
+class="ecrm-1000">2.226</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-11"  
+class="td11">   <span 
+class="ecrm-1000">0.778</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-12"  
+class="td11">   <span 
+class="ecrm-1000">0.828</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-17-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-18-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-2"  
+class="td11">   <span 
+class="ecrm-1000">0.211</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-3"  
+class="td11">   <span 
+class="ecrm-1000">0.315</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-4"  
+class="td11">   <span 
+class="ecrm-1000">0.095</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-5"  
+class="td11">   <span 
+class="ecrm-1000">0.115</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-6"  
+class="td11">   <span 
+class="ecrm-1000">0.208</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-7"  
+class="td11">   <span 
+class="ecrm-1000">0.058</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-8"  
+class="td11">   <span 
+class="ecrm-1000">0.181</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-9"  
+class="td11">   <span 
+class="ecrm-1000">0.047</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-10"  
+class="td11">   <span 
+class="ecrm-1000">0.342</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-11"  
+class="td11">   <span 
+class="ecrm-1000">0.117</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-12"  
+class="td11">   <span 
+class="ecrm-1000">0.134</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-18-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-19-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-1"  
+class="td11"> <span 
+class="ecrm-1000">P (nmol/g/Ma)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-2"  
+class="td11"> <span 
+class="ecrm-1000">0.09966</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-3"  
+class="td11"> <span 
+class="ecrm-1000">0.20706</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-4"  
+class="td11"> <span 
+class="ecrm-1000">0.04879</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-5"  
+class="td11"> <span 
+class="ecrm-1000">0.07376</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-6"  
+class="td11"> <span 
+class="ecrm-1000">0.13650</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-7"  
+class="td11"> <span 
+class="ecrm-1000">0.03760</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-8"  
+class="td11"> <span 
+class="ecrm-1000">0.12657</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-9"  
+class="td11"> <span 
+class="ecrm-1000">0.03408</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-10"  
+class="td11"> <span 
+class="ecrm-1000">0.13604</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-11"  
+class="td11"> <span 
+class="ecrm-1000">0.04966</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-12"  
+class="td11"> <span 
+class="ecrm-1000">0.09014</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-19-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-20-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-2"  
+class="td11"> <span 
+class="ecrm-1000">0.00122</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-3"  
+class="td11"> <span 
+class="ecrm-1000">0.00206</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-4"  
+class="td11"> <span 
+class="ecrm-1000">0.00061</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-5"  
+class="td11"> <span 
+class="ecrm-1000">0.00098</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-6"  
+class="td11"> <span 
+class="ecrm-1000">0.00187</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-7"  
+class="td11"> <span 
+class="ecrm-1000">0.00039</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-8"  
+class="td11"> <span 
+class="ecrm-1000">0.00158</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-9"  
+class="td11"> <span 
+class="ecrm-1000">0.00037</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-10"  
+class="td11"> <span 
+class="ecrm-1000">0.00207</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-11"  
+class="td11"> <span 
+class="ecrm-1000">0.00096</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-12"  
+class="td11"> <span 
+class="ecrm-1000">0.00138</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-13"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-14"  
+class="td11">       <span 
+class="ecrm-1000">(b)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-20-15"  
+class="td11">        <span 
+class="ecrm-1000">&#x00A0;</span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-21-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-2"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-3"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-4"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-5"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-6"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-7"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-8"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-9"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-10"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-11"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-12"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-13"  
+class="td11">   <span 
+class="ecrm-1000">mean</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-21-15"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-22-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-1"  
+class="td11">  <span 
+class="ecrm-1000">V = ln(U/He)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-2"  
+class="td11"><span 
+class="ecrm-1000">3.852618</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-3"  
+class="td11"><span 
+class="ecrm-1000">4.191134</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-4"  
+class="td11"><span 
+class="ecrm-1000">3.984828</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-5"  
+class="td11"><span 
+class="ecrm-1000">4.223570</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-6"  
+class="td11"><span 
+class="ecrm-1000">4.222197</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-7"  
+class="td11"><span 
+class="ecrm-1000">4.244235</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-8"  
+class="td11"><span 
+class="ecrm-1000">4.271090</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-9"  
+class="td11"><span 
+class="ecrm-1000">4.323750</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-10"  
+class="td11"><span 
+class="ecrm-1000">3.657474</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-11"  
+class="td11"><span 
+class="ecrm-1000">3.784100</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-12"  
+class="td11"><span 
+class="ecrm-1000">4.200060</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-13"  
+class="td11"><span 
+class="ecrm-1000">4.086823</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-22-15"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-23-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-2"  
+class="td11"><span 
+class="ecrm-1000">0.014744</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-3"  
+class="td11"><span 
+class="ecrm-1000">0.012684</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-4"  
+class="td11"><span 
+class="ecrm-1000">0.020112</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-5"  
+class="td11"><span 
+class="ecrm-1000">0.019728</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-6"  
+class="td11"><span 
+class="ecrm-1000">0.018197</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-7"  
+class="td11"><span 
+class="ecrm-1000">0.014382</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-8"  
+class="td11"><span 
+class="ecrm-1000">0.034098</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-9"  
+class="td11"><span 
+class="ecrm-1000">0.029882</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-10"  
+class="td11"><span 
+class="ecrm-1000">0.035898</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-11"  
+class="td11"><span 
+class="ecrm-1000">0.022891</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-12"  
+class="td11"><span 
+class="ecrm-1000">0.061588</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-13"  
+class="td11"><span 
+class="ecrm-1000">0.008801</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-23-15"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-24-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-1"  
+class="td11"> <span 
+class="ecrm-1000">W = ln(Th/He)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-2"  
+class="td11"><span 
+class="ecrm-1000">3.587669</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-3"  
+class="td11"><span 
+class="ecrm-1000">3.860234</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-4"  
+class="td11"><span 
+class="ecrm-1000">3.352618</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-5"  
+class="td11"><span 
+class="ecrm-1000">3.395110</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-6"  
+class="td11"><span 
+class="ecrm-1000">3.666715</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-7"  
+class="td11"><span 
+class="ecrm-1000">3.403901</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-8"  
+class="td11"><span 
+class="ecrm-1000">3.965709</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-9"  
+class="td11"><span 
+class="ecrm-1000">3.818314</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-10"  
+class="td11"><span 
+class="ecrm-1000">3.650881</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-11"  
+class="td11"><span 
+class="ecrm-1000">3.222292</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-12"  
+class="td11"><span 
+class="ecrm-1000">4.363991</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-13"  
+class="td11"><span 
+class="ecrm-1000">3.662494</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-24-15"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-25-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-1"  
+class="td11">            <span 
+class="ecrm-1000">1se</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-2"  
+class="td11"><span 
+class="ecrm-1000">0.017989</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-3"  
+class="td11"><span 
+class="ecrm-1000">0.019986</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-4"  
+class="td11"><span 
+class="ecrm-1000">0.023031</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-5"  
+class="td11"><span 
+class="ecrm-1000">0.022244</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-6"  
+class="td11"><span 
+class="ecrm-1000">0.022711</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-7"  
+class="td11"><span 
+class="ecrm-1000">0.016756</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-8"  
+class="td11"><span 
+class="ecrm-1000">0.036317</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-9"  
+class="td11"><span 
+class="ecrm-1000">0.031678</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-10"  
+class="td11"><span 
+class="ecrm-1000">0.036152</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-11"  
+class="td11"><span 
+class="ecrm-1000">0.025976</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-12"  
+class="td11"><span 
+class="ecrm-1000">0.062956</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-13"  
+class="td11"><span 
+class="ecrm-1000">0.009453</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-25-15"  
+class="td11">         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-26-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-1"  
+class="td11">      <span 
+class="ecrm-1000">cov(V,W)</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-2"  
+class="td11"><span 
+class="ecrm-1000">0.000081</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-3"  
+class="td11"><span 
+class="ecrm-1000">0.000086</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-4"  
+class="td11"><span 
+class="ecrm-1000">0.000262</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-5"  
+class="td11"><span 
+class="ecrm-1000">0.000223</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-6"  
+class="td11"><span 
+class="ecrm-1000">0.000162</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-7"  
+class="td11"><span 
+class="ecrm-1000">0.000103</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-8"  
+class="td11"><span 
+class="ecrm-1000">0.001025</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-9"  
+class="td11"><span 
+class="ecrm-1000">0.000786</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-10"  
+class="td11"><span 
+class="ecrm-1000">0.001061</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-11"  
+class="td11"><span 
+class="ecrm-1000">0.000164</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-12"  
+class="td11"><span 
+class="ecrm-1000">0.003592</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-13"  
+class="td11"><span 
+class="ecrm-1000">0.000062</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-14"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-26-15"  
+class="td11">       <span 
+class="ecrm-1000">(c)</span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-27-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-27-1"  
+class="td11">              </td>
+</tr></table>
+</div>
+<table class="caption" 
+><tr style="vertical-align:baseline;" class="caption"><td class="id">Table&#x00A0;1:  </td><td  
+class="content">Step-by-step  data  reduction  of  the  Naxos  dataset  of  11
+inclusion-bearing  apatites  (with  an  arithmetic  mean  age  of  11.58  <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.20
+Ma). This table should be read from a to c and from left to right: (a) U,
+Th  and  He  abundances  and  pooled  age  (11.28  <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.14  Ma).  [He<sup><span 
+class="cmsy-8">*</span></sup>]  is  the
+<span 
+class="cmmi-12">&#x03B1;</span>-ejection corrected He-abundance ([He<sup><span 
+class="cmsy-8">*</span></sup>] <span 
+class="cmsy-10x-x-120">&#x2261; </span>[He]/F<sub>
+<span 
+class="cmmi-8">t</span></sub>); (b) The U, Th and He
+concentrations, required for the calculation of a (U-Th)/He isochron. The
+isochron-age is 12.0 <span 
+class="cmsy-10x-x-120">&plusmn; </span>4.2 Ma. (c) logratio transformed data (V,W) and the
+(dimensionless) geometric mean composition, resulting in the central age of
+11.38 <span 
+class="cmsy-10x-x-120">&plusmn; </span>0.20Ma.</td></tr></table><!--tex4ht:label?: x1-140081 -->
+
+ </td></tr></table></div><hr class="endfloat" />
+ </div>
+
+<!--l. 663--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-120006"></a>Acknowledgments</h3>
+<!--l. 665--><p class="noindent" >I would like to thank Jeremy Hourigan and an anonymous reviewer for
+constructive comments, and Danny Stockli for sharing his Fish Lake Valley
+(U-Th-Sm)/He data. This work was done while the author was a Marie Curie
+postdoctoral fellow at ETH-Z&uuml;rich in the framework of the CRONUS-EU
+initiative (RTN project reference 511927).
+
+   <h3 class="likesectionHead"><a 
+ id="x1-130006"></a>References</h3>
+<!--l. 675--><p class="noindent" >
+      <dl class="description"><dt class="description">
+<span 
+class="ecbx-1200">Aitchison,</span> </dt><dd 
+class="description">J.,   1986.   The   statistical   analysis   of   compositional   data.
+      Chapman and Hall, London, 416 pp.
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Aitchison,</span> </dt><dd 
+class="description">J.  and  Brown,  J.A.C.,  1957.  The  Lognormal  Distribution.
+      Cambridge University Press, London, 176 pp.
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">House,</span> </dt><dd 
+class="description">M.A., Farley, K.A. and Stockli, D., 2000. Helium chronometry of
+      apatite and titanite using Nd-YAG laser heating. Earth and Planetary
+      Science Letters, 183(3-4): 365-368.
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Ludwig,</span> </dt><dd 
+class="description">K.R.,  2003.  Isoplot  3.00  user  manual,  Berkeley  Geochronology
+      Center Special Publication No. 4.
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Meesters,</span> </dt><dd 
+class="description">A.G.C.A. and Dunai, T.J., 2005. A noniterative solution of the
+      (U-Th)/He age equation. Geochemistry, Geophysics, Geosystems, 6(4).
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Persano,</span> </dt><dd 
+class="description">C., Barfod, D. N., Stuart, F. M., Bishop, P., 2007. Constraints
+      on  early  Cenozoic  underplating-driven  uplift  and  denudation  of
+      western Scotland from low temperature thermochronometry. Earth and
+      Planetary Science Letters, 263: 404-419.
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Steiger,</span> </dt><dd 
+class="description">R.H.  and  J&auml;ger,  E.,  1977.  Subcommission  on  geochronology:
+      convention on the use of decay constants in geo- and cosmochronology.
+      Earth and Planetary Science Letters, 36: 359-362.
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Stock,</span> </dt><dd 
+class="description">G.M., Ehlers, T.A. and Farley, K.A., 2006. Where does sediment
+      come  from?  Quantifying  catchment  erosion  with  detrital  apatite
+      (U-Th)/He thermochronometry. Geology, 34: 725-728.
+
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Vermeesch,</span> </dt><dd 
+class="description">P., Seward, D., Latkoczy, C., Wipf, M., Guenther, D. and Baur,
+      H., 2007. Alpha-emitting mineral inclusions in apatite, their effect on
+      (U-Th)/He ages, and how to reduce it. Geochimica et Cosmochimica
+      Acta, v.71, p. 1737-1746.
+      </dd><dt class="description">
+<span 
+class="ecbx-1200">Weltje,</span> </dt><dd 
+class="description">G.J.,  2002.  Quantitative  analysis  of  detrital  modes;  statistically
+      rigorous  confidence  regions  in  ternary  diagrams  and  their  use  in
+      sedimentary petrology. Earth-Science Reviews, 57(3-4): 211-253.</dd></dl>
+</td></table>  
+</body></html> 

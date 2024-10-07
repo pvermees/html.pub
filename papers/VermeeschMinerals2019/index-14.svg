@@ -1,0 +1,10 @@
+ <div class="verbatim" id="verbatim-15">
+<span 
+class="cmtt-10x-x-109">mug</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;exp(colMeans(log(ACNK)))</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">points(ternary(mug),pch=22,bg='red')</span>
+</div>
+<!--l. 489--><p class="nopar" >                                                                               

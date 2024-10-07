@@ -1,0 +1,2265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Statistics for LA-ICP-MS based fission track dating</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="LAFT_v2.tex"> 
+<meta name="date" content="2017-02-24 17:44:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body>
+<div class="main">
+   <div class="maketitle">
+
+<h2 class="titleHead">Statistics for LA-ICP-MS based fission track dating</h2>
+<div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span></div><br />
+<div class="date" ><span 
+class="cmr-12">
+University College London<br>
+Gower Street, London WC1E 6BT <br>
+<tt>p.vermeesch [at] ucl.ac.uk</tt>
+</span></div>
+   </div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 14--><p class="noindent" >
+<!--l. 14--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 15--><p class="indent" >    <span 
+class="cmr-9">Despite the conceptual elegance and simplicity of the External Detector Method (EDM) for fission</span>
+     <span 
+class="cmr-9">track dating, an increasing number of laboratories are switching to LA-ICP-MS as a means of measuring</span>
+     <span 
+class="cmr-9">the uranium content of apatite, zircon and sphene. LA-ICP-MS based fission track (LAFT) dating offers</span>
+     <span 
+class="cmr-9">shorter turnaround times, removes the need to handle radioactive materials and hydrofluoric acid, and</span>
+     <span 
+class="cmr-9">facilitates double-dating with the U-Pb method. This paper aims to bring the statistical treatment</span>
+     <span 
+class="cmr-9">of LAFT data on an equal footing with the EDM by formulating four different analytical protocols,</span>
+     <span 
+class="cmr-9">depending on the accuracy and reproducibility of the uranium measurements. Under the &#8216;absolute&#8217; dating</span>
+     <span 
+class="cmr-9">approach, the spontaneous track densities and uranium concentrations are directly plugged into the</span>
+     <span 
+class="cmr-9">fundamental fission track age equation, assuming that both of these measured quantities have been</span>
+     <span 
+class="cmr-9">determined accurately, and that the fission decay constant and equivalent isotopic track length are known.</span>
+     <span 
+class="cmr-9">The &#8216;zeta calibration&#8217; approach avoids making these assumptions by normalisation to a reference material</span>
+     <span 
+class="cmr-9">of known age. Uranium zoning has a detrimental effect on the accuracy of LAFT ages. This effect can</span>
+     <span 
+class="cmr-9">be removed by counting only those fission tracks located within the laser ablation pit. Alternatively, the</span>
+     <span 
+class="cmr-9">uranium heterogeneity may be quantified by fitting multiple ablation spots in some or all the analysed</span>
+     <span 
+class="cmr-9">grains, using a (lognormal) distributional assumption for the uranium concentration. LAFT dating is</span>
+     <span 
+class="cmr-9">arguably less well suited than the EDM to young and U-poor samples that lack sufficient spontaneous</span>
+     <span 
+class="cmr-9">fission tracks to reveal visual evidence for uranium zoning. Such samples occasionally contain no fission</span>
+     <span 
+class="cmr-9">tracks at all, resulting in infinite analytical uncertainties. This paper introduces a pragmatic solution to</span>
+     <span 
+class="cmr-9">this problem, in which the uranium measurement are converted to &#8216;virtual&#8217; induced fission track counts to</span>
+     <span 
+class="cmr-9">produce strictly positive ages with finite standard errors. With the age equation and zero-track strategy</span>
+     <span 
+class="cmr-9">in place, LAFT ages can be subjected to more sophisticated statistical analysis. Using a logarithmic</span>
+     <span 
+class="cmr-9">transformation, these ages can be visualised on radial plots and deconvolved into finite and continuous</span>
+     <span 
+class="cmr-9">mixtures. The methods proposed in this paper have been implemented in a software package called</span>
+     <span 
+class="cmtt-9">IsoplotR </span><span 
+class="cmr-9">that is available free of charge at </span><span 
+class="cmtt-9">http://isoplotr.london-geochron.com</span><span 
+class="cmr-9">.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+
+<!--l. 55--><p class="noindent" >Spontaneous fission of naturally occurring <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U produces linear tracks of radiation damange in the crystal lattice of
+apatite, zircon and sphene at a rate of <span 
+class="cmsy-10">~</span>215 tracks per ng of U per million years. In a series of seminal papers
+published during the 1960s, Robert Fleischer, Paul B. Price and Robert Walker showed how these fission
+tracks can be revealed to the human eye (aided by an optical microscope) by acid etching, forming the
+basis of a unique geochronometer (<a 
+href="#Xprice1962">Price and Walker</a>,&#x00A0;<a 
+href="#Xprice1962">1962</a>,&#x00A0;<a 
+href="#Xprice1963">1963</a>;&#x00A0;<a 
+href="#Xfleischer1964">Fleischer et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfleischer1964">1964</a>,&#x00A0;<a 
+href="#Xfleischer1965">1965</a>,&#x00A0;<a 
+href="#Xfleischer1975">1975</a>).
+In its most basic form, the fundamental age equation of the fission track method can be written as
+follows:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v20x.png" alt="       (             )
+t = 1ln  1+ -&#x03BB;-223&#x03C1;8s---
+    &#x03BB;       &#x03BB;f [  U]L
+" class="math-display" ><a 
+ id="x1-1001r1"></a></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 71--><p class="nopar" >
+<!--l. 73--><p class="indent" >   where <span 
+class="cmmi-10">&#x03BB; </span>is the total decay constant of <sup><span 
+class="cmr-7">238</span></sup>U (1.55125<span 
+class="cmsy-10">&#x00D7;</span>10<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">10</span></sup><span 
+class="cmmi-10">a</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>;&#x00A0;<a 
+href="#Xjaffey1971">Jaffey et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xjaffey1971">1971</a>), <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmmi-7">f</span></sub> is the fission decay
+constant (with estimates ranging from 7.9 to 8.7<span 
+class="cmsy-10">&#x00D7;</span>10<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">17</span></sup><span 
+class="cmmi-10">a</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup> and an IUPAC-IUGS-recommended value of
+8.45 <span 
+class="cmsy-10">&plusmn; </span>0.10 <span 
+class="cmsy-10">&#x00D7;</span>10<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">17</span></sup><span 
+class="cmmi-10">a</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>;&#x00A0;<a 
+href="#Xholden2000">Holden and Hoffman</a>,&#x00A0;<a 
+href="#Xholden2000">2000</a>), <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub> is the density (tracks per unit area) of the
+spontaneous fission tracks on an internal crystal surface, [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] is the current number of <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U atoms per unit
+volume, and <span 
+class="cmmi-10">L </span>is etchable length (or, more precisely, the mean equivalent isotropic length;&#x00A0;<a 
+href="#Xgalbraith1988b">Galbraith and
+Laslett</a>,&#x00A0;<a 
+href="#Xgalbraith1988b">1988</a>) of the fission tracks. During most of the 20<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> century, the only way to reliably estimate [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>]
+was by proxy, via induced tracks produced by neutron irradiation. During the 1970s, the fission track
+community experimented with a number of alternative designs to turn induced track densities into
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentrations (such as the subtraction, population, and re-etch methods;&#x00A0;<a 
+href="#Xgleadow1981">Gleadow</a>,&#x00A0;<a 
+href="#Xgleadow1981">1981</a>;&#x00A0;<a 
+href="#Xhurford1982">Hurford and
+Green</a>,&#x00A0;<a 
+href="#Xhurford1982">1982</a>;&#x00A0;<a 
+href="#Xgalbraith1984">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith1984">1984</a>;&#x00A0;<a 
+href="#Xwagner1992">Wagner and Van&#x00A0;den Haute</a>,&#x00A0;<a 
+href="#Xwagner1992">1992</a>), before ultimately settling on the <span 
+class="cmti-10">external</span>
+<span 
+class="cmti-10">detector method </span>(EDM), in which the induced tracks are recorded in a mica- (or plastic) detector
+attached to the polished grain mount during irradiation. This detector is subsequently etched and
+counted separately (<a 
+href="#Xfleischer1972">Fleischer and Hart</a>,&#x00A0;<a 
+href="#Xfleischer1972">1972</a>;&#x00A0;<a 
+href="#Xhurford1983">Hurford and Green</a>,&#x00A0;<a 
+href="#Xhurford1983">1983</a>;&#x00A0;<a 
+href="#Xhurford1990">Hurford</a>,&#x00A0;<a 
+href="#Xhurford1990">1990</a>). The EDM
+emerged as the dominant method because it offers significant advantages over the other approaches.
+First, the EDM was recognised as the first geochronological method capable of routinely producing
+single grain age estimates, leading to the development of detrital geochronology. Second, it is least
+affected by the presence of uranium zoning. Third, it allows the fission decay constant (which used to be
+poorly constrained) to be hidden in a calibration constant (<span 
+class="cmmi-10">&#x03B6;</span>) by reformulating the age equation as
+follows:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v21x.png" alt="       (           )
+t =-1ln 1 + 1&#x03BB;&#x03B6;&#x03C1;d&#x03C1;s
+   &#x03BB;        2    &#x03C1;i
+" class="math-display" ><a 
+ id="x1-1002r2"></a></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 109--><p class="nopar" >
+<!--l. 111--><p class="indent" >   where <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">i</span></sub> is the surface density of the induced fission tracks in the mica detector and <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">d</span></sub> is the surface density of
+the induced fission tracks in a dosimeter glass of known (and uniform) U concentration. The latter value is needed to
+&#8216;recycle&#8217; the calibration constant from one irradiation batch to the next as neutron fluences might vary between
+irradiations, or within a sample stack if the nuclear reactor is not well thermalised. <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub>, <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">d</span></sub> are unknown but can be
+estimated<span class="footnote-mark"><a 
+href="LAFT_v22.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-1003f1"></a>
+by counting the number of tracks <span 
+class="cmmi-10">N</span><sub><span 
+class="cmsy-7">*</span></sub> over a given area <span 
+class="cmmi-10">A</span><sub><span 
+class="cmsy-7">*</span></sub> (where <span 
+class="cmsy-10">* </span>is either <span 
+class="cmmi-10">s </span>for &#8216;spontaneous&#8217;, <span 
+class="cmmi-10">i </span>for &#8216;induced&#8217; or <span 
+class="cmmi-10">d</span>
+for &#8216;dosimeter&#8217;):
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v23x.png" alt="&#x02C6;&#x03C1; =  Ns,&#x03C1;&#x02C6; = Ni-and &#x02C6;&#x03C1; = Nd-
+ s   As  i   Ai      d  Ad
+" class="math-display" ><a 
+ id="x1-1004r3"></a></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 128--><p class="nopar" >
+<!--l. 130--><p class="indent" >   It is customary for the spontaneous and induced fission tracks to be counted over the same area (i.e., <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">s</span></sub> = <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">i</span></sub>).
+This can be done using an automated microscope stage (<a 
+href="#Xsmith1985">Smith and Leigh-Jones</a>,&#x00A0;<a 
+href="#Xsmith1985">1985</a>;&#x00A0;<a 
+href="#Xdumitru1993">Dumitru</a>,&#x00A0;<a 
+href="#Xdumitru1993">1993</a>) or by
+simply repositioning the mica detector on the grain mount after etching (<a 
+href="#Xjonckheere2003">Jonckheere et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xjonckheere2003">2003</a>). Using these
+measurements, the apparent fission track age (<img 
+src="LAFT_v24x.png" alt="&#x02C6;t"  class="circ" > ) is given by
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v25x.png" alt="       (            )
+&#x02C6;t = 1-ln 1 + 1&#x03BB;&#x02C6;&#x03B6;&#x02C6;&#x03C1; Ns-
+   &#x03BB;        2   dNi
+" class="math-display" ><a 
+ id="x1-1005r4"></a></center></td><td class="equation-label">(4)</td></tr></table>
+<!--l. 141--><p class="nopar" >
+
+<!--l. 143--><p class="indent" >   where <img 
+src="LAFT_v26x.png" alt="&#x02C6;&#x03B6;"  class="circ" > is obtained by applying Equation <a 
+href="#x1-1005r4">4<!--tex4ht:ref: eq:tzetahat --></a> to an age standard and rearranging. Equation <a 
+href="#x1-1005r4">4<!--tex4ht:ref: eq:tzetahat --></a> represents a classic
+case of a &#8216;matched pairs&#8217; experimental design (<a 
+href="#Xgalbraith2010b">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2010b">2010</a>). By counting the spontaneous and induced tracks
+over exactly the same area, the age calculation reduces to a simple comparison of two Poisson-distributed variables
+(<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> and <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub>). This enables an explicit maximum likelihood formulation, which greatly simplifies all subsequent
+statistical analyses (<a 
+href="#Xgalbraith2005">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>). As a result, it is fair to say that the fission track method represents the gold
+standard among geochronometers in terms of statistical rigour. Unfortunately, the EDM also has a number of
+practical shortcomings:
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1007x1">It requires irradiation with thermal neutrons. This greatly increases sample turnaround times and poses
+     administrative and safety headaches. These problems are only getting worse with time as research
+     reactors are becoming increasingly rare.
+     </li>
+     <li 
+  class="enumerate" id="x1-1009x2">Etching the external (mica) detectors requires handling hazardous hydrofluoric acid.
+     </li>
+     <li 
+  class="enumerate" id="x1-1011x3">The method is tedious and time consuming, as it requires counting three different track densities
+     (spontaneous, induced and dosimeter).</li></ol>
+<!--l. 168--><p class="indent" >   The late 1980s and 1990s saw the emergence and maturation of ion (SIMS) and laser (LA-ICP-MS) microprobe
+technology allowing geoscientists, for the first time, to determine ppm-level <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentrations of solid samples
+with microscopic resolution directly, rather than by proxy via induced fission of <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U. By the early 2000s,
+LA-ICP-MS technology had matured enough to be used for fission track dating. A proof-of-concept study by <a 
+href="#Xhasebe2004">Hasebe
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xhasebe2004">2004</a>) laid the foundations for this new approach, which has gradually gained popularity since (<a 
+href="#Xhasebe2009">Hasebe
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhasebe2009">2009</a>;&#x00A0;<a 
+href="#Xchew2012">Chew and Donelick</a>,&#x00A0;<a 
+href="#Xchew2012">2012</a>;&#x00A0;<a 
+href="#Xsoares2014">Soares et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsoares2014">2014</a>;&#x00A0;<a 
+href="#Xgleadow2015">Gleadow et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgleadow2015">2015</a>;&#x00A0;<a 
+href="#Xabdullin2016">Abdullin et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xabdullin2016">2016</a>). But
+despite this popularity, relatively little work has been done to develop the statistical analysis of this new type of
+fission track data (<a 
+href="#Xgalbraith2010b">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2010b">2010</a>). Important issues such as error propagation and the treatment of &#8216;zero track&#8217;
+grains are largely unsolved for LA-ICP-MS-based fission track (LAFT) dating. This limits the applicability of the
+method to young samples, and potentially compromises data quality in compositionally zoned crystals. The present
+paper addresses these issues by defining four different strategies towards LAFT dating, using either an absolute
+dating (Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:absolute --></a>) or a zeta calibration (Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:zeta --></a>) approach and using either a single or multiple laser
+spots per grain to account for uranium heterogeneity (Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:zoning --></a>). Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:zerotracks --></a> introduces a method to
+calculate meaningful ages and uncertainties for very young and uranium-poor samples lacking any
+spontaneous fission tracks. With the age equation in place, we can redefine the pooled age and visualise
+LAFT data on radial plots, allowing us to assess whether the single grain ages are consistent within the
+analytical uncertainties (Section <a 
+href="#x1-60006">6<!--tex4ht:ref: sec:radialmodels --></a>). Using a logarithmic transformation, this qualitative assessment
+can be formalised with a Chi-square test for age homogeneity. Samples failing this test are said to be
+&#8216;overdispersed&#8217; and may be modelled using continuous or finite mixtures (Section <a 
+href="#x1-60006">6<!--tex4ht:ref: sec:radialmodels --></a>). The methods described
+in this paper were implemented in a software package called <span 
+class="cmtt-10">IsoplotR</span>. Section <a 
+href="#x1-70007">7<!--tex4ht:ref: sec:examples --></a> applies <span 
+class="cmtt-10">IsoplotR</span>
+to two real fission track datasets, providing practical examples of the absolute and zeta calibration
+approach using single and multiple laser spots per grain, and including zero track grains and finite
+mixtures.
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>&#8216;absolute&#8217; fission track dating</h3>
+<!--l. 210--><p class="noindent" >The development of LA-ICP-MS has allowed fission track geochronologists to routinely determine the
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentration of sand-sized crystals of apatite, zircon and sphene directly, rather than by proxy through
+neutron-induced fission of <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U. This opens up the possibility to use Equation <a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:tFT --></a> to calculate fission track
+ages:
+   <table 
+class="equation"><tr><td>
+
+   <center class="math-display" >
+<img 
+src="LAFT_v27x.png" alt="       (                 )
+    1        &#x03BB;    2Ns
+&#x02C6;t = &#x03BB; ln 1+ &#x03BB;--238&#x02C6;-------
+             f [  U]AsL q
+" class="math-display" ><a 
+ id="x1-2001r5"></a></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 223--><p class="nopar" >
+<!--l. 225--><p class="indent" >   where <span 
+class="cmmi-10">q </span>is an &#8216;efficiency factor&#8217; (0 <span 
+class="cmmi-10">&#x003C; q &#x003C; </span>1,&#x00A0;<a 
+href="#Xiwano1998">Iwano and Danhara</a>,&#x00A0;<a 
+href="#Xiwano1998">1998</a>;&#x00A0;<a 
+href="#Xenkelmann2003">Enkelmann and
+Jonckheere</a>,&#x00A0;<a 
+href="#Xenkelmann2003">2003</a>;&#x00A0;<a 
+href="#Xjonckheere2003b">Jonckheere</a>,&#x00A0;<a 
+href="#Xjonckheere2003b">2003</a>;&#x00A0;<a 
+href="#Xsoares2013">Soares et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsoares2013">2013</a>) that depends on the mineralogy, etching conditions and
+observer; and [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">&Ucirc;</span>] is the measured <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentration, expressed in atoms of <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U per unit volume. Please note
+that uranium sitting near the counting surface of the grain will contribute more to the spontaneous track budget
+than more deeply seated uranium. So in the presence of uranium zoning, the LA-ICP-MS measurements should
+be weighted inversely with depth. For the remainder of this paper, we will assume that this depth
+weighting has either been done, or that the grains are not significantly zoned perpendicular to the
+etched surface. The effect of lateral zoning is covered in Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:zoning --></a>. Error propagation of Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:tICP --></a>
+follows the usual first order Taylor expansion (neglecting the systematic uncertainties in <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">s</span></sub>, <span 
+class="cmmi-10">L </span>and
+<span 
+class="cmmi-10">q</span>):
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v28x.png" alt="(    )2   (      )2
+  s[&#x02C6;t]   &#x2248;  s[238U&#x02C6;]  + -1-
+   &#x02C6;t        [238&#x02C6;U]     Ns
+" class="math-display" ><a 
+ id="x1-2002r6"></a></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 247--><p class="nopar" >
+<!--l. 249--><p class="indent" >   where <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">a</span>] stands for &#8220;the standard error of <span 
+class="cmmi-10">a</span>&#8221;.
+<!--l. 251--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>The &#8216;zeta calibration&#8217; approach</h3>
+<!--l. 254--><p class="noindent" >The apparent age estimates produced by Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:tICP --></a> are at most as accurate as the value for [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">&Ucirc;</span>]. Unfortunately, it
+is notoriously difficult to measure isotopic concentrations accurately by LA-ICP-MS. Such concentration
+measurements are typically done by monitoring the isotope of interest (i.e., <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U) relative to a stoichiometric isotope
+(<sup><span 
+class="cmmi-7">x</span></sup><span 
+class="cmmi-10">X</span>, where <span 
+class="cmmi-10">x </span>= 43 and <span 
+class="cmmi-10">X </span>= Ca for apatite, or <span 
+class="cmmi-10">x </span>= 29 and <span 
+class="cmmi-10">X </span>= Si for zircon) and comparing the measured
+signal ratios [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">&Ucirc;</span><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmmi-7">x</span></sup><img 
+src="LAFT_v29x.png" alt="&#x02C6;X"  class="circ" >] with those of reference materials of known composition. Unfortunately, no such
+materials exist for apatite, zircon and sphene (although some natural samples come close to fulfilling the
+requirements;&#x00A0;<a 
+href="#Xsoares2014">Soares et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsoares2014">2014</a>), leading most laboratories to use NIST standard glass (SRM610 and
+SRM612;&#x00A0;<a 
+href="#Xpearce1997">Pearce et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpearce1997">1997</a>) instead (<a 
+href="#Xlongerich1996">Longerich et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xlongerich1996">1996</a>;&#x00A0;<a 
+href="#Xnorman1998">Norman et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnorman1998">1998</a>;&#x00A0;<a 
+href="#Xliu2008">Liu et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xliu2008">2008</a>).
+
+However, glass interacts very differently with UV laser light than most minerals, and therefore the
+accuracy of LA-ICP-MS based U-concentration measurements often leaves much to be desired. To avoid
+these problems and remove the need to measure absolute concentrations, all the poorly constrained
+factors that relate the raw mass spectrometer measurements (i.e., the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">x</span></sup>X-signal ratios) to the
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentrations can be grouped into a &#8216;zeta&#8217; calibration constant similar to that used for the EDM (Equation
+<a 
+href="#x1-1005r4">4<!--tex4ht:ref: eq:tzetahat --></a>):
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v210x.png" alt="       (                     )
+&#x02C6;t = 1ln  1+ 1 &#x03BB;&#x02C6;&#x03B6;  ----Ns-----
+    &#x03BB;       2  icpAs[238&#x02C6;U&#x2215;xX&#x02C6;]
+" class="math-display" ><a 
+ id="x1-3001r7"></a></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 283--><p class="nopar" >
+<!--l. 285--><p class="indent" >   where <img 
+src="LAFT_v211x.png" alt="&#x02C6;&#x03B6;"  class="circ" > <sub><span 
+class="cmmi-7">icp</span></sub> is determined by analysing a reference material of known age, precisely as is done for the EDM. But
+unlike the EDM, the <span 
+class="cmmi-10">&#x03B6;</span>-calibration constant for LAFT dating must be determined anew for every analytical session,
+to account for any changes in ablation and plasma conditions which may occur over time. Therefore, <img 
+src="LAFT_v212x.png" alt="&#x03B6;&#x02C6;"  class="circ" > <sub><span 
+class="cmmi-7">icp</span></sub> is known
+as a &#8216;session zeta&#8217; (<a 
+href="#Xhasebe2009">Hasebe et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhasebe2009">2009</a>). Single grain age uncertainties for the zeta-calibration approach are given
+by
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v213x.png" alt="         (      )    (          )
+(s[&#x02C6;t])2     s[&#x02C6;&#x03B6;icp] 2    s[238&#x02C6;U &#x2215;x &#x02C6;X] 2   1
+ -&#x02C6;-   &#x2248;   -&#x02C6;---   +  -238&#x02C6;-x-&#x02C6;-   + N--
+  t         &#x03B6;icp        [  U&#x2215; X ]       s
+" class="math-display" ><a 
+ id="x1-3002r8"></a></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 301--><p class="nopar" >
+<!--l. 303--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Uranium zoning</h3>
+<!--l. 306--><p class="noindent" >The U-uncertainties (<span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">&Ucirc;</span>] in Equation <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:terr-absolute --></a> and <span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">&Ucirc;</span><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmmi-7">x</span></sup><img 
+src="LAFT_v214x.png" alt="&#x02C6;
+X"  class="circ" >] in Equation <a 
+href="#x1-3002r8">8<!--tex4ht:ref: eq:terr-zeta --></a>) account for both the analytical error of
+the LA-ICP-MS measurements and the uranium heterogeneity of the sample. The EDM is less sensitive to uranium
+zoning, thanks to the &#8216;matched pairs&#8217; experimental design discussed in Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>. As long as the spontaneous and
+induced track densities are counted over the same area, the presence of U-rich or U-poor zones has no effect on the
+resulting age. Unfortunately, things are not so straightforward for LAFT data. Suppose, for example, that the
+
+analyst has placed a round laser spot in the top half of the strongly zoned grain shown in Figure <a 
+href="#x1-40011">1<!--tex4ht:ref: fig:ksienzyk --></a>. This would
+result in a high uranium concentration (or isotopic ratio measurement) and a small analytical uncertainty, but
+would be completely unrepresentative of the average composition of the grain. Blindly combining such a single spot
+measurement with the number of spontaneous fission tracks counted over the entire crystal would produce a
+precise but grossly inaccurate age. For old and uranium-rich samples, it is often possible to detect and
+avoid the problems caused by uranium zoning by carefully observing the spatial distribution of the
+spontaneous tracks. But this is generally impossible for young and/or uranium-poor samples. Two analytical
+strategies may be used to address this issue and capture the naturally occurring uranium dispersion by
+LA-ICP-MS.<br 
+class="newline" />
+<!--l. 331--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40011"></a>
+
+<!--l. 333--><p class="noindent" >
+<center>
+<a href="Fig1.png"><img src="Fig1.png" alt="PIC" class="graphics"></a>
+</center>
+<!--tex4ht:graphics  
+name="Fig1.png" src="Ksienzyk.pdf"  
+-->
+<div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Example of a compositionally zoned apatite crystal using the External Detector Method (EDM).
+In this old sample, the effect of an order of magnitude difference in uranium concentration is visible in both
+the spontaneous (left) and induced (right) track distribution. For young and/or uranium poor samples, the
+uranium zoning would only be visible in the induced track distribution. For LAFT data, it would not be
+visible at all. Modified after <a 
+href="#Xksienzyk2014">Ksienzyk et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xksienzyk2014">2014</a>).</span></div><!--tex4ht:label?: x1-40011 -->
+
+<!--l. 343--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 345--><p class="indent" >   A first approach is to only count the spontaneous fission tracks contained within the area occupied by the laser
+ablation spot (Figure <a 
+href="#x1-40072">2<!--tex4ht:ref: fig:spots --></a>a). This effectively imposes a &#8216;matched pairs&#8217; experimental design on the LAFT data which,
+by definition, should capture uranium zoning effects. One can then safely plug the analytical errors of the
+LA-ICP-MS measurements into Equation <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:terr-absolute --></a> or <a 
+href="#x1-3002r8">8<!--tex4ht:ref: eq:terr-zeta --></a> to propagate the age uncertainty. However, the single spot approach
+only uses a small part of the grains (so as to fit within the smallest one of them), containing a small
+number of spontaneous tracks. Because the latter dominate the uncertainty budget of LAFT data,
+the resulting single grain age estimates are imprecise despite the high precision of the isotope ratio
+measurements.<br 
+class="newline" />
+<!--l. 359--><p class="indent" >   The only way to avoid these problems and enlarge the spontaneous track counting area is to somehow quantify
+the naturally occurring uranium heterogeneity outside the ablation spot. This can be achieved by ablating some or
+all of the grains multiple times (Figure <a 
+href="#x1-40072">2<!--tex4ht:ref: fig:spots --></a>b) and making some form of parametric assumption for the uranium
+heterogeneity. A reasonable assumption would be that the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentrations or <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">x</span></sup>X-ratios within each grain
+follow a lognormal distribution with location parameter <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">j</span></sub> and scale parameter <img 
+src="LAFT_v216x.png" alt="&#x221A; --
+  vj"  class="sqrt" > (for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">j </span><span 
+class="cmsy-10">&#x2264; </span>n, where n is the
+total number of grains):
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v217x.png" alt="  238  x
+ln[  U&#x2215; X ]j ~ N (uj,vj)
+" class="math-display" ><a 
+ id="x1-4002r9"></a></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 374--><p class="nopar" >
+<!--l. 376--><p class="indent" >   where <span 
+class="cmsy-10"><img 
+src="cmsy10-4e.png" alt="N" class="10x-x-4e" /></span>(<span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,v</span><sub><span 
+class="cmmi-7">j</span></sub>) stands for &#8220;a Normal distribution with mean <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">j</span></sub> and variance <span 
+class="cmmi-10">v</span><sub><span 
+class="cmmi-7">j</span></sub>&#8221;. These parameters may be
+estimated by analysing multiple laser spots per grain. Let <span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">jl</span></sub> be the logarithm of the <span 
+class="cmmi-10">l</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> (out of <span 
+class="cmmi-10">m</span><sub><span 
+class="cmmi-7">j</span></sub>)
+<sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentration or <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">x</span></sup>X-ratio measurement of the <span 
+class="cmmi-10">j</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> grain, and let <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">jl</span></sub>] be its standard error (which
+approximately equals the relative measurement uncertainty). If all the LA-ICP-MS measurements employ the same
+spot size, then <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">j</span></sub> can be estimated by taking the arithmetic mean of the single spot measurements <span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">jl</span></sub> (for
+<span 
+class="cmmi-10">l </span>= 1<span 
+class="cmmi-10">...m</span><sub><span 
+class="cmmi-7">j</span></sub>):
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v218x.png" alt="    &#x2211;mj
+&#x02C6;uj =   &#x02C6;ujl&#x2215;mj
+    l=1
+" class="math-display" ><a 
+ id="x1-4003r10"></a></center></td><td class="equation-label">(10)</td></tr></table>
+
+<!--l. 391--><p class="nopar" >
+<!--l. 393--><p class="indent" >   and <span 
+class="cmmi-10">v</span><sub><span 
+class="cmmi-7">j</span></sub> is estimated by:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v219x.png" alt="     mj
+&#x02C6;v = &#x2211;  (&#x02C6;u  - &#x02C6;u )2&#x2215;(m  - 1)
+ j   l=1  jl   j     j
+" class="math-display" ><a 
+ id="x1-4004r11"></a></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 399--><p class="nopar" >
+<!--l. 401--><p class="indent" >   This formula clearly does not work for small grains that only fit a single laser ablation spot (<span 
+class="cmmi-10">m</span><sub><span 
+class="cmmi-7">j</span></sub> = 1). It is
+therefore necessary to make the simplifying assumption that <span 
+class="cmmi-10">v</span><sub><span 
+class="cmmi-7">j</span></sub> = <span 
+class="cmmi-10">v </span>for all <span 
+class="cmmi-10">j</span>. In that case, <span 
+class="cmmi-10">v </span>may be estimated from
+the pooled measurements as follows:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v220x.png" alt="    &#x2211;n m&#x2211;j         2  &#x2211;n
+&#x02C6;v =       (&#x02C6;ujl - &#x02C6;uj) &#x2215;  (mj - 1)
+    j=1l=1           j=1
+" class="math-display" ><a 
+ id="x1-4005r12"></a></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 411--><p class="nopar" >
+<!--l. 413--><p class="indent" >   where <span 
+class="cmmi-10">n </span>degrees of freedom are subtracted to account for the <span 
+class="cmmi-10">n </span>estimated parameters (<span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">j</span></sub>, for <span 
+class="cmmi-10">j </span>= 1<span 
+class="cmmi-10">...n</span>). The
+single grain ages can be estimated by substituting exp[<span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">j</span></sub>] for [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] or [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U&#x2215;</span><sup><span 
+class="cmmi-7">x</span></sup><span 
+class="cmmi-10">X</span>] in Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:tICP --></a> or <a 
+href="#x1-3001r7">7<!--tex4ht:ref: eq:tzetahatICP --></a>. In principle,
+we could obtain the age uncertainties by substituting exp[<span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">j</span></sub>]<img 
+src="LAFT_v221x.png" alt="&#x221A; -
+  &#x02C6;v"  class="sqrt" > for <span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">&Ucirc;</span>] or <span 
+class="cmmi-10">s</span>[<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">&Ucirc;</span><span 
+class="cmmi-10">&#x2215;</span><sup><span 
+class="cmmi-7">x</span></sup><img 
+src="LAFT_v222x.png" alt="X&#x02C6;"  class="circ" >] in Equation <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:terr-absolute --></a> or <a 
+href="#x1-3002r8">8<!--tex4ht:ref: eq:terr-zeta --></a>.
+However, doing so would assign exactly the same relative U-concentration or -ratio uncertainty to all grains,
+irrespective of whether the ablated area (<span 
+class="cmmi-10">m</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">icp</span></sub>, where <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">icp</span></sub> corresponds to the spot size) was small or large
+compared to the area over which the spontaneous fission tracks were counted (<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">sj</span></sub>). This problem can be solved by
+using the following hybrid expression:
+   <table 
+class="equation"><tr><td>
+
+   <center class="math-display" >
+<img 
+src="LAFT_v223x.png" alt="    (       Aicp )2   ( Aicp)2&#x2211;mj
+&#x02C6;vj =  1- mj A---  &#x02C6;v +  A---     (s[&#x02C6;ujl])2
+              sj          sj   l=1
+" class="math-display" ><a 
+ id="x1-4006r13"></a></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 434--><p class="nopar" >
+<!--l. 436--><p class="indent" >   which reduces to the LA-ICP-MS measurement uncertainties if the laser spot size equals the fission track
+counting area (i.e., <img 
+src="LAFT_v224x.png" alt="v&#x02C6;"  class="circ" > <sub><span 
+class="cmmi-7">j</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">l</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmmi-5">j</span></sub></sup>(<span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">jl</span></sub>])<sup><span 
+class="cmr-7">2</span></sup> if <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">icp</span></sub> = <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">sj</span></sub>), and to Equation <a 
+href="#x1-4005r12">12<!--tex4ht:ref: eq:hatsigma --></a> if the laser spot size is much smaller
+than the fission track counting area (<img 
+src="LAFT_v225x.png" alt="&#x02C6;v"  class="circ" > <sub><span 
+class="cmmi-7">j</span></sub> = <img 
+src="LAFT_v226x.png" alt="&#x02C6;v"  class="circ" > if <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">icp</span></sub><span 
+class="cmmi-10">&#x00A0; </span><span 
+class="cmsy-10">&#x226A;</span> <span 
+class="cmmi-10">&#x00A0;A</span><sub><span 
+class="cmmi-7">sj</span></sub>).
+<!--l. 443--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40072"></a>
+
+<!--l. 445--><p class="noindent" >
+<center>
+<a href="Fig2.png"><img src="Fig2.png" alt="PIC" class="graphics"></a>
+</center>
+<!--tex4ht:graphics  
+name="Fig2.png" src="spots.pdf"  
+-->
+<div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Two strategies to deal with the uranium zoning problem shown in Figure <a 
+href="#x1-40011">1<!--tex4ht:ref: fig:ksienzyk --></a>. a &#8211; enforce a matched
+pairs experimental design by only counting the spontaneous fission tracks located within a single ablation
+spot (<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">sj</span></sub>, solid lines). b &#8211; capture the magnitude of the uranium heterogeneity by placing several laser spots
+within a larger counting area (i.e., <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">icp</span></sub>, dashed lines).</span></div><!--tex4ht:label?: x1-40072 -->
+
+<!--l. 454--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>The &#8216;zero tracks&#8217; problem</h3>
+<!--l. 459--><p class="noindent" >The uncertainty propagation (Equations <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:terr-absolute --></a> and <a 
+href="#x1-3002r8">8<!--tex4ht:ref: eq:terr-zeta --></a>) shows that the standard error of the fission track age varies in
+inverse proportion to the spontaneous fission track count. Because the number of spontaneous fission tracks is
+usually quite low (especially for the single spot approach), the analytical uncertainty of fission track ages is generally
+dominated by the 1<span 
+class="cmmi-10">&#x2215;N</span><sub><span 
+class="cmmi-7">s</span></sub> term. For example, decreasing <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> from 100 to 4 inflates the relative age error associated
+with the spontaneous tracks from 10% to 50%. This further increases to 100% if <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> = 1. For a sample
+lacking any spontaneous fission tracks (<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> = 0), Equations <a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:tzeta --></a>-<a 
+href="#x1-3002r8">8<!--tex4ht:ref: eq:terr-zeta --></a> yield a zero age with infinite uncertainty.
+This effectively precludes any subsequent statistical analysis, such as averaging, mixture modelling,
+or thermal history analysis. For EDM data, the zero track problem can be solved by adding half a
+count to both the spontaneous and the induced tracks. This significantly improves the precision of the
+ages whilst only having a minor effect on their accuracy (<a 
+href="#Xgalbraith2005">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>, p.80). Unfortunately this
+approach cannot be directly applied to the LAFT method, due to the absence of induced fission tracks. A
+pragmatic solution to this problem is to recast the LAFT age Equations (<a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:tICP --></a> and <a 
+href="#x1-3001r7">7<!--tex4ht:ref: eq:tzetahatICP --></a>) into an &#8216;EDM-like&#8217;
+form:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v228x.png" alt="        (                    )
+&#x02C6;tj &#x2248; 1ln  1+ 1&#x03BB; &#x02C6;&#x03B6;icprjNsj-+-1&#x2215;2
+     &#x03BB;       2      N&#x02C6;ij + 1&#x2215;2
+" class="math-display" ><a 
+ id="x1-5001r14"></a></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 487--><p class="nopar" >
+<!--l. 489--><p class="indent" >   where <img 
+src="LAFT_v229x.png" alt="&#x02C6;&#x03B6;"  class="circ" > <sub><span 
+class="cmmi-7">icp</span></sub> = 1 for the absolute dating method, and <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">j</span></sub> is a constant of proportionality that converts the
+(log)normally distributed <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-concentration or <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">x</span></sup>X-ratio measurements of the j<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> grain (<span 
+class="cmmi-10">&ucirc;</span><sub><span 
+class="cmmi-7">j</span></sub>) into a Poisson
+distributed &#8216;equivalent induced track count&#8217; (<img 
+src="LAFT_v230x.png" alt="N&#x02C6;"  class="circ" ><sub><span 
+class="cmmi-7">ij</span></sub>) over an area equal to that counted for the fossil
+tracks:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v231x.png" alt="N&#x02C6;ij = rjAsj exp[&#x02C6;uj]
+" class="math-display" ><a 
+ id="x1-5002r15"></a></center></td><td class="equation-label">(15)</td></tr></table>
+
+<!--l. 500--><p class="nopar" >
+<!--l. 502--><p class="indent" >   <span 
+class="cmmi-10">r</span><sub><span 
+class="cmmi-7">j</span></sub> can be estimated using the property that the mean of a Poisson variable equals its variance:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v232x.png" alt="               (     )2
+ &#x02C6;      &#x02C6;   2    &#x2202;N&#x02C6;ij        2 2        2
+Nij &#x2261; (s[Nij]) &#x2248;    &#x2202;&#x02C6;uj   &#x02C6;vj = rjAsj(exp[&#x02C6;uj])&#x02C6;vj
+" class="math-display" ><a 
+ id="x1-5003r16"></a></center></td><td class="equation-label">(16)</td></tr></table>
+<!--l. 510--><p class="nopar" >
+<!--l. 512--><p class="indent" >   Combining Equations <a 
+href="#x1-5002r15">15<!--tex4ht:ref: eq:NrAs --></a> and <a 
+href="#x1-5003r16">16<!--tex4ht:ref: eq:NrAsu --></a>, it is easy to show that
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v233x.png" alt="r = 1&#x2215;(A  &#x02C6;v exp[&#x02C6;u])
+ j       sj j     j
+" class="math-display" ><a 
+ id="x1-5004r17"></a></center></td><td class="equation-label">(17)</td></tr></table>
+<!--l. 517--><p class="nopar" >
+<!--l. 519--><p class="indent" >   which can be plugged into Equation <a 
+href="#x1-5001r14">14<!--tex4ht:ref: eq:tzetahatICPplushalf --></a> to estimate the fission track age. Its standard error is given
+by
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v234x.png" alt="          (      )
+( s[&#x02C6;tj])2     s[&#x03B6;&#x02C6;icp]  2      1          1
+  -&#x02C6;t--  &#x2248;   -&#x02C6;---   + Nsj +-1&#x2215;2-+ N&#x02C6;-+-1&#x2215;2
+   j         &#x03B6;icp                   ij
+" class="math-display" ><a 
+ id="x1-5005r18"></a></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 528--><p class="nopar" >
+
+<!--l. 530--><p class="indent" >   where the first term can be removed if the absolute dating method is used.
+<!--l. 533--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+								  id="x1-60006"></a>Radial plots and statistical models</h3>
+   
+<!--l. 536--><p class="noindent" >The fission track method is a low precision technique. As explained in the previous section of this paper, single
+grain age uncertainties of 100% or more are not uncommon, especially in young and uranium-poor
+samples. To overcome this limitation and &#8216;beat down the noise&#8217;, it is generally necessary to analyse
+multiple grains from a sample and average them. There are several ways to do this. The simplest
+approach is to assume that all the grains have exactly the same age. This age can be estimated by
+pooling all the spontaneous track counts (<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">sj</span></sub>) and uranium measurements (<span 
+class="cmmi-10">&ucirc;</span>) together,
+with
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v235x.png" alt="    &#x2211;n       &#x2211;n
+&#x02C6;u =    &#x02C6;ujAsj&#x2215;   Asj
+    j=1       j=1
+" class="math-display" ><a 
+ id="x1-6001r19"></a></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 551--><p class="nopar" >
+<!--l. 553--><p class="indent" >   The assumption of a single underlying age component can be tested by calculating the following statistic
+(<a 
+href="#Xgalbraith2010b">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2010b">2010</a>):
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v236x.png" alt="                   (        ) 2
+       &#x2211;n            &#x2211;n        &#x2215; &#x2211;n
+&#x03C7;2stat =   (zj&#x2215;sj)2 - (   zj&#x2215;s2j)       1&#x2215;s2j
+       j=1           j=1         j=1
+" class="math-display" ><a 
+ id="x1-6002r20"></a></center></td><td class="equation-label">(20)</td></tr></table>
+<!--l. 565--><p class="nopar" >
+<!--l. 567--><p class="indent" >   where
+   <table 
+class="equation"><tr><td>
+
+   <center class="math-display" >
+<img 
+src="LAFT_v237x.png" alt="zj = ln(&#x02C6;tj)
+" class="math-display" ><a 
+ id="x1-6003r21"></a></center></td><td class="equation-label">(21)</td></tr></table>
+<!--l. 572--><p class="nopar" >
+<!--l. 574--><p class="indent" >   and
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v238x.png" alt="sj = s[&#x02C6;tj]&#x2215;&#x02C6;tj
+" class="math-display" ><a 
+ id="x1-6004r22"></a></center></td><td class="equation-label">(22)</td></tr></table>
+<!--l. 579--><p class="nopar" >
+<!--l. 581--><p class="indent" >   in which <span 
+class="cmmi-10">s</span>[<img 
+src="LAFT_v239x.png" alt="&#x02C6;t"  class="circ" > <sub><span 
+class="cmmi-7">j</span></sub>] indicates the standard error of the <span 
+class="cmmi-10">j</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> age measurement propagating <span 
+class="cmti-10">the internal</span>
+<span 
+class="cmti-10">sources of analytical uncertainty only</span>. This means that the uncertainties associated with <img 
+src="LAFT_v240x.png" alt="&#x02C6;&#x03B6;"  class="circ" > <sub><span 
+class="cmmi-7">icp</span></sub> or with
+the fractionation correction of the LA-ICP-MS measurements should be omitted. Fortunately, those
+uncertainties are usually much smaller than 1<span 
+class="cmmi-10">&#x2215;N</span><sub><span 
+class="cmmi-7">s</span></sub>. The probability of observing a value <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> under a
+Chi-square distribution with <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">- </span>1 degrees of freedom is called the &#8216;p-value&#8217;. If the latter falls below a
+pre-defined cutoff value of 0.05, say, then we have justifiable grounds to conclude that the data are
+&#8216;overdispersed&#8217;, rendering the pooled age inappropriate. The dispersion of fission track data can also be
+assessed visually using a radial plot (<a 
+href="#Xgalbraith1988">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith1988">1988</a>,&#x00A0;<a 
+href="#Xgalbraith1990a">1990</a>). This is an (<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">j</span></sub>,<span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">j</span></sub>)-scatterplot that sets the
+standarised estimates of the transformed variables <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub> (Equation <a 
+href="#x1-6003r21">21<!--tex4ht:ref: eq:zj --></a>) out against their respective analytical
+precision:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v241x.png" alt="{
+  xj  = 1&#x2215;sj
+  yj  = (zj - z&#x2218;)&#x2215;sj
+" class="math-display" ><a 
+ id="x1-6005r23"></a></center></td><td class="equation-label">(23)</td></tr></table>
+
+<!--l. 606--><p class="nopar" >
+<!--l. 608--><p class="indent" >   where <span 
+class="cmmi-10">z</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> is some conveniently chosen central value. This scatterplot may be decorated with a 2-sigma error bar
+about the origin and a radial scale drawn at some appropriate distance away from it. The power of the radial plot
+derives from its unique ability to simultaneously display the value and analytical uncertainty of measured quantities.
+The former is given by the slope of a line connecting the origin with any given sample point. The latter is given by
+its horizontal distance from the origin. In order for a fission track age population to be compatible with a
+single age component, the sample points should approximately plot within a band defined by two
+parallel lines going through the upper and lower limits of the 2-sigma error bar. Samples that fulfil this
+requirement generally pass the Chi-square test and can safely be represented by their pooled age. Samples
+that do not fit within a 2-sigma band and subsequently fail the Chi-square test may do so for several
+reasons. One possiblity is that their component grains exibit a range of annealing temperatures due
+to uranium heterogeneity, which may result in a continuous distribution of single grain fission track
+ages when subjected to a protracted history of slow cooling (<a 
+href="#Xgleadow1986">Gleadow et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgleadow1986">1986</a>). In this case, the
+pooled age model is clearly inappropriate and is better replaced by a &#8216;random effects model&#8217; in which
+the apparent fission track ages are assumed to follow a (log)normal distibution with two sources of
+variance:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v242x.png" alt="          2   2
+zj ~ N (&#x03BC;,&#x03C3; + sj)
+" class="math-display" ><a 
+ id="x1-6006r24"></a></center></td><td class="equation-label">(24)</td></tr></table>
+<!--l. 635--><p class="nopar" >
+<!--l. 637--><p class="indent" >   whose unknown parameters (<span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03C3;</span>) can be estimated from the data using the method of maximum likelihood
+(<a 
+href="#Xgalbraith2005">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>). Let <img 
+src="LAFT_v243x.png" alt="&#x02C6;&#x03BC;"  class="circ" > and <img 
+src="LAFT_v244x.png" alt="&#x02C6;&#x03C3;"  class="circ" > be those estimates, then exp[<img 
+src="LAFT_v245x.png" alt="&#x02C6;&#x03BC;"  class="circ" >] is known as the &#8216;central age&#8217; and <img 
+src="LAFT_v246x.png" alt="&#x02C6;&#x03C3;"  class="circ" >
+as the &#8216;(over)dispersion&#8217;. For the EDM, it can be shown that, when <img 
+src="LAFT_v247x.png" alt="&#x02C6;&#x03C3;"  class="circ" > = 0, the central age equals
+the pooled age. This is not exactly the case for LAFT data, although the difference is usually small
+(<a 
+href="#Xgalbraith2010b">Galbraith</a>,&#x00A0;<a 
+href="#Xgalbraith2010b">2010</a>).<br 
+class="newline" />
+<!--l. 646--><p class="indent" >   A second scenario in which fission track data might fail the Chi-square test is when the true age distribution
+consists of a finite mixture of discrete age components. If exp[<span 
+class="cmmi-10">&#x03BC;</span><sub><span 
+class="cmmi-7">k</span></sub>] is the true age of the <span 
+class="cmmi-10">k</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> (out of <span 
+class="cmmi-10">K</span>) such
+components, and <span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">k</span></sub> is the proportion of grains belonging to it (with <span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">K</span></sub> = 1 <span 
+class="cmsy-10">-</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">K</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup><span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmmi-7">k</span></sub>), then these
+2<span 
+class="cmmi-10">K</span>-1 unknown parameters can be estimated by numerically maximising the following log-likelihood
+function:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="LAFT_v248x.png" alt="    n   [ K             ]
+L = &#x2211; ln &#x2211;   &#x03C0; f(&#x03BC;  |z ,s)
+   j=1   k=1  k   k j  j
+" class="math-display" ><a 
+ id="x1-6007r25"></a></center></td><td class="equation-label">(25)</td></tr></table>
+<!--l. 661--><p class="nopar" >
+<!--l. 663--><p class="indent" >   in which <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">&#x03BC;</span><sub><span 
+class="cmmi-7">k</span></sub><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub><span 
+class="cmmi-10">,s</span><sub><span 
+class="cmmi-7">j</span></sub>) equals the probability of observing a value <span 
+class="cmmi-10">&#x03BC;</span><sub><span 
+class="cmmi-7">k</span></sub> under a Normal distribution with
+mean <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub> and standard deviation <span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">j</span></sub>. Numerical recipes for solving Equations <a 
+href="#x1-6006r24">24<!--tex4ht:ref: eq:central --></a> and <a 
+href="#x1-6007r25">25<!--tex4ht:ref: eq:peakfit --></a> are provided by
+<a 
+href="#Xgalbraith2005">Galbraith</a>&#x00A0;(<a 
+href="#Xgalbraith2005">2005</a>).
+
+<a 
+ id="x1-90013"></a>
+
+<!--l. 826--><p class="noindent" >
+<center>
+a.<a href= "Fig3a.png"><img width=350 src="Fig3a.png" alt="PIC"></a>
+<!--tex4ht:graphics  name="Fig3a.png" src="radialFCT.pdf"  -->
+b.<a href="Fig3b.png"><img  width=350 src="Fig3b.png" alt="PIC"></a>
+<!--tex4ht:graphics  name="Fib3b.png" src="radialDURDOM.pdf"  -->
+</center>
+<div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">a. Radial plot of a Fish Canyon Tuff sample (Table <a 
+href="#x1-90021">1<!--tex4ht:ref: tab:Hasebe --></a>). b. Deconvolution of an artificial mixture of
+Durango and Mount Dromedary apatite (Table <a 
+href="#x1-90032">2<!--tex4ht:ref: tab:Chew --></a>) by maximising Equation <a 
+href="#x1-6007r25">25<!--tex4ht:ref: eq:peakfit --></a>. Both plots were made with
+<span 
+class="cmtt-10">IsoplotR</span>.</span></div><!--tex4ht:label?: x1-90013 -->
+
+<!--l. 669--><p class="noindent" >
+
+      <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Examples</h3>
+
+<div class="table"> <!--l. 836--><p class="indent" >   <a  id="x1-90021"></a><hr class="float"><div class="float" p>
+
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"><col 
+id="TBL-2-6"><col 
+id="TBL-2-7"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">  #   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">N<sub><span 
+class="cmmi-7">s</span></sub></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">A (<span 
+class="cmmi-10">&#x03BC;</span>m<sup class="textsuperscript"><span 
+class="cmr-9">2</span></sup>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">U<sub><span 
+class="cmr-7">1</span></sub> (ppm)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11">s[U<sub><span 
+class="cmr-7">1</span></sub>] (ppm)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-6"  
+class="td11">U<sub><span 
+class="cmr-7">2</span></sub> (ppm)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-7"  
+class="td11">s[U<sub><span 
+class="cmr-7">2</span></sub>] (ppm)</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11"> FCT1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11"> 2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11">  1600   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11">  12.22   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11">   0.22     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-7"  
+class="td11">          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11"> FCT2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11"> 2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11"> 900 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11"> 3.76 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11"> 0.06 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-6"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-7"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11"> FCT3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11">  1200   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">  12.70   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11">   0.19     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-7"  
+class="td11">          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-1"  
+class="td11"> FCT4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-2"  
+class="td11"> 7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-3"  
+class="td11"> 3200 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-4"  
+class="td11"> 10.95 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-5"  
+class="td11"> 0.24 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-6"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-7"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-1"  
+class="td11"> FCT5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-2"  
+class="td11"> 9 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-3"  
+class="td11">  1200   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-4"  
+class="td11">  20.29   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-5"  
+class="td11">   0.35     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-7"  
+class="td11">          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-1"  
+class="td11"> FCT6 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-2"  
+class="td11"> 0 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-3"  
+class="td11"> 900 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-4"  
+class="td11"> 6.38 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-5"  
+class="td11"> 0.10 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-6"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-7"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-1"  
+class="td11"> FCT7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-2"  
+class="td11"> 2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-3"  
+class="td11">  600   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-4"  
+class="td11">  16.53   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-5"  
+class="td11">   1.08     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-7"  
+class="td11">          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-1"  
+class="td11"> FCT8 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-2"  
+class="td11"> 7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-3"  
+class="td11"> 4200 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-4"  
+class="td11"> 17.34 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-5"  
+class="td11"> 0.38 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-6"  
+class="td11"> 14.86 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-7"  
+class="td11"> 0.40</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-1"  
+class="td11"> FCT9 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-2"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-3"  
+class="td11">  2800   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-4"  
+class="td11">  15.57   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-5"  
+class="td11">   0.96     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-6"  
+class="td11">  19.17   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-7"  
+class="td11">   1.54     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-1"  
+class="td11">FCT10</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-2"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-3"  
+class="td11"> 900 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-4"  
+class="td11"> 14.57 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-5"  
+class="td11"> 0.29 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-6"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-7"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-1"  
+class="td11">FCT11</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-2"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-3"  
+class="td11">  2000   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-4"  
+class="td11">  13.51   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-5"  
+class="td11">   0.22     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-1"  
+class="td11">FCT12</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-2"  
+class="td11"> 5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-3"  
+class="td11">  1600   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-4"  
+class="td11">  13.37   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-5"  
+class="td11">   0.54     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-1"  
+class="td11">FCT13</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-2"  
+class="td11"> 4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-3"  
+class="td11">  1800   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-4"  
+class="td11">  13.88   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-5"  
+class="td11">   0.24     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-1"  
+class="td11">FCT14</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-2"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-3"  
+class="td11">  1000   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-4"  
+class="td11">  15.89   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-5"  
+class="td11">   0.23     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-16-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-1"  
+class="td11">FCT15</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-2"  
+class="td11"> 5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-3"  
+class="td11">  3600   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-4"  
+class="td11">  5.57    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-5"  
+class="td11">   0.11     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-6"  
+class="td11">  12.31   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-7"  
+class="td11">   0.38     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-17-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-1"  
+class="td11">FCT16</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-2"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-3"  
+class="td11">  1200   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-4"  
+class="td11">  7.28    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-5"  
+class="td11">   0.15     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-18-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-1"  
+class="td11">FCT17</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-2"  
+class="td11"> 4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-3"  
+class="td11">  900   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-4"  
+class="td11">  24.56   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-5"  
+class="td11">   0.50     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-19-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-1"  
+class="td11">FCT18</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-2"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-3"  
+class="td11">  600   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-4"  
+class="td11">  18.59   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-5"  
+class="td11">   1.09     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-20-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-1"  
+class="td11">FCT19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-2"  
+class="td11"> 8 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-3"  
+class="td11">  2400   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-4"  
+class="td11">  16.47   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-5"  
+class="td11">   0.40     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-6"  
+class="td11">  17.60   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-7"  
+class="td11">   0.31     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-21-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-1"  
+class="td11">FCT20</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-2"  
+class="td11"> 2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-3"  
+class="td11">  1800   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-4"  
+class="td11">  10.22   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-5"  
+class="td11">   0.16     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-22-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-1"  
+class="td11">FCT21</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-2"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-3"  
+class="td11">  1600   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-4"  
+class="td11">  12.20   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-5"  
+class="td11">   0.27     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-6"  
+class="td11">  5.86    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-7"  
+class="td11">   0.12     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-23-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-1"  
+class="td11">FCT22</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-2"  
+class="td11"> 2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-3"  
+class="td11">  1400   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-4"  
+class="td11">  13.14   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-5"  
+class="td11">   0.23     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-7"  
+class="td11">          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-24-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-1"  
+class="td11">FCT23</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-2"  
+class="td11"> 4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-3"  
+class="td11">  1800   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-4"  
+class="td11">  16.67   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-5"  
+class="td11">   0.33     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-6"  
+class="td11">  15.91   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-7"  
+class="td11">   0.35     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-25-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-1"  
+class="td11">FCT24</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-2"  
+class="td11"> 8 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-3"  
+class="td11">  2000   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-4"  
+class="td11">  19.36   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-5"  
+class="td11">   0.35     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-6"  
+class="td11">        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-7"  
+class="td11">          </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Data set 1, applying the absolute dating approach to a sample of Fish Canyon apatite using a
+laser spot size of 35 <span class="cmmi-10">&#x03BC;m </span>diameter. N<sub>s</sub>= number of spontaneous 
+tracks counted over area A. Grains FCT8, 9, 15, 19, 21 and 23 have been analysed by two laser spots. U<sub>1</sub>
+and U<sub>2</sub> are the uranium concentrations of the first and (optionally) second laser spot. s[U<sub>1</sub>] and s[U<sub>2</sub>] are
+their respective standard errors.</span></div><!--tex4ht:label?: x1-90021 -->
+
+   </div><hr class="endfloat" />
+   </div>
+
+<!--l. 672--><p class="noindent" >The methods introduced in this paper have been implemented in a software package called <span 
+class="cmtt-10">IsoplotR </span>that exists
+within the statistical programming environment <span 
+class="cmtt-10">R</span>. <span 
+class="cmtt-10">IsoplotR </span>can be called from the command line by installing <span 
+class="cmtt-10">R</span>
+from <span 
+class="cmtt-10">http://r-project.org </span>and typing
+
+   <div class="verbatim" id="verbatim-1">
+install.packages('IsoplotR')
+</div>
+<!--l. 680--><p class="nopar" >
+<!--l. 682--><p class="indent" >   at the command prompt. The package can be then be loaded using
+
+   <div class="verbatim" id="verbatim-2">
+library(IsoplotR)
+</div>
+<!--l. 686--><p class="nopar" >
+<!--l. 688--><p class="indent" >   Alternatively, most functions can also be accessed via a user-friendly graphical user interface (GUI) that can be
+accessed from <span 
+class="cmtt-10">http://isoplotr.london-geochron.com</span>. This Section will illustrate some of <span 
+class="cmtt-10">IsoplotR</span>&#8217;s
+functionality with two fission track datasets. The first of these was kindly provided by Dr. Noriko Hasebe
+(Kanazawa University) and applies the absolute dating method with multiple laser spots per grain to a sample of
+Fish Canyon apatite (28.8 <span 
+class="cmsy-10">&plusmn; </span>0.8 Ma,&#x00A0;<a 
+href="#Xgleadow2015">Gleadow et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgleadow2015">2015</a>). The second dataset was provided by Dr. David
+Chew (Trinity College Dublin) using the zeta-calibration method with a single laser spot per grain. It
+combines an artificial mixture of 30 measurements on Durango apatite (31.02 <span 
+class="cmsy-10">&plusmn; </span>0.22 Ma,&#x00A0;<a 
+href="#Xmcdowell2005">McDowell
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmcdowell2005">2005</a>) with a 29 further measurements of Mount Dromedary apatite (98.5 <span 
+class="cmsy-10">&plusmn; </span>0.5,&#x00A0;<a 
+href="#Xmcdougall2011">McDougall and
+Wellman</a>,&#x00A0;<a 
+href="#Xmcdougall2011">2011</a>). The raw input data can either be copied and pasted into the GUI, or read from a <span 
+class="cmtt-10">.csv </span>input
+file:
+
+   <div class="verbatim" id="verbatim-3">
+Hasebe&#x00A0;&#x003C;-&#x00A0;read.data('Hasebe.csv',method='fissiontracks',format=3)
+&#x00A0;<br />DUR&#x00A0;&#x003C;-&#x00A0;read.data('DUR.csv',method='fissiontracks',format=2)
+&#x00A0;<br />Chew&#x00A0;&#x003C;-&#x00A0;read.data('Chew.csv',method='fissiontracks',format=2)
+</div>
+<!--l. 708--><p class="nopar" >
+<!--l. 710--><p class="indent" >   where the <span 
+class="cmtt-10">format </span>argument to the <span 
+class="cmtt-10">read.data </span>function records the input format of the fission track data.
+<span 
+class="cmtt-10">format=1 </span>indicates the EDM, <span 
+class="cmtt-10">format=2 </span>refers to LAFT dating using the zeta calibration method, and
+<span 
+class="cmtt-10">format=3 </span>marks LAFT data using the absolute dating method. The files <span 
+class="cmtt-10">Hasebe.csv</span>, <span 
+class="cmtt-10">DUR.csv</span>, and
+<span 
+class="cmtt-10">Chew.csv </span>are provided in the Supplementary Information. To calculate the fission track ages of the first
+dataset:
+
+   <div class="verbatim" id="verbatim-4">
+age(Hasebe)
+</div>
+<!--l. 720--><p class="nopar" >
+<!--l. 722--><p class="indent" >   Note that the Fish Canyon dataset contains a zero track grain (FCT6 in Table <a 
+href="#x1-90021">1<!--tex4ht:ref: tab:Hasebe --></a>) that has automatically been
+dealt with using the methods of Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:zerotracks --></a>. To plot the first dataset on a radial plot (Figure <a 
+href="#x1-90013">3<!--tex4ht:ref: fig:radialplots --></a>a):
+
+   <div class="verbatim" id="verbatim-5">
+radialplot(Hasebe)
+</div>
+<!--l. 729--><p class="nopar" >
+<!--l. 731--><p class="indent" >   which also calculates the central age of the dataset (32.6 <span 
+class="cmsy-10">&plusmn; </span>0.11 Ma with 7% of dispersion on a 1<span 
+class="cmmi-10">&#x03C3; </span>level). To set
+the <span 
+class="cmmi-10">&#x03B6; </span>calibration factor for the second dataset:
+
+   <div class="verbatim" id="verbatim-6">
+DUR&#x00A0;&#x003C;-&#x00A0;set.zeta(DUR,tst=c(31.02,0.22))
+</div>
+<!--l. 737--><p class="nopar" >
+<!--l. 739--><p class="indent" >   where <span 
+class="cmtt-10">tst </span>is a two-element vector containing the standard age and its analytical uncertainty. This yields a value
+(<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">DUR$zeta</span></span></span>) of 342 <span 
+class="cmsy-10">&plusmn; </span>23 a cm<sup class="textsuperscript"><span 
+class="cmr-9">2</span></sup> (1<span 
+class="cmmi-10">&#x03C3;</span>). To fit a two component mixture to the data and visualise the results as a radial
+plot:
+
+   <div class="verbatim" id="verbatim-7">
+radialplot(Chew,k=2)
+</div>
+<!--l. 747--><p class="nopar" >
+<!--l. 749--><p class="indent" >   which produces two peaks at 31.3 <span 
+class="cmsy-10">&plusmn; </span>2.3 Ma and 104.4 <span 
+class="cmsy-10">&plusmn; </span>8.1 Ma, in good agreement with the known ages of
+Durango<span class="footnote-mark"><a 
+href="LAFT_v23.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-7001f2"></a>
+and Mt. Dromedary apatite (Figure <a 
+href="#x1-90013">3<!--tex4ht:ref: fig:radialplots --></a>.b).
+
+   <div class="table">
+
+<!--l. 877--><p class="indent" >   <a 
+ id="x1-90032"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"><col 
+id="TBL-3-2"><col 
+id="TBL-3-3"><col 
+id="TBL-3-4"><col 
+id="TBL-3-5"></colgroup><colgroup id="TBL-3-6g"><col 
+id="TBL-3-6"><col 
+id="TBL-3-7"><col 
+id="TBL-3-8"><col 
+id="TBL-3-9"><col 
+id="TBL-3-10"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-1"  
+class="td11">  #   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-2"  
+class="td11">N<sub><span 
+class="cmmi-7">s</span></sub></td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-3"  
+class="td11">A (<span 
+class="cmmi-10">&#x03BC;</span>m<sup class="textsuperscript"><span 
+class="cmr-9">2</span></sup>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-4"  
+class="td11">238/43</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-5"  
+class="td11">s[238/43]</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-6"  
+class="td11">  #   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-7"  
+class="td11">N<sub><span 
+class="cmmi-7">s</span></sub></td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-8"  
+class="td11">A (<span 
+class="cmmi-10">&#x03BC;</span>m<sup class="textsuperscript"><span 
+class="cmr-9">2</span></sup>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-9"  
+class="td11">238/43</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-10"  
+class="td11">s[238/43]</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-1"  
+class="td11"> DUR1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-2"  
+class="td11">47</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-3"  
+class="td11">  2210   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-4"  
+class="td11"> 0.15  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-5"  
+class="td11">  0.009   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-6"  
+class="td11"> MD1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-7"  
+class="td11">29</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-8"  
+class="td11">  205   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-9"  
+class="td11"> 0.209 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-10"  
+class="td11">  0.012   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-1"  
+class="td11"> DUR2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-2"  
+class="td11">51</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-3"  
+class="td11"> 1870 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-4"  
+class="td11"> 0.171 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-5"  
+class="td11"> 0.01 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-6"  
+class="td11"> MD2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-7"  
+class="td11">38</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-8"  
+class="td11"> 158 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-9"  
+class="td11"> 0.281 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-10"  
+class="td11"> 0.017</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-1"  
+class="td11"> DUR3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-2"  
+class="td11">55</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-3"  
+class="td11">  1840   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-4"  
+class="td11"> 0.166 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-6"  
+class="td11"> MD3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-7"  
+class="td11">33</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-8"  
+class="td11">  176   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-9"  
+class="td11"> 0.251 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-10"  
+class="td11">  0.016   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-1"  
+class="td11"> DUR4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-2"  
+class="td11">56</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-3"  
+class="td11"> 1740 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-4"  
+class="td11"> 0.162 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-5"  
+class="td11"> 0.01 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-6"  
+class="td11"> MD4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-7"  
+class="td11">13</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-8"  
+class="td11"> 243 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-9"  
+class="td11"> 0.119 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-10"  
+class="td11"> 0.007</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-1"  
+class="td11"> DUR5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-2"  
+class="td11">57</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-3"  
+class="td11">  2020   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-4"  
+class="td11"> 0.166 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-6"  
+class="td11"> MD5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-7"  
+class="td11">14</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-8"  
+class="td11">  176   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-9"  
+class="td11"> 0.127 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-10"  
+class="td11">  0.008   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-1"  
+class="td11"> DUR6 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-2"  
+class="td11">59</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-3"  
+class="td11"> 1860 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-4"  
+class="td11"> 0.142 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-5"  
+class="td11"> 0.008 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-6"  
+class="td11"> MD6 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-7"  
+class="td11">40</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-8"  
+class="td11"> 148 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-9"  
+class="td11"> 0.521 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-10"  
+class="td11"> 0.031</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-1"  
+class="td11"> DUR7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-2"  
+class="td11">46</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-3"  
+class="td11">  1450   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-4"  
+class="td11"> 0.185 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-5"  
+class="td11">  0.011   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-6"  
+class="td11"> MD7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-7"  
+class="td11">19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-8"  
+class="td11">  210   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-9"  
+class="td11"> 0.24  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-10"  
+class="td11">  0.015   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-1"  
+class="td11"> DUR8 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-2"  
+class="td11">85</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-3"  
+class="td11"> 3050 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-4"  
+class="td11"> 0.158 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-5"  
+class="td11"> 0.01 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-6"  
+class="td11"> MD8 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-7"  
+class="td11">24</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-8"  
+class="td11"> 173 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-9"  
+class="td11"> 0.307 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-9-10"  
+class="td11"> 0.016</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-1"  
+class="td11"> DUR9 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-2"  
+class="td11">59</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-3"  
+class="td11">  2100   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-4"  
+class="td11"> 0.132 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-5"  
+class="td11">  0.008   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-6"  
+class="td11"> MD9 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-7"  
+class="td11">31</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-8"  
+class="td11">  217   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-9"  
+class="td11"> 0.274 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-10-10"  
+class="td11">  0.018   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-1"  
+class="td11">DUR10</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-2"  
+class="td11">52</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-3"  
+class="td11"> 2010 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-4"  
+class="td11"> 0.141 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-5"  
+class="td11"> 0.009 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-6"  
+class="td11">MD10</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-7"  
+class="td11">24</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-8"  
+class="td11"> 232 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-9"  
+class="td11"> 0.227 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-11-10"  
+class="td11"> 0.016</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-1"  
+class="td11">DUR11</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-2"  
+class="td11">66</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-3"  
+class="td11">  2110   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-4"  
+class="td11"> 0.183 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-5"  
+class="td11">  0.011   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-6"  
+class="td11">MD11</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-7"  
+class="td11">34</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-8"  
+class="td11">  153   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-9"  
+class="td11"> 0.307 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-12-10"  
+class="td11">  0.018   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-1"  
+class="td11">DUR12</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-2"  
+class="td11">24</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-3"  
+class="td11"> 915 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-4"  
+class="td11"> 0.153 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-5"  
+class="td11"> 0.01 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-6"  
+class="td11">MD12</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-7"  
+class="td11">33</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-8"  
+class="td11"> 183 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-9"  
+class="td11"> 0.369 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-13-10"  
+class="td11"> 0.022</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-1"  
+class="td11">DUR13</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-2"  
+class="td11">33</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-3"  
+class="td11">  1430   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-4"  
+class="td11"> 0.142 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-5"  
+class="td11">  0.009   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-6"  
+class="td11">MD13</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-7"  
+class="td11">29</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-8"  
+class="td11">  238   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-9"  
+class="td11"> 0.183 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-14-10"  
+class="td11">  0.012   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-1"  
+class="td11">DUR14</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-2"  
+class="td11">34</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-3"  
+class="td11"> 1070 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-4"  
+class="td11"> 0.169 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-5"  
+class="td11"> 0.01 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-6"  
+class="td11">MD14</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-7"  
+class="td11">36</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-8"  
+class="td11"> 228 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-9"  
+class="td11"> 0.253 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-15-10"  
+class="td11"> 0.018</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-16-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-1"  
+class="td11">DUR15</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-2"  
+class="td11">59</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-3"  
+class="td11">  1700   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-4"  
+class="td11"> 0.175 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-5"  
+class="td11">  0.011   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-6"  
+class="td11">MD15</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-7"  
+class="td11">33</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-8"  
+class="td11">  240   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-9"  
+class="td11"> 0.188 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-16-10"  
+class="td11">  0.012   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-17-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-1"  
+class="td11">DUR16</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-2"  
+class="td11">46</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-3"  
+class="td11">  1810   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-4"  
+class="td11"> 0.147 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-5"  
+class="td11">  0.009   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-6"  
+class="td11">MD16</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-7"  
+class="td11">26</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-8"  
+class="td11">  182   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-9"  
+class="td11"> 0.206 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-17-10"  
+class="td11">  0.014   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-18-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-1"  
+class="td11">DUR17</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-2"  
+class="td11">63</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-3"  
+class="td11">  2390   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-4"  
+class="td11"> 0.138 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-5"  
+class="td11">  0.008   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-6"  
+class="td11">MD17</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-7"  
+class="td11">28</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-8"  
+class="td11">  262   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-9"  
+class="td11"> 0.159 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-18-10"  
+class="td11">  0.01   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-19-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-1"  
+class="td11">DUR18</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-2"  
+class="td11">94</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-3"  
+class="td11">  2300   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-4"  
+class="td11"> 0.185 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-5"  
+class="td11">  0.011   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-6"  
+class="td11">MD18</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-7"  
+class="td11">20</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-8"  
+class="td11">  219   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-9"  
+class="td11"> 0.207 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-19-10"  
+class="td11">  0.014   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-20-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-1"  
+class="td11">DUR19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-2"  
+class="td11">58</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-3"  
+class="td11">  1940   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-4"  
+class="td11"> 0.16  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-6"  
+class="td11">MD19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-7"  
+class="td11">23</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-8"  
+class="td11">  154   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-9"  
+class="td11"> 0.297 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-20-10"  
+class="td11">  0.02   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-21-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-1"  
+class="td11">DUR20</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-2"  
+class="td11">37</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-3"  
+class="td11">  1550   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-4"  
+class="td11"> 0.145 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-6"  
+class="td11">MD20</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-7"  
+class="td11">25</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-8"  
+class="td11">  111   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-9"  
+class="td11"> 0.348 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-21-10"  
+class="td11">  0.02   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-22-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-1"  
+class="td11">DUR21</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-2"  
+class="td11">40</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-3"  
+class="td11">  1490   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-4"  
+class="td11"> 0.145 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-5"  
+class="td11">  0.009   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-6"  
+class="td11">MD21</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-7"  
+class="td11">25</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-8"  
+class="td11">  249   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-9"  
+class="td11"> 0.148 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-22-10"  
+class="td11">  0.01   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-23-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-1"  
+class="td11">DUR22</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-2"  
+class="td11">50</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-3"  
+class="td11">  1870   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-4"  
+class="td11"> 0.155 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-6"  
+class="td11">MD22</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-7"  
+class="td11">26</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-8"  
+class="td11">  169   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-9"  
+class="td11"> 0.29  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-23-10"  
+class="td11">  0.018   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-24-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-1"  
+class="td11">DUR23</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-2"  
+class="td11">27</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-3"  
+class="td11">  1460   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-4"  
+class="td11"> 0.132 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-5"  
+class="td11">  0.009   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-6"  
+class="td11">MD23</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-7"  
+class="td11">32</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-8"  
+class="td11">  174   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-9"  
+class="td11"> 0.207 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-24-10"  
+class="td11">  0.015   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-25-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-1"  
+class="td11">DUR24</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-2"  
+class="td11">32</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-3"  
+class="td11">  1050   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-4"  
+class="td11"> 0.177 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-5"  
+class="td11">  0.011   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-6"  
+class="td11">MD24</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-7"  
+class="td11">26</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-8"  
+class="td11">  134   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-9"  
+class="td11"> 0.339 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-25-10"  
+class="td11">  0.023   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-26-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-1"  
+class="td11">DUR25</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-2"  
+class="td11">41</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-3"  
+class="td11">  1900   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-4"  
+class="td11"> 0.124 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-5"  
+class="td11">  0.009   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-6"  
+class="td11">MD25</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-7"  
+class="td11">15</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-8"  
+class="td11">  248   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-9"  
+class="td11"> 0.093 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-26-10"  
+class="td11">  0.006   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-27-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-1"  
+class="td11">DUR26</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-2"  
+class="td11">39</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-3"  
+class="td11">  1660   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-4"  
+class="td11"> 0.132 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-5"  
+class="td11">  0.009   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-6"  
+class="td11">MD26</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-7"  
+class="td11">15</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-8"  
+class="td11">  133   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-9"  
+class="td11"> 0.233 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-27-10"  
+class="td11">  0.016   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-28-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-1"  
+class="td11">DUR27</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-2"  
+class="td11">40</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-3"  
+class="td11">  1630   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-4"  
+class="td11"> 0.152 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-6"  
+class="td11">MD27</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-7"  
+class="td11">16</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-8"  
+class="td11">  160   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-9"  
+class="td11"> 0.121 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-28-10"  
+class="td11">  0.007   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-29-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-1"  
+class="td11">DUR28</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-2"  
+class="td11">40</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-3"  
+class="td11">  1380   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-4"  
+class="td11"> 0.143 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-6"  
+class="td11">MD28</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-7"  
+class="td11">19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-8"  
+class="td11">  208   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-9"  
+class="td11"> 0.216 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-29-10"  
+class="td11">  0.015   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-30-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-1"  
+class="td11">DUR29</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-2"  
+class="td11">56</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-3"  
+class="td11">  1780   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-4"  
+class="td11"> 0.149 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-5"  
+class="td11">  0.01   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-6"  
+class="td11">MD29</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-7"  
+class="td11">25</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-8"  
+class="td11">  143   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-9"  
+class="td11"> 0.248 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-30-10"  
+class="td11">  0.017   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-31-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-1"  
+class="td11">DUR30</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-2"  
+class="td11">71</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-3"  
+class="td11">  2110   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-4"  
+class="td11"> 0.182 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-5"  
+class="td11">  0.013   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-6"  
+class="td11">     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-7"  
+class="td11">  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-8"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-9"  
+class="td11">      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-31-10"  
+class="td11">        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-32-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-32-1"  
+class="td11">      </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2: </span><span  
+class="content">Data set 2, using the zeta-calibration approach and a single laser spot per fission track analysis
+using a laser spot size of 30 <span 
+class="cmmi-10">&#x03BC;m</span>. DUR = Durango apatite, MD = Mount Dromedary apatite. Uranium
+content is measured by the <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U/<sup class="textsuperscript"><span 
+class="cmr-9">43</span></sup>Ca-ratio (&#8216;238/43&#8217;) and its standard error (&#8216;s[238/43]&#8217;).</span></div><!--tex4ht:label?: x1-90032 -->
+
+   </div><hr class="endfloat" />
+   </div>
+
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>Discussion and conclusions</h3>
+<!--l. 757--><p class="noindent" >This paper has introduced four different analytical approaches towards LAFT dating (Table <a 
+href="#x1-90043">3<!--tex4ht:ref: tab:4ways --></a>).
+<!--l. 760--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-8002x1">The simplest approach is to apply the absolute dating method (Equation <a 
+href="#x1-2001r5">5<!--tex4ht:ref: eq:tICP --></a>) using the analytical
+     uncertainty of a single LA-ICP-MS measurement per grain (Equation <a 
+href="#x1-2002r6">6<!--tex4ht:ref: eq:terr-absolute --></a>). Though straightforward
+     in theory, this approach may be inaccurate in practice due to the lack of matrix-matched uranium
+     concentration standards for LA-ICP-MS (Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:absolute --></a>). The single spot approach is also imprecise for
+     most common samples due to the small number of spontaneous tracks counted within the area occupied
+     by the ablation pit.
+     </li>
+     <li 
+  class="enumerate" id="x1-8004x2">The accuracy can be improved by tying the sample measurements to a reference material of known age,
+     analysed under the same conditions as the sample, using the <span 
+class="cmmi-10">&#x03B6;</span>-calibration constant and Equation <a 
+href="#x1-3001r7">7<!--tex4ht:ref: eq:tzetahatICP --></a>.
+     However, the precision may still be low if a single laser spot is used, for reasons given under analytical
+     approach&#x00A0;1.
+     </li>
+     <li 
+  class="enumerate" id="x1-8006x3">The number of spontaneous track counts per grain may be increased by placing multiple ablation pits
+     on some or all of the grains. When applied to the absolute dating method, this yields precise but
+     potentially inaccurate results, for reasons given under approach&#x00A0;1.
+     </li>
+     <li 
+  class="enumerate" id="x1-8008x4">Potentially  the  most  accurate  and  precise  approach  to  LAFT  dating  combines  the  <span 
+class="cmmi-10">&#x03B6;</span>-calibration
+     approach with multiple laser spots. The only caveat of this method is that it requires considerably
+     more work than the single spot absolute dating approach, because it involves multiple measurements
+     of not only the samples, but the reference material as well.</li></ol>
+<!--l. 790--><p class="indent" >   Using these four approaches, we have seen how LAFT dating can overcome the problems of uranium zoning and
+zero track grains. Nevertheless, it is fair to say that the EDM is still superior to LAFT dating in some ways. As we
+saw in Section <a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>, EDM data are based on the ratios of two independent Poisson variables. This produces
+statistical models that are convincing on physical grounds and well verified empirically. In contrast
+with this, LAFT data are based on mixed ratios of Poisson and (log)normally distributed variables
+that are not easily captured in parametric statistical models. So instead such models use the ages and
+errors for further inference, rather than the raw fission track data. These models generally assume
+(log)normality of the analytical uncertainties, which is only approximately correct. When a LAFT
+dataset fails the chi-square test for age homogeneity, say, then it might not do so for geological reasons.
+Instead, it is possible that the dataset fails the test simply because its parametric assumptions are not
+
+met. With this caveat in mind, LAFT offers clear practical advantages over EDM-based fission track
+data including higher throughput and the ease of double dating with the U-Pb method (<a 
+href="#Xchew2012">Chew and
+Donelick</a>,&#x00A0;<a 
+href="#Xchew2012">2012</a>). It seems very likely, then, that LAFT will continue to gain popularity at the expense of
+EDM-based fission track dating. <span 
+class="cmtt-10">IsoplotR </span>aims to facilitate this transition, and to help extract geologically
+meaningful information from future LAFT datasets with the greatest possible accuracy and easy of
+use.
+
+   <div class="table">
+
+<!--l. 921--><p class="indent" >   <a 
+ id="x1-90043"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"></colgroup><colgroup id="TBL-4-2g"><col 
+id="TBL-4-2"><col 
+id="TBL-4-3"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-1-1"  
+class="td11">&#x00A0;                          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-1-2"  
+class="td11">single laser spot                            </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-1-3"  
+class="td11">multiple laser spots                         </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-1"  
+class="td11">absolute age equation</td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-2"  
+class="td11">1. fastest, least accurate, least precise</td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-3"  
+class="td11">3. fast, least accurate, most precise     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-1"  
+class="td11"><span 
+class="cmmi-10">&#x03B6;</span>-calibration method </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-2"  
+class="td11">2. slow, most accurate, least precise   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-3"  
+class="td11">4. slowest, most accurate, most precise</td></tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;3: </span><span  
+class="content">Four approaches to LAFT dating, each of which represents a different tradeof between sample
+throughput, accuracy and precision.</span></div><!--tex4ht:label?: x1-90043 -->
+
+   </div><hr class="endfloat" />
+   </div>
+
+<!--l. 815--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
+ id="x1-90009"></a>Acknowledgments</h3>
+<!--l. 817--><p class="noindent" >The author would like to thank Noriko Hasebe and David Chew for sharing the datasets in Tables <a 
+href="#x1-90021">1<!--tex4ht:ref: tab:Hasebe --></a> and <a 
+href="#x1-90032">2<!--tex4ht:ref: tab:Chew --></a>.
+Raymond Jonckheere and Christoph Glotzbach are gratefully acknowledged for their prompt and meticulous
+reviews. The author was financially supported by ERC Starting Grant 259504 (&#8216;KArSD&#8217;) and NERC Standard
+Grants NE/I008837/1 and NE/K003232/1.
+<!--l. 824--><p class="indent" >  
+
+
+   <h3 class="likesectionHead"><a 
+ id="x1-100009"></a>References</h3>
+<!--l. 939--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xabdullin2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Abdullin, F., Sol&eacute;, J., Meneses-Rocha, J. d.&#x00A0;J., Solari, L., Shchepetilnikova, V., and Ortega-Obreg&oacute;n, C.
+  LA-ICP-MS-based apatite fission track dating of the Todos Santos Formation sandstones from the Sierra
+  de Chiapas (SE Mexico) and its tectonic significance. <span 
+class="cmti-10">International Geology Review</span>, 58(1):32&#8211;48, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Chew, D.&#x00A0;M. and Donelick, R.&#x00A0;A. Combined apatite fission track and U-Pb dating by LA-ICP-MS and
+  its application in apatite provenance analysis.  <span 
+class="cmti-10">Quantitative Mineralogy and Microanalysis of Sediments</span>
+  <span 
+class="cmti-10">and Sedimentary Rocks: Mineralogical Association of Canada, Short Course</span>, 42:219&#8211;247, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdumitru1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dumitru, T.&#x00A0;A. A new computer-automated microscope stage system for fission-track analysis. <span 
+class="cmti-10">Nuclear</span>
+  <span 
+class="cmti-10">Tracks and Radiation Measurements</span>, 21(4):575&#8211;580, 1993.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xenkelmann2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Enkelmann, E. and Jonckheere, R.  Correction factors for systematic errors related to the track counts
+  in fission-track dating with the external detector method. <span 
+class="cmti-10">Radiation Measurements</span>, 36(1):351&#8211;356, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfleischer1972"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fleischer, R. and Hart, H. Fission track dating: techniques and problems. In Bishop, W., Miller, J., and
+  Cole, S., editors, <span 
+class="cmti-10">Calibration of Hominoid Evolution</span>, pages 135&#8211;170. Scottish Academic Press Edinburgh,
+  1972.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfleischer1964"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fleischer, R., Price, P., Symes, E., and Miller, D.  Fission-track ages and track-annealing behavior of
+  some micas. <span 
+class="cmti-10">Science</span>, 143(3604):349&#8211;351, 1964.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfleischer1965"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fleischer, R.&#x00A0;L., Price, P.&#x00A0;B., and Walker, R.&#x00A0;M.  Tracks of charged particles in solids.  <span 
+class="cmti-10">Science</span>, 149
+  (3682):383&#8211;393, 1965.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfleischer1975"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fleischer, R.&#x00A0;L., Price, P.&#x00A0;B., and Walker, R.&#x00A0;M.  <span 
+class="cmti-10">Nuclear tracks in solids: principles and applications</span>.
+  Univ of California Press, 1975.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2010b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R. Statistics for LA-ICPMS fission track dating. <span 
+class="cmti-10">Thermo2010 - 12th International Conference</span>
+  <span 
+class="cmti-10">on Thermochronology, Glasgow</span>, page 175, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. The radial plot: graphical assessment of spread in ages. <span 
+class="cmti-10">Nuclear Tracks and Radiation</span>
+  <span 
+class="cmti-10">Measurements</span>, 17:207&#8211;214, 1990.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. <span 
+class="cmti-10">Statistics for fission track analysis</span>. CRC Press, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1984"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.  On statistical estimation in fission track dating.  <span 
+class="cmti-10">Mathematical Geology</span>, 16(7):653&#8211;669,
+  1984.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.  Graphical display of estimates having differing standard errors.  <span 
+class="cmti-10">Technometrics</span>, 30(3):
+  271&#8211;281, 1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1988b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R. and Laslett, G. Some calculations relevant to thermal annealing of fission tracks in apatite.
+  In <span 
+class="cmti-10">Proceedings of the Royal Society of London A: Mathematical, Physical and Engineering Sciences</span>, volume
+  419, pages 305&#8211;321. The Royal Society, 1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgleadow1981"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gleadow, A.  Fission-track dating methods: what are the real alternatives?  <span 
+class="cmti-10">Nuclear Tracks</span>, 5(1):3&#8211;14,
+  1981.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgleadow1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gleadow, A., Duddy, I., Green, P.&#x00A0;F., and Lovering, J.   Confined fission track lengths in apatite: a
+  diagnostic tool for thermal history analysis.  <span 
+class="cmti-10">Contributions to Mineralogy and Petrology</span>, 94(4):405&#8211;415,
+  1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgleadow2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gleadow, A., Harrison, M., Kohn, B., Lugo-Zazueta, R., and Phillips, D. The Fish Canyon Tuff: A new
+  look at an old low-temperature thermochronology standard.  <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 424:
+  95&#8211;108, 2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhasebe2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hasebe, N., Barbarand, J., Jarvis, K., Carter, A., and Hurford, A.&#x00A0;J. Apatite fission-track chronometry
+  using laser ablation icp-ms. <span 
+class="cmti-10">Chemical Geology</span>, 207(3):135&#8211;145, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhasebe2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hasebe, N., Carter, A., Hurford, A.&#x00A0;J., and Arai, S.  The effect of chemical etching on LA&#8211;ICP-MS
+  analysis in determining uranium concentration for fission-track chronometry. <span 
+class="cmti-10">Geological Society, London,</span>
+  <span 
+class="cmti-10">Special Publications</span>, 324(1):37&#8211;46, 2009.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xholden2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Holden, N.&#x00A0;E. and Hoffman, D.&#x00A0;C.  Spontaneous fission half-lives for ground-state nuclide (technical
+  report). <span 
+class="cmti-10">Pure and applied chemistry</span>, 72(8):1525&#8211;1562, 2000.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hurford, A.&#x00A0;J. and Green, P.&#x00A0;F. The zeta age calibration of fission-track dating. <span 
+class="cmti-10">Chemical Geology</span>, 41:
+  285 &#8211; 317, 1983. ISSN 0009-2541. doi: 10.1016/S0009-2541(83)80026-6.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1990"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hurford, A.&#x00A0;J. Standardization of fission track dating calibration: recommendation by the Fission Track
+  Working Group of the IUGS Subcommission on Geochronology.  <span 
+class="cmti-10">Chemical Geology: Isotope Geoscience</span>
+  <span 
+class="cmti-10">Section</span>, 80(2):171&#8211;178, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Hurford, A.&#x00A0;J. and Green, P.&#x00A0;F. A users&#8217; guide to fission track dating calibration. <span 
+class="cmti-10">Earth and Planetary</span>
+  <span 
+class="cmti-10">Science Letters</span>, 59(2):343&#8211;354, 1982.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xiwano1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Iwano, H. and Danhara, T. A re-investigation of the geometry factors for fission-track dating of apatite,
+  sphene and zircon. In <span 
+class="cmti-10">Advances in Fission-Track Geochronology</span>, pages 47&#8211;66. Springer, 1998.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjaffey1971"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Jaffey, A., Flynn, K., Glendenin, L., Bentley, W., and Essling, A.  Precision measurement of half-lives
+  and specific activities of u235 and u238. <span 
+class="cmti-10">Physical Review C</span>, 4(5):1889, 1971.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjonckheere2003b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Jonckheere, R. On the densities of etchable fission tracks in a mineral and co-irradiated external detector
+  with reference to fission-track dating of minerals. <span 
+class="cmti-10">Chemical Geology</span>, 200(1):41&#8211;58, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjonckheere2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Jonckheere, R., Ratschbacher, L., and Wagner, G.&#x00A0;A.  A repositioning technique for counting induced
+  fission tracks in muscovite external detectors in single-grain dating of minerals with low and inhomogeneous
+  uranium concentrations. <span 
+class="cmti-10">Radiation Measurements</span>, 37(3):217&#8211;219, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xksienzyk2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ksienzyk, A.&#x00A0;K., Dunkl, I., Jacobs, J., Fossen, H., and Kohlmann, F.  From orogen to passive margin:
+  constraints from fission track and (U&#8211;Th)/He analyses on Mesozoic uplift and fault reactivation in SW
+  Norway. <span 
+class="cmti-10">Geological Society, London, Special Publications</span>, 390:SP390&#8211;27, 2014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xliu2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Liu, Y., Hu, Z., Gao, S., G&uuml;nther, D., Xu, J., Gao, C., and Chen, H. In situ analysis of major and trace
+  elements of anhydrous minerals by LA-ICP-MS without applying an internal standard. <span 
+class="cmti-10">Chemical Geology</span>,
+  257(1):34&#8211;43, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlongerich1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Longerich, H.&#x00A0;P., Jackson, S.&#x00A0;E., and Gunther, D.   Inter-laboratory note. laser ablation inductively
+  coupled plasma mass spectrometric transient signal data acquisition and analyte concentration calculation.
+  <span 
+class="cmti-10">J. Anal. At. Spectrom.</span>, 11:899&#8211;904, 1996. doi: 10.1039/JA9961100899.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcdougall2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McDougall, I. and Wellman, P. Calibration of GA1550 biotite standard for K/Ar and <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar dating.
+  <span 
+class="cmti-10">Chemical Geology</span>, 280(1):19&#8211;25, 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcdowell2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>McDowell, F.&#x00A0;W., McIntosh, W.&#x00A0;C., and Farley, K.&#x00A0;A. A precise <sup><span 
+class="cmr-7">40</span></sup>Ar&#8211;<sup><span 
+class="cmr-7">39</span></sup>Ar reference age for the Durango
+  apatite (U&#8211;Th)/He and fission-track dating standard. <span 
+class="cmti-10">Chemical Geology</span>, 214(3):249&#8211;263, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnorman1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Norman, M., Griffin, W., Pearson, N., Garcia, M., and Oreilly, S. Quantitative analysis of trace element
+  abundances in glasses and minerals: a comparison of laser ablation inductively coupled plasma mass
+  spectrometry, solution inductively coupled plasma mass spectrometry, proton microprobe and electron
+  microprobe data. <span 
+class="cmti-10">Journal of Analytical Atomic Spectrometry</span>, 13(5):477&#8211;482, 1998.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpearce1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pearce, N. J.&#x00A0;G., Perkins, W.&#x00A0;T., Westgate, J.&#x00A0;A., Gorton, M.&#x00A0;P., Jackson, S.&#x00A0;E., Neal, C.&#x00A0;R., and
+  Chenery, S.&#x00A0;P. A Compilation of New and Published Major and Trace Element Data for NIST SRM 610
+  and NIST SRM 612 Glass Reference Materials. <span 
+class="cmti-10">Geostandards Newsletter</span>, 21:115&#8211;144, 1997.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xprice1962"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Price, P. and Walker, R. Observation of fossil particle tracks in natural micas. 1962.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xprice1963"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Price, P. and Walker, R.  Fossil tracks of charged particles in mica and the age of minerals.  <span 
+class="cmti-10">Journal of</span>
+  <span 
+class="cmti-10">Geophysical Research</span>, 68(16):4847&#8211;4862, 1963.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsmith1985"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Smith, M. and Leigh-Jones, P. An automated microscope scanning stage for fission-track dating. <span 
+class="cmti-10">Nuclear</span>
+  <span 
+class="cmti-10">Tracks and Radiation Measurements (1982)</span>, 10(3):395&#8211;400, 1985.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsoares2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Soares,  C.,  Guedes,  S.,  Hadler,  J.,  Mertz-Kraus,  R.,  Zack,  T.,  and  Iunes,  P.   Novel  calibration  for
+  LA-ICP-MS-based fission-track thermochronology. <span 
+class="cmti-10">Physics and chemistry of minerals</span>, 41(1):65&#8211;73, 2014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsoares2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Soares, C.&#x00A0;J., Guedes, S., Tello, C.&#x00A0;A., Lixandrao&#x00A0;Filho, A.&#x00A0;L., Osorio, A.&#x00A0;M., Alencar, I., Dias, A.&#x00A0;N.,
+  and Hadler, J.  Further investigation of the initial fission-track length and geometry factor in apatite
+  fission-track thermochronology. <span 
+class="cmti-10">Am Mineral</span>, 98:1381&#8211;1392, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwagner1992"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wagner, G.&#x00A0;A. and Van&#x00A0;den Haute, P. <span 
+class="cmti-10">Fission-Track Dating</span>. Kluwer Academic Publishers, Dordrecht,
+  1992.
+</p>
+  </div>
+</div>
+</body></html> 

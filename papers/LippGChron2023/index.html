@@ -1,0 +1,1291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Short Communication: The Wasserstein distance as a dissimilarity metric for
+comparing detrital age spectra, and other geological distributions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (https://tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body class="main">
+   <div class="maketitle">
+                                                                  
+
+<h2 class="titleHead">Short Communication: The Wasserstein distance
+as a dissimilarity metric for comparing detrital
+age spectra, and other geological distributions</h2>
+                               <div class="author" ><span 
+class="cmr-12">Alex Lipp</span>
+<br />           <span 
+class="cmr-12">Merton College, University of Oxford, Oxford, UK</span>
+<br />                                   <span 
+class="cmr-12">&#x00A0;</span>
+<br />                         <span 
+class="cmr-12">and Pieter Vermeesch</span>
+<br /><span 
+class="cmr-12">Department of Earth Sciences, University College London, London, UK </span></div><br />
+   </div>
+   <div 
+class="abstract" 
+>
+   <h3 class="abstracttitle">
+<span 
+class="cmbx-9">Abstract</span>
+</h3>
+     <!--l. 108--><p class="noindent" ><span 
+class="cmr-9">Distributional  data  such  as  detrital  age  populations  or  grain  size</span>
+     <span 
+class="cmr-9">distributions  are  common  in  the  geological  sciences.  As  analytical</span>
+     <span 
+class="cmr-9">techniques  become  more  sophisticated,  increasingly  large  amounts</span>
+     <span 
+class="cmr-9">of  distributional  data  are  being  gathered.  These  advances  require</span>
+     <span 
+class="cmr-9">quantitative  and  objective  methods,  such  as  multidimensional  scaling</span>
+     <span 
+class="cmr-9">(MDS), to analyse large numbers of samples. Crucial to such methods</span>
+     <span 
+class="cmr-9">is  choosing  a  sensible  measure  of  dissimilarity  between  samples.  At</span>
+     <span 
+class="cmr-9">present, the Kolmogorov-Smirnov (KS) statistic is the most widely used</span>
+     <span 
+class="cmr-9">of  these  dissimilarity  measures.  However,  the  KS  statistic  has  some</span>
+     <span 
+class="cmr-9">limitations  such  as  high  sensitivity  to  differences  between  the  modes</span>
+     <span 
+class="cmr-9">of  two  distributions,  and  insensitivity  to  their  tails.  Here  we  propose</span>
+     <span 
+class="cmr-9">the Wasserstein-2 distance (</span><span 
+class="cmmi-9">W</span><sub><span 
+class="cmr-6">2</span></sub><span 
+class="cmr-9">) as an additional and alternative metric</span>
+     <span 
+class="cmr-9">for  use  in  geochronology.  Whereas  the  KS-distance  is  defined  as  the</span>
+     <span 
+class="cmr-9">maximum vertical distance between two empirical cumulative distribution</span>
+     <span 
+class="cmr-9">functions, the </span><span 
+class="cmmi-9">W</span><sub><span 
+class="cmr-6">2</span></sub><span 
+class="cmr-9">-distance is a function of the horizontal distances (i.e.,</span>
+     <span 
+class="cmr-9">age differences) between observations. Using a variety of synthetic and real</span>
+                                                                  
+
+                                                                  
+     <span 
+class="cmr-9">datasets we explore scenarios where </span><span 
+class="cmmi-9">W</span><sub><span 
+class="cmr-6">2</span></sub>  <span 
+class="cmr-9">may provide greater geological</span>
+     <span 
+class="cmr-9">insight than the KS statistic. We find that in cases where absolute time</span>
+     <span 
+class="cmr-9">differences are not relevant (e.g., mixing of known, discrete age peaks), the</span>
+     <span 
+class="cmr-9">KS statistic can be more intuitive. However, in scenarios where absolute</span>
+     <span 
+class="cmr-9">age differences are important (e.g., temporally/spatially evolving sources,</span>
+     <span 
+class="cmr-9">thermochronology, and overcoming laboratory biases) </span><span 
+class="cmmi-9">W</span><sub><span 
+class="cmr-6">2</span></sub>  <span 
+class="cmr-9">is preferable.</span>
+     <span 
+class="cmr-9">The </span><span 
+class="cmmi-9">W</span><sub><span 
+class="cmr-6">2</span></sub><span 
+class="cmr-9">-distance has been added to the </span><span 
+class="cmtt-9">R </span><span 
+class="cmr-9">package IsoplotR, for immediate</span>
+     <span 
+class="cmr-9">use in detrital geochronology and other applications. The </span><span 
+class="cmmi-9">W</span><sub><span 
+class="cmr-6">2</span></sub> <span 
+class="cmr-9">distance can</span>
+     <span 
+class="cmr-9">be generalised to multiple dimensions, which opens opportunities beyond</span>
+     <span 
+class="cmr-9">distributional data.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 118--><p class="noindent" >A distributional dataset is one where the information does not lie in individual
+observations, but in the <span 
+class="cmti-10">distribution </span>of many observations associated with one
+sample. Such data are common in the geological sciences, for example, detrital
+mineral ages or grain size distributions. Zircon U-Pb ages, in igneous and detrital
+samples, are one particularly widely used class of distributional data, which are used
+<span 
+class="cmti-10">inter alia </span>to constrain sediment provenance, global magmatic processes,
+and the evolution of plate tectonics (e.g.,&#x00A0;<a 
+href="#Xcondie_granitoid_2009">Condie et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xcondie_granitoid_2009">2009</a>;&#x00A0;<a 
+href="#Xcawood_detrital_2012">Cawood
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xcawood_detrital_2012">2012</a>;&#x00A0;<a 
+href="#Xreimink_global_2021">Reimink et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xreimink_global_2021">2021</a>). Grainsize distributions are another common
+form of geological distributional data. Analytical advances mean that increasingly
+large amounts of distributional data are being generated in the Earth sciences
+meaning that qualitative comparison of samples is becoming infeasible, and objective
+dissimilarity metrics between samples must be used. Some measure of dissimilarity
+(or more specifically, distance) is also required for many widely used statistical
+methods such as clustering, ANOVA, and dimension reduction. Dissimilarity metrics
+in geochronology at present are most commonly used for dimension reducing
+techniques such as multi-dimensional scaling (MDS) or principal component
+analysis (PCA). Such methods have become popular for analysing large
+numbers of detrital age spectra simultaneuously (<a 
+href="#Xvermeesch_multi-sample_2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch_multi-sample_2013">2013</a>;&#x00A0;<a 
+href="#Xsharman_detritalpy_2018">Sharman
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsharman_detritalpy_2018">2018</a>;&#x00A0;<a 
+href="#Xvermeesch_dissimilarity_2018">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch_dissimilarity_2018">2018a</a>). Fitting models (e.g., sediment source partitioning)
+using distributional data also requires a definition of dissimilarity for comparing
+observed and predicted distributions (e.g.,&#x00A0;<a 
+href="#Xamidon_construction_2005">Amidon et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xamidon_construction_2005">2005</a>;&#x00A0;<a 
+href="#Xde_doncker_inversion_2020">De&#x00A0;Doncker
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xde_doncker_inversion_2020">2020</a>).
+<!--l. 120--><p class="indent" >   For all uses, the choice of which dissimilarity metric to use is vital as different
+metrics result in different numerical results and thus different geological
+interpretations. In general, the most appropriate metric will depend on the
+data being analysed and the scientific question under investigation. The
+Kolmogorov-Smirnov (KS) distance, calculated as the maximum vertical distance
+between two empirical cumulative distribution funtions (ECDFs) has emerged
+as a &#8216;canonical&#8217; distance metric between mineral age distributions (<a 
+href="#Xberry_north_2001">Berry
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xberry_north_2001">2001</a>;&#x00A0;<a 
+href="#Xvermeesch_dissimilarity_2018">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch_dissimilarity_2018">2018a</a>). However, the KS-distance has a number of
+drawbacks, chiefly that as only the <span 
+class="cmti-10">maximum </span>vertical difference between ECDFs is
+                                                                  
+
+                                                                  
+important, it is insensitive to variability in the tails of distributions. A number of
+alternative dissimilarity measures have previously been proposed to address this
+issue, including established methods such as the Kuiper statistic, and ad-hoc
+dissimilarity measures such as the &#8216;likeness&#8217; and &#8216;cross-correlation&#8217; coefficients
+(<a 
+href="#Xsatkoski_likeness_2013">Satkoski et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsatkoski_likeness_2013">2013</a>;&#x00A0;<a 
+href="#Xsaylor_discriminating_2012">Saylor et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsaylor_discriminating_2012">2012</a>). Unfortunately, these alternatives have
+drawbacks, including a propensity for the ad-hoc dissimilarity measures to produce
+unintuitive results when applied to extremely large and/or precise datasets
+(<a 
+href="#Xvermeesch_dissimilarity_2018">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch_dissimilarity_2018">2018a</a>).
+<!--l. 122--><p class="indent" >   In this paper we present an alternative to the KS-distance that does not suffer
+from some of these limitations: the Wasserstein distance (also known as the
+Earth-mover&#8217;s or Kantorovich&#8211;Rubinstein distance). To introduce the chief principle
+behind this measure, let us consider a simple toy example. Table&#x00A0;<a 
+href="#x1-10011">1<!--tex4ht:ref: tab:toy_samples --></a> contains four
+samples (<span 
+class="cmmi-10">A </span>through <span 
+class="cmmi-10">D</span>), each of which contains exactly one single grain analysis:
+<div class="table">
+                                                                  
+
+                                                                  
+<!--l. 123--><p class="indent" >   <a 
+ id="x1-10011"></a><hr class="float"><div class="float" 
+>
+                                                                  
+
+                                                                  
+ <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content"><span 
+class="cmbx-10">A toy, single-grain per sample dataset</span></span></div><!--tex4ht:label?: x1-10011 -->
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+ 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-1"  
+class="td11">Sample </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">A</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">B</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">C</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11">D</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-1"  
+class="td11">Age, Ma</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11">1</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11">1</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11">2</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11">11</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-1"  
+class="td11">       </td></tr></table></div>
+                                                                  
+
+                                                                  
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 133--><p class="indent" >   As the KS distance is the vertical difference between ECDFs, it is insensitive to
+the absolute, &#8216;horizontal&#8217; age differences between individual observations. Thus, the
+KS-distances between <span 
+class="cmmi-10">A </span>and the other three samples are <span 
+class="cmmi-10">KS</span>(<span 
+class="cmmi-10">A,B</span>) = 0,
+<span 
+class="cmmi-10">KS</span>(<span 
+class="cmmi-10">A,C</span>) = 1 and <span 
+class="cmmi-10">KS</span>(<span 
+class="cmmi-10">A,D</span>) = 1. Counter to our expectation, the KS-distance
+cannot &#8216;see&#8217; the relative age difference between sample <span 
+class="cmmi-10">A </span>and samples <span 
+class="cmmi-10">C </span>and <span 
+class="cmmi-10">D</span>. For
+the toy example, the Wasserstein distance simply corresponds to the horizontal
+distance between the four samples. Thus, <span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">A,B</span>) = 0, <span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">A,C</span>) = 1, and
+<span 
+class="cmmi-10">W</span>(<span 
+class="cmmi-10">A,D</span>) = 10, which is a more sensible result than that achieved with the
+KS-distance.
+<!--l. 135--><p class="indent" >   In the following sections, we first introduce the Wasserstein distance in a more
+realistic setting, and formally define it. Next we discuss how it can be decomposed
+into intuitive terms that accord with how qualitatively, as geologists, we might
+compare distributions. We then proceed to compare the Wasserstein distance to the
+KS distance using a simple yet realistic synthetic example. Finally, we analyse a
+series of case studies, analysing real datasets using both the Wasserstein
+and KS distances. We thus evaluate the benefits and drawbacks of both
+metrics, identifying scenarios when one metric may be preferred to the other.
+Whilst we focus primarily on detrital age distributions, we emphasise that
+much of the following discussion applies equally to any form of distributional
+data.
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>The Wasserstein distance</h3>
+<!--l. 140--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-20011"></a>
+                                                                  
+<!--l. 142--><p class="noindent" ><a href="figures/fig01.png"><img class="snapshot" src="figures/fig01.png" alt="PIC"></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content"><span 
+class="cmbx-10">Intuition of the Wasserstein distance. </span>a) Green and blue filled
+polygons  show  two  example  kernel  density  estimates  of  mineral  ages  from
+two samples (based on data from&#x00A0;<a 
+href="#Xmorton_provenance_2008">Morton et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmorton_provenance_2008">2008</a>) The distributions are
+labelled <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03BD; </span>for consistency with Equation <a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:def_1d --></a>. Semi-transparent coloured
+lines are probability distributions spaced equally in Wasserstein space between
+<span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03BD; </span>(termed &#8216;barycentres&#8217;&#x00A0;<a 
+href="#Xbenamou_iterative_2015">Benamou et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xbenamou_iterative_2015">2015</a>). b) Empirical Cumulative
+Distribution  Functions  (ECDFs)  of  the  detrital  ages  used  to  calculate  the
+distributions  shown  in  panel  a,  same  colours.  The  first  Wasserstein  (<span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">1</span></sub>)
+distance corresponds to the total area between the two ECDFs (shaded pink).
+The Kolmogorov-Smirnov (KS) distance is the maximum distance between the
+two ECDFs (black double-headed arrow).</span></div><!--tex4ht:label?: x1-20011 -->
+                                                                  
+
+                                                                  
+<!--l. 145--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 147--><p class="indent" >   The Wasserstein distance is a distance metric between two probability measures
+from a branch of mathematics called &#8216;optimal transport&#8217;. Optimal transport is often
+intuited in terms of moving piles of sand from one location to another with no loss or
+gain of material (e.g.,&#x00A0;<a 
+href="#Xvillani_topics_2003">Villani</a>,&#x00A0;<a 
+href="#Xvillani_topics_2003">2003</a>). The problem that optimal transport solves is
+finding the way to transport the sand such that the least sand is moved the least
+distance. The Wasserstein distance is the cost associated with this most efficient
+transportation. The association with moving piles of sand is why the Wasserstein
+distance is often termed the Earth-mover&#8217;s distance. Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:intro --></a>a shows an example
+of how one univariate probability distribution, <span 
+class="cmmi-10">&#x03BC;</span>, based on a detrital age
+spectrum, is transformed into another, <span 
+class="cmmi-10">&#x03BD; </span>according to the optimal transport plan.
+Elsewhere in the Earth sciences, the Wasserstein distance is increasingly
+used for solving non-linear geophysical inverse problems (e.g.,&#x00A0;<a 
+href="#Xengquist_application_2014">Engquist and
+Froese</a>,&#x00A0;<a 
+href="#Xengquist_application_2014">2014</a>;&#x00A0;<a 
+href="#Xmetivier_optimal_2016">M&eacute;tivier et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xmetivier_optimal_2016">2016</a>;&#x00A0;<a 
+href="#Xsambridge_geophysical_2022">Sambridge et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xsambridge_geophysical_2022">2022</a>) and has been proposed
+as a tool for fitting hydrographs (<a 
+href="#Xmagyar_hydrological_2023">Magyar and Sambridge</a>,&#x00A0;<a 
+href="#Xmagyar_hydrological_2023">2023</a>). Full mathematical
+treatments of the Wasserstein distance and optimal transport are beyond the
+scope of this paper, but interested readers are referred to <a 
+href="#Xvillani_topics_2003">Villani</a>&#x00A0;(<a 
+href="#Xvillani_topics_2003">2003</a>) or
+<a 
+href="#Xpeyre_computational_2019">Peyr&eacute; and Cuturi</a>&#x00A0;(<a 
+href="#Xpeyre_computational_2019">2019</a>). A geophysical perspective is given in <a 
+href="#Xsambridge_geophysical_2022">Sambridge
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xsambridge_geophysical_2022">2022</a>).
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a>Formal definition</h4>
+<!--l. 151--><p class="noindent" >We consider two univariate probability distributions <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03BD; </span>which have cumulative
+distribution functions (CDFs) <span 
+class="cmmi-10">M </span>and <span 
+class="cmmi-10">N </span>respectively. The <span 
+class="cmmi-10">p</span><sup><span 
+class="cmr-7">th</span></sup> Wasserstein distance
+between <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03BD; </span>is given by:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index0x.png" alt="          (&#x222B; 1              )1 &#x2215;p
+Wp (&#x03BC;,&#x03BD;) =    |M -1 - N -1|pdt   .
+            0
+" class="math-display" ><a 
+ id="x1-3001r1"></a></div>
+   </td><td class="equation-label">(1)</td></tr></table>
+<!--l. 155--><p class="nopar" >
+where <span 
+class="cmmi-10">M</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup> indicates the inverse of the CDF <span 
+class="cmmi-10">M </span>and 0 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">t </span><span 
+class="cmsy-10">&#x2264; </span>1 (<a 
+href="#Xvillani_topics_2003">Villani</a>,&#x00A0;<a 
+href="#Xvillani_topics_2003">2003</a>).
+Note that this definition of <span 
+class="cmmi-10">W</span><sub><span 
+class="cmmi-7">p</span></sub> assumes that the cost-function is given by
+<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">x </span><span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">y</span><span 
+class="cmsy-10">|</span><sup><span 
+class="cmmi-7">p</span></sup> (e.g., the Euclidean distance where <span 
+class="cmmi-10">p </span>= 2), which is the case for
+most distributional data in geology. In the further special case of <span 
+class="cmmi-10">p </span>= 1 (i.e.,
+the <span 
+class="cmti-10">first </span>Wasserstein distance, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">1</span></sub>), Equation&#x00A0;<a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:def_1d --></a> can be re-written simply
+as:
+                                                                  
+
+                                                                  
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index1x.png" alt="          &#x222B;
+W  (&#x03BC;,&#x03BD;) =   |M  - N|dx,
+  1        X
+" class="math-display" ><a 
+ id="x1-3002r2"></a></div>
+   </td><td class="equation-label">(2)</td></tr></table>
+<!--l. 160--><p class="nopar" >
+which is the area between two CDFs (e.g., Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:intro --></a>b). Recall that the KS-distance
+between two distributions is the maximum distance between the two corresponding
+CDFs. Whilst the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">1</span></sub> is easily visualised, we actually use the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> going forwards
+as the <span 
+class="cmti-10">squared </span>distance (i.e., <span 
+class="cmmi-10">p </span>= 2) between observations is the standard
+distance metric in most statistical analyses (e.g., least squares regression).
+Additionally, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> decomposes into readily interpretable terms, as discussed
+below.
+<!--l. 163--><p class="indent" >   We focus on these univariate instances as they apply to the most common
+geological distributional data including detrital age distributions and grain
+size distributions. However, we note that the Wasserstein distance is, in
+general, multivariate. As a result, some form of the Wasserstein distance
+could prove useful for analysing a number of other geological datasets such
+as the geochemical compositions of detrital minerals, or joint U-Pb and
+Lu-Hf isotope analysis (see&#x00A0;<a 
+href="#Xvermeesch_multidimensional_2023">Vermeesch et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch_multidimensional_2023">2023</a>). Statistics for comparing
+distributional data in multiple dimensions are increasingly needed (<a 
+href="#Xsundell_two-dimensional_2021">Sundell and
+Saylor</a>,&#x00A0;<a 
+href="#Xsundell_two-dimensional_2021">2021</a>).
+<!--l. 165--><p class="indent" >   Like the KS distance, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> satisfies the triangle inequality, and as such is a true
+metric. This property means that classical, as well as metric &amp; non-metric MDS can
+be used with a <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> defined dissimilarity matrix. As <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> is sensitive to absolute time
+differences, metric (or classical) MDS, which seek to preserve absolute distances, may
+be preferable to non-metric MDS. For the rest of this manuscript, metric MDS is
+used.
+<!--l. 176--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a>Decomposition</h4>
+<!--l. 178--><p class="noindent" >A particularly useful property of <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> between two univariate distributions
+is that it can be decomposed in terms of the differences between the two
+distributions&#8217; location, spread and shape. <a 
+href="#Xirpino_optimal_2007">Irpino and Romano</a>&#x00A0;(<a 
+href="#Xirpino_optimal_2007">2007</a>) show
+that:
+   <table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+   <div class="math-display" >
+<img 
+src="index2x.png" alt="          Location     Spread        Shape
+          &#x25DC;-&#x25DE;&#x25DF;--&#x25DD;  &#x25DC;--&#x25DE;&#x25DF;---&#x25DD;  &#x25DC;----&#x25DE;&#x25DF;-----&#x25DD;
+W 22(&#x03BC;,&#x03BD;) = (¯&#x03BC;- ¯&#x03BD;)2+ (&#x03C3;&#x03BC; - &#x03C3;&#x03BD;)2+ 2&#x03C3;&#x03BC;&#x03C3;&#x03BD;(1- &#x03C1;&#x03BC;&#x03BD;),
+" class="math-display" ><a 
+ id="x1-4001r3"></a></div>
+   </td><td class="equation-label">(3)</td></tr></table>
+<!--l. 182--><p class="nopar" >
+where <span class="bar-css"><span 
+class="cmmi-10">&#x03BC;</span></span> is the mean of <span 
+class="cmmi-10">&#x03BC;</span>, <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">&#x03BC;</span></sub> is the standard deviation of <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03C1;</span><sup><span 
+class="cmmi-7">&#x03BC;&#x03BD;</span></sup> is the Pearson
+correlation coefficient between the quantiles of the distributions <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03BD;</span>. These three
+terms also accord with, qualitatively, how as geologists we might compare two
+distributions.
+<!--l. 185--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-50002.3"></a>Discrete data</h4>
+<!--l. 187--><p class="noindent" >Most distributional data in the Earth sciences do not, in raw form, follow continuous
+probability distributions. Instead, samples may be discrete sets of observations, e.g.,
+lists of individual mineral ages. The above formulations can be easily applied to such
+cases by describing the probability functions <span 
+class="cmmi-10">&#x03BC; </span>and <span 
+class="cmmi-10">&#x03BD; </span>as weighted sums of <span 
+class="cmmi-10">&#x03B4; </span>functions.
+For example, let us consider two samples <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">m</span></sub> and <span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">n</span></sub> with <span 
+class="cmmi-10">p </span>and <span 
+class="cmmi-10">q </span>numbers of
+observations respectively:
+   <table 
+class="equation"><tr><td>
+   <div class="math-display" >
+<img 
+src="index3x.png" alt="   &#x2211;p             &#x2211;q
+&#x03BC; =   mi &#x03B4;xm,  &#x03BD; =    ni&#x03B4;xn
+    i              i
+" class="math-display" ><a 
+ id="x1-5001r4"></a></div>
+   </td><td class="equation-label">(4)</td></tr></table>
+<!--l. 192--><p class="nopar" >
+<!--l. 194--><p class="indent" >   where <span 
+class="cmmi-10">m </span>and <span 
+class="cmmi-10">n </span>are weight vectors, such that <span 
+class="cmex-10">&#x2211;</span>
+  <span 
+class="cmmi-10">m</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span></sub> = 1. In most
+geological cases these weights would be uniform, <span 
+class="cmmi-10">m</span><sub><span 
+class="cmmi-7">i</span></sub> = 1<span 
+class="cmmi-10">&#x2215;p</span>;<span 
+class="cmmi-10">&#x00A0;n</span><sub><span 
+class="cmmi-7">i</span></sub> = 1<span 
+class="cmmi-10">&#x2215;q</span>, giving each
+observation within a sample equal weight. In this scenario, <span 
+class="cmmi-10">M </span>and <span 
+class="cmmi-10">N </span>are the familiar
+empirical cumulative distribution functions (ECDF), given as a series of step
+                                                                  
+
+                                                                  
+functions (e.g., Figure <a 
+href="#x1-20011">1<!--tex4ht:ref: fig:intro --></a>b).
+<!--l. 197--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x1-60002.4"></a>A synthetic example</h4>
+<!--l. 199--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-60012"></a>
+                                                                  
+
+                                                                  
+<!--l. 201--><p class="noindent" ><a href="figures/fig02.png"><img class="snapshot" src="figures/fig02.png" alt="PIC" width="46" height="46" ></a>
+<br />   <div class="caption" 
+><span class="id">Figure&#x00A0;2:      </span><span  
+class="content"><span 
+class="cmbx-10">Comparing      the      Wasserstein      distance      to</span>
+<span 
+class="cmbx-10">the Kolmogorov-Smirnov distance. </span>a) Two synthetic probability density
+functions, modelled on U-Pb age spectra. The black bimodal distribution is fixed
+at 1000 Ma, and the green unimodal distribution is translated along the time
+axis. b) For each translated distribution, we calculate the KS-distance (red line)
+and <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> (blue line). The green dashed line and circles indicate values associated
+with the location of the green distribution shown in panel a.</span></div><!--tex4ht:label?: x1-60012 -->
+                                                                  
+
+                                                                  
+<!--l. 204--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 206--><p class="indent" >   To demonstrate the intuition of <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> we explore a simple synthetic example. We
+consider two probability density functions of mineral ages: a bimodal distribution
+and a unimodal distribution, both constructed from Gaussians with the
+same scale (Figure <a 
+href="#x1-60012">2<!--tex4ht:ref: fig:translation --></a>a). We fix the bimodal distribution at 1000&#x00A0;Ma, but
+translate the unimodal distribution along the time axis. For each translated
+distribution we calculate both the KS-distance and <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>. Figure <a 
+href="#x1-60012">2<!--tex4ht:ref: fig:translation --></a>b displays the
+behaviour of both distances under this scenario. The KS-distance shows an
+unexpectedly complex response containing a series of steps, as the peaks of the
+distributions align and misalign. At around <span 
+class="cmsy-10">&plusmn;</span>400&#x00A0;Ma, once the distributions
+stop overlapping, the KS-distance plateaus at its maximum value of 1. By
+contrast, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> increases monotonically with increasing distance. Away from the
+origin, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> approximates a linear function of the amount of translation, as is
+predicted from Equation <a 
+href="#x1-4001r3">3<!--tex4ht:ref: eq:decomposition --></a>. At the origin, the non-zero value of <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> is the cost of
+turning the unimodal distribution into the bimodal distribution without
+translation.
+<!--l. 208--><p class="indent" >   We argue that the behaviour of <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> is more geologically intuitive than the
+KS-distance under this scenario. It is useful geological information if two
+distributions differ in their means by 400, 500 or 1000 Ma, but if the distributions do
+not overlap, the KS-distance is insensitive to this. The Wasserstein distance is, by
+contrast, sensitive to the absolute offset between non-overlapping distributions.
+Additionally, the stepped response of the KS-distance under translation is
+undesirable. Under the simple operation of translating a unimodal distribution, we
+would expect our dissimilarity to increase at a constant, or at least predictable
+(e.g., quadratic) rate. The change of the KS-distance with translation is,
+unintuitively, non-linear. By contrast, the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> increases linearly with respect to
+translation.
+<!--l. 210--><p class="indent" >   We reiterate that at a translation of 0 Ma, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> (and the KS distance) is still
+non-zero, reflecting the fact that even when the average ages are aligned,
+the shapes of the uni-modal and bi-modal distributions do not match. This
+illustrates the tendency of <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> in geochronological data to prioritise aligning
+the average ages of distributions <span 
+class="cmti-10">before </span>considering matching individual
+peaks. Such behaviour contrasts with approaches that seek to only match
+probability peaks neglecting any information of absolute ages <a 
+href="#Xsaylor_quantifying_2016">Saylor and
+Sundell</a>&#x00A0;e.g.,&#x00A0;<a 
+href="#Xsaylor_quantifying_2016">2016</a>.
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-70003"></a>Discussion</h3>
+<!--l. 231--><p class="noindent" >As stated above, the most appropriate dissimilarity metric to use will depend on the
+scientific question being answered. In general, the Wasserstein distance is most
+appropriate when absolute differences along the time axis (or more generally, the
+x-axis) provide useful information to solving the geologic problem. The KS distance
+however is more appropriate when the size of the time differences between peaks is
+not relevant. Both the KS distance and the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> are calculated in terms of
+differences between ECDFs. Due to these similarities in construction, in many
+                                                                  
+
+                                                                  
+cases the results from using the KS and <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> are, encouragingly, similar. One
+exception is whether ages are log transformed prior to analysis. Because the KS
+distance considers only the order of the ages, it will be the same whether a log
+transform is used or not. <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> however will be different, and will consider <span 
+class="cmti-10">relative</span>
+not absolute age differences. Such an example is discussed below (Figure
+<a 
+href="#x1-100015">5<!--tex4ht:ref: fig:Wobus --></a>).
+<!--l. 233--><p class="indent" >   Here we discuss a variety of realistic scenarios where the KS and <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> may result
+in different interpretations. In each, we evaluate the advantages and disadvantages of
+using <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> or KS. These case-studies can be used to determine which metric is most
+appropriate for a particular scenario.
+<!--l. 235--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-80003.1"></a>Discriminating contributions from discrete endmembers</h4>
+<!--l. 237--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-80013"></a>
+                                                                  
+
+                                                                  
+<!--l. 239--><p class="noindent" ><a href="figures/discrete.png"><img class="snapshot" src="figures/discrete.png" alt="PIC" width="57" height="57" ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content"><span 
+class="cmbx-10">Mixing of discrete endmembers </span>a) Three theoretical, unimodal
+source age distributions with peaks at 10, 20 and 100 Ma, and two mixture
+samples. Sample 1 is an equal mixture of X and Y and Sample 2 a mixture of
+Y and Z. b) Metric MDS map of the three sources and the mixtures using <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>
+distance (stress = 0.05). c) Same as panel b for KS distance (stress = 0.05).
+This is a scenario where KS distance may be preferable to <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>.</span></div><!--tex4ht:label?: x1-80013 -->
+                                                                  
+
+                                                                  
+<!--l. 242--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 244--><p class="indent" >   We first consider a scenario where the samples are assumed to be mixtures, in
+differing proportions, of some known or unknown fixed endmembers. This situation is
+one where absolute distance along the time-axis is not relevant, as the nature of the
+endmembers is not sought, simply their relative contributions to a set of mixtures.
+Instead, it is <span 
+class="cmti-10">vertical </span>differences in the probability at a given age that is relevant. The
+KS distance, which is sensitive to such vertical differences in age distributions is
+better suited for this than <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>. Indeed, in such a scenario the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> can result in some
+unintuitive behaviour.
+<!--l. 246--><p class="indent" >   For example, let us consider three unimodal potential sediment sources, as shown
+in Figure <a 
+href="#x1-80013">3<!--tex4ht:ref: fig:discrete --></a>a. We now consider two mixture samples. The first is an equal mixture of
+X and Y, and the second an equal mixture of Y and Z (bottom two plots, Figure <a 
+href="#x1-80013">3<!--tex4ht:ref: fig:discrete --></a>a).
+Geologically, we would expect these samples to be about half as similar to the two
+source endmembers. However, a <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> MDS map identifies these samples as being
+removed from their two endmembers (Figure <a 
+href="#x1-80013">3<!--tex4ht:ref: fig:discrete --></a>b). Additionally, because of the
+absolute time difference between Source Z and the other sources, Sample 2 is treated
+as a considerable outlier. The KS distance performs better here, placing
+the mixtures approximately halfway between the expected endmembers.
+However, in such a well defined mixing scenario as this, methods such as
+endmember mixture modelling may be more appropriate than statistical dimension
+reduction <a 
+href="#Xweltje_end-member_1997">Weltje</a>&#x00A0;e.g.,&#x00A0;<a 
+href="#Xweltje_end-member_1997">1997</a>;&#x00A0;<a 
+href="#Xsharman_sediment_2017">Sharman and Johnstone</a>&#x00A0;e.g.,&#x00A0;<a 
+href="#Xsharman_sediment_2017">2017</a>;&#x00A0;<a 
+href="#Xdietze_grain-size_2019">Dietze and
+Dietze</a>&#x00A0;e.g.,&#x00A0;<a 
+href="#Xdietze_grain-size_2019">2019</a>.
+   <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-90003.2"></a>Temporally varying source age distributions</h4>
+<!--l. 250--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-90014"></a>
+                                                                  
+
+                                                                  
+<!--l. 252--><p class="noindent" ><a href="figures/surpless.png"><img class="snapshot" src="figures/surpless.png" alt="PIC" width="50" height="50" ></a>
+<br /> <div class="caption"><span class="id">Figure&#x00A0;4:  </span><span  
+class="content"><span 
+class="cmbx-10">Temporally  evolving  source  distributions.  </span>a)  KDEs  and
+histograms for zircon age distributions for samples from Cache Creek section
+across Great Valley Group, arranged in stratigraphic order (<a 
+href="#Xdegraaff-surpless_detrital_2002">DeGraaff-Surpless
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xdegraaff-surpless_detrital_2002">2002</a>). b) MDS map using <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> for data shown in panel a (Stress = 0.28).
+c) Same as b using KS distance (Stress = 0.18). In this scenario, the results
+from <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> are preferable. </span></div><!--tex4ht:label?: x1-90014 -->
+                                                                  
+
+                                                                  
+<!--l. 255--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 257--><p class="indent" >   In contrast, scenarios where the shape of sediment source age distributions evolves
+in space and time are well suited to using <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>. This is because <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> considers
+all parts of a distribution, whereas the KS only compares one point, the
+location of maximum ECDF separation. For example, Figure <a 
+href="#x1-90014">4<!--tex4ht:ref: fig:surpless --></a> displays detrital
+zircon age distributions gathered by <a 
+href="#Xdegraaff-surpless_detrital_2002">DeGraaff-Surpless et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xdegraaff-surpless_detrital_2002">2002</a>) from
+sediments from a section (Cache Creek) across the Great Valley Group in
+California, USA. The age populations are shown as KDEs and histograms, in
+stratigraphic order, in Figure <a 
+href="#x1-90014">4<!--tex4ht:ref: fig:surpless --></a>a. The uppermost samples show an increasingly
+broad distribution than the lower four unimodal samples. <a 
+href="#Xdegraaff-surpless_detrital_2002">DeGraaff-Surpless
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xdegraaff-surpless_detrital_2002">2002</a>) attribute this trend, <span 
+class="cmti-10">inter alia</span>, to expanding sediment source
+areas.
+<!--l. 259--><p class="indent" >   Figures <a 
+href="#x1-90014">4<!--tex4ht:ref: fig:surpless --></a>b&#8211;c display MDS maps calculated using <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> and KS respectively. The
+<span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> map clearly identifies the stratigraphic order of the samples by the changing
+distribution shape. Additionally, it clusters the four unimodal samples together. By
+contrast, the KS map does not identify the stratigraphic trend, locating the
+lowermost stratigraphic sample GV64 with the uppermost samples KDS3 and GV44.
+We conclude then that the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> has better captured the geological information in this
+scenario.
+   <h4 class="subsectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-100003.3"></a>Thermochronology</h4>
+<!--l. 263--><p class="noindent" >In thermochronology, age distributions shift along the time-axis according to thermal
+signals (e.g., exhumation). In many thermochronological studies, we may
+seek to characterise how such a signal evolves in space and time. For this
+question absolute distance along the time-axis is useful information and so
+the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> may be more effective than the KS distance. For example, <a 
+href="#Xwobus_has_2003">Wobus
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xwobus_has_2003">2003</a>) use <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar detrital mica thermochronometry to explore spatially
+varying exhumation along a spatial transect in the Himalaya. The KDEs of
+the samples are shown in Figure <a 
+href="#x1-100015">5<!--tex4ht:ref: fig:Wobus --></a>a arranged south to north. The southern
+samples (WBS1, WBS2, WBS3, WBS8) show old exhumation signals, but a
+dramatic shift to younger ages is observed north of a distinct physiographic
+transition. MDS maps of these samples are shown using the KS distance
+and <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> in Figures <a 
+href="#x1-100015">5<!--tex4ht:ref: fig:Wobus --></a>b&#8211;c respectively. As there is limited overlap between
+the samples, the KS distance struggles to capture the NS progression in
+exhumation age. Whilst the physiographic division is found, it weights it equally to
+variation within one cluster. By contrast, the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> map correctly identifies
+the simple temporal and geographical trend of the samples from south to
+north.
+<!--l. 265--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-100015"></a>
+                                                                  
+
+                                                                  
+<!--l. 267--><p class="noindent" ><a href="figures/wobus.png"><img class="snapshot" src="figures/wobus.png" alt="PIC" width="57" height="57" ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5:  </span><span  
+class="content"><span 
+class="cmbx-10">Analysing  thermochronological  data  using  </span><span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>   <span 
+class="cmbx-10">and  KS</span>
+<span 
+class="cmbx-10">distances.  </span>a)  KDEs  for  a  detrital  mica  <sup class="textsuperscript"><span 
+class="cmr-9">40</span></sup>Ar/<sup class="textsuperscript"><span 
+class="cmr-9">39</span></sup>Ar  dataset  of  <a 
+href="#Xwobus_has_2003">Wobus
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xwobus_has_2003">2003</a>) arranged from south to north across a physiographic transition
+of the central Himalaya in Nepal. Note the logarithmic scale. b) The MDS
+configuration using <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>, following a log transform (stress = 0.02). c) MDS map
+using KS statistic (stress = 0.18). In this example, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>  performs better than
+the KS distance at identifying the geographic trend.</span></div><!--tex4ht:label?: x1-100015 -->
+                                                                  
+
+                                                                  
+<!--l. 270--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">3.4   </span> <a 
+ id="x1-110003.4"></a>Combining data from multiple laboratories</h4>
+<!--l. 274--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-110016"></a>
+                                                                  
+
+                                                                  
+<!--l. 276--><p class="noindent" > <a href="figures/Kosler.png"><img class="snapshot" src="figures/Kosler.png" alt="PIC" width="345" height="345" ></a>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6:  </span><span  
+class="content"><span 
+class="cmbx-10">Comparing  samples  from  an  inter-laboratory  calibration</span>
+<span 
+class="cmbx-10">study</span>. KDEs (left) and ECDFs (right) of two samples from the inter-laboratory
+comparison  study  of  (<a 
+href="#Xkosler_u-pb_2013">Ko&#353;ler  et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xkosler_u-pb_2013">2013</a>),  plus  a  purposefully  misaligned
+synthetic  sample.  Dashed  lines  mark  the  true  ages  of  the  detrital  mixture.
+According to the KS-statistic, the age distribution produced by Lab 4 is more
+similar to the synthetic distribution than it is to the distribution produced by
+Lab 1, despite the absence of any shared age components. The <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>  distance
+correctly deems the distribution produced by Lab&#x00A0;4 to be closer to that of Lab&#x00A0;1
+than to the synthetic mixture.</span></div><!--tex4ht:label?: x1-110016 -->
+                                                                  
+
+                                                                  
+<!--l. 279--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 281--><p class="indent" >   A final scenario where the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> could be preferable is when comparing samples
+from different laboratories which are affected by inter-laboratory bias. <a 
+href="#Xkosler_u-pb_2013">Ko&#353;ler
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xkosler_u-pb_2013">2013</a>) provided ten different laboratories with identical synthetic zircon
+samples with a known age distribution. Different instruments introduced small
+differences in the ages of each peak. For example, in Figure <a 
+href="#x1-110016">6<!--tex4ht:ref: fig:interlab --></a> we display the results
+from Lab 1 (red) and Lab 4 (pink) as KDEs. The expected peak at <span 
+class="cmsy-10">~ </span>1200 Ma
+(dashed line) is offset between the two samples. As it is the maximum distance
+between two ECDFs, the KS distance is very sensitive to minor offsets in sharply
+defined peaks. In this case, the KS distance between these theoretically identical
+samples is large at 0.348, which is over one third of the maximum possible distance
+between samples. Indeed, the KS distance considers a synthetic, purposefully
+misaligned series of peaks (black KDE) to be more similar to the Lab 4 results
+than the results from Lab 1. The <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> distance, does not suffer from this
+oversensitivity to minorly offset peaks and correctly identifies the samples from
+Lab 1 and Lab 4 as being much more similar than the random synthetic
+distribution.
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-120004"></a>Implementation</h3>
+<!--l. 285--><p class="noindent" >We provide example code (<a 
+href="https://github.com/AlexLipp/detrital-wasserstein" >    <a 
+href="github.com/AlexLipp/detrital-wasserstein" class="url" ><span 
+class="cmtt-10">github.com/AlexLipp/detrital-wasserstein</span></a></a>) in
+both Python and R that demonstrates how to calculate the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> between two
+univariate distributions (U-Pb zircon ages). For these examples we make use of
+the the <span 
+class="cmss-10">POT </span>and <span 
+class="cmss-10">transport </span>packages in Python and R respectively which
+implement solutions to Equation <a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:def_1d --></a> (<a 
+href="#Xflamary_pot_2021">Flamary et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xflamary_pot_2021">2021</a>;&#x00A0;<a 
+href="#Xschuhmacher_transport_2022">Schuhmacher
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xschuhmacher_transport_2022">2022</a>).
+<!--l. 287--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-130004.1"></a>IsoplotR</h4>
+<!--l. 289--><p class="noindent" >Additionally, the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>-distance has been added to the IsoplotR package in R,
+which calculates dissimilarity matrices and MDS maps (<a 
+href="#Xvermeesch_isoplotr_2018">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch_isoplotr_2018">2018b</a>).
+This software can be accessed using an (online) graphical user interface, at <a 
+href="https://isoplotr.es.ucl.ac.uk/" >
+<a 
+href="isoplotr.es.ucl.ac.uk" class="url" ><span 
+class="cmtt-10">isoplotr.es.ucl.ac.uk</span></a></a>. Alternatively, the function can also be accessed from the R
+command line. The following snippet uses <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> to calculate an MDS map for the
+dataset from <a 
+href="#Xwobus_has_2003">Wobus et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xwobus_has_2003">2003</a>) discussed in the manuscript (Figure <a 
+href="#x1-100015">5<!--tex4ht:ref: fig:Wobus --></a>). The data
+required is also available at the above repository. Note that the MDS map
+produced may show slight differences to those in the manuscript due to
+dependence of metric MDS on a random state variable. This variability can
+introduce reflections/rotations of the data, but the underlying structure is
+unchanged.
+                                                                  
+
+                                                                  
+   <pre class="verbatim" id="verbatim-1">
+#&#x00A0;load&#x00A0;the&#x00A0;package:
+library(IsoplotR)
+
+#&#x00A0;Load&#x00A0;in&#x00A0;the&#x00A0;data
+DZ&#x00A0;&#x003C;-&#x00A0;read.data("wobus.csv",method="detritals")
+
+#&#x00A0;example&#x00A0;1.&#x00A0;calculate&#x00A0;the&#x00A0;W2&#x00A0;distance&#x00A0;matrix&#x00A0;for&#x00A0;the&#x00A0;dataset:
+d&#x00A0;&#x003C;-&#x00A0;diss(DZ,method="W2")
+
+#&#x00A0;example&#x00A0;2.&#x00A0;apply&#x00A0;MDS&#x00A0;to&#x00A0;the&#x00A0;dataset:
+mds(DZ,method="W2")
+</pre>
+<!--l. 303--><p class="nopar" >
+<!--l. 305--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-140005"></a>Conclusions</h3>
+<!--l. 307--><p class="noindent" >The second Wasserstein distance, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub>, is an effective metric for comparing
+distributional data in the geological sciences such as detrital age spectra or grain size.
+Unlike the KS distance, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> can be extended to further dimensions. <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> is a function
+of the horizontal distances between observations, in contrast to the KS distance,
+which corresponds to vertical differences between ECDFs. Using a variety of case
+studies we explore scenarios where the <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> may or may not be preferable to the KS
+distance. In scenarios where discrete, known age peaks are mixed, the KS distance
+may be preferable. However, in other scenarios where absolute differences along the
+time axis are useful information, <span 
+class="cmmi-10">W</span><sub><span 
+class="cmr-7">2</span></sub> is preferable. Example scenarios include
+spatially/temporally evolving source distributions, thermochronological data, and
+combining detrital samples from different laboratories. The Wasserstein distance has
+been added to the IsoplotR software, and example scripts are provided in Python and
+R.
+<!--l. 315--><p class="indent" >   Code availability: The code and data repository is found at <a 
+href="https://github.com/AlexLipp/detrital-wasserstein" >
+<a 
+href="github.com/AlexLipp/detrital-wasserstein" class="url" ><span 
+class="cmtt-10">github.com/AlexLipp/detrital-wasserstein</span></a></a>
+<!--l. 318--><p class="indent" >   Author contributions: AGL conceived the project, both authors contributed to
+development, writing, and software production.
+<!--l. 320--><p class="indent" >   Competing interests: PV is an Associate Editor of Geochronology
+<!--l. 322--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-150005"></a>Acknowledgements</h3>
+<!--l. 324--><p class="noindent" >AGL is funded by a Junior Research Fellowship from Merton College, Oxford. PV is
+supported by NERC Standard Grant #NE/T001518/1. This work benefited from
+                                                                  
+
+                                                                  
+discussions with Malcolm Sambridge &amp; Kerry Gallagher. We thank reviews from Joel
+Saylor, an anonymous reviewer, and the associate editor Michael Dietze for their
+constructive feedback.
+<!--l. 1--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-160005"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xamidon_construction_2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Amidon,  W.&#x00A0;H.,  Burbank,  D.&#x00A0;W.,  and  Gehrels,  G.&#x00A0;E.:  Construction  of
+  detrital mineral populations: insights from mixing of U&#8211;Pb zircon ages in
+  Himalayan rivers, Basin Research, 17, 463&#8211;485, https://doi.org/10.1111/j.
+  1365-2117.2005.00279.x, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbenamou_iterative_2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Benamou, J.-D., Carlier, G., Cuturi, M., Nenna, L., and Peyr&eacute;, G.: Iterative
+  Bregman  Projections  for  Regularized  Transportation  Problems,  SIAM
+  Journal on Scientific Computing, 2, A1111&#8211;A1138, https://doi.org/10.
+  1137/141000439, publisher: Society for Industrial and Applied Mathematics,
+  2015.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xberry_north_2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Berry,   R.&#x00A0;F.,   Jenner,   G.&#x00A0;A.,   Meffre,   S.,   and   Tubrett,   M.&#x00A0;N.:   A
+  North  American  provenance  for  Neoproterozoic  to  Cambrian  sandstones
+  in   Tasmania?,   Earth   and   Planetary   Science   Letters,   192,   207&#8211;222,
+  https://doi.org/10.1016/S0012-821X(01)00436-8, 2001.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcawood_detrital_2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cawood, P., Hawkesworth, C., and Dhuime, B.: Detrital zircon record and
+  tectonic setting, Geology, 40, 875&#8211;878, https://doi.org/10.1130/G32945.1,
+  2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcondie_granitoid_2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Condie,  K.&#x00A0;C.,  Belousova,  E.,  Griffin,  W.&#x00A0;L.,  and  Sircombe,  K.&#x00A0;N.:
+  Granitoid events in space and time: Constraints from igneous and detrital
+  zircon age spectra, Gondwana Research, 15, 228&#8211;242, https://doi.org/10.
+  1016/j.gr.2008.06.001, 2009.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xde_doncker_inversion_2020"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>De&#x00A0;Doncker, F., Herman, F., and Fox, M.: Inversion of provenance data and
+                                                                  
+
+                                                                  
+  sediment load into spatially varying erosion rates, Earth Surface Processes
+  and Landforms, 45, 3879&#8211;3901, https://doi.org/https://doi.org/10.1002/
+  esp.5008, 2020.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdegraaff-surpless_detrital_2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>DeGraaff-Surpless, K., Graham, S.&#x00A0;A., Wooden, J.&#x00A0;L., and McWilliams,
+  M.&#x00A0;O.:  Detrital  zircon  provenance  analysis  of  the  Great  Valley  Group,
+  California: Evolution of an arc-forearc system, GSA Bulletin, 114, 1564&#8211;1580,
+  https://doi.org/10.1130/0016-7606(2002)114<span 
+class="cmsy-10">&#x27E8;</span>1564:DZPAOT<span 
+class="cmsy-10">&#x27E9;</span>2.0.CO;2,
+  2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdietze_grain-size_2019"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dietze,  E.  and  Dietze,  M.:  Grain-size  distribution  unmixing  using  the
+  R  package  EMMAgeo,  E&amp;G  Quaternary  Science  Journal,  68,  29&#8211;46,
+  https://doi.org/10.5194/egqsj-68-29-2019, 2019.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xengquist_application_2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Engquist,  B.  and  Froese,  B.&#x00A0;D.:  Application  of  the  Wasserstein  metric
+  to seismic signals, Communications in Mathematical Sciences, 12, 979&#8211;988,
+  https://doi.org/10.4310/CMS.2014.v12.n5.a7, 2014.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xflamary_pot_2021"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Flamary,  R.,  Courty,  N.,  Gramfort,  A.,  Alaya,  M.&#x00A0;Z.,  Boisbunon,  A.,
+  Chambon, S., Chapel, L., Corenflos, A., Fatras, K., Fournier, N., Gautheron,
+  L., Gayraud, N. T.&#x00A0;H., Janati, H., Rakotomamonjy, A., Redko, I., Rolet, A.,
+  Schutz, A., Seguy, V., Sutherland, D.&#x00A0;J., Tavenard, R., Tong, A., and Vayer,
+  T.: POT: Python Optimal Transport, Journal of Machine Learning Research,
+  22, 1&#8211;8, 2021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xirpino_optimal_2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Irpino, A. and Romano, E.: Optimal histogram representation of large data
+  sets:  Fisher  vs  piecewise  linear  approximation,  in:  Actes  des  cinqui&egrave;mes
+  journ&eacute;es  Extraction  et  Gestion  des  Connaissances,  vol.  E-9,  pp.  99&#8211;110,
+  Namur, Belgium, 2007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkosler_u-pb_2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Ko&#353;ler,  J.,  Sl&aacute;ma,  J.,  Belousova,  E.,  Corfu,  F.,  Gehrels,  G.&#x00A0;E.,  Gerdes,
+  A., Horstwood, M. S.&#x00A0;A., Sircombe, K.&#x00A0;N., Sylvester, P.&#x00A0;J., Tiepolo, M.,
+  Whitehouse, M.&#x00A0;J., and Woodhead, J.&#x00A0;D.: U-Pb Detrital Zircon Analysis &#8211;
+  Results of an Inter-laboratory Comparison, Geostandards and Geoanalytical
+  Research, 37, 243&#8211;259, https://doi.org/10.1111/j.1751-908X.2013.00245.x,
+  2013.
+                                                                  
+
+                                                                  
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmagyar_hydrological_2023"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Magyar,  J.&#x00A0;C.  and  Sambridge,  M.:  Hydrological  objective  functions  and
+  ensemble  averaging  with  the  Wasserstein  distance,  Hydrology  and  Earth
+  System Sciences, 27, 991&#8211;1010, https://doi.org/10.5194/hess-27-991-2023,
+  2023.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmorton_provenance_2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Morton,  A.,  Fanning,  M.,  and  Milner,  P.:  Provenance  characteristics  of
+  Scandinavian  basement  terrains:  Constraints  from  detrital  zircon  ages  in
+  modern river sediments, Sedimentary Geology, 210, 61&#8211;85, https://doi.org/10.1016/j.sedgeo.2008.07.001, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmetivier_optimal_2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>M&eacute;tivier,  L.,  Brossier,  R.,  M&eacute;rigot,  Q.,  Oudet,  E.,  and  Virieux,  J.:  An
+  optimal transport approach for seismic tomography: application to 3D full
+  waveform inversion, Inverse Problems, 32, 115 008, https://doi.org/10.
+  1088/0266-5611/32/11/115008, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpeyre_computational_2019"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Peyr&eacute;, G. and Cuturi, M.: Computational Optimal Transport, Foundations
+  and Trends in Machine Learning, 11, 355&#8211;607, 2019.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xreimink_global_2021"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Reimink, J.&#x00A0;R., Davies, J. H. F.&#x00A0;L., and Ielpi, A.: Global zircon analysis
+  records a gradual rise of continental crust throughout the Neoarchean, Earth
+  and Planetary Science Letters, 554, 116 654, https://doi.org/10.1016/j.
+  epsl.2020.116654, 2021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsambridge_geophysical_2022"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sambridge, M., Jackson, A., and Valentine, A.&#x00A0;P.: Geophysical inversion
+  and  optimal  transport,  Geophysical  Journal  International,  231,  172&#8211;198,
+  https://doi.org/10.1093/gji/ggac151, 2022.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsatkoski_likeness_2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Satkoski, A.&#x00A0;M., Wilkinson, B.&#x00A0;H., Hietpas, J., and Samson, S.&#x00A0;D.: Likeness
+  among  detrital  zircon  populations&#8212;An  approach  to  the  comparison  of
+  age  frequency  data  in  time  and  space,  GSA  Bulletin,  125,  1783&#8211;1799,
+  https://doi.org/10.1130/B30888.1, 2013.
+  </p>
+                                                                  
+
+                                                                  
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsaylor_discriminating_2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Saylor, J., Stockli, D., Horton, B., Nie, J., and Mora, A.: Discriminating
+  rapid exhumation from syndepositional volcanism using detrital zircon double
+  dating:  Implications  for  the  tectonic  history  of  the  Eastern  Cordillera,
+  Colombia,  Bulletin  of  the  Geological  Society  of  America,  124,  762&#8211;779,
+  https://doi.org/10.1130/B30534.1, 2012.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsaylor_quantifying_2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Saylor, J.&#x00A0;E. and Sundell, K.&#x00A0;E.: Quantifying comparison of large detrital
+  geochronology data sets, Geosphere, 12, 203&#8211;220, https://doi.org/10.1130/
+  GES01237.1, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xschuhmacher_transport_2022"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Schuhmacher,                     D.,                     B&auml;hre,                     B.,
+  Gottschlich, C., Hartmann, V., Heinemann, F., and Schmitzer, B.: transport:
+  Computation of Optimal Transport Plans and Wasserstein Distances, URL
+  <a 
+href="https://cran.r-project.org/package=transport" class="url" ><span 
+class="cmtt-10">https://cran.r-project.org/package=transport</span></a>, 2022.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsharman_sediment_2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sharman, G.&#x00A0;R. and Johnstone, S.&#x00A0;A.: Sediment unmixing using detrital
+  geochronology,   Earth   and   Planetary   Science   Letters,   477,   183&#8211;194,
+  https://doi.org/10.1016/j.epsl.2017.07.044, 2017.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsharman_detritalpy_2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sharman,                                 G.&#x00A0;R.,                                 Sharman,
+  J.&#x00A0;P., and Sylvester, Z.: detritalPy: A Python-based toolset for visualizing
+  and analysing detrital geo-thermochronologic data, The Depositional Record,
+  4, 202&#8211;215, https://doi.org/10.1002/dep2.45, 2018.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsundell_two-dimensional_2021"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sundell,                      K.&#x00A0;E.                      and                      Saylor,
+  J.&#x00A0;E.: Two-Dimensional Quantitative Comparison of Density Distributions
+  in  Detrital  Geochronology  and  Geochemistry,  Geochemistry,  Geophysics,
+  Geosystems, 22, e2020GC009 559, https://doi.org/10.1029/2020GC009559,
+  2021.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch_multi-sample_2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.:  Multi-sample  comparison  of  detrital  age  distributions,
+  Chemical Geology, 341, 140&#8211;146, https://doi.org/10.1016/j.chemgeo.2013.
+  01.010, 2013.
+  </p>
+                                                                  
+
+                                                                  
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch_dissimilarity_2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,
+  P.: Dissimilarity measures in detrital geochronology, Earth-Science Reviews,
+  178, 310&#8211;321, https://doi.org/10.1016/j.earscirev.2017.11.027, 2018a.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch_isoplotr_2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch,  P.:  IsoplotR:  A  free  and  open  toolbox  for  geochronology,
+  Geoscience Frontiers, 9, 1479&#8211;1493, https://doi.org/10.1016/j.gsf.2018.04.
+  001, 2018b.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch_multidimensional_2023"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., Lipp, A.&#x00A0;G., Hatzenb&uuml;hler, D., Caracciolo, L., and Chew,
+  D.:  Multidimensional  scaling  of  varietal  data  in  sedimentary  provenance
+  analysis, Journal of Geophysical Research: Earth Surface, p. e2022JF006992,
+  https://doi.org/10.1029/2022JF006992, 2023.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvillani_topics_2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Villani, C.: Topics in Optimal Transportation, no.&#x00A0;58 in Graduate studies
+  in mathematics, American Mathematical Soc., 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xweltje_end-member_1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Weltje,      G.&#x00A0;J.:      End-member      modeling      of      compositional
+  data: Numerical-statistical algorithms for solving the explicit mixing problem,
+  Mathematical Geology, 29, 503&#8211;549, https://doi.org/10.1007/BF02775085,
+  1997.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwobus_has_2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wobus, C.&#x00A0;W., Hodges, K.&#x00A0;V., and Whipple, K.&#x00A0;X.: Has focused denudation
+  sustained active thrusting at the Himalayan topographic front?, Geology, 31,
+  861&#8211;864, https://doi.org/10.1130/G19730.1, 2003.
+</p>
+  </div>
+    
+</body></html> 
+
+                                                                  
+
+

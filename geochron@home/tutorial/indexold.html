@@ -1,0 +1,71 @@
+<html>
+<body style="font-family: sans-serif;]">
+<div style="width: 800px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;">
+You will be presented with a random selection of the following types of imagery:
+
+<p></p>
+
+<ol>
+<li> Etched apatite grains comprising a stack of 16 transmitted light
+images, focusing in and out of the sample: 
+<a style="text-decoration:underline; cursor:pointer" onclick="javascript:document.getElementById('myimg').src = 'MDstack.gif'">click here</a><br>
+plus one reflected light image, which shows a surface view of the track pits:
+<a style="text-decoration:underline; cursor:pointer" onclick="javascript:document.getElementById('myimg').src = 'MDrefl.jpg'">click here</a>
+
+<li> The same collection of images for the mica print with induced
+tracks from an irradiated apatite:
+
+<a style="text-decoration:underline; cursor:pointer" onclick="javascript:document.getElementById('myimg').src = 'MDmica.gif'">click here</a>
+
+<li> A stack of images from a dosimeter glass of known uranium
+concentration, which is used to monitor the neutron fluence throughout
+the sample stack:
+
+<a style="text-decoration:underline; cursor:pointer" onclick="javascript:document.getElementById('myimg').src = 'MDdosimeter.gif'">click here</a>
+</ol>
+
+<img src="MDstack.gif" id="myimg">
+
+<p></p>
+
+Whereas the micas and dosimeter glasses are relatively straightforward
+to count, apatites can be more difficult. This is where automated
+computer algorithms often fail and where the subjective judgment of
+the human observer is particularly powerful. The whole purpose
+of <tt>geochron@home</tt> is to tap into the uniquely human ability to
+distinguish fission tracks from other features. Your task as a citizen
+scientist will be to make a judgment, to the best of your abilities,
+as to whether or not linear features are fission tracks, based on the
+following few examples:
+
+<table>
+<tr><td align='right'><img src="track.gif"></td>
+<td>This is a track. It has an opening (the 'etch pit') on the surface
+of the grain which narrows down as you focus deeper into the
+grain.</td></tr>
+<tr><td align='right'><img src="defect.gif"></td><td>This is not a track, but a
+crystal defect. This linear feature does not narrow down with depth
+into the crystal.  Sometimes you may find that crystal defects have a
+preferred orientation which expresses itself as a preferential
+alignment of tracks. In contrast, fission tracks occur in random
+directions and should never have a preferential orientation.
+</td></tr>
+<tr><td align='right'><img src="confined.gif"></td><td>The long linear
+feature running from the top left to the bottom right across this
+image is a horizontally confined fission track (i.e. not a surface
+track) and should therefore not be counted. Horizontal tracks are
+useful for thermal history modelling but should not be used for the
+age calculation.</tr>
+<tr><td align='right'><img src="scratch.gif"></td>
+<td>This is not a track but a (polishing)
+scratch. Sometimes small specks of dust
+may also look like surface tracks. However, they will not extend to
+any depth within the image stack.</td></tr>
+</table>
+
+</div>
+</body>
+</html>

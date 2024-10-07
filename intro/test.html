@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type"text/css" href="style.css"/>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<!--  <script src="js.js"></script> -->
+  <script>
+    $(document).ready(function() {
+      $("#tabs").tabs({ selected: 0 });
+      $("#tabs").tabs({
+        select: function(event, ui){
+          if(ui.index == 1){ $('#tab-2').load('research.html'); }
+        }
+      });
+
+    });
+  </script>
+</head>
+<body style="font-size:75%">
+<div id="tabs">
+    <ul>
+        <li><a href="#tab-1"><span>Home</span></a></li>
+        <li><a href="#tab-2"><span>Research</span></a></li>
+        <li><a href="#tab-3"><span>Teaching</span></a></li>
+        <li><a href="#tab-4"><span>Personal</span></a></li>
+        <li><a href="#tab-5"><span>Software</span></a></li>
+        <li><a href="#tab-6"><span>CV</span></a></li>
+        <li><a href="#tab-7"><span>LGC</span></a></li>
+    </ul>
+    <div id="tab-1" class="tab">
+
+Pieter Vermeesch <br>
+Department of Earth Sciences <br>
+University College London <br>
+Gower Street <br>
+London WC1E 6BT <br>
+United Kingdom <br>
++44 (0)20 7679 2418 <br>
+<tt>p.vermeesch[at]ucl.ac.uk</tt>
+
+    </div>
+    <div id="tab-2" class="tab">
+
+<h3>
+Research interests</h3>
+<ol>
+<li><b>Aeolian geomorphology</b><br />
+<ul>
+<li>Monitoring dune migration rates as a <a href="http://pieterv.blogspot.co.uk/2012/01/timeseries.html">windiness proxy</a>
+in the <a href="http://ucl.ac.uk/~ucfbpve/bodele">central Sahara</a><br />
+<li><a href="http://pieterv.blogspot.co.uk/2011/01/solitons.html">Solitary wave behaviour</a> in sand dunes - <a href="http://ucl.ac.uk/~ucfbpve/solitons">Animations</a> 
+<!--
+- <a href="http://pvermees.andropov.org/solitons/NatureHighlight.jpg">Nature Highlight</a><br />
+-->
+</li>
+<li>The provenance and dynamics of <a href="http://pieterv.blogspot.co.uk/2010/02/CosmoNamib.html"> Namibian desert sand</a> 
+<!-- -&nbsp;<a href="http://pvermees.andropov.org/namibia/press/backstory.pdf">Backstory</a><br />
+Interviews by <a href="http://pvermees.andropov.org/namibia/press/NERC.html">Planet Earth Online</a> -&nbsp;<a href="http://pvermees.andropov.org/namibia/press/Britannica.html">Encyclopaedia Britannica</a> -&nbsp;<a href="http://pvermees.andropov.org/namibia/press/AmazingPlanet.html">Our Amazing Planet</a> -&nbsp;<a href="http://pvermees.andropov.org/namibia/press/ETH.htm">ETH Life</a>
+Further press coverage in <a href="http://pvermees.andropov.org/namibia/press/Scinexx.html">German</a> -  <a href="http://pvermees.andropov.org/namibia/press/Vokrugsveta.html">Russian</a> -  <a href="http://pvermees.andropov.org/namibia/press/CienciaHoje.html">Portuguese</a> -  <a href="http://pvermees.andropov.org/namibia/press/EuropaPress.html">Spanish</a> -  <a href="http://pvermees.andropov.org/namibia/press/science&amp;vie.jpg">French</a>
+-->
+</li>
+<li>Measuring <a href="http://pvermees.andropov.org/COSI-Corr">sand flux </a>by remote sensing 
+<!--
+- <a href="http://pvermees.googlepages.com/GRLcover.pdf">GRL cover </a><br />
+Press coverage in <a href="http://pvermees.andropov.org/COSI-Corr/press/Spiegel.html">Der Spiegel </a> -&nbsp;<a href="http://pvermees.googlepages.com/Knack.jpg">Knack </a> - <a href="http://pvermees.googlepages.com/Guardian.jpg">The Guardian </a><br />
+-->
+</li>
+<li><a href="http://www.imaginlabs.com/">Commercial applications</a> of COSI-Corr</li>
+</ul>
+</li>
+<li><b>(U-Th)/He and fission track geochronology</b><br />
+<ul>
+<li>A simple method for <a href="http://pieterv.blogspot.com/2012/01/insitu.html">in-situ U-Th-He dating</a></li>
+<li>The treatment of <a href="http://pvermees.andropov.org/helioplot/MLEpaper3">overdispersed (U-Th-Sm)/He data</a> - <a href="http://pieterv.blogspot.com/2012/08/helioplot-visualising-u-thhe-data-on.html"><tt>HelioPlot</tt></a></li>
+<li>Alpha-emitting <a href="http://pvermees.andropov.org/noble/inclusions">mineral inclusions</a> in apatite?&nbsp;They're not as bad as they seem!</li>
+<li>New ways to calculate <a href="http://pvermees.andropov.org/ternaryhelium">average (U-Th-Sm)/He ages</a></li>
+<li><a href="http://pieterv.blogspot.com/2009/02/radialplotter.html"><tt>RadialPlotter</tt></a>: a Java application for fission track, luminescence and other radial plots</li>
+</ul>
+</li>
+<li><b>Detrital thermochronology</b><br />
+<ul>
+<li>The <a href="http://pvermees.andropov.org/noble/newidria/">Great Valley Group</a> (west-central California)</li>
+<li>The <a href="http://pvermees.andropov.org/noble/white/CADpaper/">White Mountains / Owens Valley </a>(eastern California)</li>
+<li>The <a href="http://pvermees.andropov.org/nubian">Nubian Sandstone </a></li>
+</ul>
+</li>
+<li><b>Cosmogenic nuclide dating</b><br />
+<ul>
+<li>Cosmogenic <sup>3</sup>He and <sup>21</sup>Ne in <a href="http://pvermees.andropov.org/targets">artificial quartz targets</a></li>
+<li><a href="http://cosmocalc.googlepages.com/"><tt>CosmoCalc</tt></a>: an Excel add-in for cosmogenic nuclide calculations</li>
+</ul>
+</li>
+<li><b>Statistics</b><br />
+<ul>
+<li>The <a href="http://pieterv.blogspot.co.uk/2012/02/chemical-geology-2012-v312-313-190-194.html">visualisation</a> of detrital age distributions - <tt><a href="http://densityplotter.london-geochron.com">DensityPlotter</a></tt></li>
+<li>Are 60 grains <a href="http://pvermees.andropov.org/noble/provenance/60grains">enough</a>? - provenance <a href="http://pvermees.andropov.org/noble/provenance">calculators</a> - <a href="http://www.blogger.com/EPSLaward.JPG">award</a> 
+
+<br />
+</li>
+<li>Lies, <a href="http://pvermees.andropov.org/stats">damned lies</a>, and statistics (in Geology)</li>
+</ul>
+</li>
+<li><b>Tectonic Discrimination of Oceanic Basalts</b><br />
+<ul>
+<li>Using <a href="http://pvermees.andropov.org/noble/disc">discriminant analysis</a></li>
+<li>With <a href="http://pvermees.andropov.org/noble/cart">classification trees</a></li>
+</ul>
+</li>
+</ol>
+<div style="width: 800px;">
+<h3>
+<b>Publications </b></h3>
+<br />
+Vermeesch, P. and Leprince, S., 2012. A 45-year time series of dune mobility indicating constant windiness over the central Sahara. Geophysical Research Letters, 39, L14401, doi:10.1029/2012GL052592 [<a href="http://pieterv.blogspot.co.uk/2012/01/timeseries.html">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGRL2012.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2012. On the visualisation of detrital age distributions. Chemical Geology, v.312-313, 190-194, doi: 10.1016/j.chemgeo.2012.04.021 
+[<a href="http://pieterv.blogspot.co.uk/2012/02/chemical-geology-2012-v312-313-190-194.html">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschChemGeol2012.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., Sherlock, S.C., Roberts, N.M.W., and Carter, A., 2012. A simple method for in-situ U-Th-He dating, Geochimica et Cosmochimica Acta, 79, 140-147 [<a href="http://pieterv.blogspot.com/2012/01/insitu.html">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGCA2012.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2011. Solitary wave behavior in sand dunes observed from space, Geophysical Research Letters, 38, L22402, doi:10.1029/2011GL049610  [<a href="http://pieterv.blogspot.com/2011/01/solitons.html">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGRL2011.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., Fenton, C.R., Kober, F., Wiggs, G.F.S., Bristow, C.S, and Xu, S., 2010. One million year residence time of Namib dune sand from cosmogenic nuclides, Nature Geoscience, 3, 862-865 [<a href="http://pieterv.blogspot.co.uk/2010/02/CosmoNamib.html">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschNatureGeo2010.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2010. HelioPlot, and the treatment of overdispersed (U-Th-Sm)/He data, Chemical Geology, 271 (3-4) 108-111 [<a href="http://pvermees.andropov.org/helioplot/MLEpaper3/">html</a>] [<a href="https://sites.google.com/site/pvermees/papers/VermeeschChemGeol2010.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2009. Lies, damned lies, and statistics (in Geology), Eos, 90 (47), p.443 [<a href="http://pvermees.andropov.org/stats">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschEos2009.pdf">pdf</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschEos2011.pdf">Comments and reply</a>]<br />
+<br />
+Vermeesch, P., Baur, H., Heber, V. S., Kober, F., Oberholzer, P., Schaefer, J. M., Schluechter, C., Strasky, S., and Wieler, R., 2009. Cosmogenic <sup>3</sup>He and <sup>21</sup>Ne measured in quartz targets  after one year of exposure in the Swiss Alps, Earth and Planetary Science Letters, 284, 3-4, 417-425, doi:10.1016/j.epsl.2009.05.007 [<a href="http://pvermees.andropov.org/targets">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschEPSL2009.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2009, RadialPlotter: a Java application for fission track,  luminescence and other radial plots, Radiation Measurements, 44, 4, 409-410 [<a href="http://pvermees.andropov.org/radialplotter/RadialPlotPaper">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschRadMeas2009.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., Avigad, D. and McWilliams, M., 2009. 500 Myr of thermal history  elucidated by multi-method detrital  thermochronology of North Gondwana Cambrian sandstone (Eilat area, Israel),  Geological Society of America Bulletin, v. 121, n. 7/8, 1204-1216, doi: 10.1130/B26473.1 [<a href="http://pvermees.andropov.org/nubian">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGSAB2009.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P. and Drake, N., 2008. Remotely sensed dune celerity and sand flux measurements of the world's fastest barchans (Bod&eacute;l&eacute;, Chad): Geophysical Research Letters, 35, L24404, doi:10.1029/2008GL035921 <a href="http://pvermees.andropov.org/COSI-Corr">[html]</a> [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGRL2008.pdf">pdf</a>] [<a href="http://pvermees.googlepages.com/GRLcover.pdf">cover</a>]<br />
+<br />
+Vermeesch, P., 2008, Three new ways to calculate average (U-Th)/He ages, Chemical Geology, v.249, p.339-347  [<a href="VermeeschChemGeol2008/index.html">html</a>] [<a href="../papers/VermeeschChemGeol2008.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2007, Quantitative geomorphology of the White Mountains (California), using detrital apatite fission track thermochronology: Journal of Geophysical Research - Earth Surface, 112, F03004, doi:10.1029/2006JF000671 [<a href="http://pvermees.andropov.org/noble/white/CADpaper">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschJGR2007.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2007, CosmoCalc: an Excel add-in for cosmogenic nuclide calculations: Geochemistry, Geophysics, and Geosystems<span class="volno">, Vol. 8, Q08003</span>, doi: 10.1029/2006GC001530 [<a href="http://pvermees.andropov.org/cosmocalc">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGCubed2007.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., Seward, D., Latkoczy, C., Wipf, M., Guenther, D. and Baur, H., 2007, Alpha-emitting mineral inclusions in apatite, their effect on (U-Th)/He ages, and how to reduce it: Geochimica et Cosmochimica Acta, v.71 p.1737.1746 [<a href="http://pvermees.andropov.org/noble/inclusions">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGCA2007.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2006, Tectonic discrimination diagrams revisited: Geochemistry, Geophysics, and Geosystems, 7, Q06017, doi:10.1029/2005GC001092 [<a href="http://pvermees.andropov.org/noble/disc/discPaper">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGCubed2006.pdf">pdf</a>][<a href="http://pvermees.andropov.org/noble/disc/erratum.html">errata</a>]<br />
+<br />
+Vermeesch, P., Miller, D. D., Graham, S. A., De Grave, J., and McWilliams, M. O., 2006, Multi-method detrital thermochronology of the Great Valley Group near New Idria (California) : Geological Society of America Bulletin, v. 118, no. 1, pp. 210-218 [<a href="http://pvermees.andropov.org/noble/newidria">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGSAB2006.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2006, Tectonic discrimination of basalts with classification trees: Geochimica et Cosmochimica Acta, v. 70, no. 7, pp. 1839-1848.  [<a href="http://pvermees.andropov.org/noble/cart">html</a>]  [<a href="http://sites.google.com/site/pvermees/papers/VermeeschGCA2006.pdf">pdf</a>] [<a href="http://pvermees.googlepages.com/AgrawalGCA2007.pdf">Comment</a>] [<a href="http://pvermees.andropov.org/noble/cart/discussion">Reply</a>]<br />
+<br />
+Vermeesch, P., 2005, Statistical uncertainty associated with histograms in the Earth Sciences, Journal of Geophysical Research - Solid Earth, Vol 110, B02211 [<a href="http://pvermees.andropov.org/noble/epdu/paper">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschJGR2005.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2004, How many grains are needed for a provenance study? Earth and Planetary Science Letters, v.224, n.3-4, pp. 441-451 [<a href="http://pvermees.andropov.org/noble/provenance/60grains">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschEPSL2004.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., Poort, J., Duchkov, A. D., Klerckx, J., and De Batist, M., 2004, Lake Issyk-Kul (Tien Shan): Unusually low heat-flow in an active intermontane basin: Russian Geology and Geophysics, v.45, n.5, pp. 616-625 [<a href="http://pvermees.andropov.org/noble/issyk">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschRGG2004.pdf">pdf</a>]<br />
+<br />
+Vermeesch, P., 2003, A second look at the geologic map of China: the "Sloss approach". International Geology Review, v.45, p. 119-132 [<a href="http://pvermees.andropov.org/noble/chinasloss">html</a>] [<a href="http://sites.google.com/site/pvermees/papers/VermeeschIGR2003.pdf">pdf</a>]<br />
+<br /></div>
+
+    </div>
+    <div id="tab-3" class="tab">
+
+<script type="text/javascript" src="code.js"></script>
+<script type="text/javascript" src="browserdetect.js"></script>
+
+<table>
+<tr>
+<td class="first" id="image">
+<object class="first" data="./images/main.html" type="text/html">
+</td>
+<td class="second" id="text"></td>
+</tr>
+</table>
+<button onclick='Previous();'>Previous</button>
+<button onclick='Next();'>Next</button>
+<button onclick='getPage("main");'>Home</button>
+
+    </div>
+    <div id="tab-4" class="tab">
+    </div>
+    <div id="tab-5" class="tab">
+    </div>
+    <div id="tab-6" class="tab">
+    </div>
+    <div id="tab-7" class="tab">
+    </div>
+</div>
+<div style="font-size:100%; font-family: Verdana,Arial,sans-serif/*{ffDefault}*/; font-size: 1.1em/*{fsDefault}*/;"> 
+Pieter Vermeesch, Department of Earth Sciences, University College London, Gower Street, London WC1E 6BT, United Kingdom, p.vermeesch [at] ucl.ac.uk
+</div>
+</body>
+</html>

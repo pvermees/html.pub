@@ -1,0 +1,863 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<meta name="GENERATOR" content="TtH 3.77">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <style type="text/css"> div.p { margin-top: 7pt;}</style>
+ <style type="text/css"><!--
+ td div.comp { margin-top: -0.6ex; margin-bottom: -1ex;}
+ td div.comb { margin-top: -0.6ex; margin-bottom: -.6ex;}
+ td div.hrcomp { line-height: 0.9; margin-top: -0.8ex; margin-bottom: -1ex;}
+ td div.norm {line-height:normal;}
+ span.roman {font-family: serif; font-style: normal; font-weight: normal;} 
+ span.overacc2 {position: relative;  left: .8em; top: -1.2ex;}
+ span.overacc1 {position: relative;  left: .6em; top: -1.2ex;} --></style>
+
+
+<title>No Title</title>
+
+
+<h3 align="center">Pieter Vermeesch </h3>
+
+<title> {\tt Radial\-Plotter}: a Java application for fission track,
+luminescence and other radial plots</title>
+    
+<h1 align="center"><tt>RadialPlotter</tt>: a Java application for fission track,
+luminescence and other radial plots </h1>
+ 
+<h2> Abstract</h2>
+Single-grain  dating  has become  common  practice  in fission  track,
+<sup>40</sup>Ar  /  <sup>39</sup>Ar,  U-Pb,  (U-Th)/He  and  luminescence  dating.
+Because single-grain signals  are small, the measurement uncertainties
+of single-grain ages are typically larger and more variable than those
+of multi-grain aliquots of the same sample.  Invented by Rex Galbraith
+in 1988, the  radial plot is a graphical  method for comparing several
+estimates having different precisions.  Radial plots have been used in
+fission track  and luminescence  dating, but can  be applied  to other
+kinds of data as well.  RadialPlotter is the first standalone computer
+program implementing all these applications.  The program has a simple
+interface for  three kinds of  data: Fission Tracks,  Luminescence and
+`Other'.  Graphical  output can  be saved in  bitmap (<tt>.png</tt>) and
+vector (<tt>.pdf</tt>) formats.  Data  points can be colour-coded to show
+a third variable such as  chemical composition or a kinetic parameter.
+RadialPlotter   was   programmed    in   Java   and   is,   therefore,
+platform-independent.  It  can be downloaded free of  charge from <tt>
+  http://pvermees.andropov.org/radialplotter</tt>.
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1">
+1</a>&nbsp;&nbsp;Introduction</h2><a name="sec:introduction">
+</a>
+
+<div class="p"><!----></div>
+Radial Plots are bivariate (x<sub>j</sub>,y<sub>j</sub>) scatterplots where:
+
+<div class="p"><!----></div>
+<a name="eq:xjyj">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+x<sub>j</sub> = 1/<font face="symbol">s</font
+>(z<sub>j</sub>), </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+y<sub>j</sub> = (z<sub>j</sub><font face="symbol">-</font
+>z<sub>0</sub>)/<font face="symbol">s</font
+>(z<sub>j</sub>), </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">for</span> <span class="roman">1</span>  <font face="symbol">£</font
+>  <span class="roman">j</span>  <font face="symbol">£</font
+>  <span class="roman">N</span></td></tr></table></td><td width="50%"></td><td width="1" align="right">(1)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+with  z<sub>j</sub>  a  transformation  of  some data  and  <font face="symbol">s</font
+>(z<sub>j</sub>)  the
+corresponding  measurement  uncertainty.   For  example,  if  z<sub>j</sub>  =
+log(t<sub>j</sub>)  then  <font face="symbol">s</font
+>(z<sub>j</sub>)   =  <font face="symbol">s</font
+>(t<sub>j</sub>)/t<sub>j</sub>.   z<sub>0</sub>  is  a
+convenient central  value such as the  weighted mean.  The  slope of a
+line  connecting the origin  (x=0,y=0) of  a radial  plot with  a data
+point (x<sub>j</sub>,y<sub>j</sub>)  equals z<sub>j</sub>,  and the horizontal  distance along
+x-axis  is  a  measure  if  its  precision.   Thus,  the  radial  plot
+simultaneously  visualises a  measurement's value  and  precision.  No
+other  graphical method  achieves this  goal with  the  same elegance.
+This  makes the  radial  plot  the method  of  choice for  visualising
+heteroscedastic data, i.e.  data with (large and) variable measurement
+uncertainties.   Traditional applications  in the  Earth  Sciences are
+fission track  and luminescence dating, which are  governed by Poisson
+processes (e.g.,  Galbraith, 1988, 1990; Galbraith et  al., 1999).  In
+principle, however, radial plots can be used for any kind of data.<br />
+
+<div class="p"><!----></div>
+RadialPlotter  is a  user-friendly application  for  generating radial
+plots.  It has the following advantages over existing programs such as
+<tt>Trackkey</tt>  or <tt>MacTrack</tt>.  (1) The  program was developed
+solely for radial plots and  does not perform other functions for data
+reduction or interpretation. Therefore,  radial plot functions are not
+buried  deep inside  the  menu  structure and  the  interface is  very
+straightforward.  (2)  RadialPlotter was  written in Java  (version 5)
+and is, therefore, perfectly  platform independent. (3) In addition to
+fission track radial plots,  RadialPlotter also offers the possibility
+to generate radial plots for luminescence dating, or any other kind of
+data such  as (U-Th)/He or U-Pb  ages.  Hopefully, this  will give the
+radial plot the wider user base which it deserves.  <br />
+
+<div class="p"><!----></div>
+Section            explains      RadialPlotter's
+straightforward installation  procedure.  As explained  before, radial
+plots generally apply  some kind of transformation to  the data before
+plotting. Different transformations apply  to different kinds of data.
+Section   discusses the  three different  input formats
+(fission   tracks,   luminescence,   and   `other')   and   the   data
+transformations  applicable to  them.  Being  a  plotting application,
+RadialPlotter produces graphical output, which can be saved in various
+image  formats.  Section    discusses how  to set  the
+colours  and scale  of  a radial  plot  to generate  publication-ready
+results.
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc2">
+2</a>&nbsp;&nbsp;Installation</h2>
+<a name="sec:installation">
+</a>
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+<a name="tth_fIg1">
+</a> <a href="fig1.jpg">Figure</a>
+
+<center>Figure 1: RadialPlotter and some sample input files can be downloaded
+from <tt>http://pvermees.andropov.org/radialplotter</tt>.</center>
+<a name="fig:installation">
+</a>
+
+<div class="p"><!----></div>
+RadialPlotter   can   be  downloaded   free   of   charge  from   <tt>
+  http://pvermees.andropov.org/radialplotter</tt>             (Figure
+<a href="#fig:installation">1</a>).  The program  consists of a single executable
+jar file (<tt>RadialPlotter.jar</tt>).   This makes installation of the
+program straightforward: it suffices to download and open this file to
+run  RadialPlotter.   The program  requires  Java Runtime  Environment
+(JRE) 5 or  higher (the current version is  6), which is pre-installed
+on most computers.   The latest JRE version can  be downloaded free of
+charge  from <tt>http://www.java.com/download</tt>.  For  MS Windows
+users, an executable  wrapper (<tt>RadialPlotter.exe</tt>) is available
+from the RadialPlotter website.  This program automatically checks the
+JRE version of the computer and redirects the user to the JRE download
+site if necessary.  <br />
+
+<div class="p"><!----></div>
+For testing  purposes, three example  input files are provided  on the
+website,  one for  each  of  the three  input  formats implemented  in
+RadialPlotter:    <tt>FTdata.csv</tt>    (fission   tracks),    <tt>
+  OSLdata.csv</tt>  (luminescence)  and  <tt>OTHERdata.csv</tt>  (U-Th-He
+ages).  The next section explains these input formats in more detail.
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc3">
+3</a>&nbsp;&nbsp;Three input options</h2>
+<a name="sec:input">
+</a>
+
+<div class="p"><!----></div>
+Data  can  be  copied  and  pasted to-and-from  Microsoft  Excel  with
+RadialPlotter's <tt>Edit</tt> menu or  by the usual <tt>Ctrl-C</tt> and <tt>
+  Ctrl-V</tt> shortcuts.  Simple editing  tools for inserting and deleting
+rows are  available as well.   Clicking <tt>File</tt>  <font face="symbol">®</font
+> <tt>
+  Save Data</tt> saves the data in a comma-separated-variable (<tt>.csv</tt>)
+format.   Therefore, input  files  can also  be  edited by  hand in  a
+spreadsheet or  word-processor.  Clicking <tt>Options</tt> <font face="symbol">®</font
+>
+<tt>Input</tt>  brings up  a  menu to  toggle  between  the three  input
+formats:  <tt>Fission  Tracks</tt>, <tt>Luminescence</tt> and  <tt>Other</tt>.
+The following sections provide more details about these options.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.1">
+3.1</a>&nbsp;&nbsp;Fission Tracks</h3>
+<a name="sec:FT">
+</a>
+
+<div class="p"><!----></div>
+
+<pre>
+samplename&nbsp;[,flag]
+zeta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[,zeta-err]
+rhoD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[,rhoD-err]
+Ns(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,Ni(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[,C(1)]
+Ns(2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,Ni(2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[,C(1)]
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+Ns(n)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,Ni(n)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[,C(n)]
+
+</pre>
+
+<div class="p"><!----></div>
+The input file begins with a  mandatory sample name (or a blank line),
+followed by an optional flag.  If the flag equals `<tt>F</tt>' , the <tt>
+  Fission Tracks</tt>  option box in the <tt>Options</tt> <font face="symbol">®</font
+> <tt>
+  Input</tt> menu  user is automatically  selected. If not, then  the user
+must make sure to check that the correct option is set.
+
+<div class="p"><!----></div>
+RadialPlotter's <tt>Fission Tracks</tt> setting  implements the external
+detector method  (Hurford and  Green, 1983).  The  second line  of the
+input file  is the <font face="symbol">z</font
+>  (<tt>zeta</tt>) calibration constant  and its
+(optional) standard error, in cm yr<sup>2</sup>.  To generate radial plots for
+ICP-MS-based fission  track data, calculate the  single-grain ages and
+use them as input to the <tt>Other</tt> option (Section ).
+
+<div class="p"><!----></div>
+<tt>rhoD</tt>  is the fission track  density of a  Uranium standard glass
+detector that was irradiated along with the sample, and its (optional)
+standard error, in cm<sup><font face="symbol">-</font
+>2</sup>.
+
+<div class="p"><!----></div>
+The remainder of the input file contains <tt>n</tt> rows of fission track
+data: <tt>Ns</tt> = the number  of spontaneous tracks (N<sub>s</sub>), <tt>Ni</tt> =
+the number  of induced  fission tracks in  the mica  external detector
+(N<sub>i</sub>), <tt>C</tt> = an  optional parameter to  be used for  the colour
+code.  This column can be used to show kinetic parameters such as Dpar
+(Donelick et al., 1999) or  chlorine-content (Green et al., 1989).  If
+<tt>C</tt> is omitted, the fill  colour of the data points will be white.
+<br />
+
+<div class="p"><!----></div>
+As  explained in Section  <a href="#sec:introduction">1</a>, rather  than working
+with  the  raw  data,  radial  plots generally  employ  some  kind  of
+mathematical transformation. In the  case of fission track dating with
+the  external   detector  method,  Galbraith   (1990)  proposed  three
+transformations,   which   are   available   in  the   <tt>Options</tt>
+<font face="symbol">®</font
+> <tt>Transformations</tt> menu:
+<br />
+
+<div class="p"><!----></div>
+Linear:<br />
+<a name="eq:linear">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><font face="symbol">l</font
+><br /></td><td nowrap="nowrap" align="center">
+log</td><td align="left" class="cl"><font face="symbol">
+æ<br />è
+</font></td><td nowrap="nowrap" align="center">
+1 + g<font face="symbol">z</font
+><font face="symbol">l</font
+><font face="symbol">r</font
+><sub>D</sub> </td><td nowrap="nowrap" align="center">
+N<sub>s</sub>(j)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>i</sub>(j)<br /></td><td align="left" class="cl"><font face="symbol">
+ö<br />ø
+</font></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(2)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<font face="symbol">s</font
+>(z<sub>j</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td><td align="left" class="cl">
+<font size="+2">&nbsp;&nbsp;<font face="symbol">æ<br />Ö<br /></font></font></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>s</sub>(j)<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>i</sub>(j)<br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(3)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>0</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"></td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+z<sub>j</sub>/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+1/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(4)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+Logarithmic:<br />
+<a name="eq:logarithmic">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+log</td><td align="left" class="cl"><font face="symbol">
+æ<br />è
+</font></td><td nowrap="nowrap" align="center">
+g<font face="symbol">z</font
+><font face="symbol">l</font
+><font face="symbol">r</font
+><sub>D</sub></td><td nowrap="nowrap" align="center">
+N<sub>s</sub>(j)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>i</sub>(j)<br /></td><td align="left" class="cl"><font face="symbol">
+ö<br />ø
+</font></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(5)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<font face="symbol">s</font
+>(z<sub>j</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td align="left" class="cl">
+<font size="+2">&nbsp;&nbsp;<font face="symbol">æ<br />Ö<br /></font></font></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>s</sub>(j)<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>i</sub>(j)<br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(6)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>0</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">log</td><td align="left" class="cl"><font face="symbol">
+æ<br />ç<br />
+è
+</font></td><td nowrap="nowrap" align="center">
+g<font face="symbol">z</font
+><font face="symbol">l</font
+><font face="symbol">r</font
+><sub>D</sub> </td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+N<sub>s</sub>(j)</td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+N<sub>i</sub>(j)</td></tr></table></td><td align="left" class="cl"><font face="symbol">
+ö<br />÷<br />
+ø
+</font></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(7)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+Arcsine:<br />
+<a name="eq:asin">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+arcsin</td><td align="left" class="cl"><font face="symbol">
+æ<br />ç<br />
+è
+</font></td><td align="left" class="cl">
+<font size="+2">&nbsp;&nbsp;<font face="symbol">æ<br />Ö<br /></font></font></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+N<sub>s</sub>(j) + [3/8]
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>s</sub>(j) + N<sub>i</sub>(j) + [3/4]<br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td align="left" class="cl"><font face="symbol">
+ö<br />÷<br />
+ø
+</font></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(8)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<font face="symbol">s</font
+>(z<sub>j</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">
+<font size="+2">&nbsp;&nbsp;<font face="symbol">æ<br />Ö<br /></font></font></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>s</sub>(j)<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>i</sub>(j)<br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(9)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>0</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">arcsin</td><td align="left" class="cl"><font face="symbol">
+æ<br />ç<br />
+è
+</font></td><td align="left" class="cl">
+<font size="+2">&nbsp;&nbsp;<font face="symbol">æ<br />Ö<br /></font></font></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<font face="symbol">å</font
+><sub>j=1</sub><sup>n</sup> N<sub>s</sub>(j)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><font face="symbol">å</font
+><sub>j=1</sub><sup>n</sup> N<sub>s</sub>(j) + N<sub>i</sub>(j)<br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td align="left" class="cl"><font face="symbol">
+ö<br />÷<br />
+ø
+</font></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(10)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+With  <font face="symbol">l</font
+>  the   <sup>238</sup>U  decay  constant  (=1.55125  &times;
+10<sup><font face="symbol">-</font
+>10</sup>a<sup><font face="symbol">-</font
+>1</sup>),  g  a  geometric  factor (=0.5),  and  all  other
+parameters as defined before.  The <tt>Logarithmic</tt> transformation is
+used by default, unless there are grains with zero spontaneous tracks,
+in which case RadialPlotter defaults to <tt>Arcsine</tt>.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.2">
+3.2</a>&nbsp;&nbsp;Luminescence</h3>
+<a name="sec:OSL">
+</a>
+
+<div class="p"><!----></div>
+
+<pre>
+samplename&nbsp;[,flag]
+doserate&nbsp;&nbsp;&nbsp;[,doserate-err]
+dose(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,dose-err(1)&nbsp;&nbsp;&nbsp;[,C(1)]
+dose(2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,dose-err(2)&nbsp;&nbsp;&nbsp;[,C(1)]
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+dose(n)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,dose-err(n)&nbsp;&nbsp;&nbsp;[,C(n)]
+
+</pre>
+
+<div class="p"><!----></div>
+As before, the input file begins  with the sample name, followed by an
+optional flag which, for luminescence dating, should be `<tt>L</tt>'.
+
+<div class="p"><!----></div>
+<tt>doserate</tt> is the estimated effective rate ([d\dot]) of ionizing
+radiation supplied to the sample by radioactive decay and cosmic rays,
+in units  of Gray per  year.  <tt>doserate-err</tt> is  the corresponding
+measurement uncertainty (<font face="symbol">s</font
+>([d\dot])), also in Gy/yr.
+
+<div class="p"><!----></div>
+The subsequent  <tt>n</tt> rows contain  the measured dose  (d) and its
+standard  error (<font face="symbol">s</font
+>(d)),  both  in Gy,  plus  an optional  third
+column <tt>C</tt> which can be used as a colour code.  <br />
+
+<div class="p"><!----></div>
+For luminescence dating, only two transformations are available:
+<br />
+
+<div class="p"><!----></div>
+Linear:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+d<sub>j</sub>/</td><td nowrap="nowrap" align="center">
+<div class="comp"><font face="symbol">×</font
+><br /></div>
+<div class="norm">d<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(11)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<font face="symbol">s</font
+>(z<sub>j</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub>*</td><td nowrap="nowrap" align="center">
+<font face="symbol">s</font
+>(d<sub>j</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(12)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>0</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"></td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+z<sub>j</sub>/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+1/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(13)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+Logarithmic:
+<a name="eq:OSLlogarithmic">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+log(d<sub>j</sub>/</td><td nowrap="nowrap" align="center">
+<div class="comp"><font face="symbol">×</font
+><br /></div>
+<div class="norm">d<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+) </td></tr></table></td><td width="50%"></td><td width="1" align="right">(14)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<font face="symbol">s</font
+>(z<sub>j</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+<font face="symbol">s</font
+>(d<sub>j</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(15)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>0</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"></td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+z<sub>j</sub>/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+1/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(16)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+RadialPlotter  defaults  to <tt>Logarithmic</tt>.  To  use the  <tt>
+  Linear</tt>   option,    click   <tt>Options</tt>    <font face="symbol">®</font
+>   <tt>
+  Transformation</tt> <font face="symbol">®</font
+> <tt>Linear</tt>.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.3">
+3.3</a>&nbsp;&nbsp;Other</h3>
+<a name="sec:other">
+</a>
+
+<div class="p"><!----></div>
+
+<pre>
+samplename&nbsp;[,flag]
+x(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,x-err(1)&nbsp;&nbsp;&nbsp;[,C(1)]
+x(2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,x-err(2)&nbsp;&nbsp;&nbsp;[,C(1)]
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+x(n)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,x-err(n)&nbsp;&nbsp;&nbsp;[,C(n)]
+
+</pre>
+
+<div class="p"><!----></div>
+In addition to fission track  and luminescence ages, any kind of other
+data can  be shown on radial plots  as well.  The input  file of these
+`other' data consists  of a line with the sample  name and an optional
+flag (`<tt>O</tt>' for <tt>Other</tt>) followed by  <tt>n</tt> lines  of data
+(x),  analytical uncertainties (<font face="symbol">s</font
+>(x)),  and an  optional colour
+code.  Again, two transformations are available, with a default set to
+<tt>Logarithmic</tt>.
+<br />
+
+<div class="p"><!----></div>
+Linear:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+x(j) </td></tr></table></td><td width="50%"></td><td width="1" align="right">(17)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<font face="symbol">s</font
+>(z<sub>j</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+x(j)*</td><td nowrap="nowrap" align="center">
+<font face="symbol">s</font
+>(x(j))
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x(j)<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(18)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>0</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"></td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+z<sub>j</sub>/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+1/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(19)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+Logarithmic:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+log(x(j)) </td></tr></table></td><td width="50%"></td><td width="1" align="right">(20)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<font face="symbol">s</font
+>(z<sub>j</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+<font face="symbol">s</font
+>(x(j))
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x(j)<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(21)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+z<sub>0</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ = </td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"></td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+z<sub>j</sub>/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><font size="+3"><font face="symbol">å<br />
+</font></font><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+1/<font face="symbol">s</font
+>(z<sub>j</sub>)<sup>2</sup></td></tr></table></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(22)</td></tr></table>
+</td></tr></table>
+
+
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+<a name="tth_fIg2">
+</a> <a href="fig2.jpg">Figure</a>
+
+<center>Figure 2: Input (left) and output (right)  in the case of fission track
+  dating.</center>
+<a name="fig:input-output">
+</a>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc4">
+4</a>&nbsp;&nbsp;Output</h2>
+<a name="sec:output">
+</a>
+
+<div class="p"><!----></div>
+After clicking the <tt>Plot</tt>  button, a new window appears containing
+the radial  plot, a data  summary and, if  three columns of  data were
+provided,  a  colour  scale  (Figure  <a href="#fig:input-output">2</a>).   These
+components can be  customized in various ways, through  actions in the
+<tt>Options</tt> menu.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc4.1">
+4.1</a>&nbsp;&nbsp;Adjusting the scale, labels and colours</h3>
+
+<div class="p"><!----></div>
+RadialPlotter  uses a  circular  scale.  The  default  values for  the
+minimum, maximum and central values (z<sub>0</sub>) can be changed in the <tt>
+  Options</tt> <font face="symbol">®</font
+>  <tt>Scale &amp;  Labels</tt> menu. Using  a common
+radial scale for  different samples facilitates their intercomparison.
+The <tt>Scale &amp;  Labels</tt> menu also  contains a checkbox  for adding
+labels to the data points,  providing an interpretive link between the
+data table and radial  plot. Single-grain ages and their uncertainties
+can  be determined  by clicking  anywhere on  the radial  plot window.
+Pressing the  <tt>Ctrl</tt>-button while clicking  adjusts the horizontal
+scale.  <br />
+
+<div class="p"><!----></div>
+The upper left corner of the  output window shows a data summary.  For
+fission  tracks  and luminescence  dating,  the  central  age and  age
+dispersion are given. This is  an arguable better estimator of central
+tendency than the  arithmetic mean, because it takes  into account the
+lognormal nature of N<sub>s</sub>/N<sub>i</sub>  (in Equation <a href="#eq:linear">4</a>), and of
+d/\.d (in Equation <a href="#eq:OSLlogarithmic">16</a>).
+<br />
+
+<div class="p"><!----></div>
+The  colour   bar  consists  of   100  steps,  calculated   by  linear
+interpolation between the minimum and maximum values of the third data
+column.  The minimum and maximum colour can be set by opening the <tt>
+  Options</tt> <font face="symbol">®</font
+> <tt>Colours</tt> menu.  <br />
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc4.2">
+4.2</a>&nbsp;&nbsp;Saving the output</h3>
+
+<div class="p"><!----></div>
+RadialPlotter  is capable  of saving  the graphical  output  as either
+bitmap  or  vector images,  in  a <tt>.png</tt>  or  <tt>.pdf</tt>  format,
+respectively.  <br />
+
+<div class="p"><!----></div>
+The <tt>.png</tt> (Portable Network Graphics) format  employs a lossless
+data compression algorithm.  Using  imaging software such as Microsoft
+Paint, Adobe Photoshop,  or the Gimp, this can  be easily converted to
+similar formats  such as  <tt>.gif</tt>, <tt>.jpg</tt> or <tt>.bmp</tt>.  The
+image resolution of the radial plot  depends on the size of the output
+window.  Therefore, for high  quality image quality, it is recommended
+to maximise this window.  <br />
+
+<div class="p"><!----></div>
+Alternatively, the <tt>.pdf</tt>  (Portable Document Format) option saves
+the output in  a vector format, which can be  rescaled without loss of
+resolution.  If saved  in this  format, the  output can  be  edited in
+vector graphics  software such as Adobe Illustrator  or CorelDraw, and
+converted to formats like <tt>.eps</tt>, <tt>.ai</tt> or <tt>.svg</tt>.
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc5">
+5</a>&nbsp;&nbsp;Acknowledgments</h2>
+
+<div class="p"><!----></div>
+The author would like to  thank Diane Seward for first suggesting that
+there should be a radial plot  for (U-Th)/He data, and Andy Carter for
+suggestions and testing beta-versions of the program.
+
+<div class="p"><!----></div>
+
+<h2>References</h2>
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b></b></dt>
+	<dd>Donelick,  R.A.,  Ketchman,  R.A.,  and  Carlson,  W.D.,  1999:
+  Variability   of   apatite   fission   track   annealing   kinetics:
+  II. Crystallographic orientation effects, The American Mineralogist,
+  84, 1224-1234.</dd>
+ <dt><b></b></dt>
+	<dd>Galbraith,  R. F., 1988:  Graphical display of  estimates having
+  differing standard errors, Technometrics, 30, 271-281.</dd>
+ <dt><b></b></dt>
+	<dd>Galbraith, R. F., 1990: The radial plot: graphical assessment of
+  spread  in  ages, Nuclear  Tracks  and  Radiation Measurements,  17,
+  207-214.</dd>
+ <dt><b></b></dt>
+	<dd>Galbraith, R.  F., Roberts,  R.  G., Laslett,  G. M.,  Yoshida,
+  H. and  Olley, J.  M., 1999: Optical  dating of single  and multiple
+  grains of quartz from Jinmium rock shelter, northern Australia: Part
+  I,  experimental design  and statistical  models,  Archaeometry, 41,
+  339-364.</dd>
+ <dt><b></b></dt>
+	<dd>Green,  P. F.,  Duddy, I.  R., Laslett, G.  M., Hegarty,  K. A.,
+  Gleadow, A.  J. W. and Lovering,  J. F., 1989:  Thermal annealing of
+  fission tracks in apatite:  4. Quantitative modelling techniques and
+  extension to geological timescales, Chemical Geology, 79, 155-182.</dd>
+ <dt><b></b></dt>
+	<dd>Hurford, A. J. and Green,  P. F., 1983: The zeta age calibration
+  of fission-track dating, Isotope Geoscience, 1, 285-317.</dd>
+</dl>
+
+<div class="p"><!----></div>
+
+<br /><br /><hr /><small>File translated from
+T<sub><font size="-1">E</font></sub>X
+by <a href="http://hutchinson.belmont.ma.us/tth/">
+T<sub><font size="-1">T</font></sub>H</a>,
+version 3.77.<br />On 27 Aug 2008, 14:24.</small>
+</html>

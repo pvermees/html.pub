@@ -1,0 +1,183 @@
+\begin{thebibliography}{34}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{\tt #1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{https://doi.org/\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{https://doi.org/\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Aitchison(1982)}]{aitchison1982}
+Aitchison, J.: The Statistical Analysis of Compositional Data, Journal of the
+  Royal Statistical Society, 44, 139--177, 1982.
+
+\bibitem[{Aitchison(1986)}]{aitchison1986}
+Aitchison, J.: The statistical analysis of compositional data, London, Chapman
+  and Hall, 1986.
+
+\bibitem[{Black(2005)}]{black2005}
+Black, L.~P.: {The use of multiple reference samples for the monitoring of ion
+  microprobe performance during zircon $^{207}$Pb/$^{206}$Pb age
+  determinations}, Geostandards and Geoanalytical Research, 29, 169--182, 2005.
+
+\bibitem[{Black et~al.(2004)Black, Kamo, Allen, Davis, Aleinikoff, Valley,
+  Mundil, Campbell, Korsch, Williams et~al.}]{black2004}
+Black, L.~P., Kamo, S.~L., Allen, C.~M., Davis, D.~W., Aleinikoff, J.~N.,
+  Valley, J.~W., Mundil, R., Campbell, I.~H., Korsch, R.~J., Williams, I.~S.,
+  et~al.: {Improved $^{206}$Pb/$^{238}$U microprobe geochronology by the
+  monitoring of a trace-element-related matrix effect; SHRIMP, ID--TIMS,
+  ELA--ICP--MS and oxygen isotope documentation for a series of zircon
+  standards}, Chemical Geology, 205, 115--140, 2004.
+
+\bibitem[{Bodorkos et~al.(2020)Bodorkos, Bowring, and Rayner}]{bodorkos2020}
+Bodorkos, S., Bowring, J., and Rayner, N.: {Squid3: Next-generation Data
+  Processing Software for Sensitive High Resolution Ion Micro Probe (SHRIMP)},
+  Geoscience Australia, 2020.
+
+\bibitem[{Chayes(1949)}]{chayes1949}
+Chayes, F.: On ratio correlation in petrography, The Journal of Geology, 57,
+  239--254, 1949.
+
+\bibitem[{Chayes(1960)}]{chayes1960}
+Chayes, F.: On correlation between variables of constant sum, Journal of
+  Geophysical research, 65, 4185--4193, 1960.
+
+\bibitem[{Connelly et~al.(2021)Connelly, Bollard, Costa, Vermeesch, and
+  Bizzarro}]{connelly2021}
+Connelly, J., Bollard, J., Costa, M., Vermeesch, P., and Bizzarro, M.:
+  {Improved methods for high-precision Pb--Pb dating of extra-terrestrial
+  materials}, Journal of Analytical Atomic Spectrometry, 36, 2579--2587, 2021.
+
+\bibitem[{Dodson(1978)}]{dodson1978}
+Dodson, M.: A linear method for second-degree interpolation in cyclical data
+  collection, Journal of Physics E: Scientific Instruments, 11, 296, 1978.
+
+\bibitem[{Galbraith(2005)}]{galbraith2005}
+Galbraith, R.~F.: Statistics for fission track analysis, CRC Press, 2005.
+
+\bibitem[{Galbraith and Laslett(1993)}]{galbraith1993}
+Galbraith, R.~F. and Laslett, G.~M.: Statistical models for mixed fission track
+  ages, Nuclear tracks and radiation measurements, 21, 459--470, 1993.
+
+\bibitem[{Hiess et~al.(2012)Hiess, Condon, McLean, and Noble}]{hiess2012}
+Hiess, J., Condon, D.~J., McLean, N., and Noble, S.~R.: {$^{238}$U/$^{235}$U
+  systematics in terrestrial uranium-bearing minerals}, Science, 335,
+  1610--1614, 2012.
+
+\bibitem[{Horstwood et~al.(2016)Horstwood, Ko{\v{s}}ler, Gehrels, Jackson,
+  McLean, Paton, Pearson, Sircombe, Sylvester, Vermeesch
+  et~al.}]{horstwood2016}
+Horstwood, M.~S., Ko{\v{s}}ler, J., Gehrels, G., Jackson, S.~E., McLean, N.~M.,
+  Paton, C., Pearson, N.~J., Sircombe, K., Sylvester, P., Vermeesch, P.,
+  et~al.: {Community-Derived Standards for LA-ICP-MS U-(Th-) Pb
+  Geochronology--Uncertainty Propagation, Age Interpretation and Data
+  Reporting}, Geostandards and Geoanalytical Research, 40, 311--332, 2016.
+
+\bibitem[{Ireland and Williams(2003)}]{ireland2003}
+Ireland, T.~R. and Williams, I.~S.: {Considerations in zircon geochronology by
+  SIMS}, Reviews in mineralogy and geochemistry, 53, 215--241, 2003.
+
+\bibitem[{Jeon and Whitehouse(2015)}]{jeon2015}
+Jeon, H. and Whitehouse, M.~J.: {A critical evaluation of U--Pb calibration
+  schemes used in SIMS zircon geochronology}, Geostandards and Geoanalytical
+  Research, 39, 443--452, 2015.
+
+\bibitem[{Ludwig(2000)}]{ludwig2000}
+Ludwig, K.~R.: {Decay constant errors in U--Pb concordia-intercept ages},
+  Chemical Geology, 166, 315--318, 2000.
+
+\bibitem[{Ludwig(2003)}]{ludwig2003}
+Ludwig, K.~R.: {User's manual for Isoplot 3.00: a geochronological toolkit for
+  Microsoft Excel}, Berkeley Geochronology Center Special Publication, 4, 2003.
+
+\bibitem[{Magee et~al.(2017)Magee, Danisik, and Mernagh}]{magee2017}
+Magee, C., Danisik, M., and Mernagh, T.: {Extreme isotopologue disequilibrium
+  in molecular SIMS species during SHRIMP geochronology}, Geoscientific
+  Instrumentation, Methods and Data Systems, 6, 523--536, 2017.
+
+\bibitem[{McLean et~al.(2016)McLean, Bowring, and Gehrels}]{mclean2016}
+McLean, N.~M., Bowring, J.~F., and Gehrels, G.: {Algorithms and software for
+  U-Pb geochronology by LA-ICPMS}, Geochemistry, Geophysics, Geosystems, 17,
+  2480--2496, 2016.
+
+\bibitem[{Min et~al.(2000)Min, Mundil, Renne, and Ludwig}]{min2000}
+Min, K., Mundil, R., Renne, P.~R., and Ludwig, K.~R.: {A test for systematic
+  errors in $^{40}$Ar/$^{39}$Ar geochronology through comparison with U/Pb
+  analysis of a 1.1-Ga rhyolite}, Geochimica et Cosmochimica Acta, 64, 73--98,
+  2000.
+
+\bibitem[{Nasdala et~al.(2016)Nasdala, Corfu, Valley, Spicuzza, Wu, Li, Yang,
+  Fisher, M{\"u}nker, Kennedy et~al.}]{nasdala2016}
+Nasdala, L., Corfu, F., Valley, J.~W., Spicuzza, M.~J., Wu, F.-Y., Li, Q.-L.,
+  Yang, Y.-H., Fisher, C., M{\"u}nker, C., Kennedy, A.~K., et~al.: {Zircon
+  M127--A homogeneous reference material for SIMS U--Pb geochronology combined
+  with hafnium, oxygen and, potentially, lithium isotope analysis},
+  Geostandards and Geoanalytical Research, 40, 457--475, 2016.
+
+\bibitem[{Ogliore et~al.(2011)Ogliore, Huss, and Nagashima}]{ogliore2011}
+Ogliore, R., Huss, G., and Nagashima, K.: {Ratio estimation in SIMS analysis},
+  Nuclear instruments and methods in physics research section B: beam
+  interactions with materials and atoms, 269, 1910--1918, 2011.
+
+\bibitem[{Pawlowsky-Glahn and Buccianti(2011)}]{pawlowsky2011}
+Pawlowsky-Glahn, V. and Buccianti, A.: {Compositional data analysis: Theory and
+  applications}, John Wiley \& Sons, 2011.
+
+\bibitem[{Renne et~al.(1998)Renne, Swisher, Deino, Karner, Owens, and
+  DePaolo}]{renne1998}
+Renne, P.~R., Swisher, C.~C., Deino, A.~L., Karner, D.~B., Owens, T.~L., and
+  DePaolo, D.~J.: {Intercalibration of standards, absolute ages and
+  uncertainties in $^{40}$Ar/$^{39}$Ar dating}, Chemical Geology, 145,
+  117--152, 1998.
+
+\bibitem[{Stern et~al.(2009)Stern, Bodorkos, Kamo, Hickman, and
+  Corfu}]{stern2009}
+Stern, R.~A., Bodorkos, S., Kamo, S.~L., Hickman, A.~H., and Corfu, F.:
+  {Measurement of SIMS instrumental mass fractionation of Pb isotopes during
+  zircon dating}, Geostandards and Geoanalytical Research, 33, 145--168, 2009.
+
+\bibitem[{{Vermeesch}(2006)}]{vermeesch2006b}
+{Vermeesch}, P.: {Tectonic discrimination diagrams revisited}, Geochemistry,
+  Geophysics, Geosystems, 7, \doi{10.1029/2005GC001092}, 2006.
+
+\bibitem[{Vermeesch(2010)}]{vermeesch2010a}
+Vermeesch, P.: {HelioPlot, and the treatment of overdispersed (U-Th-Sm)/He
+  data}, Chemical Geology, 271, 108 -- 111,
+  \doi{10.1016/j.chemgeo.2010.01.002}, 2010.
+
+\bibitem[{Vermeesch(2015)}]{vermeesch2015b}
+Vermeesch, P.: {Revised error propagation of $^{40}$Ar/$^{39}$Ar data,
+  including covariances}, Geochimica et Cosmochimica Acta, 171, 325--337, 2015.
+
+\bibitem[{Vermeesch(2018{\natexlab{a}})}]{vermeesch2018c}
+Vermeesch, P.: {\texttt{IsoplotR}: a free and open toolbox for geochronology},
+  Geoscience Frontiers, 9, 1479--1493, 2018{\natexlab{a}}.
+
+\bibitem[{Vermeesch(2018{\natexlab{b}})}]{vermeesch2018d}
+Vermeesch, P.: Statistical models for point-counting data, Earth and Planetary
+  Science Letters, 501, 1--7, 2018{\natexlab{b}}.
+
+\bibitem[{Weltje(2002)}]{weltje2002}
+Weltje, G.: Quantitative analysis of detrital modes: statistically rigorous
+  confidence regions in ternary diagrams and their use in sedimentary
+  petrology, Earth-Science Reviews, 57, 211 -- 253,
+  \doi{10.1016/S0012-8252(01)00076-9}, 2002.
+
+\bibitem[{Wiedenbeck et~al.(1995)Wiedenbeck, Alle, Corfu, Griffin, Meier,
+  Oberli, Quadt, Roddick, and Spiegel}]{wiedenbeck1995}
+Wiedenbeck, M., Alle, P., Corfu, F., Griffin, W., Meier, M., Oberli, F.~v.,
+  Quadt, A.~v., Roddick, J., and Spiegel, W.: {Three natural zircon standards
+  for U-Th-Pb, Lu-Hf, trace element and REE analyses}, Geostandards newsletter,
+  19, 1--23, 1995.
+
+\bibitem[{Williams(1998)}]{williams1998}
+Williams, I.~S.: {U-Th-Pb geochronology by ion microprobe}, Reviews in Economic
+  Geology, 7, 1--35, 1998.
+
+\bibitem[{York et~al.(2004)York, Evensen, Mart\'{i}nez, and
+  De~Basabe~Delgado}]{york2004}
+York, D., Evensen, N.~M., Mart\'{i}nez, M.~L., and De~Basabe~Delgado, J.:
+  {Unified equations for the slope, intercept, and standard errors of the best
+  straight line}, American Journal of Physics, 72, 367--375, 2004.
+
+\end{thebibliography}

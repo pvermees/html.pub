@@ -1,0 +1,81 @@
+
+<!-- saved from url=(0046)http://www.ucl.ac.uk/~ucfbpve/mudisc/note.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+div {height: 50px; width:50px} 
+</style>
+<title>
+Correction of the MDS paper
+</title>
+</head><body>
+<table>
+<tbody><tr height="50px">
+<td width="50px"></td> 
+<td width="500px"></td>
+</tr>
+<tr height="50px">
+<td width="50px"></td> 
+<td width="500px">
+<h2>corrections</h2>
+
+Section 2 of the paper posits that it is desirable for dissimilarity
+measures in detrital geochronology to exhibit the following four
+properties:
+
+<p></p>
+
+<table width='100%'>
+<tr><td align=left nowrap>1. &delta;<sub>i,j</sub> is independent of sample size N</td>
+<td align=right nowrap></td></tr>
+<tr><td align=left nowrap>2. &delta;<sub>i,j</sub> = 0 if i = j and 
+&delta;<sub>i,j</sub> > 0 otherwise</td>
+<td align=right nowrap>(non-negativity)</td></tr>
+<tr><td align=left nowrap>
+3. &delta;<sub>i,j</sub> = &delta;<sub>j,i</sub>
+</td><td align=right nowrap>
+(symmetry)
+</td></tr>
+<tr><td align=left nowrap>
+4. &delta;<sub>i,k</sub> &le; &delta;<sub>i,j</sub> + &delta;<sub>j,k</sub>
+</td><td align=right nowrap>
+(triangle inequality)
+</td></tr>
+</table>
+
+<p></p>
+
+Although this may appear reasonable at first glance, it turns out that
+the first two requirements are mutually incompatible. The paper’s
+assertion that the effect sizes of statistical tests such as
+Chi-square and Kolmogorov-Smirnov (K-S) fulfill all four requirements
+is incorrect on three levels. First, the effect size of the Chi-square
+test fulfils requirement 1 but not 2. Second, the K-S test does not
+have a calculable effect size. And third, the K-S statistic fulfils
+requirement 2 but not 1. The reason for the incompatibility of
+requirements 1 and 2 is simple. To guarantee non-negativity, the
+definition of dissimilarity measures commonly includes quadratic terms
+or absolute values, which inevitably introduce positive bias. Note
+that this is not only the case for the K-S statistic, but also for
+Euclidean distances such as the Aitchison dissimilarity.
+Interestingly, the removal of requirement 1 is good news for the
+applicability of multidimensional scaling to provenance research,
+because doing so greatly increases the number of suitable
+dissimilarity measures. With requirement 4 also being optional (in
+non-metric scaling), MDS turns out to be even more flexible and widely
+applicable than proposed in the original paper.
+
+<p></p>
+
+The observant reader may also note a slight mismatch between Equation
+13 and the plot coordinates of Figure 3a. This is because Equation 13
+was calculated by classical MDS whereas Figure 3a was calculated by
+metric MDS. Equation 13 further implies that two-dimensional MDS
+configurations are given by the first two dimensions of any higher
+dimensional case. Although this is true for classical MDS, it is
+important to note that it is not necessarily the case for (non)metric
+MDS. Fortunately, neither the examples nor the computer code provided
+with the paper are affected by this inaccuracy.
+
+</td>
+</tr>
+
+</tbody></table></body></html>

@@ -1,0 +1,11 @@
+ <div class="verbatim" id="verbatim-29">
+<span 
+class="cmtt-10x-x-109">pc</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;prcomp(USArrests,</span><span 
+class="cmtt-10x-x-109">&#x00A0;scale=TRUE)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">biplot(pc)</span>
+</div>
+<!--l. 1021--><p class="nopar" >                                                                               

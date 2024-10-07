@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Confidence intervals</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,3 --> 
+<meta name="src" content="MLEpaper3.tex"> 
+<meta name="date" content="2010-01-08 16:32:00"> 
+<link rel="stylesheet" type="text/css" href="MLEpaper3.css"> 
+</head><body 
+>
+   <!--l. 326--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se5.html" >next</a>] [<a 
+href="MLEpaper3se3.html" >prev</a>] [<a 
+href="MLEpaper3se3.html#tailMLEpaper3se3.html" >prev-tail</a>] [<a 
+href="#tailMLEpaper3se4.html">tail</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se4.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x5-40004"></a>Confidence intervals</h3>
+<!--l. 328--><p class="noindent" >Using the covariance matrix of the logratio average (<img 
+src="MLEpaper339x.png" alt="&#x03A3;&#x02C6;"  class="circ" >), and performing a linear error propagation, it is
+straightforward to calculate the covariance matrix of the geometric mean composition (<img 
+src="MLEpaper340x.png" alt="&#x0393;&#x02C6;"  class="circ" >), evaluated at
+<img 
+src="MLEpaper341x.png" alt="M&#x02C6;"  class="circ" >:
+   <table 
+class="equation"><tr><td><a 
+ id="x5-4001r18"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper342x.png" alt="     &#x2032;
+&#x02C6;&#x0393; = A &#x02C6;&#x03A3;A
+" class="math-display" ></center></td><td class="equation-label">(18)</td></tr></table>
+<!--l. 336--><p class="nopar" >
+<!--l. 338--><p class="indent" >   where A is the matrix of first derivatives of Equation <a 
+href="MLEpaper3se3.html#x4-3002r9">9<!--tex4ht:ref: eq:inverse-transform --></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x5-4002r19"></a>
+   <center class="math-display" >
+<img 
+src="MLEpaper343x.png" alt="      &#x2202;U-- &#x2202;Th  &#x2202;Sm-  &#x2202;He
+A = [ &#x2202;&#x2202;Uv- &#x2202;&#x2202;vTh  &#x2202;&#x2202;Svm-  &#x2202;&#x2202;vHe ]
+      &#x2202;w&#x2202;U-- &#x2202;&#x2202;wTh  &#x2202;&#x2202;Swm-  &#x2202;&#x2202;wHe  &#x02C6;M
+      &#x2202;x   &#x2202;x    &#x2202;x   &#x2202;x
+" class="math-display" ></center></td><td class="equation-label">(19)</td></tr></table>
+<!--l. 352--><p class="nopar" >
+<!--l. 354--><p class="indent" >   Equation <a 
+href="#x5-4001r18">18<!--tex4ht:ref: eq:gamma --></a> contains an expression for the covariances of the geometric mean composition, which were omitted
+by <a 
+href="MLEpaper3li2.html#Xvermeesch2008a">Vermeesch</a>&#x00A0;(<a 
+href="MLEpaper3li2.html#Xvermeesch2008a">2008</a>) but are required for a full propagation of age uncertainty. However, even the complete error
+propagation may be inaccurate because it is based on a first order Maclaurin series expansion of Equation <a 
+href="MLEpaper3se3.html#x4-3002r9">9<!--tex4ht:ref: eq:inverse-transform --></a>,
+which is highly non-linear. This problem can be circumvented using numerical techniques, such as the
+following deterministic algorithm. First, build a regular grid across the two (for U-Th-He) or three (for
+U-Th-Sm-He) dimensions of logratio space (Figure <a 
+href="MLEpaper3li3.html#x10-90011">1<!--tex4ht:ref: fig:ci --></a>.a). Second, for each of these grid points, calculate
+(a) its likelihood under a normal distribution with mean <img 
+src="MLEpaper344x.png" alt=" &#x02C6;
+M"  class="circ" > and covariance matrix <img 
+src="MLEpaper345x.png" alt="&#x02C6;&#x03C3;"  class="circ" >, and (b) the
+corresponding age. Third, calculate the Bayesian cumulative posterior distribution by ranking the numerical
+data in order of increasing age and computing the running sum of the likelihoods. Fourth, obtain an
+asymmetrical 95% confidence interval from the 2.5 and 97.5 percentiles of the posterior distribution (Figure
+<a 
+href="MLEpaper3li3.html#x10-90011">1<!--tex4ht:ref: fig:ci --></a>.b).
+   <!--l. 373--><div class="crosslinks"><p class="noindent">[<a 
+href="MLEpaper3se5.html" >next</a>] [<a 
+href="MLEpaper3se3.html" >prev</a>] [<a 
+href="MLEpaper3se3.html#tailMLEpaper3se3.html" >prev-tail</a>] [<a 
+href="MLEpaper3se4.html" >front</a>] [<a 
+href="MLEpaper3.html#MLEpaper3se4.html" >up</a>] </p></div>
+<!--l. 373--><p class="indent" >   <a 
+ id="tailMLEpaper3se4.html"></a>  
+</body></html> 

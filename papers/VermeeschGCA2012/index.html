@@ -1,0 +1,1394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>A simple method for in-situ U-Th-He dating</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="GCApaper.tex"> 
+<meta name="date" content="2011-11-30 11:11:00"> 
+<style>
+ 
+/* start css.sty */
+.cmr-7{font-size:63%;}
+.cmr-10{font-size:90%;}
+.cmr-10x-x-109{}
+.cmr-17{font-size:154%;}
+.cmr-12{font-size:109%;}
+.cmr-8{font-size:72%;}
+.cmr-6{font-size:54%;}
+.cmmi-8{font-size:72%;font-style: italic;}
+.cmsy-10x-x-120{font-size:109%;}
+.cmsy-8{font-size:72%;}
+.cmmi-10x-x-109{font-style: italic;}
+.cmsy-10x-x-109{}
+.cmtt-10x-x-109{font-family: monospace;}
+.cmbx-10{font-size:90%; font-weight: bold;}
+.cmti-10x-x-109{ font-style: italic;}
+p.noindent { text-indent: 0em }
+td p.noindent { text-indent: 0em; margin-top:0em; }
+p.nopar { text-indent: 0em; }
+p.indent{ text-indent: 1.5em }
+@media print {div.crosslinks {visibility:hidden;}}
+a img { border-top: 0; border-left: 0; border-right: 0; }
+center { margin-top:1em; margin-bottom:1em; }
+td center { margin-top:0em; margin-bottom:0em; }
+.Canvas { position:relative; }
+img.math{vertical-align:middle;}
+li p.indent { text-indent: 0em }
+li p:first-child{ margin-top:0em; }
+li p:last-child, li div:last-child { margin-bottom:0.5em; }
+li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+.enumerate1 {list-style-type:decimal;}
+.enumerate2 {list-style-type:lower-alpha;}
+.enumerate3 {list-style-type:lower-roman;}
+.enumerate4 {list-style-type:upper-alpha;}
+div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+.obeylines-h,.obeylines-v {white-space: nowrap; }
+div.obeylines-v p { margin-top:0; margin-bottom:0; }
+.overline{ text-decoration:overline; }
+.overline img{ border-top: 1px solid black; }
+td.displaylines {text-align:center; white-space:nowrap;}
+.centerline {text-align:center;}
+.rightline {text-align:right;}
+div.verbatim {font-family: monospace; white-space: nowrap; text-align:left; clear:both; }
+.fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.fbox {display:table}
+div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.minipage{width:100%;}
+div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+div.center div {text-align: left;}
+div.flushright, div.flushright div.flushright {text-align: right;}
+div.flushright div {text-align: left;}
+div.flushleft {text-align: left;}
+.underline{ text-decoration:underline; }
+.underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+.framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+.framebox-c {text-align:center;}
+.framebox-l {text-align:left;}
+.framebox-r {text-align:right;}
+span.thank-mark{ vertical-align: super }
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+table.tabular td p{margin-top:0em;}
+table.tabular {margin-left: auto; margin-right: auto;}
+td p:first-child{ margin-top:0em; }
+td p:last-child{ margin-bottom:0em; }
+div.td00{ margin-left:0pt; margin-right:0pt; }
+div.td01{ margin-left:0pt; margin-right:5pt; }
+div.td10{ margin-left:5pt; margin-right:0pt; }
+div.td11{ margin-left:5pt; margin-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+td.td00{ padding-left:0pt; padding-right:0pt; }
+td.td01{ padding-left:0pt; padding-right:5pt; }
+td.td10{ padding-left:5pt; padding-right:0pt; }
+td.td11{ padding-left:5pt; padding-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+.hline hr, .cline hr{ height : 1px; margin:0px; }
+.tabbing-right {text-align:right;}
+span.TEX {letter-spacing: -0.125em; }
+span.TEX span.E{ position:relative;top:0.5ex;left:-0.0417em;}
+a span.TEX span.E {text-decoration: none; }
+span.LATEX span.A{ position:relative; top:-0.5ex; left:-0.4em; font-size:85%;}
+span.LATEX span.TEX{ position:relative; left: -0.4em; }
+div.float, div.figure {margin-left: auto; margin-right: auto;}
+div.float img {text-align:center;}
+div.figure img {text-align:center;}
+.marginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+.marginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+table.equation {width:100%;}
+.equation td{text-align:center; }
+td.equation { margin-top:1em; margin-bottom:1em; } 
+td.equation-label { width:5%; text-align:center; }
+td.eqnarray4 { width:5%; white-space: normal; }
+td.eqnarray2 { width:5%; }
+table.eqnarray-star, table.eqnarray {width:100%;}
+div.eqnarray{text-align:center;}
+div.array {text-align:center;}
+div.pmatrix {text-align:center;}
+table.pmatrix {width:100%;}
+span.pmatrix img{vertical-align:middle;}
+div.pmatrix {text-align:center;}
+table.pmatrix {width:100%;}
+span.bar-css {text-decoration:overline;}
+img.cdots{vertical-align:middle;}
+.partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+.index-item, .index-subitem, .index-subsubitem {display:block}
+div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+div.caption span.id{font-weight: bold; white-space: nowrap; }
+h1.partHead{text-align: center}
+p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+.paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+.subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+.quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
+.verse{white-space:nowrap; margin-left:2em}
+div.maketitle {text-align:center;}
+h2.titleHead{text-align:center;}
+div.maketitle{ margin-bottom: 2em; }
+div.author, div.date {text-align:center;}
+div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+div.author{white-space: nowrap;}
+.quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+.abstract p {margin-left:5%; margin-right:5%;}
+div.abstract {width:100%;}
+.figure img.graphics {margin-left:10%;}
+/* end css.sty */
+
+</style> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body >
+<table class="main" width="800"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">A simple method for in-situ U-Th-He dating</h2>
+<div class="author" ><span 
+class="cmr-12">Pieter Vermeesch </span><span class="thank-mark"><a 
+href="#tk-1"><span 
+class="cmsy-10x-x-120">*</span></a></span><span class="thank-mark"><a 
+href="#tk-2"><span 
+class="cmsy-10x-x-120">&#8224;</span></a></span><span 
+class="cmr-12">, Sarah C. Sherlock</span><span class="thank-mark"><a 
+href="#tk-3"><span 
+class="cmsy-10x-x-120">&#8225;</span></a></span><span 
+class="cmr-12">, Nick M. W. Roberts</span><span class="thank-mark"><a 
+href="#tk-4"><span 
+class="cmsy-10x-x-120">&sect;</span></a></span><span 
+class="cmr-12">, and Andy Carter</span><span 
+class="cmsy-8">*</span> </div>
+<br />
+<div class="date" ></div>
+   <div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmsy-10x-x-109">*</span></span>Department of Earth and Planetary Sciences, Birkbeck, University of London<br /><a 
+ id="tk-2"></a><span class="thank-mark"><span 
+class="cmsy-10x-x-109">&#8224;</span></span>Corresponding author,
+email:&#x00A0;<span 
+class="cmtt-10x-x-109">p.vermeesch [at] ucl.ac.uk</span><br /><a 
+ id="tk-3"></a><span class="thank-mark"><span 
+class="cmsy-10x-x-109">&#8225;</span></span>Department of Earth and Environmental Sciences, The Open
+University, Milton Keynes<br /><a 
+ id="tk-4"></a><span class="thank-mark"><span 
+class="cmsy-10x-x-109">&sect;</span></span> NERC Isotope Geosciences Laboratory, British Geological Survey,
+Keyworth</div></div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 21--><p class="noindent" >
+<!--l. 21--><p class="noindent" ><span 
+class="cmbx-10">Abstract</span></div>
+     <!--l. 22--><p class="indent" >    <span 
+class="cmr-10">This paper presents a significantly simplified method for in-situ U-Th-He dating removing</span>
+     <span 
+class="cmr-10">the need to know any absolute concentrations or ablation pit volumes. This is done by calculating</span>
+     <span 
+class="cmr-10">the normalised U, Th, and He concentrations of a conventionally dated calibration standard from</span>
+     <span 
+class="cmr-10">its measured Th/U ratio and known U-Th-He age, and scaling these concentrations to the raw</span>
+     <span 
+class="cmr-10">U, Th, and He signals of the sample. The Th/U ratio of the standard can be determined from</span>
+     <span 
+class="cmr-10">its measured</span> <sup><span 
+class="cmr-7">208</span></sup><span 
+class="cmr-10">Pb/</span><sup><span 
+class="cmr-7">206</span></sup><span 
+class="cmr-10">Pb ratio, removing the need to use NIST glass as a reference material.</span>
+     <span 
+class="cmr-10">We introduce an LA-ICP-MS-based method to correct for variable ablation depths between the</span>
+     <span 
+class="cmr-10">standard and the unknown, using the strength of the ablated</span> <sup><span 
+class="cmr-7">29</span></sup><span 
+class="cmr-10">Si signal. Finally, we propose</span>
+     <span 
+class="cmr-10">a pseudo-depth profile method to assess the effects of compositional zoning on the accuracy of</span>
+     <span 
+class="cmr-10">in-situ U-Th-He data. The effectiveness of the proposed method has been demonstrated on three</span>
+     <span 
+class="cmr-10">samples of gem-quality Sri Lanka zircon, which yield ages that are in agreement with previously</span>
+     <span 
+class="cmr-10">published conventional U-Th-He measurements.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 43--><p class="noindent" >U and Th decay to different isotopes of lead by <span 
+class="cmmi-10x-x-109">&#x03B1;</span>-emission. This radioactive decay forms the basis of the
+U-Th-Pb and U-Th-He methods of geochronology, each of which have different geological significance. The
+U-Th-Pb method is used to study igneous and metamorphic processes affecting U-Th-bearing minerals
+such as zircon and apatite, whereas the U-Th-He method is used to study low temperature
+
+processes occurring near the Earth&#8217;s surface. Since its revival by <a 
+href="#Xzeitler1987">Zeitler et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xzeitler1987">1987</a>), the
+U-Th-He method has found a large number of applications in tectonics and geomorphology
+(<a 
+href="#Xreiners2009">Reiners and Shuster</a>,&#x00A0;<a 
+href="#Xreiners2009">2009</a>). A fundamental driving force behind these applications have been
+technological advances in mass spectrometry and micro-analytical technology, which have led to a
+steady reduction of sample size while increasing sample throughput at the same time. The
+technological evolution of the U-Th-He method can be broadly divided into three periods.
+From 1987 until 2000, helium was measured by bulk degassing of multi-grain aliquots in a
+resistance furnace, and measuring the U-Th content on either the same or a different aliquot
+by XRF or TIMS (<a 
+href="#Xzeitler1987">Zeitler et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xzeitler1987">1987</a>;&#x00A0;<a 
+href="#Xlippolt1994">Lippolt et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xlippolt1994">1994</a>;&#x00A0;<a 
+href="#Xwolf1996">Wolf et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xwolf1996">1996</a>). In 2000, a
+method was developed to degas individual mineral grains by means of laser-heating in Pt or Nb
+&#8216;micro-furnaces&#8217;, followed by acid dissolution and U-Th analysis by isotope dilution in an
+ICP-MS (<a 
+href="#Xhouse2000">House et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhouse2000">2000</a>). This method is still the most widely used technique today.
+Finally, in 2006, Boyce et al. developed in-situ U-Th-He geochronology by laser ablation.
+So far, this method has been successfully applied to monazite (<a 
+href="#Xboyce2006">Boyce et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xboyce2006">2006</a>,&#x00A0;<a 
+href="#Xboyce2009">2009</a>),
+zircon (<a 
+href="#Xtripathy2010">Tripathy et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtripathy2010">2010</a>;&#x00A0;<a 
+href="#Xvansoest2008">van Soest et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvansoest2008">2008</a>), and apatite (<a 
+href="#Xvansoest2008">van Soest et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvansoest2008">2008</a>).
+<br 
+class="newline" />
+<!--l. 71--><p class="indent" >   In-situ U-Th-He geochronology by laser ablation potentially offers the following advantages over
+conventional U-Th-He dating by whole grain degassing and dissolution. First, it dramatically increases
+sample throughput. Measuring the U and Th content of zircon by isotope dilution requires dissolution in
+hydrofluoric acid at high temperature and pressure using a Parr bomb for up to 48 hours. In
+contrast, measuring the U and Th content by LA-ICP-MS, SIMS, or EMPA can be done in a
+matter of minutes. Second, the process of in-situ measurements of U and Th content of grains
+yields U-Th-Pb ages as a by-product. Thus, in-situ dated zircon crystals are double-dated by
+default, opening up exciting new research opportunities in detrital geochronology (<a 
+href="#Xreiners2005">Reiners
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xreiners2005">2005</a>). Currently, in-situ U-Th-He geochronology involves the following analytical steps (<a 
+href="#Xboyce2006">Boyce
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xboyce2006">2006</a>):
+<!--l. 85--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1002x1">Polish and mount the crystals in Indium, which is a malleable material that does not break
+     down in ultrahigh vacuum, in contrast with most epoxy resins or teflon.
+     </li>
+     <li 
+  class="enumerate" id="x1-1004x2">Ablate the sample with a short wavelength laser and measure the amount of helium released
+     (in moles).
+     </li>
+     <li 
+  class="enumerate" id="x1-1006x3">Measure the ablation pit volume with an interferometric microscope to calculate the helium
+     concentration (in moles per cc).
+     </li>
+     <li 
+  class="enumerate" id="x1-1008x4">Measure the U and Th concentration by ICP-MS, SIMS, or EMPA (in moles per cc).
+     </li>
+     <li 
+  class="enumerate" id="x1-1010x5">Enter the U, Th, and He concentrations into the helium ingrowth equation to calculate an
+     age.</li></ol>
+
+<!--l. 99--><p class="indent" >   The revised method presented in this paper greatly simplifies the second and fourth steps of the
+current method while completely removing the third. Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:method --></a> shows how this is achieved by using an
+independently dated U-Th-He age standard, precisely determining its Th/U ratio, and comparing its raw
+U, Th, and He signals with those of the unknown sample. Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:thu --></a> introduces a way to determine the
+Th/U ratio of the standard without the need for NIST glass as a reference material, by measuring the
+<sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">206</span></sup>Pb ratio and assuming concordance of the U-Th-Pb system in the age standard. Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:depth --></a>
+outlines a method to estimate relative differences in laser ablation rate without the need for
+absolute depth measurements, by tracking the signal strength of stoichiometric <sup><span 
+class="cmr-8">29</span></sup>Si. Section
+<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:zoning --></a> discusses the complications arising from compositional zoning of zircons, and outlines a
+&#8216;pseudo depth profiling&#8217; method to semi-quantitatively assess the extent to which a sample
+suffers from such problems. Finally, Section <a 
+href="#x1-100007">7<!--tex4ht:ref: sec:srilanka --></a> applies the proposed method to three shards of
+gem-quality Sri Lanka zircons that had been previously dated with the conventional U-Th-He
+method.
+<!--l. 119--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Method</h3>
+<!--l. 122--><p class="noindent" >Because the U-Th-He age equation is scale invariant, it does not matter if a mineral&#8217;s U, Th, and He
+contents are expressed as atomic abundances or concentrations. They can even be renormalised to unity
+and plotted on a ternary diagram (<a 
+href="#Xvermeesch2010a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>). To calculate a helium age, it is not
+necessary to know the absolute concentrations of U, Th, and He. It suffices that two elemental
+ratios are known, such as U/He and Th/He, or U/Th and U/He. This insight forms the basis
+of the simplified method, which does not require knowledge of any absolute abundances or
+concentrations, but instead uses the raw mass spectrometer measurements. In its simplest form,
+assuming identical laser ablation rates in the standard and the unknown, the method works as
+follows:
+<!--l. 135--><p class="indent" >
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-2002x1">Polish and mount two sets of grains in Indium: a standard of known U-Th-He age, and the
+     sample of interest, whose age is unknown.
+     </li>
+     <li 
+  class="enumerate" id="x1-2004x2">Ablate the grains and measure the raw helium signal (in A, V, or Hz) of the sample along
+     with helium measurements of the age standard.
+     </li>
+     <li 
+  class="enumerate" id="x1-2006x3">Measure the U and Th signals of the standard and the sample by LA-ICP-MS (in Hz).
+     </li>
+     <li 
+  class="enumerate" id="x1-2008x4">Obtain the U-Th-He age of the sample by scaling its U, Th, and He signals to those of the
+     standard.</li></ol>
+<!--l. 147--><p class="indent" >   In practice, the standard and the unknown are combined on a pairwise basis. This is done by
+calculating the normalised U, Th, and He concentrations of the standard from its known age and
+measured Th/U ratio (Figure <a 
+href="#x1-20091">1<!--tex4ht:ref: fig:pairwise --></a>.a), and then using this normalised composition as a benchmark against
+which to compare the U, Th, and He signals of the unknown (Figure <a 
+href="#x1-20091">1<!--tex4ht:ref: fig:pairwise --></a>.b,c). To correct for
+
+instrument drift and plasma-induced fluctuations in the ICP-MS, the U and Th signals should be
+measured relative to stoichiometric <sup><span 
+class="cmr-8">29</span></sup>Si. Because any analytical uncertainty in the age standard
+propagates into the unknown age, the choice of standard is very important. In order to qualify
+as a good U-Th-He age standard, a sample must fulfill the following requirements. First, it
+should be a large gem-quality crystal, ensuring relatively uniform ablation behaviour, while
+saving the user the trouble of polishing and mounting large numbers of crystals in Indium.
+Second, it should lack major compositional zoning and have relatively uniform U and Th
+concentrations. Third, it must not show any significant core-to-rim depletion in helium content due
+to diffusive loss during cooling. Sri Lanka zircon fulfills all these requirements and will be
+used to illustrate the effectiveness of the proposed method at the end of this paper (Section
+<a 
+href="#x1-100007">7<!--tex4ht:ref: sec:srilanka --></a>).
+<!--l. 169--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-20091"></a>
+
+<br /> 
+<table><tr><td width=20></td><td>
+<a href="Fig1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="Fig1.png" height="320" width="149" /></a>
+</td><td width=20></td><td valign="bottom">
+<div class="caption" 
+><span class="id">Figure&#x00A0;1: </span>
+<span  
+class="content">Conceptual diagram of the pairwise dating method. Age calculation involves the following
+steps:  a.  Measure  the  Th/U-ratio  of  a  standard  of  known  U-Th-He  age  t<sub><span 
+class="cmmi-8">s</span></sub>,  and  calculate  the
+corresponding normalised U, Th, and He abundances (star), where U+Th+He=1; b. Compare the
+raw mass spectrometer signals (relative to <sup><span 
+class="cmr-8">29</span></sup>Si for the ICP-MS measurements) of the standard with
+the corresponding signals of the unknown, to obtain three &#8216;scaling factors&#8217; fU, fTh, and fHe; c.
+Apply these scaling factors to the normalised U, Th, and He content of the standard and plug the
+resulting products (ellipse) in the U-Th-He age equation to obtain the U-Th-He age of the unknown
+sample.</span></div><!--tex4ht:label?: x1-20091 -->
+</td></table>
+
+<!--l. 183--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Th/U ratio measurements</h3>
+<!--l. 188--><p class="noindent" >One of the advantages of the simplified method is that it avoids the challenges of measuring U and Th
+concentrations by ICP-MS, which is generally done relative to a NIST glass (<a 
+href="#Xpearce1997">Pearce et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpearce1997">1997</a>) under
+the assumption that the elemental fractionation of U and Th in glass is the same as in zircon. Instead of
+absolute concentrations, the revised method essentially hinges on correctly determining the Th/U
+ratio. This can be done without the need to use a separate reference material, if a U-Th-He
+age standard is used that is concordant in its <sup><span 
+class="cmr-8">232</span></sup>Th/<sup><span 
+class="cmr-8">208</span></sup>Pb and <sup><span 
+class="cmr-8">238</span></sup>U/<sup><span 
+class="cmr-8">206</span></sup>Pb ages. The Th/U
+ratio can then be determined from the <sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">206</span></sup>Pb-ratio and the U-Th-Pb concordia age
+t:
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img src="GCApaper0x.png" alt="232      208    &#x03BB;238t
+--T-h-= ---Pb(e------1-)
+238U    206Pb(e&#x03BB;232t - 1 )
+" class="math-display" ><a 
+ id="x1-3001r1"></a></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 204--><p class="nopar" >
+<!--l. 206--><p class="indent" >   It is important to note that the Th/U ratio only needs to be determined for the standard. In other
+words, the use of Equation <a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:UTh --></a> does not require U-Th-Pb concordance of the sample.
+<!--l. 210--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>An ICP-MS-based drill rate proxy</h3>
+<!--l. 213--><p class="noindent" >The pairwise dating method outlined in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:method --></a> and summarised in Figure <a 
+href="#x1-20091">1<!--tex4ht:ref: fig:pairwise --></a> makes one assumption,
+namely that the ablation pit volume is the same for the U-Th-He age standard and the sample. Violation
+of this assumption may result in systematic errors. It is straightforward to correct these errors by defining
+a &#8216;scaling factor&#8217; (fD, Table <a 
+href="#x1-160011">1<!--tex4ht:ref: tab:data --></a>) for the ablation pit depth measured, for example, by interferometric
+microscopy (<a 
+href="#Xboyce2006">Boyce et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xboyce2006">2006</a>). At this point we should note that it is far easier to measure the depth of
+an ablation pit than it is to measure its volume. This is because the walls of pits produced by excimer
+lasers are often so steep that not enough light is available to produce an interferometric depth estimate of
+the ablation pit edges. Performing depth measurements adds another analytical step and partly
+defeats the purpose of the pairwise dating method. As a potential solution to this problem,
+we propose an LA-ICP-MS-based &#8216;drill rate proxy&#8217; to be used instead of the interferometric
+microscope. The idea behind the drill rate proxy is that the beam intensity of a stoichiometric
+nuclide, such as <sup><span 
+class="cmr-8">29</span></sup>Si should increase proportionally with the rate of laser ablation. If this
+
+is correct, then the average ratio (fSi) of the time-resolved <sup><span 
+class="cmr-8">29</span></sup>Si spectrum of the unknown
+sample over that of the standard should equal the ratio of the ablation pit depths (fD). It
+then suffices to divide the normalised helium signal by fSi to account for the differential drill
+rates.
+<!--l. 237--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Dealing with compositional zoning</h3>
+<!--l. 240--><p class="noindent" ><span 
+class="cmmi-10x-x-109">&#x03B1;</span>-particles are emitted with energies of several MeV and travel, on average, 15-20<span 
+class="cmmi-10x-x-109">&#x03BC;m </span>in zircon before
+coming to rest (<a 
+href="#Xfarley1996">Farley et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfarley1996">1996</a>;&#x00A0;<a 
+href="#Xhourigan2005">Hourigan et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhourigan2005">2005</a>). A significant fraction of the radiogenic <sup><span 
+class="cmr-8">4</span></sup>He
+produced by a typical <span 
+class="cmsy-10x-x-109">~</span>100<span 
+class="cmmi-10x-x-109">&#x03BC;</span>m grain is therefore ejected from the crystal. Corrections for this helium loss
+are on the order of 20% or more and represent the largest source of analytical uncertainty in
+conventional U-Th-He dating. The problem is that the <span 
+class="cmmi-10x-x-109">&#x03B1;</span>-ejection correction is made under the
+assumption of a uniform distribution of <span 
+class="cmmi-10x-x-109">&#x03B1;</span>-emitters, but that most naturally occurring crystals
+are zoned, resulting in incorrect <span 
+class="cmmi-10x-x-109">&#x03B1;</span>-retention factors. One of the advantages of in-situ dating
+is that, provided the ablation spot is located at least one <span 
+class="cmmi-10x-x-109">&#x03B1;</span>-stopping length away from the
+grain boundaries, no <span 
+class="cmmi-10x-x-109">&#x03B1;</span>-ejection correction is required. Unfortunately, this does not entirely
+free the method from the compositional zoning problem, because <span 
+class="cmmi-10x-x-109">&#x03B1;</span>-particles may be ejected
+from U-Th-enriched to U-Th-depleted zones, resulting in spatially variable U-Th-He ages.
+<br 
+class="newline" />
+<!--l. 258--><p class="indent" >   These problems are not any easier to solve with the in-situ dating method than they are with the
+conventional U-Th-He method. In-situ dating, however, does allow zoning effects to be detected and
+quantified in ways that are not possible by conventional whole grain degassing and dissolution. Lateral age
+variations can be measured by placing several laser spots on the same polished zircon surface, while
+vertical age variability can be directly assessed from the time resolved ICP-MS signal (<a 
+href="#Xhourigan2005">Hourigan
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xhourigan2005">2005</a>). Applying the pairwise dating method to every ICP-MS measurement yields depth profiles of
+apparent U-Th-He ages, which may be more appropriately called &#8216;pseudo depth profiles&#8217; because He is
+measured separately (in static vacuum) and from shallower depths than U and Th (which
+are measured in dynamic vacuum). These pseudo depth profiles are very useful for detecting
+compositional zoning. If a pseudo depth profile is not flat, then the best age is obtained from
+the shallow parts of the U-Th ablation pit, which are closest to where the He was measured
+from.
+<!--l. 275--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Analytical methods</h3>
+<!--l. 277--><p class="noindent" >The effectiveness of the pairwise dating method was demonstrated using a number of independently dated
+test samples. This section provides the analytical details of the instrumental setup used in this proof of
+concept study.
+<!--l. 282--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.1   </span> <a 
+ id="x1-70006.1"></a>Samples</h4>
+
+<!--l. 284--><p class="noindent" >We used three shards of gem-quality Sri Lanka zircon (G168, B188, and RB140), which had been
+previously analysed by conventional U-Th-He dating by microfurnace heating and acid dissolution
+(<a 
+href="#Xnasdala2004">Nasdala et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnasdala2004">2004</a>). All three crystals had similar U-Pb ages (547-566 Ma) and U-Th-He ages (437-450
+Ma), but very different U and Th concentrations, with &#8216;effective uranium&#8217; concentrations (eU <span 
+class="cmsy-10x-x-109">&#x2261; </span>U +
+0.235Th) ranging from 317 to 1560 ppm. The combination of large (mm-scale) grain size, which enables
+multiple laser spots to be placed on the same crystal, and inter-sample compositional variability makes the
+Sri Lanka zircons ideally suited to test the precision and accuracy of the simplified method. In this study,
+we have used sample G168 as a standard, and samples RB140 and B188 as unknowns. In addition, the
+in-situ dating method was also applied to zircons from the Fish Canyon Tuff (27.8 <span 
+class="cmsy-10x-x-109">&plusmn; </span>0.7 Ma,&#x00A0;<a 
+href="#Xtagami2003">Tagami
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtagami2003">2003</a>) and Tardree Rhyolite (58.7 <span 
+class="cmsy-10x-x-109">&plusmn; </span>0.7 Ma,&#x00A0;<a 
+href="#Xtagami2003">Tagami et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtagami2003">2003</a>). These compositionally
+zoned samples were used to illustrate the pseudo-depth profile technique proposed in Section
+<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:depth --></a>.
+<!--l. 302--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.2   </span> <a 
+ id="x1-80006.2"></a>Noble gas measurements</h4>
+<!--l. 304--><p class="noindent" >All three grains were first mounted in teflon and polished with 3<span 
+class="cmmi-10x-x-109">&#x03BC;</span>m alumina. They were then extracted
+from the teflon and pressed into strips of Indium foil with the polished side facing upwards. Helium
+analyses were done at the Open University. Gas was released by laser ablation using a 193nm Excimer
+laser, with a 70<span 
+class="cmmi-10x-x-109">&#x03BC;</span>m spot size, an estimated fluence of <span 
+class="cmsy-10x-x-109">~</span>2 J/cm<sup><span 
+class="cmr-8">2</span></sup>, and a pulse rate of 10Hz for a duration of
+20s. The extracted gas was cleaned for three minutes using three SAES AP-10 getters to remove
+active gases before analysing <sup><span 
+class="cmr-8">4</span></sup>He using a multiplier collector on a MAP 215-50 noble gas mass
+spectrometer.
+<!--l. 315--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.3   </span> <a 
+ id="x1-90006.3"></a>ICP-MS analyses</h4>
+<!--l. 317--><p class="noindent" >Following the helium measurements, the samples were recovered from the laser pan and analysed by
+LA-ICP-MS using the Agilent 7500 system at Birkbeck College, which is equipped with a
+frequency-quintupled (213nm wavelength) New Wave Nd-YAG laser. Masses 29 (10ms dwell time), 206
+(40ms), 207 (30ms), 208 (100ms), 232 (10ms), 235 (10ms), and 238 (10ms) were analysed using
+a 55<span 
+class="cmmi-10x-x-109">&#x03BC;</span>m spot, operated for 30s at 8 Hz with a fluence of <span 
+class="cmsy-10x-x-109">~</span>2J/cm<sup><span 
+class="cmr-8">2</span></sup>. A mixed Ar-He flux of
+1.14 l/min carried the aerosol to the ICP-MS. The relatively unstable first five seconds of the
+ablation signal were discarded (<a 
+href="#Xkosler2008">Ko&#353;ler</a>,&#x00A0;<a 
+href="#Xkosler2008">2008</a>) and the remaining twenty-five seconds worth of
+data were corrected for the blank, which was measured during laser warmup time for each
+analysis. Ple&#353;ovice zircon (<a 
+href="#Xslama2008">Sl&aacute;ma et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xslama2008">2008</a>) was analysed at regular intervals to normalise the
+<sup><span 
+class="cmr-8">206</span></sup>Pb/<sup><span 
+class="cmr-8">238</span></sup>U, <sup><span 
+class="cmr-8">207</span></sup>Pb/<sup><span 
+class="cmr-8">235</span></sup>U, and <sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">232</span></sup>Th ratios of the samples and verify their U-Th-Pb age
+concordance. Data reduction was done by taking the average ratios of the raw signals (in
+counts per second), and analytical uncertainties are reported as the standard errors of those
+averages.
+<!--l. 336--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-100007"></a>Results</h3>
+
+<!--l. 338--><p class="noindent" >All the relevant measurements required to calculate seven replicate U-Th-He age estimates of the two test
+samples (B188 and RB140) are shown in Table <a 
+href="#x1-160011">1<!--tex4ht:ref: tab:data --></a>. This section discusses the different columns of
+this table from left to right. Extended data files for all three Sri Lanka zircon shards, as well
+as a detailed description of the data reduction protocols are provided in the Supplementary
+Information.
+<!--l. 346--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">7.1   </span> <a 
+ id="x1-110007.1"></a>Th/U ratio measurements</h4>
+<!--l. 348--><p class="noindent" >The second column of Table <a 
+href="#x1-160011">1<!--tex4ht:ref: tab:data --></a> contains the <sup><span 
+class="cmr-8">232</span></sup>Th/<sup><span 
+class="cmr-8">238</span></sup>U-ratios of the age standard (G168), determined
+from its <sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">206</span></sup>Pb-ratio. These values cluster tightly around a mean value of 0.1706 <span 
+class="cmsy-10x-x-109">&plusmn; </span>0.0011 with
+an MSWD of 1.4, indicating that the observed scatter is well explained by the analytical
+uncertainties. This confirms that G168 does not exhibit significant compositional zoning, thus
+fulfilling an important requirement for its use as a U-Th-He age standard. Although Th/U ratios
+are only needed for the standard, the fact that all three Sri Lanka zircons yield concordant
+<sup><span 
+class="cmr-8">238</span></sup>U/<sup><span 
+class="cmr-8">206</span></sup>Pb, <sup><span 
+class="cmr-8">232</span></sup>Th/<sup><span 
+class="cmr-8">208</span></sup>Pb (and <sup><span 
+class="cmr-8">235</span></sup>U/<sup><span 
+class="cmr-8">207</span></sup>Pb) ages, offers an opportunity to thoroughly test
+the effectiveness of the <sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">206</span></sup>Pb-based method. Figure <a 
+href="#x1-110012">2<!--tex4ht:ref: fig:232_238 --></a> shows that the NIST610 and
+<sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">206</span></sup>Pb-based methods yield mutually consistent results, of similar analytical precision, which are
+generally in good agreement with the published Th/U ratio determined by ion-probe (<a 
+href="#Xnasdala2004">Nasdala
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnasdala2004">2004</a>). In all three samples, the <sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">232</span></sup>Th-based ratio estimate is slightly closer to
+the published values than the NIST-based measurements. Only RB140 shows a significant
+disagreement, possibly indicating the presence of compositional zoning between different shards of this
+crystal.
+<!--l. 370--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-110012"></a>
+
+<br /> 
+<table><tr><td width=20></td><td>
+<a href="Fig2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="Fig2.png" height="323" width="400" /></a>
+</td><td width=20></td><td valign="bottom">
+<div class="caption" 
+><span class="id">Figure&#x00A0;2:  </span><span  
+class="content">Comparison  of  two  <sup><span 
+class="cmr-8">232</span></sup>Th/<sup><span 
+class="cmr-8">238</span></sup>U-ratio  estimators.  X-values  were  calculated  relative
+to  NIST  SRM  610  glass  (<a 
+href="#Xpearce1997">Pearce  et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpearce1997">1997</a>).  Y-values  were  calculated  from  the  measured
+<sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">206</span></sup>Pb-ratios using Equation <a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:UTh --></a>. Grey bands show the published Th/U ratios measured by
+SIMS (<a 
+href="#Xnasdala2004">Nasdala et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnasdala2004">2004</a>). Black line shows the 1:1-ratio, error bars are 2<span 
+class="cmmi-10x-x-109">&#x03C3;</span>.</span></div><!--tex4ht:label?: x1-110012 -->
+</td></table>
+
+<!--l. 379--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">7.2   </span> <a 
+ id="x1-120007.2"></a>Depth measurements</h4>
+<!--l. 383--><p class="noindent" >The next three columns of Table <a 
+href="#x1-160011">1<!--tex4ht:ref: tab:data --></a> contain the &#8216;scaling factors&#8217; of U, Th, and He, as defined in Figure <a 
+href="#x1-20091">1<!--tex4ht:ref: fig:pairwise --></a>.
+All these values are significantly less than one reflecting the lower actinide concentrations of samples B188
+and RB140 compared to G168. B188 is richer in U, poorer in Th, and richer in He than RB140. At this
+point, the He signal has not yet been corrected for possible variations in the laser drill rate. Precise depth
+measurements of the ablation pits with a Zygo NewView 200 white-light microscope-based interferometer
+at Imperial College London indicate small but significant variability of the laser drill rates between
+samples. The average pit depths in the three Sri Lanka zircons used in this study are 17.93<span 
+class="cmsy-10x-x-109">&plusmn;</span>0.20<span 
+class="cmmi-10x-x-109">&#x03BC;</span>m for
+B188, 18.65<span 
+class="cmsy-10x-x-109">&plusmn;</span>0.38<span 
+class="cmmi-10x-x-109">&#x03BC;</span>m for RB140, and 19.93<span 
+class="cmsy-10x-x-109">&plusmn;</span>0.25<span 
+class="cmmi-10x-x-109">&#x03BC;</span>m for sample G168, yielding &#8216;fD-factors&#8217; of 0.90<span 
+class="cmsy-10x-x-109">&plusmn;</span>0.01 for
+B188 and 0.94<span 
+class="cmsy-10x-x-109">&plusmn;</span>0.02 for RB140, shown in the sixth column of Table <a 
+href="#x1-160011">1<!--tex4ht:ref: tab:data --></a>. It is interesting to note
+that the greatest pit depths are found in sample G168, which also has the highest U and Th
+content. The eighth column contains the drill rate proxy (fSi) which shows a reasonable linear
+correlation with fD for the three Sri Lanka zircons (Figure <a 
+href="#x1-120013">3<!--tex4ht:ref: fig:depths --></a>). The individual values of the
+drill rate proxy are significantly more scattered than the pit depths, but their averages scale
+proportionally.
+<!--l. 405--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-120013"></a>
+
+<br /> 
+<table><tr><td width=20></td><td>
+<a href="Fig3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="Fig3.png" height="317" width="400" /></a>
+</td><td width=20></td><td valign="bottom">
+<div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Comparison of the <sup><span 
+class="cmr-8">29</span></sup>Si-based &#8216;drill rate proxy&#8217; (y-axis), and the ablation pit depths
+measured by interferometric microscopy (x-axis) (black squares: B188, white triangles: RB140, black
+circles: G168.). &#8216;fSi&#8217; is the average ratio of time-resolved <sup><span 
+class="cmr-8">29</span></sup>Si beam intensity relative to Ple&#353;ovice
+zircon (<a 
+href="#Xslama2008">Sl&aacute;ma et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xslama2008">2008</a>). The black line shows the best linear fit with zero intercept. Weighted
+mean values are shown next to the axes. All error bars are 2<span 
+class="cmmi-10x-x-109">&#x03C3;</span>.</span></div><!--tex4ht:label?: x1-120013 -->
+</td></table>
+
+<!--l. 416--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">7.3   </span> <a 
+ id="x1-130007.3"></a>Ages</h4>
+<!--l. 421--><p class="noindent" >Two ages have been calculated for each measurement. The first, shown in the seventh column of Table
+<a 
+href="#x1-160011">1<!--tex4ht:ref: tab:data --></a>, was calculated using the measured pit depths (i.e., fHe was divided by fD). The second,
+shown in the last column, was calculated using the drill rate proxy (fHe divided by fSi). The
+central ages (<a 
+href="#Xvermeesch2010a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>) resulting from both methods are 429 <span 
+class="cmsy-10x-x-109">&plusmn; </span>9 and 426 <span 
+class="cmsy-10x-x-109">&plusmn; </span>16 Ma for
+B188, and 423 <span 
+class="cmsy-10x-x-109">&plusmn; </span>9 and 419 <span 
+class="cmsy-10x-x-109">&plusmn; </span>14 Ma for RB140, respectively, indicating that the drill rate
+proxy is equally accurate, but less precise than the actual pit depth measurements. These
+central ages compare favourably with the published values of 438 <span 
+class="cmsy-10x-x-109">&plusmn; </span>20 for B188 and 437 <span 
+class="cmsy-10x-x-109">&plusmn;</span>
+20 Ma for RB140 (<a 
+href="#Xnasdala2004">Nasdala et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnasdala2004">2004</a>), and are more tightly clustered than is commonly
+observed in conventional U-Th-He geochronology, with compositional MSWD values of 1.83
+and 2.97, respectively (Figure <a 
+href="#x1-130014">4<!--tex4ht:ref: fig:logratioplot --></a>). This tight clustering confirms, first, the potential of in-situ
+U-Th-He geochronology to produce data that are just as precise as conventional whole-grain
+degassing and dissolution and, second, the suitability of Sri Lanka zircon as a well-behaved age
+standard.
+<!--l. 440--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-130014"></a>
+
+<br /> 
+<table><tr><td width=20></td><td>
+<a href="Fig4.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="Fig4.png" height="298" width="400" /></a>
+</td><td width=20></td><td valign="bottom">
+<div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">Samples B188 and RB140 shown on a log-ratio plot (<a 
+href="#Xvermeesch2010a">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>). White ellipses
+show the individual measurements and their analytical uncertainties (2<span 
+class="cmmi-10x-x-109">&#x03C3;</span>). Black ellipses show the
+error-weighted geometric mean compositions. MSWD values refer to the compositions and not the
+ages.</span></div><!--tex4ht:label?: x1-130014 -->
+</td></table>
+
+<!--l. 448--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">7.4   </span> <a 
+ id="x1-140007.4"></a>Pseudo-depth profiles</h4>
+<!--l. 453--><p class="noindent" >The pseudo-depth profile method confirms that the Sri-Lanka zircons exhibit little or no compositional
+zoning (Figure <a 
+href="#x1-140015">5<!--tex4ht:ref: fig:depthprofiles --></a>). The method was also tested on zircons from the Fish Canyon Tuff (FCT) and Tardree
+Rhyolite (TR), which are known to be strongly zoned (<a 
+href="#Xtagami2003">Tagami et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtagami2003">2003</a>). Unfortunately, the relatively
+low sensitivity of the MAP-215 noble gas mass spectrometer used for the He measurements, combined
+with the young ages (27.8 <span 
+class="cmsy-10x-x-109">&plusmn; </span>0.7 Ma for FCT and 58.7 <span 
+class="cmsy-10x-x-109">&plusmn; </span>0.7 Ma for TR&#x00A0;<a 
+href="#Xtagami2003">Tagami et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xtagami2003">2003</a>), and small
+grain size, which necessitated smaller 40<span 
+class="cmmi-10x-x-109">&#x03BC;m </span>ablation spots, resulted in high (up to 20%) blank
+corrections of the He measurements limiting the precision of the U-Th-He ages. Therefore, the two
+depth-profiles shown in Figure <a 
+href="#x1-140015">5<!--tex4ht:ref: fig:depthprofiles --></a> are provided for illustrative purposes only. They do confirm, however,
+that the analysed FCT and TR zircons are compositionally inhomogeneous, causing non-flat
+pseudo-depth profiles. The most reliable ages are obtained from the &#8216;shallow&#8217; parts of these
+profiles.
+<!--l. 470--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-140015"></a>
+
+<br /> 
+<table><tr><td width=20></td><td>
+<a href="Fig5.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="Fig5.png" height="248" width="400" /></a>
+</td><td width=20></td><td valign="bottom">
+<div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">U-Th-He &#8216;pseudo depth profiles&#8217; of Sri Lanka zircon B188, Fish Canyon Tuff (FCT),
+and Tardree Rhyolite (TR). Horizontal axes show ablation time, in seconds (preceding five seconds
+were discarded,&#x00A0;<a 
+href="#Xkosler2008">Ko&#353;ler</a>,&#x00A0;<a 
+href="#Xkosler2008">2008</a>). Vertical axes show age (in Ma).</span></div><!--tex4ht:label?: x1-140015 -->
+</td></table>
+
+<!--l. 477--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-150008"></a>Discussion and Conclusions</h3>
+<!--l. 482--><p class="noindent" >This paper introduced a simple method to measure U-Th-He ages in zircon by means of laser ablation.
+Instead of measuring absolute concentrations of U, Th, and He, as is customary in conventional
+U-Th-He geochronology, the new method uses an independently dated age standard, against
+which the samples of interest are compared. Three shards of gem-quality Sri Lanka zircon were
+successfully dated, demonstrating the effectiveness of the pairwise dating method as a means of
+determining accurate and precise U-Th-He ages in just a fraction of the time required to perform a
+conventional U-Th-He age measurement. The use of independently dated calibration standards
+is not a new idea in thermochronology. Both the fission track and <sup><span 
+class="cmr-8">40</span></sup>Ar/<sup><span 
+class="cmr-8">39</span></sup>Ar methods have
+benefited from similar approaches (<a 
+href="#Xhurford1983">Hurford and Green</a>,&#x00A0;<a 
+href="#Xhurford1983">1983</a>;&#x00A0;<a 
+href="#Xmcdougall1999">McDougall and Harrison</a>,&#x00A0;<a 
+href="#Xmcdougall1999">1999</a>).
+<br 
+class="newline" />
+<!--l. 496--><p class="indent" >   An important area of future progress is the further development of the drill rate proxy as a means of
+removing the need to measure pit depths by interferometric microscopy. Preliminary experiments
+presented in this paper yield promising results but clearly more work needs to be done to
+make this a viable alternative to interferometric microscopy. First, this study employed two
+different types of laser, a 193nm eximer laser for the helium measurements, and a 213nm
+Nd-YAG laser for the U, Th, Pb and Si measurements. The accuracy of <sup><span 
+class="cmr-8">29</span></sup>Si beam intensity as a
+proxy for ablation rate is likely to improve if an eximer laser is used for both stages of the
+analysis. Second, it would be useful to quantify the efficiency of laser ablation in vacuum (in a
+noble gas mass spectrometer) versus ablation in a gas flux (in the ICP-MS). Third, some
+of the excess scatter of the drill rate proxy may be caused by plasma-induced variability of
+the <sup><span 
+class="cmr-8">29</span></sup>Si signal. One way to correct such drift in instrument sensitivity would be to use a
+desolvating nebuliser to aspirate a tracer solution into the plasma containing a nuclide absent
+from both the zircon and the carrier gas, and measure the <sup><span 
+class="cmr-8">29</span></sup>Si signal relative to this solution
+(<a 
+href="#Xhorstwood2008">Horstwood</a>,&#x00A0;<a 
+href="#Xhorstwood2008">2008</a>).<br 
+class="newline" />
+<!--l. 516--><p class="indent" >   Further work is also needed to demonstrate the applicability of the proposed method to the small and
+young zircon crystals that are commonly found in real geological field settings, rather than the large and
+old samples used in the proof of concept study. Ongoing hardware upgrades in the noble gas laboratory at
+Birkbeck will allow us to move in this direction. In the meanwhile, we believe that the methodological
+developments outlined in this paper represent a significant step towards making in-situ (U-Th)/He
+geochronology a viable alternative to whole grain degassing and dissolution, with the potential to produce
+a quantum leap in sample throughput and resolution with significant benefits to the Earth surface
+geodynamics community.
+<!--l. 529--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-160008"></a>Acknowledgments</h3>
+<!--l. 531--><p class="noindent" >Sri Lanka zircon samples were kindly provided to us by Allen Kennedy (Curtin University of
+Technology). PV would like to thank Richard Chater (Imperial College London) for supervision
+
+of the interferometric microscopy, and James Schwanethal for assistance with the noble gas
+measurements. Discussions with Jeremy Boyce, and several rounds of extremely thorough but
+insightful reviews by Fin Stuart, Becky Flowers, and particularly Matthijs van Soest and
+Jeremy Hourigan, significantly improved the manuscript and provided inspiration for future
+experiments.
+   <div class="table">
+
+<!--l. 541--><p class="indent" >   <a 
+ id="x1-160011"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"><col 
+id="TBL-2-6"><col 
+id="TBL-2-7"><col 
+id="TBL-2-8"><col 
+id="TBL-2-9"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">  #    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">2/8 (std)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">  fU    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">  fTh   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11">  fHe   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-6"  
+class="td11">  fD   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-7"  
+class="td11"> t1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-8"  
+class="td11">  fSi   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-9"  
+class="td11"> t2 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11"> B188.1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11"> 0.1716  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11"> 0.3793 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11"> 0.2346 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11"> 0.3219 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-6"  
+class="td11"> 0.901 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-7"  
+class="td11">431</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-8"  
+class="td11"> 0.883 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-9"  
+class="td11">439</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11"> (0.0020) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11">(0.0063)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11">(0.0042)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11">(0.0045)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-6"  
+class="td11">(0.039)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-7"  
+class="td11">(21)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-8"  
+class="td11">(0.016)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-9"  
+class="td11">(12)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11"> B188.2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11"> 0.1700  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11"> 0.3927 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11"> 0.2359 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11"> 0.3412 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-6"  
+class="td11"> 0.890 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-7"  
+class="td11">447</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-8"  
+class="td11"> 0.892 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-9"  
+class="td11">445</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-2"  
+class="td11"> (0.0019) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-3"  
+class="td11">(0.0064)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-4"  
+class="td11">(0.0042)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-5"  
+class="td11">(0.0043)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-6"  
+class="td11">(0.051)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-7"  
+class="td11">(27)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-8"  
+class="td11">(0.016)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-9"  
+class="td11">(12)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-1"  
+class="td11"> B188.3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-2"  
+class="td11"> 0.1694  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-3"  
+class="td11"> 0.3961 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-4"  
+class="td11"> 0.2368 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-5"  
+class="td11"> 0.3313 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-6"  
+class="td11"> 0.894 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-7"  
+class="td11">428</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-8"  
+class="td11"> 0.888 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-9"  
+class="td11">431</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-2"  
+class="td11"> (0.0019) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-3"  
+class="td11">(0.0070)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-4"  
+class="td11">(0.0040)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-5"  
+class="td11">(0.0066)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-6"  
+class="td11">(0.036)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-7"  
+class="td11">(21)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-8"  
+class="td11">(0.015)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-9"  
+class="td11">(14)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-1"  
+class="td11"> B188.4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-2"  
+class="td11"> 0.1713  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-3"  
+class="td11"> 0.3876 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-4"  
+class="td11"> 0.2351 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-5"  
+class="td11"> 0.3199 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-6"  
+class="td11"> 0.914 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-7"  
+class="td11">414</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-8"  
+class="td11"> 0.959 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-9"  
+class="td11">395</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-2"  
+class="td11"> (0.0023) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-3"  
+class="td11">(0.0111)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-4"  
+class="td11">(0.0070)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-5"  
+class="td11">(0.0060)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-6"  
+class="td11">(0.037)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-7"  
+class="td11">(22)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-8"  
+class="td11">(0.015)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-9"  
+class="td11">(15)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-1"  
+class="td11"> B188.5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-2"  
+class="td11"> 0.1703  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-3"  
+class="td11"> 0.3762 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-4"  
+class="td11"> 0.2217 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-5"  
+class="td11"> 0.3114 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-6"  
+class="td11"> 0.869 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-7"  
+class="td11">436</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-8"  
+class="td11"> 0.946 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-9"  
+class="td11">402</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-2"  
+class="td11"> (0.0019) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-3"  
+class="td11">(0.0068)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-4"  
+class="td11">(0.0037)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-5"  
+class="td11">(0.0061)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-6"  
+class="td11">(0.059)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-7"  
+class="td11">(32)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-8"  
+class="td11">(0.014)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-9"  
+class="td11">(12)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-1"  
+class="td11"> B188.6 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-2"  
+class="td11"> 0.1724  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-3"  
+class="td11"> 0.3863 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-4"  
+class="td11"> 0.2317 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-5"  
+class="td11"> 0.3089 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-6"  
+class="td11"> 0.890 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-7"  
+class="td11">412</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-8"  
+class="td11"> 0.888 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-9"  
+class="td11">413</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-2"  
+class="td11"> (0.0020) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-3"  
+class="td11">(0.0072)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-4"  
+class="td11">(0.0042)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-5"  
+class="td11">(0.0040)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-6"  
+class="td11">(0.049)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-7"  
+class="td11">(25)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-8"  
+class="td11">(0.010)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-9"  
+class="td11">(10)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-1"  
+class="td11"> B188.7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-2"  
+class="td11"> 0.1690  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-3"  
+class="td11"> 0.3799 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-4"  
+class="td11"> 0.2346 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-5"  
+class="td11"> 0.3160 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-6"  
+class="td11"> 0.897 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-7"  
+class="td11">424</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-8"  
+class="td11"> 0.869 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-9"  
+class="td11">438</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-2"  
+class="td11"> (0.0026) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-3"  
+class="td11">(0.0085)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-4"  
+class="td11">(0.0049)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-5"  
+class="td11">(0.0054)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-6"  
+class="td11">(0.044)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-7"  
+class="td11">(24)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-8"  
+class="td11">(0.015)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-9"  
+class="td11">(14)</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-16-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-1"  
+class="td11">RB140.1</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-2"  
+class="td11"> 0.1716  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-3"  
+class="td11"> 0.2102 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-4"  
+class="td11"> 0.5836 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-5"  
+class="td11"> 0.1846 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-6"  
+class="td11"> 0.925 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-7"  
+class="td11">403</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-8"  
+class="td11"> 0.920 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-9"  
+class="td11">405</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-17-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-2"  
+class="td11"> (0.0020) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-3"  
+class="td11">(0.0040)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-4"  
+class="td11">(0.0095)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-5"  
+class="td11">(0.0017)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-6"  
+class="td11">(0.040)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-7"  
+class="td11">(20)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-8"  
+class="td11">(0.012)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-9"  
+class="td11">(10)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-18-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-1"  
+class="td11">RB140.2</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-2"  
+class="td11"> 0.1700  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-3"  
+class="td11"> 0.2164 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-4"  
+class="td11"> 0.5784 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-5"  
+class="td11"> 0.1932 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-6"  
+class="td11"> 0.926 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-7"  
+class="td11">411</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-8"  
+class="td11"> 0.963 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-9"  
+class="td11">395</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-19-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-2"  
+class="td11"> (0.0019) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-3"  
+class="td11">(0.0031)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-4"  
+class="td11">(0.0077)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-5"  
+class="td11">(0.0039)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-6"  
+class="td11">(0.053)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-7"  
+class="td11">(26)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-8"  
+class="td11">(0.011)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-9"  
+class="td11">(11)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-20-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-1"  
+class="td11">RB140.3</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-2"  
+class="td11"> 0.1694  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-3"  
+class="td11"> 0.2159 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-4"  
+class="td11"> 0.5854 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-5"  
+class="td11"> 0.1934 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-6"  
+class="td11"> 0.929 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-7"  
+class="td11">410</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-8"  
+class="td11"> 0.946 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-9"  
+class="td11">403</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-21-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-2"  
+class="td11"> (0.0019) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-3"  
+class="td11">(0.0033)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-4"  
+class="td11">(0.0100)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-5"  
+class="td11">(0.0017)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-6"  
+class="td11">(0.037)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-7"  
+class="td11">(18)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-8"  
+class="td11">(0.018)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-9"  
+class="td11">(11)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-22-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-1"  
+class="td11">RB140.4</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-2"  
+class="td11"> 0.1713  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-3"  
+class="td11"> 0.2069 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-4"  
+class="td11"> 0.5853 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-5"  
+class="td11"> 0.2015 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-6"  
+class="td11"> 0.963 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-7"  
+class="td11">428</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-8"  
+class="td11"> 0.959 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-9"  
+class="td11">429</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-23-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-2"  
+class="td11"> (0.0023) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-3"  
+class="td11">(0.0062)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-4"  
+class="td11">(0.0185)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-5"  
+class="td11">(0.0034)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-6"  
+class="td11">(0.039)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-7"  
+class="td11">(23)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-8"  
+class="td11">(0.017)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-9"  
+class="td11">(17)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-24-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-1"  
+class="td11">RB140.5</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-2"  
+class="td11"> 0.1703  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-3"  
+class="td11"> 0.2034 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-4"  
+class="td11"> 0.5622 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-5"  
+class="td11"> 0.2028 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-6"  
+class="td11"> 0.939 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-7"  
+class="td11">449</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-8"  
+class="td11"> 0.946 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-24-9"  
+class="td11">446</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-25-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-2"  
+class="td11"> (0.0019) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-3"  
+class="td11">(0.0034)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-4"  
+class="td11">(0.0074)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-5"  
+class="td11">(0.0025)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-6"  
+class="td11">(0.064)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-7"  
+class="td11">(32)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-8"  
+class="td11">(0.014)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-25-9"  
+class="td11">(11)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-26-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-1"  
+class="td11">RB140.6</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-2"  
+class="td11"> 0.1724  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-3"  
+class="td11"> 0.2032 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-4"  
+class="td11"> 0.5659 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-5"  
+class="td11"> 0.1965 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-6"  
+class="td11"> 0.932 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-7"  
+class="td11">439</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-8"  
+class="td11"> 0.985 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-26-9"  
+class="td11">416</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-27-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-2"  
+class="td11"> (0.0020) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-3"  
+class="td11">(0.0042)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-4"  
+class="td11">(0.0087)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-5"  
+class="td11">(0.0028)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-6"  
+class="td11">(0.052)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-7"  
+class="td11">(27)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-8"  
+class="td11">(0.014)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-27-9"  
+class="td11">(12)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-28-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-1"  
+class="td11">RB140.7</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-2"  
+class="td11"> 0.1690  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-3"  
+class="td11"> 0.2048 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-4"  
+class="td11"> 0.5810 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-5"  
+class="td11"> 0.2021 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-6"  
+class="td11"> 0.950 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-7"  
+class="td11">439</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-8"  
+class="td11"> 0.990 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-28-9"  
+class="td11">422</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-29-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-1"  
+class="td11">       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-2"  
+class="td11"> (0.0026) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-3"  
+class="td11">(0.0040)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-4"  
+class="td11">(0.0120)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-5"  
+class="td11">(0.0043)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-6"  
+class="td11">(0.046)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-7"  
+class="td11">(25)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-8"  
+class="td11">(0.021)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-29-9"  
+class="td11">(15)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-30-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-30-1"  
+class="td11">       </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Summary table of in-situ U-Th-He dating results from two shards of Sri Lanka zircon
+(B188 and RB140) measured relative to an independently dated standard (G168) of similar age
+(<a 
+href="#Xnasdala2004">Nasdala et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xnasdala2004">2004</a>). &#8216;2/8 (std)&#8217; = average <sup><span 
+class="cmr-8">232</span></sup>Th/<sup><span 
+class="cmr-8">238</span></sup>U-ratio of the standard, calculated from
+its measured <sup><span 
+class="cmr-8">208</span></sup>Pb/<sup><span 
+class="cmr-8">206</span></sup>Pb-ratio using Equation <a 
+href="#x1-3001r1">1<!--tex4ht:ref: eq:UTh --></a>. &#8216;fU&#8217;, &#8216;fTh&#8217;, and &#8216;fHe&#8217; = average ratio of the
+blank-corrected <sup><span 
+class="cmr-8">238</span></sup>U, <sup><span 
+class="cmr-8">232</span></sup>Th, and <sup><span 
+class="cmr-8">4</span></sup>He signals relative to those of the standard. &#8216;fD&#8217; = ratio of the
+average ablation pit depths. &#8216;t1&#8217; = U-Th-He age calculated using &#8216;fD&#8217; as a depth correction factor.
+&#8216;fSi&#8217; = average ratio of the blank-corrected <sup><span 
+class="cmr-8">29</span></sup>Si-signal of the unknowns relative to the standard. &#8216;t2&#8217;
+= U-Th-He age calculated using &#8216;fSi&#8217; as a &#8216;depth proxy&#8217;. 2<span 
+class="cmmi-10x-x-109">&#x03C3; </span>analytical uncertainties are shown in
+between brackets. Extended analytical data tables are provided in the Supplementary Data Item.</span></div><!--tex4ht:label?: x1-160011 -->
+
+   </div><hr class="endfloat" />
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-170008"></a>References</h3>
+<!--l. 595--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xboyce2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;W. Boyce, K.&#x00A0;V. Hodges, W.&#x00A0;J. Olszewski, M.&#x00A0;J. Jercinovic, B.&#x00A0;D. Carpenter, and P.&#x00A0;W.
+  Reiners.  Laser microprobe (U Th)/He geochronology.  <span 
+class="cmti-10x-x-109">Geochimica et Cosmochimica Acta</span>, 70:
+  3031&#8211;3039, 2006. doi: 10.1016/j.gca.2006.03.019.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xboyce2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;W.  Boyce,  K.&#x00A0;V.  Hodges,  D.&#x00A0;King,  J.&#x00A0;L.  Crowley,  M.&#x00A0;Jercinovic,  N.&#x00A0;Chatterjee,  S.&#x00A0;A.
+  Bowring, and M.&#x00A0;Searle.  Improved confidence in (U-Th)/He thermochronology using the laser
+  microprobe: An example from a Pleistocene leucogranite, Nanga Parbat, Pakistan. <span 
+class="cmti-10x-x-109">Geochemistry,</span>
+  <span 
+class="cmti-10x-x-109">Geophysics, Geosystems</span>, 10, 2009. doi: 10.1029/2009GC002497.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfarley1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>K.&#x00A0;A.  Farley,  R.&#x00A0;A.  Wolf,  and  L.&#x00A0;T.  Silver.   The  effects  of  long  alpha-stopping  distances
+  on   (U-Th)/He   ages.      <span 
+class="cmti-10x-x-109">Geochimica  et  Cosmochimica  Acta</span>,   60:4223&#8211;4229,   1996.      doi:
+  10.1016/S0016-7037(96)00193-7.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhorstwood2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>M&#x00A0;S&#x00A0;A  Horstwood.    Data  reduction  strategies,  uncertainty  assessment  and  resolution  of
+  LA-(MC-)ICP-MS isotope data.  In P.&#x00A0;Sylvester, editor, <span 
+class="cmti-10x-x-109">Laser ablation ICP-MS in the Earth</span>
+  <span 
+class="cmti-10x-x-109">Sciences: current practices and outstanding issues</span>, volume&#x00A0;40 of <span 
+class="cmti-10x-x-109">Mineralogical Association of</span>
+  <span 
+class="cmti-10x-x-109">Canada Short Course Series</span>, pages 283&#8211;300. Mineralogical Association of Canada, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhourigan2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;K. Hourigan, P.&#x00A0;W. Reiners, and M.&#x00A0;T. Brandon. U-Th zonation-dependent alpha-ejection
+  in  (U-Th)/He  chronometry.   <span 
+class="cmti-10x-x-109">Geochimica  et  Cosmochimica  Acta</span>,  69:3349&#8211;3365,  2005.   doi:
+  10.1016/j.gca.2005.01.024.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhouse2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>M.&#x00A0;A.  House,  K.&#x00A0;A.  Farley,  and  D.&#x00A0;Stockli.   Helium  chronometry  of  apatite  and  titanite
+  using Nd-YAG laser heating.   <span 
+class="cmti-10x-x-109">Earth and Planetary Science Letters</span>, 183:365&#8211;368, 2000.   doi:
+  10.1016/S0012-821X(00)00286-7.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>A.&#x00A0;J. Hurford and P.&#x00A0;F. Green.  The zeta age calibration of fission-track dating.  <span 
+class="cmti-10x-x-109">Chemical</span>
+  <span 
+class="cmti-10x-x-109">Geology</span>, 41:285 &#8211; 317, 1983. ISSN 0009-2541. doi: 10.1016/S0009-2541(83)80026-6.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkosler2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;Ko&#353;ler.  Laser ablation sampling strategies for concentration and isotope ratio analyses by
+  ICP-MS. In P.&#x00A0;Sylvester, editor, <span 
+class="cmti-10x-x-109">Laser ablation ICP-MS in the Earth Sciences: current practices</span>
+  <span 
+class="cmti-10x-x-109">and outstanding issues</span>, volume&#x00A0;40 of <span 
+class="cmti-10x-x-109">Mineralogical Association of Canada Short Course Series</span>,
+  pages 79&#8211;92. Mineralogical Association of Canada, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlippolt1994"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>H.&#x00A0;J. Lippolt, M.&#x00A0;Leitz, R.&#x00A0;S. Wernicke, and B.&#x00A0;Hagedorn.   (uranium + thorium)/helium
+  dating of apatite: experience with samples from different geochemical environments.  <span 
+class="cmti-10x-x-109">Chemical</span>
+  <span 
+class="cmti-10x-x-109">Geology</span>, 112(1-2):179 &#8211; 191, 1994. ISSN 0009-2541. doi: DOI: 10.1016/0009-2541(94)90113-9.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcdougall1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>I.&#x00A0;McDougall and T.&#x00A0;M. Harrison.  <span 
+class="cmti-10x-x-109">Geochronology and Thermochronology by the</span> <sup><span 
+class="cmr-8">40</span></sup><span 
+class="cmti-10x-x-109">Ar/</span><sup><span 
+class="cmr-8">39</span></sup><span 
+class="cmti-10x-x-109">Ar</span>
+  <span 
+class="cmti-10x-x-109">method</span>. Oxford University Press, New York, 1999.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xnasdala2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>L.&#x00A0;Nasdala,  P.&#x00A0;W.  Reiners,  J.&#x00A0;I.  Garver,  A.&#x00A0;K.  Kennedy,  R.&#x00A0;A.  Stern,  E.&#x00A0;Balan,  and
+  R.&#x00A0;Wirth.   Incomplete  retention  of  radiation  damage  in  zircon  from  Sri  Lanka.   <span 
+class="cmti-10x-x-109">American</span>
+  <span 
+class="cmti-10x-x-109">Mineralogist</span>, 89:219&#8211;231, 2004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpearce1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>N.&#x00A0;J.&#x00A0;G. Pearce, W.&#x00A0;T. Perkins, J.&#x00A0;A. Westgate, M.&#x00A0;P. Gorton, S.&#x00A0;E. Jackson, C.&#x00A0;R. Neal,
+  and S.&#x00A0;P. Chenery.  A Compilation of New and Published Major and Trace Element Data for
+  NIST SRM 610 and NIST SRM 612 Glass Reference Materials.  <span 
+class="cmti-10x-x-109">Geostandards Newsletter</span>, 21:
+  115&#8211;144, 1997.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xreiners2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;W. Reiners and D.&#x00A0;L. Shuster. Thermochronology and landscape evolution. <span 
+class="cmti-10x-x-109">Physics Today</span>,
+  62(9):31&#8211;36, 2009.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xreiners2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;W. Reiners, I.&#x00A0;H. Campbell, S.&#x00A0;Nicolescu, C.&#x00A0;M. Allen, J.&#x00A0;K. Hourigan, J.&#x00A0;I. Garver, J.&#x00A0;M.
+  Mattinson, and D.&#x00A0;S. Cowan.   (U-Th)/(He-Pb) double dating of detrital zircons.   <span 
+class="cmti-10x-x-109">American</span>
+  <span 
+class="cmti-10x-x-109">Journal of Science</span>, 305(4):259&#8211;311, 2005. doi: 10.2475/ajs.305.4.259.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xslama2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>J.&#x00A0;Sl&aacute;ma,  J.&#x00A0;Ko&#353;ler,  D.&#x00A0;J.  Condon,  J.&#x00A0;L.  Crowley,  A.&#x00A0;Gerdes,  J.&#x00A0;M.  Hanchar,  M.&#x00A0;S.&#x00A0;A.
+  Horstwood, G.&#x00A0;A. Morris, L.&#x00A0;Nasdala, N.&#x00A0;Norberg, U.&#x00A0;Schaltegger, B.&#x00A0;Schoene, M.&#x00A0;N. Tubrett,
+  and M.&#x00A0;J. Whitehouse.  Ple&#353;ovice zircon &#8211; a new natural reference material for U-Pb and Hf
+  isotopic microanalysis. <span 
+class="cmti-10x-x-109">Chemical Geology</span>, 249:1&#8211;35, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtagami2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>T.&#x00A0;Tagami, K.&#x00A0;A. Farley, and D.&#x00A0;F. Stockli. (U-Th)/He geochronology of single zircon grains
+  of known Tertiary eruption age.  <span 
+class="cmti-10x-x-109">Earth and Planetary Science Letters</span>, 207:57&#8211;67, 2003.  doi:
+  10.1016/S0012-821X(02)01144-5.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtripathy2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>A.&#x00A0;K.  Tripathy,  M.&#x00A0;C.  van  Soest,  B.&#x00A0;D.  Monteleone,  and  K.&#x00A0;V.  Hodges.   In-situ  detrital
+  zircon  (U-Th)/He  thermochronology.    In  <span 
+class="cmti-10x-x-109">Thermo2010  &#8211;  12</span><sup><span 
+class="cmmi-8">th</span></sup>  <span 
+class="cmti-10x-x-109">International  Conference  on</span>
+  <span 
+class="cmti-10x-x-109">Thermochronology, Glasgow</span>, 2010.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvansoest2008"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>M.&#x00A0;C. van Soest, B.&#x00A0;D. Monteleone, J.&#x00A0;W. Boyce, and K.&#x00A0;V. Hodges.   Advances in Laser
+  Microprobe (U-Th)/He Geochronology. <span 
+class="cmti-10x-x-109">AGU Fall Meeting Abstracts</span>, pages B2161+, 2008.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2010a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;Vermeesch.  HelioPlot, and the treatment of overdispersed (U-Th-Sm)/He data.  <span 
+class="cmti-10x-x-109">Chemical</span>
+  <span 
+class="cmti-10x-x-109">Geology</span>, 271(3-4):108 &#8211; 111, 2010. doi: DOI: 10.1016/j.chemgeo.2010.01.002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwolf1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>R.&#x00A0;A.  Wolf,  K.&#x00A0;A.  Farley,  and  L.&#x00A0;T.  Silver.     Helium  diffusion  and  low-temperature
+  thermochronometry of apatite.  <span 
+class="cmti-10x-x-109">Geochimica et Cosmochimica Acta</span>, 60:4231&#8211;4240, 1996.  doi:
+  10.1016/S0016-7037(96)00192-5.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xzeitler1987"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>P.&#x00A0;K. Zeitler, A.&#x00A0;L. Herczeg, I.&#x00A0;McDougall, and M.&#x00A0;Honda.  U-Th-He dating of apatite - A
+  potential  thermochronometer.   <span 
+class="cmti-10x-x-109">Geochimica et Cosmochimica Acta</span>,  51:2865&#8211;2868,  1987.   doi:
+  10.1016/0016-7037(87)90164-5.
+</p>
+  </div>
+</td></tr>
+</table>
+</body></html> 

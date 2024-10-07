@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>Hybrid Pole Calculator</title>
+<link href="mystyle.css" rel="stylesheet">
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script>
+
+function initialize() {
+
+  window.myLatLng = new google.maps.LatLng(0,0);
+
+  window.mapOptions = {
+    zoom: 1,
+    center: window.myLatLng,
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  };
+
+  window.map = new google.maps.Map(document.getElementById('map_canvas'),
+    window.mapOptions);
+
+}
+
+</script>
+<script src="hybrid.js"></script>
+</head>
+
+<body onload="initialize()" class="center">
+
+<h1>Hybrid Pole Calculator</h1>
+
+Enter the site latitude, site longitude, pole latitude, pole longitude and 
+whether the pole falls on a small or a great circle
+<p></p>
+
+<FORM NAME="inputform" ACTION="" METHOD="GET">
+<table class="center" id="center">
+<tr><td>
+site 1<br>
+site 2<br>
+site 3<br>
+...
+</td>
+<td>
+<textarea rows="8" cols="50" name="inputdata">
+  40.7 , 76.1 , 76.9, -170.4, small, 18, 4.5
+  51.4 ,  0.9 , 63.7,  178.6, great,  9, 6.8
+  40.23, 75.25, 45.1,  160.3, small, 12, 9.8 
+  60.8 , -7   , 71.4,  154.7, small, 43, 6.0
+</textarea><br>
+<!--
+   50  -50   54.6 -146.8 small
+   50    0   62.0  139.4 small
+   50   10   52.9 -178.1 great
+   50   70   63.2 -163.6 great
+   40  -30   43.8  122.9 great
+-->
+Plot 
+<INPUT TYPE="checkbox" NAME="plotSites" checked> sites 
+<INPUT TYPE="checkbox" NAME="plotPoles" checked> poles 
+<INPUT TYPE="checkbox" NAME="plotCircles"> circles<br>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<INPUT TYPE="button" NAME="button" Value="Go" style="width: 100%;" onClick="plotMap()">
+</td>
+</table>
+<div id="results" class="center"></div>
+</FORM>
+
+<div id="map_canvas"></div>
+
+</body>
+</html>

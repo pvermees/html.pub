@@ -1,0 +1,112 @@
+This is pdfeTeXk, Version 3.141592-1.11a-2.1 (Web2C 7.5.2) (format=pdflatex 2004.3.4)  26 JAN 2011 14:19
+entering extended mode
+ %&-line parsing enabled.
+ (/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/web2c/cp8bit.tcx)
+**resume.tex
+(./resume.tex{/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf-var/pdftex/conf
+ig/pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7j> and hyphenation patterns for english, dumylang, nohyphenation, ba
+sque, czech, slovak, german, ngerman, spanish, catalan, french, ukenglish, ital
+ian, dutch, polish, portuguese, loaded.
+(./resume.cls
+Document Class: resume 1997/02/07 v1.1 resume class
+(/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/tex/latex/base/size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+\titlewidth=\skip43
+\addresswidth=\skip44
+) (/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/tex/latex/base/textcomp.st
+y
+Package: textcomp 2001/06/05 v1.94 Standard LaTeX package
+(/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+))
+(./resume.aux)
+\openout1 = `resume.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 52.
+
+(/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 53.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 53.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 53.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 58.
+
+[1
+
+{/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf-var/fonts/map/pdftex/updmap/
+pdftex.map}]
+Overfull \hbox (10.02737pt too wide) in paragraph at lines 133--134
+[]/cmr10/2011-2014: NERC Stan-dard Grant for ``A novel ap-proach to in-situ zir
+-con U-Th-He geochronol-
+ []
+
+[2
+
+] [3] (./resume.aux) ) 
+Here is how much of TeX's memory you used:
+ 652 strings out of 95120
+ 9474 string characters out of 1182467
+ 52965 words of memory out of 1503047
+ 3822 multiletter control sequences out of 10000+50000
+ 7580 words of font info for 27 fonts, out of 1000000 for 2000
+ 117 hyphenation exceptions out of 1000
+ 29i,4n,20p,169b,210s stack positions out of 5000i,500n,6000p,200000b,40000s
+ 43 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 1 words of extra memory for PDF output out of 65536
+{/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/dvips/
+tetex/aae443f0.enc}</nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/fonts/typ
+e1/bluesky/cm/cmmi10.pfb>{/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/dvi
+ps/tetex/f7b6d320.enc}</nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/fonts/
+type1/bluesky/cm/cmr7.pfb>{/nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texmf/dv
+ips/cm-super/cm-super-ts1.enc}</nfs/rcs/solv10/usr/local/rlib/TeX-Live2003/texm
+f/fonts/type1/public/cm-super/sfrm1000.pfb></nfs/rcs/solv10/usr/local/rlib/TeX-
+Live2003/texmf/fonts/type1/bluesky/cm/cmsl10.pfb>{/nfs/rcs/solv10/usr/local/rli
+b/TeX-Live2003/texmf/dvips/tetex/74afc74c.enc}</nfs/rcs/solv10/usr/local/rlib/T
+eX-Live2003/texmf/fonts/type1/bluesky/cm/cmti10.pfb>{/nfs/rcs/solv10/usr/local/
+rlib/TeX-Live2003/texmf/dvips/tetex/0ef0afca.enc}</nfs/rcs/solv10/usr/local/rli
+b/TeX-Live2003/texmf/fonts/type1/bluesky/cm/cmcsc10.pfb>{/nfs/rcs/solv10/usr/lo
+cal/rlib/TeX-Live2003/texmf/dvips/tetex/bbad153f.enc}</nfs/rcs/solv10/usr/local
+/rlib/TeX-Live2003/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></nfs/rcs/solv10/usr
+/local/rlib/TeX-Live2003/texmf/fonts/type1/bluesky/cm/cmsy9.pfb>{/nfs/rcs/solv1
+0/usr/local/rlib/TeX-Live2003/texmf/dvips/tetex/09fbbfac.enc}</nfs/rcs/solv10/u
+sr/local/rlib/TeX-Live2003/texmf/fonts/type1/bluesky/cm/cmtt9.pfb></nfs/rcs/sol
+v10/usr/local/rlib/TeX-Live2003/texmf/fonts/type1/bluesky/cm/cmr10.pfb></nfs/rc
+s/solv10/usr/local/rlib/TeX-Live2003/texmf/fonts/type1/bluesky/cm/cmbx12.pfb>
+Output written on resume.pdf (3 pages, 87722 bytes).

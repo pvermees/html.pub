@@ -1,0 +1,7 @@
+ <div class="verbatim" id="verbatim-9">
+<span 
+class="cmtt-10x-x-109">ACNK</span><span 
+class="cmtt-10x-x-109">&#x00A0;&#x003C;-</span><span 
+class="cmtt-10x-x-109">&#x00A0;read.csv('ACNK.csv',row.names=1,header=TRUE,check.names=FALSE)</span>
+</div>
+<!--l. 376--><p class="nopar" >                                                                               

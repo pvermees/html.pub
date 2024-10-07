@@ -1,0 +1,13 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{3}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-2}{Overdispersed ages}}{4}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-3}{Overdispersed compositions}}{7}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-40004}{QQ2-1-4}{Confidence intervals}}{10}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-50005}{QQ2-1-5}{Applications}}{11}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-60006}{QQ2-1-6}{Conclusions}}{12}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-70006}{QQ2-1-7}{Acknowledgments}}{12}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-80006}{QQ2-1-8}{References}}{12}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-90006}{QQ2-1-9}{Figures}}{14}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-90011}{}{\ignorespaces a. the deterministic Bayesian algorithm collects a large number of ages across a regular grid in logratio space (crosses), and records the corresponding logistic normal likelihood of the data (ellipse); b. 95\% confidence intervals are then simply calculated by looking up the 2.5 and 97.5 percentiles of the resulting `posterior distribution'.}}{figure}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-90022}{}{\ignorespaces Two diagrams produced by {\tt  HelioPlot}. (a) Ternary diagram with two synthetic U-Th-He samples ($U* = \frac  {U-0.0611}{0.362}$, $Th* = \frac  {Th-0.574}{0.362}$, $He* = \frac  {He-0.0041}{0.362}$). (b) Logratio plot of U-Th-He data from Naxos \citep  {vermeesch2007b}, colour-coded according to grain size. The geometric mean composition is shown as a white ellipse.}}{figure}\relax 
+\par 

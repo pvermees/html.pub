@@ -1,0 +1,1807 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Statistical models for point-counting data</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<meta name="date" content="2018-08-09 13:47:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body class="main">
+   <div class="maketitle">
+
+<h2 class="titleHead">Statistical models for point-counting data</h2>
+      <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br /><span 
+class="cmr-12">Department of Earth Sciences</span>
+<br />  <span 
+class="cmr-12">University College London</span>
+<br />  <span 
+class="cmtt-12">p.vermeesch [at] ucl.ac.uk </span></div>
+   </div>
+   <div class="abstract">
+<div class="center">
+<!--l. 17--><p class="noindent" >
+<!--l. 17--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 18--><p class="indent" >    <span 
+class="cmr-9">Point-counting data are a mainstay of petrography, micropalaeontology and palynology. Conventional</span>
+     <span 
+class="cmr-9">statistical analysis of such data is fraught with problems. Commonly used statistics such as the arithmetic</span>
+     <span 
+class="cmr-9">mean and standard deviation may produce nonsensical results when applied to point-counting data. This</span>
+     <span 
+class="cmr-9">paper makes the case that point-counts represent a distinct class of data that requires different treatment.</span>
+     <span 
+class="cmr-9">Point-counts are affected by a combination of (1) true compositional variability and (2) multinomial counting</span>
+     <span 
+class="cmr-9">uncertainties. The relative significance of these two sources of dispersion can be quantified by a chi-square</span>
+     <span 
+class="cmr-9">statistic and -test. For datasets that pass the chi-square test for homogeneity, the &#8216;pooled&#8217; composition is</span>
+     <span 
+class="cmr-9">shown to represent the optimal estimate for the underlying population. It is obtained by simply adding</span>
+     <span 
+class="cmr-9">together the counts of all samples and normalising the resulting values to unity. However, more often than</span>
+     <span 
+class="cmr-9">not, point-counting datasets fail the chi-square test. The overdispersion of such datasets can be captured</span>
+
+     <span 
+class="cmr-9">by a random effects model that combines a logistic normal population with the usual multinomial counting</span>
+     <span 
+class="cmr-9">uncertainties. This gives rise to the concept of a &#8216;central&#8217; composition as a more appropriate way to average</span>
+     <span 
+class="cmr-9">overdispersed data. Two- or three-component datasets can be displayed on radial plots and ternary diagrams,</span>
+     <span 
+class="cmr-9">respectively. Higher dimensional datasets may be visualised and interpreted by Correspondence Analysis</span>
+     <span 
+class="cmr-9">(CA). This is a multivariate ordination technique that is similar in purpose to Principal Component Analysis</span>
+     <span 
+class="cmr-9">(PCA). CA and PCA are both shown to be special cases of Multidimensional Scaling (MDS). Generalising this</span>
+     <span 
+class="cmr-9">insight to multiple datasets allows point-counting data to be combined with other data types such as chemical</span>
+     <span 
+class="cmr-9">compositions by means of 3-way MDS. All the techniques introduced in this paper have been implemented</span>
+     <span 
+class="cmr-9">in the </span><span 
+class="cmtt-9">provenance R</span><span 
+class="cmr-9">-package, which is available from </span><span 
+class="cmtt-9"><a href="http://provenance.london-geochron.com">http://provenance.london-geochron.com</a></span><span 
+class="cmr-9">.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 55--><p class="noindent" >The mineralogical composition of silicilastic sediments can be determined by tallying the occurrence of
+various minerals in a representative sample of (200-400, say) grains (<a 
+href="#Xdryden1931">Dryden</a>,&#x00A0;<a 
+href="#Xdryden1931">1931</a>;&#x00A0;<a 
+href="#Xvanderplas1965">Van&#x00A0;der Plas and
+Tobi</a>,&#x00A0;<a 
+href="#Xvanderplas1965">1965</a>;&#x00A0;<a 
+href="#Xweltje2002">Weltje</a>,&#x00A0;<a 
+href="#Xweltje2002">2002</a>). Similarly, the fossil content of a deep sea sediment core may be characterised by
+tabulating the relative abundances of various species among <span 
+class="cmmi-10">&#x003E;</span>100 randomly selected specimens (<a 
+href="#Xpatterson1989">Patterson
+and Fishbein</a>,&#x00A0;<a 
+href="#Xpatterson1989">1989</a>;&#x00A0;<a 
+href="#Xbuzas1990">Buzas</a>,&#x00A0;<a 
+href="#Xbuzas1990">1990</a>;&#x00A0;<a 
+href="#Xfatela2002">Fatela and Taborda</a>,&#x00A0;<a 
+href="#Xfatela2002">2002</a>). Or palaeobiological environments may be
+reconstructed by tabulating the relative frequency of different types of pollen in a palaeosol or charcoal
+(<a 
+href="#Xbarkley1934">Barkley</a>,&#x00A0;<a 
+href="#Xbarkley1934">1934</a>;&#x00A0;<a 
+href="#Xclark1982">Clark</a>,&#x00A0;<a 
+href="#Xclark1982">1982</a>;&#x00A0;<a 
+href="#Xweng2006">Weng et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xweng2006">2006</a>).<br 
+class="newline" />
+<!--l. 66--><p class="indent" >   These are all examples of multivariate counting experiments, in which the unknown proportions of different species
+of minerals, fossils or pollen are estimated by counting a finite number of randomly selected items from a representative
+sample. Despite the widespread use of this type of data in the Earth Sciences and related fields, their statistical analysis
+is demonstrably underdeveloped.<br 
+class="newline" />
+<!--l. 73--><p class="indent" >   For example, there currently exists no agreed method to average multi-sample point-counting datasets, or to
+quantify point-counting data dispersion. Traditionally, these operations were done by taking the arithmetic
+mean and standard deviation, respectively. Unfortunately, this may easily produce nonsensical results. For
+example, <a 
+href="#Xweltje2002">Weltje</a>&#x00A0;(<a 
+href="#Xweltje2002">2002</a>) shows that the common practice of using &#8216;2-sigma&#8217; confidence bounds around
+the arithmetic mean can produce physically impossible negative values when applied to petrographic
+
+point-counts.<br 
+class="newline" />
+<!--l. 83--><p class="indent" >   To solve these problems, <a 
+href="#Xweltje2002">Weltje</a>&#x00A0;(<a 
+href="#Xweltje2002">2002</a>) argues that point-counts should be treated as <span 
+class="cmti-10">compositional </span>data, which are
+defined as &#8220;vectors representing parts of a whole that only carry relative information&#8221; (<a 
+href="#Xpawlowsky2011">Pawlowsky-Glahn and
+Buccianti</a>,&#x00A0;<a 
+href="#Xpawlowsky2011">2011</a>). According to this definition, compositional data can be renormalised to a constant sum (e.g., 100%
+if the composition is expressed as percentages, or 1 if fractions are used) without loss of information.
+<a 
+href="#Xaitchison1982">Aitchison</a>&#x00A0;(<a 
+href="#Xaitchison1982">1982</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>) shows that the statistical analysis of such data is best carried out using a simple logratio
+transformation.<br 
+class="newline" />
+<!--l. 93--><p class="indent" >   To illustrate this approach, let <img 
+src="index0x.png" alt="{ai,bi,ci}"  class="left" align="middle"> be a three-component dataset, where <span 
+class="cmmi-10">a</span><sub><span 
+class="cmmi-7">i</span></sub> + <span 
+class="cmmi-10">b</span><sub><span 
+class="cmmi-7">i</span></sub> + <span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">i</span></sub> = 1 for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">m</span>. Then
+this dataset can be mapped to a bivariate Euclidean data space as follows:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1001r1"></a>
+   <center class="math-display" >
+<img 
+src="index1x.png" alt="ui = ln(ai&#x2215;ci) and vi = ln(bi&#x2215;ci)
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 101--><p class="nopar" >
+<!--l. 103--><p class="indent" >   After performing the desired statistical analysis (such as calculating averages and confidence regions) on the
+transformed data <img 
+src="index2x.png" alt="{ui,vi}"  class="left" align="middle">, the results can be mapped back to the ternary diagram by means of an inverse logratio
+transformation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-1002r2"></a>
+
+   <center class="math-display" >
+<img 
+src="index3x.png" alt="ai =------exp[ui]----- ,
+    exp[ui]+exp[vi]+ 1
+    ------exp[vi]-----
+bi = exp[ui]+exp[vi]+ 1 , and
+            1
+ci = exp[u-]+exp[v]+-1
+         i       i
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 115--><p class="nopar" >
+<!--l. 117--><p class="indent" >   This procedure yields geologically meaningful (geometric) means and confidence regions. <a 
+href="#Xweltje2002">Weltje</a>&#x00A0;(<a 
+href="#Xweltje2002">2002</a>)&#8217;s adoption of
+logratio statistics to point-counting data represents a huge improvement over the &#8216;crude&#8217; statistics employed previously.
+But it does not solve all our problems. There are two crucial differences between point counts and the classical
+compositional data discussed by <a 
+href="#Xaitchison1982">Aitchison</a>&#x00A0;(<a 
+href="#Xaitchison1982">1982</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>).<br 
+class="newline" />
+<!--l. 125--><p class="indent" >   First, point-counting data are associated with significant (counting) uncertainties, which are ignored by classical
+compositional data analysis. For a single sample, this uncertainty is adequately described by multinomial counting
+statistics (Section&#x00A0;6 of&#x00A0;<a 
+href="#Xweltje2002">Weltje</a>,&#x00A0;<a 
+href="#Xweltje2002">2002</a>). But for larger datasets comprised of multiple samples, existing procedures to
+construct confidence regions (as discussed in Section&#x00A0;7 of&#x00A0;<a 
+href="#Xweltje2002">Weltje</a>,&#x00A0;<a 
+href="#Xweltje2002">2002</a>) are inadequate because they lump together the
+&#8216;observational&#8217; dispersion caused by counting statistics and the true &#8216;geological&#8217; dispersion. <a 
+href="#Xbloemsma2015">Bloemsma and
+Weltje</a>&#x00A0;(<a 
+href="#Xbloemsma2015">2015</a>) describe a method to disentangle these two sources of uncertainty in a logratio context. They show that
+deconvolution of (spectroscopic) count data into a scale vector and a proportions matrix significantly improves
+multivariate analysis.<br 
+class="newline" />
+<!--l. 139--><p class="indent" >   Second, point-counting data often contain zero values, which are incompatible with the log-ratio transformation
+defined in Equation&#x00A0;<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:alr --></a>. This problem also applies to the aforementioned approach by <a 
+href="#Xbloemsma2015">Bloemsma and Weltje</a>&#x00A0;(<a 
+href="#Xbloemsma2015">2015</a>).
+These authors circumvented the occurrence of sporadic zeros by replacing them with small positive numbers. This and
+alternative &#8216;imputation&#8217; strategies are further discussed by <a 
+href="#Xmartin2003">Mart&iacute;n-Fern&aacute;ndez et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xmartin2003">2003</a>). When the number of zeros
+is small, imputation is considered to have a minimal influence on the data covariance structure. However, some
+point-counting datasets are dominated by zeros. So the presence of such values is not a cosmetic problem, but a
+fundamental characteristic of this particular data type. The statistical treatment of point-counting data needs to
+
+address this issue at a deeper level.<br 
+class="newline" />
+<!--l. 153--><p class="indent" >   The present paper solves these long standing problems using established statistical methods adopted from other
+disciplines. Much of the paper is based on the work of <a 
+href="#Xgalbraith2005">Galbraith</a>&#x00A0;(<a 
+href="#Xgalbraith2005">2005</a>) in fission track geochronology. The fission track
+method is based on the ratio of the number of spontaneous <sup class="textsuperscript"><span 
+class="cmr-9">238</span></sup>U-tracks to the number of neutron-induced <sup class="textsuperscript"><span 
+class="cmr-9">235</span></sup>U-tracks
+per unit area in accessory minerals such as apatite or zircon. This is equivalent to a simple two-component
+point-counting problem. Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:pooled --></a> uses this equivalence to derive the concept of a &#8216;pooled composition&#8217;. We will show
+that the latter represents the most reliable (in terms of accuracy and precision) average of homogeneous point-counting
+data.<br 
+class="newline" />
+<!--l. 166--><p class="indent" >   The analytical uncertainty of individual point-counting proportions may greatly vary between samples. Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:radial --></a>
+introduces <a 
+href="#Xgalbraith1988">Galbraith</a>&#x00A0;(<a 
+href="#Xgalbraith1988">1988</a>)&#8217;s radial plot as a graphical means of visualising such &#8216;heteroscedastic&#8217; data. Originally
+developed for fission track data, the radial plot can also be used to display point-counting ratios, which frequently occur
+in the Earth Sciences. Radial plots allow a visual assessment of the degree to which counting uncertainties can explain
+the observed scatter between multiple ratio estimates. Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:X2 --></a> presents a formal statistical test to make this
+assessment more quantitative.<br 
+class="newline" />
+<!--l. 177--><p class="indent" >   The pooled composition is only applicable to samples that pass this chi-square test for sample homogeneity.
+Multi-sample datasets that fail the chi-square test are said to be &#8216;overdispersed&#8217; with respect to the counting
+uncertainties. The degree of overdispersion may be quantified by means of a continuous mixture model
+(Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:randomeffects --></a>). This model leads to the concept of a &#8216;central composition&#8217; as a better alternative to the pooled
+composition of Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:pooled --></a>. Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:ternary --></a> generalises the continuous mixture model from two to three (or more)
+components.<br 
+class="newline" />
+<!--l. 188--><p class="indent" >   Finally, Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:CA --></a> introduces Correspondence Analysis (CA) as a useful ordination technique for multivariate
+point-counting data. CA is closely related to compositional Principal Component Analysis (PCA). But unlike the latter
+method, it does not suffer from the zero counts problem.<br 
+class="newline" />
+<!--l. 194--><p class="indent" >   All the techniques discussed above will be illustrated with a combination of synthetic and real examples. The
+methods of Sections&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:pooled --></a>-<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:ternary --></a> will use the two datasets shown in Table&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: tab:data --></a>. Data&#x00A0;1 consists of 20 random samples of 23&#8211;94
+items each, which were drawn from a discrete trinomial distribution with 45% of component <span 
+class="cmmi-10">a</span>, 45% of component <span 
+class="cmmi-10">b </span>and
+
+10% of component <span 
+class="cmmi-10">c</span>. Data&#x00A0;2 comprises a further 20 samples that were drawn from a continuous distribution whose
+mode is the same as that of Data&#x00A0;1, but which adds 100% of dispersion around this mode. Thus, Data&#x00A0;2 has two
+sources of dispersion (counting error and true population dispersion), whereas Data&#x00A0;1 only has one (counting error).
+Note that both datasets contain fewer counts per sample than is customary in real world applications. But
+they are nevertheless realistic if we consider them to be ternary subcompositions of higher dimensional
+datasets.<br class="newline" />
+   <div class="table">
+<!--l. 210--><p class="indent" >   <a id="x1-10031"></a><hr class="float"><div class="float"> 
+<!--tex4ht:inline--><div class="tabular"> <table id="TBL-2" class="tabular" cellspacing="0" cellpadding="0" rules="groups">
+<tr><td></td><td></td><td>Data 1</td><td></td><td></td><td></td><td></td><td>Data 2</td><td></td><td></td></tr>
+<colgroup id="TBL-2-1g"><col id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col id="TBL-2-2">
+<col id="TBL-2-3"><col id="TBL-2-4"></colgroup><colgroup id="TBL-2-5g"><col id="TBL-2-5"></colgroup><colgroup id="TBL-2-6g">
+<col id="TBL-2-6"></colgroup><colgroup id="TBL-2-7g"><col id="TBL-2-7"><col id="TBL-2-8"><col id="TBL-2-9"></colgroup>
+<colgroup id="TBL-2-10g"><col id="TBL-2-10"></colgroup>
+<tr class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr>
+<tr style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11">#</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11"> <span 
+class="cmmi-10">a </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11"> <span 
+class="cmmi-10">b </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11"> <span 
+class="cmmi-10">c </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11"> <span 
+class="cmmi-10">R </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-6"  
+class="td11">#</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-7"  
+class="td11"> <span 
+class="cmmi-10">a </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-8"  
+class="td11"> <span 
+class="cmmi-10">b </span></td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-9"  
+class="td11"> <span 
+class="cmmi-10">c</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-10"  
+class="td11">   <span 
+class="cmmi-10">R    </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11"> 16 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11"> 18 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11"> 4  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11">   38     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-6"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-7"  
+class="td11"> 23 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-8"  
+class="td11"> 24 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-9"  
+class="td11"> 5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-10"  
+class="td11">   52    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11"> 2 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11"> 25 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11"> 17 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11"> 3 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11"> 45 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-6"  
+class="td11"> 2 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-7"  
+class="td11"> 60 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-8"  
+class="td11"> 24 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-9"  
+class="td11"> 7 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-10"  
+class="td11"> 91</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-1"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-2"  
+class="td11"> 18 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-3"  
+class="td11"> 18 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-4"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-5"  
+class="td11">   36     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-6"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-7"  
+class="td11"> 45 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-8"  
+class="td11"> 43 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-9"  
+class="td11">12</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-10"  
+class="td11">  100   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-1"  
+class="td11"> 4 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-2"  
+class="td11"> 7 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-3"  
+class="td11"> 14 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-4"  
+class="td11"> 3 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-5"  
+class="td11"> 24 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-6"  
+class="td11"> 4 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-7"  
+class="td11"> 2 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-8"  
+class="td11"> 53 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-9"  
+class="td11"> 4 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-10"  
+class="td11"> 59</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-1"  
+class="td11"> 5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-2"  
+class="td11"> 12 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-3"  
+class="td11"> 10 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-4"  
+class="td11"> 3  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-5"  
+class="td11">   25     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-6"  
+class="td11"> 5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-7"  
+class="td11"> 8  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-8"  
+class="td11"> 32 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-9"  
+class="td11">10</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-10"  
+class="td11">   50    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-1"  
+class="td11"> 6 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-2"  
+class="td11"> 32 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-3"  
+class="td11"> 30 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-4"  
+class="td11"> 13 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-5"  
+class="td11"> 75 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-6"  
+class="td11"> 6 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-7"  
+class="td11"> 53 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-8"  
+class="td11"> 21 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-9"  
+class="td11">23</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-10"  
+class="td11"> 97</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-1"  
+class="td11"> 7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-2"  
+class="td11"> 35 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-3"  
+class="td11"> 38 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-4"  
+class="td11"> 13 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-5"  
+class="td11">   86     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-6"  
+class="td11"> 7 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-7"  
+class="td11"> 1  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-8"  
+class="td11"> 6  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-9"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-10"  
+class="td11">   10    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-1"  
+class="td11"> 8 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-2"  
+class="td11"> 20 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-3"  
+class="td11"> 20 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-4"  
+class="td11"> 7 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-5"  
+class="td11"> 47 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-6"  
+class="td11"> 8 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-7"  
+class="td11"> 2 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-8"  
+class="td11"> 17 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-9"  
+class="td11"> 1 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-10"  
+class="td11"> 20</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-1"  
+class="td11"> 9 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-2"  
+class="td11"> 10 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-3"  
+class="td11"> 9  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-4"  
+class="td11"> 3  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-5"  
+class="td11">   22     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-6"  
+class="td11"> 9 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-7"  
+class="td11"> 10 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-8"  
+class="td11"> 10 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-9"  
+class="td11"> 4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-11-10"  
+class="td11">   24    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-1"  
+class="td11">10</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-2"  
+class="td11"> 29 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-3"  
+class="td11"> 36 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-4"  
+class="td11"> 5 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-5"  
+class="td11"> 70 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-6"  
+class="td11">10</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-7"  
+class="td11"> 2 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-8"  
+class="td11"> 35 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-9"  
+class="td11"> 3 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-12-10"  
+class="td11"> 40</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-1"  
+class="td11">11</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-2"  
+class="td11"> 34 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-3"  
+class="td11"> 34 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-4"  
+class="td11"> 9  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-5"  
+class="td11">   77     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-6"  
+class="td11">11</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-7"  
+class="td11"> 29 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-8"  
+class="td11"> 21 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-9"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-13-10"  
+class="td11">   53    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-1"  
+class="td11">12</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-2"  
+class="td11"> 22 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-3"  
+class="td11"> 47 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-4"  
+class="td11"> 12 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-5"  
+class="td11"> 81 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-6"  
+class="td11">12</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-7"  
+class="td11"> 2 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-8"  
+class="td11"> 13 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-9"  
+class="td11"> 0 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-14-10"  
+class="td11"> 15</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-1"  
+class="td11">13</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-2"  
+class="td11"> 9  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-3"  
+class="td11"> 9  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-4"  
+class="td11"> 2  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-5"  
+class="td11">   20     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-6"  
+class="td11">13</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-7"  
+class="td11"> 3  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-8"  
+class="td11"> 9  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-9"  
+class="td11"> 0 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-15-10"  
+class="td11">   12    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-16-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-1"  
+class="td11">14</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-2"  
+class="td11"> 37 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-3"  
+class="td11"> 36 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-4"  
+class="td11"> 13 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-5"  
+class="td11"> 86 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-6"  
+class="td11">14</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-7"  
+class="td11"> 34 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-8"  
+class="td11"> 1 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-9"  
+class="td11"> 0 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-16-10"  
+class="td11"> 35</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-17-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-1"  
+class="td11">15</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-2"  
+class="td11"> 46 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-3"  
+class="td11"> 25 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-4"  
+class="td11"> 16 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-5"  
+class="td11">   87     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-6"  
+class="td11">15</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-7"  
+class="td11"> 28 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-8"  
+class="td11"> 19 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-9"  
+class="td11"> 4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-17-10"  
+class="td11">   51    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-18-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-1"  
+class="td11">16</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-2"  
+class="td11"> 50 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-3"  
+class="td11"> 37 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-4"  
+class="td11"> 7 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-5"  
+class="td11"> 94 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-6"  
+class="td11">16</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-7"  
+class="td11"> 49 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-8"  
+class="td11"> 11 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-9"  
+class="td11"> 3 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-18-10"  
+class="td11"> 63</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-19-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-1"  
+class="td11">17</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-2"  
+class="td11"> 28 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-3"  
+class="td11"> 34 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-4"  
+class="td11"> 8  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-5"  
+class="td11">   70     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-6"  
+class="td11">17</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-7"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-8"  
+class="td11"> 72 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-9"  
+class="td11"> 2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-19-10"  
+class="td11">   74    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-20-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-1"  
+class="td11">18</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-2"  
+class="td11"> 39 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-3"  
+class="td11"> 50 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-4"  
+class="td11"> 6 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-5"  
+class="td11"> 95 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-6"  
+class="td11">18</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-7"  
+class="td11"> 55 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-8"  
+class="td11"> 28 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-9"  
+class="td11">13</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-20-10"  
+class="td11"> 96</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-21-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-1"  
+class="td11">19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-2"  
+class="td11"> 44 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-3"  
+class="td11"> 36 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-4"  
+class="td11"> 10 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-5"  
+class="td11">   90     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-6"  
+class="td11">19</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-7"  
+class="td11"> 7  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-8"  
+class="td11"> 8  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-9"  
+class="td11"> 3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-21-10"  
+class="td11">   18    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-22-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-1"  
+class="td11">20</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-2"  
+class="td11"> 28 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-3"  
+class="td11"> 21 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-4"  
+class="td11"> 4 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-5"  
+class="td11"> 53 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-6"  
+class="td11">20</td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-7"  
+class="td11"> 20 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-8"  
+class="td11"> 5 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-9"  
+class="td11"> 2 </td> <td  style="white-space:nowrap; text-align:center;" id="TBL-2-22-10"  
+class="td11"> 27</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-23-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-1"  
+class="td11"><span 
+class="cmmi-10">C</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-2"  
+class="td11">541</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-3"  
+class="td11">539</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-4"  
+class="td11">142</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-5"  
+class="td11"><span 
+class="cmmi-10">N </span>= 1222</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-6"  
+class="td11"><span 
+class="cmmi-10">C</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-7"  
+class="td11">433</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-8"  
+class="td11">452</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-9"  
+class="td11">90</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-23-10"  
+class="td11"><span 
+class="cmmi-10">N </span>= 987</td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1:  </span><span  
+class="content">Two  synthetic  ternary  point-counting  datasets.  Data&#x00A0;1  was  drawn  from  a  single  multinomial
+distribution with population proportions of 45%, 45% and 10% for components <span 
+class="cmmi-10">a</span>, <span 
+class="cmmi-10">b </span>and <span 
+class="cmmi-10">c</span>, respectively. Data&#x00A0;2
+was drawn from a continuous mixture of multinomial distributions whose true proportions were drawn from a
+bivariate logistic normal distribution with a geometric mean of 45% for <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b</span>, 10% for <span 
+class="cmmi-10">c</span>, and 100% dispersion
+with a correlation coefficient of -0.5 between the two logratio dimensions. <span 
+class="cmmi-10">R</span>, <span 
+class="cmmi-10">C </span>and <span 
+class="cmmi-10">N </span>refer to the row, column,
+and total sums, respectively.</span></div><!--tex4ht:label?: x1-10031 -->
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 251--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>The pooled composition</h3>
+<!--l. 254--><p class="noindent" >Let us partition a population of objects (such as minerals, fossils or pollen) into two classes. Let <span 
+class="cmmi-10">&#x03B8; </span>be the true fraction
+of the first class, and (1 <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B8;</span>) the true fraction of the second class, respectively. Suppose that we have
+collected <span 
+class="cmmi-10">m </span>representative samples of randomly selected items from this population. For each of these
+
+samples, let <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub> represent the number of items belonging to the first class and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub> the number of items
+belonging to the second class (for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">m</span>). Further let <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">&#x2219;</span></sub> be the total number of counts in the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup>
+sample so that <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">&#x2219;</span></sub><span 
+class="cmsy-10">&#x2261; </span><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub> + <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub>. The probability of observing <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub> given <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">&#x2219;</span></sub> then follows a binomial
+distribution:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2001r3"></a>
+   <center class="math-display" >
+<img 
+src="index4x.png" alt="              (ni&#x2219;) n       n
+p(ni1,ni2|ni&#x2219;) =  n   &#x03B8; i1(1- &#x03B8;) i2
+                i1
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 272--><p class="nopar" >
+<!--l. 274--><p class="indent" >   The true value of <span 
+class="cmmi-10">&#x03B8; </span>is unknown but can be estimated (as <img 
+src="index5x.png" alt="&#x02C6;&#x03B8;"  class="circ" > ) by jointly considering all <span 
+class="cmmi-10">m </span>samples and maximising
+their summed log-likelihood (<span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmmi-7">p</span></sub>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2002r4"></a>
+   <center class="math-display" >
+<img 
+src="index6x.png" alt="     m [  (   )                      ]
+    &#x2211;       n&#x2219;i
+Lp = i=1 ln ni1  + ni1 ln(&#x03B8;)+ ni2ln(1 - &#x03B8;)
+
+  = constant+ n&#x2219;1ln (&#x03B8;)+ n&#x2219;2ln(1- &#x03B8;)
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+
+<!--l. 288--><p class="nopar" >
+<!--l. 290--><p class="noindent" >where <span 
+class="cmmi-10">n</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmr-7">1</span></sub> <span 
+class="cmsy-10">&#x2261;</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmr-7">2</span></sub> <span 
+class="cmsy-10">&#x2261;</span><span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub>. Equation&#x00A0;<a 
+href="#x1-2002r4">4<!--tex4ht:ref: eq:Lpooled --></a> is maximised if <img 
+src="index7x.png" alt="&#x02C6;&#x03B8;"  class="circ" > = <span 
+class="cmmi-10">n</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">&#x2215;</span>(<span 
+class="cmmi-10">n</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmr-7">1</span></sub> + <span 
+class="cmmi-10">n</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmr-7">2</span></sub>). In other words, the
+maximum likelihood solution is found by <span 
+class="cmti-10">pooling </span>all the counts together. A 100(1 <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B1;</span>)% confidence interval for <span 
+class="cmmi-10">&#x03B8; </span>is
+given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2003r5"></a>
+   <center class="math-display" >
+<img 
+src="index8x.png" alt="                                          &#x03B1;
+----------n&#x2219;1-----------      ---(n-&#x2219;1-+-1)F2(n&#x2219;1+1),2n&#x2219;2--
+n&#x2219;1 + (n&#x2219;2 + 1)F &#x03B1;2(n&#x2219;2+1),2n&#x2219;1 &#x003C; &#x03B8; &#x003C; n&#x2219;2 + (n&#x2219;1 + 1)F&#x03B1;2(n&#x2219;1+1),2n&#x2219;2
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 308--><p class="nopar" >
+<!--l. 310--><p class="noindent" >where <span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">a,b</span></sub><sup><span 
+class="cmmi-7">&#x03B1;</span></sup> denotes the 100(1-<span 
+class="cmmi-10">&#x03B1;</span>)-percentile of an F-distribution with <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>degrees of freedom. The same
+equation can be used to construct a confidence interval for <span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub> by replacing <span 
+class="cmmi-10">n</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmr-7">1</span></sub> with <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">n</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmr-7">2</span></sub> with
+<span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub>.<br 
+class="newline" />
+<!--l. 316--><p class="indent" >   Let us consider the binary subcomposition comprised of <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>in samples&#x00A0;11 and 13 of Data&#x00A0;1 as an example. For
+sample&#x00A0;11, <span 
+class="cmmi-10">a </span>= <span 
+class="cmmi-10">b </span>= 34 so that <img 
+src="index9x.png" alt="&#x02C6;&#x03B8;"  class="circ" > = 0<span 
+class="cmmi-10">.</span>5 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>11. For sample&#x00A0;13, <span 
+class="cmmi-10">a </span>= <span 
+class="cmmi-10">b </span>= 9 so that <img 
+src="index10x.png" alt="&#x03B8;&#x02C6;"  class="circ" > = 0<span 
+class="cmmi-10">.</span>5 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>21. In other words, although
+the binomial parameter estimates of these two samples are the same, the width of their 95% confidence intervals differ
+by a factor of two. In statistical terms, this is called <span 
+class="cmti-10">heteroscedasticity</span>. The following section of this paper will introduce
+a graphical means of visualising such data.
+<!--l. 326--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>A radial plot for point-counting ratios</h3>
+
+<!--l. 329--><p class="noindent" >In many Earth Sciences applications, it is not so much the absolute proportions but the ratios between binary
+(sub)compositions that are of interest. For example, in the context of heavy mineral analysis the apatite/tourmaline,
+monazite/zircon, and TiO<span 
+class="cmr-7">2</span>/zircon ratios (e.g.,&#x00A0;<a 
+href="#Xmorton1994">Morton and Hallsworth</a>,&#x00A0;<a 
+href="#Xmorton1994">1994</a>), and the epidote/garnet ratio (<a 
+href="#Xheroy2003">Heroy
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xheroy2003">2003</a>) have all be used to indentify the provenance of sediments. In micropalaeontology, the ratio of benthic to
+planktonic foraminifera has been used as a productivity index (e.g.,&#x00A0;<a 
+href="#Xberger1988">Berger and Diester-Haass</a>,&#x00A0;<a 
+href="#Xberger1988">1988</a>). And
+in palynology, the arboreal/non-arboreal pollen ratio is widely used as an index of landscape openness
+(e.g.,&#x00A0;<a 
+href="#Xherzschuh2007">Herzschuh</a>,&#x00A0;<a 
+href="#Xherzschuh2007">2007</a>).<br 
+class="newline" />
+<!--l. 341--><p class="indent" >   Given an estimate of the binomial parameter, <img 
+src="index11x.png" alt="&#x02C6;&#x03B8;"  class="circ" > , such ratios can be simply obtained as <img 
+src="index12x.png" alt="&#x02C6;&#x03B8;"  class="circ" > <span 
+class="cmmi-10">&#x2215;</span>(1 <span 
+class="cmsy-10">-</span><img 
+src="index13x.png" alt="&#x02C6;&#x03B8;"  class="circ" > ). The
+corresponding 100(1 <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B1;</span>)% confidence intervals can be calculated using Equation&#x00A0;<a 
+href="#x1-2003r5">5<!--tex4ht:ref: eq:pooledCI --></a>. Applying this to
+samples&#x00A0;11 and 13 of Data&#x00A0;1 as an example, we obtain <span 
+class="cmmi-10">a&#x2215;b</span>-ratio estimates of 1.00 +0.53/-0.35 for for
+sample&#x00A0;11, and 1.00 +1.43/-0.58 for sample&#x00A0;13. So like the binomial parameter estimates, also the ratio
+estimates are heteroscedastic. A radial plot is a graphical device that was specifically designed to display such
+data.<br 
+class="newline" />
+<!--l. 351--><p class="indent" >   Given a set of paired counts <img 
+src="index14x.png" alt="{ni1,ni2}"  class="left" align="middle"> (for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">m</span>), the radial plot is a scatter diagram that sets out (<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">z</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>)<span 
+class="cmmi-10">&#x2215;s</span><sub><span 
+class="cmmi-7">i</span></sub>
+against 1<span 
+class="cmmi-10">&#x2215;s</span><sub><span 
+class="cmmi-7">i</span></sub>, where
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r6"></a>
+   <center class="math-display" >
+<img 
+src="index15x.png" alt="         ( &#x2218;--------------------)
+zi = arcsin  (ni1 + 3&#x2215;8)&#x2215;(ni&#x2219; + 3&#x2215;4) ,
+          (&#x2218; ------)
+z&#x2218; = arctan   n&#x2219;1&#x2215;n&#x2219;2 , and
+      (  &#x2218;--------)
+si = 1&#x2215; 2 ni&#x2219; + 1&#x2215;2
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 363--><p class="nopar" >
+
+<!--l. 365--><p class="indent" >   Precise measurements plot towards the right hand side of this plot and imprecise measurements to the left. The
+actual <span 
+class="cmmi-10">n</span><sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">&#x2215;n</span><sub><span 
+class="cmr-7">2</span><span 
+class="cmmi-7">i</span></sub>-ratio is proportional to the slope of a line connecting the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> data point to the origin. The
+corresponding values are shown on a circular scale shown at some convenient radial distance away from the
+origin.<br 
+class="newline" />
+<!--l. 372--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-30021">1<!--tex4ht:ref: fig:radial --></a>.i shows a radial plot for the first two components (<span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b</span>) of Data&#x00A0;1. Samples&#x00A0;11 and 13 of
+Data&#x00A0;1 have been highlighted. Recall that the estimated <span 
+class="cmmi-10">a&#x2215;b</span>-ratio of sample&#x00A0;11 has the same value but
+twice the precision of sample&#x00A0;13. Therefore, sample&#x00A0;11 plots at the same angle, but towards the right of
+sample&#x00A0;13.<br 
+class="newline" />
+<!--l. 379--><p class="indent" >   Figure&#x00A0;<a 
+href="#x1-30021">1<!--tex4ht:ref: fig:radial --></a>.ii displays the <span 
+class="cmmi-10">a&#x2215;b</span>-ratios of Data&#x00A0;2. Let us have a closer look at samples&#x00A0;2 and 7, which are marked in
+black on this diagram. The total number of grains counted in these two samples are <span 
+class="cmmi-10">n</span><sub><span 
+class="cmr-7">2</span><span 
+class="cmsy-7">&#x2219;</span></sub> = 60 + 24 = 84, and
+<span 
+class="cmmi-10">n</span><sub><span 
+class="cmr-7">7</span><span 
+class="cmsy-7">&#x2219;</span></sub> = 1 + 6 = 7, respectively (Table&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: tab:data --></a>). So sample&#x00A0;2 is twelve times larger than sample&#x00A0;7, allowing a more
+precise <span 
+class="cmmi-10">a&#x2215;b</span>-ratio estimate. Sample&#x00A0;2 therefore plots to the right of sample&#x00A0;7, causing the 95%-confidence
+interval for the former sample to be narrower than that of the latter. Projecting the two samples onto
+the radial scale yields a ratio of <span 
+class="cmmi-10">a&#x2215;b </span>= 2<span 
+class="cmmi-10">.</span>5 + 1<span 
+class="cmmi-10">.</span>7<span 
+class="cmmi-10">&#x2215; </span><span 
+class="cmsy-10">- </span>1<span 
+class="cmmi-10">.</span>0 for sample&#x00A0;2 and <span 
+class="cmmi-10">a&#x2215;b </span>= 0<span 
+class="cmmi-10">.</span>17 + 1<span 
+class="cmmi-10">.</span>20<span 
+class="cmmi-10">&#x2215; </span><span 
+class="cmsy-10">- </span>0<span 
+class="cmmi-10">.</span>16 for
+sample&#x00A0;7.<br 
+class="newline" />
+<!--l. 391--><p class="indent" >   The dispersion of the data with respect to the counting uncertainties can be visually assessed by comparing the
+vertical scatter of the data with a confidence band of two standard errors wide drawn on either side of the origin. If
+approximately 95% of the data plot within this interval, then the data are compatible with a homogeneous
+composition. This is the case for Data&#x00A0;1, which can therefore be safely averaged using the pooled ratio
+(Figure&#x00A0;<a 
+href="#x1-30021">1<!--tex4ht:ref: fig:radial --></a>.i). In contrast, the <span 
+class="cmmi-10">a&#x2215;b</span>-ratios of Data&#x00A0;2 significantly scatter beyond the &#8216;2-sigma&#8217; confidence region
+(Figure&#x00A0;<a 
+href="#x1-30021">1<!--tex4ht:ref: fig:radial --></a>.ii). In this case the pooled average should be abandoned in favour of a heterogeneous model
+(Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:randomeffects --></a>).<br 
+class="newline" />
+<!--l. 403--><p class="indent" >   In conclusion, the radial plot is a useful device to visually assess the dispersion of point-counting
+ratios. The next section of this paper introduces a formal statistical test to make this assessment more
+quantitative.
+<!--l. 408--><p class="indent" >   <hr class="figure"><div class="figure" 
+><a 
+ id="x1-30021"></a> <center><a href="radialplots.png"><img src="radialplots.png" class="snapshot" alt="PIC"></a></center>
+
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Radial plots of the binary subcompositions <span 
+class="cmmi-10">a </span>and <span 
+class="cmmi-10">b </span>for Table&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: tab:data --></a>. i) approximately 95% of the samples
+in Data&#x00A0;1 plot within a symmetric &#8216;2-sigma&#8217; band around the origin. These data are therefore compatible with
+a single homogeneous population. The pooled composition then is the best estimate for the average composition
+(Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:pooled --></a>). ii) the <span 
+class="cmmi-10">a&#x2215;b</span>-ratio of each sample can be obtained by projecting the corresponding scatter point
+onto the radial scale. The black dots mark samples&#x00A0;2 (right) and 7 (left) of Data&#x00A0;2. Projecting a &#8216;2-sigma&#8217;
+error bar onto the same scale yields the 95% confidence intervals of <span 
+class="cmmi-10">a&#x2215;b </span>= 2<span 
+class="cmmi-10">.</span>5 + 1<span 
+class="cmmi-10">.</span>7<span 
+class="cmmi-10">&#x2215; </span><span 
+class="cmsy-10">- </span>1<span 
+class="cmmi-10">.</span>0 for sample&#x00A0;2 and
+<span 
+class="cmmi-10">a&#x2215;b </span>= 0<span 
+class="cmmi-10">.</span>17 + 1<span 
+class="cmmi-10">.</span>20<span 
+class="cmmi-10">&#x2215; </span><span 
+class="cmsy-10">- </span>0<span 
+class="cmmi-10">.</span>16 for sample&#x00A0;7, respectively. In contrast with Data&#x00A0;1, the <span 
+class="cmmi-10">a&#x2215;b</span>-ratios of Data&#x00A0;2 do not
+fit within a &#8216;2-sigma&#8217; band. In this case the data are more adequately described by a random effects model with
+two parameters: the central ratio and the dispersion.</span></div><!--tex4ht:label?: x1-30021 -->
+<!--l. 427--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 429--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>A chi-square test for compositional homogeneity</h3>
+<!--l. 432--><p class="noindent" >In order for the pooled composition to be a meaningful description of the detrital population, all samples must be
+derived from a single true composition. In other words, any observed differences in the <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">&#x2215;n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub>-ratios must be due to
+binomial counting statistics alone. The validity of this assumption can be verified by calculating the chi-square
+statistic:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r7"></a>
+   <center class="math-display" >
+<img 
+src="index16x.png" alt=" 2     --1---&#x2211;m [ni1n-&#x2219;2---ni2n&#x2219;1]2
+&#x03C7;stat = n&#x2219;1n&#x2219;2         ni&#x2219;
+             i=1
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 444--><p class="nopar" >
+
+<!--l. 446--><p class="indent" >   If <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> is greater than the 100(1 <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03B1;</span>)-percentile of a chi-square distribution with (<span 
+class="cmmi-10">m</span><span 
+class="cmsy-10">- </span>1) degrees of freedom, then
+the null hypothesis of compositional homogeneity is rejected on a 100(1 <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03B1;</span>)% confidence level, where <span 
+class="cmmi-10">&#x03B1; </span>is usually taken
+to be 0.05.<br 
+class="newline" />
+<!--l. 452--><p class="indent" >   An alternative way to quantify the dispersion of the data with respect to the expected counting fluctuations is to
+divide <span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmmi-7">stat</span></sub><sup><span 
+class="cmr-7">2</span></sup> by the number of degrees of freedom. This parameter is known as the &#8216;reduced chi-square statistic&#8217;, but is
+also frequently referred to as the &#8216;Mean Square of the Weighted Deviates&#8217; in the Earth Sciences (<a 
+href="#Xwendt1991">Wendt and
+Carl</a>,&#x00A0;<a 
+href="#Xwendt1991">1991</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4002r8"></a>
+   <center class="math-display" >
+<img 
+src="index17x.png" alt="          2
+MSWD   &#x2261; &#x03C7;stat&#x2215;(m - 1)
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 461--><p class="nopar" >
+<!--l. 463--><p class="indent" >   If the observed scatter is entirely due to binomial counting statistics, then the MSWD is expected to
+take values close to unity. This is the case for Data&#x00A0;1, which is characterised by an MSWD of 1.4 and a
+p-value of 0.13. The latter value is well above the 0.05 cutoff, making the pooled composition the most
+appropriate average. The pooled <span 
+class="cmmi-10">a&#x2215;b</span>-ratio of Data&#x00A0;1 is 1.00 <span 
+class="cmsy-10">&plusmn; </span>0.10, which agrees with the known ratio of 1.00
+(Section&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>).<br 
+class="newline" />
+<!--l. 471--><p class="indent" >   MSWD values significantly greater than one indicate the presence of excess scatter beyond the binomial counting
+statistics. This is the case for Data&#x00A0;2, which yields an MSWD-value of 16 and a p-value close to zero. In this situation,
+the pooled average is not the most appropriate estimator for the population average and a more realistic model must be
+used. An example of one such model is given in Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:randomeffects --></a>.
+
+<!--l. 479--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Continuous mixtures</h3>
+<!--l. 482--><p class="noindent" >Datasets that fail the chi-square test for homogeneity are incompatible with a single binomial population. Instead
+their binomial population parameter <span 
+class="cmmi-10">&#x03B8; </span>may be drawn from a continuous distribution. Suppose that <span 
+class="cmmi-10">&#x03B8;</span>
+is drawn from a logistic normal distribution with geometric mean <span 
+class="cmmi-10">&#x03BC; </span>and coefficient of variation <span 
+class="cmmi-10">&#x03C3;</span>, and
+define
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5001r9"></a>
+   <center class="math-display" >
+<img 
+src="index18x.png" alt="      (     )
+&#x03B2; &#x2261; ln  -&#x03B8;--- ~ N (&#x03BC;,&#x03C3;2)
+        1- &#x03B8;
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 493--><p class="nopar" >
+<!--l. 495--><p class="noindent" >where <span 
+class="cmsy-10"><img 
+src="cmsy10-4e.png" alt="N" class="10x-x-4e" /></span>(<span 
+class="cmmi-10">&#x03BC;,&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>) stands for &#8220;the normal distribution with mean <span 
+class="cmmi-10">&#x03BC; </span>and variance <span 
+class="cmmi-10">&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>&#8221;. Note that <span 
+class="cmmi-10">&#x03B2; </span>is a logratio similar to
+those defined in Equation&#x00A0;<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:alr --></a>. Given the usual <span 
+class="cmmi-10">m </span>sets of point-counts <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub><span 
+class="cmsy-10">} </span>and maximising the log-likelihood
+function <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmmi-7">c</span></sub>
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5002r10"></a>
+   <center class="math-display" >
+<img 
+src="index19x.png" alt="         (                          [   (    )2]  )
+    &#x2211;m   ||{ (   ) &#x222B;&#x221E;              exp - 12  &#x03B2;-&#x03C3;&#x03BC;-    ||}
+Lc =   ln   ni&#x2219;     --exp-[&#x03B2;ni1]ni&#x2219;------&#x221A;--------d&#x03B2;
+     i=1  ||(  ni1 - &#x221E; (exp[&#x03B2;]+ 1)        &#x03C3;  2&#x03C0;       ||)
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 514--><p class="nopar" >
+<!--l. 516--><p class="noindent" >yields two estimates <img 
+src="index20x.png" alt="&#x02C6;&#x03BC;"  class="circ" > and <img 
+src="index21x.png" alt="&#x02C6;&#x03C3;"  class="circ" > whose approximate standard errors may be obtained by inverting the Hessian matrix
+of second derivatives of <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmmi-7">c</span></sub>. The integrals in Equation&#x00A0;<a 
+href="#x1-5002r10">10<!--tex4ht:ref: eq:LLbivariatecentral --></a> cannot be evaluated analytically, but a quick
+numerical solution is provided by <a 
+href="#Xgalbraith1993">Galbraith and Laslett</a>&#x00A0;(<a 
+href="#Xgalbraith1993">1993</a>). The &#8216;central&#8217; composition is then defined
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5003r11"></a>
+   <center class="math-display" >
+<img 
+src="index22x.png" alt="     exp[&#x02C6;&#x03BC;]
+&#x02C6;&#x03B8; = exp[&#x02C6;&#x03BC;]+-1
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 525--><p class="nopar" >
+<!--l. 527--><p class="noindent" >which is akin to the inverse logratio transformation defined in Equation&#x00A0;<a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:ialr --></a>. The central <span 
+class="cmmi-10">a&#x2215;b</span>-ratio for Data&#x00A0;2 is
+0<span 
+class="cmmi-10">.</span>80 <span 
+class="cmsy-10">&plusmn; </span>0<span 
+class="cmmi-10">.</span>34 (Figure&#x00A0;<a 
+href="#x1-30021">1<!--tex4ht:ref: fig:radial --></a>.ii), which again agrees with the true ratio of 1.00 that was reported in Section&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>.<br 
+class="newline" />
+<!--l. 532--><p class="indent" >   The dispersion estimate <img 
+src="index23x.png" alt="&#x02C6;&#x03C3;"  class="circ" > quantifies the geological variability of the underlying population. This is just as useful a
+quantity as the central value itself. It estimates the relative spread of the underlying population without the binomial
+counting errors. For example the coefficient of variation (standard deviation divided by mean) of the <span 
+class="cmmi-10">a&#x2215;b</span>-ratio
+measurements for Data&#x00A0;2 is <span 
+class="cmsy-10">~</span>260%. This is far greater than the <span 
+class="cmsy-10">~</span>110% dispersion estimated by the random effects
+model. The latter estimate is much closer to the true dispersion of the underlying population, whose value is 100%
+(Section&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>).<br 
+class="newline" />
+<!--l. 543--><p class="indent" >   It is useful to note that, for samples that pass the chi-square test for sample homogeneity, the pooled ratio is the
+same as the central ratio. This is indeed the case for Data&#x00A0;1, which yields a pooled ratio of 1.00 <span 
+class="cmsy-10">&plusmn; </span>0.10 and a central
+ratio of 1.00 <span 
+class="cmsy-10">&plusmn; </span>0.14. The larger 95% uncertainty interval of the latter is due to the loss of one degree of freedom that is
+required to estimate <img 
+src="index24x.png" alt="&#x02C6;&#x03C3;"  class="circ" >.
+<!--l. 550--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-60006"></a>Ternary models</h3>
+<!--l. 553--><p class="noindent" >The statistical models presented in the previous sections can be generalised from two to three or more components. This
+is trivial for homogeneous populations such as Data&#x00A0;1, whose pooled composition is shown in Figure&#x00A0;<a 
+href="#x1-60022">2<!--tex4ht:ref: fig:ternarycounts --></a>.i. For
+heterogeneous populations such as Data&#x00A0;2, the continuous mixture model of Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:randomeffects --></a> can be generalised by defining
+two population parameters <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">1</span></sub> <span 
+class="cmsy-10">&#x2261;</span> ln[<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">1</span></sub>] <span 
+class="cmsy-10">-</span> ln[1 <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">1</span></sub> <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">2</span></sub>] and <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">2</span></sub> <span 
+class="cmsy-10">&#x2261;</span> ln[<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">2</span></sub>] <span 
+class="cmsy-10">-</span> ln[1 <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">1</span></sub> <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">2</span></sub>]. Assuming that <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">2</span></sub> are
+drawn from a bivariate normal distribution with mean <span 
+class="cmmi-10">M </span>and covariance matrix &#x03A3;, the three-component equivalent to
+Equation&#x00A0;<a 
+href="#x1-5002r10">10<!--tex4ht:ref: eq:LLbivariatecentral --></a> becomes
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6001r12"></a>
+   <center class="math-display" >
+<img 
+src="index25x.png" alt="     m              &#x222B;&#x221E; &#x222B;&#x221E;
+L = &#x2211;  ln{---ni&#x2219;!---      ---exp[&#x03B2;1ni1 +-&#x03B2;2ni2]--
+ t  i=1   ni1!ni2!ni3!      (exp[&#x03B2;1]+ exp [&#x03B2;2]+ 1)ni&#x2219;
+                [  - &#x221E;- &#x221E;               ]
+             exp - 12 (B - M )T &#x03A3;- 1(B - M )
+             -------------&#x2218;--------------d&#x03B2;1d&#x03B2;2}
+                        2&#x03C0;  |&#x03A3; |
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 585--><p class="nopar" >
+<!--l. 587--><p class="noindent" >where <img 
+src="index26x.png" alt="{n  ,n  ,n }
+  i1  i2  i3"  class="left" align="middle"> are the ternary counts of the <span 
+class="cmmi-10">i</span><sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> sample, with <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">1</span></sub> + <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">2</span></sub> + <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">3</span></sub> = <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">&#x2219;</span></sub> for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">m</span>;
+
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="index27x.png" alt="    &#x230A;    &#x230B;      &#x230A;    &#x230B;          &#x230A;          &#x230B;
+    | &#x03B2;1 |      | &#x03BC;1 |          | &#x03C3;21   &#x03C3;1,2 |
+B = &#x2308;    &#x2309;; M = &#x2308;    &#x2309; ; and &#x03A3; &#x2261; &#x2308;       2 &#x2309;
+      &#x03B2;2          &#x03BC;2              &#x03C3;1,2  &#x03C3; 2
+" class="math-display" ></center></td></tr></table>
+<!--l. 615--><p class="nopar" >
+<!--l. 617--><p class="noindent" >in which <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmr-7">2</span></sub> are the standard deviations of <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">2</span></sub>, and <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">2</span></sub> is their covariance. Equation&#x00A0;<a 
+href="#x1-6001r12">12<!--tex4ht:ref: eq:LLternarycentral --></a>, like
+Equation&#x00A0;<a 
+href="#x1-5002r10">10<!--tex4ht:ref: eq:LLbivariatecentral --></a>, does not have an analytical solution and requires numerical integration for each sample. The fast
+algorithm of <a 
+href="#Xgalbraith1993">Galbraith and Laslett</a>&#x00A0;(<a 
+href="#Xgalbraith1993">1993</a>) can be used to estimate <span 
+class="cmmi-10">&#x03BC;</span><sub><span 
+class="cmr-7">1</span></sub>, <span 
+class="cmmi-10">&#x03BC;</span><sub><span 
+class="cmr-7">2</span></sub>, <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmr-7">2</span></sub> so that only the covariance <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmr-7">1</span><span 
+class="cmmi-7">,</span><span 
+class="cmr-7">2</span></sub>
+remains to be found. The central composition is then estimated by substituting <img 
+src="index28x.png" alt="&#x02C6;&#x03BC;"  class="circ" ><sub><span 
+class="cmr-7">1</span></sub> for <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">i</span></sub> and <img 
+src="index29x.png" alt="&#x02C6;&#x03BC;"  class="circ" ><sub><span 
+class="cmr-7">2</span></sub> for <span 
+class="cmmi-10">v</span><sub><span 
+class="cmmi-7">i</span></sub> in
+Equation&#x00A0;<a 
+href="#x1-1002r2">2<!--tex4ht:ref: eq:ialr --></a>. Figure&#x00A0;<a 
+href="#x1-60022">2<!--tex4ht:ref: fig:ternarycounts --></a>.ii applies this model to Data&#x00A0;2, showing the central composition as a black square and
+using the dispersion estimate <img 
+src="index30x.png" alt="&#x03A3;&#x02C6;"  class="circ" > to define a 95% confidence region for the underlying population (red
+line).<br 
+class="newline" />
+<!--l. 632--><p class="indent" >   The definition of <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">1</span></sub> and <span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmr-7">2</span></sub> that is used in Equation&#x00A0;<a 
+href="#x1-6001r12">12<!--tex4ht:ref: eq:LLternarycentral --></a> is consistent with the logratio approach of Equation&#x00A0;<a 
+href="#x1-1001r1">1<!--tex4ht:ref: eq:alr --></a>.
+However other parameterisations are possible as well. For example, we could define three logistic population parameters
+(<span 
+class="cmmi-10">&#x03B2;</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">&#x2261;</span> ln[<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub>] <span 
+class="cmsy-10">-</span> ln[1 <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub>] for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span>3) to ensure compatibility with the bivariate random effects model of Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:randomeffects --></a>.
+These alternative parameterisations are interchangeable with each other and can easily be converted to each
+other.
+<!--l. 642--><p class="indent" >   <hr class="figure"><div class="figure" 
+><a id="x1-60022"></a> <center><a href="ternarycounts.png"><img class="snapshot" src="ternarycounts.png" alt="PIC"></a></center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2:  </span><span  
+class="content">Statistical  analysis  of  ternary  point-counting  data.  i.  Data&#x00A0;1  is  sampled  from  a  homogeneous
+population, whose mean is given by the pooled composition shown as a black square. ii. Data&#x00A0;2 is derived from
+a continuous mixture (see the caption of Table&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: tab:data --></a> for details). Its estimated central composition is shown as a
+black square, and the 95% confidence envelope corresponding to its dispersion parameters as a red contour line.
+The dashed black contour marks the true dispersion region for the population, also shown at 95% confidence.</span></div><!--tex4ht:label?: x1-60022 -->
+
+<!--l. 656--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 658--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-70007"></a>Correspondence analysis</h3>
+<!--l. 661--><p class="noindent" >The previous sections of this paper have shown that binary or ternary datasets can be visualised as radial plots and
+ternary diagrams, respectively. These two-dimensional graphics are useful for interpreting point-counting data, but
+cannot so easily be applied to higher dimensional datasets. In this section, we will consider the general case of a
+<span 
+class="cmmi-10">K</span>-component dataset <span 
+class="cmmi-10">X </span>contained in an [<span 
+class="cmmi-10">m</span><span 
+class="cmsy-10">&#x00D7;</span><span 
+class="cmmi-10">K</span>]-matrix. We will explore some strategies to display such a dataset as a
+two-dimensional graphic.<br 
+class="newline" />
+<!--l. 670--><p class="indent" >   Principal Component Analysis (PCA,&#x00A0;<a 
+href="#Xpearson1901">Pearson</a>,&#x00A0;<a 
+href="#Xpearson1901">1901</a>) is an ordination techniques that is commonly used for
+exploratory data analysis of multi-dimensional datasets. PCA is a two step process. First, the data are &#8216;centred&#8217; by
+subtracting the arithmetic mean composition from each column. Second, the centred data are decomposed into an
+orthogonal set of <span 
+class="cmmi-10">K </span>principal components. Plotting the first two principal components against each other then yields
+the desired two-dimensional data projection.<br 
+class="newline" />
+<!--l. 679--><p class="indent" >   Unfortunately, PCA cannot readily be applied to compositional data or point-counting data. This is because the
+first step involves taking an arithmetic mean, which we have already shown to be problematic in Section&#x00A0;<a 
+href="#x1-10001">1<!--tex4ht:ref: sec:intro --></a>. Subjecting
+the data to a logratio transformation prior to PCA analysis solves this problem (<a 
+href="#Xaitchison1983">Aitchison</a>,&#x00A0;<a 
+href="#Xaitchison1983">1983</a>). But this solution
+generally does not work for point-counting data due to its inability to handle zero count data. This issue is aggravated
+by the tendency for high dimensional datasets to contain more zeros than lower dimensional datasets
+do.<br 
+class="newline" />
+<!--l. 689--><p class="indent" >   Correspondence Analysis (CA,&#x00A0;<a 
+href="#Xgreenacre1984">Greenacre</a>,&#x00A0;<a 
+href="#Xgreenacre1984">1984</a>) fixes these issues by explicitly treating the data as counts. CA is a
+multivariate ordination technique that is conceptually similar to PCA. To understand the relationship between the two
+methods, it is useful to point out that PCA and CA are both special case of another exploratory data analysis method
+called Multidimensional Scaling (MDS,&#x00A0;<a 
+href="#Xkruskal1978">Kruskal and Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>;&#x00A0;<a 
+href="#Xvermeesch2013">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2013">2013</a>). Given a table of pairwise
+&#8216;dissimilarities&#8217; between samples, MDS produces a map in which similar samples plot close together and dissimilar
+samples plot far apart.<br 
+class="newline" />
+
+<!--l. 699--><p class="indent" >   PCA is a special case of MDS in which the dissimilarities are Euclidean distances. CA is another special case of
+MDS in which the dissimilarities are chi-square distances (<a 
+href="#Xlegendre2001">Legendre and Gallagher</a>,&#x00A0;<a 
+href="#Xlegendre2001">2001</a>;&#x00A0;<a 
+href="#Xgreenacre2005">Greenacre</a>,&#x00A0;<a 
+href="#Xgreenacre2005">2005</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-7001r13"></a>
+   <center class="math-display" >
+<img 
+src="index31x.png" alt="     &#x250C;&#x2502; ---------------------
+     &#x2502;&#x2218; &#x2211;K  X&#x2219;&#x2219;( Xik   Xjk)2
+dij =     X-&#x2219;k  Xi&#x2219;-- Xj&#x2219;-
+       k=1
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 712--><p class="nopar" >
+<!--l. 714--><p class="noindent" >where <span 
+class="cmmi-10">d</span><sub><span 
+class="cmmi-7">ij</span></sub> is the dissimilarity between samples <span 
+class="cmmi-10">i </span>and <span 
+class="cmmi-10">j </span>(with 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i,j </span><span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">m</span>); <span 
+class="cmmi-10">X</span><sub><span 
+class="cmsy-7">&#x2219;</span><span 
+class="cmmi-7">k</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">ik</span></sub>; <span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">&#x2219;</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">K</span></sup><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">ik</span></sub>;
+<span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">&#x2219;</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">K</span></sup><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">jk</span></sub>; and <span 
+class="cmmi-10">X</span><sub><span 
+class="cmsy-7">&#x2219;&#x2219;</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+<sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup> <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">K</span></sup><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">ik</span></sub>. In the case of PCA, the principal components are obtained by
+linear combination of the original variables. The weightings of these variables can be displayed together with the
+transformed data as a biplot (<a 
+href="#Xaitchison2002">Aitchison and Greenacre</a>,&#x00A0;<a 
+href="#Xaitchison2002">2002</a>). The same principle can be applied to CA
+(Figure&#x00A0;<a 
+href="#x1-80013">3<!--tex4ht:ref: fig:CA --></a>).
+<!--l. 725--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
+ id="x1-80008"></a>Examples</h3>
+<!--l. 728--><p class="noindent" >All the methods discussed in this paper were added to the <span 
+class="cmtt-10">provenance </span>package of <a 
+href="#Xvermeesch2016a">Vermeesch et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xvermeesch2016a">2016</a>). Written in
+the statistical programming language <span 
+class="cmtt-10">R</span>, <span 
+class="cmtt-10">provenance </span>comes with a query-based user interface that does not require any
+programming skills. Alternatively, the full functionality of the package can also be accessed via the command line, as
+demonstrated in the following tutorial.<br 
+class="newline" />
+<!--l. 736--><p class="indent" >   Point-counting data can be read from a <span 
+class="cmtt-10">.csv </span>file using the <span 
+class="cmtt-10">read.counts </span>function. For example, to read the second
+dataset from Table <a 
+href="#x1-10001">1<!--tex4ht:ref: tab:data --></a>:
+
+   <div class="verbatim" id="verbatim-1">
+data2&#x00A0;&#x003C;-&#x00A0;read.counts('data2.csv')
+</div>
+<!--l. 742--><p class="nopar" >
+<!--l. 744--><p class="indent" >   Plotting the ratios of the first two variables (<span 
+class="cmmi-10">a&#x2215;b</span>) as a radial plot (Figure&#x00A0;<a 
+href="#x1-30021">1<!--tex4ht:ref: fig:radial --></a>.i):
+
+   <div class="verbatim" id="verbatim-2">
+radialplot(data2,num='a',den='b')
+</div>
+<!--l. 749--><p class="nopar" >
+<!--l. 751--><p class="noindent" >where <span 
+class="cmtt-10">num </span>and <span 
+class="cmtt-10">den </span>are optional arguments denoting the names of the numerator and denominator component,
+respectively. Plotting the full dataset on a ternary diagram and constructing its 95% confidence region
+(Figure&#x00A0;<a 
+href="#x1-60022">2<!--tex4ht:ref: fig:ternarycounts --></a>.ii):
+
+   <div class="verbatim" id="verbatim-3">
+#&#x00A0;create&#x00A0;a&#x00A0;ternary&#x00A0;data&#x00A0;object:
+&#x00A0;<br />tern&#x00A0;&#x003C;-&#x00A0;ternary(data2)
+&#x00A0;<br />#&#x00A0;show&#x00A0;the&#x00A0;data&#x00A0;on&#x00A0;a&#x00A0;ternary&#x00A0;diagram
+&#x00A0;<br />#&#x00A0;as&#x00A0;white&#x00A0;circles&#x00A0;without&#x00A0;data&#x00A0;labels:
+&#x00A0;<br />plot(tern,pch=1,labels=NA)
+&#x00A0;<br />#&#x00A0;add&#x00A0;the&#x00A0;95%&#x00A0;confidence&#x00A0;region:
+&#x00A0;<br />ternary.ellipse(tern,alpha=0.05)
+</div>
+<!--l. 765--><p class="nopar" >
+<!--l. 767--><p class="noindent" >where everything that follows a hash character (&#8216;#&#8217;) is a comment and is ignored. Next, let us consider a real dataset of
+heavy mineral counts from Namibia published by <a 
+href="#Xvermeesch2016a">Vermeesch et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xvermeesch2016a">2016</a>). The following code snippet calculates the
+central composition for these data:
+
+   <div class="verbatim" id="verbatim-4">
+HM&#x00A0;&#x003C;-&#x00A0;read.counts('HM.csv')
+&#x00A0;<br />avg&#x00A0;&#x003C;-&#x00A0;central(HM)
+</div>
+<!--l. 776--><p class="nopar" >
+<!--l. 778--><p class="indent" >   The variable <span 
+class="cmtt-10">avg </span>contains a [5 <span 
+class="cmsy-10">&#x00D7; </span>15] table in which each column corresponds to a mineral species, and the rows
+contain (1) the central value for the binomial parameters (<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub> for 1 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2264; </span>15) for those minerals; (2) the
+standard error for the binomial parameters; (3) the overdispersion parameter for the binary composition
+parameter ln[<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub>] <span 
+class="cmsy-10">-</span> ln[1 <span 
+class="cmsy-10">- </span><span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">i</span></sub>]; (4) the MSWD value for each binary subcomposition; and (5) the corresponding
+p-value.<br 
+class="newline" />
+<!--l. 787--><p class="indent" >   Next, we will perform a correspondence analysis of the Namib data. But before doing so, it is important to point out
+that CA is most sensitive to the least abundant components. To mitigate the effects of this phenomenon, it is useful to
+pre-process the data. The following code snippet selects the most abundant minerals (epidote, garnet, amphibole and
+clinopyroxene) from the datasets and amalgamates the ultra-stable minerals (zircon, tourmaline and rutile), which have
+similar petrological significance:
+
+   <div class="verbatim" id="verbatim-5">
+HM2&#x00A0;&#x003C;-&#x00A0;amalgamate(HM,ztr=c('zr','tm','rt'),ep='ep',
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;gt='gt',amp='amp',cpx='cpx')
+</div>
+<!--l. 799--><p class="nopar" >
+<!--l. 801--><p class="indent" >   The resulting data object (<span 
+class="cmtt-10">HM2</span>) still contains a number of zero values, but is no longer dominated by them. The
+actual CA calculation then proceeds as follows:
+
+   <div class="verbatim" id="verbatim-6">
+#&#x00A0;perform&#x00A0;the&#x00A0;calculations:
+&#x00A0;<br />ca&#x00A0;&#x003C;-&#x00A0;CA(HM2)
+&#x00A0;<br />#&#x00A0;show&#x00A0;the&#x00A0;results&#x00A0;as&#x00A0;a&#x00A0;biplot:
+&#x00A0;<br />plot(ca)
+</div>
+<!--l. 810--><p class="nopar" >
+<!--l. 812--><p class="indent" >   The biplot (Figure&#x00A0;<a 
+href="#x1-80013">3<!--tex4ht:ref: fig:CA --></a>) displays the samples in black and the minerals as red arrows. The tight clustering of samples
+N1, N2, N3, N10, N12, N14, T8 and T13 reflects the compositional similarity between these samples, which were all
+derived from the coastal parts of the Namib Sand Sea (<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>). In contrast, inland samples N4,
+N5, N8 and N9 plot elsewhere, indicating that they have a different composition. This is due to a combination of
+provenance and hydraulic sorting effects (<a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>,&#x00A0;<a 
+href="#Xvermeesch2015">2015</a>).<br 
+class="newline" />
+<!--l. 821--><p class="indent" >   The configuration of the mineral labels provides further insight into the factors that cause the dispersion of the
+samples on the biplot. For example, the orientation of the red arrows shows that samples N8 and N9 are enriched in
+garnet and ultra-stable minerals, whereas sample N5 is enriched in epidote relative to the coastal samples. The arrows
+for epidote and clinopyroxene point in opposite directions, indicating that these two minerals are anti-correlated with
+each other. In contrast, the arrow for garnet is perpendicular to that of epidote. This indicates that garnet and epidote
+are uncorrelated with each other.
+<!--l. 832--><p class="indent" >   <hr class="figure"><div class="figure" 
+><a id="x1-80013"></a> <center><a href="CA.png"><img class="snapshot" src="CA.png" alt="PIC"></a></center>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Correspondence analysis of heavy mineral compositions from Namibia (<a 
+href="#Xvermeesch2016a">Vermeesch et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xvermeesch2016a">2016</a>)
+shown as a biplot. Samples are shown in black, minerals in red.</span></div><!--tex4ht:label?: x1-80013 -->
+<!--l. 839--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 841--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
+ id="x1-90009"></a>Discussion and conclusions</h3>
+<!--l. 844--><p class="noindent" >It is common practice in sedimentary petrography, palaeontology and palynology to report the relative abundances of
+minerals, fossils or pollen as percentages. Unfortunately, by doing so one loses the ability to quantify the statistical
+
+uncertainty of the underlying point-counting data. Normalisation of point-counts also compromises the ability to deal
+with missing (zero) components.<br 
+class="newline" />
+<!--l. 851--><p class="indent" >   The statistical methods reviewed in this paper are built on the recognition that point-counts represent a distinct
+class of data. This new data class shares aspects with, but is fundamentally different from <a 
+href="#Xaitchison1986">Aitchison</a>&#x00A0;(<a 
+href="#Xaitchison1986">1986</a>)&#8217;s
+compositional data. Compositional data only carry relative information (<a 
+href="#Xpawlowsky2011">Pawlowsky-Glahn and Buccianti</a>,&#x00A0;<a 
+href="#Xpawlowsky2011">2011</a>), and
+the absolute abundances of their components are irrelevant. In stark contrast with this, for point-counting data the
+absolute abundances <span 
+class="cmti-10">do </span>matter, because they control the precision of the estimated compositions (<a 
+href="#Xbloemsma2015">Bloemsma and
+Weltje</a>,&#x00A0;<a 
+href="#Xbloemsma2015">2015</a>).<br 
+class="newline" />
+<!--l. 861--><p class="indent" >   This observation leads to a first recommendation, which is to report the total number of counts for each sample in
+published data tables. This allows the recovery of the raw point-counting data. Those data can then be further analysed
+using the techniques introduced in this paper.<br 
+class="newline" />
+<!--l. 867--><p class="indent" >   Compositional data and point-counting data are closely related to each other. In fact, point-counting <span 
+class="cmti-10">data </span>are
+underlain by compositional <span 
+class="cmti-10">populations</span>. These populations can be constrained using a combination of multinomial and
+logratio statistics.<br 
+class="newline" />
+<!--l. 872--><p class="indent" >   If the data are underlain by a single, fixed composition, then the point-counting data follow a multinomial
+distribution. In this case, the fixed composition of the underlying population can be estimated by pooling all the data
+together (Section&#x00A0;<a 
+href="#x1-20002">2<!--tex4ht:ref: sec:pooled --></a>). However, this simple scenario rarely occurs in the real world. Provided that a dataset is large
+enough, virtually all populations are overdispersed with respect to the multinomial point-counting uncertainties
+(Section&#x00A0;<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:X2 --></a>).<br 
+class="newline" />
+<!--l. 881--><p class="indent" >   For two-component systems, the degree of overdispersion can be visually assessed on a radial plot (Section&#x00A0;<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:radial --></a>). The
+dispersion may then be quantified using a three parameter continuous mixture model (Section&#x00A0;<a 
+href="#x1-50005">5<!--tex4ht:ref: sec:randomeffects --></a>), which can be
+generalised to three (or more) components (Section&#x00A0;<a 
+href="#x1-60006">6<!--tex4ht:ref: sec:ternary --></a>). The continuous mixture model assumes that the point-counting
+data are underlain by a logistic normal distribution. Although more realistic than the homogeneous population assumed
+by the pooled composition, the continuous mixture model is still a very simple approximation to real geological
+scenarios.<br 
+class="newline" />
+
+<!--l. 892--><p class="indent" >   Correspondence Analysis was introduced as an effective tool for exploratory analysis of more complex and higher
+dimensional datasets (Section&#x00A0;<a 
+href="#x1-70007">7<!--tex4ht:ref: sec:CA --></a>). It does not seek to capture the data in a simplified analytical form. Instead, CA
+distills the salient similarities and differences between samples as a two-dimensional &#8216;map&#8217;, and which the variables can
+also be shown. Such biplots can provide valuable geological insights that would be difficult to obtain
+otherwise.<br 
+class="newline" />
+<!--l. 901--><p class="indent" >   CA is closely related to Principal Component Analysis. PCA can be applied to compositional data and uses
+Aitchison&#8217;s Euclidean logratio-distance as a measure to compare the (dis)similarities between samples. In contrast, CA
+uses the chi-square distance (Equation&#x00A0;<a 
+href="#x1-7001r13">13<!--tex4ht:ref: eq:dij --></a>), which makes it immune to the zero-count problem. Once we recognise the
+close affinity between the Aitchison distance and compositional data on the one hand, and between the chi-square
+distance and point-counting data on the other hand, then it is possible to add further complexity to our statistical
+analysis.<br 
+class="newline" />
+<!--l. 911--><p class="indent" >   For example, <a 
+href="#Xvermeesch2015">Vermeesch and Garzanti</a>&#x00A0;(<a 
+href="#Xvermeesch2015">2015</a>) introduce a technique called 3-way multidimensional scaling to
+combine different datasets together for the purpose of sedimentary provenance analysis. Using the insights gained from
+this paper, we could use the Aitchison distance to compare the major and trace element compositions
+of different samples, and the chi-square distance to compare their bulk petrography and heavy mineral
+counts.
+<!--l. 919--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-100009"></a>Acknowledgments</h3>
+<!--l. 921--><p class="noindent" >The methods presented in this paper follow from the work of Rex Galbraith, who is gratefully acknowledged for
+patiently answering numerous questions from the author. Gert-Jan Weltje and an anonymous reviewer are thanked for
+their constructive comments on the submitted manuscript.
+<!--l. 931--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-110009"></a>References</h3>
+<!--l. 931--><p class="noindent" >
+
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J.  The statistical analysis of compositional data.  <span 
+class="cmti-10">Journal of the Royal Statistical Society</span>, 44:
+  139&#8211;177, 1982.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J.  Principal component analysis of compositional data.  <span 
+class="cmti-10">Biometrika</span>, 70(1):57&#8211;65, 1983.  doi:
+  10.1093/biomet/70.1.57.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J. <span 
+class="cmti-10">The statistical analysis of compositional data</span>. London, Chapman and Hall, 1986.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J. and Greenacre, M.  Biplots of compositional data.  <span 
+class="cmti-10">Journal of the Royal Statistical Society:</span>
+  <span 
+class="cmti-10">Series C (Applied Statistics)</span>, 51(4):375&#8211;392, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbarkley1934"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Barkley, F.&#x00A0;A. The statistical theory of pollen analysis. <span 
+class="cmti-10">Ecology</span>, 15(3):283&#8211;289, 1934.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xberger1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Berger, W. and Diester-Haass, L.   Paleoproductivity: the benthic/planktonic ratio in foraminifera as a
+  productivity index. <span 
+class="cmti-10">Marine Geology</span>, 81(1-4):15&#8211;25, 1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbloemsma2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Bloemsma, M.&#x00A0;R. and Weltje, G.&#x00A0;J. Reduced-rank approximations to spectroscopic and compositional data:
+  A universal framework based on log-ratios and counting statistics. <span 
+class="cmti-10">Chemometrics and Intelligent Laboratory</span>
+  <span 
+class="cmti-10">Systems</span>, 142:206&#8211;218, 2015.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbuzas1990"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Buzas, M.&#x00A0;A.  Another look at confidence limits for species proportions.  <span 
+class="cmti-10">Journal of Paleontology</span>, 64(5):
+  842&#8211;843, 1990.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xclark1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Clark, R.&#x00A0;L. Point count estimation of charcoal in pollen preparations and thin sections of sediments. <span 
+class="cmti-10">Pollen</span>
+  <span 
+class="cmti-10">et spores</span>, 1982.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdryden1931"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Dryden, A. Accuracy in percentage representation of heavy mineral frequencies. <span 
+class="cmti-10">Proceedings of the National</span>
+  <span 
+class="cmti-10">Academy of Sciences</span>, 17(5):233&#8211;238, 1931.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfatela2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Fatela, F. and Taborda, R.  Confidence limits of species proportions in microfossil assemblages.  <span 
+class="cmti-10">Marine</span>
+  <span 
+class="cmti-10">Micropaleontology</span>, 45(2):169&#8211;174, 2002.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R.&#x00A0;F. <span 
+class="cmti-10">Statistics for fission track analysis</span>. CRC Press, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R. Graphical display of estimates having differing standard errors. <span 
+class="cmti-10">Technometrics</span>, 30(3):271&#8211;281,
+  1988.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Galbraith, R. and Laslett, G.  Statistical models for mixed fission track ages.  <span 
+class="cmti-10">Nuclear tracks and radiation</span>
+  <span 
+class="cmti-10">measurements</span>, 21(4):459&#8211;470, 1993.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreenacre2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Greenacre, M.  Weighted metric multidimensional scaling.  In <span 
+class="cmti-10">New developments in classification and data</span>
+  <span 
+class="cmti-10">analysis</span>, pages 141&#8211;149. Springer, 2005.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreenacre1984"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Greenacre, M.&#x00A0;J. Theory and applications of correspondence analysis. page 364, 1984.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xheroy2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Heroy, D.&#x00A0;C., Kuehl, S.&#x00A0;A., and Goodbred&#x00A0;Jr, S.&#x00A0;L.  Mineralogy of the Ganges and Brahmaputra Rivers:
+  implications for river switching and Late Quaternary climate change. <span 
+class="cmti-10">Sedimentary Geology</span>, 155(3-4):343&#8211;359,
+  2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xherzschuh2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Herzschuh, U. Reliability of pollen ratios for environmental reconstructions on the Tibetan Plateau. <span 
+class="cmti-10">Journal</span>
+  <span 
+class="cmti-10">of Biogeography</span>, 34(7):1265&#8211;1273, 2007.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1978"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J.&#x00A0;B. and Wish, M.  <span 
+class="cmti-10">Multidimensional scaling</span>, volume 07-011 of <span 
+class="cmti-10">Sage University Paper series on</span>
+  <span 
+class="cmti-10">Quantitative Application in the Social Sciences</span>. Sage Publications, Beverly Hills and London, 1978.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlegendre2001"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Legendre, P. and Gallagher, E.&#x00A0;D.  Ecologically meaningful transformations for ordination of species data.
+  <span 
+class="cmti-10">Oecologia</span>, 129(2):271&#8211;280, 2001.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmartin2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Mart&iacute;n-Fern&aacute;ndez, J.&#x00A0;A., Barcel&oacute;-Vidal, C., and Pawlowsky-Glahn, V.  Dealing with zeros and missing
+  values in compositional data sets using nonparametric imputation.  <span 
+class="cmti-10">Mathematical Geology</span>, 35(3):253&#8211;278,
+  2003.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmorton1994"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Morton,  A.&#x00A0;C.  and  Hallsworth,  C.   Identifying  provenance-specific  features  of  detrital  heavy  mineral
+  assemblages in sandstones. <span 
+class="cmti-10">Sedimentary Geology</span>, 90(3-4):241&#8211;256, 1994.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpatterson1989"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Patterson, R.&#x00A0;T. and Fishbein, E. Re-examination of the statistical methods used to determine the number
+  of point counts needed for micropaleontological quantitative research. <span 
+class="cmti-10">Journal of Paleontology</span>, 63(2):245&#8211;248,
+  1989.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpawlowsky2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pawlowsky-Glahn, V. and Buccianti, A. <span 
+class="cmti-10">Compositional data analysis: Theory and applications</span>. John Wiley
+  &amp; Sons, 2011.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpearson1901"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pearson, K.  On lines and planes of closest fit to systems of points in space.  <span 
+class="cmti-10">The London, Edinburgh, and</span>
+  <span 
+class="cmti-10">Dublin Philosophical Magazine and Journal of Science</span>, 2(11):559&#8211;572, 1901.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvanderplas1965"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Van&#x00A0;der Plas, L. and Tobi, A. A chart for judging the reliability of point counting results. <span 
+class="cmti-10">American Journal</span>
+  <span 
+class="cmti-10">of Science</span>, 263(1):87&#8211;90, 1965.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. Multi-sample comparison of detrital age distributions. <span 
+class="cmti-10">Chemical Geology</span>, 341:140&#8211;146, 2013.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2015"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P. and Garzanti, E. Making geological sense of &#8216;Big Data&#8217; in sedimentary provenance analysis.
+  <span 
+class="cmti-10">Chemical Geology</span>, 409:20&#8211;27, 2015.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2016a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., Resentini, A., and Garzanti, E. An R package for statistical provenance analysis. <span 
+class="cmti-10">Sedimentary</span>
+  <span 
+class="cmti-10">Geology</span>, 2016.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xweltje2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Weltje,  G.   Quantitative  analysis  of  detrital  modes:  statistically  rigorous  confidence  regions  in  ternary
+  diagrams and their use in sedimentary petrology.  <span 
+class="cmti-10">Earth-Science Reviews</span>, 57(3-4):211 &#8211; 253, 2002.  ISSN
+  0012-8252. doi: DOI: 10.1016/S0012-8252(01)00076-9.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwendt1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Wendt, I. and Carl, C.  The statistical distribution of the mean squared weighted deviation.  <span 
+class="cmti-10">Chemical</span>
+  <span 
+class="cmti-10">Geology: Isotope Geoscience Section</span>, 86(4):275&#8211;285, 1991.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xweng2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Weng, C., Hooghiemstra, H., and Duivenvoorden, J.&#x00A0;F. Challenges in estimating past plant diversity from
+  fossil pollen data: statistical assessment, problems, and possible solutions. <span 
+class="cmti-10">Diversity and distributions</span>, 12(3):
+  310&#8211;318, 2006.
+</p>
+  </div>
+    
+</body></html> 
+
+
+

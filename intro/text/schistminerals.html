@@ -1,0 +1,69 @@
+Click on the terms which describe this rock. This begins to create the introductory
+paragraph of your description below.
+
+<form>
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'Fine grained refers to a rock with grains less than 1mm.';" />
+fine
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'This is a fine to medium grained rock with grains ranging from less than 1mm to about 4mm.';" />
+fine to medium<br>
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'Medium to coarse grained refers to rocks with crystals greater than 1mm but less than 5mm.';" />
+medium to coarse
+<input type="radio" name="button" onclick="document.getElementById('grainsize').innerHTML=
+'Coarse grained rocks are made of crystals greater than 5mm.';" />
+coarse grained<br>
+</form>
+
+<form>
+<input type="radio" name="button" onclick="document.getElementById('layering').innerHTML=
+'This is a layered rock, containing crude layers of mica and other layers of light and colourless minerals.';" />
+layered
+<input type="radio" name="button" onclick="document.getElementById('layering').innerHTML=
+'Banding occurs in higher grade metamorphic rocks where the preferred orientation of the micas is disrupted and distinct compositional bands form such as seen in a gneiss.';" />
+banded
+<input type="radio" name="button" onclick="document.getElementById('layering').innerHTML=
+'Lamination refers to thin, discrete layers of rock as seen in sedimentary rocks.';" />
+laminated
+</form>
+
+<form>
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Slaty refers to \'slaty cleavage\' formed by the preferred orientation of the platy minerals.';" />
+slaty
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'This rock shows a schistose fabric which is coarser than the more delicate slaty cleavage that occurs in very fine grained metamorphic rocks.';" />
+schistose
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Gneissose refers to the regular alteration of schistose and granulose bands in a coarse grained, high-grade metamorphic rock.';" />
+gneissose
+</form>
+
+<form>
+<input type="radio" name="button" onclick="document.getElementById('texture').innerHTML=
+'Strictly speaking \'holocrystaline\' refers to igneous rocks that are only composed of crystals (no glass present).';" />
+holocrystaline
+<input type="radio" name="button" onclick="document.getElementById('texture').innerHTML=
+'This rock has a porphyroblastic texture, with large porphyroblasts set in a finer grained matrix.';" />
+porphyroblastic
+<input type="radio" name="button" onclick="document.getElementById('texture').innerHTML=
+'Massive refers to a homogeneous and featureless fabric.';" />
+massive
+</form>
+
+<p></p>
+(field of view = 4mm)
+<p></p>
+<button id='ppl1' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'schistmineralsppl.jpg\');';
+  document.getElementById('ppl1').style.fontWeight='bold';
+  document.getElementById('xpl1').style.fontWeight='normal';">PPL</button>
+<button id='xpl1' onclick="location.href='javascript: window.parent.setImage(\'schistmineralsxpl.jpg\');'
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='bold';">XPL</button>
+
+<div id="grainsize"></div>
+<div id="layering"></div>
+<div id="cleavage"></div>
+<div id="texture"></div>

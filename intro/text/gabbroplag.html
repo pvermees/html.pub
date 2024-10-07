@@ -1,0 +1,39 @@
+<u>Mineral A</u>
+
+<p></p>
+Comment on:
+
+<ul>
+<li><a style="cursor: pointer;" onclick="location.href='javascript: window.parent.getPage(\'colourinthinsection\');'">Colour</a>
+<li><a style="cursor: pointer;" onclick="location.href='javascript: window.parent.getPage(\'shapeinthinsection\');'">Shape</a>
+<li><a style="cursor: pointer;" onclick="location.href='javascript: window.parent.getPage(\'cleavageinthinsection\');'">Cleavage</a>
+<li><a style="cursor: pointer;" onclick="location.href='javascript: window.parent.getPage(\'reliefinthinsection\');'">Relief</a>
+<li><a style="cursor: pointer;" onclick="location.href='javascript: window.parent.getPage(\'birefringenceinthinsection\');'">Birefringence</a>
+<li><a style="cursor: pointer;" onclick="location.href='javascript: window.parent.getPage(\'twinninginthinsection\');'">Twinning</a>
+<li><a style="cursor: pointer;" onclick="location.href='javascript: window.parent.getPage(\'extinctioninthinsection\');'">Extinction</a>
+</ul>
+
+<p></p> 
+<button id='ppl1' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'gabbroplagppl.jpg\');';
+  document.getElementById('ppl1').style.fontWeight='bold';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='normal';">PPL still</button>
+<button id='xpl1' onclick="location.href='javascript: window.parent.setImage(\'gabbroplagxpl.jpg\');'
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='bold';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='normal';">XPL still</button>
+<p></p> 
+<button id='ppl2' onclick="
+  location.href = 'javascript: window.parent.setImage(\'gabbroplagppl.html\');';
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='bold';
+  document.getElementById('xpl2').style.fontWeight='normal';">PPL rotate</button>
+<button id='xpl2' onclick="location.href='javascript: window.parent.setImage(\'gabbroplagxpl.html\');'
+  document.getElementById('ppl1').style.fontWeight='normal';
+  document.getElementById('xpl1').style.fontWeight='normal';
+  document.getElementById('ppl2').style.fontWeight='normal';
+  document.getElementById('xpl2').style.fontWeight='bold';">XPL rotate</button>

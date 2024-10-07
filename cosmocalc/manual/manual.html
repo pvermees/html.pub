@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>CosmoCalc manual</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="manual.tex"> 
+<meta name="date" content="2012-12-14 10:52:00"> 
+<link rel="stylesheet" type="text/css" href="manual.css"> 
+</head><body 
+>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">CosmoCalc manual</h2>
+   <div class="author" ><span 
+class="cmr-12x-x-120">Pieter Vermeesch</span>
+<br /><span 
+class="cmtt-12x-x-120">cosmocalc@gmail.com</span></div><br />
+<div class="date" ></div>
+   </div>
+   <div class="minipage"><!--l. 17--><p class="noindent" ><span 
+class="cmtt-12">CosmoCalc.xla </span>is an Excel add-in designed with the intention to implement the
+increasingly  sophisticated  tools  of  terrestrial  cosmogenic  nuclide  geochronology
+in   a   user-friendly   way,   while   enforcing   the   good   practice   of   using   a
+consistent   set   of   production   rate   scaling   factors   for   both   the   calibration
+sites  and  the  unknown  samples.  The  add-in  as  well  as  the  <span 
+class="cmtt-12">CosmoTest.xls</span>
+spreadsheet  with  test  data  can  be  downloaded  from  the  CosmoCalc  website
+<span 
+class="cmtt-12">http://cosmocalc.london-geochron.com</span>. Full details about the calculations are
+provided in the G-Cubed article <span class="cite">[<a 
+href="#Xvermeesch2007">1</a>]</span>.<br 
+class="newline" />
+<center>
+<img src="checkedAddIn.jpg" height="400px" alt="PIC"><br>
+</center>
+CosmoCalc can be installed by downloading
+<span 
+class="cmtt-12">CosmoCalc.xla </span>to the Excel Add-Ins folder.
+Start  Excel  and  select  Tools  <span 
+class="cmsy-10x-x-120">&#x2192; </span>Add-Ins, or More Commands  <span 
+class="cmsy-10x-x-120">&#x2192; </span>Add-Ins in Excel 2010 and above.
+An  Add-In  is  enabled  when  its  checkbox
+is   marked.   The   Add-In   is   disabled   by
+unmarking  the  CosmoCalc  checkbox.  To
+remove the program, simply remove the .xla
+file from the Add-In folder.
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 42--><p class="noindent" >
+
+<!--l. 43--><p class="noindent" ><img 
+src="menu.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 45--><p class="noindent" >After installing the add-in (see downloadable instructions), a toolbar menu appears that
+guides the user through the data reduction and closely follows the outline of this
+manual. The following pages will show how to scale production rates for latitude
+and elevation, how to calculate topographic, snow and self-shielding factors,
+generate banana-plots, calculate exposure ages, burial ages and erosion rates,
+and calculate geomagnetic cutoff rigidities, atmospheric depths and so forth.
+<br 
+class="newline" /></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 57--><p class="noindent" >
+
+<!--l. 58--><p class="noindent" ><img 
+src="scaling.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 60--><p class="noindent" >Cosmogenic nuclide production rates are a sensitive function of latitude and elevation, and
+a lively debate is going on in the community as to how to best calculate these scaling
+factors. CosmoCalc presently implements four scaling models: Lal <span class="cite">[<a 
+href="#Xlal1991">2</a>]</span>, Stone <span class="cite">[<a 
+href="#Xstone2000">3</a>]</span>, Dunai <span class="cite">[<a 
+href="#Xdunai2000">4</a>]</span>
+and Desilets <span class="cite">[<a 
+href="#Xdesilets2003">5</a>]</span><span class="cite">[<a 
+href="#Xdesilets2006">6</a>]</span>. Although the more recent models such as those by Dunai and Desilets
+are significantly more sophisticated than the early scaling model by Lal, they are just as
+easy to use in CosmoCalc: just select two columns with a measure of the sample&#8217;s latitude
+and elevation, select the nuclide and scaling model of interest and click &#8220;OK&#8221;.
+<br 
+class="newline" /></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 75--><p class="noindent" >
+
+<!--l. 76--><p class="noindent" ><img 
+src="shieldingTopo.jpg" alt="PIC"  
+><br />
+<img 
+src="shieldingSnow.jpg" alt="PIC"  
+> <img 
+src="shieldingSelf.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 80--><p class="noindent" >It is equally simple to compute topographic, snow and self-shielding factors. The nuclide
+concentrations and the product of the scaling and shielding factors are the only input
+required for all further calculations. <br 
+class="newline" /></div>
+<!--l. 87--><p class="indent" >   CosmoCalc uses the ingrowth equation of Granger and Smith <span class="cite">[<a 
+href="#Xgranger2000">7</a>]</span>, which is a
+
+summation of four exponentials: one for neutrons, two for slow muons and one for fast
+muons.
+<!--l. 91--><p class="indent" >
+   <center class="math-display" >
+<img 
+src="manual0x.png" alt="                  &#x2211;3    S F     (              )
+N (t,&#x03F5;,&#x03C4;) = P e-&#x03BB;&#x03C4;     ----i-i--- 1 - e-(&#x03BB;+ &#x03F5;&#x03C1;&#x2215;&#x039B;i)t
+                  i=0 &#x03BB; + &#x03F5;&#x03C1;&#x2215;&#x039B;i
+" class="math-display" ></center>
+<!--l. 97--><p class="indent" >   with:<br 
+class="newline" />
+<div class="center" 
+>
+<!--l. 99--><p class="noindent" >
+<div class="tabular"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"><col 
+id="TBL-3-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-1-1"  
+class="td11">N = nuclide concentration</td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-1-2"  
+class="td11">t = age                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-2-1"  
+class="td11"><span 
+class="cmmi-12">&#x03F5; </span>= erosion rate               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-2-2"  
+class="td11"><span 
+class="cmmi-12">&#x03C4; </span>= burial age             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-3-1"  
+class="td11">P = SLHL production rate</td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-3-2"  
+class="td11"><span 
+class="cmmi-12">&#x03C1; </span>= rock density          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-4-1"  
+class="td11"><span 
+class="cmmi-12">&#x03BB; </span>= decay constant          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-4-2"  
+class="td11">&#x039B;<sub><span 
+class="cmmi-8">i</span></sub> = attenuation length </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-5-1"  
+class="td11">S<sub><span 
+class="cmmi-8">i</span></sub> = scaling factor           </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-5-2"  
+class="td11">F<sub><span 
+class="cmmi-8">i</span></sub> = relative production</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-6-1"  
+class="td11">i = 0: neutrons                </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-6-2"  
+class="td11">i = 1, 2: slow muons     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-7-1"  
+class="td11">i = 3: fast muons             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-7-2"  
+class="td11">&#x00A0;                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-8-1"  
+class="td11">                       </td></tr></table></div><br />
+</div>
+<!--l. 111--><p class="indent" >   Default values for the various parameters in this equation are those advocated by <span class="cite">[<a 
+href="#Xgranger2000">7</a>]</span>,
+but alternative values can also be set. In a simple exposure history, the cosmogenic nuclide
+concentration is a function of the exposure age, the erosion rate and the burial age. Those
+are three parameters, so if only one nuclide was measured, we need two assumptions,
+whereas if two nuclides were analysed, of which at least one radionuclide, only one
+assumption is needed. <br 
+class="newline" />
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 122--><p class="noindent" >
+
+<!--l. 123--><p class="noindent" ><img 
+src="AlBeBanana.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 125--><p class="noindent" >Measuring two nuclides also allows the generation of banana-plots. These are sophisticated
+devices which depend on a large number of parameters, such as the production rates at sea
+level and high latitude, the scaling model, and the relative proportions of the various
+production mechanisms. Prior to CosmoCalc, banana plots were often generated in
+graphics applications such as Grapher<sup><span 
+class="cmsy-10x-x-120">©</span></sup>. The advantage of CosmoCalc is once again its
+flexibility. Different kinds of Al-Be and Ne-Be plots can be generated on the fly.
+<br 
+class="newline" /></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 138--><p class="noindent" >
+
+<!--l. 139--><p class="noindent" ><img 
+src="NeBeBananaWithoutMuonsSmall.jpg" alt="PIC"  
+> <img 
+src="NeBeBananaWithMuonsSmall.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 142--><p class="noindent" >These two Ne-Be plots, for example, show how the contribution of muons causes a
+characteristic cross-over between the steady-state and zero erosion lines, which is absent
+when muons are neglected. <br 
+class="newline" /></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 149--><p class="noindent" >
+
+<!--l. 150--><p class="noindent" ><img 
+src="singleNuclideAge.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 152--><p class="noindent" >Given a scaling factor and the concentration of a single nuclide, and assuming zero burial,
+CosmoCalc can either calculate a steady state erosion rate, or a finite exposure age under
+the assumption of a particular erosion rate. <br 
+class="newline" /></div>
+<!--l. 159--><p class="indent" >   Only one assumption is needed if two nuclides were measured. For example, by
+assuming an erosional steady state and setting an infinite exposure age, CosmoCalc
+simultaneously computes the erosion rate and burial age:
+<!--l. 164--><p class="indent" >
+
+   <center class="math-display" >
+<img 
+src="manual1x.png" alt="{
+  f (&#x03F5;,&#x03C4;) : N  = P e- &#x03BB;1&#x03C4; &#x2211;3   --Si,1Fi,1--
+    1        1    1      &#x2211;3i=0&#x03BB;1+S&#x03F5;i,&#x03C1;2F&#x2215;i&#x039B;,2i,1
+  f2(&#x03F5;,&#x03C4;) : N2 = P2e- &#x03BB;2&#x03C4;   i=0&#x03BB;2+&#x03F5;&#x03C1;&#x2215;&#x039B;i,2
+" class="math-display" ></center>
+<!--l. 174--><p class="indent" >   Alternatively, if a sample plots inside the erosion island of the banana plot, we can
+safely assume zero burial, and simultaneously compute the exposure age and erosion
+rate:
+<!--l. 178--><p class="indent" >
+   <center class="math-display" >
+<img 
+src="manual2x.png" alt="{                   &#x2211;3     Si,1Fi,1  (     -(&#x03BB; +&#x03F5;&#x03C1;&#x2215;&#x039B;  )t)
+   f1(&#x03F5;,t) : N1 = P1   i=0&#x03BB;1+&#x03F5;&#x03C1;&#x2215;&#x039B;i,1(1 - e   1    i,1 )
+   f2(&#x03F5;,t) : N2 = P2 &#x2211;3   --Si,2Fi,2-- 1 - e-(&#x03BB;2+&#x03F5;&#x03C1;&#x2215;&#x039B;i,2)t
+                      i=0&#x03BB;2+&#x03F5;&#x03C1;&#x2215;&#x039B;i,2
+" class="math-display" ></center>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 189--><p class="noindent" >
+
+<!--l. 190--><p class="noindent" ><img 
+src="twoNuclideAge.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 192--><p class="noindent" >All these calculations are equally simple in CosmoCalc. Simply select the desired
+calculation and the two nuclides from pull-down menus, select two times three columns of
+the spreadsheet with the correction factors, the nuclide concentrations and their 1-<span 
+class="cmmi-12">&#x03C3;</span>
+uncertainties, and click &#8220;OK&#8221;. <br 
+class="newline" /></div>
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 201--><p class="noindent" >
+
+<!--l. 202--><p class="noindent" ><img 
+src="twoNuclideOptions.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 204--><p class="noindent" >CosmoCalc implements two numerical techniques to solve the non-linear systems of
+equations. The default is Newton&#8217;s method, which is a very fast and exact algorithm. The
+Metropolis algorithm is offered as an alternative. <br 
+class="newline" /></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 212--><p class="noindent" >
+
+<!--l. 213--><p class="noindent" ><img 
+src="metropolisBananaSmall.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 215--><p class="noindent" >The Metropolis algorithm is a Monte Carlo method that is computationally considerably
+more intensive than Newton&#8217;s method. Over a thousand iterations, it first converges from
+an initial guess to the correct solution and then continues to sample the entire solution
+space. The Metropolis algorithm has two advantages of Newton&#8217;s method. First,
+it will always find a solution, even if the sample plots just into the so-called
+&#8220;forbidden zone&#8221; of the banana plot. Newton&#8217;s method would diverge in this case.
+<br 
+class="newline" /></div>
+   <div class="minipage"><!--l. 227--><p class="noindent" >Second,  the  Metropolis  algorithm  will  yield  asymmetric  and  therefore  more
+meaningful  confidence  intervals  than  the  symmetric  confidence  bounds  given  by
+Newton&#8217;s method, which are calculated by standard error propagation.<br 
+class="newline" />Newton:<br 
+class="newline" /><img 
+src="twoNuclideNewtonResults.jpg" alt="PIC"  
+><br 
+class="newline" />Metropolis:<br 
+class="newline" /><img 
+src="twoNuclideMetropolisResults.jpg" alt="PIC"  
+></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 237--><p class="noindent" >
+
+<!--l. 238--><p class="noindent" ><img 
+src="forward.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 240--><p class="noindent" >CosmoCalc also provides a useful forward modeling function. This function was used to
+generate the synthetic data of the CosmoTest worksheet. <br 
+class="newline" /></div>
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 247--><p class="noindent" >
+
+<!--l. 248--><p class="noindent" ><img 
+src="converterElev.jpg" alt="PIC"  
+> <img 
+src="converterLat.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 251--><p class="noindent" >Different scaling models use different kinds of geographic input. For example, Lal&#8217;s scaling
+model uses elevation whereas Stone uses atmospheric pressure and Dunai and Desilets
+atmospheric depth. Furthermore, Lal and Stone use geomagnetic latitude whereas Dunai
+uses geomagnetic inclination and Desilets cutoff rigidity. To facilitate the comparison of
+the various scaling models, CosmoCalc provides some easy-to-use conversion tools.
+<br 
+class="newline" /></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 262--><p class="noindent" >
+
+<!--l. 263--><p class="noindent" ><img 
+src="settingsCalSites.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 265--><p class="noindent" >Scaling factors are the subject of much debate, and are definitely an important issue, but
+they all have one thing in common, namely the crucial importance of using the same
+scaling model for the unknown sample and the calibration sites. For this reason,
+CosmoCalc defines the production rates not explicitly but <span 
+class="cmti-12">implicitly</span>, by specifying the raw
+measurements of the calibration sites. The program comes with a set of default
+calibration sites, but this list can be modified by removing and adding new sites.
+<br 
+class="newline" /></div>
+
+   <div class="minipage"><div class="center" 
+>
+<!--l. 277--><p class="noindent" >
+
+<!--l. 278--><p class="noindent" ><img 
+src="settingsProdMech.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 280--><p class="noindent" >It was shown earlier that the ingrowth equation is made up of 4 exponentials, all
+parameters of which can be customized in this menu, where the relative contribution of
+neutrons and muons as well as their respective attenuation lengths can be set. The
+default values are those recommended by Granger and Smith <span class="cite">[<a 
+href="#Xgranger2000">7</a>]</span>, but alternative
+options are also given, or custom values can be set by the user. For example, the
+ingrowth equation of Schaller et al. <span class="cite">[<a 
+href="#Xschaller2002">8</a>]</span>, which contains not 4 but 8 exponentials, is
+implemented in CosmoCalc by a least squares approximation of four exponentials.
+<br 
+class="newline" /></div>
+   <div class="minipage"><div class="center" 
+>
+<!--l. 294--><p class="noindent" >
+
+<!--l. 295--><p class="noindent" ><img 
+src="settingsMisc.jpg" alt="PIC"  
+><br />
+</div>
+<!--l. 297--><p class="noindent" >Finally, some leftover parameters important for the scaling and shielding factors can be set
+on the last tab of the shielding menu. <br 
+class="newline" /></div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>References</h3>
+<!--l. 302--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+ [1]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xvermeesch2007"></a>Vermeesch,  P.,  2007,  CosmoCalc:  an  Excel  add-in  for  cosmogenic  nuclide
+  calculations: Geochemistry, Geophysics, and Geosystems (in press)
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [2]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xlal1991"></a>Lal, D., Cosmic ray labeling of erosion surfaces: in situ nuclide production
+  rates and erosion models, <span 
+class="cmti-12">Earth and Planetary Science Letters, 104</span>, 424-439, 1991.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+ [3]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xstone2000"></a>Stone,  J.,  Air  pressure  and  cosmogenic  isotope  production,  <span 
+class="cmti-12">Journal  of</span>
+  <span 
+class="cmti-12">Geophysical Research, 105</span>, 23753-23759, 2000.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [4]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xdunai2000"></a>Dunai,  T.J.,  Scaling  factors  for  production  rates  of  in  situ  produced
+  cosmogenic nuclides: a critical reevaluation, <span 
+class="cmti-12">Earth and Planetary Science Letters,</span>
+  <span 
+class="cmti-12">176</span>, 157-169, 2000.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [5]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xdesilets2003"></a>Desilets, D., and M. Zreda, Spatial and temporal distribution of secondary
+  cosmic-ray nucleon intensities and applications to in situ cosmogenic dating, <span 
+class="cmti-12">Earth</span>
+  <span 
+class="cmti-12">and Planetary Science Letters, 206</span>, 21-42, 2003.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [6]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xdesilets2006"></a>Desilets, D., M. Zreda, and T. Prabu, Extended scaling factors for in situ
+  cosmogenic  nuclides:  New  measurements  at  low  latitude,  <span 
+class="cmti-12">Earth and Planetary</span>
+  <span 
+class="cmti-12">Science Letters, 246</span>, 265-276, 2006.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [7]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xgranger2000"></a>Granger, D.E., and A.L. Smith, Dating buried sediments using radioactive
+  decay  and  muogenic  production  of  <sup><span 
+class="cmr-8">26</span></sup>Al  and  <sup><span 
+class="cmr-8">10</span></sup>Be,  <span 
+class="cmti-12">Nuclear  Instruments  and</span>
+  <span 
+class="cmti-12">Methods in Physics Research B, 172</span>, 822-826, 2000.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+ [8]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xschaller2002"></a>Schaller, M., F. von Blanckenburg, A. Veldkamp, L.A. Tebbens, N. Hovius,
+  and P.W. Kubik, A 30000yr record of erosion rates from cosmogenic <sup><span 
+class="cmr-8">10</span></sup>Be in Middle
+  Europe river terraces, <span 
+class="cmti-12">Earth and Planetary Science Letters, 204</span>, 307-320, 2002.
+</p>
+  </div>
+    
+</body></html> 
+
+
+

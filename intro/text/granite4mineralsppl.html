@@ -1,0 +1,29 @@
+This is a coarse grained, crystalline, intrusive igneous rock. 
+It is mostly made of felsic minerals and is generally light in colour. 
+<p></p>
+How many different minerals can you identify in this rock?
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />1
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />2
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />3 
+<p></p>
+<input type="radio" name="button" onclick="location.href='javascript: window.parent.setPage(\'graniteppl4minerals.jpg\',\'granite4mineralsanswer.html\');';" />4 
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />5 
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML='Wrong answer, please try again.';" />6 
+</form>
+<p></p>
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'graniteppl.JPG\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'granitexpl.JPG\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+<p></p>
+<div id="description">
+</div>

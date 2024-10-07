@@ -1,0 +1,23 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{3}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-2}{$^{40}$Ar/$^{39}$Ar as a compositional data problem}}{5}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-20081}{}{\ignorespaces $^{40}$Ar/$^{39}$Ar-data are compositional data, in which only the ratios between components matter, and not their absolute abundances. This is reflected in the fact that $^{40}$Ar-$^{39}$Ar-$^{36}$Ar data can be renormalised to unity and plotted on a ternary diagram (left). There is a one-to-one mapping between this so-called `simplex' and Euclidean logratio space (right).}}{figure}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-4}{Multi-collector data}}{7}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-40004}{QQ2-1-5}{`Peak-hopping' data}}{10}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-50005}{QQ2-1-6}{Detector calibration}}{14}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-60006}{QQ2-1-7}{Mass fractionation}}{17}\relax 
+\doTocEntry\tocsection{7}{\csname a:TocLink\endcsname{1}{x1-70007}{QQ2-1-8}{Decay corrections}}{19}\relax 
+\doTocEntry\tocsection{8}{\csname a:TocLink\endcsname{1}{x1-80008}{QQ2-1-9}{Interference corrections}}{24}\relax 
+\doTocEntry\tocsection{9}{\csname a:TocLink\endcsname{1}{x1-90009}{QQ2-1-10}{Cl-decay}}{26}\relax 
+\doTocEntry\tocsection{10}{\csname a:TocLink\endcsname{1}{x1-1000010}{QQ2-1-11}{$^{40}Ar^*/^{39}Ar_K$}}{28}\relax 
+\doTocEntry\tocsection{11}{\csname a:TocLink\endcsname{1}{x1-1100011}{QQ2-1-12}{J-factors}}{34}\relax 
+\doTocEntry\tocsection{12}{\csname a:TocLink\endcsname{1}{x1-1200012}{QQ2-1-13}{Solving the age equation}}{36}\relax 
+\doTocEntry\tocsection{13}{\csname a:TocLink\endcsname{1}{x1-1300013}{QQ2-1-14}{(weighted) mean ages}}{37}\relax 
+\doTocEntry\tocsection{14}{\csname a:TocLink\endcsname{1}{x1-1400014}{QQ2-1-15}{\tt  Ar-Ar\_Redux}}{39}\relax 
+\doTocEntry\tocsection{15}{\csname a:TocLink\endcsname{1}{x1-1500015}{QQ2-1-16}{Discussion and conclusions}}{40}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-150012}{}{\ignorespaces A synthetic yet realistic example of two replicate age estimates of the same sample (T$_1$ = 99 Ma and T$_2$ = 101 Ma) plotted against each other as an error ellipse. Ignoring the covariances, the two dates appear to agree within two standard errors. Taking into account the off-diagonal terms of the covariance matrix ($\Sigma _T$), however, reveals that the two samples are overdispersed with respect to the analytical uncertainties.}}{figure}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1600015}{QQ2-1-18}{Acknowledgments}}{42}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1700015}{QQ2-1-19}{Appendix A: calculation of interference corrections by mass spectrometric analysis of co-irradiated monitor materials}}{42}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1800015}{QQ2-1-20}{Appendix B: Cl-interference correction accounting for all sources of $^{38}$Ar}}{48}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1900015}{QQ2-1-21}{Appendix C: A brief introduction to {\tt  Ar-Ar\_Redux}}}{50}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-2000015}{QQ2-1-22}{References}}{57}\relax 

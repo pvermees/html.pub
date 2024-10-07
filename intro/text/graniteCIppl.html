@@ -1,0 +1,26 @@
+This is a coarse grained, crystalline, intrusive igneous rock
+<p></p>
+Do you think the rock is made up of mostly:
+<p></p>
+<form>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Mafic minerals are rich in Mg and Fe and usually dark in colour in ppl'
+;" />mafic minerals 
+<p></p>
+<input type="radio" name="button" onclick="document.getElementById('description').innerHTML=
+'Felsic minerals are poor in Mg and Fe and usually light in colour in ppl'
+;" />felsic minerals
+<p></p>
+<input type="radio" name="button"/> or an even mixture
+</form>
+<p></p> 
+<button id='ppl' style="font-weight:bold" onclick="
+  location.href = 'javascript: window.parent.setImage(\'graniteppl.JPG\');'; 
+  document.getElementById('ppl').style.fontWeight='bold';
+  document.getElementById('xpl').style.fontWeight='normal';">PPL</button>
+<button id='xpl' onclick="location.href='javascript: window.parent.setImage(\'granitexpl.JPG\');'
+  document.getElementById('ppl').style.fontWeight='normal';
+  document.getElementById('xpl').style.fontWeight='bold';">XPL</button>
+<p></p>
+<div id="description">
+</div>

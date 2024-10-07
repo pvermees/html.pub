@@ -1,0 +1,2279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Statistics for fission track thermochronology</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="index.tex"> 
+<meta name="date" content="2018-08-31 14:03:00"> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body class="main">
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Statistics for fission track thermochronology</h2>
+      <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br /><span 
+class="cmr-12">London Geochronology Centre</span>
+<br />  <span 
+class="cmr-12">University College London</span></div><br />
+<div class="date"><tt>p.vermeesch [at] ucl.ac.uk</tt></div>
+   </div>
+   <div class="abstract">
+<div class="center" 
+>
+<!--l. 21--><p class="noindent" >
+<!--l. 21--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 22--><p class="indent" >    <span 
+class="cmr-9">This  Chapter  introduces  statistical  tools  to  extract  geologically  meaningful  information  from</span>
+     <span 
+class="cmr-9">fission-track (FT) data using both the external detector and LA-ICP-MS methods. The spontaneous</span>
+     <span 
+class="cmr-9">fission of</span> <sup><span 
+class="cmr-6">238</span></sup><span 
+class="cmr-9">U is a Poisson process resulting in large single grain age uncertainties. To overcome this</span>
+     <span 
+class="cmr-9">imprecision, it is nearly always necessary to analyse multiple grains from a single sample. The degree</span>
+     <span 
+class="cmr-9">to which the analytical uncertainties can explain the observed scatter of the single grain data can be</span>
+     <span 
+class="cmr-9">visually assessed on a radial plot, and objectively quantified by a Chi-square test. For sufficiently low</span>
+     <span 
+class="cmr-9">values of the Chi-square statistic (or sufficiently high p-values), the pooled age of all the grains gives</span>
+     <span 
+class="cmr-9">a suitable description of the underlying &#8216;true&#8217; age population. Samples may fail the Chi-square test for</span>
+     <span 
+class="cmr-9">several reasons. A first possibility is that the true age population does not consist of a single discrete age</span>
+     <span 
+class="cmr-9">component, but is characterised by a continuous range of ages. In this case, a &#8216;random effects&#8217; model can</span>
+     <span 
+class="cmr-9">constrain the true age distribution using two parameters: the &#8216;central age&#8217; and the &#8216;(over)dispersion&#8217;. A</span>
+     <span 
+class="cmr-9">second reason why FT datasets might fail the Chi-square test is if they are underlain by multimodal age</span>
+     <span 
+class="cmr-9">distributions. Such distributions may consist of discrete age components, continuous age distributions,</span>
+     <span 
+class="cmr-9">or a combination of the two. Formalised statistical tests such as Chi-square can be useful in preventing</span>
+     <span 
+class="cmr-9">overfitting of relatively small datasets. However, they should be used with caution when applied to large</span>
+     <span 
+class="cmr-9">datasets (including length measurements) which generate sufficient statistical &#8216;power&#8217; to reject any simple</span>
+     <span 
+class="cmr-9">yet geologically plausible hypothesis.</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">6.1   </span> <a 
+ id="x1-10006.1"></a>Introduction</h3>
+<!--l. 52--><p class="noindent" ><sup><span 
+class="cmr-7">238</span></sup>U is the heaviest naturally occurring nuclide in the Solar System. Like all nuclides heavier than <sup><span 
+class="cmr-7">208</span></sup>Pb, it is
+physically unstable and undergoes radioactive decay to smaller, more stable nuclides. 99.9998% of the <sup><span 
+class="cmr-7">238</span></sup>U nuclei
+shed weight by disintegrating into eight He-nuclei (<span 
+class="cmmi-10">&#x03B1;</span>-particles) and a <sup><span 
+class="cmr-7">206</span></sup>Pb atom, forming the basis of the U-Pb and
+U-Th-He clocks. The remaining 0.0002% of the <sup><span 
+class="cmr-7">238</span></sup>U undergoes spontaneous fission, forming the basis of FT
+geochronology (<a 
+href="#Xprice1963">Price and Walker</a>&#x00A0;<a 
+href="#Xprice1963">1963</a>,&#x00A0;<a 
+href="#Xfleischer1965">Fleischer et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xfleischer1965">1965</a>). Because spontaneous fission of <sup><span 
+class="cmr-7">238</span></sup>U is such a rare
+event, the surface density of fission tracks (in counts per unit area) is 10-11 orders of magnitude lower than the
+
+molar abundances of <sup><span 
+class="cmr-7">238</span></sup>U and <sup><span 
+class="cmr-7">4</span></sup>He, respectively. So whereas the U-Pb and (U-Th)/He methods are based on mass
+spectrometric analyses of billions of Pb and He atoms, FT ages are commonly based on manual counts of at most a
+few dozen features. Due to these low numbers, the FT method is a low precision technique. Whereas the
+analytical uncertainty of U-Pb and (U-Th)/He ages is expressed in % or <span 
+class="wasy-10">o</span>-units, it is not uncommon for
+single-grain FT age uncertainties to exceed 10% or even 100% (Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a>). Early attempts to quantify these
+uncertainties (<a 
+href="#Xmcgee1979">McGee and Johnson</a>&#x00A0;<a 
+href="#Xmcgee1979">1979</a>,&#x00A0;<a 
+href="#Xjohnson1979">Johnson et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xjohnson1979">1979</a>) were criticised by <a 
+href="#Xgreen1981a">Green</a>&#x00A0;(<a 
+href="#Xgreen1981a">1981a</a>,<a 
+href="#Xgreen1981b">b</a>), who
+subsequently engaged in a fruitful collaboration with two statisticians &#8211;Geoff Laslett and Rex Galbraith&#8211; to
+eventually solve the problem. Thanks to the combined efforts of the latter two people, it is fair to say
+that the statistics of the FT method are better developed than those of any other geochronological
+technique. Several statistical tools that were originally developed for the FT method have subsequently
+found applications in other dating methods. Examples of this are the radial plot (Sect.&#x00A0;<a 
+href="#x1-30006.3">6.3<!--tex4ht:ref: sec:visualisation --></a>), which is
+routinely used in luminescence dating (<a 
+href="#Xgalbraith2010">Galbraith</a>&#x00A0;<a 
+href="#Xgalbraith2010">2010b</a>), random effects models (Sect.&#x00A0;<a 
+href="#x1-90006.4.2">6.4.2<!--tex4ht:ref: sec:randomeffects --></a>), which
+have been generalised to (U-Th)/He (<a 
+href="#Xvermeesch2010a">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2010a">2010</a>) and U-Pb dating (<a 
+href="#Xrioux2012">Rioux et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xrioux2012">2012</a>), and
+finite mixture models (Sect. <a 
+href="#x1-100006.5">6.5<!--tex4ht:ref: sec:mixtures --></a>), which were adapted for detrital U-Pb geochronology (<a 
+href="#Xsambridge1994">Sambridge and
+Compston</a>&#x00A0;<a 
+href="#Xsambridge1994">1994</a>).<br 
+class="newline" />
+<!--l. 87--><p class="indent" >   The statistical analysis of fission tracks is a rich and diverse field, and this short Chapter cannot possibly cover
+all its intricacies. Numerate readers are referred to the book by <a 
+href="#Xgalbraith2005">Galbraith</a>&#x00A0;(<a 
+href="#Xgalbraith2005">2005</a>), which provides a comprehensive,
+detailed, and self-contained review of the subject, from which the present Chapter heavily borrows. The
+Chapter comprises five Sections, which address statistical issues of progressively higher order. Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a>
+introduces the FT age equation using the External Detector Method (EDM), which offers the most
+straightforward and elegant way to estimate single-grain age uncertainties, even in grains without
+spontaneous fission tracks. Section <a 
+href="#x1-30006.3">6.3<!--tex4ht:ref: sec:visualisation --></a> compares and contrasts different ways to visually represent
+multi-grain assemblages of FT data, including kernel density estimates, cumulative age distributions,
+and radial plots. Sect.&#x00A0;<a 
+href="#x1-70006.4">6.4<!--tex4ht:ref: sec:summarystats --></a> reviews the various ways to estimate the &#8216;average&#8217; age of such multi-grain
+assemblages, including the arithmetic mean age, the pooled age, and the central age. This Section will
+also introduce a Chi-square test for age homogeneity, which is used to assess the extent to which the
+scatter of the single-grain ages exceeds the formal analytical uncertainties obtained from Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a>. This
+leads to the concept of &#8216;overdispersion&#8217; (Sect.&#x00A0;<a 
+href="#x1-90006.4.2">6.4.2<!--tex4ht:ref: sec:randomeffects --></a>) and more complex distributions consisting of
+one or several continous and/or discrete age components. Sect.&#x00A0;<a 
+href="#x1-100006.5">6.5<!--tex4ht:ref: sec:mixtures --></a> discusses three classes of mixed
+effects models to resolve discrete mixtures, continuous mixtures, and minimum ages respectively. It will
+show that these models obey the classical bias-variance tradeoff, which will lead to a cautionary note
+regarding the use of formalised statistical hypothesis tests for FT interpretation. Finally, Sect.&#x00A0;<a 
+href="#x1-130006.6">6.6<!--tex4ht:ref: sec:modelling --></a>
+will give the briefest of introductions to some statistical aspects of thermal history modelling, a more
+comprehensive discussion of which is provided in Chapt.&#x00A0;3 (<a 
+href="#Xketcham2018">Ketcham</a>&#x00A0;<a 
+href="#Xketcham2018">2018</a>). In recent years, several fission
+track laboratories around the world have abandoned the elegance and robustness of the EDM for
+the convenience of ICP-MS-based measurements. Unfortunately, the statistics of the latter are less
+straightforward and less well developed than the EDM. Sect.&#x00A0;<a 
+href="#x1-140006.7">6.7<!--tex4ht:ref: sec:ICP --></a> presents an attempt to deal with this
+problem.
+<!--l. 125--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6.2   </span> <a 
+ id="x1-20006.2"></a>The age equation</h3>
+<!--l. 128--><p class="noindent" >The fundamental FT age equation is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2001r1"></a>
+
+   <center class="math-display" >
+<img 
+src="index0x.png" alt="         (             )
+t = -1-ln  1 + &#x03BB;D-23&#x03C1;8s---
+    &#x03BB;D        &#x03BB;f [  U]R
+" class="math-display" ></center></td><td class="equation-label">(6.1)</td></tr></table>
+<!--l. 134--><p class="nopar" >
+<!--l. 136--><p class="indent" >   where <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmmi-7">D</span></sub> is the total decay constant of <sup><span 
+class="cmr-7">238</span></sup>U (1.55125<span 
+class="cmsy-10">&#x00D7;</span>10<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">10</span></sup><span 
+class="cmmi-10">yr</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>;&#x00A0;<a 
+href="#Xjaffey1971">Jaffey
+et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xjaffey1971">1971</a>), <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmmi-7">f</span></sub> is the fission decay constant (7.9-8.7<span 
+class="cmsy-10">&#x00D7;</span>10<sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">17</span></sup><span 
+class="cmmi-10">yr</span><sup><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">1</span></sup>;&#x00A0;<a 
+href="#Xholden2000">Holden and
+Hoffman</a>&#x00A0;<a 
+href="#Xholden2000">2000</a>)<span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-2002f1"></a>.,
+<span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub> is the density (tracks per unit area) of the spontaneous fission tracks on an internal crystal surface, [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] is the
+current number of <sup><span 
+class="cmr-7">238</span></sup>U atoms per unit volume, and R is etchable range of the fission tracks, which is half the
+equivalent isotropic FT length. [<sup><span 
+class="cmr-7">238</span></sup><span 
+class="cmmi-10">U</span>] can be determined by irradiating the (etched) sample with thermal neutrons
+in a reactor. This irradiation induces synthetic fission of <sup><span 
+class="cmr-7">235</span></sup>U in the mineral, producing tracks that can
+be monitored by attaching a mica detector to the polished mineral surface and etching this monitor
+subsequent to irradiation. Using this External Detector Method (EDM), Eq. <a 
+href="#x1-2001r1">6.1<!--tex4ht:ref: eq:tFT --></a> can be rewritten
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2003r2"></a>
+   <center class="math-display" >
+<img 
+src="index1x.png" alt="        (             )
+t =-1-ln  1+ 1&#x03BB;  &#x03B6;&#x03C1; &#x03C1;s
+   &#x03BB;D        2 D   d&#x03C1;i
+" class="math-display" ></center></td><td class="equation-label">(6.2)</td></tr></table>
+<!--l. 158--><p class="nopar" >
+<!--l. 160--><p class="indent" >   where <span 
+class="cmmi-10">&#x03B6; </span>is a calibration factor (<a 
+href="#Xhurford1983">Hurford and Green</a>&#x00A0;<a 
+href="#Xhurford1983">1983</a>), <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">i</span></sub> is the surface density of the induced
+fission tracks in the mica detector, and <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">d</span></sub> is the surface density of the induced fission tracks in a
+dosimeter glass of known (and constant) U concentration. The latter value is needed to &#8216;recycle&#8217; the
+calibration constant from one irradiation batch to the next, as neutron fluences might vary through time, or
+within a sample stack. <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub>, <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">d</span></sub> are unknown but can be estimated by counting the number of
+tracks N<sub><span 
+class="cmsy-7">*</span></sub> over a given area A<sub><span 
+class="cmsy-7">*</span></sub> (where &#8216;*&#8217; is either &#8216;s&#8217; for &#8216;spontaneous&#8217;, &#8216;i&#8217; for &#8216;induced&#8217; or &#8216;d&#8217; for
+&#8216;dosimeter&#8217;):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2004r3"></a>
+   <center class="math-display" >
+
+<img 
+src="index2x.png" alt="     N       N          N
+&#x02C6;&#x03C1;s = -s,&#x03C1;&#x02C6;i = -i-and &#x02C6;&#x03C1;d =--d
+     As      Ai         Ad
+" class="math-display" ></center></td><td class="equation-label">(6.3)</td></tr></table>
+<!--l. 175--><p class="nopar" >
+<!--l. 177--><p class="indent" >   It is customary for the spontaneous and induced fission tracks to be counted over the same area (i.e., <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">s</span></sub> = <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">i</span></sub>),
+either using an automated microscope stage (<a 
+href="#Xsmith1985">Smith and Leigh-Jones</a>&#x00A0;<a 
+href="#Xsmith1985">1985</a>,&#x00A0;<a 
+href="#Xdumitru1993">Dumitru</a>&#x00A0;<a 
+href="#Xdumitru1993">1993</a>) or by simply
+repositioning the mica detector on the grain mount after etching (<a 
+href="#Xjonckheere2003">Jonckheere et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xjonckheere2003">2003</a>). Using these
+measurements, the estimated FT age (<img 
+src="index3x.png" alt="t&#x02C6;"  class="circ" > ) is given by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2005r4"></a>
+   <center class="math-display" >
+<img 
+src="index4x.png" alt="    1   (    1      N )
+&#x02C6;t =---ln 1 + -&#x03BB;D&#x03B6;&#x02C6;&#x03C1;&#x02C6;d -s-
+   &#x03BB;D        2      Ni
+" class="math-display" ></center></td><td class="equation-label">(6.4)</td></tr></table>
+<!--l. 188--><p class="nopar" >
+<!--l. 190--><p class="indent" >   where <img 
+src="index5x.png" alt="&#x02C6;&#x03B6;"  class="circ" > is obtained by applying Eq. <a 
+href="#x1-2005r4">6.4<!--tex4ht:ref: eq:tzetahat --></a> to an age standard and rearranging. Eqs. <a 
+href="#x1-2003r2">6.2<!--tex4ht:ref: eq:tzeta --></a> and <a 
+href="#x1-2005r4">6.4<!--tex4ht:ref: eq:tzetahat --></a> assume that the
+ratio of the etchable range (R) between the grain and the mica detector is the same for the sample and the
+standard. Violation of this assumption leads to apparent FT ages of unclear geological significance. This is an
+important caveat as samples with shortened tracks are very common. See Sect. <a 
+href="#x1-130006.6">6.6<!--tex4ht:ref: sec:modelling --></a> and Chapt.&#x00A0;3 (<a 
+href="#Xketcham2018">Ketcham</a>&#x00A0;<a 
+href="#Xketcham2018">2018</a>)
+for further details on how to deal with this situation. The standard error <span 
+class="cmmi-10">s</span>[<img 
+src="index6x.png" alt="&#x02C6;t"  class="circ" > ] of the single grain age estimate is given
+by standard first order Taylor expansion:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2006r5"></a>
+   <center class="math-display" >
+<img 
+src="index7x.png" alt="      (   )2       (    )2        (     )2       (     )2
+s[&#x02C6;t]2 &#x2248;  &#x2202;&#x02C6;t-  s[&#x03B6;&#x02C6;]2 +  -&#x2202;&#x02C6;t-  s[Ns ]2 +  -&#x2202;&#x02C6;t-  s[Ni]2 +  -&#x2202;&#x02C6;t-  s[Nd]2
+        &#x2202;&#x02C6;&#x03B6;           &#x2202;Ns            &#x2202;Ni            &#x2202;Nd
+" class="math-display" ></center></td><td class="equation-label">(6.5)</td></tr></table>
+<!--l. 209--><p class="nopar" >
+<!--l. 211--><p class="indent" >   Where it is important to point out that all covariance terms are zero because <img 
+src="index8x.png" alt="&#x02C6;&#x03B6;"  class="circ" > , <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub>, <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">d</span></sub> are independent
+
+variables<span class="footnote-mark"><a 
+href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-2007f2"></a>.
+To simplify the calculation of the partial derivatives, we note that ln(1 + <span 
+class="cmmi-10">x</span>) <span 
+class="cmsy-10">&#x2248; </span><span 
+class="cmmi-10">x </span>if <span 
+class="cmmi-10">x </span><span 
+class="cmsy-10">&#x226A; </span>1 so that, for reasonably low
+<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub><span 
+class="cmmi-10">&#x2215;N</span><sub><span 
+class="cmmi-7">i</span></sub> values, Eq. <a 
+href="#x1-2005r4">6.4<!--tex4ht:ref: eq:tzetahat --></a> reduces to
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2008r6"></a>
+   <center class="math-display" >
+<img 
+src="index9x.png" alt="    1   N
+&#x02C6;t &#x2248; -&#x02C6;&#x03B6; &#x02C6;&#x03C1;d-s
+    2   Ni
+" class="math-display" ></center></td><td class="equation-label">(6.6)</td></tr></table>
+<!--l. 226--><p class="nopar" >
+<!--l. 228--><p class="indent" >   Using this linear approximation, it is easy to show that Eq. <a 
+href="#x1-2006r5">6.5<!--tex4ht:ref: eq:Taylor --></a> becomes:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2009r7"></a>
+   <center class="math-display" >
+<img 
+src="index10x.png" alt="(    )2  (    )2   (     )2   (     )2  (      )2
+  s[&#x02C6;t]  &#x2248;   s[&#x02C6;&#x03B6;]  +   s[Ns]-  +  s[Ni]  +   s[Nd-]
+   &#x02C6;t        &#x02C6;&#x03B6;         Ns        Ni         Nd
+" class="math-display" ></center></td><td class="equation-label">(6.7)</td></tr></table>
+<!--l. 238--><p class="nopar" >
+<!--l. 240--><p class="indent" >   The standard error of the calibration constant <img 
+src="index11x.png" alt="&#x02C6;&#x03B6;"  class="circ" > is obtained by repeated measurements of the age standard and
+will not be discussed further. The standard errors of <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub>, <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">d</span></sub> are governed by the Poisson distribution, whose
+mean equals its variance. This crucial property can be illustrated with a physical example in which a mica print
+attached to a dosimeter glass is subdivided into a number of equally sized squares (Fig. <a 
+href="#x1-20111">6.1<!--tex4ht:ref: fig:Poisson --></a>, left). Counting the
+number of induced fission tracks N<sub><span 
+class="cmmi-7">d</span></sub> in each square yields a skewed frequency distribution whose mean indeed equals
+its variance (Fig. <a 
+href="#x1-20111">6.1<!--tex4ht:ref: fig:Poisson --></a>, right). Applying this fact to Eq. <a 
+href="#x1-2009r7">6.7<!--tex4ht:ref: eq:shatt --></a>, we can replace <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub>]<sup><span 
+class="cmr-7">2</span></sup> with <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub>, <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub>]<sup><span 
+class="cmr-7">2</span></sup> with <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub>
+and <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">d</span></sub>]<sup><span 
+class="cmr-7">2</span></sup> with <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">d</span></sub>, and obtain the following expression for the standard error of the estimated FT
+age:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2010r8"></a>
+
+   <center class="math-display" >
+<img 
+src="index12x.png" alt="      &#x250C; -----------------------
+      &#x2502;&#x2502; (    )2
+s[&#x02C6;t] &#x2248; t&#x02C6;&#x2218;  s[&#x03B6;&#x02C6;]   + -1-+ -1-+ -1-
+           &#x02C6;&#x03B6;      Ns   Ni   Nd
+" class="math-display" ></center></td><td class="equation-label">(6.8)</td></tr></table>
+<!--l. 262--><p class="nopar" >
+<!--l. 264--><p class="indent" >   Note that this equation breaks down if <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> = 0. There are two solutions to this problem. The easiest way is to
+replace <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> and <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub> with <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub>+1/2 and <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub>+1/2, respectively (<a 
+href="#Xgalbraith2005">Galbraith</a>&#x00A0;<a 
+href="#Xgalbraith2005">2005</a>, p.80). A second (and preferred)
+approach is to calculate exact (and asymmetric) confidence intervals. See <a 
+href="#Xgalbraith2005">Galbraith</a>&#x00A0;(<a 
+href="#Xgalbraith2005">2005</a>, p.50) for further details
+about this procedure.
+<!--l. 272--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a id="x1-20111"></a>
+
+<!--l. 274--><p class="noindent" ><center><a href="Poisson.png"><img class="snapshot" src="Poisson.png" alt="PIC"></a></center>
+<br /> <div class="caption" 
+><span class="id">Fig.&#x00A0;6.1: </span><span  
+class="content">Left: induced fission tracks recorded in a mica detector attached to a dosimeter glass. Numbers
+indicate the number of tracks counted in 48 150<span 
+class="cmsy-10">&#x00D7;</span>150 <span 
+class="cmmi-10">&#x03BC;m</span>-sized areas. Colours indicate single (yellow), double
+(blue) and triple (red) etch pits. Dosimeter glasses exhibit a uniform U-concentration so that the observed
+variation in the number of tracks is only due to Poisson statistics. Fission tracks were counted with FastTracks
+image recognition software (see Chap.&#x00A0;4&#x00A0;<a 
+href="#Xgleadow2018">Gleadow</a>&#x00A0;<a 
+href="#Xgleadow2018">2018</a>). Right: the frequency distribution of the FT counts,
+which has a mean of 3.7 and a variance of 3.5 counts per graticule, consistent with a Poisson distribution.</span></div><!--tex4ht:label?: x1-20111 -->
+
+<!--l. 287--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">6.3   </span> <a 
+ id="x1-30006.3"></a>Fission track plots</h3>
+<!--l. 292--><p class="noindent" >The single grain uncertainties given by Eq. <a 
+href="#x1-2010r8">6.8<!--tex4ht:ref: eq:shatt2 --></a> tend to be very large. For example, a grain containing just 4
+spontaneous fission tracks (i.e., N<sub><span 
+class="cmmi-7">s</span></sub>=4) is associated with an analytical uncertainty of <img 
+src="index13x.png" alt="&#x221A; -
+  4"  class="sqrt" >/4=50% even ignoring the
+analytical uncertainty associated with the <span 
+class="cmmi-10">&#x03B6;</span>-calibration constant, the dosimeter glass, or the induced FT count. The
+single grain age precision of the FT method, then, is orders of magnitude lower than that of other established
+geochronometers such as <sup><span 
+class="cmr-7">40</span></sup>Ar/<sup><span 
+class="cmr-7">39</span></sup>Ar or <sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">238</span></sup>U, which achieve percent or permil level uncertainties. To overcome
+this limitation and &#8216;beat down the noise&#8217;, it is important that multiple grains are analysed from a sample and
+averaged using methods described in Sect.&#x00A0;<a 
+href="#x1-70006.4">6.4<!--tex4ht:ref: sec:summarystats --></a>. Multi-grain assemblages of FT data are also very useful for
+sedimentary provenance analysis and form the basis of a new field of research called &#8216;detrital thermochronology&#8217;
+(<a 
+href="#Xbernet2018">Bernet</a>&#x00A0;<a 
+href="#Xbernet2018">2018</a>,&#x00A0;<a 
+href="#Xcarter2018">Carter</a>&#x00A0;<a 
+href="#Xcarter2018">2018</a>). Irrespective of the application, it is useful for any multi-grain FT dataset to first
+be assessed visually. This Section will introduce three graphical devices to do this: cumulative age
+distributions, (kernel) density estimates and radial plots. To illustrate these graphical devices as well as
+the different summary statistics of Sect.&#x00A0;<a 
+href="#x1-70006.4">6.4<!--tex4ht:ref: sec:summarystats --></a>, consider the four different geological scenarios shown in
+Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>:
+<!--l. 315--><p class="indent" >
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  A. </dt><dd 
+class="enumerate-enumitem">A rapidly cooled volcanic rock extruded at 15 Ma.
+     </dd><dt class="enumerate-enumitem">
+  B. </dt><dd 
+class="enumerate-enumitem">A slowly cooled intrusive rock exhibiting a range of Cl/F ratios resulting in a 150 Ma <span 
+class="cmsy-10">&plusmn;</span> 20% range of
+     apparent FT ages.
+     </dd><dt class="enumerate-enumitem">
+  C. </dt><dd 
+class="enumerate-enumitem">A detrital sample collected from a river draining two volcanic layers extruded at 15 and 75 Ma,
+     respectively.
+     </dd><dt class="enumerate-enumitem">
+  D. </dt><dd 
+class="enumerate-enumitem">A detrital sample collected from a river draining lithologies A and B.</dd></dl>
+<!--l. 325--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.3.1   </span> <a 
+ id="x1-40006.3.1"></a>The Cumulative Age Distribution (CAD)</h4>
+<!--l. 327--><p class="noindent" >The cumulative distribution function cdf(x) describes the fraction of the detrital age population whose age is less
+than or equal to x:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r9"></a>
+   <center class="math-display" >
+<img 
+src="index14x.png" alt="cdf(x) = P(t &#x2264; x)
+" class="math-display" ></center></td><td class="equation-label">(6.9)</td></tr></table>
+
+<!--l. 332--><p class="nopar" >
+<!--l. 334--><p class="indent" >   Under Scenario I, the cdf consists of a simple step function, indicating that 0% of the grains are younger, and
+100% are older than the extrusive age (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.I-a). Under Scenario II, the cdf is spread out over a wider range, so
+that 90% of the ages are between 90 and 210 Ma (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.II-a). Under Scenario III (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.III-a), the cdf consists
+of two discrete steps at 15 and 75 Ma, the relative heights of which depend on the hypsometry of the river
+catchment and the spatial distribution of erosion (<a 
+href="#Xvermeesch2007a">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2007a">2007</a>). Finally, under Scenario IV, the cdf
+consists of a discrete step from 0 to 50% at 15 Ma, followed by a sigmoidal rise to 100% at 75Ma
+(Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.IV-a).<br 
+class="newline" />
+<!--l. 346--><p class="indent" >   In reality, the cdfs of Scenarios I-IV are, of course, unknown and must be estimated from sample
+data, by means of an empirical cumulative distribution function (ecdf), which may be referred to as
+a Cumulative Age Distribution (CAD) in a geochronological context (<a 
+href="#Xvermeesch2007a">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2007a">2007</a>). A CAD is
+simply a step function in which the single grain ages (<img 
+src="index15x.png" alt="&#x02C6;t"  class="circ" > <sub><span 
+class="cmmi-7">j</span></sub>, for j=1<span 
+class="cmsy-10">&#x2192;</span>n) are plotted against their rank
+order:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4002r10"></a>
+   <center class="math-display" >
+<img 
+src="index16x.png" alt="           n
+CAD  (x) = &#x2211; 1(&#x02C6;tj &#x2264; x)&#x2215;n
+          j=1
+" class="math-display" ></center></td><td class="equation-label">(6.10)</td></tr></table>
+<!--l. 356--><p class="nopar" >
+<!--l. 358--><p class="indent" >   where 1(TRUE) = 1 and 1(FALSE) = 0. In contrast with the true cdfs, the measured CADs are invariably
+smoother, as the analytical uncertainties spread the ages out over a greater range. Because the uncertainties of FT
+ages are so large, the difference between the measured CADs and the true cdfs is very significant. Sections <a 
+href="#x1-70006.4">6.4<!--tex4ht:ref: sec:summarystats --></a> and
+<a 
+href="#x1-100006.5">6.5<!--tex4ht:ref: sec:mixtures --></a> of this Chapter present several algorithms to extract the key parameters of the true age distribution (i.e, the
+cdfs) from the measurement distribution (CADs).
+<!--l. 368--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40032"></a>
+
+<!--l. 370--><p class="noindent" ><center><a href="ABCD2.png"><img class="snapshot" src="ABCD2.png" alt="PIC"></a></center>
+<br /> <div class="caption" 
+><span class="id">Fig.&#x00A0;6.2: </span><span  
+class="content">Hypothetical landscape (hill) featuring four different sampling locations: I &#8211; a rapidly cooled
+volcanic rock extruded at 15 Ma; II &#8211; a slowly cooled plutonic rock containing 150 Ma <span 
+class="cmsy-10"> &plusmn; </span>20% apatites; III &#8211;
+a modern river draining lithology I and an older (75 Ma) volcanic deposit; and IV &#8211; a second river draining
+lithologies I and II. For each of these scenarios, synthetic data were generated and plotted on three different
+graphical devices: a &#8211; theoretical cumulative distribution function (cdf, red) and synthetic Cumulative Age
+Distribution (CAD, blue) of the samples at the four sampling locations; b &#8211; theoretical pdfs (red) and
+synthetic sample Kernel Density Estimates (KDEs, blue) for the same synthetic data; c &#8211; radial plots of the
+synthetic data with model fits (Sects. <a 
+href="#x1-70006.4">6.4<!--tex4ht:ref: sec:summarystats --></a> and <a 
+href="#x1-100006.5">6.5<!--tex4ht:ref: sec:mixtures --></a>).</span></div><!--tex4ht:label?: x1-40032 -->
+
+<!--l. 385--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">6.3.2   </span> <a 
+ id="x1-50006.3.2"></a>(Kernel) Density Estimates (KDEs)</h4>
+<!--l. 390--><p class="noindent" >The probability density function (pdf) is defined as the first derivative of the cdf:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-5001r11"></a>
+   <center class="math-display" >
+<img 
+src="index17x.png" alt="                |           &#x222B;
+pdf (x) = d[cdf(y)]|| &#x21D4; cdf(x ) =  x pdf(y)dy
+           dy   |x            -&#x221E;
+" class="math-display" ></center></td><td class="equation-label">(6.11)</td></tr></table>
+<!--l. 396--><p class="nopar" >
+<!--l. 398--><p class="indent" >   Under Scenario I, the pdf is a discrete peak of zero width and infinite height, marking the timing of the volcanic
+eruption (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.I-b). In contrast, under Scenario II, the pdf is a smooth (a)symmetric bell curve reflecting the
+spread in closing temperatures and, hence, ages, associated with the range of Cl/F-ratios present in apatites of this
+slowly cooled pluton (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.II-b). Under Scenario III, the pdf consists of two discrete spikes corresponding to the
+two volcanic events (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.III-b). Finally, under Scenario IV, the pdf effectively combines those of Scenarios I and
+II (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.IV-b). The pdfs, like the cdfs discussed before, are unknown but can be estimated from sample
+data. There are several ways to do this. Arguably the simplest of these is the histogram, in which the
+observations are grouped into a number of discrete bins. Kernel Density Estimates (KDEs) are a continuous
+alternative to the histogram, which are constructed by arranging the measurements from young to old
+along the time axis, adding a Gaussian &#8216;bell curve&#8217; (or any other symmetric shape) on top of them,
+and then summing those to create one continuous curve (<a 
+href="#Xsilverman1986">Silverman</a>&#x00A0;<a 
+href="#Xsilverman1986">1986</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). The
+standard deviation of the Gaussian &#8216;kernel&#8217; is called the &#8216;bandwidth&#8217; of the estimator and may be chosen
+through a host of different approaches, a proper discussion of which falls outside the scope of this review
+(<a 
+href="#Xabramson1982">Abramson</a>&#x00A0;<a 
+href="#Xabramson1982">1982</a>,&#x00A0;<a 
+href="#Xsilverman1986">Silverman</a>&#x00A0;<a 
+href="#Xsilverman1986">1986</a>,&#x00A0;<a 
+href="#Xbotev2010">Botev et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xbotev2010">2010</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). An important feature of all these
+algorithms is that the bandwidth monotically decreases with increasing sample size. Please note that the so-called
+&#8216;Probability Density Plot&#8217; (PDP, not to be confused with pdf!), in which the analytical uncertainty (or 0.6 times
+the analytical uncertainty,&#x00A0;<a 
+href="#Xbrandon1996">Brandon</a>&#x00A0;<a 
+href="#Xbrandon1996">1996</a>) is used as a &#8216;bandwidth&#8217; does not possess this feature.
+Therefore PDPs are not proper density estimates and consequently their use is not recommended
+(<a 
+href="#Xgalbraith1998">Galbraith</a>&#x00A0;<a 
+href="#Xgalbraith1998">1998</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>). Like the CAD, which is a smooth version of the cdf, KDEs (and
+histograms) are smooth versions of the pdf. But whereas the CAD has only been smoothed once, histograms
+and KDEs are smoothed twice, once by the analytical uncertainties, and once by the width of the
+bins or kernels. Because the analytical uncertainties of FT data are so big, the components of FT
+age distributions are often spread out very widely, resulting in poorly resolved KDEs (blue curves in
+Figs.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.b).
+<!--l. 438--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.3.3   </span> <a 
+ id="x1-60006.3.3"></a>Radial plots</h4>
+<!--l. 440--><p class="noindent" >Single grain fission track age uncertainties are not only very large, they generally are also variable (&#8216;heteroscedastic&#8217;).
+Due to a combination of Poisson sampling statistics and variable U-concentrations, the analytical uncertainties
+propagated using Eq. <a 
+href="#x1-2010r8">6.8<!--tex4ht:ref: eq:shatt2 --></a> may vary over an order of magnitude within the same sample. Neither CADs nor KDEs (let
+
+alone PDPs) are able to capture this uncertainty. The radial plot is a graphical device that was specifically designed
+to address this issue (<a 
+href="#Xgalbraith1988">Galbraith</a>&#x00A0;<a 
+href="#Xgalbraith1988">1988</a>,&#x00A0;<a 
+href="#Xgalbraith1990a">1990</a>,&#x00A0;<a 
+href="#Xdunkl2002">Dunkl</a>&#x00A0;<a 
+href="#Xdunkl2002">2002</a>,&#x00A0;<a 
+href="#Xvermeesch2009c">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2009c">2009</a>). Given j=1...n numerical values z<sub><span 
+class="cmmi-7">j</span></sub> and their
+analytical uncertainties <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">j</span></sub>, the radial plot is a bivariate (<span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">j</span></sub>,y<sub><span 
+class="cmmi-7">j</span></sub>) scatterplot setting out a standardised estimate (y<sub><span 
+class="cmmi-7">j</span></sub> =
+(<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub> <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10">z</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub>)<span 
+class="cmmi-10">&#x2215;&#x03C3;</span><sub><span 
+class="cmmi-7">j</span></sub>, where z<sub><span 
+class="cmsy-7">&#x2218;</span></sub> is some reference value) against the single grain precision (x<sub><span 
+class="cmmi-7">j</span></sub> = 1/<span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">j</span></sub>). For FT data using the
+EDM<span class="footnote-mark"><a 
+href="index4.html#fn3x0"><sup class="textsuperscript">3</sup></a></span><a 
+ id="x1-6001f3"></a>,
+it is convenient to use the following definitions for z<sub><span 
+class="cmmi-7">j</span></sub> and <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">j</span></sub> (<a 
+href="#Xgalbraith1990a">Galbraith</a>&#x00A0;<a 
+href="#Xgalbraith1990a">1990</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6002r12"></a>
+   <center class="math-display" >
+<img 
+src="index18x.png" alt="         &#x2218; --------------
+              Nsj +3&#x2215;8
+zj = arcsin Nsj-+-Nij +-3&#x2215;4
+" class="math-display" ></center></td><td class="equation-label">(6.12)</td></tr></table>
+<!--l. 463--><p class="nopar" >
+<!--l. 465--><p class="indent" >   and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-6003r13"></a>
+   <center class="math-display" >
+<img 
+src="index19x.png" alt="     -------1---------
+&#x03C3;j = 2&#x2218;Nsj-+-Nij +-1&#x2215;2
+" class="math-display" ></center></td><td class="equation-label">(6.13)</td></tr></table>
+<!--l. 470--><p class="nopar" >
+<!--l. 472--><p class="indent" >   Thus, precise measurements plot towards the right-hand side of the radial plot whilst imprecise
+measurements plot closer to the origin. A single grain age may be read off by extrapolating a line from
+the origin (0,0) of the radial plot through the sample point (x<sub><span 
+class="cmmi-7">j</span></sub>,y<sub><span 
+class="cmmi-7">j</span></sub>) to a radial scale plotted at some
+convenient distance. Similarly, the analytical uncertainty can be obtained by extrapolating lines from the
+origin to the radial scale through the top and the bottom of an imaginary 2<span 
+class="cmmi-10">&#x03C3;</span>-error bar added to each
+sample point. Finally, drawing two parallel lines at 2<span 
+class="cmmi-10">&#x03C3; </span>distances from either side of the origin allow the
+analyst to visually assess whether all the single grain ages within a sample agree within the analytical
+uncertainties.<br 
+class="newline" />
+
+<!--l. 485--><p class="indent" >   Revisiting Scenario I of Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>, the data points plot within a 2<span 
+class="cmmi-10">&#x03C3; </span>band on the radial plot, consistent with a
+single discrete age component (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.I-c). Under Scenario II, the data are more dispersed and scatter beyond the
+2<span 
+class="cmmi-10">&#x03C3; </span>band, reflecting the dispersion of the underlying geological ages (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.II-c). Under Scenario III, the data are
+randomly scattered along two linear trajectories which represent the two volcanic events (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.III-c). Finally,
+Scenario IV combines the radial patterns of Scenarios I and II, as expected (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.IV-c). Of all the summary plots
+in Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>, the radial plot contains the largest amount of quantitative information about the age measurements and
+about the underlying geological ages. Using the graphical design principles of <a 
+href="#Xtufte1983">Tufte</a>&#x00A0;(<a 
+href="#Xtufte1983">1983</a>), the radial plot
+exhibits a far higher &#8216;ink-to-information ratio&#8217; than the CAD, KDE or histogram. We will therefore
+use it as a basis from which to introduce the summary statistics discussed in the next Section of this
+Chapter.
+   <h3 class="sectionHead"><span class="titlemark">6.4   </span> <a 
+ id="x1-70006.4"></a>Summary statistics</h3>
+<!--l. 506--><p class="noindent" >The previous Sections have shown that the presence of large and highly variable analytical uncertainties can easily
+obscure the underlying age distribution and all the geologically meaningful information encoded by it. The
+next two Sections will introduce some useful summary statistics which can be used to disentangle
+that geologically meaningful information from the random noise produced by the Poisson counting
+uncertainties.
+<!--l. 514--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.4.1   </span> <a 
+ id="x1-80006.4.1"></a>The pooled age</h4>
+<!--l. 517--><p class="noindent" >Let us begin with the single discrete age component in Scenario I of the previous Section. Several
+approaches can be used to estimate this age from a set of noisy sample data. Panels I-a, I-b and I-c
+of Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a> show that the single grain age estimates follow an asymmetric probability distribution
+(symmetric when plotted on a logarithmic scale) which is skewed toward older ages. This is a consequence of
+the fact that, if <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">sj</span></sub> and <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">ij</span></sub> are sampled from two independent Poisson distributions with expected
+values <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub> and <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">i</span></sub>, respectively, then the conditional probability of <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">sj</span></sub> on <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">sj</span></sub> + <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">ij</span></sub> follows a Binomial
+distribution:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8001r14"></a>
+   <center class="math-display" >
+<img 
+src="index20x.png" alt="                 (         )
+P (Nsj|Nsj + Nij) = Nsj + Nij &#x03B8;Nsj(1- &#x03B8;)Nij &#x2261; fj(&#x03B8;)
+                     Nsj
+" class="math-display" ></center></td><td class="equation-label">(6.14)</td></tr></table>
+<!--l. 532--><p class="nopar" >
+<!--l. 534--><p class="indent" >   where <span 
+class="cmmi-10">&#x03B8; </span><span 
+class="cmsy-10">&#x2261; </span><span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub><span 
+class="cmmi-10">&#x2215;</span>(<span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub> + <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">i</span></sub>) and <span 
+class="cmex-10">(</span><span 
+class="cmmi-7">a</span>
+   <span 
+class="cmmi-7">b</span><span 
+class="cmex-10">)</span>
+   is the Binomial coefficient. Given a sample of n sets of FT counts, this leads to
+the following (log-)likelihood function for <span 
+class="cmmi-10">&#x03B8;</span>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8002r15"></a>
+
+   <center class="math-display" >
+<img 
+src="index21x.png" alt="      &#x2211;n
+L(&#x03B8;) =   lnfj(&#x03B8;)
+      j=1
+" class="math-display" ></center></td><td class="equation-label">(6.15)</td></tr></table>
+<!--l. 541--><p class="nopar" >
+<!--l. 543--><p class="indent" >   where <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">j</span></sub>(<span 
+class="cmmi-10">&#x03B8;</span>) is the probability mass function for the j<sup><span 
+class="cmmi-7">th</span></sup> grain defined in Eq. <a 
+href="#x1-8001r14">6.14<!--tex4ht:ref: eq:pbinom --></a>. As a first approach to obtaining
+an &#8216;average&#8217; age, one might be tempted to simply take the arithmetic mean of the single grain age estimates.
+Unfortunately, the arithmetic mean does not cope well with outliers and asymmetric distributions and therefore
+yields poor estimates of the geological age. The geometric mean fares much better. It is closely related to the
+&#8216;central age&#8217;, which is discussed in Sect.&#x00A0;<a 
+href="#x1-90006.4.2">6.4.2<!--tex4ht:ref: sec:randomeffects --></a>. The &#8216;pooled age&#8217; is obtained by maximising Eq. <a 
+href="#x1-8002r15">6.15<!--tex4ht:ref: eq:Lpooled --></a> to obtain a
+&#8216;maximum likelihood&#8217; estimate (<img 
+src="index22x.png" alt="&#x02C6;&#x03B8;"  class="circ" > ), and substituting <span 
+class="cmmi-10">e</span><sup><img 
+src="index23x.png" alt="&#x02C6;
+&#x03B8;"  class="circ" >
+ </sup> for <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub><span 
+class="cmmi-10">&#x2215;N</span><sub><span 
+class="cmmi-7">i</span></sub> in Eq. <a 
+href="#x1-2003r2">6.2<!--tex4ht:ref: eq:tzeta --></a>, where <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">sj</span></sub> and
+<span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">ij</span></sub>. This is equivalent to taking the sum of all the spontaneous and induced tracks, respectively, and
+treating these as if they belonged to a single crystal. This procedure yields the correct age if the true ages
+are indeed derived from a single discrete age component (i.e., Scenario I). However, if there is any
+dispersion of the true FT ages, as is the case under Scenario II, then the pooled age will be biased towards
+values that are far too old. Whether this is the case or not can be verified using a formalised statistical
+hypothesis test. <a 
+href="#Xgalbraith2005">Galbraith</a>&#x00A0;(<a 
+href="#Xgalbraith2005">2005</a>, p.46) shows that in the absence of excess dispersion, the following
+statistic:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-8003r16"></a>
+   <center class="math-display" >
+<img 
+src="index24x.png" alt="           n               2
+c2 = --1--&#x2211;  (NsjNi---NijNs-)-
+     NsNi j=1    Nsj + Nij
+" class="math-display" ></center></td><td class="equation-label">(6.16)</td></tr></table>
+<!--l. 569--><p class="nopar" >
+<!--l. 571--><p class="indent" >   follows a Chi-square distribution with n-1 degrees of freedom. The probability of observing a value greater than
+<span 
+class="cmmi-10">c</span><sup><span 
+class="cmr-7">2</span></sup> under this distribution is called the p-value and can be used to formally test the assumption of zero dispersion. A
+cutoff of 0.05 is often used as a criterion to abandon the single grain age model of Scenario I and, hence, the pooled
+age.
+<!--l. 578--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.4.2   </span> <a 
+ id="x1-90006.4.2"></a>Central ages and &#8216;overdispersion&#8217;</h4>
+<!--l. 581--><p class="noindent" >A more meaningful estimate for Scenario II is obtained using a two-parameter &#8216;random effects&#8217; model, in which the
+true <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">s</span></sub><span 
+class="cmmi-10">&#x2215;&#x03C1;</span><sub><span 
+class="cmmi-7">i</span></sub>-ratio is assumed to follow a log-normal distribution with location parameter <span 
+class="cmmi-10">&#x03BC; </span>and scale parameter <span 
+class="cmmi-10">&#x03C3;</span>
+(<a 
+href="#Xgalbraith1993">Galbraith and Laslett</a>&#x00A0;<a 
+href="#Xgalbraith1993">1993</a>):
+
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r17"></a>
+   <center class="math-display" >
+<img 
+src="index25x.png" alt="                2
+ln(&#x03C1;s&#x2215;&#x03C1;i) ~ N (&#x03BC;,&#x03C3; )
+" class="math-display" ></center></td><td class="equation-label">(6.17)</td></tr></table>
+<!--l. 590--><p class="nopar" >
+<!--l. 592--><p class="indent" >   This model gives rise to a two-parameter log-likelihood function:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r18"></a>
+   <center class="math-display" >
+<img 
+src="index26x.png" alt="         &#x2211;n
+L(&#x03BC;,&#x03C3;2) =   lnfj(&#x03BC;,&#x03C3;2)
+         j=1
+" class="math-display" ></center></td><td class="equation-label">(6.18)</td></tr></table>
+<!--l. 598--><p class="nopar" >
+<!--l. 600--><p class="indent" >   where the probability mass function <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">j</span></sub>(<span 
+class="cmmi-10">&#x03BC;,&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>) is defined as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9003r19"></a>
+   <center class="math-display" >
+<img 
+src="index27x.png" alt="                      &#x221E;      (     )
+     2   (Nsj + Nij) &#x222B;  e&#x03B2;Nsj-1+-e&#x03B2;--Nsj--Nij-
+fj(&#x03BC;,&#x03C3; ) =    Nsj          &#x03C3;&#x221A;2-&#x03C0;e(&#x03B2;-&#x03BC;)2&#x2215;(2&#x03C3;2)  d&#x03B2;
+                    -&#x221E;
+" class="math-display" ></center></td><td class="equation-label">(6.19)</td></tr></table>
+<!--l. 608--><p class="nopar" >
+
+<!--l. 610--><p class="indent" >   in which the FT ratios are subject to two sources of variation: the Poisson uncertainty described by Eq. <a 
+href="#x1-8002r15">6.15<!--tex4ht:ref: eq:Lpooled --></a> and
+an &#8216;(over)dispersion&#8217; factor <span 
+class="cmmi-10">&#x03C3;</span>. Maximising Eq. <a 
+href="#x1-9002r18">6.18<!--tex4ht:ref: eq:Lcentral --></a> results in two estimates <img 
+src="index28x.png" alt="&#x03BC;&#x02C6;"  class="circ" > and <img 
+src="index29x.png" alt="&#x02C6;&#x03C3;"  class="circ" > and their respective standard
+errors. Substituting <span 
+class="cmmi-10">e</span><sup><img 
+src="index30x.png" alt="&#x02C6;&#x03BC;"  class="circ" ></sup> for <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub><span 
+class="cmmi-10">&#x2215;N</span><sub><span 
+class="cmmi-7">i</span></sub> in Eq. <a 
+href="#x1-2003r2">6.2<!--tex4ht:ref: eq:tzeta --></a> produces the so-called &#8216;central age&#8217;. <img 
+src="index31x.png" alt="&#x02C6;&#x03C3;"  class="circ" > estimates the overdispersion, and
+quantifies the excess scatter of the single grain ages which cannot be explained by the Poisson counting statistics
+alone. This dispersion can be just as informative as the central age itself, as it encodes geologically meaningful
+information about the compositional heterogeneity and cooling history of the sample. In the absence of excess
+dispersion, i.e. if <img 
+src="index32x.png" alt="&#x03C3;&#x02C6;"  class="circ" >=0, the central age equals the pooled age, so there is not really any reason to use the pooled age
+at all.
+<!--l. 625--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6.5   </span> <a 
+ id="x1-100006.5"></a>Mixture models</h3>
+<!--l. 628--><p class="noindent" >A FT dataset may fail the Chi-square test introduced in the previous Section for different reasons. The true ages
+may exhibit excess scatter according to Eq. <a 
+href="#x1-9002r18">6.18<!--tex4ht:ref: eq:Lcentral --></a>. Or it may be so that there are more than one age component
+(<a 
+href="#Xgalbraith1990b">Galbraith and Green</a>&#x00A0;<a 
+href="#Xgalbraith1990b">1990</a>,&#x00A0;<a 
+href="#Xgalbraith1993">Galbraith and Laslett</a>&#x00A0;<a 
+href="#Xgalbraith1993">1993</a>). These components could either be discrete age peaks
+(Scenario III), or they could be any combination of discrete and continuous age components (Scenario
+IV).
+<!--l. 636--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.5.1   </span> <a 
+ id="x1-110006.5.1"></a>Finite mixtures</h4>
+<!--l. 639--><p class="noindent" >Finite mixture models are a generalisation of the discrete age model of Scenario I in which the true ages are not
+derived from a single, but from multiple age populations (<a 
+href="#Xgalbraith1990b">Galbraith and Green</a>&#x00A0;<a 
+href="#Xgalbraith1990b">1990</a>). Scenario III is an example of
+this with two such components. In contrast with the common age model of Scenario I, which is completely described
+by a single parameter (<span 
+class="cmmi-10">&#x03B8;</span>, or the pooled age), and the random effects model, which comprises two parameters (<span 
+class="cmmi-10">&#x03BC; </span>and
+<span 
+class="cmmi-10">&#x03C3;</span>, or the central age and overdispersion), the finite mixture of Scenario III requires three parameters.
+These are the age of the first component, the age of the second component, and the proportion of
+the grains belonging to the first component. The proportion belonging to the second component is
+simply the complement of the latter value. Generalising to N components, the log-likelihood function
+becomes:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11001r20"></a>
+   <center class="math-display" >
+<img 
+src="index33x.png" alt="                     n   [ N        ]              N -1
+                    &#x2211;     &#x2211;                        &#x2211;
+L (&#x03C0;k,&#x03B8;k,k = 1 ...N ) =  ln    &#x03C0;kfj(&#x03B8;k)  with &#x03C0;N = 1-     &#x03C0;k
+                    j=1   k=1                      k=1
+" class="math-display" ></center></td><td class="equation-label">(6.20)</td></tr></table>
+<!--l. 661--><p class="nopar" >
+<!--l. 663--><p class="indent" >   where <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">j</span></sub>(<span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmmi-7">k</span></sub>) is given by Eq. <a 
+href="#x1-8001r14">6.14<!--tex4ht:ref: eq:pbinom --></a>. Eq. <a 
+href="#x1-11001r20">6.20<!--tex4ht:ref: eq:Lfinite --></a> can be solved numerically. Applying it to the single component
+dataset of Scenario I again yields the pooled age as a special case. The detrital FT ages in Scenario III clearly fall
+into two groups so it is quite evident that there are two age components. Unfortunately the situation is not always
+this clear. Due to the large single grain age uncertainties discussed in Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a>, the boundaries between
+adjacent age components are often blurred, making it difficult to decide how many &#8216;peaks&#8217; to fit. Several
+
+statistical approaches may be used to answer this question. One possibility is to use a log-likelihood
+ratio test. Suppose that we have solved Eq. <a 
+href="#x1-11001r20">6.20<!--tex4ht:ref: eq:Lfinite --></a> for the case of N=2 age components, and denote the
+corresponding maximum log-likelhood value as <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">2</span></sub>. We then consider an alternative model with N=3
+components. This results in two additional parameters (<span 
+class="cmmi-10">&#x03C0;</span><sub><span 
+class="cmr-7">2</span></sub> and <span 
+class="cmmi-10">&#x03B8;</span><sub><span 
+class="cmr-7">3</span></sub>) and a new maximum log-likelihood
+value, <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">3</span></sub>. We can assess whether the three component model is a significant improvement over the
+two component fit by comparing twice the difference between <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">3</span></sub> and <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">2</span></sub> to a Chi-square distribution
+with two degrees of freedom (because we have added two additional parameters) and calculating the
+corresponding p-value like before. An illustration of the log-likelihood ratio test is provided in Sect.&#x00A0;<a 
+href="#x1-120006.5.2">6.5.2<!--tex4ht:ref: sec:continuous --></a>. An
+alternative approach is to maximise the so-called Bayes Information Criterion (BIC), which is defined
+as
+   <table 
+class="equation"><tr><td><a 
+ id="x1-11002r21"></a>
+   <center class="math-display" >
+<img 
+src="index34x.png" alt="BIC = - 2Lmax + p ln(n)
+" class="math-display" ></center></td><td class="equation-label">(6.21)</td></tr></table>
+<!--l. 691--><p class="nopar" >
+<!--l. 693--><p class="indent" >   where <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmmi-7">max</span></sub> is the maximum log-likelihood of a model comprising p parameters and n grains. A worked example
+of this method is omitted for brevity and the reader is referred to <a 
+href="#Xgalbraith2005">Galbraith</a>&#x00A0;(<a 
+href="#Xgalbraith2005">2005</a>, p.91) for further
+details.
+<!--l. 698--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.5.2   </span> <a 
+ id="x1-120006.5.2"></a>Continuous mixtures</h4>
+<!--l. 701--><p class="noindent" >So far we have considered pdfs consisting of a single discrete age peak (Scenario I), a single continuous age
+distribution (Scenario II) and multiple discrete age peaks (Scenario III). The logical next step is to consider multiple
+continuous age distributions (<a 
+href="#Xjasra2006">Jasra et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xjasra2006">2006</a>). In principle such models can be obtained by maximising the
+following likelihood function
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12001r22"></a>
+   <center class="math-display" >
+<img 
+src="index35x.png" alt="                        n   [ N            ]             N -1
+L(&#x03C0; ,&#x03BC; ,&#x03C3;2,k = 1 ...N ) = &#x2211; ln &#x2211; &#x03C0; f (&#x03BC; ,&#x03C3;2)  with &#x03C0;  = 1-  &#x2211;  &#x03C0;
+   k  k  k             j=1   k=1 k j  k  k        N       k=1  k
+" class="math-display" ></center></td><td class="equation-label">(6.22)</td></tr></table>
+<!--l. 715--><p class="nopar" >
+
+<!--l. 717--><p class="indent" >   where <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">j</span></sub>(<span 
+class="cmmi-10">&#x03BC;</span><sub><span 
+class="cmmi-7">k</span></sub><span 
+class="cmmi-10">,&#x03C3;</span><sub><span 
+class="cmmi-7">k</span></sub><sup><span 
+class="cmr-7">2</span></sup>) is given by Eq.&#x00A0;<a 
+href="#x1-9003r19">6.19<!--tex4ht:ref: eq:fjms --></a>. However, in reality this is often impractical due to the high number of
+parameters involved, which require exceedingly large datasets. In detrital geochronology, the analyst rarely knows
+that the data are underlain by a continuous mixture and so it is tempting to reduce the number of unknown
+parameters by simply assuming a discrete mixture. Unfortunately, this is fraught with problems as well since there is
+no upper bound on the number of discrete age components to fit to a continuous dataset. To illustrate this point, let
+us reconsider the dataset of Scenario II, this time applying a finite mixture model rather than the
+random effects model of Sect.&#x00A0;<a 
+href="#x1-90006.4.2">6.4.2<!--tex4ht:ref: sec:randomeffects --></a>. For a small sample of n=10 grains, the Chi-square test for age
+homogeneity yields a p-value of 0.47, which is above the 0.05 cutoff and thus provides insufficient evidence to
+reject the common age model (Table&#x00A0;<a 
+href="#x1-120041">6.1<!--tex4ht:ref: tab:Lratio --></a> and Fig.&#x00A0;<a 
+href="#x1-120053">6.3<!--tex4ht:ref: fig:mixtures --></a>.a). Increasing the sample size to n=25 results
+in a p-value of 0.03, justifying the addition of additional model parameters (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.I-c). Further
+increasing the sample size to n=100 reduces the likelihood of the common age model (Eq.&#x00A0;<a 
+href="#x1-8002r15">6.15<!--tex4ht:ref: eq:Lpooled --></a>) and results
+in a p-value of 0.0027, well below the 0.05 cutoff. Let us now replace the common age model with a
+two component finite mixture model. For the same 100-grain sample, this increases the log-likelihood
+from -4598.3 to -4591.4 (Table&#x00A0;<a 
+href="#x1-120041">6.1<!--tex4ht:ref: tab:Lratio --></a>). Using the log-likelihood ratio test introduced in Sect.&#x00A0;<a 
+href="#x1-110006.5.1">6.5.1<!--tex4ht:ref: sec:finite --></a>, that
+corresponds to a Chi-square value of 2 <span 
+class="cmsy-10">&#x00D7; </span>(4598.3 - 4591.4) = 13.8 and a p-value of 0.001, lending
+support to the abandonment of the single age model in favour of the two parameter model (Fig.&#x00A0;<a 
+href="#x1-120053">6.3<!--tex4ht:ref: fig:mixtures --></a>.b).
+However, doing the same calculation for a three component model yields a log-likelihood of -4590.6
+and a Chi-square value of 2 <span 
+class="cmsy-10">&#x00D7; </span>(4591.4 - 4590.6) = 1.6, resulting in an insignificant p-value of 0.45
+(Table&#x00A0;<a 
+href="#x1-120041">6.1<!--tex4ht:ref: tab:Lratio --></a>). Thus, the 100-grain sample does <span 
+class="cmti-10">not </span>support the three component model. It is only when the
+sample size is increased from 100 to 1000 grains that the Chi-square test gains enough &#8216;power&#8217; to
+justify the three component finite mixture model (Fig.&#x00A0;<a 
+href="#x1-120053">6.3<!--tex4ht:ref: fig:mixtures --></a>.c). It is easy to see that this trend continues
+<span 
+class="cmti-10">ad infinitum</span>: with increasing sample size, it is possible to add ever larger numbers of components
+(Fig.&#x00A0;<a 
+href="#x1-120053">6.3<!--tex4ht:ref: fig:mixtures --></a>).<br 
+class="newline" />
+<!--l. 757--><p class="indent" >   One might object to this hypothetical example by noting that the finite mixture model is clearly inappropriate
+for a dataset that is derived from a continuous mixture. But the key point is that <span 
+class="cmti-10">all </span>statistical models are
+inappropriate to some degree. Even the random effects model is a mathematical abstraction which does not exist in
+the real world. True age distributions (pdfs) may be approximately (log)normal as in Scenario I, but they
+are never exactly so. Given a sufficiently large sample, formalised statistical hypothesis tests such
+as Chi-square are always able to detect even the most minute deviation from any hypothetical age
+model and thereby provide statistical justification to add further parameters. This is important in
+the common situation where one is interested in the youngest age component of a fission track age
+distribution, for example when one aims to calculate &#8216;lag times&#8217; and estimate exhumation rates (<a 
+href="#Xgarver1999">Garver
+et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xgarver1999">1999</a>,&#x00A0;<a 
+href="#Xbernet2018">Bernet</a>&#x00A0;<a 
+href="#Xbernet2018">2018</a>). It would be imprudent to estimate the lag-time by applying a general purpose
+multi-component mixture model and simply picking the youngest age component. This would provide a biased
+estimate of the minimum age, which would steadily drift towards younger values with increasing sample
+size (Fig.&#x00A0;<a 
+href="#x1-120053">6.3<!--tex4ht:ref: fig:mixtures --></a>). Instead, it is better to use a simpler but more stable and robust model employing
+three<span class="footnote-mark"><a 
+href="index5.html#fn4x0"><sup class="textsuperscript">4</sup></a></span><a 
+ id="x1-12002f4"></a> or
+four parameters to explicitly determine the minimum age component:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-12003r23"></a>
+   <center class="math-display" >
+<img 
+src="index36x.png" alt="              n
+L (&#x03C0;,&#x03B8;,&#x03BC;,&#x03C3;2) = &#x2211; ln[&#x03C0;fj(&#x03B8;)+ (1- &#x03C0;)f&#x2032;j(&#x03BC;,&#x03C3;2)]
+             j=1
+" class="math-display" ></center></td><td class="equation-label">(6.23)</td></tr></table>
+<!--l. 790--><p class="nopar" >
+<!--l. 792--><p class="indent" >   where <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">j</span></sub>(<span 
+class="cmmi-10">&#x03B8;</span>) is given by Eq.&#x00A0;<a 
+href="#x1-8001r14">6.14<!--tex4ht:ref: eq:pbinom --></a> and <span 
+class="cmmi-10">f</span><span 
+class="cmsy-10">&#x2032;</span><sub><span 
+class="cmmi-7">j</span></sub>(<span 
+class="cmmi-10">&#x03BC;,&#x03C3;</span><sup><span 
+class="cmr-7">2</span></sup>) is a truncated version of Eq.&#x00A0;<a 
+href="#x1-9003r19">6.19<!--tex4ht:ref: eq:fjms --></a> (<a 
+href="#Xgalbraith1993">Galbraith and Laslett</a>&#x00A0;<a 
+href="#Xgalbraith1993">1993</a>).
+Applying this model to the synthetic example of Scenario IV correctly yields the age of the youngest volcanic unit
+regardless of sample size (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>.IV-c). In conclusion, statistical hypothesis tests such as Chi-square
+can be used to prevent overinterpreting perceived &#8216;clusters&#8217; of data which may arise from random
+statistical sampling fluctuations. But they must be used with caution, bearing in mind the simplifying
+assumptions which all mathematical models inevitably make, and the dependence of test statistics and
+p-values on sample size. Ignoring this dependence may lead to statistical models which might make
+sense in a mathematical sense, but have little or no geological relevance. This note of caution applies
+not only to mixture modelling but even more so to thermal history modelling, as will be discussed
+next.
+   <div class="table">
+
+<!--l. 809--><p class="indent" >   <a 
+ id="x1-120041"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"><col 
+id="TBL-2-6"><col 
+id="TBL-2-7"><col 
+id="TBL-2-8"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-1"  
+class="td11">      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">  <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">1</span></sub>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">p(<span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmr-7">2</span></sup>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">  <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">2</span></sub>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11"> p(<span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmr-7">2</span></sup>) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-6"  
+class="td11">  <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">3</span></sub>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-7"  
+class="td11">p(<span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmr-7">2</span></sup>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-8"  
+class="td11">  <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmr-7">4</span></sub>     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-1"  
+class="td11">  n=10</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11"> -422.4  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11"> 0.67  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11"> -422.0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11"> 1.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-6"  
+class="td11"> -422.0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-7"  
+class="td11"> 1.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-8"  
+class="td11"> -422.0  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-1"  
+class="td11"> n=100</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11"> -4598.3 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11"> 0.001 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11"> -4591.4 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11"> 0.45  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-6"  
+class="td11"> -4590.6 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-7"  
+class="td11"> 1.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-8"  
+class="td11"> -4590.6 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-1"  
+class="td11">n=1000</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11">-45030.7</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11"> 0.00  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">-44966.5</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11">0.00003</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-6"  
+class="td11">-44956.1</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-7"  
+class="td11"> 0.67  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-8"  
+class="td11">-44955.7</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-1"  
+class="td11">      </td></tr></table></div>
+<br /><div class="caption"><span class="id">Table&#x00A0;6.1: </span><span  
+class="content">Application of the log-likelihood ratio test to a finite mixture fitting experiment shown in Fig.&#x00A0;<a 
+href="#x1-120053">6.3<!--tex4ht:ref: fig:mixtures --></a>.
+Rows mark different sample sizes (with n marking the number of grains) drawn from Scenario II. Columns
+labeled as <span 
+class="cmsy-10"><img 
+src="cmsy10-4c.png" alt="L" class="10x-x-4c" /></span><sub><span 
+class="cmmi-7">N</span></sub> show the log-likelihood of different model fits, where N marks the number of components.
+Columns labeled as p(<span 
+class="cmmi-10">&#x03C7;</span><sub><span 
+class="cmr-7">2</span></sub><sup><span 
+class="cmr-7">2</span></sup>) list the p-values of a Chi-square test with two degrees of freedom, which can
+(but in this case should not) be used to assess whether it is statistically justified to increment the number
+of fitting parameters (N) by one.</span></div><!--tex4ht:label?: x1-120041 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 829--><p class="indent" >   <hr class="figure"><div class="figure" >
+
+<a 
+ id="x1-120053"></a>
+
+<!--l. 830--><p class="noindent" ><center><a href="mixtures.png"><img class="snapshot" src="mixtures.png" alt="PIC"></a></center>
+<br /> <div class="caption" 
+><span class="id">Fig.&#x00A0;6.3:  </span><span  
+class="content">Application  of  finite  mixture  modelling  to  the  continuous  mixture  of  Scenario  II  (Fig.&#x00A0;<a 
+href="#x1-40032">6.2<!--tex4ht:ref: fig:ABCD --></a>).
+Increasing sample size from left (a) to right (c) provides statistical justification to fit more components
+using the log-likelihood ratio approach of Table&#x00A0;<a 
+href="#x1-120041">6.1<!--tex4ht:ref: tab:Lratio --></a>. Note that the age of the youngest age component gets
+progressively younger with increasing sample size, from 150 Ma for sample (a) to 94 Ma for sample (c), and
+is therefore not a reliable estimator of the minimum age. p(<span 
+class="cmmi-10">&#x03C7;</span><sup><span 
+class="cmr-7">2</span></sup>) marks the p-value of the Chi-square test for
+age homogeneity and <span 
+class="cmti-10">not </span>the log-likelihood ratio tests of Table&#x00A0;<a 
+href="#x1-120041">6.1<!--tex4ht:ref: tab:Lratio --></a>.</span></div><!--tex4ht:label?: x1-120053 -->
+
+<!--l. 842--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">6.6   </span> <a 
+ id="x1-130006.6"></a>Inverse modelling</h3>
+<!--l. 847--><p class="noindent" >So far in this Chapter we have made the implicit assumption (in Eq.&#x00A0;<a 
+href="#x1-2003r2">6.2<!--tex4ht:ref: eq:tzeta --></a>) that all fission tracks have the same
+length. In reality, however, this is not the case, and the length of (apatite) fission tracks varies anywhere between 0
+and 16<span 
+class="cmmi-10">&#x03BC;m </span>as a function of the thermal history and chemical composition of a sample (<a 
+href="#Xgleadow1986">Gleadow et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xgleadow1986">1986</a>). If the
+compositional effects (notably the Cl/F ratio,&#x00A0;<a 
+href="#Xgreen1986">Green et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xgreen1986">1986</a>) are well characterised, then the measured length
+distribution of horizontally confined fission tracks can be used to reconstruct the thermal history of a sample.
+Laboratory experiments show that the thermal annealing of fission tracks in apatite obeys a so-called &#8216;fanning
+Arrhenius&#8217; relationship, in which the degree of shortening logarithmically depends on both the amount and
+duration of heating (<a 
+href="#Xgreen1985">Green et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xgreen1985">1985</a>,&#x00A0;<a 
+href="#Xlaslett1987">Laslett et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xlaslett1987">1987</a>,&#x00A0;<a 
+href="#Xlaslett1996">Laslett and Galbraith</a>&#x00A0;<a 
+href="#Xlaslett1996">1996</a>,&#x00A0;<a 
+href="#Xketcham1999">Ketcham
+et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xketcham1999">1999</a>,&#x00A0;<a 
+href="#Xketcham2007">2007</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-13001r24"></a>
+   <center class="math-display" >
+<img 
+src="index37x.png" alt="  (   &#x2218;&#x039B;-----)        ln(t) - ln(tc)
+ln  1-   L &#x2215;L&#x2218; = c0 - c1-1&#x2215;T---1&#x2215;T
+                                c
+" class="math-display" ></center></td><td class="equation-label">(6.24)</td></tr></table>
+<!--l. 865--><p class="nopar" >
+<!--l. 867--><p class="indent" >   where <span 
+class="cmmi-10">L</span><sub><span 
+class="cmsy-7">&#x2218;</span></sub> and <span 
+class="cmmi-10">L </span>are the initial and measured track length, t and T are time and absolute temperature,
+respectively, and c<sub><span 
+class="cmr-7">0</span></sub>, c<sub><span 
+class="cmr-7">1</span></sub>, &#x039B;, t<sub><span 
+class="cmmi-7">c</span></sub> and T<sub><span 
+class="cmmi-7">c</span></sub> are fitting parameters (<a 
+href="#Xlaslett1996">Laslett and Galbraith</a>&#x00A0;<a 
+href="#Xlaslett1996">1996</a>,&#x00A0;<a 
+href="#Xketcham1999">Ketcham
+et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xketcham1999">1999</a>). Using these laboratory results, thermal history reconstructions are a two-step process. First, a
+large number of random thermal histories are generated, and for each of these the fanning Arrhenius
+relationship is used to predict the corresponding FT length distribution (<a 
+href="#Xcorrigan1991">Corrigan</a>&#x00A0;<a 
+href="#Xcorrigan1991">1991</a>,&#x00A0;<a 
+href="#Xlutz1991">Lutz and
+Omar</a>&#x00A0;<a 
+href="#Xlutz1991">1991</a>,&#x00A0;<a 
+href="#Xgallagher1995">Gallagher</a>&#x00A0;<a 
+href="#Xgallagher1995">1995</a>,&#x00A0;<a 
+href="#Xwillett1997">Willett</a>&#x00A0;<a 
+href="#Xwillett1997">1997</a>,&#x00A0;<a 
+href="#Xketcham2000">Ketcham et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xketcham2000">2000</a>,&#x00A0;<a 
+href="#Xketcham2005">Ketcham</a>&#x00A0;<a 
+href="#Xketcham2005">2005</a>,&#x00A0;<a 
+href="#Xgallagher2012">Gallagher</a>&#x00A0;<a 
+href="#Xgallagher2012">2012</a>). Then,
+these &#8216;forward model&#8217; predictions are compared with the measured values and the &#8216;best&#8217; matches are
+retained for geological interpretation. All the &#8216;inverse modelling&#8217; software that has been developed
+over the years for the purpose of thermal history reconstructions essentially follows this same recipe.
+The most important difference between these algorithms is how they assess the goodness of fit and
+decide which candidate t-T paths to retain and which to reject. One class of software, including the
+popular HeFTy program and its predecessor AFTSolve (<a 
+href="#Xketcham2000">Ketcham et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xketcham2000">2000</a>,&#x00A0;<a 
+href="#Xketcham2005">Ketcham</a>&#x00A0;<a 
+href="#Xketcham2005">2005</a>), use the
+p-value of formalised hypothesis tests like the Chi-square test described in the previous Sections, to
+decide whether the measured FT length distribution is a &#8216;good&#8217; (p<span 
+class="cmmi-10">&#x003E;</span>0.5), &#8216;acceptable&#8217; (0.5<span 
+class="cmmi-10">&#x003E;</span>p<span 
+class="cmmi-10">&#x003E;</span>0.05)
+or &#8216;poor&#8217; (p<span 
+class="cmmi-10">&#x003C;</span>0.05) fit. The problem with this approach is that, due to the dependence of p-values
+on sample size, it inevitably breaks down for large datasets. This is because the statistical &#8216;power&#8217;
+of statistical hypothesis test to resolve even the tiniest disagreement between the measured and the
+predicted length distribution, monotonically increases with increasing sample size (<a 
+href="#Xvermeesch2014">Vermeesch and
+Tian</a>&#x00A0;<a 
+href="#Xvermeesch2014">2014</a>).<br 
+class="newline" />
+<!--l. 896--><p class="indent" >   A second class of inverse modelling algorithms (including QTQt,&#x00A0;<a 
+href="#Xgallagher2012">Gallagher</a>&#x00A0;<a 
+href="#Xgallagher2012">2012</a>) does not employ
+formalised hypothesis tests or p-values, but aims to extract the &#8216;most likely&#8217; thermal history models
+among all possible t-T paths (<a 
+href="#Xgallagher1995">Gallagher</a>&#x00A0;<a 
+href="#Xgallagher1995">1995</a>,&#x00A0;<a 
+href="#Xwillett1997">Willett</a>&#x00A0;<a 
+href="#Xwillett1997">1997</a>). These methods do not &#8216;break down&#8217;
+
+when they are applied to large datasets. On the contrary, large datasets are &#8216;rewarded&#8217; in the form of
+tighter &#8216;credibility intervals&#8217; and higher resolution t-T paths. Furthermore, they are easily extended to
+multi-sample and multi-method datasets. However, with great power also comes great responsibility.
+<a 
+href="#Xvermeesch2014">Vermeesch and Tian</a>&#x00A0;(<a 
+href="#Xvermeesch2014">2014</a>) show that QTQt always produces a &#8216;best fitting&#8217; thermal history even
+for physically impossible datasets. To avoid this potential problem, it is of paramount importance
+that the model predictions are shown alongside the FT data (<a 
+href="#Xgallagher2012">Gallagher</a>&#x00A0;<a 
+href="#Xgallagher2012">2012</a>,&#x00A0;<a 
+href="#Xgallagher2016">2016</a>,&#x00A0;<a 
+href="#Xvermeesch2014">Vermeesch and
+Tian</a>&#x00A0;<a 
+href="#Xvermeesch2014">2014</a>).
+<!--l. 911--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6.7   </span> <a 
+ id="x1-140006.7"></a>LA-ICP-MS based FT dating</h3>
+<!--l. 914--><p class="noindent" >The EDM outlined in Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a> continues to be the most widely used analytical protocol in FT dating. However,
+over the past decade, an increasing number of laboratories have abandoned it and switched to LA-ICP-MS as a
+means of determining the uranium concentration of datable minerals, thus reducing sample turnover time and
+removing the need to handle radioactive materials (<a 
+href="#Xhasebe2004">Hasebe et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xhasebe2004">2004</a>,&#x00A0;<a 
+href="#Xhasebe2009">2009</a>,&#x00A0;<a 
+href="#Xchew2012">Chew and Donelick</a>&#x00A0;<a 
+href="#Xchew2012">2012</a>,&#x00A0;<a 
+href="#Xsoares2014">Soares
+et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xsoares2014">2014</a>,&#x00A0;<a 
+href="#Xabdullin2016">Abdullin et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xabdullin2016">2016</a>,&#x00A0;<a 
+href="#Xvermeesch2017">Vermeesch</a>&#x00A0;<a 
+href="#Xvermeesch2017">2017</a>). The statistical analysis of ICP-MS based FT data is less
+straightforward and less well developed than that of the EDM. As described in Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a>, the latter is based on
+simple ratios of Poisson variables, and forms the basis of a large edifice of statistical methods which
+cannot be directly applied to ICP-MS based data. This Section provides an attempt to address this
+issue.
+<!--l. 928--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.7.1   </span> <a 
+ id="x1-150006.7.1"></a>Age equation</h4>
+<!--l. 931--><p class="noindent" >The FT age equation for ICP-MS based data is based on Eq.&#x00A0;<a 
+href="#x1-2001r1">6.1<!--tex4ht:ref: eq:tFT --></a>:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-15001r25"></a>
+   <center class="math-display" >
+<img 
+src="index38x.png" alt="        (               )
+&#x02C6;t =-1-ln 1 + &#x03BB;D----Ns---
+   &#x03BB;D        &#x03BB;f [U&#x02C6;]AsR  q
+" class="math-display" ></center></td><td class="equation-label">(6.25)</td></tr></table>
+<!--l. 938--><p class="nopar" >
+<!--l. 940--><p class="indent" >   where <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">s</span></sub> is the number of spontaneous tracks counted over an area <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">s</span></sub>, q is an &#8216;efficiency factor&#8217; (<span 
+class="cmsy-10">~</span>0.93 for
+apatite and <span 
+class="cmsy-10">~</span>1 for zircon,&#x00A0;<a 
+href="#Xiwano1998">Iwano and Danhara</a>&#x00A0;<a 
+href="#Xiwano1998">1998</a>,&#x00A0;<a 
+href="#Xenkelmann2003">Enkelmann and Jonckheere</a>&#x00A0;<a 
+href="#Xenkelmann2003">2003</a>,&#x00A0;<a 
+href="#Xjonckheere2003b">Jonckheere</a>&#x00A0;<a 
+href="#Xjonckheere2003b">2003</a>,&#x00A0;<a 
+href="#Xsoares2013">Soares
+et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xsoares2013">2013</a>) and [<span 
+class="cmmi-10">&Ucirc;</span>] is the <sup><span 
+class="cmr-7">238</span></sup>U-concentration (in atoms per unit volume) measured by LA-ICP-MS. Eq. <a 
+href="#x1-15001r25">6.25<!--tex4ht:ref: eq:tICP --></a>
+requires an explicit value for <span 
+class="cmmi-10">&#x03BB;</span><sub><span 
+class="cmmi-7">f</span></sub> and assumes that the etchable range (R) is accurately known (<a 
+href="#Xsoares2014">Soares
+et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xsoares2014">2014</a>). Alternatively, these factors may be folded into a calibration factor akin to the EDM
+(Eq.&#x00A0;<a 
+href="#x1-2005r4">6.4<!--tex4ht:ref: eq:tzetahat --></a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-15002r26"></a>
+
+   <center class="math-display" >
+<img 
+src="index39x.png" alt="        (              )
+    1         1     Ns
+&#x02C6;t = &#x03BB;--ln  1+  2&#x03BB;D&#x02C6;&#x03B6;---&#x02C6;-
+     D            As [U ]
+" class="math-display" ></center></td><td class="equation-label">(6.26)</td></tr></table>
+<!--l. 954--><p class="nopar" >
+<!--l. 956--><p class="indent" >   in which <img 
+src="index40x.png" alt="&#x02C6;
+&#x03B6;"  class="circ" > is determined by analysing a standard of known FT age (<a 
+href="#Xhasebe2004">Hasebe et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xhasebe2004">2004</a>). Note that, in contrast
+with the &#8216;absolute&#8217; dating method of Eq.&#x00A0;<a 
+href="#x1-15001r25">6.25<!--tex4ht:ref: eq:tICP --></a>, the <span 
+class="cmmi-10">&#x03B6;</span>-calibration method of Eq.&#x00A0;<a 
+href="#x1-15002r26">6.26<!--tex4ht:ref: eq:tzetahatICP --></a> allows [<span 
+class="cmmi-10">&Ucirc;</span>] to be expressed in
+any concentration units (e.g., ppm or wt% of total U) or could even be replaced with the measured U/Ca-, U/Si- or
+U/Zr-ratios produced by the ICP-MS instrument. The standard error of the estimated age is given
+by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-15003r27"></a>
+   <center class="math-display" >
+<img 
+src="index41x.png" alt="      &#x250C;&#x2502; (----)2---(----)2------
+      &#x2502;&#x2218;   s[&#x03B6;&#x02C6;]       s[&#x02C6;U]-    -1-
+s[&#x02C6;t] &#x2248; &#x02C6;t    &#x02C6;&#x03B6;    +    &#x02C6;U    + Ns
+" class="math-display" ></center></td><td class="equation-label">(6.27)</td></tr></table>
+<!--l. 971--><p class="nopar" >
+<!--l. 973--><p class="indent" >   for the <span 
+class="cmmi-10">&#x03B6;</span>-calibration approach (Eq.&#x00A0;<a 
+href="#x1-15002r26">6.26<!--tex4ht:ref: eq:tzetahatICP --></a>), where <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&Ucirc;</span>] is the standard error of the uranium concentration
+measurement (or the U/Ca-ratio measurement, say), which can be estimated using two alternative approaches as
+discussed in Sect.&#x00A0;<a 
+href="#x1-160006.7.2">6.7.2<!--tex4ht:ref: sec:uICPerr --></a>. Eq.&#x00A0;<a 
+href="#x1-15003r27">6.27<!--tex4ht:ref: eq:shatt4 --></a> can also be applied to the &#8216;absolute&#8217; dating method (Eq.&#x00A0;<a 
+href="#x1-15001r25">6.25<!--tex4ht:ref: eq:tICP --></a>) by simply setting
+<span 
+class="cmmi-10">s</span>[<img 
+src="index42x.png" alt="&#x02C6;
+&#x03B6;"  class="circ" > ]<span 
+class="cmmi-10">&#x2215;</span><img 
+src="index43x.png" alt="&#x02C6;
+&#x03B6;"  class="circ" > = 0.
+<!--l. 981--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.7.2   </span> <a 
+ id="x1-160006.7.2"></a>Error propagation of LA-ICP-MS based uranium concentrations</h4>
+<!--l. 984--><p class="noindent" >Uranium-bearing minerals such as apatite and zircon often exhibit compositional zoning, which must either be
+removed or quantified in order to ensure unbiased ages.
+<!--l. 989--><p class="indent" >
+     <dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">The effect of compositional zoning can be <span 
+class="cmti-10">removed  </span>by covering the entire counting area with one
+     large laser spot (<a 
+href="#Xsoares2014">Soares et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xsoares2014">2014</a>) or a raster (<a 
+href="#Xhasebe2004">Hasebe et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xhasebe2004">2004</a>). <span 
+class="cmmi-10">s</span>[<span 
+class="cmmi-10">&Ucirc;</span>] is then simply given by the
+     analytical uncertainty of the LA-ICP-MS instrument, which typically is an order of magnitude lower
+     than the standard errors of induced track counts in the EDM.
+
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">Alternatively, the uranium-heterogeneity can be <span 
+class="cmti-10">quantified </span>by analysing multiple spots per analysed
+     grain  (<a 
+href="#Xhasebe2009">Hasebe  et&#x00A0;al.</a>&#x00A0;<a 
+href="#Xhasebe2009">2009</a>).  In  this  case,  it  is  commonly  found  that  the  variance  of  the  different
+     uranium-measurements within each grain far exceeds the formal analytical uncertainty of each spot
+     measurement. The following paragraphs will outline a method to measure that dispersion, even if some
+     of the grains in a sample were only visited by the laser once.</dd></dl>
+<!--l. 1005--><p class="indent" >   The true statistical distribution of the U-concentrations within in each grain is unknown but is likely to be
+log-normal:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-16003r28"></a>
+   <center class="math-display" >
+<img 
+src="index44x.png" alt="   &#x02C6;           2
+ln[Ujk] ~ N(&#x03BC;j,&#x03C3;j)
+" class="math-display" ></center></td><td class="equation-label">(6.28)</td></tr></table>
+<!--l. 1011--><p class="nopar" >
+<!--l. 1013--><p class="indent" >   where <span 
+class="cmmi-10">&Ucirc;</span><sub><span 
+class="cmmi-7">jk</span></sub> is the k<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> (out of <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">j</span></sub>) uranium concentration measurements, and <span 
+class="cmmi-10">&#x03BC;</span><sub><span 
+class="cmmi-7">j</span></sub> and <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">j</span></sub><sup><span 
+class="cmr-7">2</span></sup> are the (unknown) mean
+and variance of a Normal distribution. Unfortunately it is difficult to accurately estimate these two parameters from
+just a handful of spot measurements, and it is downright impossible if <span 
+class="cmmi-10">n</span><sub><span 
+class="cmmi-7">j</span></sub> = 1. This problem requires a
+simplifying assumption such as <span 
+class="cmmi-10">&#x03C3;</span><sub><span 
+class="cmmi-7">j</span></sub> = <span 
+class="cmmi-10">&#x03C3; </span><span 
+class="cmsy-10">&#x2200; </span>j. In that case we can estimate the parameters of Eq. <a 
+href="#x1-16003r28">6.28<!--tex4ht:ref: eq:lognorm --></a> as
+follows:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-16004r29"></a>
+   <center class="math-display" >
+<img 
+src="index45x.png" alt="     &#x2211;nj
+&#x03BC;&#x02C6;j =    ln[U&#x02C6;jk]&#x2215;nj
+     k=1
+" class="math-display" ></center></td><td class="equation-label">(6.29)</td></tr></table>
+<!--l. 1025--><p class="nopar" >
+<!--l. 1027--><p class="indent" >   and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-16005r30"></a>
+
+   <center class="math-display" >
+<img 
+src="index46x.png" alt="    &#x2211;n  n&#x2211;j (          )2 &#x2211;n
+&#x02C6;&#x03C3;2 =        ln[&#x02C6;Ujk]- &#x02C6;&#x03BC;j  &#x2215;   (nj - 1).
+    j=1k=1               j=1
+" class="math-display" ></center></td><td class="equation-label">(6.30)</td></tr></table>
+<!--l. 1033--><p class="nopar" >
+<!--l. 1035--><p class="indent" >   The (geometric) mean uranium concentration and standard error of the j<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> grain are then given
+by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-16006r31"></a>
+   <center class="math-display" >
+<img 
+src="index47x.png" alt="U&#x02C6;j = exp[&#x02C6;&#x03BC;j]
+" class="math-display" ></center></td><td class="equation-label">(6.31)</td></tr></table>
+<!--l. 1040--><p class="nopar" >
+<!--l. 1042--><p class="indent" >   and
+   <table 
+class="equation"><tr><td><a 
+ id="x1-16007r32"></a>
+   <center class="math-display" >
+<img 
+src="index48x.png" alt=" &#x02C6;     &#x02C6;
+s[Uj] = Uj&#x02C6;&#x03C3;
+" class="math-display" ></center></td><td class="equation-label">(6.32)</td></tr></table>
+<!--l. 1046--><p class="nopar" >
+<!--l. 1048--><p class="indent" >   which may be directly plugged into Eqs.&#x00A0;<a 
+href="#x1-15001r25">6.25<!--tex4ht:ref: eq:tICP --></a>-<a 
+href="#x1-15003r27">6.27<!--tex4ht:ref: eq:shatt4 --></a> to calculate FT ages and uncertainties. Note that this
+procedure ignores the analytical uncertainty of the individual U-measurements. A more sophisticated approach that
+combines the analytical uncertainties of the U-measurements with the dispersion of multiple spot measurements is
+provided by <a 
+href="#Xvermeesch2017">Vermeesch</a>&#x00A0;(<a 
+href="#Xvermeesch2017">2017</a>).
+
+<!--l. 1055--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.7.3   </span> <a 
+ id="x1-170006.7.3"></a>Zero track counts</h4>
+<!--l. 1058--><p class="noindent" >In contrast with the EDM, ICP-MS based FT data do not offer an easy way to deal with zero track counts. One
+pragmatic solution to this problem is to approximate the ICP-MS based uranium concentration measurement with
+an &#8216;equivalent induced track density&#8217;, using the following linear transformation:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17001r33"></a>
+   <center class="math-display" >
+<img 
+src="index49x.png" alt="&#x02C6;Nij = &#x03C1;jAsj[&#x02C6;Uj]
+" class="math-display" ></center></td><td class="equation-label">(6.33)</td></tr></table>
+<!--l. 1066--><p class="nopar" >
+<!--l. 1068--><p class="indent" >   where <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">sj</span></sub> is the area over which the spontaneous tracks of the j<sup><span 
+class="cmmi-7">th</span></sup> grain have been counted and <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">j</span></sub> plays a similar
+role as <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">d</span></sub> in Eq.&#x00A0;<a 
+href="#x1-2003r2">6.2<!--tex4ht:ref: eq:tzeta --></a>. From the requirement that the variance of a Poisson-distributed variable equals its mean
+(Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a>), it follows that:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17002r34"></a>
+   <center class="math-display" >
+<img 
+src="index50x.png" alt=" &#x02C6;    2  2  &#x02C6; 2
+Nij = &#x03C1;jA sjs[Uj]
+" class="math-display" ></center></td><td class="equation-label">(6.34)</td></tr></table>
+<!--l. 1076--><p class="nopar" >
+<!--l. 1078--><p class="indent" >   from which it is easy to determine <span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">j</span></sub>. The analytical uncertainty for the j<sup><span 
+class="cmmi-7">th</span></sup> single grain age is then given
+by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-17003r35"></a>
+   <center class="math-display" >
+<img 
+src="index51x.png" alt="        &#x250C;&#x2502; -----------(----)--
+        &#x2502;&#x2218;  1     1     s[&#x02C6;&#x03B6;] 2
+s[&#x02C6;tj] &#x2248; &#x02C6;tj N---+ -&#x02C6;-+   -&#x03B6;-
+            sj   Nij
+" class="math-display" ></center></td><td class="equation-label">(6.35)</td></tr></table>
+<!--l. 1086--><p class="nopar" >
+<!--l. 1088--><p class="indent" >   where <span 
+class="cmmi-10">N</span><sub><span 
+class="cmmi-7">sj</span></sub> indicates the number of spontaneous tracks measured in the j<sup><span 
+class="cmmi-7">th</span></sup> grain, and <span 
+class="cmmi-10">s</span>[<img 
+src="index52x.png" alt="&#x02C6;&#x03B6;"  class="circ" > ]<span 
+class="cmmi-10">&#x2215;&#x03B6; </span>= 0 for the
+&#8216;absolute&#8217; dating approach (Eq.&#x00A0;<a 
+href="#x1-15001r25">6.25<!--tex4ht:ref: eq:tICP --></a>). The zero track problem can then be solved using the methods mentioned in
+Sect.&#x00A0;<a 
+href="#x1-20006.2">6.2<!--tex4ht:ref: sec:EDM --></a>.
+<!--l. 1093--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.7.4   </span> <a 
+ id="x1-180006.7.4"></a>Plots and models</h4>
+<!--l. 1095--><p class="noindent" >To plot ICP-MS based fission track data on a radial plot, we can replace Eqs.&#x00A0;<a 
+href="#x1-6002r12">6.12<!--tex4ht:ref: eq:zj --></a> and <a 
+href="#x1-6003r13">6.13<!--tex4ht:ref: eq:sj --></a> with
+<!--l. 1098--><p class="indent" >
+<table 
+class="align">
+                             <tr><td 
+class="align-odd"><span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub></td>                                 <td 
+class="align-even"> = ln(<img 
+src="index53x.png" alt="&#x02C6;t"  class="circ" > <sub><span 
+class="cmmi-7">j</span></sub>),</td>                                                                             <td 
+class="align-label"><a 
+ id="x1-18001r36"></a>(6.36)
+                             </td></tr><tr><td 
+class="align-odd">and&#x00A0;<span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">j</span></sub></td>                             <td 
+class="align-even"> = <img 
+src="index54x.png" alt="&#x250C;&#x2502; (---)----(-----)-------
+&#x2502;&#x2218;  s[&#x02C6;&#x03B6;] 2    s[U&#x02C6;] 2   1
+   -&#x02C6;-   +   -&#x02C6;--  +  N--
+    &#x03B6;         U        s"  class="sqrt" ></td>                                                          <td 
+class="align-label"><a 
+ id="x1-18002r37"></a>(6.37)                             </td></tr></table>
+<!--l. 1107--><p class="indent" >   respectively (<a 
+href="#Xgalbraith2010b">Galbraith</a>&#x00A0;<a 
+href="#Xgalbraith2010b">2010a</a>). Alternatively, a square root transformation may be more appropriate for young
+and/or U-poor samples (Galbraith, <span 
+class="cmti-10">pers. commun.</span>):
+<!--l. 1111--><p class="indent" >
+
+<table 
+class="align">
+                                   <tr><td 
+class="align-odd"><span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">j</span></sub></td>                                       <td 
+class="align-even"> = <img 
+src="index55x.png" alt="&#x2218; --
+  &#x02C6;
+  tj"  class="sqrt" >,</td>                                                                               <td 
+class="align-label"><a 
+ id="x1-18003r38"></a>(6.38)
+                                   </td></tr><tr><td 
+class="align-odd">and&#x00A0;<span 
+class="cmmi-10">s</span><sub><span 
+class="cmmi-7">j</span></sub></td>                                   <td 
+class="align-even"> = <span 
+class="cmmi-10">s</span>[<img 
+src="index56x.png" alt="&#x02C6;t"  class="circ" > <sub><span 
+class="cmmi-7">j</span></sub>]<span class="bigg"><img 
+src="index57x.png" alt="&#x2215;"  class="left" align="middle"></span><img 
+src="index58x.png" alt="(  &#x2218; -)
+  2  &#x02C6;t
+     j"  class="left" align="middle"></td>                                                                      <td 
+class="align-label"><a 
+ id="x1-18004r39"></a>(6.39)                                   </td></tr></table>
+<!--l. 1117--><p class="indent" >   The Binomial Likelihood function of Sect.&#x00A0;<a 
+href="#x1-90006.4.2">6.4.2<!--tex4ht:ref: sec:randomeffects --></a> may be replaced with an alternative form assuming Normal
+errors. Thus, Eq.&#x00A0;<a 
+href="#x1-8002r15">6.15<!--tex4ht:ref: eq:Lpooled --></a> becomes:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18005r40"></a>
+   <center class="math-display" >
+<img 
+src="index59x.png" alt="      &#x2211;n   [        &#x2032;2 ]
+L (&#x03B8;) =    ln N (zj|&#x03B8;,&#x03C3;j )
+       j=1
+" class="math-display" ></center></td><td class="equation-label">(6.40)</td></tr></table>
+<!--l. 1125--><p class="nopar" >
+<!--l. 1127--><p class="indent" >   where <span 
+class="cmsy-10"><img 
+src="cmsy10-4e.png" alt="N" class="10x-x-4e" /></span>(<span 
+class="cmmi-10">a</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">b,c</span>) stands for &#8220;the probability density of observing a value <span 
+class="cmti-10">a </span>from a Normal distribution with mean
+<span 
+class="cmti-10">b </span>and variance <span 
+class="cmti-10">c</span>&#8221;, z<sub><span 
+class="cmmi-7">j</span></sub> is defined by Eq.&#x00A0;<a 
+href="#x1-18001r36">6.36<!--tex4ht:ref: eq:zj2 --></a> and <span 
+class="cmmi-10">&#x03C3;</span><span 
+class="cmsy-10">&#x2032;</span><sub><span 
+class="cmmi-7">j</span></sub> is given by
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18006r41"></a>
+   <center class="math-display" >
+<img 
+src="index60x.png" alt="  &#x2032;
+&#x03C3;j = s[&#x02C6;tj]&#x2215;&#x02C6;tj
+" class="math-display" ></center></td><td class="equation-label">(6.41)</td></tr></table>
+<!--l. 1134--><p class="nopar" >
+<!--l. 1136--><p class="indent" >   The Chi-square statistic (Eq.&#x00A0;<a 
+href="#x1-8003r16">6.16<!--tex4ht:ref: eq:X2 --></a>) may be redefined as
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18007r42"></a>
+
+   <center class="math-display" >
+<img 
+src="index61x.png" alt="     n           ( n       )2&#x2215;  n
+c2 = &#x2211; (zj&#x2215;&#x03C3;&#x2032;)2 - (&#x2211;   zj&#x2215;&#x03C3;&#x2032;2)    &#x2211;  1&#x2215;&#x03C3;&#x2032;2
+    j=1     j      j=1    j      j=1    j
+" class="math-display" ></center></td><td class="equation-label">(6.42)</td></tr></table>
+<!--l. 1146--><p class="nopar" >
+<!--l. 1148--><p class="indent" >   (<a 
+href="#Xgalbraith2010b">Galbraith</a>&#x00A0;<a 
+href="#Xgalbraith2010b">2010a</a>). Finally, the random effects model of Eq.&#x00A0;<a 
+href="#x1-9002r18">6.18<!--tex4ht:ref: eq:Lcentral --></a> can be replaced with:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-18008r43"></a>
+   <center class="math-display" >
+<img 
+src="index62x.png" alt="      2   &#x2211;n   [       2    &#x2032;2 ]
+L (&#x03BC;,&#x03C3; ) =    ln  N(zj|&#x03BC;,&#x03C3;  + &#x03C3;j )
+          j=1
+" class="math-display" ></center></td><td class="equation-label">(6.43)</td></tr></table>
+<!--l. 1155--><p class="nopar" >
+<!--l. 1157--><p class="indent" >   Eqs.&#x00A0;<a 
+href="#x1-18005r40">6.40<!--tex4ht:ref: eq:Lpoolednorm --></a> and <a 
+href="#x1-18008r43">6.43<!--tex4ht:ref: eq:Lcentralnorm --></a> can be readily plugged into Eqs.&#x00A0;<a 
+href="#x1-11001r20">6.20<!--tex4ht:ref: eq:Lfinite --></a>, <a 
+href="#x1-12001r22">6.22<!--tex4ht:ref: eq:Lcontmix --></a> and <a 
+href="#x1-12003r23">6.23<!--tex4ht:ref: eq:Lminagemod --></a> to constrain finite mixtures, continuous
+mixtures and minimum age models for ICP-MS based data, respectively.
+<!--l. 1162--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-190006.7.4"></a>Acknowledgments</h3>
+<!--l. 1164--><p class="noindent" >The author would like to thank reviewers Rex Galbraith, Mauricio Berm&uacute;dez and editors Marco Malus&agrave;
+and Paul Fitzgerald for detailed feedback. The mica counts of Figure <a 
+href="#x1-20111">6.1<!--tex4ht:ref: fig:Poisson --></a> were performed by Yuntao
+Tian.
+<!--l. 1169--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-200006.7.4"></a>References</h3>
+<!--l. 1169--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xabdullin2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Abdullin, F., Sol&eacute;, J., Meneses-Rocha, J. d.&#x00A0;J., Solari, L., Shchepetilnikova, V., and Ortega-Obreg&oacute;n, C.
+  (2016). LA-ICP-MS-based apatite fission track dating of the Todos Santos Formation sandstones from the
+  Sierra de Chiapas (SE Mexico) and its tectonic significance. <span 
+class="cmti-10">International Geology Review</span>, 58(1):32&#8211;48.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xabramson1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Abramson, I.&#x00A0;S. (1982).  On bandwidth variation in kernel estimates &#8211; a square root law.  <span 
+class="cmti-10">The Annals</span>
+  <span 
+class="cmti-10">of Statistics</span>, pages 1217&#8211;1223.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbernet2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Bernet, M. (2018). Exhumation studies based on detrital fission track analysis on sand and sandstones.
+  In Malus&agrave;, M. and Fitzgerald, P., editors, <span 
+class="cmti-10">Fission track thermochronology and its application to geology</span>,
+  chapter&#x00A0;14. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbotev2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Botev, Z.&#x00A0;I., Grotowski, J.&#x00A0;F., and Kroese, D.&#x00A0;P. (2010). Kernel density estimation via diffusion. <span 
+class="cmti-10">Annals</span>
+  <span 
+class="cmti-10">of Statistics</span>, 38:2916&#8211;2957.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xbrandon1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Brandon,  M.  (1996).    Probability  density  plot  for  fission-track  grain-age  samples.    <span 
+class="cmti-10">Radiation</span>
+  <span 
+class="cmti-10">Measurements</span>, 26(5):663 &#8211; 676.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcarter1990"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Carter, A. (1990).  The thermal history and annealing effects in zircons from the Ordovician of North
+  Wales. <span 
+class="cmti-10">International Journal of Radiation Applications and Instrumentation. Part D. Nuclear Tracks and</span>
+  <span 
+class="cmti-10">Radiation Measurements</span>, 17(3):309&#8211;313.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcarter2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Carter, A. (2018). Thermochronology on sand and sandstones for stratigraphic and provenance studies.
+  In Malus&agrave;, M. and Fitzgerald, P., editors, <span 
+class="cmti-10">Fission track thermochronology and its application to geology</span>,
+  chapter&#x00A0;13. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xchew2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Chew,  D.&#x00A0;M.  and  Donelick,  R.&#x00A0;A.  (2012).   Combined  apatite  fission  track  and  U-Pb  dating  by
+  LA-ICP-MS and its application in apatite provenance analysis. <span 
+class="cmti-10">Quantitative Mineralogy and Microanalysis</span>
+  <span 
+class="cmti-10">of Sediments and Sedimentary Rocks: Mineralogical Association of Canada, Short Course</span>, 42:219&#8211;247.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcorrigan1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Corrigan, J. (1991).  Inversion of apatite fission track data for thermal history information.  <span 
+class="cmti-10">Journal of</span>
+  <span 
+class="cmti-10">Geophysical Research</span>, 96(B6):10347&#8211;10.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdumitru1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Dumitru, T.&#x00A0;A. (1993). A new computer-automated microscope stage system for fission-track analysis.
+  <span 
+class="cmti-10">Nuclear Tracks and Radiation Measurements</span>, 21(4):575&#8211;580.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xdunkl2002"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Dunkl, I. (2002). TRACKKEY: a Windows program for calculation and graphical presentation of fission
+  track data. <span 
+class="cmti-10">Computers &amp; Geosciences</span>, 28(1):3&#8211;12.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xenkelmann2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Enkelmann, E. and Jonckheere, R. (2003). Correction factors for systematic errors related to the track
+  counts in fission-track dating with the external detector method. <span 
+class="cmti-10">Radiation Measurements</span>, 36(1):351&#8211;356.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfleischer1965"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Fleischer, R.&#x00A0;L., Price, P.&#x00A0;B., and Walker, R.&#x00A0;M. (1965). Tracks of charged particles in solids. <span 
+class="cmti-10">Science</span>,
+  149(3682):383&#8211;393.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1981"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R. (1981).   On statistical models for fission track counts.   <span 
+class="cmti-10">Journal of the International</span>
+  <span 
+class="cmti-10">Association for Mathematical Geology</span>, 13(6):471&#8211;478.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1988"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R. (1988).  Graphical display of estimates having differing standard errors.  <span 
+class="cmti-10">Technometrics</span>,
+  30(3):271&#8211;281.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R. (1998).  The trouble with &#8220;probability density&#8221; plots of fission track ages.  <span 
+class="cmti-10">Radiation</span>
+  <span 
+class="cmti-10">Measurements</span>, 29:125&#8211;131.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2010b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R. (2010a). Statistics for LA-ICPMS fission track dating. <span 
+class="cmti-10">Thermo2010 - 12th International</span>
+  <span 
+class="cmti-10">Conference on Thermochronology, Glasgow</span>, page 175.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1993"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R. and Laslett, G. (1993). Statistical models for mixed fission track ages. <span 
+class="cmti-10">Nuclear tracks and</span>
+  <span 
+class="cmti-10">radiation measurements</span>, 21(4):459&#8211;470.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R.&#x00A0;F. (1990).  The radial plot: graphical assessment of spread in ages.  <span 
+class="cmti-10">Nuclear Tracks and</span>
+  <span 
+class="cmti-10">Radiation Measurements</span>, 17:207&#8211;214.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R.&#x00A0;F. (2005). <span 
+class="cmti-10">Statistics for fission track analysis</span>. CRC Press.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith2010"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R.&#x00A0;F. (2010b). On plotting OSL equivalent doses. <span 
+class="cmti-10">Ancient TL</span>, 28:1&#8211;10.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgalbraith1990b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Galbraith, R.&#x00A0;F. and Green, P.&#x00A0;F. (1990). Estimating the component ages in a finite mixture. <span 
+class="cmti-10">Nuclear</span>
+  <span 
+class="cmti-10">Tracks and Radiation Measurements</span>, 17:197&#8211;206.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgallagher1995"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Gallagher, K. (1995). Evolving temperature histories from apatite fission-track data. <span 
+class="cmti-10">Earth and Planetary</span>
+  <span 
+class="cmti-10">Science Letters</span>, 136(3):421&#8211;435.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgallagher2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Gallagher,  K.  (2012).      Transdimensional  inverse  thermal  history  modeling  for  quantitative
+  thermochronology. <span 
+class="cmti-10">Journal of Geophysical Research: Solid Earth (1978&#8211;2012)</span>, 117(B2).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgallagher2016"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Gallagher, K. (2016).  Comment on&#8217;A reporting protocol for thermochronologic modeling illustrated
+  with data from the Grand Canyon&#8217;by Flowers, Farley and Ketcham. <span 
+class="cmti-10">Earth and Planetary Science Letters</span>,
+  441:211&#8211;212.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgarver1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Garver,  J.&#x00A0;I.,  Brandon,  M.&#x00A0;T.,  Roden-Tice,  M.,  and  Kamp,  P.&#x00A0;J.  (1999).   Exhumation  history  of
+  orogenic highlands determined by detrital fission-track thermochronology.  <span 
+class="cmti-10">Geological Society, London,</span>
+  <span 
+class="cmti-10">Special Publications</span>, 154(1):283&#8211;304.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgleadow2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Gleadow,  A.  (2018).   Future  developments  in  fission  track  thermochronology.   In  Malusà,  M.  and
+  Fitzgerald, P., editors, <span 
+class="cmti-10">Fission track thermochronology and its application to geology</span>, chapter&#x00A0;4. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgleadow1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Gleadow, A., Duddy, I., Green, P.&#x00A0;F., and Lovering, J. (1986). Confined fission track lengths in apatite:
+  a diagnostic tool for thermal history analysis. <span 
+class="cmti-10">Contributions to Mineralogy and Petrology</span>, 94(4):405&#8211;415.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreen1981a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Green, P. (1981a).  A criticism of the paper entitled &#8221;A practical method of estimating standard error
+  of age in the fission track dating method&#8221; by Johnson, Mcgee and Naeser. <span 
+class="cmti-10">Nuclear Tracks</span>, 5(3):317&#8211;323.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreen1981b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Green, P. (1981b). A new look at statistics in fission-track dating. <span 
+class="cmti-10">Nuclear tracks</span>, 5(1-2):77&#8211;86.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreen1985"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Green, P., Duddy, I., Gleadow, A., Tingate, P., and Laslett, G. (1985).   Fission-track annealing in
+  apatite: track length measurements and the form of the Arrhenius plot.  <span 
+class="cmti-10">Nuclear Tracks and Radiation</span>
+  <span 
+class="cmti-10">Measurements (1982)</span>, 10(3):323&#8211;328.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgreen1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Green, P., Duddy, I., Gleadow, A., Tingate, P., and Laslett, G. (1986).  Thermal annealing of fission
+  tracks in apatite: 1. A qualitative description. <span 
+class="cmti-10">Chemical Geology: Isotope Geoscience section</span>, 59:237&#8211;253.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhasebe2004"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hasebe, N., Barbarand, J., Jarvis, K., Carter, A., and Hurford, A.&#x00A0;J. (2004).  Apatite fission-track
+  chronometry using laser ablation icp-ms. <span 
+class="cmti-10">Chemical Geology</span>, 207(3):135&#8211;145.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhasebe2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hasebe, N., Carter, A., Hurford, A.&#x00A0;J., and Arai, S. (2009). The effect of chemical etching on LA&#8211;ICP-MS
+  analysis in determining uranium concentration for fission-track chronometry. <span 
+class="cmti-10">Geological Society, London,</span>
+  <span 
+class="cmti-10">Special Publications</span>, 324(1):37&#8211;46.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xholden2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Holden,  N.&#x00A0;E.  and  Hoffman,  D.&#x00A0;C.  (2000).   Spontaneous  fission  half-lives  for  ground-state  nuclide
+  (Technical report). <span 
+class="cmti-10">Pure and applied chemistry</span>, 72(8):1525&#8211;1562.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hurford, A.&#x00A0;J. (2018).  A historical perspective on fission track thermochronology.  In Malus&agrave;, M. and
+  Fitzgerald, P., editors, <span 
+class="cmti-10">Fission track thermochronology and its application to geology</span>, chapter&#x00A0;1. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xhurford1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Hurford, A.&#x00A0;J. and Green, P.&#x00A0;F. (1983).  The zeta age calibration of fission-track dating.  <span 
+class="cmti-10">Chemical</span>
+  <span 
+class="cmti-10">Geology</span>, 41:285 &#8211; 317.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xiwano1998"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Iwano, H. and Danhara, T. (1998). A re-investigation of the geometry factors for fission-track dating of
+  apatite, sphene and zircon. In <span 
+class="cmti-10">Advances in Fission-Track Geochronology</span>, pages 47&#8211;66. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjaffey1971"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jaffey, A., Flynn, K., Glendenin, L., Bentley, W., and Essling, A. (1971).  Precision measurement of
+  half-lives and specific activities of u235 and u238. <span 
+class="cmti-10">Physical Review C</span>, 4(5):1889.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjasra2006"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jasra, A., Stephens, D.&#x00A0;A., Gallagher, K., and Holmes, C.&#x00A0;C. (2006).  Bayesian mixture modelling in
+  geochronology via markov chain monte carlo. <span 
+class="cmti-10">Mathematical Geology</span>, 38(3):269&#8211;300.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjohnson1979"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Johnson, N.&#x00A0;M., McGee, V.&#x00A0;E., and Naeser, C.&#x00A0;W. (1979). A practical method of estimating standard
+  error of age in the fission track dating method. <span 
+class="cmti-10">Nuclear tracks</span>, 3(3):93&#8211;99.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjonckheere2003b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jonckheere, R. (2003). On the densities of etchable fission tracks in a mineral and co-irradiated external
+  detector with reference to fission-track dating of minerals. <span 
+class="cmti-10">Chemical Geology</span>, 200(1):41&#8211;58.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xjonckheere2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Jonckheere, R., Ratschbacher, L., and Wagner, G.&#x00A0;A. (2003).  A repositioning technique for counting
+  induced fission tracks in muscovite external detectors in single-grain dating of minerals with low and
+  inhomogeneous uranium concentrations. <span 
+class="cmti-10">Radiation Measurements</span>, 37(3):217&#8211;219.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2005"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Ketcham, R.&#x00A0;A. (2005).  Forward and inverse modeling of low-temperature thermochronometry data.
+  <span 
+class="cmti-10">Reviews in Mineralogy and Geochemistry</span>, 58(1):275&#8211;314.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2018"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Ketcham, R.&#x00A0;A. (2018).  Fission track annealing: from geological observations to thermal modeling.
+  In Malus&agrave;, M. and Fitzgerald, P., editors, <span 
+class="cmti-10">Fission track thermochronology and its application to geology</span>,
+  chapter&#x00A0;3. Springer.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2007"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Ketcham, R.&#x00A0;A., Carter, A., Donelick, R.&#x00A0;A., Barbarand, J., and Hurford, A.&#x00A0;J. (2007).  Improved
+  modeling of fission-track annealing in apatite. <span 
+class="cmti-10">American Mineralogist</span>, 92(5-6):799&#8211;810.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham1999"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Ketcham,  R.&#x00A0;A.,  Donelick,  R.&#x00A0;A.,  and  Carlson,  W.&#x00A0;D.  (1999).   Variability  of  apatite  fission-track
+  annealing kinetics: III. Extrapolation to geological time scales. <span 
+class="cmti-10">American Mineralogist</span>, 84(9):1235&#8211;1255.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xketcham2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Ketcham, R.&#x00A0;A., Donelick, R.&#x00A0;A., Donelick, M.&#x00A0;B., et&#x00A0;al. (2000). AFTSolve: A program for multi-kinetic
+  modeling of apatite fission-track data. <span 
+class="cmti-10">Geological Materials Research</span>, 2(1):1&#8211;32.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlaslett1996"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Laslett, G. and Galbraith, R. (1996).  Statistical modelling of thermal annealing of fission tracks in
+  apatite. <span 
+class="cmti-10">Geochimica et Cosmochimica Acta</span>, 60(24):5117&#8211;5131.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlaslett1987"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Laslett, G., Green, P.&#x00A0;F., Duddy, I., and Gleadow, A. (1987).  Thermal annealing of fission tracks in
+  apatite 2. A quantitative analysis. <span 
+class="cmti-10">Chemical Geology: Isotope Geoscience Section</span>, 65(1):1&#8211;13.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xlutz1991"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Lutz, T.&#x00A0;M. and Omar, G. (1991).   An inverse method of modeling thermal histories from apatite
+  fission-track data. <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 104(2-4):181&#8211;195.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmcgee1979"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> McGee, V.&#x00A0;E. and Johnson, N.&#x00A0;M. (1979).  Statistical treatment of experimental errors in the fission
+  track dating method. <span 
+class="cmti-10">Journal of the International Association for Mathematical Geology</span>, 11(3):255&#8211;268.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xprice1963"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Price, P. and Walker, R. (1963).  Fossil tracks of charged particles in mica and the age of minerals.
+  <span 
+class="cmti-10">Journal of Geophysical Research</span>, 68(16):4847&#8211;4862.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xrioux2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Rioux, M., Lissenberg, C.&#x00A0;J., McLean, N.&#x00A0;M., Bowring, S.&#x00A0;A., MacLeod, C.&#x00A0;J., Hellebrand, E., and
+  Shimizu, N. (2012). Protracted timescales of lower crustal growth at the fast-spreading East Pacific Rise.
+  <span 
+class="cmti-10">Nature Geoscience</span>, 5(4):275&#8211;278.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsambridge1994"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Sambridge, M.&#x00A0;S. and Compston, W. (1994).  Mixture modeling of multi-component data sets with
+  application to ion-probe zircon ages. <span 
+class="cmti-10">Earth and Planetary Science Letters</span>, 128:373&#8211;390.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsilverman1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Silverman, B. (1986). <span 
+class="cmti-10">Density Estimation for Statistics and Data Analysis</span>. Chapman and Hall, London.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsmith1985"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Smith, M. and Leigh-Jones, P. (1985). An automated microscope scanning stage for fission-track dating.
+  <span 
+class="cmti-10">Nuclear Tracks and Radiation Measurements (1982)</span>, 10(3):395&#8211;400.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsoares2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Soares, C., Guedes, S., Hadler, J., Mertz-Kraus, R., Zack, T., and Iunes, P. (2014).  Novel calibration
+  for LA-ICP-MS-based fission-track thermochronology. <span 
+class="cmti-10">Physics and chemistry of minerals</span>, 41(1):65&#8211;73.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsoares2013"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Soares, C.&#x00A0;J., Guedes, S., Tello, C.&#x00A0;A., Lixandrao&#x00A0;Filho, A.&#x00A0;L., Osorio, A.&#x00A0;M., Alencar, I., Dias, A.&#x00A0;N.,
+  and Hadler, J. (2013).  Further investigation of the initial fission-track length and geometry factor in
+  apatite fission-track thermochronology. <span 
+class="cmti-10">Am Mineral</span>, 98:1381&#8211;1392.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xtufte1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Tufte, E.&#x00A0;R. (1983). The visual display of quantitative data. <span 
+class="cmti-10">Cheshire, CT: Graphics</span>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2007a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Vermeesch, P. (2007).  Quantitative geomorphology of the White Mountains (California) using detrital
+  apatite fission track thermochronology. <span 
+class="cmti-10">Journal of Geophysical Research (Earth Surface)</span>, 112(F11):3004.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2009c"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Vermeesch, P. (2009). RadialPlotter: A Java application for fission track, luminescence and other radial
+  plots. <span 
+class="cmti-10">Radiation Measurements</span>, 44(4):409&#8211;410.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2010a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Vermeesch, P. (2010).  HelioPlot, and the treatment of overdispersed (U-Th-Sm)/He data.  <span 
+class="cmti-10">Chemical</span>
+  <span 
+class="cmti-10">Geology</span>, 271(3-4):108 &#8211; 111.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>  Vermeesch,  P.  (2012).    On  the  visualisation  of  detrital  age  distributions.    <span 
+class="cmti-10">Chemical  Geology</span>,
+  312-313:190&#8211;194.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2017"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Vermeesch, P. (2017). Statistics for LA-ICP-MS based fission track dating. <span 
+class="cmti-10">Chemical Geology</span>, 456:19&#8211;27.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2014"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Vermeesch, P. and Tian, Y. (2014).   Thermal history modelling: HeFTy vs. QTQt.   <span 
+class="cmti-10">Earth-Science</span>
+  <span 
+class="cmti-10">Reviews</span>, 139:279&#8211;290.
+  </p>
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xwillett1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span> Willett, S.&#x00A0;D. (1997). Inverse modeling of annealing of fission tracks in apatite; 1, A controlled random
+  search method. <span 
+class="cmti-10">American Journal of Science</span>, 297(10):939&#8211;969.
+</p>
+  </div>
+    
+</body></html> 
+
+
+

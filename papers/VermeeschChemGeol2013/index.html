@@ -1,0 +1,1381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Multi-sample comparison of detrital age distributions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="MDSpaper4web.tex"> 
+<meta name="date" content="2013-01-18 20:50:00"> 
+<link rel="stylesheet" type="text/css" href="MDSpaper4web.css"> 
+<link rel="stylesheet" type="text/css" href="../mystyle.css">
+</head><body >
+<table class="main" ><tr><td>
+   <div 
+class="abstract" 
+>
+   </div>     <div class="maketitle">
+
+
+<h2 class="titleHead">Multi-sample comparison of detrital age distributions</h2>
+Pieter Vermeesch<br />
+<sup class="textsuperscript"></sup>
+<span 
+class="cmti-10">University College London</span><br />
+<span 
+class="cmti-10">Gower Street, London WC1E 6BT</span><br />
+<span 
+class="cmti-10">+44 (0)20 7679 2418</span><br />
+<span 
+class="cmitt-10">p.vermeesch[at]ucl.ac.uk</span><br/><br/>
+[<a href="http://ucl.ac.uk/~ucfbpve/mudisc/note.html">correction</a>]<br/>
+_____________________________________________________
+<!--l. 18--><p class="noindent" ><span 
+class="cmbx-12">Abstract</span>
+<!--l. 18--><p class="noindent" >The petrography and geochronology of detrital minerals form rich archives of
+information pertaining to the provenance of siliclastic sediments. The composition
+and age spectra of multi-sample datasets can be used to trace the flow of
+sediments through modern and ancient sediment routing systems. Such studies
+often involve dozens of samples comprising thousands of measurements. Objective
+interpretation of such large datasets can be challenging and greatly benefits from
+dimension-reducing exploratory data analysis tools. Principal Components
+Analysis (PCA) is a proven method that has been widely used in the context of
+compositional data analysis and traditional heavy mineral studies. Unfortunately,
+PCA cannot be readily applied to geochronological data, which are rapidly
+overtaking petrographic techniques as the method of choice for large scale
+provenance studies. This paper proposes another standard statistical technique
+called Multidimensional Scaling (MDS) as an appropriate tool to fill this
+void. MDS is a robust and flexible superset of PCA which makes fewer
+assumptions about the data. Given a table of pairwise &#8216;dissimilarities&#8217;
+
+between samples, MDS produces a &#8216;map&#8217; of points on which &#8216;similar&#8217; samples
+cluster closely together, and &#8216;dissimilar&#8217; samples plot far apart. It is shown
+that the statistical effect size of the Kolmogorov-Smirnov test is a viable
+dissimilarity measure. This is not the case for the p-values of this and
+other tests. To aid in the adoption of the method by the geochronological
+community, this paper includes some simple code using the statistical
+programming language <span 
+class="cmtt-12">R</span>. More extensive software tools are provided on
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">http://mudisc.london-geochron.com</span></span></span>.
+<br />
+_____________________________________________________
+</div>
+     <h3 class="sectionHead"><span class="titlemark">1.  </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 52--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+<table><tr><td width="300pt">
+<a 
+ id="x1-10011"></a>
+
+<!--l. 53--><p class="noindent" ><a href="MDSpaper4web0x.png"><img src="MDSpaper4web0x.png" alt="PIC" class="graphics"></a>
+<!--tex4ht:graphics  
+name="MDSpaper4web0x.png" src="MuUs.pdf"  
+-->
+<br />                                                                 
+</td>
+<td valign="bottom">
+<div class="caption" ><span class="id">Figure&#x00A0;1:
+
+</span><span  
+class="content">Sample locations and Kernel Density Estimates (KDEs,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>)
+of the Chinese loess study (N = number of concordant ages). Samples 1-5,
+7 and 9-10 &#8211; dune sand; samples 6 and 8 &#8211; Cretaceous sandstone; sample L
+&#8211; Quaternary loess; sample Y &#8211; fluvial sand from the Yellow River; sample
+T &#8211; compilation of proposed sources in Yellow River headwaters from <a 
+href="#Xpullen2011">Pullen
+et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xpullen2011">2011</a>).</span></div><!--tex4ht:label?: x1-10011 -->
+</td>
+</tr>
+</table>
+<!--l. 62--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 64--><p class="indent" >   Ever since the development of single grain U-Pb dating by (ion and laser)
+microprobe analysis, the method has been applied to detrital zircon (DZ) as a
+means of reconstructing the provenance of siliciclastic rocks. Initially, DZ
+geochronology was primarily used to trace the provenance of such rocks back to
+individual &#8216;protosources&#8217; or source terranes (<a 
+href="#Xgehrels1995">Gehrels et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xgehrels1995">1995</a>;&#x00A0;<a 
+href="#Xpell1997">Pell
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xpell1997">1997</a>). But in recent years, the ever-increasing throughput and ever
+decreasing cost of DZ geochronology has enabled a more sophisticated kind of
+applications, in which the U-Pb age distributions of multiple samples are used as
+a characteristic &#8216;fingerprint&#8217; to trace the flow of zircon grains through the
+sediment routing system.
+<!--l. 76--><p class="indent" >   This paper introduces methods that make the interpretation of such datasets
+more objective, using a recently published provenance study from China as an
+example. <a 
+href="#Xstevens2012">Stevens et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xstevens2012">2012</a>) present a dataset comprising ten sand(stone)
+samples from the Mu Us desert, a Quaternary loess sample, a modern fluvial sand
+sample from the Yellow River, and a dataset of DZ ages from the Tibetan
+headwaters of the Yellow River taken from <a 
+href="#Xpullen2011">Pullen et&#x00A0;al.</a>&#x00A0;(<a 
+href="#Xpullen2011">2011</a>). The degree of
+similarity between these samples can be assessed on a qualitative basis by jointly
+plotting their respective age spectra (Figure <a 
+href="#x1-10011">1<!--tex4ht:ref: fig:mu-us --></a>). Another commonly used visual
+aid is the so-called &#8216;QQ plot&#8217;, in which various quantiles of the samples are
+plotted against each other, the idea being that two samples follow an
+identical distribution if and only if their quantiles plot on a 1:1-line (Figure
+<a 
+href="#x1-10022">2<!--tex4ht:ref: fig:QQ --></a>).
+<!--l. 90--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-10022"></a>
+<table><tr><td width="300pt">
+<!--l. 92--><p class="noindent" ><a href="MDSpaper4web1x.png"><img 
+src="MDSpaper4web1x.png" alt="PIC" class="graphics"></a>
+<!--tex4ht:graphics  
+name="MDSpaper4web1x.png" src="QQplots.pdf"  
+-->
+<br /> 
+</td>
+<td valign="bottom">
+<div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Q-Q plots of the Chinese U-Pb dataset. Blue dots represent the 0,
+5, 10, ..., 95 and 100 percentiles (or &#8216;quantiles&#8217;) of the samples whose names
+are shown on the X- and Y-axis, respectively. Two samples follow an identical
+distribution if and only if their percentiles fall on the 1:1-line.</span></div><!--tex4ht:label?: x1-10022 -->
+</td>
+</tr>
+</table>
+<!--l. 99--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 101--><p class="indent" >   Both the QQ plots and the age spectra can become unwieldy if they
+contain more than a dozen or so samples. For example, Figure <a 
+href="#x1-10011">1<!--tex4ht:ref: fig:mu-us --></a> contains
+n=13 Kernel Density Estimates (KDEs,&#x00A0;<a 
+href="#Xvermeesch2012b">Vermeesch</a>,&#x00A0;<a 
+href="#Xvermeesch2012b">2012</a>) showing the
+probability distributions of 2,025 single grain age estimates, while the
+QQ-plots in Figure <a 
+href="#x1-10022">2<!--tex4ht:ref: fig:QQ --></a> form an upper triangular matrix with n(n-1)/2 = 78
+pairwise comparisons. This is simply too much information for the human
+eye to process. To solve this problem, we need a &#8216;filter&#8217; removing the
+redundant features of the individual distributions while preserving and
+amplifying the significant differences between them. This paper makes
+the case that a standard statistical technique called Multidimensional
+Scaling (MDS) can be used effectively for this purpose (Sections <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:MDS --></a> and
+<a 
+href="#x1-40004">4<!--tex4ht:ref: sec:application --></a>).
+<!--l. 115--><p class="indent" >   In addition to the DZ ages, all but one (T) of the samples in the Chinese study
+were subjected to heavy mineral (HM) analysis. With the exception of samples 1
+and 8, the HM analyses were performed on separate aliquots from the U-Pb
+measurements. For samples 1 and 8, the HM mounts were prepared by mixing
+leftover mineral separates from the DZ study. Between 201 to 419 grains were
+counted in the 63-250<span 
+class="cmmi-12">&#x03BC;</span>m size fraction of each sample, resulting in an additional
+2,901 datapoints. Part of the aim of this paper is to treat these categorical data
+on an equal footing with the continuous age data in a consistent mathematical
+framework (Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:PCA --></a>). All the analyses presented in this paper can be
+reproduced using the software discussed in Section <a 
+href="#x1-60006">6<!--tex4ht:ref: sec:software --></a> and made available on
+<span 
+class="cmtt-12">http://mudisc.london-geochron.com</span>.
+
+   <h3 class="sectionHead"><span class="titlemark">2.  </span> <a 
+ id="x1-20002"></a>Measuring the dissimilarity between two samples</h3>
+<!--l. 132--><p class="noindent" >Before discussing multi-sample comparisons, it is useful to review the underlying
+principles for measuring the dissimilarity (<span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub>) between two samples (<span 
+class="cmmi-12">i </span>and <span 
+class="cmmi-12">j</span>, say).
+It is desirable for any dissimilarity measure to fulfil the following four
+requirements:
+<!--l. 137--><p class="indent" >
+<table 
+class="align">
+    <tr><td 
+class="align-odd"><span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub></td>    <td 
+class="align-even"> should be independent of sample size N</td>    
+<td class="align-odd"></td> <td class="align-even"></td>    
+<td class="align-label"><a 
+ id="x1-2001r1"></a>(1)
+    </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub></td>    <td 
+class="align-even"> = 0 if <span 
+class="cmmi-12">i </span>= <span 
+class="cmmi-12">j</span> and <span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub> <span 
+class="cmmi-12">&#x003E; </span>0 otherwise</td>       
+<td class="align-odd">(nonnegativity)</td> 
+<td class="align-even"></td>    <td 
+class="align-label"><a 
+ id="x1-2002r2"></a>(2)
+    </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub></td>    <td 
+class="align-even"> = <span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">j,i</span></sub></td>                                   <td 
+class="align-odd">(symmetry)</td>                    <td 
+class="align-even"></td>    <td 
+class="align-label"><a 
+ id="x1-2003r3"></a>(3)
+    </td></tr><tr><td 
+class="align-odd"><span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,k</span></sub></td>    <td 
+class="align-even"> <span 
+class="cmsy-10x-x-120">&#x2264; </span><span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub> + <span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">j,k</span></sub></td>                             <td 
+class="align-odd">(triangle inequality)</td>            <td 
+class="align-even"></td>    <td 
+class="align-label"><a 
+ id="x1-2004r4"></a>(4)    </td></tr></table>
+<!--l. 145--><p class="indent" >   The first requirement is important for the Chinese loess study, as it would be
+impossible to compare samples 6 (N = 58) and T (N = 772) otherwise. If a
+
+dissimilarity measure fulfils the remaining three conditions, then it is said to be a
+&#8216;metric&#8217;. One example of such a metric is the Euclidean distance (<span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i,j</span></sub>). Given two
+R-dimensional points <span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">i</span></sub> = (<span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmr-8">1</span></sup><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmr-8">2</span></sup><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&#x2026;</span><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmmi-8">R</span></sup>) and <span 
+class="cmmi-12">x</span><sub>
+<span 
+class="cmmi-8">j</span></sub> = (<span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">1</span></sup><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">2</span></sup><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&#x2026;</span><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmmi-8">R</span></sup>), the
+Euclidean distance is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2005r5"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web2x.png" alt="      &#x2218;  --1----1------2----2------------R-----R---
+di,j =    (x i - x j)2 + (xi - xj)2 + ...+ (xi - x j )2
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 156--><p class="nopar" >
+<!--l. 158--><p class="indent" >   Unfortunately, the space of detrital age distributions (which is a &#8216;function
+space&#8217;) is not a Euclidean space. And neither is the space of HM compositions
+(which is a &#8216;simplex&#8217;). Therefore, the Euclidean distance cannot be directly
+applied to either DZ or HM data. However, HM compositions can be converted to
+a Euclidean space by applying a so-called logratio transformation. Further details
+about this are provided in Appendix A. Unfortunately, no such transformation
+exist for geochronological data, and we can therefore not use the Euclidean
+distance to compare these. Fortunately, several alternatives are available that
+also fulfil conditions <a 
+href="#x1-2001r1">1<!--tex4ht:ref: eq:samplesize --></a>-<a 
+href="#x1-2004r4">4<!--tex4ht:ref: eq:triangle --></a>. One of these is the sample effect size of the
+
+Kolmogorov-Smirnov (KS) test:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2006r6"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web3x.png" alt="KS  = max  |F (t) - F (t)|
+        t    i      j
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 174--><p class="nopar" >
+<!--l. 176--><p class="indent" >   where <span 
+class="cmsy-10x-x-120">|&#x22C5;| </span>stands for the absolute value and <span 
+class="cmmi-12">F</span>(<span 
+class="cmmi-12">t</span>) is the empirical cumulative
+distribution function (CDF):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-2007r7"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web4x.png" alt="F (t) = (number   of ages less than t)/N
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+
+<!--l. 182--><p class="nopar" >
+<!--l. 184--><p class="indent" >   Note that Equation <a 
+href="#x1-2006r6">6<!--tex4ht:ref: eq:ks --></a> is identical to the well known KS <span 
+class="cmti-12">statistic </span>(<a 
+href="#Xfeller1948">Feller</a>,&#x00A0;<a 
+href="#Xfeller1948">1948</a>).
+The difference between the terms &#8216;statistic&#8217; and &#8216;effect size&#8217; is defined in Appendix
+B. The KS statistic is most sensitive to the region near the modes of the sample
+distributions, and less sensitive to their tails. Several alternatives are available
+that fix this problem, such as the Anderson-Darling (AD) and Cram&eacute;r-von Mises
+(CvM) statistics, which are based on the squared differences between
+two CDFs (<a 
+href="#Xanderson1954">Anderson and Darling</a>,&#x00A0;<a 
+href="#Xanderson1954">1954</a>;&#x00A0;<a 
+href="#Xanderson1962">Anderson</a>,&#x00A0;<a 
+href="#Xanderson1962">1962</a>). However, it
+can be shown that these more sophisticated measures do not fulfil the
+triangle inequality (Equation <a 
+href="#x1-2004r4">4<!--tex4ht:ref: eq:triangle --></a>), causing some limitations. Therefore,
+the remainder of this paper will use the KS effect size as a dissimilarity
+measure.
+<!--l. 198--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3.  </span> <a 
+ id="x1-30003"></a>Multidimensional Scaling</h3>
+<!--l. 201--><p class="noindent" >Let <span 
+class="cmmi-12">&#x03B4; </span>be a matrix of pairwise dissimilarities between n samples:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r8"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web5x.png" alt="    (                     )
+    |  &#x03B4;1,1  &#x03B4;1,2  ...  &#x03B4;1,n |
+    |                     |
+&#x03B4; = ||  &#x03B4;2,1  &#x03B4;2,2  ...  &#x03B4;2,n ||
+    ||   ...    ...   &#x03B4;     ...  ||
+    (             i,j      )
+       &#x03B4;n,1  &#x03B4;n,2  ...  &#x03B4;n,n
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 213--><p class="nopar" >
+<!--l. 215--><p class="indent" >   where <span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub> is the dissimilarity between samples i and j, as before. And let
+<span 
+class="cmmi-12">f</span>(<span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub>) be a monotonically increasing function transforming the dissimilarities into
+&#8216;disparities&#8217;. Then MDS produces an R-dimensional (where <span 
+class="cmmi-12">R </span><span 
+class="cmsy-10x-x-120">&#x2264; </span><span 
+class="cmmi-12">n</span>) configuration
+of points <span 
+class="cmbx-12">x </span>= <span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">x</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,x</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&#x2026;</span><span 
+class="cmmi-12">,x</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&#x2026;</span><span 
+class="cmmi-12">,x</span><sub><span 
+class="cmmi-8">j</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&#x2026;</span><span 
+class="cmmi-12">,x</span><sub><span 
+class="cmmi-8">n</span></sub><span 
+class="cmsy-10x-x-120">} </span>with <span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">i</span></sub> = (<span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmr-8">1</span></sup><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmr-8">2</span></sup><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&#x2026;</span><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmmi-8">R</span></sup>) and
+<span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">j</span></sub> = (<span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">1</span></sup><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">2</span></sup><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&#x2026;</span><span 
+class="cmmi-12">,x</span><sub>
+<span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmmi-8">R</span></sup>) for 1 <span 
+class="cmsy-10x-x-120">&#x2264; </span><span 
+class="cmmi-12">i,j </span><span 
+class="cmsy-10x-x-120">&#x2264; </span><span 
+class="cmmi-12">n</span>. The Euclidean distance between any two
+points <span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">i</span></sub> and <span 
+class="cmmi-12">x</span><sub><span 
+class="cmmi-8">j</span></sub> in this configuration approximates the disparities between
+samples i and j:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3002r9"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web6x.png" alt="di,j &#x2248; f(&#x03B4;i,j)
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+
+<!--l. 227--><p class="nopar" >
+<!--l. 229--><p class="indent" >   with <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i,j</span></sub> as defined by Equation <a 
+href="#x1-2005r5">5<!--tex4ht:ref: eq:euclidean --></a>. In this paper, we will only consider the case
+where R=2, so that the configuration <span 
+class="cmbx-12">x </span>can be plotted on a sheet of paper, like a
+map. Therefore, we will use the terms &#8216;configuration&#8217; and &#8216;map&#8217; interchangeably.
+In fact, one of the classic applications of MDS involves the reconstruction of a
+topographic map from a table of pairwise (Euclidean) distances between
+cities with the minimum possible distortion (e.g., p8-9 of&#x00A0;<a 
+href="#Xkruskal1978">Kruskal and
+Wish</a>,&#x00A0;<a 
+href="#Xkruskal1978">1978</a>).
+<!--l. 238--><p class="indent" >   If the disparity transformation is the identity matrix (i.e., <span 
+class="cmmi-12">f</span>(<span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub>) = <span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub>), and if
+<span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub> is a metric, then the configuration <span 
+class="cmbx-12">x </span>can be found analytically by relatively
+straightforward linear algebra (<a 
+href="#Xcox2000">Cox and Cox</a>,&#x00A0;<a 
+href="#Xcox2000">2000</a>, p.23-25). This is called
+<span 
+class="cmti-12">classical </span>MDS. If the triangle inequality (Equation <a 
+href="#x1-2004r4">4<!--tex4ht:ref: eq:triangle --></a>) is violated, then <span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub> is
+not a metric but a &#8216;semi-metric&#8217;. In this case, it may still be possible to
+perform an MDS analysis by considering a disparity transformation such
+as:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3003r10"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web7x.png" alt="f(&#x03B4;i,j) = a + b&#x03B4;i,j
+
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 250--><p class="nopar" >
+<!--l. 252--><p class="indent" >   or any other parametric equation (e.g. exponential), so long as it
+monotonically increases. This superset of classical MDS is (somewhat confusingly)
+called <span 
+class="cmti-12">metric </span>MDS. It solves for the configuration that simultaneously
+determines both the distances <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i,j</span></sub> and the fit to the disparity transformation
+<span 
+class="cmmi-12">f</span>(<span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub>). In the most general case, <span 
+class="cmmi-12">f </span>is allowed to take any nonparametric
+monotonically increasing form such as a step function. This method is called
+<span 
+class="cmti-12">nonmetric </span>MDS, and not only allows violations of the triangle inequality but
+even of the condition of symmetry (Equation <a 
+href="#x1-2003r3">3<!--tex4ht:ref: eq:symmetric --></a>). The goal of nonmetric
+MDS is not to approximate the dissimilarities themselves, but rather their
+relative ranks. In the case of non-metric MDS, the solution is not found
+analytically but numerically. This is done by minimizing a so-called &#8216;stress
+parameter&#8217; S, the most common form (so-called &#8216;Stress-1&#8217;) of which is
+(<a 
+href="#Xkruskal1964">Kruskal</a>,&#x00A0;<a 
+href="#Xkruskal1964">1964</a>):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3004r11"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web8x.png" alt="     &#x2218; &#x2211;n----&#x2211;n-------------------
+       --i=1---j=i+1[f-(&#x03B4;i,j)---di,j]2
+S =         &#x2211;n    &#x2211;n     d2
+               i=1   j=i+1 i,j
+
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 273--><p class="nopar" >
+<!--l. 275--><p class="indent" >   The final stress value can be used to evaluate the quality of the MDS fit (Table
+<a 
+href="#x1-30051">1<!--tex4ht:ref: tab:gof --></a>).
+   <div class="table">
+
+<!--l. 278--><p class="indent" >   <a 
+ id="x1-30051"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-1" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-1-1g"><col 
+id="TBL-1-1"></colgroup><colgroup id="TBL-1-2g"><col 
+id="TBL-1-2"><col 
+id="TBL-1-3"><col 
+id="TBL-1-4"><col 
+id="TBL-1-5"><col 
+id="TBL-1-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-1-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-1-1-1"  
+class="td11">g.o.f</td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-1-2"  
+class="td11">poor</td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-1-3"  
+class="td11">fair</td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-1-4"  
+class="td11">good</td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-1-5"  
+class="td11">excellent</td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-1-6"  
+class="td11">perfect</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-1-2-1"  
+class="td11">  S  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-2-2"  
+class="td11"> 0.2 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-2-3"  
+class="td11">0.1</td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-2-4"  
+class="td11"> 0.05 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-2-5"  
+class="td11"> 0.025  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-1-2-6"  
+class="td11">  0    </td></tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Rules of thumb for interpreting the goodness of fit (g.o.f.) using
+the final value of <a 
+href="#Xkruskal1964">Kruskal</a>&#x00A0;(<a 
+href="#Xkruskal1964">1964</a>)&#8217;s Stress-1 (S).</span></div><!--tex4ht:label?: x1-30051 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 289--><p class="indent" >   MDS is generally insensitive to the choice of S and f. Therefore, metric and
+nonmetric MDS will generally give similar-looking results, and even the choice of
+<span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub> will often have only a minor effect. This robustness is one of the major
+strengths of the method.
+   <h3 class="sectionHead"><span class="titlemark">4.  </span> <a 
+ id="x1-40004"></a>Application to the Chinese dataset</h3>
+<!--l. 297--><p class="noindent" >Let us now return to the Chinese dataset to illustrate these theoretical concepts
+with a practical example. The matrix of KS dissimilarities (multiplied with 100 for
+brevity) is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4001r12"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web9x.png" alt="          1    2   3    4   5    6   7   8    9   10   L   T    Y
+       (                                                          )
+     1 |  0   14   33  27  18   14  15   22  48   32  42   37  40 |
+       |                                                          |
+     2 ||  14   0   36  33  16   14  15   24  46   32  47   42  43 ||
+     3 ||  33  36   0   19  24   44  47   55  17   10  13   12   8 ||
+       |                                                          |
+     4 ||  27  33   19   0  20   38  41   48  28   14  21   17  16 ||
+       ||                                                          ||
+     5 |  18  16   24  20   0   22  24   33  31   20  33   28  30 |
+       ||                                                          ||
+     6 ||  14  14   44  38  22    0  14   24  52   41  52   48  49 ||
+       |                                                          |
+&#x03B4; =  7 ||  15  15   47  41  24   14   0   16  51   43  54   49  52 ||
+       ||                                                          ||
+     8 |  22  24   55  48  33   24  16   0   61   53  63   59  62 |
+     9 ||  48  46   17  28  31   52  51   61   0   20  22   18  16 ||
+       ||                                                          ||
+     10|  32  32   10  14  20   41  43   53  20   0   17   15  13 |
+       ||                                                          ||
+     L ||  42  47   13  21  33   52  54   63  22   17   0   10  11 ||
+       |                                                          |
+     T |(  37  42   12  17  28   48  49   59  18   15  10   0    7 |)
+
+     Y    40  43   8   16  30   49  52   62  16   13  11   7    0
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 319--><p class="nopar" >
+<!--l. 321--><p class="indent" >   Note that this is a symmetric matrix (due to Equation <a 
+href="#x1-2003r3">3<!--tex4ht:ref: eq:symmetric --></a>) with zero diagonal
+(due to Equation <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:nonnegative --></a>), so that it suffices to provide the MDS algorithm with only
+the upper (or lower) triangular part of it. Using metric MDS, the data can be
+completely described (i.e. S=0) by an 8-dimensional (i.e., R=8) configuration
+(again multiplied with 100):
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4002r13"></a>
+
+   <center class="math-display" >
+<img 
+src="MDSpaper4web10x.png" alt="         (          1      2  |   3      4      5      6     7      8     )
+         ||||         x     x    |  x      x      x     x      x      x      ||||
+         |||                    |                                           |||
+      1  |||  1     - 17   10.0  | - 1.9    2.6  - 2.2   1.1   1.2    0.63    |||
+      2  ||||  2     - 19  - 2.0 |  7.4    - 2.4  - 5.2   0.1   0.8   - 0.39   ||||
+         |||                    |                                           |||
+      3  |||  3      17    0.1  |  2.2     2.8  - 6.9   2.0   - 1.6  0.19    |||
+         ||||                    |                                           ||||
+      4  |||  4      9     7.0  | - 4.0   - 8.4   3.2    0.1   0.9   - 0.93   |||
+         |||                    |                                           |||
+      5  ||||  5     - 5   - 3.8 |  1.7    - 2.6   2.8   - 1.2  - 2.9  2.58    ||||
+         ||{                    |                                           ||}
+x =   6     6     - 25   2.1  |  8.2     2.6   6.4    1.3   - 2.6 - 0.45
+      7  ||  7     - 28  - 4.7 | - 1.6    4.1   2.1   - 2.3  4.0   - 1.51   ||
+         |||                    |                                           |||
+      8  |||  8     - 37  - 2.7 |- 10.3  - 2.2  - 3.0   0.9   - 1.9  0.13    |||
+         ||||                    |                                           ||||
+      9  |||  9      23   - 16.2| - 2.6    0.3   1.3    1.0   0.2   - 0.31   |||
+         |||                    |                                           |||
+     10  ||||  10     14    0.1  |  5.9    - 3.3  - 2.0  - 4.1  2.0    1.03    ||||
+         |||                    |                                           |||
+     L   |||  L      25    5.1  | - 4.1    4.0  - 0.1  - 4.6  - 3.1 - 1.44   |||
+         ||||                    |                                           ||||
+     T   |||  T      21    3.4  | - 3.3    3.6   2.6    2.0   2.6    2.84    |||
+     Y   |(  Y      23    1.6  |  2.3    - 1.1   0.9    3.7   0.3   - 2.37   |)
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 365--><p class="nopar" >
+<!--l. 367--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-40033"></a>
+
+<table><tr><td width="300pt">
+<!--l. 368--><p class="noindent" ><a href="MDSpaper4web11x.png">
+<img src="MDSpaper4web11x.png" alt="PIC" class="graphics"></a>
+<!--tex4ht:graphics  
+name="MDSpaper4web11x.png" src="MDS.pdf"  
+-->
+<br /> 
+</td>
+<td valign="bottom">
+<div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">(a) metric and (b) non-metric MDS plots of the Chinese U-Pb
+dataset using the KS effect size as a dissimilarity measure. Solid lines mark
+closest neighbours and dashed lines second closest neighbours. (c) and (d) are
+the corresponding Shepard plots. Both metric and non-metric MDS solve for
+the configuration that determines both the distances <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i,j</span></sub> (blue circles) and
+the fit to the disparity transformation <span 
+class="cmmi-12">f</span>(<span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub>) (red circles and lines) between
+all 78 possible sample pairs. The squared and normalised differences between
+the distances and disparities determines the stress S (Equation <a 
+href="#x1-3004r11">11<!--tex4ht:ref: eq:stress --></a>), the final
+values of which indicate a &#8216;good&#8217; fit (S = 0.064) for the metric MDS, and an
+&#8216;excellent&#8217; fit (S = 0.025) for the nonmetric MDS (Table <a 
+href="#x1-30051">1<!--tex4ht:ref: tab:gof --></a>).</span></div><!--tex4ht:label?: x1-40033 -->
+</td></tr></table>
+<!--l. 383--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 385--><p class="indent" >   The two-dimensional map coordinates are given by the first two columns and
+are shown in Figure <a 
+href="#x1-40033">3<!--tex4ht:ref: fig:MDS --></a>a. Plugging these coordinates into Equation <a 
+href="#x1-2005r5">5<!--tex4ht:ref: eq:euclidean --></a> and
+calculating the corresponding (Euclidean) distance matrix yields:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-4004r14"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web12x.png" alt="          1    2   3    4   5    6   7    8   9   10   L   T    Y
+       (                                                          )
+     1 |  0   12   35  26   18  11  18   23  48   32  42   38  41 |
+       |                                                          |
+     2 ||  12   0   36  30   14   7   9   18  44   33  45   40  43 ||
+     3 ||  35  36   0   10   23  42  45   54  17   3    9   5    7 ||
+       |                                                          |
+     4 ||  26  30   10   0   18  35  39   47  27   8   16   12  15 ||
+       ||                                                          ||
+     5 |  18  14   23  18   0   21  22   31  31   20  32   27  29 |
+       ||                                                          ||
+     6 ||  11   7   42  35   21   0   7   13  51   39  50   46  48 ||
+       |                                                          |
+d =  7 ||  18   9   45  39   22   7   0    9  52   42  54   49  51 ||
+       ||                                                          ||
+     8 |  23  18   54  47   31  13   9    0  61   50  62   58  60 |
+     9 ||  48  44   17  27   31  51  52   61   0   19  21   20  18 ||
+       ||                                                          ||
+     10|  32  33   3    8   20  39  42   50  19   0   12   8   10 |
+       ||                                                          ||
+     L ||  42  45   9   16   32  50  54   62  21   12   0   5    4 ||
+       |                                                          |
+     T |(  38  40   5   12   27  46  49   58  20   8    5   0    3 |)
+
+     Y    41  43   7   15   29  48  51   60  18   10   4   3    0
+" class="math-display" ></center></td><td class="equation-label">(14)</td></tr></table>
+<!--l. 408--><p class="nopar" >
+<!--l. 410--><p class="indent" >   which is again a symmetric matrix with zero diagonal because the Euclidean
+distance is a metric and therefore obeys Equations <a 
+href="#x1-2002r2">2<!--tex4ht:ref: eq:nonnegative --></a>-<a 
+href="#x1-2004r4">4<!--tex4ht:ref: eq:triangle --></a>. Plotting the (upper- or
+lower triangular parts of the) distance matrix d (Equation <a 
+href="#x1-4004r14">14<!--tex4ht:ref: eq:dmuus --></a>) against the
+corresponding dissimilarities <span 
+class="cmmi-12">&#x03B4; </span>(Equation <a 
+href="#x1-4001r12">12<!--tex4ht:ref: eq:deltamuus --></a>) yields a so-called &#8216;Shepard plot&#8217;,
+allowing a graphical assessment of the quality of the model fit (Figure
+<a 
+href="#x1-40033">3<!--tex4ht:ref: fig:MDS --></a>b). Doing the same exercise with nonmetric MDS yields a very similar
+looking map (Figure <a 
+href="#x1-40033">3<!--tex4ht:ref: fig:MDS --></a>c), with the fitted distances on the Shepard plot,
+
+of course, not following a linear but a step function (Figure <a 
+href="#x1-40033">3<!--tex4ht:ref: fig:MDS --></a>d). Both
+Shepard plots show a tight fit of the distances around the disparities. The
+relatively minor amount of scatter is reflected in the stress values of 0.064
+and 0.025. Using the rules of thumb given in Table <a 
+href="#x1-30051">1<!--tex4ht:ref: tab:gof --></a>, this qualifies as a
+&#8216;good&#8217; fit for the metric, and an &#8216;excellent&#8217; fit for the nonmetric MDS,
+respectively.<br 
+class="newline" />
+<!--l. 427--><p class="indent" >   The MDS maps group samples with similar age spectra, and pull apart
+samples with different spectra. For example, samples T (Tibet) and Y (Yellow
+River) nearly overlap on the MDS maps because the KS dissimilarity between
+them is only 0.07, which the smallest value in Equation <a 
+href="#x1-4001r12">12<!--tex4ht:ref: eq:deltamuus --></a>. On the other hand,
+samples L (loess) and 8 (northeastern Mu-Us) plot very far part apart on the
+MDS map because the KS dissimilarity between them is 0.63, which is the largest
+value in Equation <a 
+href="#x1-4001r12">12<!--tex4ht:ref: eq:deltamuus --></a>. One simple but effective way to aid in the interpretation of
+MDS maps is to draw a solid line from each point in the configuration to its
+&#8216;closest&#8217; neighbour in dissimilarity-space, and a dotted line to the second closest
+neighbour. For example, sample 8 is the closest (or &#8216;least dissimilar&#8217;) to sample 7
+(KS=0.16), and the second closest to sample 1 (KS=0.22), while sample
+7 is the closest to sample 6 (KS=0.14) and second closest to sample 2
+(KS=0.15). These connecting lines define two distinct groups dividing
+the field area into a southwestern area containing sediments of &#8216;Yellow
+River affinity&#8217; (samples 3, 4, 9, 10, L, T and Y) and a northeastern area
+containing sediments of a different origin (samples 1, 2, 5, 6, 7 and 8).
+The MDS maps reveal a pronounced East-West dichotomy within the
+Mu-Us sand desert, in which sands from the eastern part of the desert are
+
+locally derived, whereas the western sands are far travelled and exhibit
+virtually identical age spectra to the fluvial sands of the Yellow River,
+which in turn are indistinguishable from Quaternary loess of the Chinese
+Loess Plateau. This leads to two new conclusions. First, the northern
+parts of the Tibet Plateau are the &#8216;ultimate source&#8217; of the Chinese loess.
+Second, fluvial transport is a more significant supplier of silt-sized particles
+to the Chinese loess deposits than was previously recognised (<a 
+href="#Xstevens2012">Stevens
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xstevens2012">2012</a>).
+   <h3 class="sectionHead"><span class="titlemark">5.  </span> <a 
+ id="x1-50005"></a>Relationship with Principal Components Analysis (PCA)</h3>
+<!--l. 460--><p class="noindent" >Principal Components Analysis (PCA) is one of the most widely used
+dimension-reducing exploratory data analysis tools for compositional data such as
+HM counts. Given a multi-dimensional dataset, PCA finds an orthogonal
+tranformation (i.e., a rotation, reflection or both) to define a lower-dimensional set
+of new variables explaining most of the scatter in the input data. PCA is closely
+related to MDS. In fact, it can be shown that PCA is a special case of classical
+MDS in which the dissimilarities are Euclidean distances. This means that <span 
+class="cmmi-12">&#x03B4;</span><sub><span 
+class="cmmi-8">i,j</span></sub> can
+be calculated in exactly the same way as <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i,j</span></sub> in Equation <a 
+href="#x1-2005r5">5<!--tex4ht:ref: eq:euclidean --></a>. The best way to
+measure the dissimilarity between two HM compositions is the so-called &#8216;Aitchison
+distance&#8217;. As mentioned in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:dissimilarity --></a> and explained in Appendix A, this
+distance is calculated by first applying a data transformation and then
+calculating the Euclidean distance on the transformed data. Therefore,
+an MDS analysis of the Aitchison distance is identical to a PCA of the
+transformed data (Figure <a 
+href="#x1-50014">4<!--tex4ht:ref: fig:PCA --></a>). One common way to visualise PCA results is
+
+as a &#8216;biplot&#8217; which jointly shows the configuration and the endmember
+compositions. This reveals that the most important differences between
+the two groups are found in their epidote and amphibole contents. The
+MDS/PCA map of the HM counts has a striking resemblance to the MDS map
+of the DZ ages (Figure <a 
+href="#x1-40033">3<!--tex4ht:ref: fig:MDS --></a>). Both maps are organised into the same two
+groups. Therefore, not only the zircons but also the other heavy minerals
+exhibit the aforementioned East-West dichotomy, indicating limited aeolian
+mixing within the Mu-Us desert. Only sample 1 has &#8216;switched groups&#8217;,
+possibly due in part to the fact that it was &#8216;reconstructed&#8217; from mineral
+separates.
+<!--l. 488--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-50014"></a>
+<table><tr><td width="300pt">
+<!--l. 490--><p class="noindent" ><a href="MDSpaper4web13x.png">
+<img 
+src="MDSpaper4web13x.png" alt="PIC" class="graphics"></a>
+<!--tex4ht:graphics  
+name="MDSpaper4web13x.png" src="PCA.pdf"  
+-->
+<br /> 
+</td>
+<td valign="bottom">
+<div class="caption" ><span class="id">Figure&#x00A0;4: </span><span  
+class="content">Principal Components Analysis (PCA) of the logratio-transformed
+HM data from China. This plot is identical to the classical MDS map of
+the Aitchison distances. The blue lines show the endmember compositions
+resulting from the PCA. The combination of the endmember compositions
+and  the  configuration  is  called  a  &#8216;biplot&#8217;.  Asterisks  mark  compositions
+measured on mixtures of mineral separates rather than separate aliquots.</span></div><!--tex4ht:label?: x1-50014 -->
+</td></td></table>
+<!--l. 499--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">6.  </span> <a 
+ id="x1-60006"></a>Software</h3>
+<!--l. 504--><p class="noindent" >Given that MDS is a standard statistical technique, numerous software tools are
+available that can easily be adopted for detrital geochronology, including several
+open source options, such as <span 
+class="cmtt-12">R </span>(<span 
+class="cmtt-12">http://www.r-project.org</span>). In <span 
+class="cmtt-12">R</span>, classical MDS
+is implemented by the <span 
+class="cmtt-12">cmdscale </span>function of the <span 
+class="cmtt-12">stats </span>package, while
+nonmetric MDS is implemented by the <span 
+class="cmtt-12">isoMDS </span>function of the <span 
+class="cmtt-12">MASS </span>package.
+Appendix C contains a simple snippet of code using the Chinese DZ dataset
+as an example. PCA of compositional data is implemented in <span 
+class="cmtt-12">R </span>by the
+<span 
+class="cmtt-12">princomp </span>function of the <span 
+class="cmtt-12">compositions </span>package. In <span 
+class="cmtt-12">Matlab</span>, both classical,
+metric and non-metric MDS are implemented by the <span 
+class="cmtt-12">mdscale </span>function of
+the Statistics Toolbox. A graphical user interface has been created that
+implements this function in a user-friendly way and can be downloaded from
+<span 
+class="cmtt-12">http://mudisc.london-geochron.com </span>along with further details about the <span 
+class="cmtt-12">R</span>
+code, input files and so forth.
+<!--l. 521--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">7.  </span> <a 
+ id="x1-70007"></a>Concluding remarks</h3>
+<!--l. 524--><p class="noindent" >This paper introduced MDS as a simple yet powerful tool providing informative,
+mutually consistent measures of difference for a group of observations taken
+together. It is important to note that, just like any other dimension-reducing
+technique, MDS makes an abstraction of the data and may not always
+represent all the details of complex datasets. One problem with dissimilarity
+
+measures such as the KS effect size is that they are simple scalars which
+cannot capture the full richness of entire probability distributions. For
+example, the KS test cannot see the difference between a &#8216;comb-like&#8217; and a
+&#8216;flat&#8217; density. Despite these limitations, the MDS map often captures the
+main features of detrital zircon datasets, as illustrated in the Chinese case
+study.
+<!--l. 537--><p class="indent" >   It was shown that PCA is a special case of classical MDS, using Euclidean
+distance for dissimilarities and thus making restrictive assumptions about the
+structure of the data, which are relaxed by metric and non-metric MDS. Thus,
+MDS is a flexible technique which makes fewer assumptions about the data than
+PCA. The user is not restricted to the KS effect size used in this paper. Other
+statistic-based dissimilarities such as Cram&eacute;r-von Mises and Anderson-Darling
+would also work, although it is advised to use nonmetric MDS in these cases as
+this is the most robust method. Nonmetric MDS usually yields better fits
+than metric MDS. In the Chinese case study, this is reflected in the stress
+value of S = 0.025 for the former and S = 0.064 for the latter (Figure <a 
+href="#x1-40033">3<!--tex4ht:ref: fig:MDS --></a>).
+The stress of the corresponding classical MDS analysis is even higher
+at S = 0.78. It would therefore seem that nonmetric MDS is the best
+method. However, the nonmetric MDS algorithm may fail for small datasets.
+In these cases, metric and classical MDS provide a more stable backup
+solution.<br 
+class="newline" />
+<!--l. 555--><p class="indent" >   One aspect of detrital geochronology which this paper has ignored is analytical
+uncertainty. An implicit assumption behind the use of the KS effect size as a
+measure of dissimilarity is that all the samples under consideration are
+
+characterised by the same analytical precision. This is a valid assumption for the
+Chinese data, all of which were measured by LA-ICP-MS (and all but one
+of which were analysed in the same lab). But it is not necessarily true
+for datasets combining age spectra from different laboratories using a
+combination of LA-ICP-MS and SIMS, say. In such cases, it would be advised to
+remove the analytical effects first. <a 
+href="#Xsircombe2004a">Sircombe and Hazelton</a>&#x00A0;(<a 
+href="#Xsircombe2004a">2004</a>) show
+that this can be achieved by adding an arbitrary variance term to all
+the measurements. The resulting &#8216;Kernel Functional Estimates&#8217; (KFE)
+are, essentially, over-smoothed KDEs that can be objectively compared
+using the methods described in this paper. Finally, although this paper
+focused on detrital zircon U-Pb age spectra, the conclusions follow for any
+other mineral (such as rutile, apatite, or monazite) or dating technique
+(such as <sup><span 
+class="cmr-8">40</span></sup>Ar/<sup><span 
+class="cmr-8">39</span></sup>Ar, fission tracks, or U-Th-He). In the rapidly evolving
+field of detrital geo- and thermochronology, the multi-sample comparison
+method described here will be able to inform more evolved efforts of the
+future.
+<!--l. 576--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-80007"></a>Acknowledgments</h3>
+<!--l. 578--><p class="noindent" >This work was funded by NERC grant #NE/1009248/1. The author wishes to
+thank Andy Carter, Matt Horstwood and Jianmei Wang for proofreading the
+manuscript, and Noah McLean and an anonymous reviewer for swift and careful
+reviews.
+
+<!--l. 587--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-90007"></a>Appendix A: Brief summary of the Aitchison geometry applied to
+PCA</h3>
+<!--l. 589--><p class="noindent" >Let <span 
+class="cmmi-12">y </span>= <span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">y</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,y</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-12">,...,y</span><sub><span 
+class="cmmi-8">n</span></sub><span 
+class="cmsy-10x-x-120">} </span>be a set of k-dimensional point-counting data
+<span 
+class="cmmi-12">y</span><sub><span 
+class="cmmi-8">a</span></sub> = <span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">y</span><sub><span 
+class="cmmi-8">a</span></sub><sup><span 
+class="cmr-8">1</span></sup><span 
+class="cmmi-12">,y</span><sub>
+<span 
+class="cmmi-8">a</span></sub><sup><span 
+class="cmr-8">2</span></sup><span 
+class="cmmi-12">,...,y</span><sub>
+<span 
+class="cmmi-8">a</span></sub><sup><span 
+class="cmmi-8">k</span></sup><span 
+class="cmsy-10x-x-120">}</span>, so that <span 
+class="cmmi-12">y</span><sub>
+<span 
+class="cmmi-8">a</span></sub><sup><span 
+class="cmmi-8">b</span></sup> represents the integer number of grains of
+mineral b counted in sample a. The most straightforward way to measure the
+dissimilarity between two samples (i and j, say) would appear to be the Euclidean
+distance between the corresponding proportions:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9001r1"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web14x.png" alt="      &#x250C;  ----------------------------
+      &#x2502;   k (                b   )2
+      &#x2502;&#x2218;  &#x2211;    ---ybi---   ---yj---
+&#x03B4;i,j =         &#x2211;k    yc - &#x2211;k    yc
+         b=1     c=1  i      c=1  j
+" class="math-display" ></center></td><td class="equation-label">(A-1)</td></tr></table>
+<!--l. 601--><p class="nopar" >
+<!--l. 603--><p class="indent" >   Unfortunately, this approach is wrong because the proportions are subject to a
+constant sum constraint (all fractions must add up to 100%) and are therefore not
+mutually independent. This restriction produces geometric artifacts (curvature)
+which may negatively affect linear procedures such as PCA. Note that this
+also invalidates prior attempts to apply PCA to detrital age histograms
+
+(<a 
+href="#Xsircombe2000">Sircombe</a>,&#x00A0;<a 
+href="#Xsircombe2000">2000</a>). To solve this problem, <a 
+href="#Xaitchison1982">Aitchison</a>&#x00A0;(<a 
+href="#Xaitchison1982">1982</a>,&#x00A0;<a 
+href="#Xaitchison1983">1983</a>,&#x00A0;<a 
+href="#Xaitchison1986">1986</a>) developed
+a mathematical formalism in which the compositional data are transformed to an
+ordinary Euclidean space using a (centered) log-ratio transformation (<span 
+class="cmmi-12">y</span><sub><span 
+class="cmmi-8">a</span></sub><sup><span 
+class="cmmi-8">b</span></sup> <span 
+class="cmsy-10x-x-120">&#x2192; </span><span 
+class="cmmi-12">z</span><sub>
+<span 
+class="cmmi-8">a</span></sub><sup><span 
+class="cmmi-8">b</span></sup>),
+by normalising the compositions to their respective geometric means and taking
+logarithms:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-9002r2"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web15x.png" alt="        (           )
+              yb
+zba = ln ( &#x2218;-&#x220F;--a----)
+           k  ki=1 yia
+" class="math-display" ></center></td><td class="equation-label">(A-2)</td></tr></table>
+<!--l. 619--><p class="nopar" >
+<!--l. 621--><p class="indent" >   with a and b referring to the sample and mineral, as before. This
+logratio transformation removes the geometric artifacts caused by the
+closure operation so that the transformed data can be subjected to a PCA.
+Instead of the centered logratio transformation, other options are available
+such as the isometric logratio transformation (ilr), which may actually
+be even better suited for PCA/MDS (<a 
+href="#Xegozcue2003">Egozcue et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xegozcue2003">2003</a>;&#x00A0;<a 
+href="#Xfilzmoser2009">Filzmoser
+et&#x00A0;al.</a>,&#x00A0;<a 
+href="#Xfilzmoser2009">2009</a>).
+
+<!--l. 629--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-100007"></a>Appendix B: Why p-values are unsuitable as a measure of dissimilarity</h3>
+<!--l. 631--><p class="noindent" >Some workers have used statistical tests such as Kolmogorov-Smirnov to make the
+comparison of detrital age distibutions more &#8216;objective&#8217; than mere visual
+inspection of age spectra or QQ-plots. Such statistical tests require the
+formulation of a so-called &#8216;null hypothesis&#8217; (e.g., &#8220;two detrital age distributions
+were drawn from the same population&#8221;), and the selection of a &#8216;test statistic&#8217; (e.g.,
+Equation <a 
+href="#x1-2006r6">6<!--tex4ht:ref: eq:ks --></a>). If the observed value of the test statistic is &#8216;unlikely&#8217; to
+occur under the null hypothesis, then the latter is rejected in favour of the
+alternative hypothesis (&#8220;two detrital age distributions were drawn from
+different populations&#8221;). The probability of observing a value at least as
+extreme as the observed statistic under the null hypothesis is called the
+&#8216;p-value&#8217;. An arbitrary cut-off value <span 
+class="cmmi-12">&#x03B1; </span>may be used to make a decision on a
+&#8216;100(1-<span 
+class="cmmi-12">&#x03B1;</span>)% confidence level&#8217;. For example, if <span 
+class="cmmi-12">&#x03B1;</span>=0.05 and <span 
+class="cmmi-12">p &#x003C; &#x03B1;</span>, then
+<span 
+class="cmmi-12">H</span><sub><span 
+class="cmr-8">0</span></sub> is rejected in favour of <span 
+class="cmmi-12">H</span><sub><span 
+class="cmmi-8">a</span></sub> &#8216;with 95% confidence&#8217;. The probability of
+erroneously rejecting a true null hypothesis, which is given by <span 
+class="cmmi-12">&#x03B1;</span>, is also called a
+&#8216;Type-I error&#8217;. In other words, the <span 
+class="cmmi-12">&#x03B1;</span>-value expresses the risk we are willing
+to take of committing a Type-I error. The p-value is a poor measure of
+dissimilarity between samples, because it lumps together two factors: the
+&#8216;effect size&#8217; and the &#8216;sample size&#8217;. The sample size is simply the total
+number of grains analysed (N). The effect size expresses <span 
+class="cmti-12">&#8220;the degree to which</span>
+<span 
+class="cmti-12">the null hypothesis is false&#8221; </span>(<a 
+href="#Xcohen1977">Cohen</a>,&#x00A0;<a 
+href="#Xcohen1977">1977</a>). To illustrate this concept,
+consider the case of two Normally distributed detrital age populations
+with means <span 
+class="cmmi-12">&#x03BC;</span><sub><span 
+class="cmr-8">1</span></sub> and <span 
+class="cmmi-12">&#x03BC;</span><sub><span 
+class="cmr-8">2</span></sub>, variances <span 
+class="cmmi-12">&#x03C3;</span><sub><span 
+class="cmr-8">1</span></sub><sup><span 
+class="cmr-8">2</span></sup> and <span 
+class="cmmi-12">&#x03C3;</span><sub>
+<span 
+class="cmr-8">2</span></sub><sup><span 
+class="cmr-8">2</span></sup>, and sample sizes <span 
+class="cmmi-12">N</span><sub>
+<span 
+class="cmr-8">1</span></sub> and
+<span 
+class="cmmi-12">N</span><sub><span 
+class="cmr-8">2</span></sub>, respectively. Assume that <span 
+class="cmmi-12">N</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">N</span><sub><span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">N </span>and <span 
+class="cmmi-12">&#x03C3;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">&#x03C3;</span><sub><span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">&#x03C3;</span>. Let <span class="bar-css"><span 
+class="cmmi-12">X</span><sub><span 
+class="cmr-8">1</span></sub></span>
+
+and <span class="bar-css"><span 
+class="cmmi-12">X</span><sub><span 
+class="cmr-8">2</span></sub></span> be the sample means and <span 
+class="cmmi-12">S</span><sub><span 
+class="cmr-8">1</span></sub><sup><span 
+class="cmr-8">2</span></sup> and <span 
+class="cmmi-12">S</span><sub>
+<span 
+class="cmr-8">2</span></sub><sup><span 
+class="cmr-8">2</span></sup> the sample variances. We
+can test the null hypothesis &#8220;<span 
+class="cmmi-12">H</span><sub><span 
+class="cmmi-8">o</span></sub> : <span 
+class="cmmi-12">&#x03BC;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">&#x03BC;</span><sub><span 
+class="cmr-8">2</span></sub>&#8221; with the t-test, using the
+t-statistic:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10001r3"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web16x.png" alt="       X¯1 - X¯2
+t = &#x2218;---2----2-----
+      (S1 + S2)&#x2215;N
+" class="math-display" ></center></td><td class="equation-label">(A-3)</td></tr></table>
+<!--l. 666--><p class="nopar" >
+<!--l. 668--><p class="indent" >   where the denominator is the standard error of the difference between the two
+means. The sample effect size of the t-test is given by:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-10002r4"></a>
+   <center class="math-display" >
+<img 
+src="MDSpaper4web17x.png" alt="        ¯    ¯
+d = &#x2218;--X1---X2----
+      (S21 + S22)&#x2215;2
+" class="math-display" ></center></td><td class="equation-label">(A-4)</td></tr></table>
+<!--l. 674--><p class="nopar" >
+<!--l. 676--><p class="indent" >   where the denominator is the &#8216;pooled standard deviation&#8217; of the two samples.
+By definition, <span 
+class="cmmi-12">d </span>= 0 under the null hypothesis. Let us now consider the
+situation where <span 
+class="cmmi-12">d</span><span 
+class="cmmi-12">&#x2260;</span>0. Suppose that <span 
+class="cmmi-12">&#x03BC;</span><sub><span 
+class="cmr-8">1</span></sub> = 100.1 Ma, <span 
+class="cmmi-12">&#x03BC;</span><sub><span 
+class="cmr-8">2</span></sub> = 100.0 Ma, and <span 
+class="cmmi-12">&#x03C3;</span>
+= 1 Ma so that the population effect size is 0.1. Suppose for the sake
+of simplicity that these population characteristics are reflected in the
+sample so that <span 
+class="cmmi-12">d </span>= 0<span 
+class="cmmi-12">.</span>1. Table <a 
+href="#x1-100007">7<!--tex4ht:ref: tab:tstat --></a> shows some key values of the t-statistic and
+corresponding p-values for different sample sizes. Not surprisingly, a sample
+size of N = 10 is insufficient to resolve the 0.1 Ma &#8216;offset&#8217; between the
+two peaks. In this case, the p-value is 0.41, which is greater than the
+cutoff value of <span 
+class="cmmi-12">&#x03B1; </span>= 0<span 
+class="cmmi-12">.</span>05, leading us to erroneously accept the false null
+hypothesis. This means that we have committed a &#8216;Type-II error&#8217;. It is only
+when sample size increases to N = 1,000 that the t-test has sufficient
+&#8216;power&#8217; to reject the null hypothesis (0<span 
+class="cmmi-12">.</span>013 <span 
+class="cmmi-12">&#x003C; &#x03B1;</span>). In conclusion, both the
+statistic and the p-value of the t-test are sensitive functions of sample size.
+Both are therefore unsuitable as measures of dissimilarity in an MDS
+analysis.
+   <div class="table">
+
+<!--l. 695--><p class="indent" >   <a 
+ id="x1-100032"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">N</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">  10   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">100</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">1,000</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11"> 10,000  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11"> t </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11">1<span 
+class="cmmi-12">&#x2215;</span><img 
+src="MDSpaper4web18x.png" alt="&#x221A; ---
+  10"  class="sqrt" ></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11"> 1  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11"><img 
+src="MDSpaper4web19x.png" alt="&#x221A; ---
+  10"  class="sqrt" > </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11">  100    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11"> p </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11"> 0.41  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11">0.24</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11">0.013</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11">8 <span 
+class="cmsy-10x-x-120">&#x00D7; </span>10<sup><span 
+class="cmsy-8">-</span><span 
+class="cmr-8">13</span></sup></td>
+</tr></table>
+</div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2: </span><span  
+class="content">Statistic (t) and p-value (p) of a t-test with sample effect size d=0.1
+as a function of sample size (N). The strong dependence of t and p on N
+indicates that both parameters are unsuitable as dissimilarity measures.</span></div><!--tex4ht:label?: x1-100032 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 709--><p class="indent" >   These same arguments are valid for other statistical tests such as Chi-square
+and Kolmogorov-Smirnov, with the caveat that the effect size of the KS-test is
+given by the KS-statistic itself (Equation <a 
+href="#x1-2006r6">6<!--tex4ht:ref: eq:ks --></a>). Nevertheless, the p-value of the
+KS-test is still a function of sample size and is therefore still useless as a
+dissimilarity measure.
+   <h3 class="likesectionHead"><a 
+ id="x1-110007"></a>Appendix C: Multidimensional scaling with <span 
+class="cmtt-12">R</span></h3>
+<!--l. 718--><p class="noindent" >This section presents a simple example of computer code for MDS analysis with
+the open source statistical programming language <span 
+class="cmtt-12">R</span>. The example input file
+<span 
+class="cmtt-12">DZages.Rdata </span>containing the data shown in Figure <a 
+href="#x1-10011">1<!--tex4ht:ref: fig:mu-us --></a> can be downloaded from
+<span 
+class="cmtt-12">http://mudisc.london-geochron.com</span>.
+
+   <div class="verbatim" id="verbatim-1">
+library(MASS)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;load&#x00A0;the&#x00A0;&#8216;Modern&#x00A0;Applied&#x00A0;Statistics&#x00A0;with&#x00A0;S&#8217;&#x00A0;package
+&#x00A0;<br />load("DZages.Rdata")&#x00A0;&#x00A0;&#x00A0;#&#x00A0;load&#x00A0;the&#x00A0;dataset&#x00A0;of&#x00A0;U-Pb&#x00A0;ages
+&#x00A0;<br />n&#x00A0;=&#x00A0;length(DZages)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;n&#x00A0;=&#x00A0;the&#x00A0;number&#x00A0;of&#x00A0;samples
+&#x00A0;<br />diss&#x00A0;=&#x00A0;mat.or.vec(n,n)&#x00A0;#&#x00A0;initialize&#x00A0;the&#x00A0;dissimilarity&#x00A0;matrix
+&#x00A0;<br />for&#x00A0;(i&#x00A0;in&#x00A0;1:n){&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;loop&#x00A0;through&#x00A0;all&#x00A0;possible&#x00A0;pairs&#x00A0;of&#x00A0;samples
+&#x00A0;<br />&#x00A0;for&#x00A0;(j&#x00A0;in&#x00A0;1:n){&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;calculate&#x00A0;the&#x00A0;kolmogorov-smirnov&#x00A0;statistic
+&#x00A0;<br />&#x00A0;&#x00A0;diss[i,j]&#x00A0;=&#x00A0;ks.test(DZages[[i]],DZages[[j]])$statistic&#x00A0;}&#x00A0;}
+&#x00A0;<br />cmds&#x00A0;=&#x00A0;cmdscale(diss)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;classical&#x00A0;multidimensional&#x00A0;scaling
+&#x00A0;<br />plot(cmds[,1],cmds[,2],&#x00A0;type="n")&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;set&#x00A0;up&#x00A0;the&#x00A0;plot
+&#x00A0;<br />text(cmds[,1],cmds[,2],&#x00A0;names(DZages))&#x00A0;#&#x00A0;label&#x00A0;the&#x00A0;samples&#x00A0;by&#x00A0;their&#x00A0;name
+&#x00A0;<br />dev.new()&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;open&#x00A0;a&#x00A0;new&#x00A0;plot&#x00A0;window
+&#x00A0;<br />nmds&#x00A0;=&#x00A0;isoMDS(diss)&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;non-metric&#x00A0;multidimensional&#x00A0;scaling
+&#x00A0;<br />plot(nmds$points[,1],nmds$points[,2],&#x00A0;type="n")&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;#&#x00A0;set&#x00A0;up&#x00A0;the&#x00A0;plot
+&#x00A0;<br />text(nmds$points[,1],nmds$points[,2],&#x00A0;names(DZages))&#x00A0;#&#x00A0;add&#x00A0;labels
+</div>
+<!--l. 739--><p class="nopar" >
+<!--l. 741--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-120007"></a>References</h3>
+  <div class="thebibliography">
+
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1982"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1982. The statistical analysis of compositional data. Journal
+  of the Royal Statistical Society 44, 139&#8211;177.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1983"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison, J., 1983. Principal component analysis of compositional data.
+  Biometrika 70&#x00A0;(1), 57&#8211;65.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xaitchison1986"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Aitchison,  J.,  1986.  The  statistical  analysis  of  compositional  data.
+  London, Chapman and Hall.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xanderson1962"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Anderson, T.&#x00A0;W., 1962. On the distribution of the two sample Cramer -
+  Von Mises criterion. Annals Mathematical Statistics 33.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xanderson1954"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Anderson, T.&#x00A0;W., Darling, D.&#x00A0;A., 1954. A test of goodness of fit. Journal
+  of the American Statistical Association 49&#x00A0;(268), pp. 765&#8211;769.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcohen1977"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cohen, J., 1977. Statistical power analysis for the behavioral sciences.
+  Academic Press New York.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xcox2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Cox,  T.&#x00A0;F.,  Cox,  M.  A.&#x00A0;A.,  2000.  Multidimensional  Scaling,  Second
+  Edition. Chapman &amp; Hall/CRC.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xegozcue2003"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Egozcue, J., Pawlowsky-Glahn, V., Mateu-Figueras, G., Barcelo-Vidal,
+  C.,  2003.  Isometric  logratio  transformations  for  compositional  data
+  analysis. Mathematical Geology 35&#x00A0;(3), 279&#8211;300.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfeller1948"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Feller,  W.,  1948.  On  the  Kolmogorov-Smirnov  limit  theorems  for
+  empirical  distributions.  The  Annals  of  Mathematical  Statistics  19,
+  177&#8211;189.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xfilzmoser2009"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Filzmoser, P., Hron, K., Reimann, C., 2009. Principal component analysis
+  for compositional data with outliers. Environmetrics 20&#x00A0;(6), 621&#8211;632.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xgehrels1995"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Gehrels,   G.&#x00A0;E.,   Dickinson,   W.&#x00A0;R.,   Ross,   G.&#x00A0;M.,   Stewart,   J.&#x00A0;H.,
+  Howell, D.&#x00A0;G., 1995. Detrital zircon reference for Cambrian to Triassic
+  miogeoclinal strata of western North America. Geology 23, 831.
+
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1964"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J., 1964. Multidimensional scaling by optimizing goodness of fit
+  to a nonmetric hypothesis. Psychometrika 29&#x00A0;(1), 1&#8211;27.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xkruskal1978"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Kruskal, J.&#x00A0;B., Wish, M., 1978. Multidimensional scaling. Vol. 07-011
+  of Sage University Paper series on Quantitative Application in the Social
+  Sciences. Sage Publications, Beverly Hills and London.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpell1997"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pell, S.&#x00A0;D., Williams, I.&#x00A0;S., Chivas, A.&#x00A0;R., 1997. The use of protolith
+  zircon-age  fingerprints  in  determining  the  protosource  areas  for  some
+  Australian dune sands. Sedimentary Geology 109, 233&#8211;260.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xpullen2011"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Pullen, A., Kapp, P., McCallister, A., Chang, H., Gehrels, G., Garzione,
+  C., Heermance, R., Ding, L., 2011. Qaidam basin and northern Tibetan
+  plateau as dust sources for the Chinese loess plateau and paleoclimatic
+  implications. Geology 39, 1031&#8211;1034.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsircombe2000"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sircombe,  K.&#x00A0;N.,  2000.  Quantitative  comparison  of  large  sets  of
+
+  geochronological  data  using  multivariate  analysis:  A  provenance  study
+  example from Australia. Geochimica et Cosmochimica Acta 64, 1593&#8211;1616.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsircombe2004a"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Sircombe, K.&#x00A0;N., Hazelton, M.&#x00A0;L., 2004. Comparison of detrital zircon
+  age distributions by kernel functional estimation. Sedimentary Geology
+  171, 91&#8211;111.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xstevens2012"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Stevens, T., Carter, A., Watson, T., Lu, H., Vermeesch, P., And&oacute;, S.,
+  Garzanti, E., Bird, A., Sevastjanova, I., 2012. Role of the Yellow River
+  in  the  origin  of  Chinese  Loess  Plateau  dust  and  Mu  Us  desert  sands.
+  Quaternary Science Reviews, (in review).
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xvermeesch2012b"></a><span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span>Vermeesch, P., 2012. On the visualisation of detrital age distributions.
+  Chemical Geology 312-313, 190&#8211;194.
+</p>
+  </div>
+</td></table>        
+</body></html> 
+
+
+

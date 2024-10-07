@@ -1,0 +1,64 @@
+please answer the following questions: <br>
+(field of view = 2.5mm)
+<p></p>
+<form>
+Colour?<br>
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'This mineral is pale brown.';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('colour').innerHTML=
+'Are you sure?';" />No
+</form>
+<form>
+Pleochroism?<br>
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'This mineral is strongly pleochroic from straw to brown.';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('pleochroism').innerHTML=
+'Does the colour of the mineral change above and below the fracture? Often strongly
+coloured minerals will be pleochroic. You can tell from just looking at this
+mineral if it is pleochroic even without rotating the stage. Look at either side of the fracture.';" />No
+</form>
+<form>
+Habit (1)?<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Prismatic crystals have lenght longer than width.';" />Prismatic
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Acicular crystals have \'needle-like\' appearance.';" />Acicular
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Bladed crystals have the appearance of \'lathes\' packed on one another.';" />Bladed<br>
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Tabular crystals have a width longer than their length.';" />Tabular
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'These crystals have a platy habit.';" />Platy
+<input type="radio" name="button" onclick="document.getElementById('habit').innerHTML=
+'Equant crystals have sides roughly similar in length';" />Equant
+</form>
+<form>
+Habit (2)?<br>
+<input type="radio" name="button" onclick="document.getElementById('shape').innerHTML=
+'Are all the crystal faces visible?';" />Euhedral
+<input type="radio" name="button" onclick="document.getElementById('shape').innerHTML=
+'These crystals are generally subhedral. Some faces are visible.';" />Subhedral
+<input type="radio" name="button" onclick="document.getElementById('shape').innerHTML=
+'Are any crystal faces visible?';" />Anhedral
+</form>
+<form>
+Cleavage?<br>
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'The mineral has one perfect cleavage.';" />Yes
+<input type="radio" name="button" onclick="document.getElementById('cleavage').innerHTML=
+'Does the mineral preferentially break along certain planes?';" />No
+</form>
+<form>
+Relief?<br>
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'The mineral has moderately high relief and appears to \'stand proud\' of the other minerals.';" />High to moderate
+<input type="radio" name="button" onclick="document.getElementById('relief').innerHTML=
+'Do the adjacent minerals seem to be \'higher\' or \'lower\'?';" />Low
+</form>
+
+<div id="colour"></div>
+<div id="pleochroism"></div>
+<div id="habit"></div>
+<div id="shape"></div>
+<div id="cleavage"></div>
+<div id="relief"></div>

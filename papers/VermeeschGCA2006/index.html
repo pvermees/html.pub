@@ -1,0 +1,2164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Tectonic discrimination of basalts with classification trees</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="W3441-rev3.tex"> 
+<meta name="date" content="2012-12-17 10:54:00"> 
+<link rel="stylesheet" type="text/css" href="W3441-rev3.css"> 
+<link rel="stylesheet" type="text/css" href="../../mystyle.css"> 
+</head><body >
+<table class="main"><tr><td>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">Tectonic discrimination of basalts with classification trees</h2>
+                        <div class="author" ><span 
+class="cmr-12">Pieter Vermeesch</span>
+<br />   <span 
+class="cmr-9">Department of Geological and Environmental Sciences, Stanford University</span>
+<br /><span 
+class="cmr-8">Currently at Institute of Isotope Geology and Mineral Resources, ETH Z</span><span 
+class="cmr-8">&uuml;rich, Switzerland</span>
+<br />                    <span 
+class="cmtt-9">pvermees@pangea.stanford.edu</span></div>
+   </div>
+   <div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 14--><p class="noindent" >
+<!--l. 14--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 15--><p class="indent" >    <span 
+class="cmr-9">Traditionally,  geochemical  classification  of  basaltic  rocks  of  unknown  tectonic  affinity  has  been</span>
+     <span 
+class="cmr-9">performed by discrimination diagrams. Although easy to use, this method is fairly inaccurate because</span>
+     <span 
+class="cmr-9">it only uses bi- or trivariate data. Furthermore, many popular discrimination diagrams are statistically</span>
+     <span 
+class="cmr-9">not very rigorous because the decision boundaries are drawn by eye, and they ignore closure, thus</span>
+     <span 
+class="cmr-9">violating the rules of compositional data analysis. Classification trees approximate the data space by</span>
+     <span 
+class="cmr-9">a stepwise constant function, and are a more rigorous and potentially more effective way to determine</span>
+     <span 
+class="cmr-9">tectonic  affinity.  Trees  allow  the  simultaneous  use  of  an  unlimited  number  of  geochemical  features,</span>
+     <span 
+class="cmr-9">while still permitting visualization by an easy-to-use, two-dimensional graph. Two classification trees</span>
+     <span 
+class="cmr-9">are presented for the discrimination of basalts of mid-ocean ridge (MORB), ocean island (OIB) and</span>
+     <span 
+class="cmr-9">island arc (IAB) affinities. The first tree uses 51 major, minor and trace elements and isotopic ratios</span>
+     <span 
+class="cmr-9">and should be used for the classification of fresh basalt samples. A second tree only uses high field</span>
+     <span 
+class="cmr-9">strength (HFS) element analyses and isotopic ratios, and can also be used for basalts that have undergone</span>
+     <span 
+class="cmr-9">alteration. The probability of successful classification is 89% for the first and 84% for the second tree,</span>
+     <span 
+class="cmr-9">as determined by ten-fold cross-validation. Even though the trees presented in this paper use many</span>
+     <span 
+class="cmr-9">geochemical features, it is not a problem if some of these are missing in the unknown sample. Classification</span>
+     <span 
+class="cmr-9">trees solve this problem with surrogate variables, which give more or less the same decision as the</span>
+     <span 
+class="cmr-9">primary variables. The advantages of the classification tree approach over discrimination diagrams are</span>
+     <span 
+class="cmr-9">illustrated by a comparative test on a sample dataset of known tectonic affinities. Although arguably</span>
+     <span 
+class="cmr-9">better than discrimination diagrams, classification trees are not perfect, and the limitations of the method</span>
+     <span 
+class="cmr-9">are illustrated on a published dataset of basalts from the Pindos Basin (Greece).</span>
+</div>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a><span 
+class="cmbx-10">INTRODUCTION</span></h3>
+<!--l. 50--><p class="noindent" >Igneous rocks form in a wide variety of tectonic settings, including mid-ocean ridges, ocean islands, and volcanic
+arcs. It is a problem of great interest to igneous petrologists to recover the original tectonic setting of mafic rocks of
+the past. When the geological setting alone cannot unambiguously resolve this question, the chemical composition of
+
+these rocks might contain the answer. The major, minor and trace elemental composition of basalts shows large
+variations, for example as a function of formation depth (e.g., Kushiro and Kuno, 1963). Traditionally,
+statistical classification of geochemical data has been done with discrimination diagrams (e.g., Chayes and
+Velde, 1965; Pearce and Cann, 1971, 1973; Pearce, 1976; Wood, 1980; Shervais, 1982). The decision
+boundaries of most tectonic discrimination diagrams are drawn by eye (e.g., Pearce and Cann, 1973;
+Wood, 1980; Shervais, 1982). Although still widely used, these diagrams have some serious problems,
+including:
+     <ul class="itemize1">
+     <li class="itemize">Although (linear) discriminant analysis works in any number of dimensions, visual interpretation is only
+     possible for bi- or trivariate data. By only using two or three geochemical features, a lot of information
+     is not used, resulting in poor performance (large misclassification error).
+     </li>
+     <li class="itemize">The geochemical discrimination diagrams of Pearce and Cann (1971, 1973) and others are often based
+     on collections of the means of many analyses of a certain sample area. This means that, strictly
+     speaking, such diagrams should only be used for the classification of similar data, i.e., not individual
+     samples but means of composites of multiple samples. Moreover, taking the mean of compositional
+     data is a dangerous thing to do, considering the fact that elemental concentrations are subject to a
+     constant-sum constraint, which is generally not taken into account (e.g., Chayes, 1971; Aitchison, 1986;
+     Woronow and Love, 1990).
+     </li>
+     <li class="itemize">Discrimination diagrams do not easily handle samples with missing data, for example if only Ti and
+     not V were measured in the diagram of Shervais (1982).</li></ul>
+<!--l. 87--><p class="indent" >   As an alternative to discriminant analysis which resolves all these issues, this paper suggests classification trees,
+which are one of the most powerful and popular &#8220;data mining&#8221; techniques (Hastie <span 
+class="cmti-10">et al.</span>, 2001). One application in
+which classification trees have been quite successful is email spam filtering (e.g., Hastie <span 
+class="cmti-10">et al.</span>, 2001; Carreras and
+M&aacute;rquez, 2001). Based on a large training database of predetermined genuine and spam messages,
+spam filters automatically generate a series of nested yes/no questions that decide which of the two
+categories (genuine or spam) a new message belongs to. The attributes used in a tree-based spam
+filter can be the frequencies of certain words or characters as a percentage of the total length of the
+message, the average length of uninterrupted sequences of capital letters, the total number of capital
+letters, etc. Spam filtering has many similarities with the problem of tectonic discrimination. In the
+latter case, the training data will not contain two but three classes (mid-ocean ridge, ocean island
+and island arc). The attributes used for the classification will be chemical concentrations and isotopic
+ratios.<br 
+class="newline" />
+<!--l. 106--><p class="indent" >   Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:method --></a> will give an introduction to the construction of classification trees. As for discrimination diagrams, it is
+not really necessary for the end-user to know all the details of the building process, because this has to be done only
+once (hence this paper) after which they are very easy to use; trees in fact easier to use than discrimination
+diagrams. Therefore, only a brief introduction to the technique will be given, along with the necessary references for
+the interested reader.<br 
+class="newline" />
+<!--l. 115--><p class="indent" >   In Section <a 
+href="#x1-70003">3<!--tex4ht:ref: sec:example --></a>, two classification trees will be presented for the discrimination between basalts from mid-ocean
+ridge (MORB), ocean island (OIB) and island arc (IAB) settings, based on 756 major and trace element
+measurements and isotopic ratio analyses, compiled from two publicly available petrologic databases. The first tree
+uses all major, minor and trace elements, and should be used for the classification of unaltered samples of basalt.
+The second tree only uses immobile elements and can also be used for samples that underwent some degree of
+weathering and/or metamorphism. Beyond this initial selection of suitable features, the construction of the
+trees is entirely statistical, and involves no further petrological considerations or arbitrary decision
+
+boundaries.<br 
+class="newline" />
+<!--l. 128--><p class="indent" >   In Section <a 
+href="#x1-100004">4<!--tex4ht:ref: sec:test --></a>, both classification trees will be tested. First, a suite of modern basalts of known tectonic affinity
+will be classified by trees as well as discrimination diagrams. Then, a published dataset of twenty basalts from the
+Pindos Basin (Greece) will be classified. This will illustrate the limitations of the tree method and serve as a
+cautionary note, which is valid for all statistical classification methods.
+<!--l. 136--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a><span 
+class="cmbx-10">METHOD</span></h3>
+<!--l. 138--><p class="noindent" >The following paragraphs give a brief introduction to the theory of classification trees. They were compiled from
+Breiman <span 
+class="cmti-10">et al. </span>(1984), Ripley (1996) and Hastie <span 
+class="cmti-10">et al. </span>(2001). The interested reader is referred to these
+books for more details, while those who are merely interested in the applications can safely skip to
+Section&#x00A0;<a 
+href="#x1-70003">3<!--tex4ht:ref: sec:example --></a>.
+<!--l. 145--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a><span 
+class="cmbx-10">Classification Trees: Introduction</span></h4>
+<!--l. 147--><p class="noindent" >Suppose we have N J-dimensional data points X<sup><span 
+class="cmmi-7">n</span></sup>=<span 
+class="cmsy-10">{</span>x<sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmmi-7">n</span></sup>,...,x<sub><span 
+class="cmmi-7">j</span></sub><sup><span 
+class="cmmi-7">n</span></sup>,...,x<sub><span 
+class="cmmi-7">J</span></sub><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmsy-10">}</span>, (1<span 
+class="cmsy-10">&#x2264;</span>n<span 
+class="cmsy-10">&#x2264;</span>N) belonging to one of K classes:
+Y<sup><span 
+class="cmmi-7">n</span></sup>=c<sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmsy-10">|</span>...<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">k</span></sub><span 
+class="cmsy-10">|</span>...<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">c</span><sub><span 
+class="cmmi-7">K</span></sub>. For example, <span class="underline">X</span>=<span 
+class="cmsy-10">{</span>X<sup><span 
+class="cmr-7">1</span></sup>,...,X<sup><span 
+class="cmmi-7">n</span></sup>,...,X<sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmsy-10">} </span>might represent J features (e.g., various major and trace
+element concentrations, isotopic ratios, color, weight,...) measured in N samples of basalt. c<sub><span 
+class="cmr-7">1</span></sub>,...,c<sub><span 
+class="cmmi-7">K</span></sub> might then be
+tectonic affinity, e.g., &#8220;mid-ocean ridge&#8221;, &#8220;ocean island&#8221;, &#8220;island arc&#8221;, ... . The basic idea behind classification and
+regression trees (CART) is to approximate the parameter space by a piecewise constant function, in other
+words, to partition <span class="underline">X</span> into M disjoint regions <span 
+class="cmsy-10">{</span>R<sub><span 
+class="cmr-7">1</span></sub>,...,R<sub><span 
+class="cmmi-7">m</span></sub>,...,R<sub><span 
+class="cmmi-7">M</span></sub><span 
+class="cmsy-10">}</span>. An example of such a partition is
+given in Figure <a 
+href="#x1-30011">1<!--tex4ht:ref: fig:partition --></a>.a. Because it is impossible to describe all possible partitions of the feature space,
+we restrict ourselves to a small subset of possible solutions, the recursive binary partitions (Figure
+<a 
+href="#x1-30011">1<!--tex4ht:ref: fig:partition --></a>.b). Surprising as it may seem, considering the crudeness of this approximation, trees are one of the
+most powerful and popular data mining techniques in existence. One of the reasons for this is that
+besides assuring computational feasibility, the recursive partitioning technique described next also allows
+the representation of the multi-dimensional decision-space as a two dimensional tree graph (Figure
+<a 
+href="#x1-30011">1<!--tex4ht:ref: fig:partition --></a>.c). Although building a tree might seem complicated, this is not important to the user, because it
+only has to be done once, after which using a classification tree for data interpretation is extremely
+simple.
+<!--l. 173--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-30011"></a>
+
+<!--l. 175--><p class="noindent" ><img 
+src="W3441-rev30x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev30x.png" src="W3441-fig1.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;1:  </span><span  
+class="content">An  example  of  a  bivariate  (X<sub><span 
+class="cmr-7">1</span></sub>,X<sub><span 
+class="cmr-7">2</span></sub>)  classification  tree.  Classification  trees  approximate  the
+data space with a piecewise constant function (a). To ensure computational feasibility, a recursive binary
+partitioning method is used (b). Such partitions have the added advantage that the results can be visualized
+as a two-dimensional graph or &#8220;tree&#8221; (c). In this and subsequent trees, left branches mean &#8220;Yes&#8221; and right
+branches &#8220;No&#8221;.</span></div><!--tex4ht:label?: x1-30011 -->
+
+<!--l. 185--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a><span 
+class="cmbx-10">Building a Tree</span></h4>
+<!--l. 190--><p class="noindent" >At any point in the recursive process, a partition is defined by two quantities: the split variable j (1<span 
+class="cmsy-10">&#x2264;</span>j<span 
+class="cmsy-10">&#x2264;</span>J) and the
+split point s (-<span 
+class="cmsy-10">&#x221E;</span><span 
+class="cmmi-10">&#x003C;</span>s<span 
+class="cmmi-10">&#x003C;</span><span 
+class="cmsy-10">&#x221E;</span>). For any given partition R<sub><span 
+class="cmmi-7">m</span></sub> of a tree T, there are at most N<span 
+class="cmsy-10">&#x00D7;</span>J possible binary
+subpartitions, which can be exhaustively searched. We choose the one that minimizes the &#8220;node impurity&#8221; Q<sub><span 
+class="cmmi-7">m</span></sub>(T).
+Let <img 
+src="W3441-rev31x.png" alt="&#x02C6;p"  class="circ" > <sub><span 
+class="cmmi-7">mk</span></sub> be the proportion of class k observations in node m, then
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="W3441-rev32x.png" alt="         K&#x2211;
+Qm (T) =    &#x02C6;pmk(1- &#x02C6;pmk)
+         k=1
+" class="math-display" ><a 
+ id="x1-4001r1"></a></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 201--><p class="nopar" >
+<!--l. 203--><p class="indent" >   This particular form of Q<sub><span 
+class="cmmi-7">m</span></sub>(T) is called the &#8220;Gini index of diversity&#8221;, but alternatives exist. Note that if we
+simply used the &#8220;misclassification error&#8221; (i.e., the number of misclassified data points resulting from a
+candidate split) as a measure of node impurity, it would be impossible to partition the data set shown in
+Figure <a 
+href="#x1-30011">1<!--tex4ht:ref: fig:partition --></a> because any initial split would misclassify all the triangles, yielding the same misclassification
+error (=23/63 in this case). The recursive partitioning process continues until all the end-nodes are
+&#8220;pure&#8221;, i.e. all belong to the same class. The maximum sized tree thus obtained perfectly describes
+the training data. In other words, it has zero bias. However, for the purpose of prediction, this tree
+is not optimal, because it overfits the training data, causing high variance. The tree with optimal
+predictive power will be smaller than the largest possible tree, and can be found by &#8220;cost-complexity
+pruning&#8221;.
+<!--l. 219--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-50002.3"></a><span 
+class="cmbx-10">Pruning a Tree</span></h4>
+<!--l. 221--><p class="noindent" >Define the &#8220;cost-complexity criterion&#8221; of a tree T as
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="W3441-rev33x.png" alt="         |&#x2211;T|
+cp&#x03B1;(T) =    NmQm  (T)+ &#x03B1;|T|
+        m=1
+
+" class="math-display" ><a 
+ id="x1-5001r2"></a></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 226--><p class="nopar" >
+<!--l. 228--><p class="indent" >   with <span 
+class="cmsy-10">|</span>T<span 
+class="cmsy-10">| </span>the number of terminal nodes in T, N<sub><span 
+class="cmmi-7">m</span></sub> the number of observations in the m<sup><span 
+class="cmmi-7">th</span></sup> terminal node, Q<sub><span 
+class="cmmi-7">m</span></sub>(T)
+the &#8220;node impurity&#8221; defined by Equation <a 
+href="#x1-4001r1">1<!--tex4ht:ref: eq:QmT --></a> and <span 
+class="cmmi-10">&#x03B1; </span>a tuning parameter. For a given <span 
+class="cmmi-10">&#x03B1; </span><span 
+class="cmsy-10">&#x2265;</span>0, it is possible to
+find the subtree T<sub><span 
+class="cmmi-7">&#x03B1;</span></sub> <span 
+class="cmsy-10">&#x2282;</span>T<sub><span 
+class="cmr-7">0</span></sub> that minimizes cp<sub><span 
+class="cmmi-7">&#x03B1;</span></sub>(T) over all possible subtrees of the largest possible tree
+T<sub><span 
+class="cmr-7">0</span></sub>
+   <table 
+class="equation"><tr><td>
+   <center class="math-display" >
+<img 
+src="W3441-rev34x.png" alt="T&#x03B1;  =   argmin  cp&#x03B1;(T)
+        T &#x2282; T0
+" class="math-display" ><a 
+ id="x1-5002r3"></a></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 240--><p class="nopar" >
+<!--l. 242--><p class="indent" >   Repeating this procedure for a range of values 0 <span 
+class="cmsy-10">&#x2264; </span><span 
+class="cmmi-10">&#x03B1; &#x003C; </span><span 
+class="cmsy-10">&#x221E; </span>produces a finite nested sequence of
+trees <span 
+class="cmsy-10">{</span>T<sub><span 
+class="cmr-7">0</span></sub>,T<sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmr-5">1</span></sub></sub>,...,T<sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmmi-5">max</span></sub></sub><span 
+class="cmsy-10">}</span>. Except for T<sub><span 
+class="cmr-7">0</span></sub>, these trees will no longer have only pure end-nodes. Impure
+end-nodes are assigned the class that dominates in them. We then choose the value <span 
+class="cmmi-10">&#x03B1;</span><sup><span 
+class="cmsy-7">*</span></sup> that minimizes an
+estimate of future prediction error, for example by &#8220;V-fold cross-validation&#8221;. The training data are
+randomly divided into V (e.g., ten) fractions of equal size. We then grow V overly large trees T<sub><span 
+class="cmr-7">0</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">)</span></sup>,
+each time using all but the v<sup><span 
+class="cmmi-7">th</span></sup> sample fraction. Each of these trees then goes through the pruning
+procedure described before, yielding V nested sequences of trees <span 
+class="cmsy-10">{</span>T<sub><span 
+class="cmr-7">0</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">)</span></sup>,T<sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmr-5">1</span></sub></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">)</span></sup>,...T<sub><span 
+class="cmmi-7">&#x03B1;</span><sub><span 
+class="cmmi-5">max</span></sub></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">)</span></sup><span 
+class="cmsy-10">}</span>, 1<span 
+class="cmsy-10">&#x2264;</span>v<span 
+class="cmsy-10">&#x2264;</span>V.
+The trees T<sub><span 
+class="cmmi-7">&#x03B1;</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">)</span></sup> were constructed without ever seeing the cases in the v<sup><span 
+class="cmmi-7">th</span></sup> fraction. Sending the v<sup><span 
+class="cmmi-7">th</span></sup>
+fraction down T<sub><span 
+class="cmmi-7">&#x03B1;</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">)</span></sup> for each v=1,...,V thus yields an independent estimate of the misclassification
+error.<br 
+class="newline" />
+<!--l. 260--><p class="indent" >   A plot of these cross-validated (CV) prediction errors versus the number of nodes in each of the nested subtrees
+shows a minimum at some point. As discussed before, trees with fewer nodes tend to have large bias, while the
+increased CV-cost of overly large trees is caused by their inflated variance. There typically exist several trees
+with CV-costs close to the minimum. Therefore, a &#8220;1-SE rule&#8221; is used, i.e., choosing the smallest tree
+whose CV misclassification cost does not exceed the minimum CV-cost plus one standard error of
+the CV-cost for the minimum CV-cost tree. An example of this procedure will be given in Section
+<a 
+href="#x1-70003">3<!--tex4ht:ref: sec:example --></a>.
+<!--l. 271--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x1-60002.4"></a><span 
+class="cmbx-10">Handling Missing Data</span></h4>
+<!--l. 273--><p class="noindent" >One of the greatest advantages of classification trees is their ability to handle missing data. For example, in a
+dataset of geochemical analyses, some samples might have been analysed for major and trace elements, while
+others were only analysed for trace elements and stable isotopes. Yet another set of samples might have
+been analysed for all elements except Zr, etc. Methods like discriminant analysis cannot easily handle
+these situations, severely restricting their applicability and power. Both for training and prediction,
+trees solve the missing data problem by &#8220;surrogate splits&#8221;. Having chosen the best primary predictor
+and split point (disregarding the missing data), the first surrogate is the predictor and corresponding
+
+split point that has the highest correlation with the primary predictor in R<sub><span 
+class="cmmi-7">m</span></sub> (Figure <a 
+href="#x1-60012">2<!--tex4ht:ref: fig:surrogate --></a>). The second
+surrogate is the predictor that shows the second highest correlation with the primary split variable and so
+forth.
+<!--l. 289--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-60012"></a>
+
+<!--l. 291--><p class="noindent" ><img 
+src="W3441-rev35x.png" alt="PIC" class="graphics" width="400pt" ><!--tex4ht:graphics  
+name="W3441-rev35x.png" src="W3441-fig2.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2: </span><span  
+class="content">Primary split variable X<sub><span 
+class="cmmi-7">k</span></sub> and split point s<sub><span 
+class="cmmi-7">k</span></sub> and surrogate split variable X<sub><span 
+class="cmmi-7">j</span></sub> and split point s<sub><span 
+class="cmmi-7">j</span></sub>.
+Surrogates answer the question: &#8220;which other splits would classify the same objects in the same way as the
+primary split?&#8221;</span></div><!--tex4ht:label?: x1-60012 -->
+
+<!--l. 297--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-70003"></a><span 
+class="cmbx-10">APPLICATION TO THE TECTONIC DISCRIMINATION OF BASALTS</span></h3>
+<!--l. 304--><p class="noindent" >An extensive dataset of 756 samples was compiled from the online PETDB and GEOROC databases
+(<span 
+class="cmtt-10">www.petdb.org </span>and <span 
+class="cmtt-10">georoc.mpch-mainz.gwdg.de</span>). The dataset can be downloaded from electronic annex EA-1.
+It contains:
+     <ul class="itemize1">
+     <li class="itemize">256 Island arc basalts (IAB) from the Aeolian, Izu-Bonin, Kermadec, Kurile, Lesser Antilles, Mariana,
+     Scotia and Tonga arcs.
+     </li>
+     <li class="itemize">241 Mid-ocean ridge (MORB) samples from the East Pacific Rise, Mid Atlantic Ridge, Indian Ocean,
+     and Juan de Fuca Ridge.
+     </li>
+     <li class="itemize">259  Ocean-island  (OIB)  samples  from  St.  Helena,  the  Canary,  Cape  Verde,  Caroline,  Crozet,
+     Hawaii-Emperor, Juan Fernandez, Marquesas, Mascarene, Samoan and Society islands.</li></ul>
+<!--l. 319--><p class="indent" >   Duplicate analyses were excluded from the database to avoid potential bias towards overrepresented samples. 51
+geochemical features were used:
+     <ul class="itemize1">
+     <li class="itemize">Major element concentrations (in weight percent): SiO<sub><span 
+class="cmr-7">2</span></sub>, TiO<sub><span 
+class="cmr-7">2</span></sub>, Al<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">3</span></sub>, Fe<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">3</span></sub>, FeO, CaO, MgO, MnO,
+     K<sub><span 
+class="cmr-7">2</span></sub>O, Na<sub><span 
+class="cmr-7">2</span></sub>O, P<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">5</span></sub>
+     </li>
+     <li class="itemize">Minor and trace element concentrations (in ppm): La, Ce, Pr, Nd, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm,
+     Yb, Lu, Sc, V, Cr, Co, Ni, Cu, Zn, Ga, Rb, Sr, Y, Zr, Nb, Sn, Cs, Ba, Hf, Ta, Pb, Th, U
+     </li>
+     <li class="itemize">Isotopic ratios: <sup><span 
+class="cmr-7">143</span></sup>Nd/<sup><span 
+class="cmr-7">144</span></sup>Nd, <sup><span 
+class="cmr-7">87</span></sup>Sr/<sup><span 
+class="cmr-7">86</span></sup>Sr, <sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb, <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb, <sup><span 
+class="cmr-7">208</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb</li></ul>
+<!--l. 334--><p class="indent" >   The fact that different measurement units are mixed and that for none of the 756 samples all 51 features were
+measured is not a problem for the construction of the trees, once again illustrating the robustness of the method.
+The classification trees discussed next were constructed using the <span 
+class="cmtt-10">rpart </span>library of the statistical software package <span 
+class="cmtt-10">R</span>,
+which can be downloaded free of charge from <span 
+class="cmtt-10">www.r-project.org</span>. The actual <span 
+class="cmtt-10">R</span>-code is provided in electronic annex
+EA-2.<br 
+class="newline" />
+<!--l. 343--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-80003.1"></a><span 
+class="cmbx-10">A Tree Using Major, Minor and Trace Elements and Isotope Ratios</span></h4>
+<!--l. 346--><p class="noindent" >In a first approach, all 51 features were used for the tree construction, including relatively mobile elements such as
+CaO and Na<sub><span 
+class="cmr-7">2</span></sub>O. Therefore, the resulting tree should only be used on fresh samples of basalt. The
+largest possible tree (T<sub><span 
+class="cmr-7">0</span></sub>) has 51 splits, and actually uses only 23 of the 51 selected features. These are:
+SiO<sub><span 
+class="cmr-7">2</span></sub>, TiO<sub><span 
+class="cmr-7">2</span></sub>, CaO, Fe<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">3</span></sub>, MgO, K<sub><span 
+class="cmr-7">2</span></sub>O, La, Pr, Nd, Sm, Gd, Tb, Yb, Lu, V, Ni, Rb, Sr, Y, Hf, Th,
+<sup><span 
+class="cmr-7">87</span></sup>Sr/<sup><span 
+class="cmr-7">86</span></sup>Sr and <sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb. The remaining 28 features apparently did not contain enough discriminative
+power. As discussed in Section <a 
+href="#x1-20002">2<!--tex4ht:ref: sec:method --></a>, T<sub><span 
+class="cmr-7">0</span></sub> is not the best possible tree. A plot of relative cross-validation
+misclassification risk versus tree size shows a minimum at 18 splits (Figure <a 
+href="#x1-80013">3<!--tex4ht:ref: fig:XvalVsCP --></a>). Using the 1-SE rule then puts
+
+the optimal tree size at 8 splits (Figure <a 
+href="#x1-80013">3<!--tex4ht:ref: fig:XvalVsCP --></a>). The resulting, optimally pruned tree is shown in Figure
+<a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a>.<br 
+class="newline" />
+<!--l. 362--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-80013"></a>
+
+<!--l. 364--><p class="noindent" ><img 
+src="W3441-rev36x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev36x.png" src="W3441-fig3.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;3: </span><span  
+class="content">Choosing the optimal tree size. The y-axis shows the ten-fold cross-validation error, relative to the
+misclassification risk of the root node (=497/756). The x-axes show the size of the tree (i.e., the number of
+nodes) and the complexity parameter (cp). The first two splits account for 87% of the discriminative power.
+The inset shows a magnification of the boxed part of the curve, illustrating the 1-SE rule.</span></div><!--tex4ht:label?: x1-80013 -->
+
+<!--l. 373--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 375--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-80024"></a>
+
+<!--l. 377--><p class="noindent" ><img 
+src="W3441-rev37x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev37x.png" src="W3441-fig4.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;4: </span><span  
+class="content">The optimal classification tree, based on a training set of 756 geochemical analyses of at most 51
+elements and isotopic ratios. The &#8220;heaviest&#8221; terminal nodes are encircled.</span></div><!--tex4ht:label?: x1-80024 -->
+
+<!--l. 382--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 384--><p class="indent" >   The classification by the optimal tree is remarkably successful. No less than 79% of all the training data correctly
+fall in just three terminal nodes (encircled in Figure <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a>). Only 7% of the training data were misclassified, while the
+ten-fold cross-validation error is about 11%, corresponding to a success-rate of 89%. In other words, the probability
+that a sample of unknown tectonic affinity will be classified correctly is 89%. The first two splits (on TiO<sub><span 
+class="cmr-7">2</span></sub> and Sr)
+account for 87% of the discriminative power (Figure <a 
+href="#x1-80013">3<!--tex4ht:ref: fig:XvalVsCP --></a>). In a way, this can be seen as a justification of the use of
+these elements in popular discrimination diagrams such as the Ti-Zr-Sr diagram (Pearce and Cann, 1973). An
+analysis of TiO<sub><span 
+class="cmr-7">2</span></sub> and Sr alone already gives a pretty reliable classification. For example, if TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmsy-10">&#x2265;</span>2.135%, the
+tree tells us there is a 91% chance that the rock has an OIB affinity. Likewise, 87% of the training
+data with TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>2.135% and Sr<span 
+class="cmmi-10">&#x003C;</span>156ppm are MORBs. For further discrimination, additional elements
+can be used, which inevitably increases the chance of missing variables. However, as discussed before,
+classification trees elegantly resolve this problem with surrogate split variables, which are shown in Table
+<a 
+href="#x1-80031">1<!--tex4ht:ref: tab:surrogates --></a>.
+   <div class="table">
+
+<!--l. 405--><p class="indent" >   <a 
+ id="x1-80031"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"><col 
+id="TBL-2-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">split number</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">IAB/MORB/OIB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11"> primary split </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11">  surrogate 1   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11">  surrogate 2   </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11">     1        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11">  256/241/259   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11">TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>2.135%</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11"> P<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">5</span></sub><span 
+class="cmmi-10">&#x003C;</span>0.269% </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11"> Zr<span 
+class="cmmi-10">&#x003C;</span>169.5ppm  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11">     2        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11">   248/229/43    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11"> Sr<span 
+class="cmsy-10">&#x2265;</span>156ppm  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11"> K<sub><span 
+class="cmr-7">2</span></sub>O<span 
+class="cmsy-10">&#x2265;</span>0.275%  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11"> Rb<span 
+class="cmsy-10">&#x2265;</span>3.965ppm </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11">     3        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11">    8/12/216      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11"> Sr<span 
+class="cmmi-10">&#x003C;</span>189ppm  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">      &#8211;          </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11">      &#8211;          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-1"  
+class="td11">     4        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-2"  
+class="td11">   221/46/42     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-3"  
+class="td11">TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>1.285%</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-4"  
+class="td11">Al<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">3</span></sub><span 
+class="cmsy-10">&#x2265;</span>15.035%</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-5"  
+class="td11"> SiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmsy-10">&#x2265;</span>46.335% </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-1"  
+class="td11">     5        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-2"  
+class="td11">    27/183/1      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-3"  
+class="td11"> Ni<span 
+class="cmmi-10">&#x003C;</span>49.5ppm </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-4"  
+class="td11">  Cr<span 
+class="cmmi-10">&#x003C;</span>82ppm   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-5"  
+class="td11"> TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>0.71%  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-1"  
+class="td11">     6        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-2"  
+class="td11">    19/37/31      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-3"  
+class="td11">MgO<span 
+class="cmmi-10">&#x003C;</span>9.595%</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-4"  
+class="td11"> SiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmsy-10">&#x2265;</span>46.605% </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-5"  
+class="td11">Al<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">3</span></sub><span 
+class="cmsy-10">&#x2265;</span>13.945%</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-1"  
+class="td11">     7        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-2"  
+class="td11">    19/36/6      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-3"  
+class="td11">MgO<span 
+class="cmmi-10">&#x003C;</span>5.775%</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-4"  
+class="td11"> Al<sub><span 
+class="cmr-7">2</span></sub>O<sub><span 
+class="cmr-7">3</span></sub><span 
+class="cmsy-10">&#x2265;</span>17.03% </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-5"  
+class="td11"> CaO<span 
+class="cmmi-10">&#x003C;</span>10.02%  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-1"  
+class="td11">     8        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-2"  
+class="td11">     7/34/5       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-3"  
+class="td11">Rb<span 
+class="cmmi-10">&#x003C;</span>3.675ppm</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-4"  
+class="td11">  Na<sub><span 
+class="cmr-7">2</span></sub>O<span 
+class="cmsy-10">&#x2265;</span>4%    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-9-5"  
+class="td11">      &#8211;          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-10-1"  
+class="td11">           </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Primary and surrogate splits for the nodes of Figure <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a>. The nodes without surrogates do not have
+any alternative variables that do better than a &#8220;go with the majority&#8221; decision (given by the second column
+of the table). Split number 8 has only one worthwhile surrogate.</span></div><!--tex4ht:label?: x1-80031 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 428--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-80045"></a>
+
+<!--l. 430--><p class="noindent" ><img 
+src="W3441-rev38x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev38x.png" src="W3441-fig5.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;5: </span><span  
+class="content">The optimal classification tree using only HFS cations and isotopic ratios. The encircled terminal
+nodes contain the bulk of the training data.</span></div><!--tex4ht:label?: x1-80045 -->
+
+<!--l. 435--><p class="indent" >   </div><hr class="endfigure">
+   <div class="table">
+
+<!--l. 437--><p class="indent" >   <a 
+ id="x1-80052"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"><col 
+id="TBL-3-2"><col 
+id="TBL-3-3"><col 
+id="TBL-3-4"><col 
+id="TBL-3-5"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-1"  
+class="td11">split number</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-2"  
+class="td11">IAB/MORB/OIB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-3"  
+class="td11">   primary split    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-4"  
+class="td11">     surrogate 1         </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-5"  
+class="td11">  surrogate 2   </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-1"  
+class="td11">     1        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-2"  
+class="td11">  256/241/259   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-3"  
+class="td11">  TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>2.135%    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-4"  
+class="td11">    Zr<span 
+class="cmmi-10">&#x003C;</span>169.5ppm       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-5"  
+class="td11">      &#8211;         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-1"  
+class="td11">     2        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-2"  
+class="td11">   250/229/44    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-3"  
+class="td11">  TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>1.0455%   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-4"  
+class="td11">     Zr<span 
+class="cmmi-10">&#x003C;</span>75.5ppm        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-5"  
+class="td11"> Y<span 
+class="cmmi-10">&#x003C;</span>22.9ppm  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-1"  
+class="td11">     3        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-2"  
+class="td11">    177/35/1      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-3"  
+class="td11"><sup><span 
+class="cmr-7">87</span></sup>Sr/<sup><span 
+class="cmr-7">86</span></sup>Sr<span 
+class="cmsy-10">&#x2265;</span>0.703175</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-4"  
+class="td11">          &#8211;               </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-4-5"  
+class="td11">      &#8211;         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-1"  
+class="td11">     4        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-2"  
+class="td11">   73/194/43     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-3"  
+class="td11"><sup><span 
+class="cmr-7">87</span></sup>Sr/<sup><span 
+class="cmr-7">86</span></sup>Sr<span 
+class="cmsy-10">&#x2265;</span>0.703003</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-4"  
+class="td11"><sup><span 
+class="cmr-7">143</span></sup>Nd/<sup><span 
+class="cmr-7">144</span></sup>Nd<span 
+class="cmmi-10">&#x003C;</span>0.5130585</td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-5-5"  
+class="td11">Nd<span 
+class="cmsy-10">&#x2265;</span>12.785ppm</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-1"  
+class="td11">     5        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-2"  
+class="td11">    66/51/41      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-3"  
+class="td11">  Nb<span 
+class="cmmi-10">&#x003C;</span>5.235ppm    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-4"  
+class="td11">    TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>1.565%       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-6-5"  
+class="td11"> Zr<span 
+class="cmmi-10">&#x003C;</span>100.5ppm </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-1"  
+class="td11">     6        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-2"  
+class="td11">    23/31/41      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-3"  
+class="td11">   Yb<span 
+class="cmsy-10">&#x2265;</span>2.17ppm    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-4"  
+class="td11">    Lu<span 
+class="cmsy-10">&#x2265;</span>0.325ppm       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-3-7-5"  
+class="td11"> Sm<span 
+class="cmsy-10">&#x2265;</span>3.705ppm </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-8-1"  
+class="td11">           </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2: </span><span  
+class="content">Surrogate splits for the HFS tree shown in Figure <a 
+href="#x1-80045">5<!--tex4ht:ref: fig:hfsTree --></a>.</span></div><!--tex4ht:label?: x1-80052 -->
+
+   </div><hr class="endfloat" />
+   </div>
+   <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-90003.2"></a><span 
+class="cmbx-10">A Tree of HFS Elements and Isotopic Ratios Only</span></h4>
+<!--l. 457--><p class="noindent" >Even though the classification tree that was built in the previous section (Figure <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a>) performs very well for fresh
+basalts, this might not necessarily be the case for weathered or metamorphosed samples. For example, a lot of the
+power of this tree depends on Sr, which is considered a mobile element (e.g., Rollinson, 1993). Also MgO, Ni and Rb
+are species used in Figure <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a> that are mobile to some degree. Performance of our classification, which was based on
+fresh samples of basalt, cannot be guaranteed if used for the tectonic discrimination of samples that have undergone
+alteration. Therefore, an alternative tree was built that only uses the so-called high field strength (HFS) cations,
+which are characterized by an ionic potential greater than two (Rollinson, 1993), as well as the isotopic ratios of Sr,
+Nd and Pb, because these are considered less prone to change during alteration than the concentrations
+themselves. The following 28 features were used: TiO<sub><span 
+class="cmr-7">2</span></sub>, La, Ce, Pr, Nd, Sm, Gd, Tb, Dy, Ho, Er, Tm,
+Yb, Lu, Sc, Y, Zr, Nb, Hf, Ta, Pb, Th, U, <sup><span 
+class="cmr-7">143</span></sup>Nd/<sup><span 
+class="cmr-7">144</span></sup>Nd, <sup><span 
+class="cmr-7">87</span></sup>Sr/<sup><span 
+class="cmr-7">86</span></sup>Sr, <sup><span 
+class="cmr-7">206</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb, <sup><span 
+class="cmr-7">207</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb and
+<sup><span 
+class="cmr-7">208</span></sup>Pb/<sup><span 
+class="cmr-7">204</span></sup>Pb. The resulting pruned tree is shown in Figure <a 
+href="#x1-80045">5<!--tex4ht:ref: fig:hfsTree --></a>, while its surrogate splits are given in Table
+2. The first two splits, both on TiO<sub><span 
+class="cmr-7">2</span></sub>, contribute 85% of the discriminative power of the tree. The
+cross-validated misclassification error of the optimal tree is 16%, i.e., there is 84% chance of a correct
+classification.
+<!--l. 484--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-100004"></a><span 
+class="cmbx-10">TESTING THE TREES</span></h3>
+<!--l. 486--><p class="noindent" >First, we will use the trees given by Figures <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a> and <a 
+href="#x1-80045">5<!--tex4ht:ref: fig:hfsTree --></a> to classify some fresh, modern basalts of known tectonic affinity,
+but from field areas that were not included in the training dataset. Then, the classification tree method will be
+applied to a published dataset of unknown tectonic affinity.
+<!--l. 492--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-110004.1"></a><span 
+class="cmbx-10">Classifying Rocks of Known Tectonic Affinity</span></h4>
+<!--l. 495--><p class="noindent" >Both trees were tested on three suites of samples that had not been used in the tree construction. The test data
+(electronic annex EA-1) include:
+     <ul class="itemize1">
+     <li class="itemize">67 IABs from the Aleutian Arc.
+     </li>
+     <li class="itemize">55 MORBs from the Galapagos Ridge.
+     </li>
+     <li class="itemize">60 OIBs from the Pitcairn Islands.</li></ul>
+<!--l. 505--><p class="indent" >   First, these geochemical analyses were classified using the classic Ti-Zr-Y diagram of Pearce and Cann (1973).
+The results are shown on Figure <a 
+href="#x1-110016">6<!--tex4ht:ref: fig:PearceDisc --></a> and Table <a 
+href="#x1-110023">3<!--tex4ht:ref: tab:PearceDisc --></a>. A large subset of the data could not be classified, because (1) either
+Ti, Zr or Y had not been analysed, or (2) because the data do not plot inside any of the labeled areas of the ternary
+diagram. A substantial portion of the remaining data plots in field &#8220;B&#8221; of the discrimination diagram, which is of
+mixed tectonic affinity, although further classification can be done using the Ti-Zr diagram (Pearce and Cann,
+1973). For the samples that plot in fields &#8220;A&#8221;, &#8220;C&#8221; and &#8220;D&#8221;, the classification seems to be quite successful,
+although it is hard to assess the misclassification risk because the number of &#8220;classifiable&#8221; points is so
+small.<br 
+class="newline" />
+
+<!--l. 519--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-110016"></a>
+
+<!--l. 521--><p class="noindent" ><img 
+src="W3441-rev39x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev39x.png" src="W3441-fig6.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;6: </span><span  
+class="content">The test data plotted on the Ti-Zr-Y discrimination diagram of Pearce and Cann (1973). More
+than half of the test data could not be plotted on this diagram because at least one of the three elements
+was missing. A &#8211; island arc tholeiites, C &#8211; calc-alkali basalts, D &#8211; within plate basalts, B &#8211; MORB, island-arc
+tholeiites and calc-alkali basalts. A and C are the IAB fields, D the OIB field and B a mixed field of MORBs
+and IABs.</span></div><!--tex4ht:label?: x1-110016 -->
+
+<!--l. 530--><p class="indent" >   </div><hr class="endfigure">
+   <div class="table">
+
+<!--l. 532--><p class="indent" >   <a 
+ id="x1-110023"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"><col 
+id="TBL-4-2"><col 
+id="TBL-4-3"><col 
+id="TBL-4-4"><col 
+id="TBL-4-5"><col 
+id="TBL-4-6"><col 
+id="TBL-4-7"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-1"  
+class="td11"> true  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-2"  
+class="td11">missing</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-3"  
+class="td11"> out of </td><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-4-1-4"  
+class="td11"></td>     <div class="multicolumn"  style="white-space:nowrap; text-align:center;">predicted tectonic affinity</div>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-1"  
+class="td11">affinity</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-2"  
+class="td11"> data  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-3"  
+class="td11">bounds</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-4"  
+class="td11">MORB or IAB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-5"  
+class="td11">IAB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-6"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-7"  
+class="td11">OIB</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-1"  
+class="td11"> IAB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-2"  
+class="td11">  22   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-3"  
+class="td11">   6    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-4"  
+class="td11">     31        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-5"  
+class="td11"> 5  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-6"  
+class="td11">   &#8211;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-7"  
+class="td11"> 3  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-1"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-2"  
+class="td11">  44   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-3"  
+class="td11">   3    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-4"  
+class="td11">      8         </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-5"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-6"  
+class="td11">   &#8211;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-7"  
+class="td11"> 0  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-1"  
+class="td11"> OIB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-2"  
+class="td11">  32   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-3"  
+class="td11">   2    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-4"  
+class="td11">      2         </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-5"  
+class="td11"> 1  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-6"  
+class="td11">   &#8211;    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-7"  
+class="td11"> 23 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-1"  
+class="td11">      </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;3: </span><span  
+class="content">Summary table of the discriminant analysis of Figure <a 
+href="#x1-110016">6<!--tex4ht:ref: fig:PearceDisc --></a>. The Ti-Zr-Y plot does not discriminate
+MORBs from IABs (both plot in field &#8220;B&#8217;).</span></div><!--tex4ht:label?: x1-110023 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 549--><p class="indent" >   It might not seem fair to the discrimination diagram method to only compare our classification trees with the
+method of Pearce and Cann (1973). Although this diagram has great historical significance and is still used a lot, it
+suffers from many of the wrong statistical assumptions that have plagued the analysis of compositional data, and
+have been discussed elsewhere (e.g., Aitchison, 1986). The Ti-V diagram of Shervais (1982) largely avoids these
+problems, because it only uses two variables, and does not rescale them to a constant sum, as is the case for the
+ternary Ti-Zr-Y diagram of Pearce and Cann (1973). Furthermore, the training data of Shervais (1982) do not
+consist of averages of multiple samples, but of individual geochemical analyses. The Ti-V diagram can distinguish
+between all three tectonic affinities, so there is no field of &#8220;mixed affinity&#8221; like field B of Figure <a 
+href="#x1-110016">6<!--tex4ht:ref: fig:PearceDisc --></a>.
+Figure <a 
+href="#x1-110037">7<!--tex4ht:ref: fig:Shervais --></a> shows the test data plotted on the Ti-V diagram. Table <a 
+href="#x1-110044">4<!--tex4ht:ref: tab:Shervais --></a> summarizes the performance of this
+classification.<br 
+class="newline" />
+<!--l. 566--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-110037"></a>
+
+<!--l. 568--><p class="noindent" ><img 
+src="W3441-rev310x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev310x.png" src="W3441-fig7.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;7: </span><span  
+class="content">The test data plotted on the Ti-V discrimination diagram of Shervais (1982).</span></div><!--tex4ht:label?: x1-110037 -->
+
+<!--l. 572--><p class="indent" >   </div><hr class="endfigure">
+   <div class="table">
+
+<!--l. 574--><p class="indent" >   <a 
+ id="x1-110044"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-5" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"><col 
+id="TBL-5-3"><col 
+id="TBL-5-4"><col 
+id="TBL-5-5"><col 
+id="TBL-5-6"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-5-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-1"  
+class="td11"> true  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-2"  
+class="td11">missing</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-3"  
+class="td11"> out of </td><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-5-1-4"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">predicted affinity</div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-1"  
+class="td11">affinity</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-2"  
+class="td11"> data  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-3"  
+class="td11">bounds</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-4"  
+class="td11">IAB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-5"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-6"  
+class="td11">OIB</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-1"  
+class="td11"> IAB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-2"  
+class="td11">  40   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-3"  
+class="td11">   0    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-4"  
+class="td11"> 17 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-5"  
+class="td11">  10   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-6"  
+class="td11"> 0  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-1"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-2"  
+class="td11">   2    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-3"  
+class="td11">   3    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-4"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-5"  
+class="td11">  48   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-6"  
+class="td11"> 2  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-1"  
+class="td11"> OIB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-2"  
+class="td11">  24   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-3"  
+class="td11">   7    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-4"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-5"  
+class="td11">   1    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-6"  
+class="td11"> 28 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-6-1"  
+class="td11">      </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;4: </span><span  
+class="content">Summary table of the Ti-V discrimination diagram of Figure <a 
+href="#x1-110037">7<!--tex4ht:ref: fig:Shervais --></a>.</span></div><!--tex4ht:label?: x1-110044 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 590--><p class="indent" >   The decision boundaries of all the tectonic discrimination diagrams discussed so far were drawn by eye.
+Vermeesch (2006) revisited these and other diagrams and recalculated the decision boundaries using
+the statistically more rigorous technique of discriminant analysis. Besides revisiting the diagrams of
+Pearce and Cann (1973), Shervais (1982) and others, Vermeesch (2006) also performed an exhaustive
+exploration of all possible binary and ternary combinations of 45 elements, based on the same training
+data used in the present paper. Here, only two of these diagrams will be discussed. The best overall
+linear discrimination diagram uses the combination of Si, Ti and Sr (Figure <a 
+href="#x1-110058">8<!--tex4ht:ref: fig:SiTiSr --></a>, Table <a 
+href="#x1-110075">5<!--tex4ht:ref: tab:SiTiSr --></a>). The best
+quadratic discrimination diagram of only relatively immobile elements uses Ti, V and Sm (Figure <a 
+href="#x1-110069">9<!--tex4ht:ref: fig:TiVSm --></a>, Table
+<a 
+href="#x1-110086">6<!--tex4ht:ref: tab:TiVSm --></a>).<br 
+class="newline" />
+<!--l. 604--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-110058"></a>
+
+<!--l. 606--><p class="noindent" ><img 
+src="W3441-rev311x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev311x.png" src="W3441-fig8.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8: </span><span  
+class="content">The test data (164/182 used) plotted on the Si-Ti-Sr linear discrimination diagram (redrawn from
+Vermeesch, 2006).</span></div><!--tex4ht:label?: x1-110058 -->
+
+<!--l. 610--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 612--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+
+<a 
+ id="x1-110069"></a>
+
+<!--l. 614--><p class="noindent" ><img 
+src="W3441-rev312x.png" alt="PIC" class="graphics" width="500pt" ><!--tex4ht:graphics  
+name="W3441-rev312x.png" src="W3441-fig9.pdf"  
+-->
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;9: </span><span  
+class="content">The test data (85/182 used) plotted on the Ti-V-Sm quadratic discrimination diagram (redrawn
+from Vermeesch, 2006)</span></div><!--tex4ht:label?: x1-110069 -->
+
+<!--l. 618--><p class="indent" >   </div><hr class="endfigure">
+   <div class="table">
+
+<!--l. 620--><p class="indent" >   <a 
+ id="x1-110075"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-6" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1"><col 
+id="TBL-6-2"><col 
+id="TBL-6-3"><col 
+id="TBL-6-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-6-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-1"  
+class="td11"> true  </td><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-6-1-2"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">predicted affinity</div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-1"  
+class="td11">affinity</td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-2"  
+class="td11">IAB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-3"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-4"  
+class="td11">OIB</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-1"  
+class="td11"> IAB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-2"  
+class="td11"> 45 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-3"  
+class="td11">   9    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-4"  
+class="td11"> 7  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-1"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-2"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-3"  
+class="td11">  45   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-4-4"  
+class="td11"> 1  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-1"  
+class="td11"> OIB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-2"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-3"  
+class="td11">   0    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-5-4"  
+class="td11"> 57 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-6-1"  
+class="td11">      </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;5: </span><span  
+class="content">Test of the best linear discrimination diagram of Vermeesch (2006) (Figures <a 
+href="#x1-110058">8<!--tex4ht:ref: fig:SiTiSr --></a>), using Si, Ti and
+V.</span></div><!--tex4ht:label?: x1-110075 -->
+
+   </div><hr class="endfloat" />
+   </div>
+   <div class="table">
+
+<!--l. 636--><p class="indent" >   <a 
+ id="x1-110086"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-7" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-7-1g"><col 
+id="TBL-7-1"><col 
+id="TBL-7-2"><col 
+id="TBL-7-3"><col 
+id="TBL-7-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-7-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-1"  
+class="td11"> true  </td><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-7-1-2"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">predicted affinity</div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-1"  
+class="td11">affinity</td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-2"  
+class="td11">IAB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-3"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-4"  
+class="td11">OIB</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-1"  
+class="td11"> IAB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-2"  
+class="td11"> 24 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-3"  
+class="td11">   2    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-4"  
+class="td11"> 0  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-1"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-2"  
+class="td11"> 1  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-3"  
+class="td11">  44   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-4"  
+class="td11"> 5  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-1"  
+class="td11"> OIB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-2"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-3"  
+class="td11">   0    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-4"  
+class="td11"> 9  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-6-1"  
+class="td11">      </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;6: </span><span  
+class="content">Test of the best quadratic discriminant analysis of Vermeesch (2006) (Figure <a 
+href="#x1-110069">9<!--tex4ht:ref: fig:TiVSm --></a>), using Ti, V and
+Sm.</span></div><!--tex4ht:label?: x1-110086 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 652--><p class="indent" >   The same data were also classified with the trees of Figures <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a> and <a 
+href="#x1-80045">5<!--tex4ht:ref: fig:hfsTree --></a>. The results of this experiment are shown in
+Tables <a 
+href="#x1-110097">7<!--tex4ht:ref: tab:theTest --></a> and <a 
+href="#x1-110108">8<!--tex4ht:ref: tab:hfsTest --></a>. Contrary to the discrimination diagrams, the classification trees managed to assign a tectonic
+affinity to all 182 test samples. The HFS tree misclassifies quite a few more IABs and MORBs than the full tree. For
+the MORBs, it is probably not surprising that 14 out of 54 Galapagos ridge samples were misclassified as OIBs,
+considering the possible presence of plume-ridge interactions near the Galapagos hot spot. The higher
+misclassification risk of the HFS tree reminds us of the fact that unless rocks are obviously altered, it is better to use
+the full tree, which includes Sr.<br 
+class="newline" />
+   <div class="table">
+
+<!--l. 666--><p class="indent" >   <a 
+ id="x1-110097"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-8" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-8-1g"><col 
+id="TBL-8-1"><col 
+id="TBL-8-2"><col 
+id="TBL-8-3"><col 
+id="TBL-8-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-8-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-1"  
+class="td11"> true  </td><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-8-1-2"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">predicted affinity</div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-2-1"  
+class="td11">affinity</td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-2-2"  
+class="td11">IAB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-2-3"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-2-4"  
+class="td11">OIB</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-1"  
+class="td11"> IAB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-2"  
+class="td11"> 54 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-3"  
+class="td11">   8    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-3-4"  
+class="td11"> 5  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-1"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-2"  
+class="td11"> 4  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-3"  
+class="td11">  49   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-4-4"  
+class="td11"> 2  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-5-1"  
+class="td11"> OIB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-5-2"  
+class="td11"> 2  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-5-3"  
+class="td11">   2    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-8-5-4"  
+class="td11"> 56 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-6-1"  
+class="td11">      </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;7: </span><span  
+class="content">Test of the full tree (Figure <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a>) on a suite of rocks that were not used in its construction.</span></div><!--tex4ht:label?: x1-110097 -->
+
+   </div><hr class="endfloat" />
+   </div>
+   <div class="table">
+
+<!--l. 683--><p class="indent" >   <a 
+ id="x1-110108"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-9" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-9-1g"><col 
+id="TBL-9-1"><col 
+id="TBL-9-2"><col 
+id="TBL-9-3"><col 
+id="TBL-9-4"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-9-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-1-1"  
+class="td11"> true  </td><td colspan="3" style="white-space:nowrap; text-align:center;" id="TBL-9-1-2"  
+class="td11"> <div class="multicolumn"  style="white-space:nowrap; text-align:center;">predicted affinity</div>
+</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-2-1"  
+class="td11">affinity</td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-2-2"  
+class="td11">IAB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-2-3"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-2-4"  
+class="td11">OIB</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-3-1"  
+class="td11"> IAB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-3-2"  
+class="td11"> 44 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-3-3"  
+class="td11">  17   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-3-4"  
+class="td11"> 6  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-4-1"  
+class="td11">MORB</td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-4-2"  
+class="td11"> 3  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-4-3"  
+class="td11">  38   </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-4-4"  
+class="td11"> 14 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-5-1"  
+class="td11"> OIB  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-5-2"  
+class="td11"> 0  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-5-3"  
+class="td11">   1    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-9-5-4"  
+class="td11"> 59 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-6-1"  
+class="td11">      </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;8: </span><span  
+class="content">Test of the tree that uses only HFS elements (Figure <a 
+href="#x1-80045">5<!--tex4ht:ref: fig:hfsTree --></a>) on the same suite of rocks of Table <a 
+href="#x1-110097">7<!--tex4ht:ref: tab:theTest --></a>.</span></div><!--tex4ht:label?: x1-110108 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 700--><p class="indent" >   Performance of the Ti-V diagram is remarkably good and comparable to that to the full tree with a
+misclassification rate of 13/93 for the former and 23/182 for the latter (Tables <a 
+href="#x1-110044">4<!--tex4ht:ref: tab:Shervais --></a> and <a 
+href="#x1-110097">7<!--tex4ht:ref: tab:theTest --></a>). The Si-Ti-Sr (17/164
+misclassified, Table <a 
+href="#x1-110075">5<!--tex4ht:ref: tab:SiTiSr --></a>) and Ti-V-Sm (8/85 misclassified, Table <a 
+href="#x1-110086">6<!--tex4ht:ref: tab:TiVSm --></a>) diagrams even seem to perform better than the
+classification trees. However, this is likely to change for new trees created from larger sets of training data.
+Discriminant analysis does not gain much from excessively large databases, whereas classification trees keep
+improving. And again, neither the Si-Ti-Sr nor the Ti-V-Sm diagram succeeded in classifying all the test data, in
+contrast with the classification trees.
+   <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-120004.2"></a><span 
+class="cmbx-10">Predictions for Rocks of Unknown Tectonic Affinity</span></h4>
+<!--l. 716--><p class="noindent" >We will now apply the classification tree method to a published dataset of 20 basalts from the Pindos Basin in
+Greece (Saccani <span 
+class="cmti-10">et al.</span>, 2003). This exercise will serve as an illustration of the way the tree method works in practice,
+and of its limitations. The features relevant to the classification tree analysis are shown in Table <a 
+href="#x1-120019">9<!--tex4ht:ref: tab:pindos --></a>. As a first
+example, consider sample GR 47b. It travels through the full classification tree of Figure <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a> as follows:
+TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>2.135% <span 
+class="cmsy-10">&#x2192; </span>Sr<span 
+class="cmsy-10">&#x2265;</span>156ppm <span 
+class="cmsy-10">&#x2192; </span>TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmsy-10">&#x2265;</span>1.285% <span 
+class="cmsy-10">&#x2192; </span>MgO<span 
+class="cmmi-10">&#x003C;</span>9.595% <span 
+class="cmsy-10">&#x2192; </span>MgO<span 
+class="cmsy-10">&#x2265;</span>5.775% <span 
+class="cmsy-10">&#x2192; </span>Rb <span 
+class="cmsy-10">&#x2265; </span>3.675ppm.
+The same sample travels through the HFS tree of Figure <a 
+href="#x1-80045">5<!--tex4ht:ref: fig:hfsTree --></a> along the following path: TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">&#x003C;</span>2.135%
+<span 
+class="cmsy-10">&#x2192; </span>TiO<sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmsy-10">&#x2265;</span>1.046% <span 
+class="cmsy-10">&#x2192; </span>Nd<span 
+class="cmmi-10">&#x003C;</span>12.785ppm. Note that for the last step, the second surrogate variable was
+used (Table <a 
+href="#x1-80031">1<!--tex4ht:ref: tab:surrogates --></a>), because no isotopic ratios were measured for these samples. No rare earth elements
+were measured for sample GR 56c. Therefore, its path through the HFS tree stops at node 4, where a
+&#8220;follow the majority&#8221; decision must be made. Since the distribution of training data in this node is
+IAB/MORB/OIB = 73/194/43 (Table <a 
+href="#x1-80052">2<!--tex4ht:ref: tab:hfsSurrogates --></a>), GR 56c is classified as a MORB, albeit not with the greatest
+confidence.<br 
+class="newline" />
+   <div class="table">
+
+<!--l. 738--><p class="indent" >   <a 
+ id="x1-120019"></a><hr class="float"><div class="float" 
+>
+
+<div class="tabular"> <table id="TBL-10" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-10-1g"><col 
+id="TBL-10-1"></colgroup><colgroup id="TBL-10-2g"><col 
+id="TBL-10-2"><col 
+id="TBL-10-3"><col 
+id="TBL-10-4"><col 
+id="TBL-10-5"><col 
+id="TBL-10-6"><col 
+id="TBL-10-7"><col 
+id="TBL-10-8"><col 
+id="TBL-10-9"></colgroup><colgroup id="TBL-10-10g"><col 
+id="TBL-10-10"><col 
+id="TBL-10-11"></colgroup><colgroup id="TBL-10-12g"><col 
+id="TBL-10-12"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-10-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-1"  
+class="td11"> <span 
+class="cmr-9">sample </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-2"  
+class="td11"><span 
+class="cmr-9">TiO2</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-3"  
+class="td11"><span 
+class="cmr-9">MgO</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-4"  
+class="td11">  <span 
+class="cmr-9">Ni   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-5"  
+class="td11"> <span 
+class="cmr-9">Rb  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-6"  
+class="td11">  <span 
+class="cmr-9">Sr   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-7"  
+class="td11"> <span 
+class="cmr-9">Nb  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-8"  
+class="td11"> <span 
+class="cmr-9">Nd  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-9"  
+class="td11"> <span 
+class="cmr-9">Yb  </span></td><td colspan="2" style="white-space:nowrap; text-align:center;" id="TBL-10-1-10"  
+class="td11">     <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmr-9">affinity</span></div>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-1-12"  
+class="td11"><span 
+class="cmr-9">comment</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-1"  
+class="td11">  <span 
+class="cmr-9">name  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-2"  
+class="td11"> <span 
+class="cmr-9">(%) </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-3"  
+class="td11"> <span 
+class="cmr-9">(%) </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-4"  
+class="td11"><span 
+class="cmr-9">(ppm)</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-5"  
+class="td11"><span 
+class="cmr-9">(ppm)</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-6"  
+class="td11"><span 
+class="cmr-9">(ppm)</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-7"  
+class="td11"><span 
+class="cmr-9">(ppm)</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-8"  
+class="td11"><span 
+class="cmr-9">(ppm)</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-9"  
+class="td11"><span 
+class="cmr-9">(ppm)</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-10"  
+class="td11"><span 
+class="cmr-9">full tree</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-11"  
+class="td11"><span 
+class="cmr-9">HFS only</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-2-12"  
+class="td11">   <span 
+class="cmr-9">&#x00A0;     </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-1"  
+class="td11"> <span 
+class="cmr-9">GR 47b </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-2"  
+class="td11"> <span 
+class="cmr-9">1.41 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-3"  
+class="td11"> <span 
+class="cmr-9">6.60 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-4"  
+class="td11">  <span 
+class="cmr-9">81   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-5"  
+class="td11">  <span 
+class="cmr-9">17   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-6"  
+class="td11"> <span 
+class="cmr-9">163  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-7"  
+class="td11"> <span 
+class="cmr-9">10.6 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-8"  
+class="td11"> <span 
+class="cmr-9">12.3 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-9"  
+class="td11"> <span 
+class="cmr-9">2.87 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-3-12"  
+class="td11">        </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-1"  
+class="td11"> <span 
+class="cmr-9">GR 50c </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-2"  
+class="td11"> <span 
+class="cmr-9">1.60 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-3"  
+class="td11"> <span 
+class="cmr-9">8.36 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-4"  
+class="td11"> <span 
+class="cmr-9">61 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-5"  
+class="td11"> <span 
+class="cmr-9">7 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-6"  
+class="td11"> <span 
+class="cmr-9">225 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-7"  
+class="td11"> <span 
+class="cmr-9">9.69 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-8"  
+class="td11"> <span 
+class="cmr-9">13.1 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-9"  
+class="td11"> <span 
+class="cmr-9">3.16 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-11"  
+class="td11"> <span 
+class="cmr-9">MORB </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-4-12"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-1"  
+class="td11"> <span 
+class="cmr-9">GR 50d </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-2"  
+class="td11"> <span 
+class="cmr-9">1.52 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-3"  
+class="td11"> <span 
+class="cmr-9">5.69 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-4"  
+class="td11">  <span 
+class="cmr-9">56   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-5"  
+class="td11">  <span 
+class="cmr-9">18   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-6"  
+class="td11"> <span 
+class="cmr-9">176  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-7"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-8"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-9"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-10"  
+class="td11">  <span 
+class="cmr-9">IAB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-5-12"  
+class="td11"><span 
+class="cmr-9">Mg loss?</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-1"  
+class="td11"> <span 
+class="cmr-9">GR 50e </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-2"  
+class="td11"> <span 
+class="cmr-9">1.56 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-3"  
+class="td11"> <span 
+class="cmr-9">5.60 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-4"  
+class="td11">  <span 
+class="cmr-9">66   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-5"  
+class="td11">  <span 
+class="cmr-9">20   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-6"  
+class="td11"> <span 
+class="cmr-9">138  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-7"  
+class="td11"> <span 
+class="cmr-9">9.38 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-8"  
+class="td11"> <span 
+class="cmr-9">13.1 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-9"  
+class="td11"> <span 
+class="cmr-9">3.31 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-6-12"  
+class="td11">        </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-1"  
+class="td11"> <span 
+class="cmr-9">GR 51a </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-2"  
+class="td11"> <span 
+class="cmr-9">1.18 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-3"  
+class="td11"> <span 
+class="cmr-9">7.22 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-4"  
+class="td11"> <span 
+class="cmr-9">104 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-5"  
+class="td11"> <span 
+class="cmr-9">4 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-6"  
+class="td11"> <span 
+class="cmr-9">242 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-7"  
+class="td11"> <span 
+class="cmr-9">6.87 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-8"  
+class="td11"> <span 
+class="cmr-9">9.5 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-9"  
+class="td11"> <span 
+class="cmr-9">2.17 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-10"  
+class="td11"> <span 
+class="cmr-9">IAB </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-11"  
+class="td11"> <span 
+class="cmr-9">MORB </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-7-12"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-1"  
+class="td11"> <span 
+class="cmr-9">GR 51b </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-2"  
+class="td11"> <span 
+class="cmr-9">1.17 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-3"  
+class="td11"> <span 
+class="cmr-9">7.05 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-4"  
+class="td11">  <span 
+class="cmr-9">97   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-5"  
+class="td11">  <span 
+class="cmr-9">5   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-6"  
+class="td11"> <span 
+class="cmr-9">180  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-7"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-8"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-9"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-10"  
+class="td11">  <span 
+class="cmr-9">IAB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-8-12"  
+class="td11">        </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-1"  
+class="td11"> <span 
+class="cmr-9">GR 56a </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-2"  
+class="td11"> <span 
+class="cmr-9">1.68 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-3"  
+class="td11"> <span 
+class="cmr-9">6.57 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-4"  
+class="td11"> <span 
+class="cmr-9">85 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-5"  
+class="td11"> <span 
+class="cmr-9">4 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-6"  
+class="td11"> <span 
+class="cmr-9">98 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-7"  
+class="td11"> <span 
+class="cmr-9">5.87 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-8"  
+class="td11"> <span 
+class="cmr-9">14 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-9"  
+class="td11"> <span 
+class="cmr-9">3.15 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-11"  
+class="td11"> <span 
+class="cmr-9">MORB </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-9-12"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-10-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-1"  
+class="td11"> <span 
+class="cmr-9">GR 56b </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-2"  
+class="td11"> <span 
+class="cmr-9">1.61 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-3"  
+class="td11"> <span 
+class="cmr-9">6.77 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-4"  
+class="td11">  <span 
+class="cmr-9">72   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-5"  
+class="td11">  <span 
+class="cmr-9">5   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-6"  
+class="td11"> <span 
+class="cmr-9">200  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-7"  
+class="td11"> <span 
+class="cmr-9">4.23 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-8"  
+class="td11"> <span 
+class="cmr-9">11.8 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-9"  
+class="td11"> <span 
+class="cmr-9">3.40 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-10-12"  
+class="td11">        </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-11-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-1"  
+class="td11"> <span 
+class="cmr-9">GR 56c </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-2"  
+class="td11"> <span 
+class="cmr-9">1.68 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-3"  
+class="td11"> <span 
+class="cmr-9">6.90 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-4"  
+class="td11"> <span 
+class="cmr-9">65 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-5"  
+class="td11"> <span 
+class="cmr-9">5 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-6"  
+class="td11"> <span 
+class="cmr-9">81 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-7"  
+class="td11"> <span 
+class="cmr-9">&#8211; </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-8"  
+class="td11"> <span 
+class="cmr-9">&#8211; </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-9"  
+class="td11"> <span 
+class="cmr-9">&#8211; </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-11"  
+class="td11"> <span 
+class="cmr-9">MORB </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-11-12"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-12-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-1"  
+class="td11"> <span 
+class="cmr-9">GR 56d </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-2"  
+class="td11"> <span 
+class="cmr-9">1.52 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-3"  
+class="td11"> <span 
+class="cmr-9">6.33 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-4"  
+class="td11">  <span 
+class="cmr-9">72   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-5"  
+class="td11">  <span 
+class="cmr-9">7   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-6"  
+class="td11"> <span 
+class="cmr-9">247  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-7"  
+class="td11"> <span 
+class="cmr-9">3.94 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-8"  
+class="td11"> <span 
+class="cmr-9">11.8 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-9"  
+class="td11"> <span 
+class="cmr-9">3.37 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-12-12"  
+class="td11">        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-13-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-1"  
+class="td11"> <span 
+class="cmr-9">GR 71a </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-2"  
+class="td11"> <span 
+class="cmr-9">2.82 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-3"  
+class="td11"> <span 
+class="cmr-9">6.87 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-4"  
+class="td11">  <span 
+class="cmr-9">76   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-5"  
+class="td11">  <span 
+class="cmr-9">4   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-6"  
+class="td11"> <span 
+class="cmr-9">114  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-7"  
+class="td11"> <span 
+class="cmr-9">3.74 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-8"  
+class="td11"> <span 
+class="cmr-9">19.8 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-9"  
+class="td11"> <span 
+class="cmr-9">5.96 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-11"  
+class="td11">  <span 
+class="cmr-9">OIB   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-13-12"  
+class="td11"> <span 
+class="cmr-9">Sr loss? </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-14-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-1"  
+class="td11"> <span 
+class="cmr-9">GR 71b </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-2"  
+class="td11"> <span 
+class="cmr-9">2.79 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-3"  
+class="td11"> <span 
+class="cmr-9">6.82 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-4"  
+class="td11">  <span 
+class="cmr-9">73   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-5"  
+class="td11">  <span 
+class="cmr-9">3   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-6"  
+class="td11"> <span 
+class="cmr-9">115  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-7"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-8"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-9"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-11"  
+class="td11">  <span 
+class="cmr-9">OIB   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-14-12"  
+class="td11"> <span 
+class="cmr-9">Sr loss? </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-15-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-1"  
+class="td11"> <span 
+class="cmr-9">GR 71c </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-2"  
+class="td11"> <span 
+class="cmr-9">2.36 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-3"  
+class="td11"> <span 
+class="cmr-9">7.24 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-4"  
+class="td11">  <span 
+class="cmr-9">80   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-5"  
+class="td11">  <span 
+class="cmr-9">3   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-6"  
+class="td11"> <span 
+class="cmr-9">166  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-7"  
+class="td11"> <span 
+class="cmr-9">3.27 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-8"  
+class="td11"> <span 
+class="cmr-9">17.7 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-9"  
+class="td11"> <span 
+class="cmr-9">5.00 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-11"  
+class="td11">  <span 
+class="cmr-9">OIB   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-15-12"  
+class="td11"> <span 
+class="cmr-9">Sr loss? </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-16-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-1"  
+class="td11"> <span 
+class="cmr-9">GR 71d </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-2"  
+class="td11"> <span 
+class="cmr-9">2.80 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-3"  
+class="td11"> <span 
+class="cmr-9">7.12 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-4"  
+class="td11">  <span 
+class="cmr-9">75   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-5"  
+class="td11">  <span 
+class="cmr-9">5   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-6"  
+class="td11"> <span 
+class="cmr-9">125  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-7"  
+class="td11"> <span 
+class="cmr-9">3.66 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-8"  
+class="td11"> <span 
+class="cmr-9">19.7 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-9"  
+class="td11"> <span 
+class="cmr-9">5.92 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-11"  
+class="td11">  <span 
+class="cmr-9">OIB   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-16-12"  
+class="td11"> <span 
+class="cmr-9">Sr loss? </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-17-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-1"  
+class="td11"> <span 
+class="cmr-9">GR 71e </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-2"  
+class="td11"> <span 
+class="cmr-9">2.89 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-3"  
+class="td11"> <span 
+class="cmr-9">6.66 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-4"  
+class="td11">  <span 
+class="cmr-9">71   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-5"  
+class="td11">  <span 
+class="cmr-9">3   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-6"  
+class="td11"> <span 
+class="cmr-9">124  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-7"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-8"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-9"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-11"  
+class="td11">  <span 
+class="cmr-9">OIB   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-17-12"  
+class="td11"> <span 
+class="cmr-9">Sr loss? </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-18-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-1"  
+class="td11"><span 
+class="cmr-9">GR 181a</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-2"  
+class="td11"> <span 
+class="cmr-9">1.38 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-3"  
+class="td11"> <span 
+class="cmr-9">6.61 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-4"  
+class="td11">  <span 
+class="cmr-9">83   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-5"  
+class="td11">  <span 
+class="cmr-9">8   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-6"  
+class="td11"> <span 
+class="cmr-9">176  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-7"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-8"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-9"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-18-12"  
+class="td11">        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-19-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-1"  
+class="td11"><span 
+class="cmr-9">GR 181b</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-2"  
+class="td11"> <span 
+class="cmr-9">1.50 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-3"  
+class="td11"> <span 
+class="cmr-9">7.32 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-4"  
+class="td11">  <span 
+class="cmr-9">88   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-5"  
+class="td11">  <span 
+class="cmr-9">4   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-6"  
+class="td11"> <span 
+class="cmr-9">152  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-7"  
+class="td11"> <span 
+class="cmr-9">4.18 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-8"  
+class="td11"> <span 
+class="cmr-9">21.8 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-9"  
+class="td11"> <span 
+class="cmr-9">6.55 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-11"  
+class="td11">  <span 
+class="cmr-9">IAB    </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-19-12"  
+class="td11"> <span 
+class="cmr-9">43/20/0 </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-20-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-1"  
+class="td11"><span 
+class="cmr-9">GR 181c</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-2"  
+class="td11"> <span 
+class="cmr-9">1.35 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-3"  
+class="td11"> <span 
+class="cmr-9">6.64 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-4"  
+class="td11">  <span 
+class="cmr-9">90   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-5"  
+class="td11">  <span 
+class="cmr-9">8   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-6"  
+class="td11"> <span 
+class="cmr-9">366  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-7"  
+class="td11"> <span 
+class="cmr-9">1.65 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-8"  
+class="td11"> <span 
+class="cmr-9">10.1 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-9"  
+class="td11"> <span 
+class="cmr-9">2.91 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-20-12"  
+class="td11">        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-21-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-1"  
+class="td11"><span 
+class="cmr-9">GR 181d</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-2"  
+class="td11"> <span 
+class="cmr-9">1.30 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-3"  
+class="td11"> <span 
+class="cmr-9">6.21 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-4"  
+class="td11">  <span 
+class="cmr-9">85   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-5"  
+class="td11">  <span 
+class="cmr-9">4   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-6"  
+class="td11">  <span 
+class="cmr-9">76   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-7"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-8"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-9"  
+class="td11">  <span 
+class="cmr-9">&#8211;   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-11"  
+class="td11"> <span 
+class="cmr-9">MORB  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-21-12"  
+class="td11">        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-22-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-1"  
+class="td11"><span 
+class="cmr-9">GR 195a</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-2"  
+class="td11"> <span 
+class="cmr-9">2.43 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-3"  
+class="td11"> <span 
+class="cmr-9">6.55 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-4"  
+class="td11">  <span 
+class="cmr-9">63   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-5"  
+class="td11">  <span 
+class="cmr-9">4   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-6"  
+class="td11"> <span 
+class="cmr-9">102  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-7"  
+class="td11"> <span 
+class="cmr-9">4.35 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-8"  
+class="td11"> <span 
+class="cmr-9">17.6 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-9"  
+class="td11"> <span 
+class="cmr-9">5.37 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-10"  
+class="td11"><span 
+class="cmr-9">MORB</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-11"  
+class="td11">  <span 
+class="cmr-9">OIB   </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-10-22-12"  
+class="td11"> <span 
+class="cmr-9">Sr loss? </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-23-"><td  style="white-space:nowrap; text-align:center;" id="TBL-10-23-1"  
+class="td11">        </td></tr></table></div>
+ <div class="caption" 
+><span class="id">Table&#x00A0;9: </span><span  
+class="content">Summary of geochemical analyses of Triassic basalts of the Pindos Basin, from Saccanti <span 
+class="cmti-10">et al.</span>
+(2003). Most of the analyses point towards a MORB affinity for these rocks. There is agreement between
+the full classification tree and the one that only uses HFS elements for half of the samples (all agreeing on a
+MORB affinity). The cases where there is disagreement between the two classifications could be due to the
+selective loss of Mg and Sr. Sample GR 181b was classified as an IAB with a probability of only <span 
+class="cmsy-10">~</span>2/3.</span></div><!--tex4ht:label?: x1-120019 -->
+
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 780--><p class="indent" >   There is agreement between the full tree and the HFS tree for only half of the samples. Samples
+GR 50d, 51a and 51b were classified as IAB by the full tree, and as MORB by the HFS tree. The
+distinction between IAB and MORB is the hardest one to make. IABs have a much greater compositional
+diversity than both MORBs and OIBs. This is also reflected in most discrimination diagrams (see
+for example Figure <a 
+href="#x1-110016">6<!--tex4ht:ref: fig:PearceDisc --></a>). Furthermore, it might be possible that Mg was lost during the greenschist
+metamorphism that affected the Pindos ophiolites (Saccani <span 
+class="cmti-10">et al.</span>, 2003). This would have caused sample
+GR 50d to be sent left, rather than right at node 7 of Figure <a 
+href="#x1-80024">4<!--tex4ht:ref: fig:theTree --></a>. Likewise, it is possible that Sr-loss
+caused samples GR 71a-e and 195a to be sent left, rather than right at node 3 of the full tree. Finally,
+sample GR 181b was classified as an IAB by the HFS tree (Figure <a 
+href="#x1-80045">5<!--tex4ht:ref: fig:hfsTree --></a>). However, its terminal node (left
+branch of node 5) is not very pure: IAB/MORB/OIB = 43/20/0, once again illustrating the difficulty of
+distinction between MORB and IAB affinities, which is caused by the complicated petrogenesis of the
+latter.
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-130005"></a><span 
+class="cmbx-10">CONCLUSIONS</span></h3>
+<!--l. 801--><p class="noindent" >It was not the purpose of this paper to claim that discriminant analysis or discrimination diagrams are either bad or
+obsolete. It merely suggests a completely different statistical approach to tectonic classification by rock
+geochemistry. Classification trees are presented as a simple yet powerful way to classify basaltic rocks of unknown
+tectonic affinity. Some of the strengths of the method are:
+     <ul class="itemize1">
+     <li class="itemize">Classification trees approximate the feature space by a piecewise constant function. This non-parametric
+     approach avoids the statistical quagmire of discriminant analysis on compositional data (e.g., Aitchison,
+     1986; Woronow and Love, 1990).
+     </li>
+     <li class="itemize">Classification  trees  are  insensitive  to  outliers.  In  other  words,  if  some  of  the  training  data  were
+     misidentified  or  accidentally  very  inaccurate  (e.g.,  misplaced  decimal  point),  trees  remain  almost
+     unaffected.
+     </li>
+     <li class="itemize">They can be used for the classification of highly multivariate data, while preserving the possibility of a
+     simple, two-dimensional visualization. Therefore, trees are extremely easy to use. The trees presented
+     in this paper were based on a database of moderate size (756 analyses). If a much larger database were
+     compiled, the trees would grow and their discriminative power increase, but they would still be easy
+     to interpret. It should also be easy to extend the trees given in this paper to more tectonic affinities,
+     such as active continental margins, continental within-plate basalts, or different lithologies, simply by
+     adding data to the training-set. In principle, there is no upper limit to the number of &#8220;class labels&#8221;
+     that the method can discriminate, provided enough training data are available.
+     </li>
+     <li class="itemize">Trees  do  not  discriminate  according  to  some  complicated  decision  boundary  (e.g.,  multivariate
+     discriminant analysis) or a black box process (e.g., neural networks), but split the data space up one
+     variable at the time, in decreasing order of significance. Therefore, the split variables have geochemical
+     significance. For example, if TiO<sub><span 
+class="cmr-7">2</span></sub> and Sr contribute 87% of the discriminative power, there likely is a
+     real geochemical mechanism that causes this to be so.
+     </li>
+     <li class="itemize">Although the trees presented in this paper were built from as many as 51 different variables, we can
+     still use them if some of these variables were not measured for the unknown sample that we want to
+
+     classify. This can be done with the surrogate split variables of Tables <a 
+href="#x1-80031">1<!--tex4ht:ref: tab:surrogates --></a> and <a 
+href="#x1-80052">2<!--tex4ht:ref: tab:hfsSurrogates --></a>.
+     </li>
+     <li class="itemize">A rough idea can be had of the statistical uncertainty of the classification by looking at the purity of
+     the terminal nodes. For examples, see samples GR 181b and 56c of Section <a 
+href="#x1-120004.2">4.2<!--tex4ht:ref: sec:unknown --></a>. This is not possible for
+     discrimination diagrams because the decision boundaries of the latter are drawn as hard lines, and not
+     as the &#8220;fuzzy&#8221; zones which they really are.</li></ul>
+<!--l. 850--><p class="indent" >   On the other hand, trees are not perfect, and also have a few problems:
+     <ul class="itemize1">
+     <li class="itemize">Classification trees are biased because the piecewise constant approximation which they implement is
+     an oversimplification of the feature space. Increasing the size of the training dataset will alleviate this
+     problem. Alternatively, we could also allow linear combination splits instead of only splits on a single
+     variable, but this would hurt interpretability.
+     </li>
+     <li class="itemize">Trees also suffer from large variance. In other words, they are unstable. A different set of training
+     data could result in very different looking trees. This somewhat limits the interpretability of the split
+     variables, which was hailed before. More importantly, small errors in one of the split variables of the
+     unknown dataset are propagated down to all of the splits below it. &#8220;Bagging&#8221; is a way to solve these
+     problems by collecting a large number of &#8220;bootstrap samples&#8221; of the training data, and building a
+     large number of trees from them (Hastie <span 
+class="cmti-10">et al.</span>, 2001). The unknown data are then sent through all
+     these trees and the results averaged. This provides a more robust classification algorithm, but again
+     at the expense of interpretability, because bagged trees can no longer be easily plotted as a simple
+     two-dimensional graph.
+     </li>
+     <li class="itemize">One of the properties of many data mining algorithms, including classification trees, is the &#8220;garbage
+     in, garbage out&#8221; principle. There is no field of &#8220;ambiguous&#8221; tectonic affinity, which is effectively the
+     output of geochemical compositions that plot &#8220;out of bounds&#8221; on traditional discrimination diagrams
+     (e.g., Figure <a 
+href="#x1-110016">6<!--tex4ht:ref: fig:PearceDisc --></a> and Table <a 
+href="#x1-110023">3<!--tex4ht:ref: tab:PearceDisc --></a>). Any rock will be classified as either IAB, MORB or OIB, also when it
+     really is a continental basalt, granite or even sandstone! Therefore, one might treat compositions that
+     plot far outside the decision boundaries of the traditional discrimination diagrams with extra caution.</li></ul>
+<!--l. 884--><p class="indent" >   Most importantly, as was illustrated by the examples of Section <a 
+href="#x1-70003">3<!--tex4ht:ref: sec:example --></a>, no classification method based solely on
+geochemical data will ever be able to perfectly determine the tectonic affinity of basaltic rocks (or other rocks for
+that matter) simply because there is a lot of actual overlap between the geochemistry of the different tectonic
+settings. Notably IABs have a much wider range of compositions than either MORBs or OIBs. Therefore,
+geochemical classification should never be the only basis for determining tectonic affinity. This is especially the case
+for rocks that have undergone alteration. In such cases, mobile elements such as Sr, which have great discriminative
+power, cannot be used. If in addition to this, some other features have not been measured (such as isotope ratios
+and rare earths in some of the samples of Table <a 
+href="#x1-120019">9<!--tex4ht:ref: tab:pindos --></a>), then one might not be able to put much faith in the
+classification.
+<!--l. 899--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-140005"></a><span 
+class="cmbx-10">ACKNOWLEDGMENTS</span></h3>
+<!--l. 901--><p class="noindent" >The author wishes to thank Richard Arculus, John Rudge and Steve Galer for extremely constructive and insightful
+reviews.
+
+   <h3 class="likesectionHead"><a 
+ id="x1-150005"></a><span 
+class="cmbx-10">REFERENCES</span></h3>
+<!--l. 908--><p class="noindent" >
+     <dl class="description"><dt class="description">
+ </dt><dd 
+class="description">Aitchison J. (1986) <span 
+class="cmti-10">The statistical analysis of compositional data</span>. Chapman and Hall.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Breiman L., Friedman J. H., Olshen R., and Stone C. (1984) <span 
+class="cmti-10">Classification and Regression Trees</span>. Wadsworth.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Carreras X. and M&aacute;rquez, L. (2001) Boosting Trees for Anti-Spam Email Filtering. In: <span 
+class="cmti-10">Proceedings of</span>
+     <span 
+class="cmti-10">RANLP-01, 4th International Conference on Recent Advances in Natural Language Processing</span>, Tzigov
+     Chark, BG.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Chayes F. (1971) <span 
+class="cmti-10">Ratio correlation; a manual for students of petrology and geochemistry</span>. Chicago University
+     Press.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Chayes F. and Velde D. (1965) On distinguishing basaltic lavas of circumoceanic and oceanic-island type
+     by means of discriminant functions. <span 
+class="cmti-10">American Journal of Science </span><span 
+class="cmbx-10">263</span>, 206-222.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Hastie T., Tibshirani R., and Friedman J. H. (2001) <span 
+class="cmti-10">The elements of statistical learning: data mining,</span>
+     <span 
+class="cmti-10">inference, and prediction</span>. Springer.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Kushiro I. and Kuno H. (1963) Origin of primary basalt magmas and classification of basaltic rocks. <span 
+class="cmti-10">Journal</span>
+     <span 
+class="cmti-10">of Petrology </span><span 
+class="cmbx-10">4</span>(1), 75-89.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Pearce J. A. and Cann J. R. (1971) Ophiolite origin investigated by discriminant analysis using Ti, Zr and
+     Y. <span 
+class="cmti-10">Earth and Planetary Science Letters </span><span 
+class="cmbx-10">12</span>(3), 339-349.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Pearce J. A. and Cann J. R. (1973) Tectonic setting of basic volcanic rocks determined using trace element
+     analyses. <span 
+class="cmti-10">Earth and Planetary Science Letters </span><span 
+class="cmbx-10">19</span>(2), 290-300.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Pearce J. A. (1976) Statistical analysis of major element patterns in basalts. <span 
+class="cmti-10">Journal of Petrology </span><span 
+class="cmbx-10">17</span>(1),
+     15-43.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Ripley B. D. (1996) <span 
+class="cmti-10">Pattern Recognition and Neural Networks</span>. Cambridge University Press.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Rollinson H. R. (1993) <span 
+class="cmti-10">Using geochemical data: evaluation, presentation, interpretation</span>. Longman.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Saccani E., Padoa E., and Photiades A. (2003) Triassic mid-ocean ridge basalts from the Argolis Peninsula
+     (Greece):  new  constraints  for  the  early  oceanization  phases  of  the  Neo-Thetyan  Pindos  basin.  In
+     <span 
+class="cmti-10">Ophiolites in Earth History</span>, Vol. 218 (ed. Y. Dilek and P. T. Robinson), pp. 109-127. Geological Society.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Shervais J. W. (1982) Ti-V plots and the petrogenesis of modern ophiolitic lavas. <span 
+class="cmti-10">Earth and Planetary</span>
+     <span 
+class="cmti-10">Science Letters </span><span 
+class="cmbx-10">59</span>, 101-118.
+
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Vermeesch, P. (2006) Tectonic discrimination diagrams revisited. <span 
+class="cmti-10">Geochemistry, Geophysics, Geosystems</span>
+     (in press).
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Wood D. A. (1980) The application of a Th-Hf-Ta diagram to problems of tectonomagmatic classification
+     and to establishing the nature of crustal contamination of basaltic lavas of the British Tertiary volcanic
+     province. <span 
+class="cmti-10">Earth and Planetary Science Letters </span><span 
+class="cmbx-10">50</span>(1), 11-30.
+     </dd><dt class="description">
+ </dt><dd 
+class="description">Woronow A. and Love K. M. (1990) Quantifying and testing differences among means of compositional
+     data. <span 
+class="cmti-10">Mathematical Geology </span><span 
+class="cmbx-10">22</span>, 837-852.
+     </dd></dl>
+</td></table>    
+</body></html> 
+
+
+

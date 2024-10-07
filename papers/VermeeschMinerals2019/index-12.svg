@@ -1,0 +1,8 @@
+ <div class="verbatim" id="verbatim-13">
+<span 
+class="cmtt-10x-x-109">plot(ternary(ACNK),pch=20,labels=NA)</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">points(ternary(mu),pch=22,bg='blue')</span>
+</div>
+<!--l. 421--><p class="nopar" >                                                                               

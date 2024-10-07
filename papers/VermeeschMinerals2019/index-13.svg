@@ -1,0 +1,8 @@
+ <div class="verbatim" id="verbatim-14">
+<span 
+class="cmtt-10x-x-109">source('helper.R')</span>
+<span 
+class="cmtt-10x-x-109">&#x00A0;</span><br /><span 
+class="cmtt-10x-x-109">ternary.polygon(LL,UL,col='blue')</span>
+</div>
+<!--l. 439--><p class="nopar" >                                                                               
