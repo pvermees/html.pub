@@ -1,17 +1,5 @@
 body {
     font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
-    background: #222;
-    color: #DDD;
-}
-
-.ui-tabs .ui-tabs-nav {
-    background: #333;
-}
-.ui-tabs .ui-tabs-nav li {
-  background-color: #444;
-}
-.ui-tabs .ui-tabs-nav li a {
-  color: #DDD;
 }
 
 table {
